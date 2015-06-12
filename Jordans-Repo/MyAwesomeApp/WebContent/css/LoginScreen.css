@@ -1,0 +1,54 @@
+#submitButton {
+	margin-left: 45%;
+	margin-right: 45%;
+}
+
+html {
+	min-height: 100%;
+}
+
+body {
+  background-image:
+    linear-gradient( 
+      rgba(0, 153, 255, 0.55), 
+      rgba(128, 204, 255, 0.55),
+      rgba(0, 153, 255, 0.55) 
+    );
+}
+
+.tabListCustom {
+	background-color: rgba(128, 204, 255, 0.55);
+}
+
+.tabText {
+	color: black;
+}
+
+a:hover {
+	background-color: white !important;
+}
+
+#ajaxGetUserServletResponse {
+	margin-left: 22.5%;
+	padding-top: 15px;
+}
+
+.tab-content {
+	padding-top: 10px;
+}
+
+#container {
+	background-color: white;
+	margin-left: auto;
+  	margin-right: auto;
+  	width: 90%;
+}
+
+#tabContainer {
+	background-color: white;
+	width: 50%;
+    margin: 0 auto;
+    padding: 5px;
+    box-shadow: 1px 1px 20px 1px grey;
+    margin-top: 10%;   
+}
