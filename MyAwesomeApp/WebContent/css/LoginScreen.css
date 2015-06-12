@@ -1,0 +1,15 @@
+html {
+   background: linear-gradient(#80CCE6, #CCEBF5);
+   background-size: cover;
+   min-height: 100%;
+}
+
+#container {
+	background-color: white;
+	margin-left: auto;
+  	margin-right: auto;
+  	width: 40%;
+  	border-width: 2px;
+  	border-color: #0099CC;
+  	border-style: solid;
+}

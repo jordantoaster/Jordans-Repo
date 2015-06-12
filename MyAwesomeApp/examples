@@ -1,0 +1,14 @@
+Example Insert
+		try {
+			conn = DriverManager.getConnection(url,username,password);
+			System.out.println("connected");
+			
+			Statement statement = conn.createStatement();			
+			statement.executeUpdate("INSERT INTO user " + "VALUES ('"+user.getUsername()+"','"+user.getPassword()+"')");
+			
+			conn.close();
+		
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			System.out.println("connection failed " + e);
+		}
