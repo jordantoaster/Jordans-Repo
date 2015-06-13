@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
   <script src="http://localhost:8080/MyAwesomeApp/js/Login.js"></script>
   <link href="http://localhost:8080/MyAwesomeApp/css/LoginScreen.css" rel="stylesheet" type="text/css" />
+  <link href="http://localhost:8080/MyAwesomeApp/css/Master.css" rel="stylesheet" type="text/css" />
  </head>
  <body>
   <div id="tabContainer">
