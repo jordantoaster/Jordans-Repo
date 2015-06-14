@@ -86,4 +86,24 @@ public class UserDaoImpl implements UserDaoInterface {
 		return false;
 	}
 
+	@Override
+	public boolean updateBalance(String amount, String uid) {  
+		Connection conn = init();
+		
+		try {			
+			Statement statement = conn.createStatement();			
+			statement.executeUpdate("UPDATE user " + "SET Balance = Balance + '"+amount+"' WHERE Username = '"+uid+"' ");
+			
+			conn.close();
+		
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			System.out.println("connection failed " + e);
+			return false;
+		}
+		
+		System.out.println("done");
+		return true;
+	}
+
 }

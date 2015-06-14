@@ -29,7 +29,7 @@ $(document).ready(function() {
                	    $("#userNameFeild").css("border-color", "red");
                 	$("#passwordFeild").css("border-color", "red");
             	} else {               
-            		window.location = "http://localhost:8080/MyAwesomeApp/jsp/UserDashboard.jsp" + '?' + response["feedback"];
+            		window.location = "http://localhost:8080/MyAwesomeApp/jsp/UserDashboard.jsp" + '?id=' + response["feedback"];
             	}
             },
             error: function() {

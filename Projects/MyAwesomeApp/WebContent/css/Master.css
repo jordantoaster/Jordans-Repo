@@ -42,4 +42,13 @@
     background-color: rgba(0, 153, 255, 0.55);
 }
 
+#ajaxGetUserServletResponse {
+	opacity: 0;
+	bottom: 2%;
+	position: absolute;
+	margin-left: 40%;
+	margin-right: 40%;
+	width: 20%;
+}
+
     

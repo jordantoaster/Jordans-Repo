@@ -4,4 +4,5 @@ package com.myawesomeapp.servlets;
 public interface UserDaoInterface {
 	boolean insertUser(User user);
 	boolean readAndCompare(User user);
+	boolean updateBalance(String amount, String uid);
 }

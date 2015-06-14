@@ -12,10 +12,11 @@
   <link href="http://localhost:8080/MyAwesomeApp/css/Master.css" rel="stylesheet" type="text/css" />
   <link href="http://localhost:8080/MyAwesomeApp/css/UserProfile.css" rel="stylesheet" type="text/css" />    
   <script src="http://localhost:8080/MyAwesomeApp/js/Master.js"></script> 
+  <script src="http://localhost:8080/MyAwesomeApp/js/UserProfile.js"></script> 
 </head>
 <body>
 <div id="navBar"></div>
-     <div id="container">
+     <div id="container" class="inline">
       <form id="loginForm" method="post" name="loginForm">
        <div class="form-group">
         <label for="userNameFeild">Current User Name:</label>
@@ -39,7 +40,17 @@
        </div>
        <input type="submit" value="Change Details" id="changeButton" class="btn btn-default">
       </form>
-     <div id="ajaxGetUserServletResponse"></div>
      </div> 
+     <div id="addFundsBlock" class="inline">
+       <form id="fundsForm" method="post" name="loginForm">
+        <div class="form-group">
+         <label for="fundsFeild">Add funds here!</label>
+         <input type="text" name="funds" id="fundsFeild" class="form-control">
+       </div>             
+        <input type="submit" value="Add Funds" id="fundsButton" class="btn btn-default">       
+       </form>     
+     </div>
+     <div id="ajaxGetUserServletResponse" class="alert alert-success" role="alert">
+      </div> 
 </body>
 </html>

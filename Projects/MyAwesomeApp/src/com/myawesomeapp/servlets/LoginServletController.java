@@ -25,7 +25,7 @@ public class LoginServletController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	
     	UserAccessValidator check = new UserAccessValidator(); 
-    	LoginResponseBase JsonResponse;
+    	ResponseBase JsonResponse;
     	
     	/*Retrieves ajax request and converts JSON to a POJO*/
     	Gson gson = new Gson();
@@ -39,7 +39,7 @@ public class LoginServletController extends HttpServlet {
          * with relevant values and sent back to client via ajax*/
         if(!isInputValid){   
         	
-        	JsonResponse = new LoginResponseBase("User details do not meet the required standards", "false");
+        	JsonResponse = new ResponseBase("User details do not meet the required standards", "false");
         	String json = gson.toJson(JsonResponse); 	
         	response.getWriter().write(json); 
         	
@@ -51,13 +51,13 @@ public class LoginServletController extends HttpServlet {
         	if(isOnSystem){
         		
         		//append user id for future reference
-            	JsonResponse = new LoginResponseBase(user.getUsername(), "true");
+            	JsonResponse = new ResponseBase(user.getUsername(), "true");
             	String json = gson.toJson(JsonResponse); 	
             	response.getWriter().write(json);  
             	
         	} else {
         		
-            	JsonResponse = new LoginResponseBase("User details are not on the system", "false");
+            	JsonResponse = new ResponseBase("User details are not on the system", "false");
             	String json = gson.toJson(JsonResponse); 	
             	response.getWriter().write(json);             	
             }

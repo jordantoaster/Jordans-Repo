@@ -2,7 +2,16 @@
 
 #container {
 	width: 50%;
-	margin: 0 auto;
+	margin-left: 5%;
+}
+
+#addFundsBlock {
+	width: 30%;
+	margin-left: 10%;
+}
+
+div.inline {
+	float: left;
 }
 
 #changeButton {
