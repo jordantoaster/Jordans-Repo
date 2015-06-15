@@ -6,6 +6,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonPrimitive;
+import com.myawesomeapp.utility.ResultSetToJson;
+
 public class UserDaoImpl implements UserDaoInterface {
 	
 	/*Sets up the Mysql connection and access rights*/
@@ -104,6 +109,31 @@ public class UserDaoImpl implements UserDaoInterface {
 		
 		System.out.println("done");
 		return true;
+	}
+
+	public String getUserDetails(String uid) {
+		
+		Connection conn = init();
+		
+		try {	
+			
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery("SELECT Username, Password, Balance FROM user WHERE Username = "
+					+ "'"+uid+"'");
+			
+			ResultSetToJson convertRs = new ResultSetToJson();
+			String response = convertRs.convertResultSet(rs);
+	
+			conn.close();
+			
+ 			return response;
+		
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			System.out.println("connection failed " + e);
+		}
+		
+		return null;
 	}
 
 }

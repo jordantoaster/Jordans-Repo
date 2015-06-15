@@ -24,7 +24,7 @@
        </div>
        <div class="form-group">
         <label for="passwordFeild">Current Password:</label>
-        <input type="password" id="passwordFeild" name="pwd" class="form-control">
+        <input type="text" id="passwordFeild" name="pwd" class="form-control">
        </div>
        <div class="form-group">
         <label for="changePasswordFeild">New Password:</label>

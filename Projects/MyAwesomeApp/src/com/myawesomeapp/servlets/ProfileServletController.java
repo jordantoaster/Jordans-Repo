@@ -1,6 +1,8 @@
 package com.myawesomeapp.servlets;
 
 import java.io.IOException;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -13,8 +15,11 @@ import javax.servlet.http.HttpServletResponse;
 import org.json.JSONObject;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.google.gson.JsonPrimitive;
 import com.google.gson.reflect.TypeToken;
 
 /**
@@ -28,7 +33,14 @@ public class ProfileServletController extends HttpServlet {
 
     //used to populate boxes
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		
+		UserDaoImpl dao = new UserDaoImpl();
+		String jsonResponseObject = dao.getUserDetails(request.getParameter("input"));
+		
+    	Gson gson = new Gson();
+		String jsonReponse = gson.toJson(jsonResponseObject);
+		
+    	response.getWriter().write(jsonReponse); 
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
