@@ -25,7 +25,8 @@ $(document).ready(function() {
             dataType: 'JSON',
             success : function(response) {
             	if(response["success"] == "false"){
-              	    $('#ajaxGetUserServletResponse').text(response["feedback"]);
+                 	$('#ajaxGetUserServletResponse').text(response["feedback"]);
+                  	$("#ajaxGetUserServletResponse").css({"opacity":"1"});
                	    $("#userNameFeild").css("border-color", "red");
                 	$("#passwordFeild").css("border-color", "red");
             	} else {               

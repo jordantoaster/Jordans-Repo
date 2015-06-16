@@ -1,16 +1,13 @@
 package com.myawesomeapp.unittest;
 
 import static org.junit.Assert.assertEquals;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-
 import org.junit.BeforeClass;
 import org.junit.Test;
-
-import com.myawesomeapp.servlets.User;
-import com.myawesomeapp.servlets.UserDaoImpl;
+import com.myawesomeapp.mainapp.pojo.User;
+import com.myawesomeapp.mainapp.dao.UserDaoImpl;
 import com.myawesomeapp.utility.UserAccessValidator;
 
 public class LoginUnitServerTest {
