@@ -2,34 +2,37 @@
  * handles JS for the user profile page
  */
 $(document).ready(function() {
-	    
+	  
+	//extracts the uid from the url
     var query = location.search;
     var res = query.replace('?id=', '');
     
     fetchUserData();
     
-    function fetchUserData() {
-        //load user details into the form	
-        $.ajax({
-        	type : 'get',
-            url : 'http://localhost:8080/MyAwesomeApp/ProfileServlet',
-            dataType: 'JSON',
-            data : {input : res} ,
+//ajax used to retrieve the user details based on the param + uses a git call
+function fetchUserData() {
+    //load user details into the form	
+    $.ajax({
+       type : 'get',
+       url : 'http://localhost:8080/MyAwesomeApp/ProfileServlet',
+       dataType: 'JSON',
+       data : {input : res} ,
             success : function(response) {
             	
-            	//parse json feedback
-            	response = JSON.parse(response);
+            //parse json feedback
+            response = JSON.parse(response);
 
-                $('#userNameFeild').val(response["uid"]);
-                $('#passwordFeild').val(response["password"]);
-                $('#balanceFeild').val(response["balance"]); 
+            //insert parsed data into form
+            $('#userNameFeild').val(response["uid"]);
+            $('#passwordFeild').val(response["password"]);
+            $('#balanceFeild').val(response["balance"]); 
                 
             },
             error: function() {
                 $('#ajaxGetUserServletResponse').text('An error occurred');
              }
-        });
-        }
+      });
+}
 
 //handles update funds event
 $('#fundsButton').click(function(e) {

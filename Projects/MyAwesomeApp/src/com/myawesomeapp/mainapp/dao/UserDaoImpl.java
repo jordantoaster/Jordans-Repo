@@ -92,7 +92,7 @@ public class UserDaoImpl implements UserDaoInterface {
 		return false;
 	}
 
-	@Override
+	//Takes the uid and an amount to add to the balance column
 	public boolean updateBalance(String amount, String uid) {  
 		Connection conn = init();
 		
@@ -112,6 +112,7 @@ public class UserDaoImpl implements UserDaoInterface {
 		return true;
 	}
 
+	//Based on a uid retrieve the user details
 	public String getUserDetails(String uid) {
 		
 		Connection conn = init();
