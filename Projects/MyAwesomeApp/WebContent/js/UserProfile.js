@@ -7,9 +7,16 @@ $(document).ready(function() {
     var query = location.search;
     var res = query.replace('?id=', '');
     
+    disableFeilds();
     fetchUserData();
     
+function disableFeilds(){
+    $("#balanceFeild").prop('disabled', true);
+    $("#bookListFeild").prop('disabled', true);
+}
+    
 //ajax used to retrieve the user details based on the param + uses a git call
+//refactor this to be flexible for all ops?
 function fetchUserData() {
     //load user details into the form	
     $.ajax({
@@ -44,10 +51,32 @@ $('#fundsButton').click(function(e) {
 	var obj = new Object();
 	obj.amount = $("#fundsFeild").val();
 	obj.user = res;
+	obj.action = "updateFunds";
 	
+	sendToServer(obj, "post");
+});
+
+//handles update funds event
+$('#changeButton').click(function(e) {
+    	
+    //prevents the submit redirect firing
+    e.preventDefault();
+    
+	//creates an object containing the feilds details
+	var obj = new Object();
+	obj.uid = res;
+	obj.password = $("#passwordFeild").val();
+	obj.passwordValidate = $("#changePasswordFeild").val();
+	obj.username = $("#userNameFeild").val();
+	obj.action = "changeDetails";
+	
+	sendToServer(obj, "post");
+});
+
+function sendToServer(obj, httpType){
 	//sends the object as a json string, retrieves a json object and performs actions based on input
     $.ajax({
-    	type : 'post',
+    	type : httpType,
         url : 'http://localhost:8080/MyAwesomeApp/ProfileServlet',
         data : { 
             	loadProds: 1,
@@ -65,5 +94,7 @@ $('#fundsButton').click(function(e) {
             $('#ajaxGetUserServletResponse').text('An error occurred');
          }
     });
-});
+}
+
+//end
 });  

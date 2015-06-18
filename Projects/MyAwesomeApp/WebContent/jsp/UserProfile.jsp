@@ -23,7 +23,7 @@
         <input type="text" name="user" id="userNameFeild" class="form-control">
        </div>
        <div class="form-group">
-        <label for="passwordFeild">Current Password:</label>
+        <label for="passwordFeild">Current Password (change if required) :</label>
         <input type="text" id="passwordFeild" name="pwd" class="form-control">
        </div>
        <div class="form-group">
@@ -36,7 +36,7 @@
        </div>
        <div class="form-group">
         <label for="bookListFeild">Current Books:</label>
-        <input type="text" id="bookFeild" name="book" class="form-control">
+        <input type="text" id="bookListFeild" name="book" class="form-control">
        </div>
        <input type="submit" value="Change Details" id="changeButton" class="btn btn-default">
       </form>

@@ -138,4 +138,26 @@ public class UserDaoImpl implements UserDaoInterface {
 		return null;
 	}
 
+	@Override
+	public boolean updateUserDetails(String uid, String pass, String oldUid) {
+		Connection conn = init();
+		
+		//check for duplicates
+		try {			
+			Statement statement = conn.createStatement();			
+			statement.executeUpdate("UPDATE user " + "SET Password = '"+pass+"' WHERE Username = '"+oldUid+"' ");
+			statement.executeUpdate("UPDATE user " + "SET Username = '"+uid+"' WHERE Username = '"+oldUid+"' ");
+
+			conn.close();
+		
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			System.out.println("connection failed " + e);
+			return false;
+		}
+		
+		System.out.println("done");
+		return true;
+	}
+
 }

@@ -8,4 +8,5 @@ public interface UserDaoInterface {
 	boolean readAndCompare(User user);
 	boolean updateBalance(String amount, String uid);
 	String getUserDetails(String uid);
+	boolean updateUserDetails(String uid, String pass, String oldUid);
 }

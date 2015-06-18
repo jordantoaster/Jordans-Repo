@@ -21,7 +21,6 @@ import com.myawesomeapp.utility.*;
 @WebServlet(
         description = "Login Servlet", 
         urlPatterns = { "/LoginServlet" })
-
 public class LoginServletController extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
