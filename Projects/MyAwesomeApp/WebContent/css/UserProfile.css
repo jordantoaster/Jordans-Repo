@@ -3,6 +3,10 @@
 #container {
 	width: 50%;
 	margin-left: 5%;
+	color: white;
+	background-color: rgba(0, 153, 255, 0.55);
+	border-radius: 10px;
+	padding: 10px;
 }
 
 #addFundsBlock {
@@ -12,6 +16,13 @@
 
 div.inline {
 	float: left;
+}
+
+#addFundsBlock {
+	color: white;
+	background-color: rgba(0, 153, 255, 0.55);
+	border-radius: 10px;
+	padding: 10px;
 }
 
 #changeButton {

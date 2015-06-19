@@ -12,7 +12,7 @@ import com.myawesomeapp.utility.UserAccessValidator;
 
 public class LoginUnitServerTest {
 	
-	static Connection conn = null;
+	//static Connection conn = null;
 	static User userTrue;
 	static User userFalse;
 	
@@ -28,36 +28,14 @@ public class LoginUnitServerTest {
 	    assertEquals(false, validator.validateDetails("bilbo", "Baggins!#!"));
 
 	}
-	
-	@BeforeClass
-	public static void setupConnection(){
 		
-		userTrue = new User("bilbo","bilbo!B##£");
-		userFalse = new User("saruman", "jena");
-		
-		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			System.out.println("driver found");
-		} catch (ClassNotFoundException e) {
-			System.out.println("driver not found " + e);
-		}
-		
-		String url = "jdbc:mysql://127.0.0.1:3306/webappdb?user=root";
-		String username = "root";
-		String password = "jordan321";
-				
-		try {
-			conn = DriverManager.getConnection(url,username,password);
-			System.out.println("connected");
-		}  catch (SQLException e) {
-			// TODO Auto-generated catch block
-			System.out.println("connection failed " + e);
-		}
-	}
-	
-	//need to test for delete and updates
 	@Test
 	public void TestDatabase(){
+		/*delete user after entry*/
+		
+		userTrue = new User("bilbo000","bilbo!B##£");
+		userFalse = new User("saruman", "jena");
+		
 		UserDaoImpl dao = new UserDaoImpl();
 		
 		dao.insertUser(userTrue);

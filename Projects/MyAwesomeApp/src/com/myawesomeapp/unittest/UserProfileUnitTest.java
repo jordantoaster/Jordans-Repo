@@ -17,35 +17,18 @@ import com.myawesomeapp.utility.ResultSetToJson;
 public class UserProfileUnitTest {
 	
 	static Connection conn;
-	String uidTrue = "jordan1";
+	String uidTrue = "jordan12";
 	String uidFalse = "kolo";
 	UserDaoImpl impl = new UserDaoImpl();
 	Statement stmt;
 	ResultSet rs;
 	ResultSetToJson rsj;
+	String uid = "jordannn";
+	String password = "jordan2";
+	String oldUid = "jord";
+	User user = new User("jord", "jordan1");
+	User userTwo = new User("bill", "jordan1");
 	
-	@BeforeClass
-	public static void setupConnection(){
-		
-		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			System.out.println("driver found");
-		} catch (ClassNotFoundException e) {
-			System.out.println("driver not found " + e);
-		}
-		
-		String url = "jdbc:mysql://127.0.0.1:3306/webappdb?user=root";
-		String username = "root";
-		String password = "jordan321";
-				
-		try {
-			conn = DriverManager.getConnection(url,username,password);
-			System.out.println("connected");
-		}  catch (SQLException e) {
-			// TODO Auto-generated catch block
-			System.out.println("connection failed " + e);
-		}
-	}
 	
 	@Test
 	public void testGetUserDetails(){
@@ -53,24 +36,22 @@ public class UserProfileUnitTest {
 		assertNotEquals("", impl.getUserDetails(uidTrue));
 	}
 	
+	//think about best way to test resultset to json converter
+	
 	@Test
-	public void testResultSetToJson() throws SQLException{
+	public void updateBalance(){
+		assertEquals(true, impl.updateBalance("10", "jordannn"));
+	}
+	
+	//delete after test
+	@Test
+	public void updateUserDetails(){
 		
-	    stmt = conn.createStatement();
-		rs = stmt.executeQuery("SELECT Username, Password, Balance FROM user WHERE Username = "
-				+ "'"+uidFalse+"'");
+		impl.insertUser(user);
+		assertEquals(true, impl.updateUserDetails(uid, password, oldUid));
+		impl.insertUser(userTwo);
+		assertEquals(false, impl.updateUserDetails("bill", password, uid));
 		
-		rsj = new ResultSetToJson();
-		
-		assertEquals("", rsj.convertResultSet(rs));
-		
-		rs = stmt.executeQuery("SELECT Username, Password, Balance FROM user WHERE Username = "
-				+ "'"+uidTrue+"'");
-		
-		rsj = new ResultSetToJson();
-		
-		assertNotEquals("", rsj.convertResultSet(rs));
-
 	}
 	
 

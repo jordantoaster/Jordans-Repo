@@ -12,7 +12,7 @@
   <link href="http://localhost:8080/MyAwesomeApp/css/Master.css" rel="stylesheet" type="text/css" />
  </head>
  <body>
-  <div id="tabContainer">
+ <div id="tabContainer">
   <ul class="nav nav-tabs tabListCustom">
     <li class="active"><a class="tabText" data-toggle="tab" href="#login">Login</a></li>
     <li><a class="tabText" data-toggle="tab" href="#register">Register</a></li>
@@ -34,10 +34,11 @@
      <div id="ajaxGetUserServletResponse" class="alert alert-success" role="alert">
      </div>   
     </div>
+  </div>
     <div id="register" class="tab-pane fade">
       <p>Registration form</p>
     </div>
   </div>
-  </div>
+ </div>
  </body>
 </html>

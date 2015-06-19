@@ -49,7 +49,7 @@ public class UserDaoImpl implements UserDaoInterface {
 			
 		try {			
 			Statement statement = conn.createStatement();			
-			statement.executeUpdate("INSERT INTO user " + "VALUES ('"+user.getUsername()+"','"+user.getPassword()+"')");
+			statement.executeUpdate("INSERT INTO user " + "VALUES ('"+user.getUsername()+"','"+user.getPassword()+"','"+0+"')");
 			
 			conn.close();
 		
@@ -94,6 +94,9 @@ public class UserDaoImpl implements UserDaoInterface {
 
 	//Takes the uid and an amount to add to the balance column
 	public boolean updateBalance(String amount, String uid) {  
+		
+		/*need to check if uid is in table before moving on*/ 
+		
 		Connection conn = init();
 		
 		try {			
