@@ -3,8 +3,8 @@
 #container {
 	width: 50%;
 	margin-left: 5%;
-	color: white;
-	background-color: rgba(0, 153, 255, 0.55);
+	color: #555;
+	background-color: rgba(128, 204, 255, 0.55);
 	border-radius: 10px;
 	padding: 10px;
 }
@@ -19,8 +19,8 @@ div.inline {
 }
 
 #addFundsBlock {
-	color: white;
-	background-color: rgba(0, 153, 255, 0.55);
+	color: #555;
+	background-color: rgba(128, 204, 255, 0.55);
 	border-radius: 10px;
 	padding: 10px;
 }

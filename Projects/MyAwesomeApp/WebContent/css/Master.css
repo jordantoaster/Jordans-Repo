@@ -1,39 +1,46 @@
 @CHARSET "ISO-8859-1";
+
 /* navbar */
 .navbar-default {
-    background-color: rgba(0, 153, 255, 0.55);
+  background-image:
+    linear-gradient( 
+      rgba(0, 153, 255, 0.55), 
+      rgba(128, 204, 255, 0.55),
+      rgba(0, 153, 255, 0.55) 
+    );    
     border-color: rgba(0, 153, 255, 0.55);
+    box-shadow: 1px 1px 8px 1px grey;
 }
 /* title */
 .navbar-default .navbar-brand {
-    color: white;
-    font-weight: bold;
+    color: #555;
+    text-transform: uppercase;
 }
 .navbar-default .navbar-brand:hover,
 .navbar-default .navbar-brand:focus {
-    color: #FF9900;
+    color: 555;
 }
 /* link */
 .navbar-default .navbar-nav > li > a {
-    color: white;
-    font-weight: bold;
+    color: #555;
+    text-transform: uppercase;
 }
 .navbar-default .navbar-nav > li > a:hover,
 .navbar-default .navbar-nav > li > a:focus {
-    color: #FF9900;
+    color: #555;
 }
 .navbar-default .navbar-nav > .active > a, 
 .navbar-default .navbar-nav > .active > a:hover, 
 .navbar-default .navbar-nav > .active > a:focus {
-    color: white;
-    font-weight: bold;
+    color: #555;
+    text-transform: uppercase;
     background-color: rgba(0, 153, 255, 0);
 }
 
 .navbar-default .navbar-nav > .open > a, 
 .navbar-default .navbar-nav > .open > a:hover, 
 .navbar-default .navbar-nav > .open > a:focus {
-    color: white;
+    color: 555;
     font-weight: bold;
     background-color: #5CADFF;
 }
