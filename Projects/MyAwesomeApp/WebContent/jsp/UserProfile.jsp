@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -38,7 +37,7 @@
         <label for="bookListFeild">Current Books:</label>
         <input type="text" id="bookListFeild" name="book" class="form-control">
        </div>
-       <input type="submit" value="Change Details" id="changeButton" class="btn btn-default">
+       <input type="submit" value="Change Details" id="button" class="btn btn-default">
       </form>
      </div> 
      <div id="addFundsBlock" class="inline">
@@ -47,7 +46,7 @@
          <label for="fundsFeild">Add funds here!</label>
          <input type="text" name="funds" id="fundsFeild" class="form-control">
        </div>             
-        <input type="submit" value="Add Funds" id="fundsButton" class="btn btn-default">       
+        <input type="submit" value="Add Funds" id="button" class="btn btn-default">       
        </form>     
      </div>
      <div id="ajaxGetUserServletResponse" class="alert alert-success" role="alert">

@@ -1,20 +1,52 @@
 @CHARSET "ISO-8859-1";
 
-/* navbar */
-.navbar-default {
+html {
+	min-height: 100%;
+}
+
+body {
   background-image:
     linear-gradient( 
-      rgba(0, 153, 255, 0.55), 
-      rgba(128, 204, 255, 0.55),
-      rgba(0, 153, 255, 0.55) 
-    );    
-    border-color: rgba(0, 153, 255, 0.55);
-    box-shadow: 1px 1px 8px 1px grey;
+      #6B9DBF,
+      #6CC4FF
+    );
+}
+
+#submitSearch {
+	background-color: rgba(0, 0, 0, 0);
+	color: white;
+	border: 1px solid white;
+}
+
+#submitSearch:hover {
+	color: black;
+}
+
+.form-control {
+    background-color: rgba(0, 0, 0, 0);
+    border: 1px solid white;
+}
+
+#navBar {
+	margin-top: 1%;
+	margin-bottom: 2%;
+}
+
+#profileLink:active #profileLink:hover {
+	cursor: grab;
+}
+
+/* navbar */
+.navbar-default {
+    background-color: rgba(0, 0, 0, 0);   
+    border: 3px solid white;
+    width: 90%;
+    margin: 0 auto;
+    padding: 10px;
 }
 /* title */
 .navbar-default .navbar-brand {
-    color: #555;
-    text-transform: uppercase;
+    color: white;
 }
 .navbar-default .navbar-brand:hover,
 .navbar-default .navbar-brand:focus {
@@ -22,31 +54,27 @@
 }
 /* link */
 .navbar-default .navbar-nav > li > a {
-    color: #555;
-    text-transform: uppercase;
+    color: white;
 }
 .navbar-default .navbar-nav > li > a:hover,
 .navbar-default .navbar-nav > li > a:focus {
-    color: #555;
+    color: white;
 }
 .navbar-default .navbar-nav > .active > a, 
 .navbar-default .navbar-nav > .active > a:hover, 
 .navbar-default .navbar-nav > .active > a:focus {
-    color: #555;
-    text-transform: uppercase;
-    background-color: rgba(0, 153, 255, 0);
+    color: white;
+    background-color: rgba(0, 0, 0, 0);
 }
 
 .navbar-default .navbar-nav > .open > a, 
 .navbar-default .navbar-nav > .open > a:hover, 
 .navbar-default .navbar-nav > .open > a:focus {
-    color: 555;
-    font-weight: bold;
-    background-color: #5CADFF;
+    color: white;
 }
 
 .navbar-default .navbar-toggle .icon-bar {
-    background-color: rgba(0, 153, 255, 0.55);
+    background-color: rgba(0, 0, 0, 0);
 }
 
 #ajaxGetUserServletResponse {

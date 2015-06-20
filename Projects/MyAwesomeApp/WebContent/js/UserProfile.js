@@ -27,13 +27,15 @@ function fetchUserData() {
             success : function(response) {
             	
             //parse json feedback
-            response = JSON.parse(response);
+            if(response != ""){
+            	response = JSON.parse(response);
 
-            //insert parsed data into form
-            $('#userNameFeild').val(response["uid"]);
-            $('#passwordFeild').val(response["password"]);
-            $('#balanceFeild').val(response["balance"]); 
-                
+            	//insert parsed data into form
+            	$('#userNameFeild').val(response["uid"]);
+            	$('#passwordFeild').val(response["password"]);
+            	$('#balanceFeild').val(response["balance"]);
+            }
+                           
             },
             error: function() {
                 $('#ajaxGetUserServletResponse').text('An error occurred');

@@ -1,31 +1,42 @@
-html {
-	min-height: 100%;
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
+	background-color: rgba(0, 0, 0, 0);
+	color: white;
+	border-width: 1px;
 }
 
-body {
-  background-image:
-    linear-gradient( 
-      rgba(0, 153, 255, 0.55), 
-      rgba(128, 204, 255, 0.55),
-      rgba(0, 153, 255, 0.55) 
-    );
+.form-control {
+	background-color: rgba(0, 0, 0, 0);
+	border: 1px solid white;
+	color: white;
+}
+
+label {
+	color: white;
+	font-weight: normal;
 }
 
 #submitButton {
 	margin-left: 45%;
 	margin-right: 45%;
+	background-color: rgba(0, 0, 0, 0);
+	color: white;
+	border: 1px solid white;
 }
 
-.tabListCustom {
-	background-color: rgba(128, 204, 255, 0.55);
-}
-
-.tabText {
+#submitButton:hover {
 	color: black;
 }
 
+.tabListCustom {
+	background-color: rgba(128, 204, 255, 0);
+}
+
+.tabText {
+	color: white;
+}
+
 a:hover {
-	background-color: white !important;
+	background-color: rgba(0, 0, 0, 0) !important;
 }
 
 #ajaxGetUserServletResponse {
@@ -38,17 +49,18 @@ a:hover {
 }
 
 #container {
-	background-color: white;
+	background-color: rgba(0, 0, 0, 0);
 	margin-left: auto;
   	margin-right: auto;
   	width: 90%;
 }
 
 #tabContainer {
-	background-color: white;
-	width: 50%;
+	border: solid 3px white;
+	background-color: rgba(0, 0, 0, 0);
+	width: 45%;
+	height: 70%;
     margin: 0 auto;
-    padding: 5px;
-    box-shadow: 1px 1px 20px 1px grey;
+    padding: 10px;
     margin-top: 10%;   
 }

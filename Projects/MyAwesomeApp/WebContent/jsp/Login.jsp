@@ -31,8 +31,6 @@
        </div>
        <input type="submit" value="Login" id="submitButton" class="btn btn-default">
       </form>
-     <div id="ajaxGetUserServletResponse" class="alert alert-success" role="alert">
-     </div>   
     </div>
   </div>
     <div id="register" class="tab-pane fade">
@@ -40,5 +38,6 @@
     </div>
   </div>
  </div>
+  <div id="ajaxGetUserServletResponse" class="alert alert-success" role="alert"></div>   
  </body>
 </html>

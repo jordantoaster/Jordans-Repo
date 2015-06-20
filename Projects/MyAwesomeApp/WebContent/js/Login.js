@@ -3,7 +3,6 @@
  */
 
 $(document).ready(function() {
-	  
     $('#submitButton').click(function(e) {
     	
     	//prevents the submit redirect firing

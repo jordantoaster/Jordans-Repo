@@ -3,10 +3,10 @@
 #container {
 	width: 50%;
 	margin-left: 5%;
-	color: #555;
-	background-color: rgba(128, 204, 255, 0.55);
-	border-radius: 10px;
+	color: white;
+	background-color: rgba(0, 0, 0, 0);
 	padding: 10px;
+	border: 3px solid white;
 }
 
 #addFundsBlock {
@@ -20,11 +20,24 @@ div.inline {
 
 #addFundsBlock {
 	color: #555;
-	background-color: rgba(128, 204, 255, 0.55);
-	border-radius: 10px;
+	background-color: rgba(0, 0, 0, 0);
 	padding: 10px;
+    border: 3px solid white;
+    color: white;
 }
 
-#changeButton {
-	
+#button {
+	background-color: rgba(0, 0, 0, 0);
+	border: 1px solid white;
+	color: white;
+	margin: 0 auto;
+	margin-left: 40%;
+}
+
+.form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control {
+	background-color: rgba(0, 0, 0, 0);
+}
+
+.form-control {
+	color: white;
 }
