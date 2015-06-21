@@ -15,8 +15,7 @@ function disableFeilds(){
     $("#bookListFeild").prop('disabled', true);
 }
     
-//ajax used to retrieve the user details based on the param + uses a git call
-//refactor this to be flexible for all ops?
+//ajax used to retrieve the user details based on the param + uses a get call
 function fetchUserData() {
     //load user details into the form	
     $.ajax({

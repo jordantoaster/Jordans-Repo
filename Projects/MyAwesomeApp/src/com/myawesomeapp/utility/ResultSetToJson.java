@@ -7,6 +7,7 @@ import com.myawesomeapp.utility.PopulateProfilePojo;
 
 public class ResultSetToJson {
 	
+	//extend when required to take another identifying parameter, ie differing actions for each conversion
 	public String convertResultSet(ResultSet rs) throws SQLException{
 		
 		Gson gson = new Gson();

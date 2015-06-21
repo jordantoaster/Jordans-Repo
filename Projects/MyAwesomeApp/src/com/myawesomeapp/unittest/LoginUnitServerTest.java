@@ -30,17 +30,19 @@ public class LoginUnitServerTest {
 	}
 		
 	@Test
-	public void TestDatabase(){
+	public void testLoginProcess(){
 		/*delete user after entry*/
 		
-		userTrue = new User("bilbo000","bilbo!B##£");
+		userTrue = new User("20000","bilbo!B##£");
 		userFalse = new User("saruman", "jena");
 		
 		UserDaoImpl dao = new UserDaoImpl();
 		
 		dao.insertUser(userTrue);
 		
-		assertEquals(true, dao.readAndCompare(userTrue));
-		assertEquals(false, dao.readAndCompare(userFalse));
+		assertEquals(true, dao.readAndCompare(userTrue.getUsername(), userTrue.getPassword()));
+		assertEquals(false, dao.readAndCompare(userFalse.getUsername(), userFalse.getPassword()));
+		
+		dao.deleteUser(userTrue.getUsername(), userTrue.getPassword());
 	}
 }

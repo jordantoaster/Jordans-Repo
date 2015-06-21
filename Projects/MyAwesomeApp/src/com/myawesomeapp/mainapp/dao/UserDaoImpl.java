@@ -45,17 +45,21 @@ public class UserDaoImpl implements UserDaoInterface {
 		
 		Connection conn = init();
 		
-		//TODO - check username is not taken - return bool
-			
-		try {			
-			Statement statement = conn.createStatement();			
-			statement.executeUpdate("INSERT INTO user " + "VALUES ('"+user.getUsername()+"','"+user.getPassword()+"','"+0+"')");
-			
-			conn.close();
+		boolean isOnSystem = readAndCompare(user.getUsername(), user.getPassword());
 		
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			System.out.println("connection failed " + e);
+		if(!isOnSystem){
+			try {			
+				Statement statement = conn.createStatement();			
+				statement.executeUpdate("INSERT INTO user " + "VALUES ('"+user.getUsername()+"','"+user.getPassword()+"','"+0+"')");
+							
+				conn.close();
+				
+				return true;
+		
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				System.out.println("connection failed " + e);
+			}
 		}
 		
 		System.out.println("done");
@@ -64,14 +68,14 @@ public class UserDaoImpl implements UserDaoInterface {
 	}
 
 	/*Determines if the details provided are members in the system*/
-	public boolean readAndCompare(User user) {
+	public boolean readAndCompare(String uid, String pass) {
 		
 		Connection conn = init();
 		
 		try {
 			Statement stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery("SELECT * FROM user WHERE Username = "
-					+ "'"+user.getUsername()+"'AND Password = '"+user.getPassword()+"'");
+					+ "'"+uid+"'AND Password = '"+pass+"'");
 			
 			if(rs.next()) {
 				//String username = rs.getString("Username");
@@ -94,9 +98,7 @@ public class UserDaoImpl implements UserDaoInterface {
 
 	//Takes the uid and an amount to add to the balance column
 	public boolean updateBalance(String amount, String uid) {  
-		
-		/*need to check if uid is in table before moving on*/ 
-		
+				
 		Connection conn = init();
 		
 		try {			
@@ -145,22 +147,51 @@ public class UserDaoImpl implements UserDaoInterface {
 	public boolean updateUserDetails(String uid, String pass, String oldUid) {
 		Connection conn = init();
 		
-		//check for duplicates
-		try {			
-			Statement statement = conn.createStatement();			
-			statement.executeUpdate("UPDATE user " + "SET Password = '"+pass+"' WHERE Username = '"+oldUid+"' ");
-			statement.executeUpdate("UPDATE user " + "SET Username = '"+uid+"' WHERE Username = '"+oldUid+"' ");
+		boolean isNewUidAlreadyOnSystem = readAndCompare(uid, pass);
 
-			conn.close();
+		if(!isNewUidAlreadyOnSystem){
+		try {			
+				Statement statement = conn.createStatement();			
+				statement.executeUpdate("UPDATE user " + "SET Password = '"+pass+"' WHERE Username = '"+oldUid+"' ");
+				statement.executeUpdate("UPDATE user " + "SET Username = '"+uid+"' WHERE Username = '"+oldUid+"' ");
+
+				conn.close();
 		
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			System.out.println("connection failed " + e);
-			return false;
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				System.out.println("connection failed " + e);
+				return false;
+			}
 		}
-		
 		System.out.println("done");
 		return true;
+	}
+
+	@Override
+	public boolean deleteUser(String uid, String pass) {
+		
+		Connection conn = init();
+		
+		//check user is in table
+		boolean isInTable = readAndCompare(uid, pass);
+		
+		if(isInTable){
+			try {	
+				
+				Statement statement = conn.createStatement();		
+				statement.executeUpdate("DELETE FROM user " + "WHERE Username = '"+uid+"' ");
+				
+				conn.close();
+				
+				return true;
+					
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				System.out.println("connection failed " + e);
+				return false;
+			}
+		}		
+		return false;
 	}
 
 }
