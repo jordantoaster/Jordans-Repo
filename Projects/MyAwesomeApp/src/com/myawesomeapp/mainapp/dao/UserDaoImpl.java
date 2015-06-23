@@ -129,7 +129,7 @@ public class UserDaoImpl implements UserDaoInterface {
 					+ "'"+uid+"'");
 			
 			ResultSetToJson convertRs = new ResultSetToJson();
-			String response = convertRs.convertResultSet(rs);
+			String response = convertRs.convertResultSetUser(rs);
 	
 			conn.close();
 			

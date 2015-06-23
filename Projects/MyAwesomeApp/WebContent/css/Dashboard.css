@@ -1,1 +1,15 @@
 @CHARSET "ISO-8859-1";
+
+#userBooks {
+	margin: 0 auto;
+	width: 60%;
+	height: 50%;
+	margin-top: 2%;
+}
+
+.books {
+	box-shadow: -2px 3px 28px -2px rgba(0,0,0,0.75);
+	height: 100%;
+	display: inline;
+	margin-left: 2%;
+}

@@ -12,7 +12,6 @@ $(document).ready(function() {
     
 function disableFeilds(){
     $("#balanceFeild").prop('disabled', true);
-    $("#bookListFeild").prop('disabled', true);
 }
     
 //ajax used to retrieve the user details based on the param + uses a get call

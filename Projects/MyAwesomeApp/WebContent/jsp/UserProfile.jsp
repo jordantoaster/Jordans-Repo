@@ -33,10 +33,6 @@
         <label for="balanceFeild">Current Balance:</label>
         <input type="text" id="balanceFeild" name="bal" class="form-control">
        </div>
-       <div class="form-group">
-        <label for="bookListFeild">Current Books:</label>
-        <input type="text" id="bookListFeild" name="book" class="form-control">
-       </div>
        <input type="submit" value="Change Details" id="button" class="btn btn-default">
       </form>
      </div> 
