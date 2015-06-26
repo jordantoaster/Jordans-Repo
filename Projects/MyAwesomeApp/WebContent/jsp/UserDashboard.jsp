@@ -15,6 +15,15 @@
 </head>
 <body>
 <div id="navBar"></div>
+<div id="myBooksHeader"><p>My Books</p></div>
 <div id="userBooks"></div>
+<div id="galleryNav">
+<button id="leftSlide" type="button" class="btn btn-default btn-lg" aria-label="Left Align">
+  <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
+</button>
+<button id="rightSlide" type="button" class="btn btn-default btn-lg">
+  <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
+</button>
+</div>
 </body>
 </html>

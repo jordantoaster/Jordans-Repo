@@ -10,6 +10,17 @@ $(document).ready(function(){
     
     fetchBookList();
     
+$('#leftSlide').click(function(e) {
+    	
+	alert("WIP");
+ });
+
+$('#rightSlide').click(function(e) {
+	
+	alert("WIP");
+ });
+    
+    
     function fetchBookList(){
     	$.ajax({
     	       type : 'get',
@@ -23,7 +34,9 @@ $(document).ready(function(){
     	            	response = JSON.parse(response);
     	            	
     	            	for(i = 0; i < response.length; i++){
-    	            		var img = $('<img id="Book + i" class="books">'); 
+    	            		//remove name spaces, append as id. add image as element to div
+    	            		str = response[i]["bookName"].replace(/\s+/g, '');
+    	            		var img = $('<img id='+str+' class="books">'); 
     	            		img.attr('src', response[i]["bookImage"]);
     	            		img.appendTo('#userBooks');
     	            	}

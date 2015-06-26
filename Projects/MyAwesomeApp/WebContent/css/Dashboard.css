@@ -2,14 +2,43 @@
 
 #userBooks {
 	margin: 0 auto;
-	width: 60%;
+	width: 80%;
 	height: 50%;
 	margin-top: 2%;
+	overflow: hidden;
+	white-space: nowrap;
+	padding: 0.5%;
+	position: relative;
+}
+
+.btn-default {
+	color: white;
+	background-color: rgba(0,0,0,0);
+	border: 1px solid white;
+}
+
+#galleryNav {
+    margin-left: 50%;
+	margin-right: 50%;
+	display: inline;
+}
+
+.btn-default:hover {
+    color: orange;
+	background-color: rgba(0,0,0,0);
+    border: 1px solid white;
 }
 
 .books {
-	box-shadow: -2px 3px 28px -2px rgba(0,0,0,0.75);
-	height: 100%;
+    box-shadow: -6px 6px 8px 0px rgba(0,0,0,0.75);
+	height: 90%;
 	display: inline;
-	margin-left: 2%;
+	margin-left: 3%;
+	width: 22%;
+}
+
+#myBooksHeader {
+	color: white;
+	font-size: 3em;
+	margin-left: 5%;
 }
