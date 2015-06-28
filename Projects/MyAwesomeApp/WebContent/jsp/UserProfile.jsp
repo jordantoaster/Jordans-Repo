@@ -33,7 +33,7 @@
         <label for="balanceFeild">Current Balance:</label>
         <input type="text" id="balanceFeild" name="bal" class="form-control">
        </div>
-       <input type="submit" value="Change Details" id="button" class="btn btn-default">
+       <input type="submit" value="Change Details" id="changeButton" class="btn btn-default">
       </form>
      </div> 
      <div id="addFundsBlock" class="inline">
@@ -42,7 +42,7 @@
          <label for="fundsFeild">Add funds here!</label>
          <input type="text" name="funds" id="fundsFeild" class="form-control">
        </div>             
-        <input type="submit" value="Add Funds" id="button" class="btn btn-default">       
+        <input type="submit" value="Add Funds" id="fundsButton" class="btn btn-default">       
        </form>     
      </div>
      <div id="ajaxGetUserServletResponse" class="alert alert-success" role="alert">

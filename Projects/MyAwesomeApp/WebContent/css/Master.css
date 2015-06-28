@@ -22,7 +22,7 @@ body {
 }
 
 #submitSearch:hover {
-	color: black;
+	color: orange;
 }
 
 .form-control {
@@ -53,7 +53,7 @@ body {
 }
 .navbar-default .navbar-brand:hover,
 .navbar-default .navbar-brand:focus {
-    color: 555;
+    color: orange;
 }
 /* link */
 .navbar-default .navbar-nav > li > a {

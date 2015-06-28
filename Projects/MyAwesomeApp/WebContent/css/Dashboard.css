@@ -21,9 +21,9 @@
 
 .books {
     box-shadow: -6px 6px 8px 0px rgba(0,0,0,0.75);
-	margin-left: 3%;
+	margin-left: 4%;
 	width: 45%;
-	margin-top: 3%;
+	margin-top: 5%;
 	height: 45%;
 }
 
@@ -33,7 +33,7 @@
 }
 
 #bookSection {
-	width: 30%;
+	width: 25%;
 	margin-left: 5%;
 	padding: 10px;
 	border: 3px solid white;
