@@ -6,12 +6,14 @@ public class Book {
 	private String bookImage;
 	private String bookPrice;
 	private String bookId;
+	private Boolean forSale;
 	
-	public Book(String bookName, String bookImage, String bookPrice, String bookId){
+	public Book(String bookName, String bookImage, String bookPrice, String bookId, Boolean forSale){
 		this.bookId = bookId;
 		this.bookImage = bookImage;
 		this.bookName = bookName;
 		this.bookPrice = bookPrice;
+		this.forSale = forSale;
 	}
 
 	public String getBookName() {
@@ -41,10 +43,17 @@ public class Book {
 	public String getBookId() {
 		return bookId;
 	}
+	
+	public void setForSale(Boolean forSale){
+		this.forSale = forSale;
+	}
+	
+	public Boolean getForSale(){
+		return forSale;
+	}
 
 	public void setBookId(String bookId) {
 		this.bookId = bookId;
 	}
 	
-
 }

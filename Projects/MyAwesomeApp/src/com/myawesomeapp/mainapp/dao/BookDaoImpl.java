@@ -45,8 +45,8 @@ public class BookDaoImpl implements BookDaoInterface{
 			
 			//get 4 random
 			Statement stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT BookName, BookImage, BookId, BookPrice FROM books WHERE Username = "
-					+ "'"+uid+"' ORDER BY RAND() LIMIT 4");
+			ResultSet rs = stmt.executeQuery("SELECT BookName, BookImage, BookId, BookPrice, ForSale FROM books WHERE Username = "
+					+ "'"+uid+"'");
 						
 			ResultSetToJson convertRs = new ResultSetToJson();
 			

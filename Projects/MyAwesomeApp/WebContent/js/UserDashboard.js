@@ -33,7 +33,8 @@ $('#rightSlide').click(function(e) {
     	            if(response != ""){
     	            	response = JSON.parse(response);
     	            	
-    	            	for(i = 0; i < response.length; i++){
+    	            	//hard coded terminator
+    	            	for(i = 0; i < 4; i++){
     	            		//remove name spaces, append as id. add image as element to div
     	            		str = response[i]["bookName"].replace(/\s+/g, '');
     	            		var img = $('<img id='+str+' class="books">'); 
