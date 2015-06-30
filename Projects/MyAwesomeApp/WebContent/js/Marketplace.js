@@ -22,10 +22,17 @@ $(document).ready(function(){
      	            	response = JSON.parse(response);
      	            	
      	            	for(i = 0; i < response.length; i++){
-     	            		//remove name spaces, append as id. add info to box
-     	            		str = response[i]["bookName"];
-     	            		var book = $('<option id='+response[i]["bookId"]+'>'+str+'</option>'); 
-     	            		book.appendTo('#booksBox');    	            		     	            		
+     	            		
+ 	            			//remove name spaces, append as id. add info to box
+ 	            			str = response[i]["bookName"];
+ 	            			var book = $('<option id='+response[i]["bookId"]+'>'+str+'</option>'); 
+ 	            			
+ 	            			//divide into boxes based on status
+     	            		if(response[i]["forSale"] == false){
+     	            			book.appendTo('#booksBoxSell');    	
+     	            		} else { 
+     	            			book.appendTo('#booksBoxBuy'); 
+     	            		}    	            		
      	            	}
      	            }
      	                           

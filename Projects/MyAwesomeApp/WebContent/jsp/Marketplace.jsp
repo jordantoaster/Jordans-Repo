@@ -16,10 +16,15 @@
 <body>
  <div id="navBar"></div>
 </body>
- <div id="userBooks">
-  <h2>Select Book</h2>
-  <select id="booksBox" multiple="multiple"></select>
+ <div id="userBooksSell" class="containerBooks">
+  <h2 id="sellHeader">Sell Books</h2>
+  <select id="booksBoxSell" class="bookSelect" multiple="multiple"></select>
+  <button id="sellButton" class="bookButton">Put On Sell List?</button>
  </div>
- <button id="sell">Put On Sell List?</button>
+ <div id="userBooksBuy" class="containerBooks">
+  <h2 id="BuyHeader">Buy Books</h2>
+  <select id="booksBoxBuy" class="bookSelect" multiple="multiple"></select>
+  <button id="buyButton" class="bookButton">Buy?</button>
+ </div>
  <div id="ajaxGetUserServletResponse" class="alert alert-success" role="alert"></div>
 </html>

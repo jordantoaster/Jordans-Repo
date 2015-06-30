@@ -1,37 +1,60 @@
 @CHARSET "ISO-8859-1";
 
-#booksBox {
+h2 {
+	color: white;
+}
+
+#userBooksSell {
+	float: left;
 	margin-left: 5%;
-	height: 80%;
+}
+
+#userBooksBuy {
+	float: right;
+	margin-right: 5%;
+}
+
+.bookSelect {
+	height: 60% !important;
 	background-color: rgba(0,0,0,0);
 	border: 3px solid white;
 	color: white;
 	padding: 1.5%;
 	font-size: 1.25em;
+	width: 100%;
 }
 
-#booksBox option {
+#booksBoxSell {
+	margin-left: 5%;	
+}
+
+option {
 	margin-top: 10%;
 }
 
-#userBooks {
-	height: 50%;
+.containerBooks {
+	height: 80%;
+	width: 20%;
 }
 
-h2 {
-	color: white;
+#sellHeader {
 	margin-left: 5%;
 }
 
-button {
+#sellButton {
 	margin-left: 5%;
-	width: 12.5%;
-	height: 10%;
+}
+
+.bookButton {
+	width: 100%;
+	height: 20%;
 	background-color: rgba(0,0,0,0);
 	border: 3px solid white;
 	color: white;
 	border-radius: 5px;
 	font-size: 1.25em;
+	display: block;
+	margin-top: 4%;
 }
 
 button:hover {
