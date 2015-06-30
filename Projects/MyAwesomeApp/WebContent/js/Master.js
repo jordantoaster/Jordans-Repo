@@ -12,6 +12,6 @@ $(document).ready(function(){
      
      $(document.body).on('click', '#marketplaceLink' ,function(){
     	 var query = location.search;
-    	 window.location = "http://localhost:8080/MyAwesomeApp/jsp/MarketplaceFilter.jsp" + query;
+    	 window.location = "http://localhost:8080/MyAwesomeApp/jsp/Marketplace.jsp" + query;
      });     
 }); 

@@ -64,4 +64,27 @@ public class BookDaoImpl implements BookDaoInterface{
 		return "";
 	}
 
+	@Override
+	public boolean changeBookSaleStatus(String bookId, String status) {
+		
+		Connection conn = init();
+		
+		try {	
+			
+			//get 4 random
+			Statement stmt = conn.createStatement();
+			stmt.executeUpdate("UPDATE books " + "SET ForSale = '"+status+"' WHERE BookId = '"+bookId+"' ");
+	
+			conn.close();
+			
+ 			return true;
+		
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			System.out.println("connection failed " + e);
+		}
+		
+		return false;
+	}
+
 }
