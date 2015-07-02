@@ -10,4 +10,5 @@ public interface UserDaoInterface {
 	String getUserDetails(String uid);
 	boolean updateUserDetails(String uid, String pass, String oldUid);
 	boolean deleteUser(String uid, String pass);
+	boolean compareUserFundsWithBookPrice(String uid, String bookId);
 }

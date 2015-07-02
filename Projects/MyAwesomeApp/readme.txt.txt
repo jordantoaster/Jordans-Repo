@@ -6,3 +6,6 @@ TODO:
 4. upload schema to GIT
 5. add all header links functionality
 6. add buy books functions
+7. evaluate and get feedback on database schema structure
+8. add ability to change sell books back to not sell
+9. look for code duplication, known refactor point in ajax js

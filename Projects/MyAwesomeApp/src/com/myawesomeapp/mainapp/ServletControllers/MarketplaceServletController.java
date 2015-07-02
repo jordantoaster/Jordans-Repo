@@ -29,31 +29,39 @@ public class MarketplaceServletController extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        BookDaoImpl dao = new BookDaoImpl();
+       
+		BookDaoImpl dao = new BookDaoImpl();
+        String jsonResponseObject;
+		Map<String, Object> inputMap = new Gson().fromJson(request.getParameter("input"), new TypeToken<HashMap<String, Object>>() {}.getType());
       		
-		//get json object of book details based on uid
-		String jsonResponseObject = dao.getAllUserBooks(request.getParameter("input"));	
+        if(inputMap.containsValue("sell")){
+        	jsonResponseObject = dao.getAllUserBooks(inputMap.get("id").toString());	
+        } else {
+        	jsonResponseObject = dao.getAllBooksForSale(inputMap.get("id").toString());
+        }
 				
-		//convert to json
-		String jsonReponse = gson.toJson(jsonResponseObject);
-				
-		//send to client
+		String jsonReponse = gson.toJson(jsonResponseObject);				
     	response.getWriter().write(jsonReponse); 
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         BookDaoImpl dao = new BookDaoImpl();
     	ResponseBase JsonResponse;
+    	boolean result;
     	
 		Map<String, Object> inputMap = new Gson().fromJson(request.getParameter("input"), new TypeToken<HashMap<String, Object>>() {}.getType());
 
-        Boolean result = dao.changeBookSaleStatus(inputMap.get("id").toString(), inputMap.get("status").toString());
-        
-        if(result) {
-        	JsonResponse = new ResponseBase("Success", "true");
-        } else {
-        	JsonResponse = new ResponseBase("Failed", "false");
-        }
+		if(inputMap.containsValue("sell")){
+			result = dao.changeBookSaleStatus(inputMap.get("id").toString(), inputMap.get("status").toString());
+		} else {
+			result = dao.changeBookOwner(inputMap.get("id").toString(), inputMap.get("status").toString(), inputMap.get("newOwner").toString());
+		}
+		
+		if(result) {
+			JsonResponse = new ResponseBase("Success", "true");
+		} else {
+			JsonResponse = new ResponseBase("Failed", "false");
+		}
         
     	String json = gson.toJson(JsonResponse); 	
     	response.getWriter().write(json); 

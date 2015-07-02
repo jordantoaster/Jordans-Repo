@@ -194,4 +194,12 @@ public class UserDaoImpl implements UserDaoInterface {
 		return false;
 	}
 
+	@Override
+	public boolean compareUserFundsWithBookPrice(String uid, String bookId) {
+
+		Connection conn = init();
+		
+		return false;
+	}
+
 }

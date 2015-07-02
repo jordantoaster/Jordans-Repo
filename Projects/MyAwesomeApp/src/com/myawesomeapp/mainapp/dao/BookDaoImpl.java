@@ -71,7 +71,6 @@ public class BookDaoImpl implements BookDaoInterface{
 		
 		try {	
 			
-			//get 4 random
 			Statement stmt = conn.createStatement();
 			stmt.executeUpdate("UPDATE books " + "SET ForSale = '"+status+"' WHERE BookId = '"+bookId+"' ");
 	
@@ -85,6 +84,54 @@ public class BookDaoImpl implements BookDaoInterface{
 		}
 		
 		return false;
+	}
+
+	//TODO
+	public boolean changeBookOwner(String bookId, String bookStatus, String newOwner) {
+		
+		Connection conn = init();
+		UserDaoImpl dao = new UserDaoImpl();
+		
+		//check new owner has enough money
+		boolean adequateFunds = dao.compareUserFundsWithBookPrice(newOwner, bookId);
+		
+		if(adequateFunds){
+						
+			//change owner
+			
+			
+			//update Funds
+		}
+		
+		return false;
+	}
+
+	public String getAllBooksForSale(String uid) {
+		
+		Connection conn = init();
+		
+		try {	
+			
+			//get 4 random
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery("SELECT BookName, BookImage, BookId, BookPrice, ForSale FROM books WHERE Username != "
+					+ "'"+uid+"'");
+						
+			ResultSetToJson convertRs = new ResultSetToJson();
+			
+			String response = convertRs.convertResultSetBook(rs);
+	
+			conn.close();
+			
+ 			return response;
+		
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			System.out.println("connection failed " + e);
+		}
+		
+
+		return "";
 	}
 
 }
