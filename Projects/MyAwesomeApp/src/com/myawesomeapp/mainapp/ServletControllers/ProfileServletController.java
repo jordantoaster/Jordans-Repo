@@ -89,7 +89,7 @@ public class ProfileServletController extends HttpServlet {
 		
 		if(!inputMap.containsValue("") && !inputMap.containsValue(null) && numCheck.checkNumeric((String)inputMap.get("amount"))){
 
-		boolean result = dao.updateBalance(inputMap.get("amount").toString(), inputMap.get("user").toString());
+		boolean result = dao.updateBalance(inputMap.get("amount").toString(), inputMap.get("user").toString(), true);
 				
 			if(result){				
 				//if DB is updated correctly

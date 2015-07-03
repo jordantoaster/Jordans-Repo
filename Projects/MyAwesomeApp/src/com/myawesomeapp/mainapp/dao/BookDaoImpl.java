@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import com.google.gson.Gson;
+import com.myawesomeapp.mainapp.pojo.Book;
 import com.myawesomeapp.utility.ResultSetToJson;
 
 public class BookDaoImpl implements BookDaoInterface{
@@ -45,7 +47,7 @@ public class BookDaoImpl implements BookDaoInterface{
 			
 			//get 4 random
 			Statement stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT BookName, BookImage, BookId, BookPrice, ForSale FROM books WHERE Username = "
+			ResultSet rs = stmt.executeQuery("SELECT BookName, BookImage, BookId, Username, BookPrice, ForSale FROM books WHERE Username = "
 					+ "'"+uid+"'");
 						
 			ResultSetToJson convertRs = new ResultSetToJson();
@@ -87,20 +89,31 @@ public class BookDaoImpl implements BookDaoInterface{
 	}
 
 	//TODO
-	public boolean changeBookOwner(String bookId, String bookStatus, String newOwner) {
+	public boolean purchaseBook(String bookId, String bookStatus, String newOwner, String oldOwner) {
 		
 		Connection conn = init();
 		UserDaoImpl dao = new UserDaoImpl();
-		
+		Gson gson = new Gson();
+				
 		//check new owner has enough money
 		boolean adequateFunds = dao.compareUserFundsWithBookPrice(newOwner, bookId);
 		
 		if(adequateFunds){
 						
 			//change owner
-			
-			
-			//update Funds
+			boolean ownerChange = updateOwner(newOwner, bookId);
+						
+			if(ownerChange){
+				
+				//update Funds
+				Book[] book = gson.fromJson(getBookDetails(bookId), Book[].class);
+				dao.updateBalance(book[0].getBookPrice(), newOwner, false);
+								
+				//update old owner funds
+				dao.updateBalance(book[0].getBookPrice(), oldOwner, true);
+				
+				return true;
+			}
 		}
 		
 		return false;
@@ -114,7 +127,7 @@ public class BookDaoImpl implements BookDaoInterface{
 			
 			//get 4 random
 			Statement stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT BookName, BookImage, BookId, BookPrice, ForSale FROM books WHERE Username != "
+			ResultSet rs = stmt.executeQuery("SELECT BookName, BookImage, BookId, Username, BookPrice, ForSale FROM books WHERE Username != "
 					+ "'"+uid+"'");
 						
 			ResultSetToJson convertRs = new ResultSetToJson();
@@ -132,6 +145,54 @@ public class BookDaoImpl implements BookDaoInterface{
 		
 
 		return "";
+	}
+
+	@Override
+	public String getBookDetails(String bookId) {
+
+		Connection conn = init();
+		
+		try {	
+			
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery("SELECT BookId, BookName, BookImage, BookPrice, Username, ForSale FROM books WHERE BookId = "
+					+ "'"+bookId+"'");
+			
+			ResultSetToJson convertRs = new ResultSetToJson();
+			String response = convertRs.convertResultSetBook(rs);
+	
+			conn.close();
+			
+ 			return response;
+		
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			System.out.println("connection failed " + e);
+		}
+		
+		return "no details found";
+	}
+
+	public boolean updateOwner(String uid, String bookId) {
+		
+		Connection conn = init();
+		
+		try {	
+			
+			Statement statement = conn.createStatement();			
+			statement.executeUpdate("UPDATE books " + "SET Username = '"+uid+"' WHERE BookId = '"+bookId+"' ");
+			statement.executeUpdate("UPDATE books " + "SET ForSale = 'false' WHERE BookId = '"+bookId+"' ");
+			
+			conn.close();
+			
+ 			return true;
+		
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			System.out.println("connection failed " + e);
+		}
+		
+		return false;
 	}
 
 }

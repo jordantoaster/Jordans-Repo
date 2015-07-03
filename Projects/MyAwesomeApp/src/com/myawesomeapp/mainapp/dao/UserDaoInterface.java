@@ -6,7 +6,7 @@ import com.myawesomeapp.mainapp.pojo.User;
 public interface UserDaoInterface {
 	boolean insertUser(User user);
 	boolean readAndCompare(String uid, String pass);
-	boolean updateBalance(String amount, String uid);
+	boolean updateBalance(String amount, String uid, boolean isAddition);
 	String getUserDetails(String uid);
 	boolean updateUserDetails(String uid, String pass, String oldUid);
 	boolean deleteUser(String uid, String pass);

@@ -30,7 +30,7 @@ public class ResultSetToJson {
 		ArrayList<Book> list = new ArrayList<Book>();
 
 		while(rs.next()){
-		    Book pojo = new Book(rs.getString("BookName"), rs.getString("BookImage"), rs.getString("BookPrice"), rs.getString("BookId"), rs.getBoolean("ForSale"));		
+		    Book pojo = new Book(rs.getString("BookName"), rs.getString("BookImage"), rs.getString("BookPrice"), rs.getString("Username"), rs.getString("BookId"), rs.getBoolean("ForSale"));		
 
 		    list.add(pojo);
 		}

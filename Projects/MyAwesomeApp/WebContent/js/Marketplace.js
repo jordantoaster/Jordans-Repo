@@ -3,7 +3,8 @@
  */
 
 $(document).ready(function(){
-	
+
+	var origUsers = [];
     var query = location.search;
     var res = query.replace('?id=', '');
     
@@ -76,7 +77,9 @@ $(document).ready(function(){
  	            			//divide into boxes based on status
      	            		if(response[i]["forSale"] == true){
      	            			$('#booksBoxBuy').append(book);
-     	            		}   	            		
+     	            		}   
+     	            		
+     	            		origUsers[i] = response[i]["username"]
      	            	}
      	            } 	                           
   	            },
@@ -118,15 +121,20 @@ $(document).ready(function(){
      	obj.status = "false";
      	obj.action = "buy";
      	obj.newOwner = res;
-     	
+     	obj.oldOwner = origUsers[$("#booksBoxBuy")[0].selectedIndex];
+     	     	
      	 $.ajax({
     	       type : 'post',
     	       url : 'http://localhost:8080/MyAwesomeApp/MarketplaceServlet',
     	       dataType: 'JSON',
     	       data : {input : JSON.stringify(obj)} ,
     	            success : function(response) {
-                  	$('#ajaxGetUserServletResponse').text(response["feedback"]);
+    	            	$('#ajaxGetUserServletResponse').text(response["feedback"]);
     	          	    $("#ajaxGetUserServletResponse").css({"opacity":"1"});
+    	          	    
+       	          	    fetchBooksSell();
+       	          	    fetchBooksBuy();
+
     	            },
     	            error: function() {
                   	$('#ajaxGetUserServletResponse').text("an error occured");

@@ -50,11 +50,11 @@ public class MarketplaceServletController extends HttpServlet {
     	boolean result;
     	
 		Map<String, Object> inputMap = new Gson().fromJson(request.getParameter("input"), new TypeToken<HashMap<String, Object>>() {}.getType());
-
+		
 		if(inputMap.containsValue("sell")){
 			result = dao.changeBookSaleStatus(inputMap.get("id").toString(), inputMap.get("status").toString());
 		} else {
-			result = dao.changeBookOwner(inputMap.get("id").toString(), inputMap.get("status").toString(), inputMap.get("newOwner").toString());
+			result = dao.purchaseBook(inputMap.get("id").toString(), inputMap.get("status").toString(), inputMap.get("newOwner").toString(), inputMap.get("oldOwner").toString());
 		}
 		
 		if(result) {

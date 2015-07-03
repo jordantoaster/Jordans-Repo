@@ -5,15 +5,17 @@ public class Book {
 	private String bookName;
 	private String bookImage;
 	private String bookPrice;
+	private String username;
 	private String bookId;
 	private Boolean forSale;
 	
-	public Book(String bookName, String bookImage, String bookPrice, String bookId, Boolean forSale){
+	public Book(String bookName, String bookImage, String bookPrice, String username, String bookId, Boolean forSale){
 		this.bookId = bookId;
 		this.bookImage = bookImage;
 		this.bookName = bookName;
 		this.bookPrice = bookPrice;
 		this.forSale = forSale;
+		this.username = username;
 	}
 
 	public String getBookName() {
@@ -54,6 +56,10 @@ public class Book {
 
 	public void setBookId(String bookId) {
 		this.bookId = bookId;
+	}
+	
+	public String getUsername(){
+		return username;
 	}
 	
 }

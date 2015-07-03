@@ -6,10 +6,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
+import com.myawesomeapp.mainapp.pojo.Book;
 import com.myawesomeapp.mainapp.pojo.User;
+import com.myawesomeapp.utility.PopulateProfilePojoNeedRefactor;
 import com.myawesomeapp.utility.ResultSetToJson;
 
 public class UserDaoImpl implements UserDaoInterface {
@@ -97,14 +100,18 @@ public class UserDaoImpl implements UserDaoInterface {
 	}
 
 	//Takes the uid and an amount to add to the balance column
-	public boolean updateBalance(String amount, String uid) {  
+	public boolean updateBalance(String amount, String uid, boolean isAddition) {  
 				
 		Connection conn = init();
 		
-		try {			
-			Statement statement = conn.createStatement();			
-			statement.executeUpdate("UPDATE user " + "SET Balance = Balance + '"+amount+"' WHERE Username = '"+uid+"' ");
-			
+		try {	
+			if(isAddition){
+				Statement statement = conn.createStatement();			
+				statement.executeUpdate("UPDATE user " + "SET Balance = Balance + '"+amount+"' WHERE Username = '"+uid+"' ");
+			} else {
+				Statement statement = conn.createStatement();			
+				statement.executeUpdate("UPDATE user " + "SET Balance = Balance - '"+amount+"' WHERE Username = '"+uid+"' ");
+			}
 			conn.close();
 		
 		} catch (SQLException e) {
@@ -194,10 +201,32 @@ public class UserDaoImpl implements UserDaoInterface {
 		return false;
 	}
 
-	@Override
-	public boolean compareUserFundsWithBookPrice(String uid, String bookId) {
 
-		Connection conn = init();
+	public boolean compareUserFundsWithBookPrice(String uid, String bookId) {
+				
+		Gson gson = new Gson();
+		BookDaoImpl dao = new BookDaoImpl();
+		
+		//get user details
+		String userDetails = getUserDetails(uid);
+		
+		//convert to pojo
+		PopulateProfilePojoNeedRefactor user = gson.fromJson(userDetails, PopulateProfilePojoNeedRefactor.class);
+
+		//get book price
+		String bookDetails = dao.getBookDetails(bookId);
+		
+		//convert to book pojo, its an array but only has one row...REFACTOR required
+		Book[] book = gson.fromJson(bookDetails, Book[].class);
+				
+		//parse to int
+		int bookPrice = Integer.parseInt(book[0].getBookPrice());
+	    int userBalance = Integer.parseInt(user.getBalance());
+		
+		//compare with balance (why do i need to convert from string to int?
+		if(userBalance >= bookPrice){
+			return true;
+		}
 		
 		return false;
 	}
