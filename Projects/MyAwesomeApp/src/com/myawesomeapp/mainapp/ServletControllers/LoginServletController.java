@@ -36,7 +36,7 @@ public class LoginServletController extends HttpServlet {
 		User user = gson.fromJson(jObj.toString(), User.class);
  	
     	/*Returns a boolean verifying is a user has passed security checks*/
-        boolean isInputValid = check.validateDetails(user.getUsername(), user.getPassword());
+        boolean isInputValid = check.validateLoginDetails(user.getUsername(), user.getPassword());
             
         /*If sequence determines if the User details are valid a each stage. A Java object is constructed
          * with relevant values and sent back to client via ajax*/

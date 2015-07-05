@@ -3,7 +3,7 @@
  */
 
 $(document).ready(function() {
-    $('#submitButton').click(function(e) {
+    $('#submitButtonLog').click(function(e) {
     	
     	//prevents the submit redirect firing
     	e.preventDefault();
@@ -12,7 +12,27 @@ $(document).ready(function() {
     	var obj = new Object();
     	obj.password = $("#passwordFeild").val();
     	obj.username = $("#userNameFeild").val();
+    	obj.action = "login";
     	
+    	performAjaxCall(obj);   	
+    });
+    
+    $('#submitButtonReg').click(function(e) {
+    	
+    	//prevents the submit redirect firing
+    	e.preventDefault();
+    	
+    	//creates an object containing the feilds details
+    	var obj = new Object();
+    	obj.password = $("#passwordFeild").val();
+    	obj.username = $("#userNameFeild").val();
+    	obj.confirm = $("#confirmPasswordFeild").val();
+    	obj.action = "register";
+    	
+    	performAjaxCall(obj);   	
+    });
+    
+    function performAjaxCall(obj){
     	//sends the object as a json string, retrieves a json object and performs actions based on input
         $.ajax({
         	type : 'post',
@@ -36,5 +56,5 @@ $(document).ready(function() {
                 $('#ajaxGetUserServletResponse').text('An error occurred');
              }
         });
-    });
+    }
 });

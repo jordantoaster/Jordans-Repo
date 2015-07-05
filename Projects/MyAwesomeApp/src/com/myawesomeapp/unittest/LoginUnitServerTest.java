@@ -21,11 +21,11 @@ public class LoginUnitServerTest {
 		
 		UserAccessValidator validator = new UserAccessValidator();
 		
-	    assertEquals(false, validator.validateDetails("", ""));
-	    assertEquals(false, validator.validateDetails("Bilbo", "Baggins"));
-	    assertEquals(false, validator.validateDetails("b", "b"));
-	    assertEquals(false, validator.validateDetails("bilbo", "Ba11e"));
-	    assertEquals(false, validator.validateDetails("bilbo", "Baggins!#!"));
+	    assertEquals(false, validator.validateLoginDetails("", ""));
+	    assertEquals(false, validator.validateLoginDetails("Bilbo", "Baggins"));
+	    assertEquals(false, validator.validateLoginDetails("b", "b"));
+	    assertEquals(false, validator.validateLoginDetails("bilbo", "Ba11e"));
+	    assertEquals(false, validator.validateLoginDetails("bilbo", "Baggins!#!"));
 
 	}
 		

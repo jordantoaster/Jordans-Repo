@@ -15,16 +15,18 @@ label {
 	font-weight: normal;
 }
 
-#submitButton {
+.submitButton {
 	margin-left: 45%;
 	margin-right: 45%;
 	background-color: rgba(0, 0, 0, 0);
 	color: white;
 	border: 1px solid white;
+	padding: 10px;
+	border-radius: 8px;
 }
 
-#submitButton:hover {
-	color: black;
+.submitButton:hover {
+	color: orange;
 }
 
 .tabListCustom {
@@ -37,6 +39,7 @@ label {
 
 a:hover {
 	background-color: rgba(0, 0, 0, 0) !important;
+	color: orange;
 }
 
 #ajaxGetUserServletResponse {

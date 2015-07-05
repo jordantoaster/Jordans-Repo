@@ -29,12 +29,27 @@
         <label for="passwordFeild">Password:</label>
         <input type="password" id="passwordFeild" name="pwd" class="form-control">
        </div>
-       <input type="submit" value="Login" id="submitButton" class="btn btn-default">
+       <input type="submit" value="Login" class="submitButton" id="submitButtonLog" class="btn btn-default">
       </form>
     </div>
   </div>
     <div id="register" class="tab-pane fade">
-      <p>Registration form</p>
+      <div id="container">
+      <form id="registerForm" method="post" name="loginForm">
+       <div class="form-group">
+        <label for="userNameFeild">User Name:</label>
+        <input type="text" name="user" id="userNameFeild" class="form-control">
+       </div>
+       <div class="form-group">
+        <label for="passwordFeild">Password:</label>
+        <input type="password" id="passwordFeild" name="pwd" class="form-control">
+       </div>
+       <div class="form-group">
+        <label for="passwordFeild">Confirm Password:</label>
+        <input type="password" id="confirmPasswordFeild" name="pwd" class="form-control">
+       </div>
+       <input type="submit" value="Register" class="submitButton" id="submitButtonReg" class="btn btn-default">
+      </form>
     </div>
   </div>
  </div>
