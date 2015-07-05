@@ -24,8 +24,8 @@ $(document).ready(function() {
     	
     	//creates an object containing the feilds details
     	var obj = new Object();
-    	obj.password = $("#passwordFeild").val();
-    	obj.username = $("#userNameFeild").val();
+    	obj.password = $("#passwordFeildReg").val();
+    	obj.username = $("#userNameFeildReg").val();
     	obj.confirm = $("#confirmPasswordFeild").val();
     	obj.action = "register";
     	
@@ -46,8 +46,7 @@ $(document).ready(function() {
             	if(response["success"] == "false"){
                  	$('#ajaxGetUserServletResponse').text(response["feedback"]);
                   	$("#ajaxGetUserServletResponse").css({"opacity":"1"});
-               	    $("#userNameFeild").css("border-color", "red");
-                	$("#passwordFeild").css("border-color", "red");
+               	    $(".form-control").css("border-color", "red");
             	} else {               
             		window.location = "http://localhost:8080/MyAwesomeApp/jsp/UserDashboard.jsp" + '?id=' + response["feedback"];
             	}

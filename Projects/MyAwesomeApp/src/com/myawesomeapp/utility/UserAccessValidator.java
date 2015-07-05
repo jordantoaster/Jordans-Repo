@@ -32,4 +32,21 @@ public class UserAccessValidator {
         
         return matches;
 	}
+
+	public boolean validateRegDetails(String username, String password,
+			String confirm) {
+		
+		if(username.length() < 5 || password.length() < 5 || confirm.length() < 5){
+			return false;
+		}
+
+        boolean passwordValid = applyRegex(password);
+        
+        if(!passwordValid && !password.equals(confirm)){
+        	return false;
+        }
+		
+		return true;
+
+	}
 }

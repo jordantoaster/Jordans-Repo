@@ -1,10 +1,8 @@
 package com.myawesomeapp.mainapp.dao;
 
-import com.myawesomeapp.mainapp.pojo.User;
-
 /*Defines methods required by Dao*/
 public interface UserDaoInterface {
-	boolean insertUser(User user);
+	boolean insertUser(String username, String password);
 	boolean readAndCompare(String uid, String pass);
 	boolean updateBalance(String amount, String uid, boolean isAddition);
 	String getUserDetails(String uid);

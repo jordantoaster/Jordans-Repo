@@ -38,11 +38,11 @@
       <form id="registerForm" method="post" name="loginForm">
        <div class="form-group">
         <label for="userNameFeild">User Name:</label>
-        <input type="text" name="user" id="userNameFeild" class="form-control">
+        <input type="text" name="user" id="userNameFeildReg" class="form-control">
        </div>
        <div class="form-group">
         <label for="passwordFeild">Password:</label>
-        <input type="password" id="passwordFeild" name="pwd" class="form-control">
+        <input type="password" id="passwordFeildReg" name="pwd" class="form-control">
        </div>
        <div class="form-group">
         <label for="passwordFeild">Confirm Password:</label>

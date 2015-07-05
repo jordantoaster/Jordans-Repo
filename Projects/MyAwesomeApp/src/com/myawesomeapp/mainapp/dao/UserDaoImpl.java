@@ -44,16 +44,16 @@ public class UserDaoImpl implements UserDaoInterface {
 	}
 
 	/*Takes a user object and inserts into the database*/
-	public boolean insertUser(User user) {
+	public boolean insertUser(String username, String password) {
 		
 		Connection conn = init();
 		
-		boolean isOnSystem = readAndCompare(user.getUsername(), user.getPassword());
+		boolean isOnSystem = readAndCompare(username, password);
 		
 		if(!isOnSystem){
 			try {			
 				Statement statement = conn.createStatement();			
-				statement.executeUpdate("INSERT INTO user " + "VALUES ('"+user.getUsername()+"','"+user.getPassword()+"','"+0+"')");
+				statement.executeUpdate("INSERT INTO user " + "VALUES ('"+username+"','"+password+"','"+0+"')");
 							
 				conn.close();
 				
