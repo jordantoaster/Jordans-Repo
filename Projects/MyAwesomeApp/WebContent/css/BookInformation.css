@@ -1,0 +1,36 @@
+@CHARSET "ISO-8859-1";
+
+#bookImage {
+	height: 100%;
+}
+
+.textbox {
+	font-size: 120%;
+	border: 1px solid white;
+	padding: 2%;
+	margin: 4%;
+}
+
+h2 {
+	font-size: 200%;
+}
+
+#containerImage {
+	margin-left: 5%;
+	height: 80%;
+	float: left;
+}
+
+#containerDetails {
+	height: 70%;
+	float: right;	
+	margin-right: 5%;
+	border: 3px solid white;
+	color: white;
+	padding: 20px;
+	width: 25%;
+}
+
+.books {
+	height: 80%;
+}

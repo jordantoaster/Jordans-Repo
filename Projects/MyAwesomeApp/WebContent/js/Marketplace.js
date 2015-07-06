@@ -137,9 +137,19 @@ $(document).ready(function(){
 
     	            },
     	            error: function() {
-                  	$('#ajaxGetUserServletResponse').text("an error occured");
-    	          	    $("#ajaxGetUserServletResponse").css({"opacity":"1"});
+    	            	$('#ajaxGetUserServletResponse').text("an error occured");
+    	          		$("#ajaxGetUserServletResponse").css({"opacity":"1"});
     	             }
     	      });   
+      });
+     
+     $(document.body).on('click', '#infoButton' ,function(){
+    	 
+    	if($( "#booksBoxBuy option:selected" ).attr('id') != undefined){
+ 		  window.location = "http://localhost:8080/MyAwesomeApp/jsp/BookInformation.jsp" + '?bookid=' + $( "#booksBoxBuy option:selected" ).attr('id') + '&id=' +res;
+    	} else {
+   		  window.location = "http://localhost:8080/MyAwesomeApp/jsp/BookInformation.jsp" + '?bookid=' + $( "#booksBoxSell option:selected" ).attr('id') + '&id='  +res;    		
+    	}
+    	
       });
 }); 

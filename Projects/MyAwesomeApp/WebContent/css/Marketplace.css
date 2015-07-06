@@ -4,6 +4,14 @@ h2 {
 	color: white;
 }
 
+#infoButton {
+	position: absolute;
+	left:43.5%;
+	width: 15%;
+	height:10%;
+	bottom: 10%;
+}
+
 #userBooksSell {
 	float: left;
 	margin-left: 5%;

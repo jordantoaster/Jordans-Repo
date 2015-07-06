@@ -26,5 +26,6 @@
   <select id="booksBoxBuy" class="bookSelect" multiple="multiple"></select>
   <button id="buyButton" class="bookButton">Buy?</button>
  </div>
+ <button id="infoButton" class="bookButton">View Book Information</button>
  <div id="ajaxGetUserServletResponse" class="alert alert-success" role="alert"></div>
 </html>
