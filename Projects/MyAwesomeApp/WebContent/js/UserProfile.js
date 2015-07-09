@@ -4,8 +4,8 @@
 $(document).ready(function() {
 	  
 	//extracts the uid from the url
-    var query = location.search;
-    var res = query.replace('?id=', '');
+    var params = getParams();
+    var uid = params["id"][0]
     
     disableFeilds();
     fetchUserData();
@@ -21,7 +21,7 @@ function fetchUserData() {
        type : 'get',
        url : 'http://localhost:8080/MyAwesomeApp/ProfileServlet',
        dataType: 'JSON',
-       data : {input : res} ,
+       data : {input : uid} ,
             success : function(response) {
             	
             //parse json feedback
@@ -50,7 +50,7 @@ $('#fundsButton').click(function(e) {
 	//creates an object containing the feilds details
 	var obj = new Object();
 	obj.amount = $("#fundsFeild").val();
-	obj.user = res;
+	obj.user = uid;
 	obj.action = "updateFunds";
 	
 	sendToServer(obj, "post");
@@ -64,7 +64,7 @@ $('#changeButton').click(function(e) {
     
 	//creates an object containing the feilds details
 	var obj = new Object();
-	obj.uid = res;
+	obj.uid = uid;
 	obj.password = $("#passwordFeild").val();
 	obj.passwordValidate = $("#changePasswordFeild").val();
 	obj.username = $("#userNameFeild").val();

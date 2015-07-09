@@ -4,9 +4,9 @@
 
 $(document).ready(function(){
 	
-	//extracts the uid from the url
-    var query = location.search;
-    var res = query.replace('?id=', '');
+	//extracts the uid from the url	
+    var params = getParams();
+    var uid = params["id"][0]
     
     fetchBookList();
     
@@ -26,7 +26,7 @@ $('#rightSlide').click(function(e) {
     	       type : 'get',
     	       url : 'http://localhost:8080/MyAwesomeApp/DashboardServlet',
     	       dataType: 'JSON',
-    	       data : {input : res} ,
+    	       data : {input : uid} ,
     	            success : function(response) {
     	            	
     	            //parse json feedback

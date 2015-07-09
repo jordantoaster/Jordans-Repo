@@ -3,20 +3,11 @@
  */
 
 $(document).ready(function(){
-	
-	//extracts the book id and uid
-    var query = location.search;
-    var res = query.replace('?id=', '');
     
-    //great stack overflow solution
-    //http://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript/21152762#21152762
-    var qd = {};
-    location.search.substr(1).split("&").forEach(function(item) {var k = item.split("=")[0], v = item.split("=")[1]; v = v && decodeURIComponent(v); (k in qd) ? qd[k].push(v) : qd[k] = [v]})
-
-    //get uid
-    var uid = qd["id"][0]
+    var params = getParams();
+    var uid = params["id"][0]
     	
-    fetchBookInfo(qd);
+    fetchBookInfo(uid);
     
     function fetchBookInfo(params){
     	$.ajax({

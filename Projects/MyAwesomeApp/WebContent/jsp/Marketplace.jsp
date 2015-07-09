@@ -8,10 +8,10 @@
   <script src="//code.jquery.com/jquery-1.10.2.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script> 
   <script src="http://localhost:8080/MyAwesomeApp/js/Master.js"></script> 
-  <script src="http://localhost:8080/MyAwesomeApp/js/Marketplace.js"></script> 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
   <link href="http://localhost:8080/MyAwesomeApp/css/Master.css" rel="stylesheet" type="text/css" /> 
-  <link href="http://localhost:8080/MyAwesomeApp/css/Marketplace.css" rel="stylesheet" type="text/css" /> 
+  <link href="http://localhost:8080/MyAwesomeApp/css/Marketplace.css" rel="stylesheet" type="text/css" />
+  <script src="http://localhost:8080/MyAwesomeApp/js/Marketplace.js"></script>  
 </head>
 <body>
  <div id="navBar"></div>

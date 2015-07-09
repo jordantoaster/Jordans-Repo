@@ -5,8 +5,8 @@
 $(document).ready(function(){
 
 	var origUsers = [];
-    var query = location.search;
-    var res = query.replace('?id=', '');
+    var params = getParams();
+    var uid = params["id"][0]
     
     fetchBooksSell();
     fetchBooksBuy();
@@ -14,7 +14,7 @@ $(document).ready(function(){
      function fetchBooksSell(){
     	 
       	var obj = new Object();
-    	obj.id = res
+    	obj.id = uid
      	obj.action = "sell";
      	
      	$.ajax({
@@ -54,7 +54,7 @@ $(document).ready(function(){
     	 
       	var obj = new Object();
      	obj.action = "buy";
-    	obj.id = res;
+    	obj.id = uid;
      	
       	$.ajax({
   	       type : 'get',
@@ -120,7 +120,7 @@ $(document).ready(function(){
      	obj.id = $( "#booksBoxBuy option:selected" ).attr('id')
      	obj.status = "false";
      	obj.action = "buy";
-     	obj.newOwner = res;
+     	obj.newOwner = uid;
      	obj.oldOwner = origUsers[$("#booksBoxBuy")[0].selectedIndex];
      	     	
      	 $.ajax({
