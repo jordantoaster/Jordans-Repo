@@ -35,10 +35,6 @@ body {
 	margin-bottom: 2%;
 }
 
-#profileLink:active #profileLink:hover {
-	cursor: grab;
-}
-
 /* navbar */
 .navbar-default {
     background-color: rgba(0, 0, 0, 0);   
@@ -51,33 +47,22 @@ body {
 .navbar-default .navbar-brand {
     color: white;
 }
-.navbar-default .navbar-brand:hover,
-.navbar-default .navbar-brand:focus {
-    color: orange;
-}
+
 /* link */
 .navbar-default .navbar-nav > li > a {
     color: white;
 }
-.navbar-default .navbar-nav > li > a:hover,
-.navbar-default .navbar-nav > li > a:focus {
-    color: white;
-}
-.navbar-default .navbar-nav > .active > a, 
-.navbar-default .navbar-nav > .active > a:hover, 
-.navbar-default .navbar-nav > .active > a:focus {
-    color: white;
-    background-color: rgba(0, 0, 0, 0);
-}
 
-.navbar-default .navbar-nav > .open > a, 
-.navbar-default .navbar-nav > .open > a:hover, 
-.navbar-default .navbar-nav > .open > a:focus {
+.navbar-default .navbar-nav > .open > a, {
     color: white;
 }
 
 .navbar-default .navbar-toggle .icon-bar {
     background-color: rgba(0, 0, 0, 0);
+}
+
+.navbar-default .navbar-nav>li>a:focus, .navbar-default .navbar-nav>li>a:hover {
+	color: orange;
 }
 
 #ajaxGetUserServletResponse {
