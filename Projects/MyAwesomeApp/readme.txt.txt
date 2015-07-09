@@ -1,6 +1,5 @@
 TODO:
 
-1. remove populate profile pojo in favour of expanding user pojo
 2. UI is too sterile for the subject, more character required
 3. click on book to get info about the book
 4. upload schema to GIT
@@ -13,3 +12,11 @@ TODO:
 11. security to prevent hackers using username to navigate urls with query params
 12. rollover on header links
 13. change all url param extractions to new book info process
+14. add some feature ot the dash to fill it up
+15. fill db with realistic data
+16. add  a book uploader?
+17. take screenshots
+18. check for full scability
+19 search bar functionality
+20. prevent clicks when a select is required
+21. logout button

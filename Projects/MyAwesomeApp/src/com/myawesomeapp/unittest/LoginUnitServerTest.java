@@ -33,8 +33,8 @@ public class LoginUnitServerTest {
 	public void testLoginProcess(){
 		/*delete user after entry*/
 		
-		userTrue = new User("20000","bilbo!B##£");
-		userFalse = new User("saruman", "jena");
+		userTrue = new User("20000","bilbo!B##£","0");
+		userFalse = new User("saruman", "jena", "0");
 		
 		UserDaoImpl dao = new UserDaoImpl();
 		

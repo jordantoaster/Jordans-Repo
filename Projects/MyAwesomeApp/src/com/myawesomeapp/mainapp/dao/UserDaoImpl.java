@@ -12,7 +12,6 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
 import com.myawesomeapp.mainapp.pojo.Book;
 import com.myawesomeapp.mainapp.pojo.User;
-import com.myawesomeapp.utility.PopulateProfilePojoNeedRefactor;
 import com.myawesomeapp.utility.ResultSetToJson;
 
 public class UserDaoImpl implements UserDaoInterface {
@@ -211,7 +210,7 @@ public class UserDaoImpl implements UserDaoInterface {
 		String userDetails = getUserDetails(uid);
 		
 		//convert to pojo
-		PopulateProfilePojoNeedRefactor user = gson.fromJson(userDetails, PopulateProfilePojoNeedRefactor.class);
+		User user = gson.fromJson(userDetails, User.class);
 
 		//get book price
 		String bookDetails = dao.getBookDetails(bookId);

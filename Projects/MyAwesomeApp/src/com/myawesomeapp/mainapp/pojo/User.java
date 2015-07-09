@@ -4,10 +4,20 @@ package com.myawesomeapp.mainapp.pojo;
 public class User {
 	private String username;
 	private String password;
+	private String balance;
 	
-	public User(String uName, String pWord){
+	public String getBalance() {
+		return balance;
+	}
+
+	public void setBalance(String balance) {
+		this.balance = balance;
+	}
+
+	public User(String uName, String pWord, String balance){
 		this.username = uName;
 		this.password = pWord;
+		this.balance = balance;
 	}
 	
 	public void setUsername(String uName){

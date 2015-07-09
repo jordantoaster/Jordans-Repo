@@ -26,8 +26,8 @@ public class UserProfileUnitTest {
 	String uid = "jordannn";
 	String password = "jordan2";
 	String oldUid = "jord";
-	User user = new User("jord", "jordan1");
-	User userTwo = new User("bill", "jordan1");
+	User user = new User("jord", "jordan1", "0");
+	User userTwo = new User("bill", "jordan1", "0");
 	
 	
 	@Test

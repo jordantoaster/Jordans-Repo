@@ -3,10 +3,9 @@ package com.myawesomeapp.utility;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
 import com.google.gson.Gson;
 import com.myawesomeapp.mainapp.pojo.Book;
-import com.myawesomeapp.utility.PopulateProfilePojoNeedRefactor;
+import com.myawesomeapp.mainapp.pojo.User;
 
 public class ResultSetToJson {
 	
@@ -16,7 +15,7 @@ public class ResultSetToJson {
 	public String convertResultSetUser(ResultSet rs) throws SQLException{
 				
 		if(rs.next()){
-		    PopulateProfilePojoNeedRefactor pojo = new PopulateProfilePojoNeedRefactor(rs.getString("Username"), rs.getString("Password"), rs.getString("Balance"));		
+		    User pojo = new User(rs.getString("Username"), rs.getString("Password"), rs.getString("Balance"));		
 		 	String jsonResponse = gson.toJson(pojo);
 		 	
 		 	return jsonResponse;
