@@ -6,18 +6,21 @@ $(document).ready(function(){
     
      $('#navBar').load('http://localhost:8080/MyAwesomeApp/html/HeaderTemplate.html');
      
+     var paramsLink;
+     var uidParam;
+     
      $(document.body).on('click', '#profileLink' ,function(){
          //get uid     
-         var paramsLink = getParams();
-         var uidParam = paramsLink["id"][0]
+         paramsLink = getParams();
+         uidParam = paramsLink["id"][0]
          
     	 window.location = "http://localhost:8080/MyAwesomeApp/jsp/UserProfile.jsp" + '?id=' + uidParam;
      });
      
      $(document.body).on('click', '#marketplaceLink' ,function(){
          //get uid     
-         var paramsLink = getParams();
-         var uidParam = paramsLink["id"][0]
+         paramsLink = getParams();
+         uidParam = paramsLink["id"][0]
          
     	 window.location = "http://localhost:8080/MyAwesomeApp/jsp/Marketplace.jsp" + '?id=' +uidParam;
      });     
