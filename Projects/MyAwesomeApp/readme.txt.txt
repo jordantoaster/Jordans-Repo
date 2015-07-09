@@ -7,7 +7,6 @@ TODO:
 9. look for code duplication, known refactor point in ajax js
 10. encryption for passwords
 11. security to prevent hackers using username to navigate urls with query params
-13. change all url param extractions to new book info process using stack code snippet, move to master as function
 14. add some feature ot the dash to fill it up
 15. fill db with realistic data
 16. add  a book uploader?
