@@ -10,7 +10,5 @@ TODO:
 15. fill db with realistic data
 16. add  a book uploader?
 17. take screenshots
-18. check for full scability - bottom 10%
 19 search bar functionality
-20. prevent clicks when a select is required
-21. logout button
+22. unit tests fix and fill

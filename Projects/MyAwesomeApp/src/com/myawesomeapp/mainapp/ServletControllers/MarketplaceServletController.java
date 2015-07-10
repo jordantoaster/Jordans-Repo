@@ -51,16 +51,24 @@ public class MarketplaceServletController extends HttpServlet {
     	
 		Map<String, Object> inputMap = new Gson().fromJson(request.getParameter("input"), new TypeToken<HashMap<String, Object>>() {}.getType());
 		
-		if(inputMap.containsValue("sell")){
-			result = dao.changeBookSaleStatus(inputMap.get("id").toString(), inputMap.get("status").toString());
-		} else {
-			result = dao.purchaseBook(inputMap.get("id").toString(), inputMap.get("status").toString(), inputMap.get("newOwner").toString(), inputMap.get("oldOwner").toString());
-		}
+		System.out.println(inputMap.get("id"));
 		
-		if(result) {
-			JsonResponse = new ResponseBase("Success", "true");
+		// == is a good option since were are comparing values not objects per say
+		if(!(inputMap.get("id") == null)){
+			if(inputMap.containsValue("sell")){
+				result = dao.changeBookSaleStatus(inputMap.get("id").toString(), inputMap.get("status").toString());
+			} else {
+				result = dao.purchaseBook(inputMap.get("id").toString(), inputMap.get("status").toString(), inputMap.get("newOwner").toString(), inputMap.get("oldOwner").toString());
+			}
+			
+			if(result) {
+				JsonResponse = new ResponseBase("Success", "true");
+			} else {
+				JsonResponse = new ResponseBase("Failed", "false");
+			}
+			
 		} else {
-			JsonResponse = new ResponseBase("Failed", "false");
+			JsonResponse = new ResponseBase("You Must Click On An Input Item", "false");
 		}
         
     	String json = gson.toJson(JsonResponse); 	

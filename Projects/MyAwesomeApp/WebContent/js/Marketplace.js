@@ -143,13 +143,18 @@ $(document).ready(function(){
     	      });   
       });
      
-     $(document.body).on('click', '#infoButton' ,function(){
+     $(document.body).on('click', '#infoButton' ,function(){    	     	 
     	 
-    	if($( "#booksBoxBuy option:selected" ).attr('id') != undefined){
- 		  window.location = "http://localhost:8080/MyAwesomeApp/jsp/BookInformation.jsp" + '?bookid=' + $( "#booksBoxBuy option:selected" ).attr('id') + '&id=' +uid;
+    	if($( "#booksBoxBuy option:selected" ).attr('id') != undefined || $( "#booksBoxSell option:selected" ).attr('id') != undefined){
+    		if($( "#booksBoxBuy option:selected" ).attr('id') != undefined){
+    			window.location = "http://localhost:8080/MyAwesomeApp/jsp/BookInformation.jsp" + '?bookid=' + $( "#booksBoxBuy option:selected" ).attr('id') + '&id=' +uid;
+    		} else {
+    			window.location = "http://localhost:8080/MyAwesomeApp/jsp/BookInformation.jsp" + '?bookid=' + $( "#booksBoxSell option:selected" ).attr('id') + '&id='  +uid;    		
+    		}
     	} else {
-   		  window.location = "http://localhost:8080/MyAwesomeApp/jsp/BookInformation.jsp" + '?bookid=' + $( "#booksBoxSell option:selected" ).attr('id') + '&id='  +uid;    		
+           	$('#ajaxGetUserServletResponse').text("Please Pick a book :)");
+      		$("#ajaxGetUserServletResponse").css({"opacity":"1"});
     	}
     	
-      });
+     });
 }); 

@@ -23,7 +23,11 @@ $(document).ready(function(){
          uidParam = paramsLink["id"][0]
          
     	 window.location = "http://localhost:8080/MyAwesomeApp/jsp/Marketplace.jsp" + '?id=' +uidParam;
-     });     
+     });    
+     
+     $(document.body).on('click', '#logoutLink' ,function(){
+    	 window.location = "http://localhost:8080/MyAwesomeApp/jsp/Login.jsp";
+     });
 }); 
 
 //great stack overflow solution
