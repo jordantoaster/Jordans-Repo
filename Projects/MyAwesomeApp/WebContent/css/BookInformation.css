@@ -4,6 +4,10 @@
 	height: 100%;
 }
 
+#bookImage img {
+	box-shadow: -6px 6px 8px 0px rgba(0,0,0,0.75);
+}
+
 .textbox {
 	font-size: 120%;
 	border: 1px solid white;
@@ -12,7 +16,7 @@
 }
 
 h2 {
-	font-size: 200%;
+	font-size: 2vw;
 }
 
 #containerImage {
@@ -29,6 +33,7 @@ h2 {
 	color: white;
 	padding: 20px;
 	width: 25%;
+	font-size: 1vw;
 }
 
 .books {

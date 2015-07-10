@@ -5,7 +5,7 @@
 $(document).ready(function(){
     
     var params = getParams();
-    var uid = params["id"][0]
+    var uid = params["bookid"][0]
     	
     fetchBookInfo(uid);
     
@@ -14,7 +14,7 @@ $(document).ready(function(){
  	       type : 'get',
  	       url : 'http://localhost:8080/MyAwesomeApp/BookInformationServlet',
  	       dataType: 'JSON',
- 	       data : {input : qd["bookid"][0]} ,
+ 	       data : {input : params} ,
  	            success : function(response) {
  	            	
  	            //parse json feedback

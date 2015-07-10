@@ -29,7 +29,7 @@
 
 #myBooksHeader {
 	color: white;
-	font-size: 2em;
+	font-size: 2vm 2em;
 }
 
 #bookSection {
@@ -42,5 +42,4 @@
 
 #userBooks {
 	height: 90%;
-    overflow: hidden;
 }

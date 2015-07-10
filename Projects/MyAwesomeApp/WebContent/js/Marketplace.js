@@ -146,9 +146,9 @@ $(document).ready(function(){
      $(document.body).on('click', '#infoButton' ,function(){
     	 
     	if($( "#booksBoxBuy option:selected" ).attr('id') != undefined){
- 		  window.location = "http://localhost:8080/MyAwesomeApp/jsp/BookInformation.jsp" + '?bookid=' + $( "#booksBoxBuy option:selected" ).attr('id') + '&id=' +res;
+ 		  window.location = "http://localhost:8080/MyAwesomeApp/jsp/BookInformation.jsp" + '?bookid=' + $( "#booksBoxBuy option:selected" ).attr('id') + '&id=' +uid;
     	} else {
-   		  window.location = "http://localhost:8080/MyAwesomeApp/jsp/BookInformation.jsp" + '?bookid=' + $( "#booksBoxSell option:selected" ).attr('id') + '&id='  +res;    		
+   		  window.location = "http://localhost:8080/MyAwesomeApp/jsp/BookInformation.jsp" + '?bookid=' + $( "#booksBoxSell option:selected" ).attr('id') + '&id='  +uid;    		
     	}
     	
       });
