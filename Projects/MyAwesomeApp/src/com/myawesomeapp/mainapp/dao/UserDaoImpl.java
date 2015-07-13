@@ -12,6 +12,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
 import com.myawesomeapp.mainapp.pojo.Book;
 import com.myawesomeapp.mainapp.pojo.User;
+import com.myawesomeapp.utility.EncryptionManager;
 import com.myawesomeapp.utility.ResultSetToJson;
 
 public class UserDaoImpl implements UserDaoInterface {
@@ -47,7 +48,8 @@ public class UserDaoImpl implements UserDaoInterface {
 		
 		Connection conn = init();
 		
-		boolean isOnSystem = readAndCompare(username, password);
+		//we are inserting
+		boolean isOnSystem = readAndCompare(username, password, true);
 		
 		if(!isOnSystem){
 			try {			
@@ -70,26 +72,35 @@ public class UserDaoImpl implements UserDaoInterface {
 	}
 
 	/*Determines if the details provided are members in the system*/
-	public boolean readAndCompare(String uid, String pass) {
+	public boolean readAndCompare(String uid, String pass, boolean isInsert) {
 		
 		Connection conn = init();
 		
+		EncryptionManager manager = new EncryptionManager();
+				
 		try {
 			Statement stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery("SELECT * FROM user WHERE Username = "
-					+ "'"+uid+"'AND Password = '"+pass+"'");
+					+ "'"+uid+"'");
 			
-			if(rs.next()) {
-				//String username = rs.getString("Username");
-				//String password = rs.getString("Password");
-				//System.out.println(username + "\n" + password);
+			//details already on system
+			if(rs.next() && isInsert){
 				
-				conn.close();
-				return true;
-			} else {
-				conn.close();
 				return false;
+			} else {
+			
+				//now evaluate the password
+				String storedPassword = rs.getString("password");
+			
+				boolean isOnSystem = manager.checkPassword(pass, storedPassword);
+			
+				if(isOnSystem){
+					return true;
+				} 
 			}
+			
+			return false;
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -153,7 +164,7 @@ public class UserDaoImpl implements UserDaoInterface {
 	public boolean updateUserDetails(String uid, String pass, String oldUid) {
 		Connection conn = init();
 		
-		boolean isNewUidAlreadyOnSystem = readAndCompare(uid, pass);
+		boolean isNewUidAlreadyOnSystem = readAndCompare(uid, pass, false);
 
 		if(!isNewUidAlreadyOnSystem){
 		try {			
@@ -179,7 +190,7 @@ public class UserDaoImpl implements UserDaoInterface {
 		Connection conn = init();
 		
 		//check user is in table
-		boolean isInTable = readAndCompare(uid, pass);
+		boolean isInTable = readAndCompare(uid, pass, false);
 		
 		if(isInTable){
 			try {	

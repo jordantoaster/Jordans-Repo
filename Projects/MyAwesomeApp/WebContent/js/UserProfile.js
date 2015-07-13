@@ -29,8 +29,7 @@ function fetchUserData() {
             	response = JSON.parse(response);
 
             	//insert parsed data into form
-            	$('#userNameFeild').val(response["uid"]);
-            	$('#passwordFeild').val(response["password"]);
+            	$('#userNameFeild').val(response["username"]);
             	$('#balanceFeild').val(response["balance"]);
             }
                            

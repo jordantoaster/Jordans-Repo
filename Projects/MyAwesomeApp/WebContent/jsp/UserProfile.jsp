@@ -22,10 +22,6 @@
         <input type="text" name="user" id="userNameFeild" class="form-control">
        </div>
        <div class="form-group">
-        <label for="passwordFeild">Current Password (change if required) :</label>
-        <input type="text" id="passwordFeild" name="pwd" class="form-control">
-       </div>
-       <div class="form-group">
         <label for="changePasswordFeild">New Password:</label>
         <input type="password" id="changePasswordFeild" name="cpwd" class="form-control">
        </div>

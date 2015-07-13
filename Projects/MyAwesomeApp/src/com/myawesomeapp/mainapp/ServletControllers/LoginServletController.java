@@ -4,20 +4,20 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.crypto.EncryptedPrivateKeyInfo;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.json.JSONObject;
-
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.myawesomeapp.utility.EncryptionManager;
 import com.myawesomeapp.utility.ResponseBase;
-import com.myawesomeapp.mainapp.pojo.User;
 import com.myawesomeapp.mainapp.dao.UserDaoImpl;
 import com.myawesomeapp.utility.*;
+
  
 /*
  * A java controller class that deals with ajax requests from the login page
@@ -36,10 +36,16 @@ public class LoginServletController extends HttpServlet {
     	UserAccessValidator check = new UserAccessValidator(); 
     	ResponseBase JsonResponse;
        	Gson gson = new Gson();
-    	
+       	EncryptionManager encrypt = new EncryptionManager();
+       	
     	//convert input json data to a map
 		Map<String, Object> inputMap = new Gson().fromJson(request.getParameter("input"), new TypeToken<HashMap<String, Object>>() {}.getType());
-
+			       	
+		//encrypt password before comparing
+		String passwordEncrypted = encrypt.encrypt(inputMap.get("password").toString());
+		
+		System.out.println(passwordEncrypted);
+		
 		if(inputMap.containsValue("login")){
 			
 			/*Returns a boolean verifying is a user has passed security checks*/
@@ -56,7 +62,7 @@ public class LoginServletController extends HttpServlet {
 			} else {     
         	
 				UserDaoImpl uDao = new UserDaoImpl();
-				boolean isOnSystem = uDao.readAndCompare(inputMap.get("username").toString(),inputMap.get("password").toString()); 
+				boolean isOnSystem = uDao.readAndCompare(inputMap.get("username").toString(),inputMap.get("password").toString(), false); 
         	
 				if(isOnSystem){
         		
@@ -73,6 +79,7 @@ public class LoginServletController extends HttpServlet {
 				}
 			}  
 		} else {
+			
 			//hangle reg process
 			boolean isInputValid = check.validateRegDetails(inputMap.get("username").toString(),inputMap.get("password").toString(), inputMap.get("confirm").toString());
 
@@ -85,7 +92,7 @@ public class LoginServletController extends HttpServlet {
 			} else {
 				UserDaoImpl uDao = new UserDaoImpl();
         	
-				boolean isReg = uDao.insertUser(inputMap.get("username").toString(),inputMap.get("password").toString());           	
+				boolean isReg = uDao.insertUser(inputMap.get("username").toString(),passwordEncrypted);           	
 				
 				if(isReg){
 					JsonResponse = new ResponseBase(inputMap.get("username").toString(), "true");
