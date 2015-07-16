@@ -64,7 +64,6 @@ $('#changeButton').click(function(e) {
 	//creates an object containing the feilds details
 	var obj = new Object();
 	obj.uid = uid;
-	obj.password = $("#passwordFeild").val();
 	obj.passwordValidate = $("#changePasswordFeild").val();
 	obj.username = $("#userNameFeild").val();
 	obj.action = "changeDetails";

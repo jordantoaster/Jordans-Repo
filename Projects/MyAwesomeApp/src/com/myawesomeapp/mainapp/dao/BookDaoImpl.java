@@ -8,41 +8,16 @@ import java.sql.Statement;
 
 import com.google.gson.Gson;
 import com.myawesomeapp.mainapp.pojo.Book;
+import com.myawesomeapp.utility.DatabaseConnectionHelper;
 import com.myawesomeapp.utility.ResultSetToJson;
 
 public class BookDaoImpl implements BookDaoInterface{
 	
-	/*Sets up the Mysql connection and access rights*/
-	public Connection init(){
-		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			System.out.println("driver found");
-		} catch (ClassNotFoundException e) {
-			System.out.println("driver not found " + e);
-		}
-		
-		String url = "jdbc:mysql://127.0.0.1:3306/webappdb?user=root";
-		String username = "root";
-		String password = "jordan321";
-		
-		Connection conn = null;
-		
-		try {
-			conn = DriverManager.getConnection(url,username,password);
-			System.out.println("connected");
-		}  catch (SQLException e) {
-			// TODO Auto-generated catch block
-			System.out.println("connection failed " + e);
-		}
-		
-		return conn;
-	}
+	DatabaseConnectionHelper helper = new DatabaseConnectionHelper();
+	Connection conn = helper.init();
 	
-	@Override
 	public String getAllUserBooks(String uid) {
-		
-		Connection conn = init();
-		
+				
 		try {	
 			
 			//get 4 random
@@ -53,9 +28,7 @@ public class BookDaoImpl implements BookDaoInterface{
 			ResultSetToJson convertRs = new ResultSetToJson();
 			
 			String response = convertRs.convertResultSetBook(rs);
-	
-			conn.close();
-			
+				
  			return response;
 		
 		} catch (SQLException e) {
@@ -68,16 +41,12 @@ public class BookDaoImpl implements BookDaoInterface{
 
 	@Override
 	public boolean changeBookSaleStatus(String bookId, String status) {
-		
-		Connection conn = init();
-		
+				
 		try {	
 			
 			Statement stmt = conn.createStatement();
 			stmt.executeUpdate("UPDATE books " + "SET ForSale = '"+status+"' WHERE BookId = '"+bookId+"' ");
-	
-			conn.close();
-			
+				
  			return true;
 		
 		} catch (SQLException e) {
@@ -91,7 +60,6 @@ public class BookDaoImpl implements BookDaoInterface{
 	//TODO
 	public boolean purchaseBook(String bookId, String bookStatus, String newOwner, String oldOwner) {
 		
-		Connection conn = init();
 		UserDaoImpl dao = new UserDaoImpl();
 		Gson gson = new Gson();
 				
@@ -120,9 +88,7 @@ public class BookDaoImpl implements BookDaoInterface{
 	}
 
 	public String getAllBooksForSale(String uid) {
-		
-		Connection conn = init();
-		
+				
 		try {	
 			
 			//get 4 random
@@ -133,9 +99,7 @@ public class BookDaoImpl implements BookDaoInterface{
 			ResultSetToJson convertRs = new ResultSetToJson();
 			
 			String response = convertRs.convertResultSetBook(rs);
-	
-			conn.close();
-			
+				
  			return response;
 		
 		} catch (SQLException e) {
@@ -149,8 +113,6 @@ public class BookDaoImpl implements BookDaoInterface{
 
 	@Override
 	public String getBookDetails(String bookId) {
-
-		Connection conn = init();
 		
 		try {	
 			
@@ -160,9 +122,7 @@ public class BookDaoImpl implements BookDaoInterface{
 			
 			ResultSetToJson convertRs = new ResultSetToJson();
 			String response = convertRs.convertResultSetBook(rs);
-	
-			conn.close();
-			
+				
  			return response;
 		
 		} catch (SQLException e) {
@@ -174,17 +134,13 @@ public class BookDaoImpl implements BookDaoInterface{
 	}
 
 	public boolean updateOwner(String uid, String bookId) {
-		
-		Connection conn = init();
-		
+				
 		try {	
 			
 			Statement statement = conn.createStatement();			
 			statement.executeUpdate("UPDATE books " + "SET Username = '"+uid+"' WHERE BookId = '"+bookId+"' ");
 			statement.executeUpdate("UPDATE books " + "SET ForSale = 'false' WHERE BookId = '"+bookId+"' ");
-			
-			conn.close();
-			
+						
  			return true;
 		
 		} catch (SQLException e) {

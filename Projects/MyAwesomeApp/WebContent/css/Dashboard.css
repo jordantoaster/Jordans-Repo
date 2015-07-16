@@ -13,6 +13,21 @@
 	margin-left: 40%;
 }
 
+#infoSection {
+	float: right;
+	margin-right: 5%;
+	color: white;
+	font-size: 3em;
+	width: 50%;
+	overflow: hidden;
+}
+
+#profileImage {
+	height: 100%;
+	width: 80%;
+	margin: 0 auto;
+}
+
 .btn-default:hover {
     color: orange;
 	background-color: rgba(0,0,0,0);
@@ -38,6 +53,7 @@
 	padding: 10px;
 	border: 3px solid white;
 	height: 75%;
+	float: left;
 }
 
 #userBooks {

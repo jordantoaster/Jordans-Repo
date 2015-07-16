@@ -40,7 +40,12 @@ $('#rightSlide').click(function(e) {
     	            		var img = $('<img id='+str+' class="books">'); 
     	            		img.attr('src', response[i]["bookImage"]);
     	            		img.appendTo('#userBooks');
-    	            	}
+    	            	}  
+
+
+	            		//add welcome message
+	            		$("#infoSection").append('<p>Welcome '+uid+'!</p>')
+	            		$("#infoSection").append('<img id="profileImage" src="http://localhost:8080/MyAwesomeApp/images/man-hi.png">')
     	            }
     	                           
     	            },

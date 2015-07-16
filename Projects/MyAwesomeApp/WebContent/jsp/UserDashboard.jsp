@@ -19,5 +19,6 @@
   <div id="myBooksHeader"><p>Some Of My Books</p></div>
   <div id="userBooks"></div>
 </div>
+<div id="infoSection"></div>
 </body>
 </html>

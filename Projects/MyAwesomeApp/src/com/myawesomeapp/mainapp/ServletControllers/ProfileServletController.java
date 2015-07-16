@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.myawesomeapp.utility.EncryptionManager;
 import com.myawesomeapp.utility.NumericChecker;
 import com.myawesomeapp.utility.ResponseBase;
 import com.myawesomeapp.mainapp.dao.UserDaoImpl;
@@ -56,11 +57,15 @@ public class ProfileServletController extends HttpServlet {
 			HttpServletResponse response) throws IOException {
 		
 		
-		if(!inputMap.containsValue("") && !inputMap.containsValue(null) && 
-			inputMap.get("password").toString().equals(inputMap.get("passwordValidate").toString())){
+		if(!inputMap.containsValue("") && !inputMap.containsValue(null)){
 						
 			UserDaoImpl dao = new UserDaoImpl();
-			boolean isUpdated = dao.updateUserDetails(inputMap.get("username").toString(), inputMap.get("password").toString(), inputMap.get("uid").toString());
+	       	EncryptionManager encrypt = new EncryptionManager();
+
+	       	String newPass = encrypt.encrypt(inputMap.get("passwordValidate").toString());
+			
+			//sends old uid, new uid and new password
+			boolean isUpdated = dao.updateUserDetails(inputMap.get("username").toString(), newPass, inputMap.get("uid").toString());
 
 			if(isUpdated){
 				jsonResponse = new ResponseBase("Details Updated Successfully", "true");
