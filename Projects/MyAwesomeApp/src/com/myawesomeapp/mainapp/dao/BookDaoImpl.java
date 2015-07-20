@@ -151,4 +151,30 @@ public class BookDaoImpl implements BookDaoInterface{
 		return false;
 	}
 
+	@Override
+	public String getSearchResults(String searchString) {
+		
+		try {	
+			
+			//get 4 random
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery("SELECT BookName, BookImage, BookId, Username, BookPrice, ForSale FROM books WHERE BookName LIKE "
+					+ "'%"+searchString+"%'");
+						
+			ResultSetToJson convertRs = new ResultSetToJson();
+			
+			String response = convertRs.convertResultSetBook(rs);
+			
+			System.out.println(response);
+ 			
+			return response;
+		
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			System.out.println("connection failed " + e);
+		}
+
+		return "";
+	}
+
 }

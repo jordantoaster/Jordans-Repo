@@ -7,4 +7,5 @@ public interface BookDaoInterface {
 	public String getAllBooksForSale(String uid);
 	public String getBookDetails(String bookId);
 	public boolean updateOwner(String uid, String bookId);
+	public String getSearchResults(String searchString);
 }

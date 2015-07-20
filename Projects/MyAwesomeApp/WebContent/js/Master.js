@@ -28,6 +28,22 @@ $(document).ready(function(){
      $(document.body).on('click', '#logoutLink' ,function(){
     	 window.location = "http://localhost:8080/MyAwesomeApp/jsp/Login.jsp";
      });
+     
+     //checks user has entered data then redirects with query strings
+     $(document.body).on('click', '#submitSearch' ,function(e){
+		 e.preventDefault();
+
+         paramsLink = getParams();
+         uidParam = paramsLink["id"][0]
+    	 var searchData = $("#searchBox").val()
+    	 
+    	 if(searchData != undefined && searchData != ""){
+    		 window.location = "http://localhost:8080/MyAwesomeApp/jsp/SearchResult.jsp" + '?id=' +uidParam+ '&sinput=' + searchData;
+    	 } else {
+             $('#ajaxGetUserServletResponse').text('Enter Some Data');
+           	 $("#ajaxGetUserServletResponse").css({"opacity":"1"});
+    	 }
+    });
 }); 
 
 //great stack overflow solution
