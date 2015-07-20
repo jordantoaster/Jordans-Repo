@@ -1,0 +1,1 @@
+This puzzle is highly commented inside the java source code, please refer to that for my logic and assignment definition.
