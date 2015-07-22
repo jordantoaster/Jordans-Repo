@@ -1,6 +1,8 @@
 package com.myawesomeapp.mainapp.ServletControllers;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,7 +11,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import com.google.gson.reflect.TypeToken;
 import com.myawesomeapp.mainapp.dao.BookDaoImpl;
+import com.myawesomeapp.mainapp.dao.UserDaoImpl;
 
 
 @WebServlet(
@@ -29,17 +34,35 @@ public class DashboardServletController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 				
 		BookDaoImpl dao = new BookDaoImpl();
+		UserDaoImpl daoUser = new UserDaoImpl();
+		String jsonResponseObject;
+		String jsonResponse;
 		
-		//get json object of book details based on uid
-		String jsonResponseObject = dao.getAllUserBooks(request.getParameter("input"));	
+		Map<String, Object> inputMap = new Gson().fromJson(request.getParameter("input"), new TypeToken<HashMap<String, Object>>() {}.getType());
 		
-		//convert to json
-		String jsonReponse = gson.toJson(jsonResponseObject);
+		if(inputMap.get("action").toString().equals("getBooks")){
+			//get json object of book details based on uid
+			jsonResponseObject = dao.getAllUserBooks(inputMap.get("uid").toString());	
 		
-		System.out.println(jsonReponse);
+			//convert to json
+			jsonResponse = gson.toJson(jsonResponseObject);
 		
-		//send to client
-    	response.getWriter().write(jsonReponse); 
+			System.out.println(jsonResponse);
+		
+			//send to client
+			response.getWriter().write(jsonResponse); 
+		} else {
+			//get profile pic and username details
+			jsonResponseObject = daoUser.getUserDetails(inputMap.get("uid").toString());	
+		
+			//convert to json
+			jsonResponse = gson.toJson(jsonResponseObject);
+		
+			System.out.println(jsonResponse);
+		
+			//send to client
+			response.getWriter().write(jsonResponse); 
+		}
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

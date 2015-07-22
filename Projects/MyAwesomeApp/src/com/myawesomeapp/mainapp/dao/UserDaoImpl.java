@@ -104,7 +104,7 @@ public class UserDaoImpl implements UserDaoInterface {
 		try {	
 			
 			Statement stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT Username, Password, Balance FROM user WHERE Username = "
+			ResultSet rs = stmt.executeQuery("SELECT Username, Password, Balance, ProfilePic FROM user WHERE Username = "
 					+ "'"+uid+"'");
 			
 			ResultSetToJson convertRs = new ResultSetToJson();

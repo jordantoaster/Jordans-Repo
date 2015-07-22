@@ -15,7 +15,7 @@ public class ResultSetToJson {
 	public String convertResultSetUser(ResultSet rs) throws SQLException{
 				
 		if(rs.next()){
-		    User pojo = new User(rs.getString("Username"), rs.getString("Password"), rs.getString("Balance"));		
+		    User pojo = new User(rs.getString("Username"), rs.getString("Password"), rs.getString("Balance"), rs.getString("ProfilePic"));		
 		 	String jsonResponse = gson.toJson(pojo);
 		 	
 		 	return jsonResponse;
