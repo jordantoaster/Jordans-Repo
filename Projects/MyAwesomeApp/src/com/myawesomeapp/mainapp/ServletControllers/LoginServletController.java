@@ -92,7 +92,7 @@ public class LoginServletController extends HttpServlet {
 			} else {
 				UserDaoImpl uDao = new UserDaoImpl();
         	
-				boolean isReg = uDao.insertUser(inputMap.get("username").toString(),passwordEncrypted);           	
+				boolean isReg = uDao.insertUser(inputMap.get("username").toString(),passwordEncrypted, "");           	
 				
 				if(isReg){
 					JsonResponse = new ResponseBase(inputMap.get("username").toString(), "true");

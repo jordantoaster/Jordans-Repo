@@ -15,9 +15,11 @@ public class UserDaoImpl implements UserDaoInterface {
 	
 	DatabaseConnectionHelper helper = new DatabaseConnectionHelper();
 	Connection conn = helper.init();
+	Statement stmt;
+	ResultSet rs;
 
 	/*Takes a user object and inserts into the database*/
-	public boolean insertUser(String username, String password) {
+	public boolean insertUser(String username, String password, String url) {
 		
 		//we are inserting
 		boolean isOnSystem = readAndCompare(username, password, true);
@@ -25,8 +27,8 @@ public class UserDaoImpl implements UserDaoInterface {
 		if(!isOnSystem){
 			try {			
 				Statement statement = conn.createStatement();			
-				statement.executeUpdate("INSERT INTO user " + "VALUES ('"+username+"','"+password+"','"+0+"')");
-											
+				statement.executeUpdate("INSERT INTO user " + "VALUES ('"+username+"','"+password+"','"+0+"','"+url+"')");
+						
 				return true;
 		
 			} catch (SQLException e) {
@@ -41,22 +43,34 @@ public class UserDaoImpl implements UserDaoInterface {
 	}
 
 	/*Determines if the details provided are members in the system*/
+	//REFACTOR, VERY MESSY, GET DELETE TO USE THIS WHEN FIXED, MOVE LOGIN CHECKS OUT
 	public boolean readAndCompare(String uid, String pass, boolean isInsert) {
 				
 		EncryptionManager manager = new EncryptionManager();
 				
 		try {
-			Statement stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT * FROM user WHERE Username = "
+			
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery("SELECT * FROM user WHERE Username = "
 					+ "'"+uid+"'");
 			
-			//details already on system
-			if(rs.next() && isInsert){
-				
+			//details already on system during in insert attempt so blocked
+			if(rs.next() && isInsert){			
 				return false;
-			} else {
+			} 
 			
-				//now evaluate the password
+			// Move cursor to the first row
+		    rs.beforeFirst();
+		    
+			if (isInsert && !rs.next()) { //if inserting and no read result then allow insert
+				return false;
+			} 
+			
+		    rs.beforeFirst();
+
+			if (rs.next()){ //checks for member details on system / log in handling
+				
+				//now evaluate the password for log in attempt
 				String storedPassword = rs.getString("password");
 			
 				boolean isOnSystem = manager.checkPassword(pass, storedPassword);
@@ -66,6 +80,7 @@ public class UserDaoImpl implements UserDaoInterface {
 				} 
 			}
 			
+			//log in failed, details not on system or password failed
 			return false;
 			
 		} catch (SQLException e) {
@@ -103,8 +118,8 @@ public class UserDaoImpl implements UserDaoInterface {
 				
 		try {	
 			
-			Statement stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT Username, Password, Balance, ProfilePic FROM user WHERE Username = "
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery("SELECT Username, Password, Balance, ProfilePic FROM user WHERE Username = "
 					+ "'"+uid+"'");
 			
 			ResultSetToJson convertRs = new ResultSetToJson();
@@ -143,11 +158,7 @@ public class UserDaoImpl implements UserDaoInterface {
 
 	@Override
 	public boolean deleteUser(String uid, String pass) {
-				
-		//check user is in table
-		boolean isInTable = readAndCompare(uid, pass, false);
 		
-		if(isInTable){
 			try {	
 				
 				Statement statement = conn.createStatement();		
@@ -160,8 +171,7 @@ public class UserDaoImpl implements UserDaoInterface {
 				System.out.println("connection failed " + e);
 				return false;
 			}
-		}		
-		return false;
+				
 	}
 
 

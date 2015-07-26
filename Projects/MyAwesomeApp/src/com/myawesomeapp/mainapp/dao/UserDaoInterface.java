@@ -2,7 +2,7 @@ package com.myawesomeapp.mainapp.dao;
 
 /*Defines methods required by Dao*/
 public interface UserDaoInterface {
-	boolean insertUser(String username, String password);
+	boolean insertUser(String username, String password, String url);
 	boolean readAndCompare(String uid, String pass, boolean isInsert);
 	boolean updateBalance(String amount, String uid, boolean isAddition);
 	String getUserDetails(String uid);
