@@ -29,11 +29,50 @@ public class UserDaoUnitTest {
 	EncryptionManager manager = new EncryptionManager();
 	
 	@Test
-	public void insertUserDetails(){	
+	public void testInsertUserDetails(){	
 		assertEquals(true, impl.insertUser(uid, password, url));
 		
 		//remove test data
 		impl.deleteUser(uid, password);
+	}
+	
+	@Test
+	public void testReadAndCompare(){
+
+		//add new test for correct data when refactored
+		
+		assertEquals(false, impl.readAndCompare("","",false));		
+	}
+	
+	@Test
+	public void testUpdateBalance(){
+        impl.insertUser(uid, password, url);	
+		impl.updateBalance("20", uid, true);
+		impl.updateBalance("20", uid, false);
+		impl.deleteUser(uid, password);
+	}
+	
+	@Test
+	public void testGetUserDetails(){
+        impl.insertUser(uid, password, url);	
+		assertEquals("", impl.getUserDetails(""));	
+		assertNotEquals("", impl.getUserDetails(uid));		
+		impl.deleteUser(uid, password);
+	}
+	
+	@Test
+	public void testUpdateUserDetails(){
+        impl.insertUser(uid, password, url);	
+		assertEquals(true, impl.updateUserDetails("newtestUser", password, uid));	
+		impl.deleteUser("newtestUser", password);
+	}
+	
+	@Test
+	public void testCompareFundsWithBalance(){
+        impl.insertUser(uid, password, url);	
+		assertEquals(true, impl.compareUserFundsWithBookPrice("jordan100", "2"));	
+		assertEquals(false, impl.compareUserFundsWithBookPrice(uid, "2"));	
+        impl.deleteUser(uid, password);
 	}
 
 }

@@ -1,7 +1,8 @@
 package com.myawesomeapp.utility;
 
 /*checks if a string can be translated to an int
- * if not then it contains non numeral values*/
+ * if not then it contains non numeral values
+ * only allows whole number conversion*/
 
 public class NumericChecker {
 	public boolean checkNumeric(String s){

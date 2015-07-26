@@ -12,4 +12,12 @@ public class ResponseBase {
 	       this.feedback = feedback;
 	       this.success = success;
 	  }
+	  
+	  public String getFeedback(){
+		  return feedback;
+	  }
+	  
+	  public String getSuccess(){
+		  return success;
+	  }
 }

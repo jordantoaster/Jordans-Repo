@@ -144,8 +144,7 @@ public class UserDaoImpl implements UserDaoInterface {
 		try {			
 				Statement statement = conn.createStatement();			
 				statement.executeUpdate("UPDATE user " + "SET Password = '"+pass+"' WHERE Username = '"+oldUid+"' ");
-				statement.executeUpdate("UPDATE user " + "SET Username = '"+uid+"' WHERE Username = '"+oldUid+"' ");
-		
+				statement.executeUpdate("UPDATE user " + "SET Username = '"+uid+"' WHERE Username = '"+oldUid+"' ");		
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				System.out.println("connection failed " + e);

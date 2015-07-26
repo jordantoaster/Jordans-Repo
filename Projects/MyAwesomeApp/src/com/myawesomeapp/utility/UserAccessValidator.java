@@ -42,7 +42,7 @@ public class UserAccessValidator {
 
         boolean passwordValid = applyRegex(password);
         
-        if(!passwordValid && !password.equals(confirm)){
+        if(!passwordValid || !password.equals(confirm)){
         	return false;
         }
 		
