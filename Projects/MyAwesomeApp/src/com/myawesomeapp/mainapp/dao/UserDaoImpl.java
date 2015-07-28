@@ -27,7 +27,7 @@ public class UserDaoImpl implements UserDaoInterface {
 		if(!isOnSystem){
 			try {			
 				Statement statement = conn.createStatement();			
-				statement.executeUpdate("INSERT INTO user " + "VALUES ('"+username+"','"+password+"','"+0+"','"+url+"')");
+				statement.executeUpdate("INSERT INTO user " + "VALUES ('"+username+"','"+password+"','"+50+"','"+url+"')");
 						
 				return true;
 		
@@ -195,6 +195,9 @@ public class UserDaoImpl implements UserDaoInterface {
 		int bookPrice = Integer.parseInt(book[0].getBookPrice());
 	    int userBalance = Integer.parseInt(user.getBalance());
 		
+	    
+	    System.out.println(bookPrice + "   " + userBalance);
+	    
 		//compare with balance (why do i need to convert from string to int?
 		if(userBalance >= bookPrice){
 			return true;

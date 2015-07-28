@@ -177,4 +177,37 @@ public class BookDaoImpl implements BookDaoInterface{
 		return "";
 	}
 
+	//Currently only used for unit test purposes
+	public boolean insertBook(String id, String bookName, String bookImage,
+			int bookPrice, String username, String forSale) {
+
+		try {			
+			Statement statement = conn.createStatement();			
+			statement.executeUpdate("INSERT INTO books " + "VALUES ('"+id+"','"+bookName+"','"+bookImage+"','"+bookPrice+"','"+username+"','"+forSale+"')");
+
+			return true;
+	
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			System.out.println("connection failed " + e);
+		}
+		
+		return false;
+	}
+
+	//only used for unit test purposes currently
+	public boolean deleteBook(String uid) {
+		
+		try {				
+			Statement statement = conn.createStatement();		
+			statement.executeUpdate("DELETE FROM books " + "WHERE BookName = '"+uid+"' ");
+
+			return true;				
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			System.out.println("connection failed " + e);
+			return false;
+		}
+
+	}
 }

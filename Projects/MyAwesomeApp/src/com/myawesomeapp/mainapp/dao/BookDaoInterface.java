@@ -8,4 +8,6 @@ public interface BookDaoInterface {
 	public String getBookDetails(String bookId);
 	public boolean updateOwner(String uid, String bookId);
 	public String getSearchResults(String searchString);
+	public boolean insertBook(String id, String bookName, String bookImage, int bookPrice, String username, String forSale);
+	public boolean deleteBook(String uid);
 }

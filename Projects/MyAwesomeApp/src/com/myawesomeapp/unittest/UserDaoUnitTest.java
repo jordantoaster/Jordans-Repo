@@ -66,13 +66,5 @@ public class UserDaoUnitTest {
 		assertEquals(true, impl.updateUserDetails("newtestUser", password, uid));	
 		impl.deleteUser("newtestUser", password);
 	}
-	
-	@Test
-	public void testCompareFundsWithBalance(){
-        impl.insertUser(uid, password, url);	
-		assertEquals(true, impl.compareUserFundsWithBookPrice("jordan100", "2"));	
-		assertEquals(false, impl.compareUserFundsWithBookPrice(uid, "2"));	
-        impl.deleteUser(uid, password);
-	}
 
 }
