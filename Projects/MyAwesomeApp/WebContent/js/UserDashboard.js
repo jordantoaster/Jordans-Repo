@@ -60,7 +60,7 @@ $(document).ready(function(){
     }
     
     function fetchProfilePicture(response){
-    	if(Object.keys(response).length == 4) {
+    	if(response["profilePicture"] != "") {
     		
     		//add welcome message and profile pic
     		$("#infoSection").append('<p>Welcome '+response["username"]+'!</p>');		

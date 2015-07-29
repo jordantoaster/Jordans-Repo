@@ -36,7 +36,7 @@ $(document).ready(function() {
     	//sends the object as a json string, retrieves a json object and performs actions based on input
         $.ajax({
         	type : 'post',
-            url : 'LoginServlet',
+            url : 'http://localhost:8080/MyAwesomeApp/LoginServlet',
             data : { 
                 	loadProds: 1,
                 	input: JSON.stringify(obj)

@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+
 import com.google.gson.Gson;
 import com.myawesomeapp.mainapp.pojo.Book;
 import com.myawesomeapp.mainapp.pojo.User;
@@ -22,9 +23,9 @@ public class UserDaoImpl implements UserDaoInterface {
 	public boolean insertUser(String username, String password, String url) {
 		
 		//we are inserting
-		boolean isOnSystem = readAndCompare(username, password, true);
+		boolean isOnSystem = checkNewUserNotOnSystem(username);
 		
-		if(!isOnSystem){
+		if(isOnSystem){
 			try {			
 				Statement statement = conn.createStatement();			
 				statement.executeUpdate("INSERT INTO user " + "VALUES ('"+username+"','"+password+"','"+50+"','"+url+"')");
@@ -39,6 +40,53 @@ public class UserDaoImpl implements UserDaoInterface {
 		
 		System.out.println("done");
 
+		return false;
+	}
+	
+	
+	private boolean checkNewUserNotOnSystem(String username) {
+		try {
+			
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery("SELECT * FROM user WHERE Username = "
+					+ "'"+username+"'");
+			
+			//details found regarding the uid passed in
+			if(rs.next()){			
+				return false;
+			} 						
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		
+		return true;
+	}
+
+
+	public boolean readAndCompare(String uid, String pass){				
+		EncryptionManager manager = new EncryptionManager();	
+		try {
+			
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery("SELECT * FROM user WHERE Username = "
+					+ "'"+uid+"'");
+			
+			//details found regarding the uid passed in
+			if(rs.next()){			
+				//now evaluate the password for log in attempt
+				String storedPassword = rs.getString("password");
+			
+				boolean isOnSystem = manager.checkPassword(pass, storedPassword);
+			
+				//password matches that in db
+				if(isOnSystem){
+					return true;
+				} 
+			} 						
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		
 		return false;
 	}
 
