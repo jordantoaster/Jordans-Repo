@@ -101,7 +101,7 @@ public class LoginServletController extends HttpServlet {
 		} else {     
     	
 			UserDaoImpl uDao = new UserDaoImpl();
-			boolean isOnSystem = uDao.readAndCompare(inputMap.get("username").toString(),inputMap.get("password").toString(), false); 
+			boolean isOnSystem = uDao.readAndCompare(inputMap.get("username").toString(),inputMap.get("password").toString()); 
     	
 			if(isOnSystem){
     		

@@ -90,55 +90,6 @@ public class UserDaoImpl implements UserDaoInterface {
 		return false;
 	}
 
-	/*Determines if the details provided are members in the system*/
-	//REFACTOR, VERY MESSY, GET DELETE TO USE THIS WHEN FIXED, MOVE LOGIN CHECKS OUT
-	public boolean readAndCompare(String uid, String pass, boolean isInsert) {
-				
-		EncryptionManager manager = new EncryptionManager();
-				
-		try {
-			
-			stmt = conn.createStatement();
-			rs = stmt.executeQuery("SELECT * FROM user WHERE Username = "
-					+ "'"+uid+"'");
-			
-			//details already on system during in insert attempt so blocked
-			if(rs.next() && isInsert){			
-				return false;
-			} 
-			
-			// Move cursor to the first row
-		    rs.beforeFirst();
-		    
-			if (isInsert && !rs.next()) { //if inserting and no read result then allow insert
-				return false;
-			} 
-			
-		    rs.beforeFirst();
-
-			if (rs.next()){ //checks for member details on system / log in handling
-				
-				//now evaluate the password for log in attempt
-				String storedPassword = rs.getString("password");
-			
-				boolean isOnSystem = manager.checkPassword(pass, storedPassword);
-			
-				if(isOnSystem){
-					return true;
-				} 
-			}
-			
-			//log in failed, details not on system or password failed
-			return false;
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		return false;
-	}
-
 	//Takes the uid and an amount to add to the balance column
 	public boolean updateBalance(String amount, String uid, boolean isAddition) {  
 						
@@ -186,7 +137,7 @@ public class UserDaoImpl implements UserDaoInterface {
 	@Override
 	public boolean updateUserDetails(String uid, String pass, String oldUid) {
 		
-		boolean isNewUidAlreadyOnSystem = readAndCompare(uid, pass, false);
+		boolean isNewUidAlreadyOnSystem = readAndCompare(uid, pass);
 
 		if(!isNewUidAlreadyOnSystem){
 		try {			

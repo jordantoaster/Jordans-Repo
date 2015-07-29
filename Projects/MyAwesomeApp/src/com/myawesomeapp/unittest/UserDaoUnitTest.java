@@ -37,11 +37,8 @@ public class UserDaoUnitTest {
 	}
 	
 	@Test
-	public void testReadAndCompare(){
-
-		//add new test for correct data when refactored
-		
-		assertEquals(false, impl.readAndCompare("","",false));		
+	public void testReadAndCompare(){		
+		assertEquals(false, impl.readAndCompare("",""));		
 	}
 	
 	@Test
