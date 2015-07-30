@@ -11,10 +11,14 @@ document + verify
 
 to fix
 11. security to prevent hackers using username to navigate urls with query params
-14. move loose control logic from the dao's to the controller? (be consistent)
+- create a profile id that is a randomly generated number which lowers risk of navigating illegally, say 20 chars. use that string as param for querys
 
 potential ideas
 13. check if map conversion is required. is request.get param not suffucient? (could also pass in multible params in ajax instead of object)
 14. remember me cookie?
 22. add ajax method to master and just take multible parameters and return reponse for logic handling
 23. check if user on system method very similar to read and compare
+- add ssl
+-look into way to see if cookies can improve the app design
+sql injection
+

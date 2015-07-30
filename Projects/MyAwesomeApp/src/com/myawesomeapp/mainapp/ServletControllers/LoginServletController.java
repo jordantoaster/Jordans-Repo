@@ -15,6 +15,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.myawesomeapp.utility.EncryptionManager;
 import com.myawesomeapp.utility.ResponseBase;
+import com.myawesomeapp.mainapp.dao.SessionDaoImpl;
 import com.myawesomeapp.mainapp.dao.UserDaoImpl;
 import com.myawesomeapp.utility.*;
 
@@ -38,24 +39,26 @@ public class LoginServletController extends HttpServlet {
 		Map<String, Object> inputMap = new Gson().fromJson(request.getParameter("input"), new TypeToken<HashMap<String, Object>>() {}.getType());
 			       	
 		//encrypt password before comparing
-		String passwordEncrypted = encrypt.encrypt(inputMap.get("password").toString());
-				
+		String password = inputMap.get("password").toString();
+		String passwordEncrypted = encrypt.encrypt(password);
+		String username = inputMap.get("username").toString();	
+		
 		//check which operation is required
 		if(inputMap.containsValue("login")){			
-			performLoginProcess(inputMap, response);			 
+			performLoginProcess(username, password, response);			 
 		} else {
-			performRegProcess(inputMap, response, passwordEncrypted);			
+			performRegProcess(username, password, inputMap.get("confirm").toString(),response, passwordEncrypted);			
 		}
     }
 
-	private void performRegProcess(Map<String, Object> inputMap,
-			HttpServletResponse response, String passwordEncrypted) throws IOException {
+	private void performRegProcess(String username,
+			String password, String confirmPassword, HttpServletResponse response, String passwordEncrypted) throws IOException {
 		
 		ResponseBase JsonResponse;
        	Gson gson = new Gson();
     	UserAccessValidator check = new UserAccessValidator(); 
 		
-		boolean isInputValid = check.validateRegDetails(inputMap.get("username").toString(),inputMap.get("password").toString(), inputMap.get("confirm").toString());
+		boolean isInputValid = check.validateRegDetails(username, password, confirmPassword);
 
 		if(!isInputValid){   
         	
@@ -66,12 +69,25 @@ public class LoginServletController extends HttpServlet {
 		} else {
 			UserDaoImpl uDao = new UserDaoImpl();
     	
-			boolean isReg = uDao.insertUser(inputMap.get("username").toString(),passwordEncrypted, "");           	
+			boolean isReg = uDao.insertUser(username, passwordEncrypted, "");           	
 			
+			//success!
 			if(isReg){
-				JsonResponse = new ResponseBase(inputMap.get("username").toString(), "true");
-				String json = gson.toJson(JsonResponse); 	
-				response.getWriter().write(json); 
+				
+				//create session
+				SessionDaoImpl session = new SessionDaoImpl();
+				boolean isSessionCreated = session.tryInsertSession(username);
+				
+				//send response
+				if(isSessionCreated){
+					JsonResponse = new ResponseBase(username, "true");
+					String json = gson.toJson(JsonResponse); 	
+					response.getWriter().write(json);
+				} else {
+					JsonResponse = new ResponseBase("Database error, session could not be created", "false");
+					String json = gson.toJson(JsonResponse); 	
+					response.getWriter().write(json); 
+				}
 			} else {
 				JsonResponse = new ResponseBase("user details already on the system", "false");
 				String json = gson.toJson(JsonResponse); 	
@@ -81,14 +97,14 @@ public class LoginServletController extends HttpServlet {
 		
 	}
 
-	private void performLoginProcess(Map<String, Object> inputMap, HttpServletResponse response) throws IOException {
+	private void performLoginProcess(String username, String password, HttpServletResponse response) throws IOException {
 		
 		ResponseBase JsonResponse;
        	Gson gson = new Gson();
     	UserAccessValidator check = new UserAccessValidator(); 
 		
 		/*Returns a boolean verifying is a user has passed security checks*/
-		boolean isInputValid = check.validateLoginDetails(inputMap.get("username").toString(),inputMap.get("password").toString());
+		boolean isInputValid = check.validateLoginDetails(username, password);
         
 		/*If sequence determines if the User details are valid a each stage. A Java object is constructed
 		 * with relevant values and sent back to client via ajax*/
@@ -101,14 +117,24 @@ public class LoginServletController extends HttpServlet {
 		} else {     
     	
 			UserDaoImpl uDao = new UserDaoImpl();
-			boolean isOnSystem = uDao.readAndCompare(inputMap.get("username").toString(),inputMap.get("password").toString()); 
+			boolean isOnSystem = uDao.readAndCompare(username.toString(),password); 
     	
+			//success!
 			if(isOnSystem){
-    		
-				//append user id for future reference
-				JsonResponse = new ResponseBase(inputMap.get("username").toString(), "true");
-				String json = gson.toJson(JsonResponse); 	
-				response.getWriter().write(json);  
+				
+				//create session
+				SessionDaoImpl session = new SessionDaoImpl();
+				boolean isSessionCreated = session.tryInsertSession(username);
+				
+			    if(isSessionCreated){
+			    	JsonResponse = new ResponseBase(username, "true");
+			    	String json = gson.toJson(JsonResponse); 	
+			    	response.getWriter().write(json); 
+			    } else {
+					JsonResponse = new ResponseBase("Database error, session could not be created", "false");
+					String json = gson.toJson(JsonResponse); 	
+					response.getWriter().write(json); 
+			    }
         	
 			} else {
     		

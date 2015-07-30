@@ -16,13 +16,12 @@ public class EncryptionManager {
 	public String encrypt(String plainText){
 		
 		String encryptedPassword = passwordEncryptor.encryptPassword(plainText);
-  
+
 		return encryptedPassword;
 	}
 	
 	//checks the user has entered a correct password
 	public boolean checkPassword(String submittedPassword, String storedPassword){	
 	    return passwordEncryptor.checkPassword(submittedPassword, storedPassword);	
-	}
-	
+	}	
 }

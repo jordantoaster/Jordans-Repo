@@ -47,7 +47,7 @@ $(document).ready(function() {
                  	$('#ajaxGetUserServletResponse').text(response["feedback"]);
                   	$("#ajaxGetUserServletResponse").css({"opacity":"1"});
                	    $(".form-control").css("border-color", "red");
-            	} else {               
+            	} else {  
             		window.location = "http://localhost:8080/MyAwesomeApp/jsp/UserDashboard.jsp" + '?id=' + response["feedback"];
             	}
             },

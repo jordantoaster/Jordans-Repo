@@ -5,7 +5,7 @@
 $(document).ready(function(){
     
      $('#navBar').load('http://localhost:8080/MyAwesomeApp/html/HeaderTemplate.html');
-     
+          
      var paramsLink;
      var uidParam;
      
@@ -55,3 +55,4 @@ function getParams(){
     
     return params;
 }
+
