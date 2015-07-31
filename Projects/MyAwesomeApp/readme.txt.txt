@@ -10,8 +10,8 @@ document + verify
 18. write read me in full
 
 to fix
-11. security to prevent hackers using username to navigate urls with query params
-- create a profile id that is a randomly generated number which lowers risk of navigating illegally, say 20 chars. use that string as param for querys
+add unit tests for encoder and new user dao method
+add time to session table (make it an activity log?)
 
 potential ideas
 13. check if map conversion is required. is request.get param not suffucient? (could also pass in multible params in ajax instead of object)
@@ -21,4 +21,5 @@ potential ideas
 - add ssl
 -look into way to see if cookies can improve the app design
 sql injection
+translating back to the plain username is not a great implementation, is the server request required? should I just compare for the encoded version in dao?
 

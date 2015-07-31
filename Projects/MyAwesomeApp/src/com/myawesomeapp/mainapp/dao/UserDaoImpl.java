@@ -20,7 +20,7 @@ public class UserDaoImpl implements UserDaoInterface {
 	ResultSet rs;
 
 	/*Takes a user object and inserts into the database*/
-	public boolean insertUser(String username, String password, String url) {
+	public boolean insertUser(String username, String password, String url, String encodedUsername) {
 		
 		//we are inserting
 		boolean isOnSystem = checkNewUserNotOnSystem(username);
@@ -28,7 +28,7 @@ public class UserDaoImpl implements UserDaoInterface {
 		if(isOnSystem){
 			try {			
 				Statement statement = conn.createStatement();			
-				statement.executeUpdate("INSERT INTO user " + "VALUES ('"+username+"','"+password+"','"+50+"','"+url+"')");
+				statement.executeUpdate("INSERT INTO user " + "VALUES ('"+username+"','"+password+"','"+50+"','"+url+"','"+encodedUsername+"')");
 						
 				return true;
 		
@@ -131,7 +131,7 @@ public class UserDaoImpl implements UserDaoInterface {
 			System.out.println("connection failed " + e);
 		}
 		
-		return null;
+		return "";
 	}
 
 	@Override
@@ -193,8 +193,7 @@ public class UserDaoImpl implements UserDaoInterface {
 		//parse to int
 		int bookPrice = Integer.parseInt(book[0].getBookPrice());
 	    int userBalance = Integer.parseInt(user.getBalance());
-		
-	    
+		    
 	    System.out.println(bookPrice + "   " + userBalance);
 	    
 		//compare with balance (why do i need to convert from string to int?
@@ -203,6 +202,27 @@ public class UserDaoImpl implements UserDaoInterface {
 		}
 		
 		return false;
+	}
+
+
+	@Override
+	public String getDecodedUsername(String encodedUsername) {
+		try {	
+			String result = "";
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery("SELECT Username FROM user WHERE EncodedUsername = "
+					+ "'"+encodedUsername+"'");
+			
+			if(rs.next()){
+				result = rs.getString("Username");
+			}
+				
+ 			return result;		
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			System.out.println("connection failed " + e);
+		}
+		return null;
 	}
 
 }

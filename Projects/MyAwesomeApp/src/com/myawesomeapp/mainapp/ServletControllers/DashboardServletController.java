@@ -15,6 +15,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 import com.myawesomeapp.mainapp.dao.BookDaoImpl;
 import com.myawesomeapp.mainapp.dao.UserDaoImpl;
+import com.myawesomeapp.utility.StringUrlEncoder;
 
 
 @WebServlet(
@@ -35,14 +36,16 @@ public class DashboardServletController extends HttpServlet {
 				
 		BookDaoImpl dao = new BookDaoImpl();
 		UserDaoImpl daoUser = new UserDaoImpl();
-		String jsonResponseObject;
-		String jsonResponse;
+		StringUrlEncoder encoder = new StringUrlEncoder();
 		
 		Map<String, Object> inputMap = new Gson().fromJson(request.getParameter("input"), new TypeToken<HashMap<String, Object>>() {}.getType());
-		
+		String jsonResponseObject;
+		String jsonResponse;
+		String decodedUsername = daoUser.getDecodedUsername(inputMap.get("uid").toString());
+			
 		if(inputMap.get("action").toString().equals("getBooks")){
 			//get json object of book details based on uid
-			jsonResponseObject = dao.getAllUserBooks(inputMap.get("uid").toString());	
+			jsonResponseObject = dao.getAllUserBooks(decodedUsername);	
 		
 			//convert to json
 			jsonResponse = gson.toJson(jsonResponseObject);
@@ -53,7 +56,7 @@ public class DashboardServletController extends HttpServlet {
 			response.getWriter().write(jsonResponse); 
 		} else {
 			//get profile pic and username details
-			jsonResponseObject = daoUser.getUserDetails(inputMap.get("uid").toString());	
+			jsonResponseObject = daoUser.getUserDetails(decodedUsername);	
 		
 			//convert to json
 			jsonResponse = gson.toJson(jsonResponseObject);

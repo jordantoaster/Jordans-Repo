@@ -33,7 +33,9 @@ public class ProfileServletController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		UserDaoImpl dao = new UserDaoImpl();
-		String jsonResponseObject = dao.getUserDetails(request.getParameter("input"));
+		String decodedUsername = dao.getDecodedUsername(request.getParameter("input"));
+
+		String jsonResponseObject = dao.getUserDetails(decodedUsername);
 		
 		String jsonReponse = gson.toJson(jsonResponseObject);
 		
@@ -42,10 +44,10 @@ public class ProfileServletController extends HttpServlet {
 
 	//Used to take in updated balance from request and send it to the dao
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-				
+					
 		//stack overflow conversion solution
 		Map<String, Object> inputMap = new Gson().fromJson(request.getParameter("input"), new TypeToken<HashMap<String, Object>>() {}.getType());
-			
+
 			if(inputMap.containsValue("updateFunds")){				
 				updateFunds(inputMap, response);
 			} else if(inputMap.containsValue("changeDetails")) {
@@ -56,6 +58,8 @@ public class ProfileServletController extends HttpServlet {
 	private void changeDetails(Map<String, Object> inputMap,
 			HttpServletResponse response) throws IOException {
 		
+		UserDaoImpl daoUser = new UserDaoImpl();
+		String decodedUsername = daoUser.getDecodedUsername(inputMap.get("uid").toString());
 		
 		if(!inputMap.containsValue("") && !inputMap.containsValue(null)){
 						
@@ -65,7 +69,7 @@ public class ProfileServletController extends HttpServlet {
 	       	String newPass = encrypt.encrypt(inputMap.get("passwordValidate").toString());
 			
 			//sends old uid, new uid and new password
-			boolean isUpdated = dao.updateUserDetails(inputMap.get("username").toString(), newPass, inputMap.get("uid").toString());
+			boolean isUpdated = dao.updateUserDetails(inputMap.get("username").toString(), newPass, decodedUsername);
 
 			if(isUpdated){
 				jsonResponse = new ResponseBase("Details Updated Successfully", "true");
@@ -91,10 +95,11 @@ public class ProfileServletController extends HttpServlet {
 		
     	NumericChecker numCheck = new NumericChecker();
 		UserDaoImpl dao = new UserDaoImpl();
-		
+		String decodedUsername = dao.getDecodedUsername(inputMap.get("user").toString());
+	
 		if(!inputMap.containsValue("") && !inputMap.containsValue(null) && numCheck.checkNumeric((String)inputMap.get("amount"))){
 
-		boolean result = dao.updateBalance(inputMap.get("amount").toString(), inputMap.get("user").toString(), true);
+		boolean result = dao.updateBalance(inputMap.get("amount").toString(), decodedUsername, true);
 				
 			if(result){				
 				//if DB is updated correctly

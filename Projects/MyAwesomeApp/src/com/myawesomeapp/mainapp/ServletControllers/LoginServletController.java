@@ -34,6 +34,7 @@ public class LoginServletController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	
        	EncryptionManager encrypt = new EncryptionManager();
+       	StringUrlEncoder encoder = new StringUrlEncoder();
        	
     	//convert input json data to a map
 		Map<String, Object> inputMap = new Gson().fromJson(request.getParameter("input"), new TypeToken<HashMap<String, Object>>() {}.getType());
@@ -41,18 +42,19 @@ public class LoginServletController extends HttpServlet {
 		//encrypt password before comparing
 		String password = inputMap.get("password").toString();
 		String passwordEncrypted = encrypt.encrypt(password);
-		String username = inputMap.get("username").toString();	
+		String username = inputMap.get("username").toString();
+		String encodedUsername =  encoder.encode(username);
 		
 		//check which operation is required
 		if(inputMap.containsValue("login")){			
-			performLoginProcess(username, password, response);			 
+			performLoginProcess(username, password, response, encodedUsername);			 
 		} else {
-			performRegProcess(username, password, inputMap.get("confirm").toString(),response, passwordEncrypted);			
+			performRegProcess(username, password, inputMap.get("confirm").toString(),response, passwordEncrypted, encodedUsername);			
 		}
     }
 
 	private void performRegProcess(String username,
-			String password, String confirmPassword, HttpServletResponse response, String passwordEncrypted) throws IOException {
+			String password, String confirmPassword, HttpServletResponse response, String passwordEncrypted, String encodedUsername) throws IOException {
 		
 		ResponseBase JsonResponse;
        	Gson gson = new Gson();
@@ -69,7 +71,7 @@ public class LoginServletController extends HttpServlet {
 		} else {
 			UserDaoImpl uDao = new UserDaoImpl();
     	
-			boolean isReg = uDao.insertUser(username, passwordEncrypted, "");           	
+			boolean isReg = uDao.insertUser(username, passwordEncrypted, "", encodedUsername);           	
 			
 			//success!
 			if(isReg){
@@ -80,7 +82,7 @@ public class LoginServletController extends HttpServlet {
 				
 				//send response
 				if(isSessionCreated){
-					JsonResponse = new ResponseBase(username, "true");
+					JsonResponse = new ResponseBase(encodedUsername, "true");
 					String json = gson.toJson(JsonResponse); 	
 					response.getWriter().write(json);
 				} else {
@@ -97,7 +99,7 @@ public class LoginServletController extends HttpServlet {
 		
 	}
 
-	private void performLoginProcess(String username, String password, HttpServletResponse response) throws IOException {
+	private void performLoginProcess(String username, String password, HttpServletResponse response, String encodedUsername) throws IOException {
 		
 		ResponseBase JsonResponse;
        	Gson gson = new Gson();
@@ -117,7 +119,7 @@ public class LoginServletController extends HttpServlet {
 		} else {     
     	
 			UserDaoImpl uDao = new UserDaoImpl();
-			boolean isOnSystem = uDao.readAndCompare(username.toString(),password); 
+			boolean isOnSystem = uDao.readAndCompare(encodedUsername,password); 
     	
 			//success!
 			if(isOnSystem){
@@ -127,7 +129,7 @@ public class LoginServletController extends HttpServlet {
 				boolean isSessionCreated = session.tryInsertSession(username);
 				
 			    if(isSessionCreated){
-			    	JsonResponse = new ResponseBase(username, "true");
+			    	JsonResponse = new ResponseBase(encodedUsername, "true");
 			    	String json = gson.toJson(JsonResponse); 	
 			    	response.getWriter().write(json); 
 			    } else {

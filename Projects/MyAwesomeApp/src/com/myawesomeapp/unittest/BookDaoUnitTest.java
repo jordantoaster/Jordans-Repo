@@ -11,17 +11,13 @@ public class BookDaoUnitTest {
 	
 	UserDaoImpl userImpl = new UserDaoImpl();
 	BookDaoImpl bookImpl = new BookDaoImpl();
-	
-	/*userImpl.insertUser("testUser", "pass","");
-		bookImpl.insertBook("9999", "testBook", "",0, "testUser", "true");
-	
-	bookImpl.deleteBook("9999");
-	userImpl.deleteUser("testUser", "pass");*/
+	String encodedUsername = "35435435422";
+	String encodedUsernameTwo = "543534543";
 	
 	@Before
 	public void setup(){
-		userImpl.insertUser("testUserTwo", "pass","url");
-		userImpl.insertUser("testUser", "pass","url");
+		userImpl.insertUser("testUserTwo", "pass","url", encodedUsername);
+		userImpl.insertUser("testUser", "pass","url", encodedUsernameTwo);
 		bookImpl.insertBook("9999", "testBook", "",5, "testUser", "true");
 		bookImpl.insertBook("9998", "testBookTwo", "",500, "testUser", "true");
 	}
@@ -30,8 +26,8 @@ public class BookDaoUnitTest {
 	public void teardown(){
 		bookImpl.deleteBook("testBook");
 		bookImpl.deleteBook("testBookTwo");
-		userImpl.deleteUser("testUser", "pass");
-		userImpl.deleteUser("testUserTwo", "pass");
+		userImpl.deleteUser(encodedUsername, "pass");
+		userImpl.deleteUser(encodedUsernameTwo, "pass");
 	}
 
 	@Test

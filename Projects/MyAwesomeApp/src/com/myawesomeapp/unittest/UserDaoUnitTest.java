@@ -27,13 +27,23 @@ public class UserDaoUnitTest {
 	String password = "password";
 	String url = "/url/";
 	EncryptionManager manager = new EncryptionManager();
+	String encodedUsername = "453445345";
+	
+	@Before
+	public void setup(){
+		impl.insertUser(uid, password, url, encodedUsername);
+	}
+	
+	@After
+	public void teardown(){
+		impl.deleteUser(uid, password);
+		impl.deleteUser("newtestUser", password);
+	}
 	
 	@Test
-	public void testInsertUserDetails(){	
-		assertEquals(true, impl.insertUser(uid, password, url));
-		
-		//remove test data
+	public void testInsertUserDetails(){
 		impl.deleteUser(uid, password);
+		assertEquals(true, impl.insertUser(uid, password, url, encodedUsername));
 	}
 	
 	@Test
@@ -43,25 +53,20 @@ public class UserDaoUnitTest {
 	
 	@Test
 	public void testUpdateBalance(){
-        impl.insertUser(uid, password, url);	
 		impl.updateBalance("20", uid, true);
 		impl.updateBalance("20", uid, false);
-		impl.deleteUser(uid, password);
 	}
 	
 	@Test
 	public void testGetUserDetails(){
-        impl.insertUser(uid, password, url);	
 		assertEquals("", impl.getUserDetails(""));	
 		assertNotEquals("", impl.getUserDetails(uid));		
-		impl.deleteUser(uid, password);
 	}
 	
 	@Test
 	public void testUpdateUserDetails(){
-        impl.insertUser(uid, password, url);	
+        impl.insertUser(uid, password, url, uid);	
 		assertEquals(true, impl.updateUserDetails("newtestUser", password, uid));	
-		impl.deleteUser("newtestUser", password);
 	}
 
 }

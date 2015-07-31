@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.myawesomeapp.mainapp.dao.BookDaoImpl;
+import com.myawesomeapp.mainapp.dao.UserDaoImpl;
 import com.myawesomeapp.utility.ResponseBase;
 
 
@@ -30,14 +31,16 @@ public class MarketplaceServletController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
        
+		UserDaoImpl daoUser = new UserDaoImpl();
 		BookDaoImpl dao = new BookDaoImpl();
         String jsonResponseObject;
 		Map<String, Object> inputMap = new Gson().fromJson(request.getParameter("input"), new TypeToken<HashMap<String, Object>>() {}.getType());
-      		
+		String decodedUsername = daoUser.getDecodedUsername(inputMap.get("id").toString());
+
         if(inputMap.containsValue("sell")){
-        	jsonResponseObject = dao.getAllUserBooks(inputMap.get("id").toString());	
+        	jsonResponseObject = dao.getAllUserBooks(decodedUsername);	
         } else {
-        	jsonResponseObject = dao.getAllBooksForSale(inputMap.get("id").toString());
+        	jsonResponseObject = dao.getAllBooksForSale(decodedUsername);
         }
 				
 		String jsonReponse = gson.toJson(jsonResponseObject);				
@@ -46,19 +49,19 @@ public class MarketplaceServletController extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         BookDaoImpl dao = new BookDaoImpl();
+        UserDaoImpl daoUser = new UserDaoImpl();
     	ResponseBase JsonResponse;
     	boolean result;
     	
 		Map<String, Object> inputMap = new Gson().fromJson(request.getParameter("input"), new TypeToken<HashMap<String, Object>>() {}.getType());
-		
-		System.out.println(inputMap.get("id"));
-		
+				
 		// == is a good option since were are comparing values not objects per say
 		if(!(inputMap.get("id") == null)){
 			if(inputMap.containsValue("sell")){
 				result = dao.changeBookSaleStatus(inputMap.get("id").toString(), inputMap.get("status").toString());
 			} else {
-				result = dao.purchaseBook(inputMap.get("id").toString(), inputMap.get("status").toString(), inputMap.get("newOwner").toString(), inputMap.get("oldOwner").toString());
+				String decodedUsername = daoUser.getDecodedUsername(inputMap.get("newOwner").toString());
+				result = dao.purchaseBook(inputMap.get("id").toString(), inputMap.get("status").toString(), decodedUsername, inputMap.get("oldOwner").toString());
 			}
 			
 			if(result) {
