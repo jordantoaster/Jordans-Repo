@@ -16,7 +16,7 @@ import com.google.gson.reflect.TypeToken;
 import com.myawesomeapp.utility.EncryptionManager;
 import com.myawesomeapp.utility.ResponseBase;
 import com.myawesomeapp.utility.ActionDetailsBuilder;
-import com.myawesomeapp.mainapp.dao.SessionDaoImpl;
+import com.myawesomeapp.mainapp.dao.ActivityDaoImpl;
 import com.myawesomeapp.mainapp.dao.UserDaoImpl;
 import com.myawesomeapp.utility.*;
 
@@ -60,13 +60,13 @@ public class LoginServletController extends HttpServlet {
 		ResponseBase JsonResponse;
        	Gson gson = new Gson();
     	UserAccessValidator check = new UserAccessValidator(); 
-    	SessionDaoImpl session = new SessionDaoImpl();
+    	ActivityDaoImpl session = new ActivityDaoImpl();
     	ActionDetailsBuilder actionBuilder = new ActionDetailsBuilder();
 				
 		boolean isInputValid = check.validateRegDetails(username, password, confirmPassword);
 
 		if(!isInputValid){   
-			session.tryInsertSession(actionBuilder.buildActionString("CODE: 1001", username));
+			session.tryInsertActivity(actionBuilder.buildActionString("CODE: 1001", username));
 			JsonResponse = new ResponseBase("User details do not meet the required standards", "false");
 			String json = gson.toJson(JsonResponse); 
 			
@@ -78,13 +78,13 @@ public class LoginServletController extends HttpServlet {
 			
 			//success!
 			if(isReg){	
-				session.tryInsertSession(actionBuilder.buildActionString("CODE: 1002", username));
+				session.tryInsertActivity(actionBuilder.buildActionString("CODE: 1002", username));
 				JsonResponse = new ResponseBase(username, "true");
 				String json = gson.toJson(JsonResponse); 	
 				
 				response.getWriter().write(json); 
 			} else {
-				session.tryInsertSession(actionBuilder.buildActionString("CODE: 1003", username));
+				session.tryInsertActivity(actionBuilder.buildActionString("CODE: 1003", username));
 				JsonResponse = new ResponseBase("user details already on the system", "false");
 				String json = gson.toJson(JsonResponse); 	
 				response.getWriter().write(json); 
@@ -98,7 +98,7 @@ public class LoginServletController extends HttpServlet {
 		ResponseBase JsonResponse;
        	Gson gson = new Gson();
     	UserAccessValidator check = new UserAccessValidator(); 
-    	SessionDaoImpl session = new SessionDaoImpl();
+    	ActivityDaoImpl session = new ActivityDaoImpl();
     	ActionDetailsBuilder actionBuilder = new ActionDetailsBuilder();
 		
 		/*Returns a boolean verifying is a user has passed security checks*/
@@ -107,7 +107,7 @@ public class LoginServletController extends HttpServlet {
 		/*If sequence determines if the User details are valid a each stage. A Java object is constructed
 		 * with relevant values and sent back to client via ajax*/
 		if(!isInputValid){   
-			session.tryInsertSession(actionBuilder.buildActionString("CODE: 1001", username));
+			session.tryInsertActivity(actionBuilder.buildActionString("CODE: 1001", username));
 			JsonResponse = new ResponseBase("User details do not meet the required standards", "false");
 			String json = gson.toJson(JsonResponse); 	
 			
@@ -118,13 +118,13 @@ public class LoginServletController extends HttpServlet {
     	
 			//success!
 			if(isOnSystem){
-				session.tryInsertSession(actionBuilder.buildActionString("CODE: 1004", username));
+				session.tryInsertActivity(actionBuilder.buildActionString("CODE: 1004", username));
 			    JsonResponse = new ResponseBase(username, "true");			    
 			    String json = gson.toJson(JsonResponse); 	
 			   
 			    response.getWriter().write(json); 
 			} else {
-				session.tryInsertSession(actionBuilder.buildActionString("CODE: 1005", username));
+				session.tryInsertActivity(actionBuilder.buildActionString("CODE: 1005", username));
 				JsonResponse = new ResponseBase("User details are not on the system", "false");
 				String json = gson.toJson(JsonResponse); 	
 				
