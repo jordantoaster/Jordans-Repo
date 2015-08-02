@@ -68,5 +68,10 @@ public class UserDaoUnitTest {
         impl.insertUser(uid, password, url, uid);	
 		assertEquals(true, impl.updateUserDetails("newtestUser", password, uid));	
 	}
+	
+	@Test
+	public void testGetDecodedUsername(){
+		assertEquals(uid, impl.getDecodedUsername(encodedUsername));	
+	}
 
 }

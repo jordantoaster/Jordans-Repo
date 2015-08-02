@@ -10,8 +10,9 @@ document + verify
 18. write read me in full
 
 to fix
-add unit tests for encoder and new user dao method
-add time to session table (make it an activity log?)
+add acitivity support to full system
+buff up in good comments
+unit test activity log builder
 
 potential ideas
 13. check if map conversion is required. is request.get param not suffucient? (could also pass in multible params in ajax instead of object)

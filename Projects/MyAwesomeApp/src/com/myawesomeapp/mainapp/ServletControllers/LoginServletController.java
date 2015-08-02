@@ -15,6 +15,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.myawesomeapp.utility.EncryptionManager;
 import com.myawesomeapp.utility.ResponseBase;
+import com.myawesomeapp.utility.ActionDetailsBuilder;
 import com.myawesomeapp.mainapp.dao.SessionDaoImpl;
 import com.myawesomeapp.mainapp.dao.UserDaoImpl;
 import com.myawesomeapp.utility.*;
@@ -59,38 +60,31 @@ public class LoginServletController extends HttpServlet {
 		ResponseBase JsonResponse;
        	Gson gson = new Gson();
     	UserAccessValidator check = new UserAccessValidator(); 
-		
+    	SessionDaoImpl session = new SessionDaoImpl();
+    	ActionDetailsBuilder actionBuilder = new ActionDetailsBuilder();
+				
 		boolean isInputValid = check.validateRegDetails(username, password, confirmPassword);
 
 		if(!isInputValid){   
-        	
+			session.tryInsertSession(actionBuilder.buildActionString("CODE: 1001", username));
 			JsonResponse = new ResponseBase("User details do not meet the required standards", "false");
-			String json = gson.toJson(JsonResponse); 	
+			String json = gson.toJson(JsonResponse); 
+			
 			response.getWriter().write(json); 
-    	
 		} else {
 			UserDaoImpl uDao = new UserDaoImpl();
     	
 			boolean isReg = uDao.insertUser(username, passwordEncrypted, "", encodedUsername);           	
 			
 			//success!
-			if(isReg){
+			if(isReg){	
+				session.tryInsertSession(actionBuilder.buildActionString("CODE: 1002", username));
+				JsonResponse = new ResponseBase(username, "true");
+				String json = gson.toJson(JsonResponse); 	
 				
-				//create session
-				SessionDaoImpl session = new SessionDaoImpl();
-				boolean isSessionCreated = session.tryInsertSession(username);
-				
-				//send response
-				if(isSessionCreated){
-					JsonResponse = new ResponseBase(encodedUsername, "true");
-					String json = gson.toJson(JsonResponse); 	
-					response.getWriter().write(json);
-				} else {
-					JsonResponse = new ResponseBase("Database error, session could not be created", "false");
-					String json = gson.toJson(JsonResponse); 	
-					response.getWriter().write(json); 
-				}
+				response.getWriter().write(json); 
 			} else {
+				session.tryInsertSession(actionBuilder.buildActionString("CODE: 1003", username));
 				JsonResponse = new ResponseBase("user details already on the system", "false");
 				String json = gson.toJson(JsonResponse); 	
 				response.getWriter().write(json); 
@@ -104,6 +98,8 @@ public class LoginServletController extends HttpServlet {
 		ResponseBase JsonResponse;
        	Gson gson = new Gson();
     	UserAccessValidator check = new UserAccessValidator(); 
+    	SessionDaoImpl session = new SessionDaoImpl();
+    	ActionDetailsBuilder actionBuilder = new ActionDetailsBuilder();
 		
 		/*Returns a boolean verifying is a user has passed security checks*/
 		boolean isInputValid = check.validateLoginDetails(username, password);
@@ -111,37 +107,27 @@ public class LoginServletController extends HttpServlet {
 		/*If sequence determines if the User details are valid a each stage. A Java object is constructed
 		 * with relevant values and sent back to client via ajax*/
 		if(!isInputValid){   
-    	
+			session.tryInsertSession(actionBuilder.buildActionString("CODE: 1001", username));
 			JsonResponse = new ResponseBase("User details do not meet the required standards", "false");
 			String json = gson.toJson(JsonResponse); 	
-			response.getWriter().write(json); 
-    	
-		} else {     
-    	
+			
+			response.getWriter().write(json);     	
+		} else {       	
 			UserDaoImpl uDao = new UserDaoImpl();
-			boolean isOnSystem = uDao.readAndCompare(encodedUsername,password); 
+			boolean isOnSystem = uDao.readAndCompare(username,password); 
     	
 			//success!
 			if(isOnSystem){
-				
-				//create session
-				SessionDaoImpl session = new SessionDaoImpl();
-				boolean isSessionCreated = session.tryInsertSession(username);
-				
-			    if(isSessionCreated){
-			    	JsonResponse = new ResponseBase(encodedUsername, "true");
-			    	String json = gson.toJson(JsonResponse); 	
-			    	response.getWriter().write(json); 
-			    } else {
-					JsonResponse = new ResponseBase("Database error, session could not be created", "false");
-					String json = gson.toJson(JsonResponse); 	
-					response.getWriter().write(json); 
-			    }
-        	
+				session.tryInsertSession(actionBuilder.buildActionString("CODE: 1004", username));
+			    JsonResponse = new ResponseBase(username, "true");			    
+			    String json = gson.toJson(JsonResponse); 	
+			   
+			    response.getWriter().write(json); 
 			} else {
-    		
+				session.tryInsertSession(actionBuilder.buildActionString("CODE: 1005", username));
 				JsonResponse = new ResponseBase("User details are not on the system", "false");
 				String json = gson.toJson(JsonResponse); 	
+				
 				response.getWriter().write(json);             	
 			}
 		} 		

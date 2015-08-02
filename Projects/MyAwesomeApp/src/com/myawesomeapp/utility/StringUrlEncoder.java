@@ -56,7 +56,7 @@ public class StringUrlEncoder {
 		final int iterations = 5;
 
 		for(int i = 0; i<iterations;i++){
-			builder.append(rand.nextInt(10) + 1);
+			builder.append(rand.nextInt(9) + 1);
 		}
 		
 		return builder;

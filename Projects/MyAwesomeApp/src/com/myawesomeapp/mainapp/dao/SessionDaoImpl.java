@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import com.myawesomeapp.utility.Action;
 import com.myawesomeapp.utility.DatabaseConnectionHelper;
 
 public class SessionDaoImpl implements SessionDaoInterface {
@@ -12,12 +13,13 @@ public class SessionDaoImpl implements SessionDaoInterface {
 	DatabaseConnectionHelper helper = new DatabaseConnectionHelper();
 	Connection conn = helper.init();
 
-	public boolean tryInsertSession(String username) {
+	public boolean tryInsertSession(Action action) {
 
 		try {	
 			
 			Statement statement = conn.createStatement();			
-			statement.executeUpdate("INSERT INTO sessions " + "VALUES (null,'"+username+"')");
+			statement.executeUpdate("INSERT INTO activity " + "VALUES (null,'"+action.getMessage()+"',"
+			+ "'"+action.getUsername()+ "','"+action.getTime()+"','"+action.getIp()+"')");
 				
  			return true;
 		
