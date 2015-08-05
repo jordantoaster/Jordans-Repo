@@ -42,7 +42,7 @@ public class DashboardServletController extends HttpServlet {
 		String jsonResponseObject;
 		String jsonResponse;
 		String decodedUsername = daoUser.getDecodedUsername(inputMap.get("uid").toString());
-			
+					
 		if(inputMap.get("action").toString().equals("getBooks")){
 			//get json object of book details based on uid
 			jsonResponseObject = dao.getAllUserBooks(decodedUsername);	

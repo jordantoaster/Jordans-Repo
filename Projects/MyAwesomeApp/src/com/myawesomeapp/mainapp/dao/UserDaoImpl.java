@@ -225,4 +225,24 @@ public class UserDaoImpl implements UserDaoInterface {
 		return null;
 	}
 
+
+	public String getEncodedUsername(String username) {
+		try {	
+			String result = "";
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery("SELECT EncodedUsername FROM user WHERE Username = "
+					+ "'"+username+"'");
+			
+			if(rs.next()){
+				result = rs.getString("EncodedUsername");
+			}
+				
+ 			return result;		
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			System.out.println("connection failed " + e);
+		}
+		return null;
+	}
+
 }

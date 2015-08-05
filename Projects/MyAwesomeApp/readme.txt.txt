@@ -10,7 +10,6 @@ document + verify
 18. write read me in full
 
 to fix
-add acitivity support to full system
 buff up in good comments
 unit test activity log builder
 
@@ -23,4 +22,4 @@ potential ideas
 -look into way to see if cookies can improve the app design
 sql injection
 translating back to the plain username is not a great implementation, is the server request required? should I just compare for the encoded version in dao?
-
+add acitivity support to full system

@@ -35,7 +35,6 @@ public class LoginServletController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	
        	EncryptionManager encrypt = new EncryptionManager();
-       	StringUrlEncoder encoder = new StringUrlEncoder();
        	
     	//convert input json data to a map
 		Map<String, Object> inputMap = new Gson().fromJson(request.getParameter("input"), new TypeToken<HashMap<String, Object>>() {}.getType());
@@ -44,24 +43,25 @@ public class LoginServletController extends HttpServlet {
 		String password = inputMap.get("password").toString();
 		String passwordEncrypted = encrypt.encrypt(password);
 		String username = inputMap.get("username").toString();
-		String encodedUsername =  encoder.encode(username);
 		
 		//check which operation is required
 		if(inputMap.containsValue("login")){			
-			performLoginProcess(username, password, response, encodedUsername);			 
+			performLoginProcess(username, password, response);			 
 		} else {
-			performRegProcess(username, password, inputMap.get("confirm").toString(),response, passwordEncrypted, encodedUsername);			
+			performRegProcess(username, password, inputMap.get("confirm").toString(),response, passwordEncrypted);			
 		}
     }
 
 	private void performRegProcess(String username,
-			String password, String confirmPassword, HttpServletResponse response, String passwordEncrypted, String encodedUsername) throws IOException {
+			String password, String confirmPassword, HttpServletResponse response, String passwordEncrypted) throws IOException {
 		
 		ResponseBase JsonResponse;
        	Gson gson = new Gson();
     	UserAccessValidator check = new UserAccessValidator(); 
     	ActivityDaoImpl session = new ActivityDaoImpl();
     	ActionDetailsBuilder actionBuilder = new ActionDetailsBuilder();
+       	StringUrlEncoder encoder = new StringUrlEncoder();
+		String encodedUsername =  encoder.encode(username);
 				
 		boolean isInputValid = check.validateRegDetails(username, password, confirmPassword);
 
@@ -79,7 +79,7 @@ public class LoginServletController extends HttpServlet {
 			//success!
 			if(isReg){	
 				session.tryInsertActivity(actionBuilder.buildActionString("CODE: 1002", username));
-				JsonResponse = new ResponseBase(username, "true");
+				JsonResponse = new ResponseBase(encodedUsername, "true");
 				String json = gson.toJson(JsonResponse); 	
 				
 				response.getWriter().write(json); 
@@ -93,13 +93,15 @@ public class LoginServletController extends HttpServlet {
 		
 	}
 
-	private void performLoginProcess(String username, String password, HttpServletResponse response, String encodedUsername) throws IOException {
+	private void performLoginProcess(String username, String password, HttpServletResponse response) throws IOException {
 		
 		ResponseBase JsonResponse;
        	Gson gson = new Gson();
     	UserAccessValidator check = new UserAccessValidator(); 
     	ActivityDaoImpl session = new ActivityDaoImpl();
     	ActionDetailsBuilder actionBuilder = new ActionDetailsBuilder();
+		UserDaoImpl uDao = new UserDaoImpl();
+    	String encodedUsername = uDao.getEncodedUsername(username);
 		
 		/*Returns a boolean verifying is a user has passed security checks*/
 		boolean isInputValid = check.validateLoginDetails(username, password);
@@ -113,13 +115,13 @@ public class LoginServletController extends HttpServlet {
 			
 			response.getWriter().write(json);     	
 		} else {       	
-			UserDaoImpl uDao = new UserDaoImpl();
 			boolean isOnSystem = uDao.readAndCompare(username,password); 
     	
 			//success!
 			if(isOnSystem){
 				session.tryInsertActivity(actionBuilder.buildActionString("CODE: 1004", username));
-			    JsonResponse = new ResponseBase(username, "true");			    
+			    JsonResponse = new ResponseBase(encodedUsername, "true");
+			    System.out.println(encodedUsername);
 			    String json = gson.toJson(JsonResponse); 	
 			   
 			    response.getWriter().write(json); 
