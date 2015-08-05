@@ -18,7 +18,7 @@ public class ActionDetailsBuilder {
 		return action;
 	}
 
-	private String getIp(){
+	public String getIp(){
 		try {
 			return InetAddress.getLocalHost().toString();
 		} catch (UnknownHostException e) {
@@ -29,7 +29,7 @@ public class ActionDetailsBuilder {
 		return "";
 	}
 
-	private String getTime() {
+	public String getTime() {		
 		Date date = new Date();
 		SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy h:mm:ss a");
 		

@@ -11,7 +11,6 @@ document + verify
 
 to fix
 buff up in good comments
-unit test activity log builder
 
 potential ideas
 13. check if map conversion is required. is request.get param not suffucient? (could also pass in multible params in ajax instead of object)

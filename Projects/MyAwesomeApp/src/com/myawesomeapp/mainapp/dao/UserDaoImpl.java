@@ -207,6 +207,8 @@ public class UserDaoImpl implements UserDaoInterface {
 
 	@Override
 	public String getDecodedUsername(String encodedUsername) {
+		
+		System.out.println(encodedUsername);
 		try {	
 			String result = "";
 			stmt = conn.createStatement();
@@ -214,6 +216,7 @@ public class UserDaoImpl implements UserDaoInterface {
 					+ "'"+encodedUsername+"'");
 			
 			if(rs.next()){
+				System.out.println("found");
 				result = rs.getString("Username");
 			}
 				

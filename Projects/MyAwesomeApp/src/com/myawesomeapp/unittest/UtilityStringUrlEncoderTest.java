@@ -18,5 +18,4 @@ public class UtilityStringUrlEncoderTest {
 		assertEquals("914173013bb", encodedText.substring(0, encodedText.length() - 5));
 		assertEquals("9141ej", encodedTextTwo.substring(0, encodedTextTwo.length() - 5));
 	}
-
 }
