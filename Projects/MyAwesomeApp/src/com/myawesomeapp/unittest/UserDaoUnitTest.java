@@ -73,5 +73,4 @@ public class UserDaoUnitTest {
 	public void testGetDecodedUsername(){
 		assertEquals(uid, impl.getDecodedUsername(encodedUsername));	
 	}
-
 }
