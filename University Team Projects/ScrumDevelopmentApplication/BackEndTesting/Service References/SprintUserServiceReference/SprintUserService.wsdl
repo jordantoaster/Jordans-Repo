@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="SprintUserService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:42547/SprintUserService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:42547/SprintUserService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:42547/SprintUserService.svc?xsd=xsd2" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="ISprintUserService_InsertSprintUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertSprintUser" />
+  </wsdl:message>
+  <wsdl:message name="ISprintUserService_InsertSprintUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertSprintUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISprintUserService_GetProjectTeamList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetProjectTeamList" />
+  </wsdl:message>
+  <wsdl:message name="ISprintUserService_GetProjectTeamList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetProjectTeamListResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISprintUserService_IsProjectOwner_InputMessage">
+    <wsdl:part name="parameters" element="tns:IsProjectOwner" />
+  </wsdl:message>
+  <wsdl:message name="ISprintUserService_IsProjectOwner_OutputMessage">
+    <wsdl:part name="parameters" element="tns:IsProjectOwnerResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISprintUserService_IsProductOwner_InputMessage">
+    <wsdl:part name="parameters" element="tns:IsProductOwner" />
+  </wsdl:message>
+  <wsdl:message name="ISprintUserService_IsProductOwner_OutputMessage">
+    <wsdl:part name="parameters" element="tns:IsProductOwnerResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISprintUserService_IsScrumMaster_InputMessage">
+    <wsdl:part name="parameters" element="tns:IsScrumMaster" />
+  </wsdl:message>
+  <wsdl:message name="ISprintUserService_IsScrumMaster_OutputMessage">
+    <wsdl:part name="parameters" element="tns:IsScrumMasterResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISprintUserService_IsDeveloper_InputMessage">
+    <wsdl:part name="parameters" element="tns:IsDeveloper" />
+  </wsdl:message>
+  <wsdl:message name="ISprintUserService_IsDeveloper_OutputMessage">
+    <wsdl:part name="parameters" element="tns:IsDeveloperResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISprintUserService_IsUserInTheSprint_InputMessage">
+    <wsdl:part name="parameters" element="tns:IsUserInTheSprint" />
+  </wsdl:message>
+  <wsdl:message name="ISprintUserService_IsUserInTheSprint_OutputMessage">
+    <wsdl:part name="parameters" element="tns:IsUserInTheSprintResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ISprintUserService">
+    <wsdl:operation name="InsertSprintUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISprintUserService/InsertSprintUser" message="tns:ISprintUserService_InsertSprintUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISprintUserService/InsertSprintUserResponse" message="tns:ISprintUserService_InsertSprintUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProjectTeamList">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISprintUserService/GetProjectTeamList" message="tns:ISprintUserService_GetProjectTeamList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISprintUserService/GetProjectTeamListResponse" message="tns:ISprintUserService_GetProjectTeamList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="IsProjectOwner">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISprintUserService/IsProjectOwner" message="tns:ISprintUserService_IsProjectOwner_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISprintUserService/IsProjectOwnerResponse" message="tns:ISprintUserService_IsProjectOwner_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="IsProductOwner">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISprintUserService/IsProductOwner" message="tns:ISprintUserService_IsProductOwner_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISprintUserService/IsProductOwnerResponse" message="tns:ISprintUserService_IsProductOwner_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="IsScrumMaster">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISprintUserService/IsScrumMaster" message="tns:ISprintUserService_IsScrumMaster_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISprintUserService/IsScrumMasterResponse" message="tns:ISprintUserService_IsScrumMaster_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="IsDeveloper">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISprintUserService/IsDeveloper" message="tns:ISprintUserService_IsDeveloper_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISprintUserService/IsDeveloperResponse" message="tns:ISprintUserService_IsDeveloper_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="IsUserInTheSprint">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISprintUserService/IsUserInTheSprint" message="tns:ISprintUserService_IsUserInTheSprint_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISprintUserService/IsUserInTheSprintResponse" message="tns:ISprintUserService_IsUserInTheSprint_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_ISprintUserService" type="tns:ISprintUserService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="InsertSprintUser">
+      <soap:operation soapAction="http://tempuri.org/ISprintUserService/InsertSprintUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProjectTeamList">
+      <soap:operation soapAction="http://tempuri.org/ISprintUserService/GetProjectTeamList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsProjectOwner">
+      <soap:operation soapAction="http://tempuri.org/ISprintUserService/IsProjectOwner" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsProductOwner">
+      <soap:operation soapAction="http://tempuri.org/ISprintUserService/IsProductOwner" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsScrumMaster">
+      <soap:operation soapAction="http://tempuri.org/ISprintUserService/IsScrumMaster" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsDeveloper">
+      <soap:operation soapAction="http://tempuri.org/ISprintUserService/IsDeveloper" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsUserInTheSprint">
+      <soap:operation soapAction="http://tempuri.org/ISprintUserService/IsUserInTheSprint" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="SprintUserService">
+    <wsdl:port name="BasicHttpBinding_ISprintUserService" binding="tns:BasicHttpBinding_ISprintUserService">
+      <soap:address location="http://localhost:42547/SprintUserService.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

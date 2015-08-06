@@ -1,0 +1,16 @@
+﻿<NavigationWindow x:Class="ScrumDevelopmentApplication.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Scrum Development Application" Height="700" Width="1024" Source="View/LoginPage.xaml" Background="#EBF5FF" Icon="Images/TeamLogo.png">
+
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="Window.Loaded">
+            <BeginStoryboard>
+                <Storyboard >
+                    <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                             From="0.0" To="1.0" Duration="0:0:1.0"/>
+                </Storyboard>
+            </BeginStoryboard>
+        </EventTrigger>
+    </Window.Triggers>
+</NavigationWindow>

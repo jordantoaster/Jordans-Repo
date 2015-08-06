@@ -1,0 +1,108 @@
+﻿<Page x:Class="ScrumDevelopmentApplication.View.EditDetails"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:controls="clr-namespace:ScrumDevelopmentApplication"
+      mc:Ignorable="d" 
+      d:DesignHeight="750" d:DesignWidth="1100"
+	Title="EditDetails">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1.2*" />
+            <RowDefinition Height="8.8*" />
+        </Grid.RowDefinitions>
+        <controls:UiBanner/>
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="7*" />
+                <RowDefinition Height="1*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="6*" />
+                <ColumnDefinition Width="2*" />
+            </Grid.ColumnDefinitions>
+
+            <Border Background="White" Grid.Row="1" Grid.Column="1" BorderBrush="Silver"  BorderThickness="2">
+                <Grid Grid.Row="1" Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*" />
+                        <RowDefinition Height="6.2*" />
+                        <RowDefinition Height="0.8*" />
+                        <RowDefinition Height="2*" />
+                        <RowDefinition Height="1*" />
+                    </Grid.RowDefinitions>
+
+                    <Border Background="#008AB8" Grid.Row="0">
+                        <Label Style="{StaticResource headerText}" FontSize="24">Edit Details</Label>
+                    </Border>
+
+                    <Grid Grid.Row="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1.25*" />
+                            <RowDefinition Height="1.25*" />
+                            <RowDefinition Height="1.25*" />
+                            <RowDefinition Height="1.25*" />
+                            <RowDefinition Height="1.25*" />
+                            <RowDefinition Height="1.25*" />
+                            <RowDefinition Height="1.25*" />
+                            <RowDefinition Height="1.25*" />
+                            <RowDefinition Height="1.25*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="149*" />
+                            <ColumnDefinition Width="27*" />
+                            <ColumnDefinition Width="122*"/>
+                        </Grid.ColumnDefinitions>
+                       
+                        <Label Style="{StaticResource loginBoxLabels}" FontSize="16" Grid.Row="1">Enter Name</Label>
+                        <TextBox x:Name="UsernameBox" Style="{StaticResource textBoxes}" Margin="10,0,10,5" FontSize="16" Grid.Row="2"/>
+
+                        <Label Style="{StaticResource loginBoxLabels}" FontSize="16" Grid.Row="3">Enter Old Password</Label>
+                        <PasswordBox x:Name="OldPasswordBox" FontSize="16" Style="{StaticResource passwordBoxes}" Margin="10,0,10,5" Grid.Row="4"></PasswordBox>
+
+                        <Label Style="{StaticResource loginBoxLabels}" FontSize="16" Grid.Row="5">Enter New Password</Label>
+                        <PasswordBox x:Name="NewPasswordBox" FontSize="16" Style="{StaticResource passwordBoxes}" Margin="10,0,10,5" Grid.Row="6"></PasswordBox>
+
+                        <Label Style="{StaticResource loginBoxLabels}" FontSize="16" Grid.Row="7">Confirm New Password</Label>
+                        <PasswordBox x:Name="ConfirmPasswordBox" FontSize="16" Style="{StaticResource passwordBoxes}" Margin="10,0,10,5" Grid.Row="8" />
+
+                        <Label Style="{StaticResource loginBoxLabels}" FontSize="16" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Center" Height="35" Margin="0,0,45,0">Update Bio</Label>
+                        <TextBox x:Name="BioBox" Style="{StaticResource textBoxes}" Margin="10,0,10,5" Grid.RowSpan="7" FontSize="18" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" TextWrapping="Wrap"/>
+
+                    </Grid>
+
+                    <Label Style="{StaticResource loginBoxLabels}" FontSize="18"  HorizontalAlignment="Center" Grid.Row="2">Choose new roles</Label>
+
+                    <CheckBox x:Name="DeveloperCheckBox" Content=" Developer" Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20,0,0,0">
+                        <CheckBox.LayoutTransform>
+                            <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
+                        </CheckBox.LayoutTransform>
+                    </CheckBox>
+                    <CheckBox x:Name="ScrumMasterCheckBox" Content=" Scrum Master" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Center"  VerticalAlignment="Center" Width="160">
+                        <CheckBox.LayoutTransform>
+                            <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
+                        </CheckBox.LayoutTransform>
+                    </CheckBox>
+                    <CheckBox x:Name="ProductOwnerCheckBox" Content=" Product Owner" Grid.Row="3" Grid.Column="2" HorizontalAlignment="Right"  VerticalAlignment="Center" Width="170" Margin="0,0,0,0">
+                        <CheckBox.LayoutTransform>
+                            <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
+                        </CheckBox.LayoutTransform>
+                    </CheckBox>
+
+                    <Grid Grid.Row="11">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="5*" />
+                            <ColumnDefinition Width="5*" />
+                        </Grid.ColumnDefinitions>
+                        <Button Style="{StaticResource loginButtons}" Width="180" Click="SubmitChanges_Click_1">Submit Changes</Button>
+                        <Button Grid.Column="1" Style="{StaticResource loginButtons}" Click="CancelChanges_Click_1">Cancel</Button>
+                    </Grid>
+
+                </Grid>
+            </Border>
+        </Grid>
+    </Grid>
+</Page>

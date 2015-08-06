@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="UserService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:42547/UserService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:42547/UserService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IUserService_InsertUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertUser" />
+  </wsdl:message>
+  <wsdl:message name="IUserService_InsertUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUserService_DeleteUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteUser" />
+  </wsdl:message>
+  <wsdl:message name="IUserService_DeleteUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUserService_AuthenticatedLogin_InputMessage">
+    <wsdl:part name="parameters" element="tns:AuthenticatedLogin" />
+  </wsdl:message>
+  <wsdl:message name="IUserService_AuthenticatedLogin_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AuthenticatedLoginResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUserService_UpdateUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateUser" />
+  </wsdl:message>
+  <wsdl:message name="IUserService_UpdateUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUserService_GetLoggedInName_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetLoggedInName" />
+  </wsdl:message>
+  <wsdl:message name="IUserService_GetLoggedInName_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetLoggedInNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUserService_GetLoggedInDeveloper_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetLoggedInDeveloper" />
+  </wsdl:message>
+  <wsdl:message name="IUserService_GetLoggedInDeveloper_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetLoggedInDeveloperResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUserService_GetLoggedInProductOwner_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetLoggedInProductOwner" />
+  </wsdl:message>
+  <wsdl:message name="IUserService_GetLoggedInProductOwner_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetLoggedInProductOwnerResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUserService_GetLoggedInScrumMaster_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetLoggedInScrumMaster" />
+  </wsdl:message>
+  <wsdl:message name="IUserService_GetLoggedInScrumMaster_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetLoggedInScrumMasterResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUserService_CompareEmail_InputMessage">
+    <wsdl:part name="parameters" element="tns:CompareEmail" />
+  </wsdl:message>
+  <wsdl:message name="IUserService_CompareEmail_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CompareEmailResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUserService_CheckIfRolesValid_InputMessage">
+    <wsdl:part name="parameters" element="tns:CheckIfRolesValid" />
+  </wsdl:message>
+  <wsdl:message name="IUserService_CheckIfRolesValid_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CheckIfRolesValidResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUserService_GetLoggedBio_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetLoggedBio" />
+  </wsdl:message>
+  <wsdl:message name="IUserService_GetLoggedBio_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetLoggedBioResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IUserService">
+    <wsdl:operation name="InsertUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUserService/InsertUser" message="tns:IUserService_InsertUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUserService/InsertUserResponse" message="tns:IUserService_InsertUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUserService/DeleteUser" message="tns:IUserService_DeleteUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUserService/DeleteUserResponse" message="tns:IUserService_DeleteUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AuthenticatedLogin">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUserService/AuthenticatedLogin" message="tns:IUserService_AuthenticatedLogin_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUserService/AuthenticatedLoginResponse" message="tns:IUserService_AuthenticatedLogin_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUserService/UpdateUser" message="tns:IUserService_UpdateUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUserService/UpdateUserResponse" message="tns:IUserService_UpdateUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLoggedInName">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUserService/GetLoggedInName" message="tns:IUserService_GetLoggedInName_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUserService/GetLoggedInNameResponse" message="tns:IUserService_GetLoggedInName_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLoggedInDeveloper">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUserService/GetLoggedInDeveloper" message="tns:IUserService_GetLoggedInDeveloper_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUserService/GetLoggedInDeveloperResponse" message="tns:IUserService_GetLoggedInDeveloper_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLoggedInProductOwner">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUserService/GetLoggedInProductOwner" message="tns:IUserService_GetLoggedInProductOwner_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUserService/GetLoggedInProductOwnerResponse" message="tns:IUserService_GetLoggedInProductOwner_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLoggedInScrumMaster">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUserService/GetLoggedInScrumMaster" message="tns:IUserService_GetLoggedInScrumMaster_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUserService/GetLoggedInScrumMasterResponse" message="tns:IUserService_GetLoggedInScrumMaster_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CompareEmail">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUserService/CompareEmail" message="tns:IUserService_CompareEmail_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUserService/CompareEmailResponse" message="tns:IUserService_CompareEmail_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckIfRolesValid">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUserService/CheckIfRolesValid" message="tns:IUserService_CheckIfRolesValid_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUserService/CheckIfRolesValidResponse" message="tns:IUserService_CheckIfRolesValid_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLoggedBio">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUserService/GetLoggedBio" message="tns:IUserService_GetLoggedBio_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUserService/GetLoggedBioResponse" message="tns:IUserService_GetLoggedBio_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IUserService" type="tns:IUserService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="InsertUser">
+      <soap:operation soapAction="http://tempuri.org/IUserService/InsertUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUser">
+      <soap:operation soapAction="http://tempuri.org/IUserService/DeleteUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AuthenticatedLogin">
+      <soap:operation soapAction="http://tempuri.org/IUserService/AuthenticatedLogin" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUser">
+      <soap:operation soapAction="http://tempuri.org/IUserService/UpdateUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLoggedInName">
+      <soap:operation soapAction="http://tempuri.org/IUserService/GetLoggedInName" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLoggedInDeveloper">
+      <soap:operation soapAction="http://tempuri.org/IUserService/GetLoggedInDeveloper" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLoggedInProductOwner">
+      <soap:operation soapAction="http://tempuri.org/IUserService/GetLoggedInProductOwner" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLoggedInScrumMaster">
+      <soap:operation soapAction="http://tempuri.org/IUserService/GetLoggedInScrumMaster" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CompareEmail">
+      <soap:operation soapAction="http://tempuri.org/IUserService/CompareEmail" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckIfRolesValid">
+      <soap:operation soapAction="http://tempuri.org/IUserService/CheckIfRolesValid" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLoggedBio">
+      <soap:operation soapAction="http://tempuri.org/IUserService/GetLoggedBio" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="UserService">
+    <wsdl:port name="BasicHttpBinding_IUserService" binding="tns:BasicHttpBinding_IUserService">
+      <soap:address location="http://localhost:42547/UserService.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

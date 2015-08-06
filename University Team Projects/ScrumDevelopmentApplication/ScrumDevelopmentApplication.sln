@@ -1,0 +1,61 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30723.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScrumDevelopmentApplication", "ScrumDevelopmentApplication\ScrumDevelopmentApplication.csproj", "{33D54CD5-7C00-49EF-88D8-E72FA96CFB24}"
+	ProjectSection(ProjectDependencies) = postProject
+		{ADB96B1A-FCAE-4AEA-AF04-EA2C3A0BC181} = {ADB96B1A-FCAE-4AEA-AF04-EA2C3A0BC181}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScrumDevelopmentServer", "ScrumDevelopmentServer\ScrumDevelopmentServer.csproj", "{E8E162E9-A0E6-4545-B7FE-364A2EA01893}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScrumDevelopmentInterface", "ScrumDevelopmentInterface\ScrumDevelopmentInterface.csproj", "{87793A42-C854-41AC-A7F3-1ECB599D52B5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{BFCAF49C-0197-4510-BAD2-42E6C5FD3B5D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScrumDevelopmentServices", "ScrumDevelopmentServices\ScrumDevelopmentServices.csproj", "{ADB96B1A-FCAE-4AEA-AF04-EA2C3A0BC181}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FrontEndTests", "FrontEndTests\FrontEndTests.csproj", "{19A76462-3629-4FE2-BC99-AFCBF3447A07}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BackEndTesting", "BackEndTesting\BackEndTesting.csproj", "{94E5A063-8C3B-460E-9275-52751E02F8B2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{33D54CD5-7C00-49EF-88D8-E72FA96CFB24}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{33D54CD5-7C00-49EF-88D8-E72FA96CFB24}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{33D54CD5-7C00-49EF-88D8-E72FA96CFB24}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{33D54CD5-7C00-49EF-88D8-E72FA96CFB24}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E8E162E9-A0E6-4545-B7FE-364A2EA01893}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E8E162E9-A0E6-4545-B7FE-364A2EA01893}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E8E162E9-A0E6-4545-B7FE-364A2EA01893}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E8E162E9-A0E6-4545-B7FE-364A2EA01893}.Release|Any CPU.Build.0 = Release|Any CPU
+		{87793A42-C854-41AC-A7F3-1ECB599D52B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87793A42-C854-41AC-A7F3-1ECB599D52B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87793A42-C854-41AC-A7F3-1ECB599D52B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87793A42-C854-41AC-A7F3-1ECB599D52B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ADB96B1A-FCAE-4AEA-AF04-EA2C3A0BC181}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ADB96B1A-FCAE-4AEA-AF04-EA2C3A0BC181}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ADB96B1A-FCAE-4AEA-AF04-EA2C3A0BC181}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ADB96B1A-FCAE-4AEA-AF04-EA2C3A0BC181}.Release|Any CPU.Build.0 = Release|Any CPU
+		{19A76462-3629-4FE2-BC99-AFCBF3447A07}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{19A76462-3629-4FE2-BC99-AFCBF3447A07}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{19A76462-3629-4FE2-BC99-AFCBF3447A07}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{19A76462-3629-4FE2-BC99-AFCBF3447A07}.Release|Any CPU.Build.0 = Release|Any CPU
+		{94E5A063-8C3B-460E-9275-52751E02F8B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{94E5A063-8C3B-460E-9275-52751E02F8B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{94E5A063-8C3B-460E-9275-52751E02F8B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{94E5A063-8C3B-460E-9275-52751E02F8B2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(SubversionScc) = preSolution
+		Svn-Managed = True
+		Manager = AnkhSVN - Subversion Support for Visual Studio
+	EndGlobalSection
+EndGlobal

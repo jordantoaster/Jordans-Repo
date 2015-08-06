@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="UserStoryService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:42547/UserStoryService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:42547/UserStoryService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:42547/UserStoryService.svc?xsd=xsd2" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IUserStoryService_InsertUserStory_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertUserStory" />
+  </wsdl:message>
+  <wsdl:message name="IUserStoryService_InsertUserStory_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertUserStoryResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUserStoryService_UpdateUserStory_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateUserStory" />
+  </wsdl:message>
+  <wsdl:message name="IUserStoryService_UpdateUserStory_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateUserStoryResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUserStoryService_GetUserStory_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserStory" />
+  </wsdl:message>
+  <wsdl:message name="IUserStoryService_GetUserStory_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserStoryResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUserStoryService_DeleteUserStory_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteUserStory" />
+  </wsdl:message>
+  <wsdl:message name="IUserStoryService_DeleteUserStory_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteUserStoryResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUserStoryService_DoesUserStoryExist_InputMessage">
+    <wsdl:part name="parameters" element="tns:DoesUserStoryExist" />
+  </wsdl:message>
+  <wsdl:message name="IUserStoryService_DoesUserStoryExist_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DoesUserStoryExistResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUserStoryService_GetLastUserStoryId_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetLastUserStoryId" />
+  </wsdl:message>
+  <wsdl:message name="IUserStoryService_GetLastUserStoryId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetLastUserStoryIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUserStoryService_GetPriority_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPriority" />
+  </wsdl:message>
+  <wsdl:message name="IUserStoryService_GetPriority_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPriorityResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUserStoryService_GetPriorityLength_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPriorityLength" />
+  </wsdl:message>
+  <wsdl:message name="IUserStoryService_GetPriorityLength_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPriorityLengthResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUserStoryService_GetUserStoryId_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserStoryId" />
+  </wsdl:message>
+  <wsdl:message name="IUserStoryService_GetUserStoryId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserStoryIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUserStoryService_GetPriorityUpdate_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPriorityUpdate" />
+  </wsdl:message>
+  <wsdl:message name="IUserStoryService_GetPriorityUpdate_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPriorityUpdateResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUserStoryService_GetDescription_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDescription" />
+  </wsdl:message>
+  <wsdl:message name="IUserStoryService_GetDescription_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDescriptionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUserStoryService_GetStoryPoints_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetStoryPoints" />
+  </wsdl:message>
+  <wsdl:message name="IUserStoryService_GetStoryPoints_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetStoryPointsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUserStoryService_GetStoryList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetStoryList" />
+  </wsdl:message>
+  <wsdl:message name="IUserStoryService_GetStoryList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetStoryListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUserStoryService_GetPriorityList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPriorityList" />
+  </wsdl:message>
+  <wsdl:message name="IUserStoryService_GetPriorityList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPriorityListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUserStoryService_InsertPriority_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertPriority" />
+  </wsdl:message>
+  <wsdl:message name="IUserStoryService_InsertPriority_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertPriorityResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUserStoryService_IsStoryInTheSprint_InputMessage">
+    <wsdl:part name="parameters" element="tns:IsStoryInTheSprint" />
+  </wsdl:message>
+  <wsdl:message name="IUserStoryService_IsStoryInTheSprint_OutputMessage">
+    <wsdl:part name="parameters" element="tns:IsStoryInTheSprintResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IUserStoryService">
+    <wsdl:operation name="InsertUserStory">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUserStoryService/InsertUserStory" message="tns:IUserStoryService_InsertUserStory_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUserStoryService/InsertUserStoryResponse" message="tns:IUserStoryService_InsertUserStory_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUserStory">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUserStoryService/UpdateUserStory" message="tns:IUserStoryService_UpdateUserStory_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUserStoryService/UpdateUserStoryResponse" message="tns:IUserStoryService_UpdateUserStory_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserStory">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUserStoryService/GetUserStory" message="tns:IUserStoryService_GetUserStory_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUserStoryService/GetUserStoryResponse" message="tns:IUserStoryService_GetUserStory_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUserStory">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUserStoryService/DeleteUserStory" message="tns:IUserStoryService_DeleteUserStory_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUserStoryService/DeleteUserStoryResponse" message="tns:IUserStoryService_DeleteUserStory_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DoesUserStoryExist">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUserStoryService/DoesUserStoryExist" message="tns:IUserStoryService_DoesUserStoryExist_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUserStoryService/DoesUserStoryExistResponse" message="tns:IUserStoryService_DoesUserStoryExist_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLastUserStoryId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUserStoryService/GetLastUserStoryId" message="tns:IUserStoryService_GetLastUserStoryId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUserStoryService/GetLastUserStoryIdResponse" message="tns:IUserStoryService_GetLastUserStoryId_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPriority">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUserStoryService/GetPriority" message="tns:IUserStoryService_GetPriority_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUserStoryService/GetPriorityResponse" message="tns:IUserStoryService_GetPriority_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPriorityLength">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUserStoryService/GetPriorityLength" message="tns:IUserStoryService_GetPriorityLength_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUserStoryService/GetPriorityLengthResponse" message="tns:IUserStoryService_GetPriorityLength_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserStoryId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUserStoryService/GetUserStoryId" message="tns:IUserStoryService_GetUserStoryId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUserStoryService/GetUserStoryIdResponse" message="tns:IUserStoryService_GetUserStoryId_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPriorityUpdate">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUserStoryService/GetPriorityUpdate" message="tns:IUserStoryService_GetPriorityUpdate_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUserStoryService/GetPriorityUpdateResponse" message="tns:IUserStoryService_GetPriorityUpdate_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDescription">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUserStoryService/GetDescription" message="tns:IUserStoryService_GetDescription_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUserStoryService/GetDescriptionResponse" message="tns:IUserStoryService_GetDescription_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetStoryPoints">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUserStoryService/GetStoryPoints" message="tns:IUserStoryService_GetStoryPoints_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUserStoryService/GetStoryPointsResponse" message="tns:IUserStoryService_GetStoryPoints_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetStoryList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUserStoryService/GetStoryList" message="tns:IUserStoryService_GetStoryList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUserStoryService/GetStoryListResponse" message="tns:IUserStoryService_GetStoryList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPriorityList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUserStoryService/GetPriorityList" message="tns:IUserStoryService_GetPriorityList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUserStoryService/GetPriorityListResponse" message="tns:IUserStoryService_GetPriorityList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertPriority">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUserStoryService/InsertPriority" message="tns:IUserStoryService_InsertPriority_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUserStoryService/InsertPriorityResponse" message="tns:IUserStoryService_InsertPriority_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="IsStoryInTheSprint">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUserStoryService/IsStoryInTheSprint" message="tns:IUserStoryService_IsStoryInTheSprint_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUserStoryService/IsStoryInTheSprintResponse" message="tns:IUserStoryService_IsStoryInTheSprint_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IUserStoryService" type="tns:IUserStoryService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="InsertUserStory">
+      <soap:operation soapAction="http://tempuri.org/IUserStoryService/InsertUserStory" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUserStory">
+      <soap:operation soapAction="http://tempuri.org/IUserStoryService/UpdateUserStory" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserStory">
+      <soap:operation soapAction="http://tempuri.org/IUserStoryService/GetUserStory" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUserStory">
+      <soap:operation soapAction="http://tempuri.org/IUserStoryService/DeleteUserStory" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DoesUserStoryExist">
+      <soap:operation soapAction="http://tempuri.org/IUserStoryService/DoesUserStoryExist" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLastUserStoryId">
+      <soap:operation soapAction="http://tempuri.org/IUserStoryService/GetLastUserStoryId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPriority">
+      <soap:operation soapAction="http://tempuri.org/IUserStoryService/GetPriority" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPriorityLength">
+      <soap:operation soapAction="http://tempuri.org/IUserStoryService/GetPriorityLength" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserStoryId">
+      <soap:operation soapAction="http://tempuri.org/IUserStoryService/GetUserStoryId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPriorityUpdate">
+      <soap:operation soapAction="http://tempuri.org/IUserStoryService/GetPriorityUpdate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDescription">
+      <soap:operation soapAction="http://tempuri.org/IUserStoryService/GetDescription" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStoryPoints">
+      <soap:operation soapAction="http://tempuri.org/IUserStoryService/GetStoryPoints" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStoryList">
+      <soap:operation soapAction="http://tempuri.org/IUserStoryService/GetStoryList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPriorityList">
+      <soap:operation soapAction="http://tempuri.org/IUserStoryService/GetPriorityList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertPriority">
+      <soap:operation soapAction="http://tempuri.org/IUserStoryService/InsertPriority" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsStoryInTheSprint">
+      <soap:operation soapAction="http://tempuri.org/IUserStoryService/IsStoryInTheSprint" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="UserStoryService">
+    <wsdl:port name="BasicHttpBinding_IUserStoryService" binding="tns:BasicHttpBinding_IUserStoryService">
+      <soap:address location="http://localhost:42547/UserStoryService.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

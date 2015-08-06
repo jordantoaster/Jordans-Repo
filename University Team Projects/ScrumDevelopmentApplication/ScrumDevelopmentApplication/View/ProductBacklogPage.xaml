@@ -1,0 +1,70 @@
+﻿<Page x:Class="ScrumDevelopmentApplication.View.ProductBacklogPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:controls="clr-namespace:ScrumDevelopmentApplication"
+      mc:Ignorable="d" 
+      d:DesignHeight="700" d:DesignWidth="1000"
+	Title="ProductBacklogPage">
+
+    <Grid Background="#EBF5FF">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="3*" />
+            <RowDefinition Height="0.1*" />
+            <RowDefinition Height="3*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="0.9*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="5.2*" />
+            <ColumnDefinition Width="0.5*" />
+            <ColumnDefinition Width="4.3*" />
+        </Grid.ColumnDefinitions>
+        
+        <Grid Grid.Row="0" Grid.ColumnSpan="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="6*" />
+                <ColumnDefinition Width="2*" />
+            </Grid.ColumnDefinitions>    
+        <Border Grid.ColumnSpan="5" Background="#008AB8"/>
+        <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Style="{StaticResource titleText}" HorizontalAlignment="Center">Product Backlog</Label>
+        <Button Grid.Row="0" Grid.Column="2" Style="{StaticResource logoutButtons}" Click="LogoutButton_Click">Logout</Button>
+            <Button Grid.Row="0" Grid.Column="0" Style="{StaticResource logoutButtons}" Click="Home_OnClick" HorizontalAlignment="Left" 
+                VerticalAlignment="Center" Height="45" Width="100" Margin="5,0,0,0">
+                <StackPanel Orientation="Horizontal">
+                    <Image Height="30" VerticalAlignment="Center" Source="/Images/home.png" />
+                    <TextBlock Margin="5,0,0,0" VerticalAlignment="Center">Home</TextBlock>
+                </StackPanel>
+            </Button>
+            <Button Grid.Row="0" Grid.Column="0" Style="{StaticResource logoutButtons}" Click="Back_OnClick" HorizontalAlignment="Left" 
+                VerticalAlignment="Center" Height="45" Width="60" Margin="120,0,0,0">Back</Button>
+        </Grid>
+
+        <Label Grid.Row="1" Grid.Column="0" Style="{StaticResource titleText}" Foreground="#008AB8"  HorizontalAlignment="Center">User Stories</Label>
+        <ListBox SelectionChanged="StoryListBox_OnSelectionChanged" MouseDoubleClick="Stories_OnMouseDoubleClick" Name="StoryListBox" Grid.RowSpan="3" Grid.Row="2" Grid.Column="0" FontSize="18" Margin="10,0,0,0">
+        </ListBox>
+        <Label Grid.Row="1" Grid.Column="2" Style="{StaticResource titleText}" HorizontalContentAlignment="Center" Foreground="#008AB8"  HorizontalAlignment="Center">Acceptance Tests</Label>
+        <ListBox Name="AcceptanceListBox" MouseDoubleClick="Tests_OnMouseDoubleClick" Grid.RowSpan="3" Grid.Row="2" Grid.Column="2"  FontSize="18" Margin="0,0,10,0">
+        </ListBox>
+
+        <Button Name="MoveStoryUpButton" Grid.Row="2" Grid.Column="1" Height="40" Width="40" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontFamily="Marlett" FontSize="30" Content="5" Click="MoveStoryUp_Click"/>
+        <Button Name="MoveStoryDownButton" Grid.Row="4" Grid.Column="1" Height="40" Width="40" VerticalAlignment ="Top" HorizontalAlignment="Center"  FontFamily="Marlett" FontSize="30" Content="6" Click="MoveStoryDown_Click"/>
+        <Button Name="AddAcceptanceTestsButton"  Grid.Row="5" Grid.Column="2" Style="{StaticResource loginButtons}" Click="Acceptance_Click" HorizontalAlignment="Left" 
+                VerticalAlignment="Center" Height="50" Width="185" >Add Acceptance Test</Button>
+        <Button x:Name="ViewAcceptanceTestButton"  Grid.Row="5" Grid.Column="2" Style="{StaticResource loginButtons}" Click="ViewAcceptanceTestButton_Click" HorizontalAlignment="Right" 
+                VerticalAlignment="Center" Height="50" Width="185" Content="View Test" />
+
+
+        <Button Name="AddUserStoryButton" Grid.Row="5" Grid.Column="0" Style="{StaticResource loginButtons}" Click="AddButton_Click" HorizontalAlignment="Left" 
+                VerticalAlignment="Center" Height="50" Width="185">Add User Story</Button>
+        <Button Name="DeleteUserStoryButton" Grid.Row="5" Grid.Column="0" Style="{StaticResource loginButtons}" Click="DeleteButton_Click" HorizontalAlignment="Right" 
+                VerticalAlignment="Center" Height="50" Width="185" >Delete User Story</Button>
+        <Button Name="EditUserStoryButton" Grid.Row="6" Grid.Column="0" Style="{StaticResource loginButtons}" Click="EditButton_Click" HorizontalAlignment="Center" 
+                VerticalAlignment="Center" Height="50" Width="185">View/Edit User Story</Button>
+
+    </Grid>
+</Page>

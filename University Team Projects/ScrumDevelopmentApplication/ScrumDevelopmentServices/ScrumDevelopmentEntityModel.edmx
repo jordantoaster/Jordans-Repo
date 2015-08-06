@@ -1,0 +1,792 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ScrumDevelopmentDatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AcceptanceTest">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" />
+          <Property Name="description" Type="varchar(max)" />
+          <Property Name="userStoryId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Project">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" />
+          <Property Name="description" Type="varchar" MaxLength="50" />
+          <Property Name="startDate" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="ProjectUser">
+          <Key>
+            <PropertyRef Name="userEmail" />
+            <PropertyRef Name="projectId" />
+            <PropertyRef Name="roleName" />
+          </Key>
+          <Property Name="userEmail" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="projectId" Type="int" Nullable="false" />
+          <Property Name="roleName" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="name" />
+          </Key>
+          <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Sprint">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+          <Property Name="StartDate" Type="varchar" MaxLength="50" />
+          <Property Name="EndDate" Type="varchar" MaxLength="50" />
+          <Property Name="ProjectId" Type="int" />
+        </EntityType>
+        <EntityType Name="SprintBacklog">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="sprintName" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="sprintStartDate" Type="date" Nullable="false" />
+          <Property Name="sprintEndDate" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SprintUser">
+          <Key>
+            <PropertyRef Name="sprintUserId" />
+          </Key>
+          <Property Name="userEmail" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="sprintId" Type="int" Nullable="false" />
+          <Property Name="roleName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="projectId" Type="int" Nullable="false" />
+          <Property Name="sprintUserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Task">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="userStoryId" Type="int" />
+          <Property Name="userEmail" Type="varchar" MaxLength="50" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+          <Property Name="Description" Type="varchar(max)" />
+          <Property Name="Blocked" Type="bit" />
+          <Property Name="Reason" Type="varchar(max)" />
+          <Property Name="Hours" Type="int" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="email" />
+          </Key>
+          <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" />
+          <Property Name="password" Type="nvarchar(max)" />
+          <Property Name="productOwner" Type="bit" />
+          <Property Name="scrumMaster" Type="bit" />
+          <Property Name="developer" Type="bit" />
+          <Property Name="bio" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="UserStory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="sBacklogId" Type="int" />
+          <Property Name="title" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="varchar(max)" />
+          <Property Name="storyPoints" Type="int" Nullable="false" />
+          <Property Name="priority" Type="int" Nullable="false" />
+          <Property Name="projectId" Type="int" />
+          <Property Name="sprintId" Type="int" />
+        </EntityType>
+        <Association Name="FK_AcceptanceTest_UserStory">
+          <End Role="UserStory" Type="Self.UserStory" Multiplicity="1" />
+          <End Role="AcceptanceTest" Type="Self.AcceptanceTest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserStory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AcceptanceTest">
+              <PropertyRef Name="userStoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProjectUser_Project">
+          <End Role="Project" Type="Self.Project" Multiplicity="1" />
+          <End Role="ProjectUser" Type="Self.ProjectUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ProjectUser">
+              <PropertyRef Name="projectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProjectUser_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="1" />
+          <End Role="ProjectUser" Type="Self.ProjectUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="name" />
+            </Principal>
+            <Dependent Role="ProjectUser">
+              <PropertyRef Name="roleName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProjectUser_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="ProjectUser" Type="Self.ProjectUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="email" />
+            </Principal>
+            <Dependent Role="ProjectUser">
+              <PropertyRef Name="userEmail" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sprint_Project">
+          <End Role="Project" Type="Self.Project" Multiplicity="0..1" />
+          <End Role="Sprint" Type="Self.Sprint" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Sprint">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SprintUser_ProjectUser">
+          <End Role="ProjectUser" Type="Self.ProjectUser" Multiplicity="1" />
+          <End Role="SprintUser" Type="Self.SprintUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProjectUser">
+              <PropertyRef Name="userEmail" />
+              <PropertyRef Name="projectId" />
+              <PropertyRef Name="roleName" />
+            </Principal>
+            <Dependent Role="SprintUser">
+              <PropertyRef Name="userEmail" />
+              <PropertyRef Name="projectId" />
+              <PropertyRef Name="roleName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SprintUser_Sprint">
+          <End Role="Sprint" Type="Self.Sprint" Multiplicity="1" />
+          <End Role="SprintUser" Type="Self.SprintUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sprint">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SprintUser">
+              <PropertyRef Name="sprintId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Task_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Task" Type="Self.Task" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="email" />
+            </Principal>
+            <Dependent Role="Task">
+              <PropertyRef Name="userEmail" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Task_UserStory">
+          <End Role="UserStory" Type="Self.UserStory" Multiplicity="0..1" />
+          <End Role="Task" Type="Self.Task" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserStory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Task">
+              <PropertyRef Name="userStoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserStory_Project">
+          <End Role="Project" Type="Self.Project" Multiplicity="0..1" />
+          <End Role="UserStory" Type="Self.UserStory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="UserStory">
+              <PropertyRef Name="projectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserStory_Sprint">
+          <End Role="Sprint" Type="Self.Sprint" Multiplicity="0..1" />
+          <End Role="UserStory" Type="Self.UserStory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sprint">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserStory">
+              <PropertyRef Name="sprintId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserStory_SprintBacklog">
+          <End Role="SprintBacklog" Type="Self.SprintBacklog" Multiplicity="0..1" />
+          <End Role="UserStory" Type="Self.UserStory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SprintBacklog">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserStory">
+              <PropertyRef Name="sBacklogId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ScrumDevelopmentDatabaseModelStoreContainer">
+          <EntitySet Name="AcceptanceTest" EntityType="Self.AcceptanceTest" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Project" EntityType="Self.Project" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProjectUser" EntityType="Self.ProjectUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sprint" EntityType="Self.Sprint" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SprintBacklog" EntityType="Self.SprintBacklog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SprintUser" EntityType="Self.SprintUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Task" EntityType="Self.Task" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserStory" EntityType="Self.UserStory" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_AcceptanceTest_UserStory" Association="Self.FK_AcceptanceTest_UserStory">
+            <End Role="UserStory" EntitySet="UserStory" />
+            <End Role="AcceptanceTest" EntitySet="AcceptanceTest" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProjectUser_Project" Association="Self.FK_ProjectUser_Project">
+            <End Role="Project" EntitySet="Project" />
+            <End Role="ProjectUser" EntitySet="ProjectUser" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProjectUser_Role" Association="Self.FK_ProjectUser_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="ProjectUser" EntitySet="ProjectUser" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProjectUser_User" Association="Self.FK_ProjectUser_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="ProjectUser" EntitySet="ProjectUser" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sprint_Project" Association="Self.FK_Sprint_Project">
+            <End Role="Project" EntitySet="Project" />
+            <End Role="Sprint" EntitySet="Sprint" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SprintUser_ProjectUser" Association="Self.FK_SprintUser_ProjectUser">
+            <End Role="ProjectUser" EntitySet="ProjectUser" />
+            <End Role="SprintUser" EntitySet="SprintUser" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SprintUser_Sprint" Association="Self.FK_SprintUser_Sprint">
+            <End Role="Sprint" EntitySet="Sprint" />
+            <End Role="SprintUser" EntitySet="SprintUser" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Task_User" Association="Self.FK_Task_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Task" EntitySet="Task" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Task_UserStory" Association="Self.FK_Task_UserStory">
+            <End Role="UserStory" EntitySet="UserStory" />
+            <End Role="Task" EntitySet="Task" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserStory_Project" Association="Self.FK_UserStory_Project">
+            <End Role="Project" EntitySet="Project" />
+            <End Role="UserStory" EntitySet="UserStory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserStory_Sprint" Association="Self.FK_UserStory_Sprint">
+            <End Role="Sprint" EntitySet="Sprint" />
+            <End Role="UserStory" EntitySet="UserStory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserStory_SprintBacklog" Association="Self.FK_UserStory_SprintBacklog">
+            <End Role="SprintBacklog" EntitySet="SprintBacklog" />
+            <End Role="UserStory" EntitySet="UserStory" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ScrumDevelopmentDatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="ScrumDevelopmentDatabaseEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AcceptanceTests" EntityType="ScrumDevelopmentDatabaseModel.AcceptanceTest" />
+          <EntitySet Name="Projects" EntityType="ScrumDevelopmentDatabaseModel.Project" />
+          <EntitySet Name="ProjectUsers" EntityType="ScrumDevelopmentDatabaseModel.ProjectUser" />
+          <EntitySet Name="Roles" EntityType="ScrumDevelopmentDatabaseModel.Role" />
+          <EntitySet Name="Sprints" EntityType="ScrumDevelopmentDatabaseModel.Sprint" />
+          <EntitySet Name="SprintBacklogs" EntityType="ScrumDevelopmentDatabaseModel.SprintBacklog" />
+          <EntitySet Name="SprintUsers" EntityType="ScrumDevelopmentDatabaseModel.SprintUser" />
+          <EntitySet Name="Tasks" EntityType="ScrumDevelopmentDatabaseModel.Task" />
+          <EntitySet Name="Users" EntityType="ScrumDevelopmentDatabaseModel.User" />
+          <EntitySet Name="UserStories" EntityType="ScrumDevelopmentDatabaseModel.UserStory" />
+          <AssociationSet Name="FK_AcceptanceTest_UserStory" Association="ScrumDevelopmentDatabaseModel.FK_AcceptanceTest_UserStory">
+            <End Role="UserStory" EntitySet="UserStories" />
+            <End Role="AcceptanceTest" EntitySet="AcceptanceTests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProjectUser_Project" Association="ScrumDevelopmentDatabaseModel.FK_ProjectUser_Project">
+            <End Role="Project" EntitySet="Projects" />
+            <End Role="ProjectUser" EntitySet="ProjectUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sprint_Project" Association="ScrumDevelopmentDatabaseModel.FK_Sprint_Project">
+            <End Role="Project" EntitySet="Projects" />
+            <End Role="Sprint" EntitySet="Sprints" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserStory_Project" Association="ScrumDevelopmentDatabaseModel.FK_UserStory_Project">
+            <End Role="Project" EntitySet="Projects" />
+            <End Role="UserStory" EntitySet="UserStories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProjectUser_Role" Association="ScrumDevelopmentDatabaseModel.FK_ProjectUser_Role">
+            <End Role="Role" EntitySet="Roles" />
+            <End Role="ProjectUser" EntitySet="ProjectUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProjectUser_User" Association="ScrumDevelopmentDatabaseModel.FK_ProjectUser_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="ProjectUser" EntitySet="ProjectUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SprintUser_ProjectUser" Association="ScrumDevelopmentDatabaseModel.FK_SprintUser_ProjectUser">
+            <End Role="ProjectUser" EntitySet="ProjectUsers" />
+            <End Role="SprintUser" EntitySet="SprintUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SprintUser_Sprint" Association="ScrumDevelopmentDatabaseModel.FK_SprintUser_Sprint">
+            <End Role="Sprint" EntitySet="Sprints" />
+            <End Role="SprintUser" EntitySet="SprintUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserStory_Sprint" Association="ScrumDevelopmentDatabaseModel.FK_UserStory_Sprint">
+            <End Role="Sprint" EntitySet="Sprints" />
+            <End Role="UserStory" EntitySet="UserStories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserStory_SprintBacklog" Association="ScrumDevelopmentDatabaseModel.FK_UserStory_SprintBacklog">
+            <End Role="SprintBacklog" EntitySet="SprintBacklogs" />
+            <End Role="UserStory" EntitySet="UserStories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Task_User" Association="ScrumDevelopmentDatabaseModel.FK_Task_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Task" EntitySet="Tasks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Task_UserStory" Association="ScrumDevelopmentDatabaseModel.FK_Task_UserStory">
+            <End Role="UserStory" EntitySet="UserStories" />
+            <End Role="Task" EntitySet="Tasks" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="AcceptanceTest">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="userStoryId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="UserStory" Relationship="ScrumDevelopmentDatabaseModel.FK_AcceptanceTest_UserStory" FromRole="AcceptanceTest" ToRole="UserStory" />
+        </EntityType>
+        <EntityType Name="Project">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="startDate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ProjectUsers" Relationship="ScrumDevelopmentDatabaseModel.FK_ProjectUser_Project" FromRole="Project" ToRole="ProjectUser" />
+          <NavigationProperty Name="Sprints" Relationship="ScrumDevelopmentDatabaseModel.FK_Sprint_Project" FromRole="Project" ToRole="Sprint" />
+          <NavigationProperty Name="UserStories" Relationship="ScrumDevelopmentDatabaseModel.FK_UserStory_Project" FromRole="Project" ToRole="UserStory" />
+        </EntityType>
+        <EntityType Name="ProjectUser">
+          <Key>
+            <PropertyRef Name="userEmail" />
+            <PropertyRef Name="projectId" />
+            <PropertyRef Name="roleName" />
+          </Key>
+          <Property Name="userEmail" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="projectId" Type="Int32" Nullable="false" />
+          <Property Name="roleName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Project" Relationship="ScrumDevelopmentDatabaseModel.FK_ProjectUser_Project" FromRole="ProjectUser" ToRole="Project" />
+          <NavigationProperty Name="Role" Relationship="ScrumDevelopmentDatabaseModel.FK_ProjectUser_Role" FromRole="ProjectUser" ToRole="Role" />
+          <NavigationProperty Name="User" Relationship="ScrumDevelopmentDatabaseModel.FK_ProjectUser_User" FromRole="ProjectUser" ToRole="User" />
+          <NavigationProperty Name="SprintUsers" Relationship="ScrumDevelopmentDatabaseModel.FK_SprintUser_ProjectUser" FromRole="ProjectUser" ToRole="SprintUser" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="name" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ProjectUsers" Relationship="ScrumDevelopmentDatabaseModel.FK_ProjectUser_Role" FromRole="Role" ToRole="ProjectUser" />
+        </EntityType>
+        <EntityType Name="Sprint">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="StartDate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EndDate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ProjectId" Type="Int32" />
+          <NavigationProperty Name="Project" Relationship="ScrumDevelopmentDatabaseModel.FK_Sprint_Project" FromRole="Sprint" ToRole="Project" />
+          <NavigationProperty Name="SprintUsers" Relationship="ScrumDevelopmentDatabaseModel.FK_SprintUser_Sprint" FromRole="Sprint" ToRole="SprintUser" />
+          <NavigationProperty Name="UserStories" Relationship="ScrumDevelopmentDatabaseModel.FK_UserStory_Sprint" FromRole="Sprint" ToRole="UserStory" />
+        </EntityType>
+        <EntityType Name="SprintBacklog">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="sprintName" Type="String" Nullable="false" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="sprintStartDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="sprintEndDate" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="UserStories" Relationship="ScrumDevelopmentDatabaseModel.FK_UserStory_SprintBacklog" FromRole="SprintBacklog" ToRole="UserStory" />
+        </EntityType>
+        <EntityType Name="SprintUser">
+          <Key>
+            <PropertyRef Name="sprintUserId" />
+          </Key>
+          <Property Name="userEmail" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="sprintId" Type="Int32" Nullable="false" />
+          <Property Name="roleName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="projectId" Type="Int32" Nullable="false" />
+          <Property Name="sprintUserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="ProjectUser" Relationship="ScrumDevelopmentDatabaseModel.FK_SprintUser_ProjectUser" FromRole="SprintUser" ToRole="ProjectUser" />
+          <NavigationProperty Name="Sprint" Relationship="ScrumDevelopmentDatabaseModel.FK_SprintUser_Sprint" FromRole="SprintUser" ToRole="Sprint" />
+        </EntityType>
+        <EntityType Name="Task">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="userStoryId" Type="Int32" />
+          <Property Name="userEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Blocked" Type="Boolean" />
+          <Property Name="Reason" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Hours" Type="Int32" />
+          <NavigationProperty Name="User" Relationship="ScrumDevelopmentDatabaseModel.FK_Task_User" FromRole="Task" ToRole="User" />
+          <NavigationProperty Name="UserStory" Relationship="ScrumDevelopmentDatabaseModel.FK_Task_UserStory" FromRole="Task" ToRole="UserStory" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="email" />
+          </Key>
+          <Property Name="email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="productOwner" Type="Boolean" />
+          <Property Name="scrumMaster" Type="Boolean" />
+          <Property Name="developer" Type="Boolean" />
+          <Property Name="bio" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ProjectUsers" Relationship="ScrumDevelopmentDatabaseModel.FK_ProjectUser_User" FromRole="User" ToRole="ProjectUser" />
+          <NavigationProperty Name="Tasks" Relationship="ScrumDevelopmentDatabaseModel.FK_Task_User" FromRole="User" ToRole="Task" />
+        </EntityType>
+        <EntityType Name="UserStory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="sBacklogId" Type="Int32" />
+          <Property Name="title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="storyPoints" Type="Int32" Nullable="false" />
+          <Property Name="priority" Type="Int32" Nullable="false" />
+          <Property Name="projectId" Type="Int32" />
+          <Property Name="sprintId" Type="Int32" />
+          <NavigationProperty Name="AcceptanceTests" Relationship="ScrumDevelopmentDatabaseModel.FK_AcceptanceTest_UserStory" FromRole="UserStory" ToRole="AcceptanceTest" />
+          <NavigationProperty Name="Project" Relationship="ScrumDevelopmentDatabaseModel.FK_UserStory_Project" FromRole="UserStory" ToRole="Project" />
+          <NavigationProperty Name="Sprint" Relationship="ScrumDevelopmentDatabaseModel.FK_UserStory_Sprint" FromRole="UserStory" ToRole="Sprint" />
+          <NavigationProperty Name="SprintBacklog" Relationship="ScrumDevelopmentDatabaseModel.FK_UserStory_SprintBacklog" FromRole="UserStory" ToRole="SprintBacklog" />
+          <NavigationProperty Name="Tasks" Relationship="ScrumDevelopmentDatabaseModel.FK_Task_UserStory" FromRole="UserStory" ToRole="Task" />
+        </EntityType>
+        <Association Name="FK_AcceptanceTest_UserStory">
+          <End Type="ScrumDevelopmentDatabaseModel.UserStory" Role="UserStory" Multiplicity="1" />
+          <End Type="ScrumDevelopmentDatabaseModel.AcceptanceTest" Role="AcceptanceTest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserStory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AcceptanceTest">
+              <PropertyRef Name="userStoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProjectUser_Project">
+          <End Type="ScrumDevelopmentDatabaseModel.Project" Role="Project" Multiplicity="1" />
+          <End Type="ScrumDevelopmentDatabaseModel.ProjectUser" Role="ProjectUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ProjectUser">
+              <PropertyRef Name="projectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sprint_Project">
+          <End Type="ScrumDevelopmentDatabaseModel.Project" Role="Project" Multiplicity="0..1" />
+          <End Type="ScrumDevelopmentDatabaseModel.Sprint" Role="Sprint" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Sprint">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserStory_Project">
+          <End Type="ScrumDevelopmentDatabaseModel.Project" Role="Project" Multiplicity="0..1" />
+          <End Type="ScrumDevelopmentDatabaseModel.UserStory" Role="UserStory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="UserStory">
+              <PropertyRef Name="projectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProjectUser_Role">
+          <End Type="ScrumDevelopmentDatabaseModel.Role" Role="Role" Multiplicity="1" />
+          <End Type="ScrumDevelopmentDatabaseModel.ProjectUser" Role="ProjectUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="name" />
+            </Principal>
+            <Dependent Role="ProjectUser">
+              <PropertyRef Name="roleName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProjectUser_User">
+          <End Type="ScrumDevelopmentDatabaseModel.User" Role="User" Multiplicity="1" />
+          <End Type="ScrumDevelopmentDatabaseModel.ProjectUser" Role="ProjectUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="email" />
+            </Principal>
+            <Dependent Role="ProjectUser">
+              <PropertyRef Name="userEmail" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SprintUser_ProjectUser">
+          <End Type="ScrumDevelopmentDatabaseModel.ProjectUser" Role="ProjectUser" Multiplicity="1" />
+          <End Type="ScrumDevelopmentDatabaseModel.SprintUser" Role="SprintUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProjectUser">
+              <PropertyRef Name="userEmail" />
+              <PropertyRef Name="projectId" />
+              <PropertyRef Name="roleName" />
+            </Principal>
+            <Dependent Role="SprintUser">
+              <PropertyRef Name="userEmail" />
+              <PropertyRef Name="projectId" />
+              <PropertyRef Name="roleName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SprintUser_Sprint">
+          <End Type="ScrumDevelopmentDatabaseModel.Sprint" Role="Sprint" Multiplicity="1" />
+          <End Type="ScrumDevelopmentDatabaseModel.SprintUser" Role="SprintUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sprint">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SprintUser">
+              <PropertyRef Name="sprintId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserStory_Sprint">
+          <End Type="ScrumDevelopmentDatabaseModel.Sprint" Role="Sprint" Multiplicity="0..1" />
+          <End Type="ScrumDevelopmentDatabaseModel.UserStory" Role="UserStory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sprint">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserStory">
+              <PropertyRef Name="sprintId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserStory_SprintBacklog">
+          <End Type="ScrumDevelopmentDatabaseModel.SprintBacklog" Role="SprintBacklog" Multiplicity="0..1" />
+          <End Type="ScrumDevelopmentDatabaseModel.UserStory" Role="UserStory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SprintBacklog">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserStory">
+              <PropertyRef Name="sBacklogId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Task_User">
+          <End Type="ScrumDevelopmentDatabaseModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="ScrumDevelopmentDatabaseModel.Task" Role="Task" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="email" />
+            </Principal>
+            <Dependent Role="Task">
+              <PropertyRef Name="userEmail" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Task_UserStory">
+          <End Type="ScrumDevelopmentDatabaseModel.UserStory" Role="UserStory" Multiplicity="0..1" />
+          <End Type="ScrumDevelopmentDatabaseModel.Task" Role="Task" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserStory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Task">
+              <PropertyRef Name="userStoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ScrumDevelopmentDatabaseModelStoreContainer" CdmEntityContainer="ScrumDevelopmentDatabaseEntities">
+          <EntitySetMapping Name="AcceptanceTests">
+            <EntityTypeMapping TypeName="ScrumDevelopmentDatabaseModel.AcceptanceTest">
+              <MappingFragment StoreEntitySet="AcceptanceTest">
+                <ScalarProperty Name="userStoryId" ColumnName="userStoryId" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Projects">
+            <EntityTypeMapping TypeName="ScrumDevelopmentDatabaseModel.Project">
+              <MappingFragment StoreEntitySet="Project">
+                <ScalarProperty Name="startDate" ColumnName="startDate" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProjectUsers">
+            <EntityTypeMapping TypeName="ScrumDevelopmentDatabaseModel.ProjectUser">
+              <MappingFragment StoreEntitySet="ProjectUser">
+                <ScalarProperty Name="roleName" ColumnName="roleName" />
+                <ScalarProperty Name="projectId" ColumnName="projectId" />
+                <ScalarProperty Name="userEmail" ColumnName="userEmail" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="ScrumDevelopmentDatabaseModel.Role">
+              <MappingFragment StoreEntitySet="Role">
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sprints">
+            <EntityTypeMapping TypeName="ScrumDevelopmentDatabaseModel.Sprint">
+              <MappingFragment StoreEntitySet="Sprint">
+                <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SprintBacklogs">
+            <EntityTypeMapping TypeName="ScrumDevelopmentDatabaseModel.SprintBacklog">
+              <MappingFragment StoreEntitySet="SprintBacklog">
+                <ScalarProperty Name="sprintEndDate" ColumnName="sprintEndDate" />
+                <ScalarProperty Name="sprintStartDate" ColumnName="sprintStartDate" />
+                <ScalarProperty Name="sprintName" ColumnName="sprintName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SprintUsers">
+            <EntityTypeMapping TypeName="ScrumDevelopmentDatabaseModel.SprintUser">
+              <MappingFragment StoreEntitySet="SprintUser">
+                <ScalarProperty Name="sprintUserId" ColumnName="sprintUserId" />
+                <ScalarProperty Name="projectId" ColumnName="projectId" />
+                <ScalarProperty Name="roleName" ColumnName="roleName" />
+                <ScalarProperty Name="sprintId" ColumnName="sprintId" />
+                <ScalarProperty Name="userEmail" ColumnName="userEmail" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tasks">
+            <EntityTypeMapping TypeName="ScrumDevelopmentDatabaseModel.Task">
+              <MappingFragment StoreEntitySet="Task">
+                <ScalarProperty Name="Hours" ColumnName="Hours" />
+                <ScalarProperty Name="Reason" ColumnName="Reason" />
+                <ScalarProperty Name="Blocked" ColumnName="Blocked" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="userEmail" ColumnName="userEmail" />
+                <ScalarProperty Name="userStoryId" ColumnName="userStoryId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="ScrumDevelopmentDatabaseModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="bio" ColumnName="bio" />
+                <ScalarProperty Name="developer" ColumnName="developer" />
+                <ScalarProperty Name="scrumMaster" ColumnName="scrumMaster" />
+                <ScalarProperty Name="productOwner" ColumnName="productOwner" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="email" ColumnName="email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserStories">
+            <EntityTypeMapping TypeName="ScrumDevelopmentDatabaseModel.UserStory">
+              <MappingFragment StoreEntitySet="UserStory">
+                <ScalarProperty Name="sprintId" ColumnName="sprintId" />
+                <ScalarProperty Name="projectId" ColumnName="projectId" />
+                <ScalarProperty Name="priority" ColumnName="priority" />
+                <ScalarProperty Name="storyPoints" ColumnName="storyPoints" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="sBacklogId" ColumnName="sBacklogId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

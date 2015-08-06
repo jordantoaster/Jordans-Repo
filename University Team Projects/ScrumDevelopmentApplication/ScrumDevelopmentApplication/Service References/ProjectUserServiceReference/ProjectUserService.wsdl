@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="ProjectUserService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:42547/ProjectUserService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:42547/ProjectUserService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:42547/ProjectUserService.svc?xsd=xsd2" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IProjectUserService_InsertProjectUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertProjectUser" />
+  </wsdl:message>
+  <wsdl:message name="IProjectUserService_InsertProjectUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertProjectUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProjectUserService_DeleteProjectUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteProjectUser" />
+  </wsdl:message>
+  <wsdl:message name="IProjectUserService_DeleteProjectUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteProjectUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProjectUserService_IsProjectOwner_InputMessage">
+    <wsdl:part name="parameters" element="tns:IsProjectOwner" />
+  </wsdl:message>
+  <wsdl:message name="IProjectUserService_IsProjectOwner_OutputMessage">
+    <wsdl:part name="parameters" element="tns:IsProjectOwnerResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProjectUserService_IsProductOwner_InputMessage">
+    <wsdl:part name="parameters" element="tns:IsProductOwner" />
+  </wsdl:message>
+  <wsdl:message name="IProjectUserService_IsProductOwner_OutputMessage">
+    <wsdl:part name="parameters" element="tns:IsProductOwnerResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProjectUserService_IsScrumMaster_InputMessage">
+    <wsdl:part name="parameters" element="tns:IsScrumMaster" />
+  </wsdl:message>
+  <wsdl:message name="IProjectUserService_IsScrumMaster_OutputMessage">
+    <wsdl:part name="parameters" element="tns:IsScrumMasterResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProjectUserService_IsDeveloper_InputMessage">
+    <wsdl:part name="parameters" element="tns:IsDeveloper" />
+  </wsdl:message>
+  <wsdl:message name="IProjectUserService_IsDeveloper_OutputMessage">
+    <wsdl:part name="parameters" element="tns:IsDeveloperResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProjectUserService_GetAssociatedProjectList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAssociatedProjectList" />
+  </wsdl:message>
+  <wsdl:message name="IProjectUserService_GetAssociatedProjectList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAssociatedProjectListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProjectUserService_GetProjectTeamList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetProjectTeamList" />
+  </wsdl:message>
+  <wsdl:message name="IProjectUserService_GetProjectTeamList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetProjectTeamListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProjectUserService_DeleteProductOwner_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteProductOwner" />
+  </wsdl:message>
+  <wsdl:message name="IProjectUserService_DeleteProductOwner_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteProductOwnerResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProjectUserService_IsUserInTheProject_InputMessage">
+    <wsdl:part name="parameters" element="tns:IsUserInTheProject" />
+  </wsdl:message>
+  <wsdl:message name="IProjectUserService_IsUserInTheProject_OutputMessage">
+    <wsdl:part name="parameters" element="tns:IsUserInTheProjectResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IProjectUserService">
+    <wsdl:operation name="InsertProjectUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProjectUserService/InsertProjectUser" message="tns:IProjectUserService_InsertProjectUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProjectUserService/InsertProjectUserResponse" message="tns:IProjectUserService_InsertProjectUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteProjectUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProjectUserService/DeleteProjectUser" message="tns:IProjectUserService_DeleteProjectUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProjectUserService/DeleteProjectUserResponse" message="tns:IProjectUserService_DeleteProjectUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="IsProjectOwner">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProjectUserService/IsProjectOwner" message="tns:IProjectUserService_IsProjectOwner_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProjectUserService/IsProjectOwnerResponse" message="tns:IProjectUserService_IsProjectOwner_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="IsProductOwner">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProjectUserService/IsProductOwner" message="tns:IProjectUserService_IsProductOwner_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProjectUserService/IsProductOwnerResponse" message="tns:IProjectUserService_IsProductOwner_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="IsScrumMaster">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProjectUserService/IsScrumMaster" message="tns:IProjectUserService_IsScrumMaster_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProjectUserService/IsScrumMasterResponse" message="tns:IProjectUserService_IsScrumMaster_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="IsDeveloper">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProjectUserService/IsDeveloper" message="tns:IProjectUserService_IsDeveloper_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProjectUserService/IsDeveloperResponse" message="tns:IProjectUserService_IsDeveloper_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAssociatedProjectList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProjectUserService/GetAssociatedProjectList" message="tns:IProjectUserService_GetAssociatedProjectList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProjectUserService/GetAssociatedProjectListResponse" message="tns:IProjectUserService_GetAssociatedProjectList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProjectTeamList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProjectUserService/GetProjectTeamList" message="tns:IProjectUserService_GetProjectTeamList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProjectUserService/GetProjectTeamListResponse" message="tns:IProjectUserService_GetProjectTeamList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteProductOwner">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProjectUserService/DeleteProductOwner" message="tns:IProjectUserService_DeleteProductOwner_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProjectUserService/DeleteProductOwnerResponse" message="tns:IProjectUserService_DeleteProductOwner_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="IsUserInTheProject">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProjectUserService/IsUserInTheProject" message="tns:IProjectUserService_IsUserInTheProject_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProjectUserService/IsUserInTheProjectResponse" message="tns:IProjectUserService_IsUserInTheProject_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IProjectUserService" type="tns:IProjectUserService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="InsertProjectUser">
+      <soap:operation soapAction="http://tempuri.org/IProjectUserService/InsertProjectUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteProjectUser">
+      <soap:operation soapAction="http://tempuri.org/IProjectUserService/DeleteProjectUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsProjectOwner">
+      <soap:operation soapAction="http://tempuri.org/IProjectUserService/IsProjectOwner" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsProductOwner">
+      <soap:operation soapAction="http://tempuri.org/IProjectUserService/IsProductOwner" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsScrumMaster">
+      <soap:operation soapAction="http://tempuri.org/IProjectUserService/IsScrumMaster" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsDeveloper">
+      <soap:operation soapAction="http://tempuri.org/IProjectUserService/IsDeveloper" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAssociatedProjectList">
+      <soap:operation soapAction="http://tempuri.org/IProjectUserService/GetAssociatedProjectList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProjectTeamList">
+      <soap:operation soapAction="http://tempuri.org/IProjectUserService/GetProjectTeamList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteProductOwner">
+      <soap:operation soapAction="http://tempuri.org/IProjectUserService/DeleteProductOwner" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsUserInTheProject">
+      <soap:operation soapAction="http://tempuri.org/IProjectUserService/IsUserInTheProject" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ProjectUserService">
+    <wsdl:port name="BasicHttpBinding_IProjectUserService" binding="tns:BasicHttpBinding_IProjectUserService">
+      <soap:address location="http://localhost:42547/ProjectUserService.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

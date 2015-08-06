@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="ScrumDevelopmentServices.UserStoryService" CodeBehind="UserStoryService.svc.cs" %>

@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="ProjectService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:42547/ProjectService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:42547/ProjectService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:42547/ProjectService.svc?xsd=xsd2" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IProjectService_InsertProject_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertProject" />
+  </wsdl:message>
+  <wsdl:message name="IProjectService_InsertProject_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertProjectResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProjectService_InsertProjectUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertProjectUser" />
+  </wsdl:message>
+  <wsdl:message name="IProjectService_InsertProjectUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertProjectUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProjectService_GetProjectList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetProjectList" />
+  </wsdl:message>
+  <wsdl:message name="IProjectService_GetProjectList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetProjectListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProjectService_SearchForProjectUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:SearchForProjectUser" />
+  </wsdl:message>
+  <wsdl:message name="IProjectService_SearchForProjectUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SearchForProjectUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProjectService_GetProjectStartDate_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetProjectStartDate" />
+  </wsdl:message>
+  <wsdl:message name="IProjectService_GetProjectStartDate_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetProjectStartDateResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProjectService_GetProjectDescription_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetProjectDescription" />
+  </wsdl:message>
+  <wsdl:message name="IProjectService_GetProjectDescription_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetProjectDescriptionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProjectService_DeleteProject_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteProject" />
+  </wsdl:message>
+  <wsdl:message name="IProjectService_DeleteProject_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteProjectResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProjectService_DeleteProjectUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteProjectUser" />
+  </wsdl:message>
+  <wsdl:message name="IProjectService_DeleteProjectUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteProjectUserResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IProjectService">
+    <wsdl:operation name="InsertProject">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProjectService/InsertProject" message="tns:IProjectService_InsertProject_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProjectService/InsertProjectResponse" message="tns:IProjectService_InsertProject_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertProjectUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProjectService/InsertProjectUser" message="tns:IProjectService_InsertProjectUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProjectService/InsertProjectUserResponse" message="tns:IProjectService_InsertProjectUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProjectList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProjectService/GetProjectList" message="tns:IProjectService_GetProjectList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProjectService/GetProjectListResponse" message="tns:IProjectService_GetProjectList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SearchForProjectUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProjectService/SearchForProjectUser" message="tns:IProjectService_SearchForProjectUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProjectService/SearchForProjectUserResponse" message="tns:IProjectService_SearchForProjectUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProjectStartDate">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProjectService/GetProjectStartDate" message="tns:IProjectService_GetProjectStartDate_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProjectService/GetProjectStartDateResponse" message="tns:IProjectService_GetProjectStartDate_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProjectDescription">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProjectService/GetProjectDescription" message="tns:IProjectService_GetProjectDescription_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProjectService/GetProjectDescriptionResponse" message="tns:IProjectService_GetProjectDescription_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteProject">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProjectService/DeleteProject" message="tns:IProjectService_DeleteProject_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProjectService/DeleteProjectResponse" message="tns:IProjectService_DeleteProject_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteProjectUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProjectService/DeleteProjectUser" message="tns:IProjectService_DeleteProjectUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProjectService/DeleteProjectUserResponse" message="tns:IProjectService_DeleteProjectUser_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IProjectService" type="tns:IProjectService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="InsertProject">
+      <soap:operation soapAction="http://tempuri.org/IProjectService/InsertProject" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertProjectUser">
+      <soap:operation soapAction="http://tempuri.org/IProjectService/InsertProjectUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProjectList">
+      <soap:operation soapAction="http://tempuri.org/IProjectService/GetProjectList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SearchForProjectUser">
+      <soap:operation soapAction="http://tempuri.org/IProjectService/SearchForProjectUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProjectStartDate">
+      <soap:operation soapAction="http://tempuri.org/IProjectService/GetProjectStartDate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProjectDescription">
+      <soap:operation soapAction="http://tempuri.org/IProjectService/GetProjectDescription" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteProject">
+      <soap:operation soapAction="http://tempuri.org/IProjectService/DeleteProject" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteProjectUser">
+      <soap:operation soapAction="http://tempuri.org/IProjectService/DeleteProjectUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ProjectService">
+    <wsdl:port name="BasicHttpBinding_IProjectService" binding="tns:BasicHttpBinding_IProjectService">
+      <soap:address location="http://localhost:42547/ProjectService.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

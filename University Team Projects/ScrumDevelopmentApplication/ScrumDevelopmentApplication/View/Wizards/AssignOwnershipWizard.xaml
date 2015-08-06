@@ -1,0 +1,28 @@
+﻿<Window x:Class="ScrumDevelopmentApplication.View.Wizards.AssignOwnershipWizard"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="AssignOwnershipWizard" Height="400" Width="400">
+    <Grid Background="#EBF5FF">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1.5*" />
+            <RowDefinition Height="6.8*" />
+            <RowDefinition Height="1.7*" />
+        </Grid.RowDefinitions>
+        <Border Background="#008AB8" Grid.Row="0">
+            <Label Style="{StaticResource headerText}" Content="Assign Ownership"/>
+        </Border>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="3*"/>
+            </Grid.ColumnDefinitions>
+            <ListBox x:Name="ResultsBox" SelectionMode="Single" FontSize="18" Grid.ColumnSpan="3" Margin="10,10,10,10">
+            </ListBox>
+        </Grid>
+
+        <Button Grid.Row="2" Style="{StaticResource loginButtons}" Content="Add" Click="AddButton_Click" Height="50"/>
+
+    </Grid>
+</Window>

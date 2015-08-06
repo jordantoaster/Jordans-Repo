@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="4a4caf88-fcbf-4aa8-86e0-26ec2c8402f5" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:42547/SprintUserService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="SprintUserService.xsd" MetadataType="Schema" ID="00a1d703-844b-4a9f-b5c4-fed2c79eb870" SourceId="1" SourceUrl="http://localhost:42547/SprintUserService.svc?xsd=xsd2" />
+    <MetadataFile FileName="SprintUserService1.xsd" MetadataType="Schema" ID="454162f0-55ab-471f-bb39-60d552b005a0" SourceId="1" SourceUrl="http://localhost:42547/SprintUserService.svc?xsd=xsd0" />
+    <MetadataFile FileName="SprintUserService.wsdl" MetadataType="Wsdl" ID="bf2dc1a7-2c7d-4a21-beaf-2c23df34a783" SourceId="1" SourceUrl="http://localhost:42547/SprintUserService.svc?wsdl" />
+    <MetadataFile FileName="SprintUserService2.xsd" MetadataType="Schema" ID="1f320140-b5ce-435d-8cd6-2163d28c4cf7" SourceId="1" SourceUrl="http://localhost:42547/SprintUserService.svc?xsd=xsd1" />
+    <MetadataFile FileName="SprintUserService.disco" MetadataType="Disco" ID="3b6965f4-fbef-4db2-92c2-1fe06b798b6f" SourceId="1" SourceUrl="http://localhost:42547/SprintUserService.svc?disco" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

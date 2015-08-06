@@ -1,0 +1,599 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{33D54CD5-7C00-49EF-88D8-E72FA96CFB24}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ScrumDevelopmentApplication</RootNamespace>
+    <AssemblyName>ScrumDevelopmentApplication</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="ApplicationController.cs" />
+    <Compile Include="Model\AcceptanceTestModel.cs" />
+    <Compile Include="Model\AddSprintStoryModel.cs" />
+    <Compile Include="Model\AddSprintTeamMember.cs" />
+    <Compile Include="Model\AddUserStoryModel.cs" />
+    <Compile Include="Model\ProjectDashboardModel.cs" />
+    <Compile Include="Model\SearchItem.cs" />
+    <Compile Include="Model\SprintDashboardModel.cs" />
+    <Compile Include="Model\SprintModel.cs" />
+    <Compile Include="Model\TaskModel.cs" />
+    <Compile Include="Model\Username.cs" />
+    <Compile Include="Model\UserStory.cs" />
+    <Compile Include="CustomControls\UiBanner.xaml.cs">
+      <DependentUpon>UiBanner.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Helpers\DialogeService.cs" />
+    <Compile Include="Helpers\IDialogService.cs" />
+    <Compile Include="Model\AddTeamMember.cs" />
+    <Compile Include="Model\ApplicationPages.cs" />
+    <Compile Include="Model\EditDetailsModel.cs" />
+    <Compile Include="Model\Login.cs" />
+    <Compile Include="Model\ProjectWizardModel.cs" />
+    <Compile Include="Model\Register.cs" />
+    <Compile Include="Model\User.cs" />
+    <Compile Include="Model\UserStoryName.cs" />
+    <Compile Include="Model\Windows.cs" />
+    <Compile Include="Service References\AcceptanceTestServiceReference\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\ProjectServiceReference\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\ProjectUserServiceReference\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\SprintServiceReference\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\SprintUserServiceReference\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\TaskServiceReference\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\UserServiceReference\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\UserStoryServiceReference\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModel\AddSprintStoryWizardViewModel.cs" />
+    <Compile Include="ViewModel\AddSprintTeamMemberViewModel.cs" />
+    <Compile Include="ViewModel\AddSprintViewModel.cs" />
+    <Compile Include="ViewModel\AddTaskViewModel.cs" />
+    <Compile Include="ViewModel\AddTeamMemberViewModel.cs" />
+    <Compile Include="ViewModel\AddUserStoryViewModel.cs" />
+    <Compile Include="ViewModel\EditDetailsViewModel.cs" />
+    <Compile Include="ViewModel\EditTaskViewModel.cs" />
+    <Compile Include="ViewModel\EditUserStoryViewModel.cs" />
+    <Compile Include="ViewModel\LoginViewModel.cs" />
+    <Compile Include="ViewModel\AddAcceptanceTestsViewModel.cs" />
+    <Compile Include="ViewModel\ProductBacklogViewModel.cs" />
+    <Compile Include="ViewModel\ProjectDashboardViewModel.cs" />
+    <Compile Include="ViewModel\ProjectWizardViewModel.cs" />
+    <Compile Include="ViewModel\RegisterViewModel.cs" />
+    <Compile Include="ViewModel\SprintDashboardViewModel.cs" />
+    <Compile Include="ViewModel\SprintStoryViewModel.cs" />
+    <Compile Include="ViewModel\UserDashboardViewModel.cs" />
+    <Compile Include="ViewModel\ViewAcceptanceTestViewModel.cs" />
+    <Compile Include="ViewModel\ViewModelBase.cs" />
+    <Compile Include="View\LoginPage.xaml.cs">
+      <DependentUpon>LoginPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\EditDetails.xaml.cs">
+      <DependentUpon>EditDetails.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ProductBacklogPage.xaml.cs">
+      <DependentUpon>ProductBacklogPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ProjectDashboard.xaml.cs">
+      <DependentUpon>ProjectDashboard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\RegistrationPage.xaml.cs">
+      <DependentUpon>RegistrationPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SprintDashboard.xaml.cs">
+      <DependentUpon>SprintDashboard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SprintStory.xaml.cs">
+      <DependentUpon>SprintStory.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\UserDashboard.xaml.cs">
+      <DependentUpon>UserDashboard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Wizards\AddAcceptanceTest.xaml.cs">
+      <DependentUpon>AddAcceptanceTest.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Wizards\AddSprintMemberWizard.xaml.cs">
+      <DependentUpon>AddSprintMemberWizard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Wizards\AddSprintStoryWizard.xaml.cs">
+      <DependentUpon>AddSprintStoryWizard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Wizards\AddTaskWizard.xaml.cs">
+      <DependentUpon>AddTaskWizard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Wizards\AddTeamMemberWizard.xaml.cs">
+      <DependentUpon>AddTeamMemberWizard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Wizards\AddUserStoryWizard.xaml.cs">
+      <DependentUpon>AddUserStoryWizard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Wizards\AssignOwnershipWizard.xaml.cs">
+      <DependentUpon>AssignOwnershipWizard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Wizards\EditTasksWizard.xaml.cs">
+      <DependentUpon>EditTasksWizard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Wizards\EditUserStoryWizard.xaml.cs">
+      <DependentUpon>EditUserStoryWizard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Wizards\NewSprintWizard.xaml.cs">
+      <DependentUpon>NewSprintWizard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Wizards\ProjectWizard.xaml.cs">
+      <DependentUpon>ProjectWizard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Wizards\ViewAcceptanceTests.xaml.cs">
+      <DependentUpon>ViewAcceptanceTests.xaml</DependentUpon>
+    </Compile>
+    <Page Include="CustomControls\UiBanner.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="View\LoginPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\EditDetails.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ProductBacklogPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\ProjectDashboard.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\RegistrationPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\SprintDashboard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SprintStory.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\UserDashboard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Wizards\AddAcceptanceTest.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Wizards\AddSprintMemberWizard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Wizards\AddSprintStoryWizard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Wizards\AddTaskWizard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Wizards\AddTeamMemberWizard.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Wizards\AddUserStoryWizard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Wizards\AssignOwnershipWizard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Wizards\EditTasksWizard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Wizards\EditUserStoryWizard.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Wizards\NewSprintWizard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Wizards\ProjectWizard.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Wizards\ViewAcceptanceTests.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="ClassDiagram1.cd" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+    <None Include="Service References\AcceptanceTestServiceReference\AcceptanceTestService.wsdl" />
+    <None Include="Service References\AcceptanceTestServiceReference\AcceptanceTestService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\AcceptanceTestServiceReference\AcceptanceTestService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\AcceptanceTestServiceReference\AcceptanceTestService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ProjectServiceReference\ProjectService.wsdl" />
+    <None Include="Service References\ProjectServiceReference\ProjectService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ProjectServiceReference\ProjectService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ProjectServiceReference\ProjectService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ProjectUserServiceReference\ProjectUserService.wsdl" />
+    <None Include="Service References\ProjectUserServiceReference\ProjectUserService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ProjectUserServiceReference\ProjectUserService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ProjectUserServiceReference\ProjectUserService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SprintServiceReference\SprintService.wsdl" />
+    <None Include="Service References\SprintServiceReference\SprintService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SprintServiceReference\SprintService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SprintServiceReference\SprintService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SprintUserServiceReference\SprintUserService.wsdl" />
+    <None Include="Service References\SprintUserServiceReference\SprintUserService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SprintUserServiceReference\SprintUserService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SprintUserServiceReference\SprintUserService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\TaskServiceReference\TaskService.wsdl" />
+    <None Include="Service References\TaskServiceReference\TaskService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\TaskServiceReference\TaskService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\TaskServiceReference\TaskService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\UserServiceReference\UserService.wsdl" />
+    <None Include="Service References\UserServiceReference\UserService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\UserServiceReference\UserService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\UserStoryServiceReference\UserStoryService.wsdl" />
+    <None Include="Service References\UserStoryServiceReference\UserStoryService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\UserStoryServiceReference\UserStoryService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\UserStoryServiceReference\UserStoryService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\TeamLogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ScrumDevelopmentInterface\ScrumDevelopmentInterface.csproj">
+      <Project>{87793a42-c854-41ac-a7f3-1ecb599d52b5}</Project>
+      <Name>ScrumDevelopmentInterface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ScrumDevelopmentServer\ScrumDevelopmentServer.csproj">
+      <Project>{E8E162E9-A0E6-4545-B7FE-364A2EA01893}</Project>
+      <Name>ScrumDevelopmentServer</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\AcceptanceTestServiceReference\" />
+    <WCFMetadataStorage Include="Service References\ProjectServiceReference\" />
+    <WCFMetadataStorage Include="Service References\ProjectUserServiceReference\" />
+    <WCFMetadataStorage Include="Service References\SprintServiceReference\" />
+    <WCFMetadataStorage Include="Service References\SprintUserServiceReference\" />
+    <WCFMetadataStorage Include="Service References\TaskServiceReference\" />
+    <WCFMetadataStorage Include="Service References\UserServiceReference\" />
+    <WCFMetadataStorage Include="Service References\UserStoryServiceReference\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ProjectServiceReference\ProjectService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ProjectServiceReference\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ProjectServiceReference\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ProjectServiceReference\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ProjectUserServiceReference\ProjectUserService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ProjectUserServiceReference\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ProjectUserServiceReference\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ProjectUserServiceReference\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\SprintServiceReference\SprintService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\SprintServiceReference\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\SprintServiceReference\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\SprintServiceReference\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\TaskServiceReference\TaskService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\TaskServiceReference\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\TaskServiceReference\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\TaskServiceReference\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\SprintUserServiceReference\SprintUserService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\SprintUserServiceReference\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\SprintUserServiceReference\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\SprintUserServiceReference\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\UserServiceReference\UserService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\UserServiceReference\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\UserServiceReference\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\UserServiceReference\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\UserStoryServiceReference\UserStoryService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\UserStoryServiceReference\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\UserStoryServiceReference\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\UserStoryServiceReference\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\home.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\AcceptanceTestServiceReference\AcceptanceTestService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\AcceptanceTestServiceReference\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\AcceptanceTestServiceReference\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\AcceptanceTestServiceReference\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

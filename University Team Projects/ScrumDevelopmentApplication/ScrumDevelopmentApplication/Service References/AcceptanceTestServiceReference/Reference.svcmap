@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="ab834dde-9ac4-459a-bae4-d48663bf1310" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:42547/AcceptanceTestService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="AcceptanceTestService.wsdl" MetadataType="Wsdl" ID="a24357d6-d872-4235-82e6-ca55e87aeebf" SourceId="1" SourceUrl="http://localhost:42547/AcceptanceTestService.svc?wsdl" />
+    <MetadataFile FileName="AcceptanceTestService.disco" MetadataType="Disco" ID="4081206a-1794-4973-8305-dd5100a65e34" SourceId="1" SourceUrl="http://localhost:42547/AcceptanceTestService.svc?disco" />
+    <MetadataFile FileName="AcceptanceTestService.xsd" MetadataType="Schema" ID="80675d47-1c39-43ed-a1d2-20fcd06c46dc" SourceId="1" SourceUrl="http://localhost:42547/AcceptanceTestService.svc?xsd=xsd2" />
+    <MetadataFile FileName="AcceptanceTestService1.xsd" MetadataType="Schema" ID="e8ab7de7-25c7-4611-99e4-b58afb3cc610" SourceId="1" SourceUrl="http://localhost:42547/AcceptanceTestService.svc?xsd=xsd1" />
+    <MetadataFile FileName="AcceptanceTestService2.xsd" MetadataType="Schema" ID="abe8fe6a-85fb-4b23-b7a7-7a6fe15a1d43" SourceId="1" SourceUrl="http://localhost:42547/AcceptanceTestService.svc?xsd=xsd0" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

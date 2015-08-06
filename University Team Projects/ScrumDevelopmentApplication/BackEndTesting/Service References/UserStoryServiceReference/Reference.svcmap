@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="7b652c77-fbd2-4f1a-b827-2152499e90f0" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:42547/UserStoryService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="UserStoryService.xsd" MetadataType="Schema" ID="ada381fc-d2de-423f-a4e0-0e9dc27cddc9" SourceId="1" SourceUrl="http://localhost:42547/UserStoryService.svc?xsd=xsd1" />
+    <MetadataFile FileName="UserStoryService1.xsd" MetadataType="Schema" ID="e4359f29-8f31-4ac6-99cc-0b9be97029a9" SourceId="1" SourceUrl="http://localhost:42547/UserStoryService.svc?xsd=xsd2" />
+    <MetadataFile FileName="UserStoryService.disco" MetadataType="Disco" ID="e9d22144-f8c5-41aa-8d7c-c60879bff110" SourceId="1" SourceUrl="http://localhost:42547/UserStoryService.svc?disco" />
+    <MetadataFile FileName="UserStoryService.wsdl" MetadataType="Wsdl" ID="9f17d0bb-563b-4bb7-abd9-4d5ae1f6ece5" SourceId="1" SourceUrl="http://localhost:42547/UserStoryService.svc?wsdl" />
+    <MetadataFile FileName="UserStoryService2.xsd" MetadataType="Schema" ID="b642b307-bba1-49e3-9f8a-b096127b5b4c" SourceId="1" SourceUrl="http://localhost:42547/UserStoryService.svc?xsd=xsd0" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

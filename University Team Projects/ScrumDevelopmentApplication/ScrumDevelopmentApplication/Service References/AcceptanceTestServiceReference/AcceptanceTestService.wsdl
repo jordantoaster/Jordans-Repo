@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="AcceptanceTestService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:42547/AcceptanceTestService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:42547/AcceptanceTestService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:42547/AcceptanceTestService.svc?xsd=xsd2" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IAcceptanceTestService_InsertAcceptanceTest_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertAcceptanceTest" />
+  </wsdl:message>
+  <wsdl:message name="IAcceptanceTestService_InsertAcceptanceTest_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertAcceptanceTestResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAcceptanceTestService_DeleteAcceptanceTest_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteAcceptanceTest" />
+  </wsdl:message>
+  <wsdl:message name="IAcceptanceTestService_DeleteAcceptanceTest_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteAcceptanceTestResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAcceptanceTestService_GetTestList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTestList" />
+  </wsdl:message>
+  <wsdl:message name="IAcceptanceTestService_GetTestList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTestListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAcceptanceTestService_GetAcceptanceTest_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAcceptanceTest" />
+  </wsdl:message>
+  <wsdl:message name="IAcceptanceTestService_GetAcceptanceTest_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAcceptanceTestResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IAcceptanceTestService">
+    <wsdl:operation name="InsertAcceptanceTest">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAcceptanceTestService/InsertAcceptanceTest" message="tns:IAcceptanceTestService_InsertAcceptanceTest_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAcceptanceTestService/InsertAcceptanceTestResponse" message="tns:IAcceptanceTestService_InsertAcceptanceTest_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteAcceptanceTest">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAcceptanceTestService/DeleteAcceptanceTest" message="tns:IAcceptanceTestService_DeleteAcceptanceTest_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAcceptanceTestService/DeleteAcceptanceTestResponse" message="tns:IAcceptanceTestService_DeleteAcceptanceTest_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTestList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAcceptanceTestService/GetTestList" message="tns:IAcceptanceTestService_GetTestList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAcceptanceTestService/GetTestListResponse" message="tns:IAcceptanceTestService_GetTestList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAcceptanceTest">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAcceptanceTestService/GetAcceptanceTest" message="tns:IAcceptanceTestService_GetAcceptanceTest_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAcceptanceTestService/GetAcceptanceTestResponse" message="tns:IAcceptanceTestService_GetAcceptanceTest_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IAcceptanceTestService" type="tns:IAcceptanceTestService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="InsertAcceptanceTest">
+      <soap:operation soapAction="http://tempuri.org/IAcceptanceTestService/InsertAcceptanceTest" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteAcceptanceTest">
+      <soap:operation soapAction="http://tempuri.org/IAcceptanceTestService/DeleteAcceptanceTest" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTestList">
+      <soap:operation soapAction="http://tempuri.org/IAcceptanceTestService/GetTestList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAcceptanceTest">
+      <soap:operation soapAction="http://tempuri.org/IAcceptanceTestService/GetAcceptanceTest" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="AcceptanceTestService">
+    <wsdl:port name="BasicHttpBinding_IAcceptanceTestService" binding="tns:BasicHttpBinding_IAcceptanceTestService">
+      <soap:address location="http://localhost:42547/AcceptanceTestService.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,310 @@
+C:\Users\Message\Desktop\New folder (2)\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\ScrumDevelopmentServices.dll.config
+C:\Users\Message\Desktop\New folder (2)\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\ScrumDevelopmentServices.dll
+C:\Users\Message\Desktop\New folder (2)\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\ScrumDevelopmentServices.pdb
+C:\Users\Message\Desktop\New folder (2)\ScrumDevelopmentApplication\ScrumDevelopmentServices\obj\Debug\ScrumDevelopmentServices.csprojResolveAssemblyReference.cache
+C:\Users\Message\Desktop\New folder (2)\ScrumDevelopmentApplication\ScrumDevelopmentServices\obj\Debug\ScrumDevelopmentServices.dll
+C:\Users\Message\Desktop\New folder (2)\ScrumDevelopmentApplication\ScrumDevelopmentServices\obj\Debug\ScrumDevelopmentServices.pdb
+C:\Users\Message\Desktop\New folder (2)\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\ScrumDevelopmentDatabase.mdf
+C:\Users\Message\Desktop\New folder (2)\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\ScrumDevelopmentDatabase_log.ldf
+C:\Users\Message\Desktop\New folder (2)\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\ScrumDevelopmentServer.exe
+C:\Users\Message\Desktop\New folder (2)\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\ScrumDevelopmentInterface.dll
+C:\Users\Message\Desktop\New folder (2)\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\ScrumDevelopmentServer.pdb
+C:\Users\Message\Desktop\New folder (2)\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\ScrumDevelopmentInterface.pdb
+C:\Users\Message\Desktop\New folder (2)\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\EntityFramework.dll
+C:\Users\Message\Desktop\New folder (2)\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\EntityFramework.SqlServer.dll
+C:\Users\Message\Desktop\New folder (2)\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\EntityFramework.xml
+C:\Users\Message\Desktop\New folder (2)\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\EntityFramework.SqlServer.xml
+\\psf\Home\Documents\Qub\Level 3\Agile\AgileProjectWorkspace\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\ScrumDevelopmentServices.dll.config
+\\psf\Home\Documents\Qub\Level 3\Agile\AgileProjectWorkspace\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\ScrumDevelopmentServices.dll
+\\psf\Home\Documents\Qub\Level 3\Agile\AgileProjectWorkspace\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\ScrumDevelopmentServices.pdb
+\\psf\Home\Documents\Qub\Level 3\Agile\AgileProjectWorkspace\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\EntityFramework.dll
+\\psf\Home\Documents\Qub\Level 3\Agile\AgileProjectWorkspace\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\EntityFramework.SqlServer.dll
+\\psf\Home\Documents\Qub\Level 3\Agile\AgileProjectWorkspace\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\ScrumDevelopmentServer.exe
+\\psf\Home\Documents\Qub\Level 3\Agile\AgileProjectWorkspace\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\ScrumDevelopmentInterface.dll
+\\psf\Home\Documents\Qub\Level 3\Agile\AgileProjectWorkspace\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\ScrumDevelopmentServer.pdb
+\\psf\Home\Documents\Qub\Level 3\Agile\AgileProjectWorkspace\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\EntityFramework.xml
+\\psf\Home\Documents\Qub\Level 3\Agile\AgileProjectWorkspace\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\EntityFramework.SqlServer.xml
+\\psf\Home\Documents\Qub\Level 3\Agile\AgileProjectWorkspace\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\ScrumDevelopmentInterface.pdb
+\\psf\Home\Documents\Qub\Level 3\Agile\AgileProjectWorkspace\ScrumDevelopmentApplication\ScrumDevelopmentServices\obj\Debug\ScrumDevelopmentServices.csprojResolveAssemblyReference.cache
+\\psf\Home\Documents\Qub\Level 3\Agile\AgileProjectWorkspace\ScrumDevelopmentApplication\ScrumDevelopmentServices\obj\Debug\ScrumDevelopmentServices.dll
+\\psf\Home\Documents\Qub\Level 3\Agile\AgileProjectWorkspace\ScrumDevelopmentApplication\ScrumDevelopmentServices\obj\Debug\ScrumDevelopmentServices.pdb
+\\psf\Home\Documents\Qub\Level_3\Agile\Agile_Workspace\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\ScrumDevelopmentServices.dll.config
+\\psf\Home\Documents\Qub\Level_3\Agile\Agile_Workspace\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\ScrumDevelopmentServices.dll
+\\psf\Home\Documents\Qub\Level_3\Agile\Agile_Workspace\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\ScrumDevelopmentServices.pdb
+\\psf\Home\Documents\Qub\Level_3\Agile\Agile_Workspace\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\EntityFramework.dll
+\\psf\Home\Documents\Qub\Level_3\Agile\Agile_Workspace\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\EntityFramework.SqlServer.dll
+\\psf\Home\Documents\Qub\Level_3\Agile\Agile_Workspace\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\ScrumDevelopmentServer.exe
+\\psf\Home\Documents\Qub\Level_3\Agile\Agile_Workspace\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\ScrumDevelopmentInterface.dll
+\\psf\Home\Documents\Qub\Level_3\Agile\Agile_Workspace\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\ScrumDevelopmentServer.pdb
+\\psf\Home\Documents\Qub\Level_3\Agile\Agile_Workspace\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\EntityFramework.xml
+\\psf\Home\Documents\Qub\Level_3\Agile\Agile_Workspace\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\EntityFramework.SqlServer.xml
+\\psf\Home\Documents\Qub\Level_3\Agile\Agile_Workspace\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\ScrumDevelopmentInterface.pdb
+\\psf\Home\Documents\Qub\Level_3\Agile\Agile_Workspace\ScrumDevelopmentApplication\ScrumDevelopmentServices\obj\Debug\ScrumDevelopmentServices.csprojResolveAssemblyReference.cache
+\\psf\Home\Documents\Qub\Level_3\Agile\Agile_Workspace\ScrumDevelopmentApplication\ScrumDevelopmentServices\obj\Debug\ScrumDevelopmentServices.dll
+\\psf\Home\Documents\Qub\Level_3\Agile\Agile_Workspace\ScrumDevelopmentApplication\ScrumDevelopmentServices\obj\Debug\ScrumDevelopmentServices.pdb
+\\psf\Home\Desktop\New folder\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\ScrumDevelopmentServices.dll.config
+\\psf\Home\Desktop\New folder\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\ScrumDevelopmentServices.dll
+\\psf\Home\Desktop\New folder\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\ScrumDevelopmentServices.pdb
+\\psf\Home\Desktop\New folder\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\EntityFramework.dll
+\\psf\Home\Desktop\New folder\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\EntityFramework.SqlServer.dll
+\\psf\Home\Desktop\New folder\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\ScrumDevelopmentServer.exe
+\\psf\Home\Desktop\New folder\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\ScrumDevelopmentInterface.dll
+\\psf\Home\Desktop\New folder\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\ScrumDevelopmentServer.pdb
+\\psf\Home\Desktop\New folder\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\EntityFramework.xml
+\\psf\Home\Desktop\New folder\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\EntityFramework.SqlServer.xml
+\\psf\Home\Desktop\New folder\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\ScrumDevelopmentInterface.pdb
+\\psf\Home\Desktop\New folder\ScrumDevelopmentApplication\ScrumDevelopmentServices\obj\Debug\ScrumDevelopmentServices.csprojResolveAssemblyReference.cache
+\\psf\Home\Desktop\New folder\ScrumDevelopmentApplication\ScrumDevelopmentServices\obj\Debug\ScrumDevelopmentServices.dll
+\\psf\Home\Desktop\New folder\ScrumDevelopmentApplication\ScrumDevelopmentServices\obj\Debug\ScrumDevelopmentServices.pdb
+\\psf\Home\Desktop\New folder (4)\ScrumDevelopmentApplication\ScrumDevelopmentServices\obj\Debug\ScrumDevelopmentServices.csprojResolveAssemblyReference.cache
+\\psf\Home\Desktop\New folder (4)\ScrumDevelopmentApplication\ScrumDevelopmentServices\obj\Debug\ScrumDevelopmentServices.dll
+\\psf\Home\Desktop\New folder (4)\ScrumDevelopmentApplication\ScrumDevelopmentServices\obj\Debug\ScrumDevelopmentServices.pdb
+\\psf\Home\Desktop\New folder (4)\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\ScrumDevelopmentServices.dll.config
+\\psf\Home\Desktop\New folder (4)\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\ScrumDevelopmentServices.dll
+\\psf\Home\Desktop\New folder (4)\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\ScrumDevelopmentServices.pdb
+\\psf\Home\Desktop\New folder (4)\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\EntityFramework.dll
+\\psf\Home\Desktop\New folder (4)\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\EntityFramework.SqlServer.dll
+\\psf\Home\Desktop\New folder (4)\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\ScrumDevelopmentServer.exe
+\\psf\Home\Desktop\New folder (4)\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\ScrumDevelopmentInterface.dll
+\\psf\Home\Desktop\New folder (4)\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\ScrumDevelopmentServer.pdb
+\\psf\Home\Desktop\New folder (4)\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\EntityFramework.xml
+\\psf\Home\Desktop\New folder (4)\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\EntityFramework.SqlServer.xml
+\\psf\Home\Desktop\New folder (4)\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\ScrumDevelopmentInterface.pdb
+\\psf\Home\Documents\Qub\Level_3\Agile\LATEST_AGILE\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\ScrumDevelopmentServices.dll.config
+\\psf\Home\Documents\Qub\Level_3\Agile\LATEST_AGILE\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\ScrumDevelopmentServices.dll
+\\psf\Home\Documents\Qub\Level_3\Agile\LATEST_AGILE\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\ScrumDevelopmentServices.pdb
+\\psf\Home\Documents\Qub\Level_3\Agile\LATEST_AGILE\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\EntityFramework.dll
+\\psf\Home\Documents\Qub\Level_3\Agile\LATEST_AGILE\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\EntityFramework.SqlServer.dll
+\\psf\Home\Documents\Qub\Level_3\Agile\LATEST_AGILE\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\ScrumDevelopmentServer.exe
+\\psf\Home\Documents\Qub\Level_3\Agile\LATEST_AGILE\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\ScrumDevelopmentInterface.dll
+\\psf\Home\Documents\Qub\Level_3\Agile\LATEST_AGILE\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\ScrumDevelopmentServer.pdb
+\\psf\Home\Documents\Qub\Level_3\Agile\LATEST_AGILE\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\EntityFramework.xml
+\\psf\Home\Documents\Qub\Level_3\Agile\LATEST_AGILE\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\EntityFramework.SqlServer.xml
+\\psf\Home\Documents\Qub\Level_3\Agile\LATEST_AGILE\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\ScrumDevelopmentInterface.pdb
+\\psf\Home\Documents\Qub\Level_3\Agile\LATEST_AGILE\ScrumDevelopmentApplication\ScrumDevelopmentServices\obj\Debug\ScrumDevelopmentServices.csprojResolveAssemblyReference.cache
+\\psf\Home\Documents\Qub\Level_3\Agile\LATEST_AGILE\ScrumDevelopmentApplication\ScrumDevelopmentServices\obj\Debug\ScrumDevelopmentServices.dll
+\\psf\Home\Documents\Qub\Level_3\Agile\LATEST_AGILE\ScrumDevelopmentApplication\ScrumDevelopmentServices\obj\Debug\ScrumDevelopmentServices.pdb
+C:\Users\Message\Documents\Visual Studio 2013\Projects\ScrumDevelopmentApplication(34)\ScrumDevelopmentServices\bin\ScrumDevelopmentServices.dll.config
+C:\Users\Message\Documents\Visual Studio 2013\Projects\ScrumDevelopmentApplication(34)\ScrumDevelopmentServices\bin\ScrumDevelopmentServices.dll
+C:\Users\Message\Documents\Visual Studio 2013\Projects\ScrumDevelopmentApplication(34)\ScrumDevelopmentServices\bin\ScrumDevelopmentServices.pdb
+C:\Users\Message\Documents\Visual Studio 2013\Projects\ScrumDevelopmentApplication(34)\ScrumDevelopmentServices\bin\EntityFramework.dll
+C:\Users\Message\Documents\Visual Studio 2013\Projects\ScrumDevelopmentApplication(34)\ScrumDevelopmentServices\bin\EntityFramework.SqlServer.dll
+C:\Users\Message\Documents\Visual Studio 2013\Projects\ScrumDevelopmentApplication(34)\ScrumDevelopmentServices\bin\ScrumDevelopmentServer.exe
+C:\Users\Message\Documents\Visual Studio 2013\Projects\ScrumDevelopmentApplication(34)\ScrumDevelopmentServices\bin\ScrumDevelopmentInterface.dll
+C:\Users\Message\Documents\Visual Studio 2013\Projects\ScrumDevelopmentApplication(34)\ScrumDevelopmentServices\bin\ScrumDevelopmentServer.pdb
+C:\Users\Message\Documents\Visual Studio 2013\Projects\ScrumDevelopmentApplication(34)\ScrumDevelopmentServices\bin\EntityFramework.xml
+C:\Users\Message\Documents\Visual Studio 2013\Projects\ScrumDevelopmentApplication(34)\ScrumDevelopmentServices\bin\EntityFramework.SqlServer.xml
+C:\Users\Message\Documents\Visual Studio 2013\Projects\ScrumDevelopmentApplication(34)\ScrumDevelopmentServices\bin\ScrumDevelopmentInterface.pdb
+C:\Users\Message\Documents\Visual Studio 2013\Projects\ScrumDevelopmentApplication(34)\ScrumDevelopmentServices\obj\Debug\ScrumDevelopmentServices.csprojResolveAssemblyReference.cache
+C:\Users\Message\Documents\Visual Studio 2013\Projects\ScrumDevelopmentApplication(34)\ScrumDevelopmentServices\obj\Debug\ScrumDevelopmentServices.dll
+C:\Users\Message\Documents\Visual Studio 2013\Projects\ScrumDevelopmentApplication(34)\ScrumDevelopmentServices\obj\Debug\ScrumDevelopmentServices.pdb
+C:\Users\Stuart\Desktop\Thursday2\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\ScrumDevelopmentServices.dll.config
+C:\Users\Stuart\Desktop\Thursday2\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\ScrumDevelopmentServices.dll
+C:\Users\Stuart\Desktop\Thursday2\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\ScrumDevelopmentServices.pdb
+C:\Users\Stuart\Desktop\Thursday2\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\EntityFramework.dll
+C:\Users\Stuart\Desktop\Thursday2\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\EntityFramework.SqlServer.dll
+C:\Users\Stuart\Desktop\Thursday2\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\ScrumDevelopmentServer.exe
+C:\Users\Stuart\Desktop\Thursday2\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\ScrumDevelopmentInterface.dll
+C:\Users\Stuart\Desktop\Thursday2\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\ScrumDevelopmentServer.pdb
+C:\Users\Stuart\Desktop\Thursday2\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\EntityFramework.xml
+C:\Users\Stuart\Desktop\Thursday2\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\EntityFramework.SqlServer.xml
+C:\Users\Stuart\Desktop\Thursday2\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\ScrumDevelopmentInterface.pdb
+C:\Users\Stuart\Desktop\Thursday2\ScrumDevelopmentApplication\ScrumDevelopmentServices\obj\Debug\ScrumDevelopmentServices.csprojResolveAssemblyReference.cache
+C:\Users\Stuart\Desktop\Thursday2\ScrumDevelopmentApplication\ScrumDevelopmentServices\obj\Debug\ScrumDevelopmentServices.dll
+C:\Users\Stuart\Desktop\Thursday2\ScrumDevelopmentApplication\ScrumDevelopmentServices\obj\Debug\ScrumDevelopmentServices.pdb
+\\psf\Home\Desktop\New folder (5)\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\ScrumDevelopmentServices.dll.config
+\\psf\Home\Desktop\New folder (5)\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\ScrumDevelopmentServices.dll
+\\psf\Home\Desktop\New folder (5)\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\ScrumDevelopmentServices.pdb
+\\psf\Home\Desktop\New folder (5)\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\EntityFramework.dll
+\\psf\Home\Desktop\New folder (5)\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\EntityFramework.SqlServer.dll
+\\psf\Home\Desktop\New folder (5)\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\ScrumDevelopmentServer.exe
+\\psf\Home\Desktop\New folder (5)\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\ScrumDevelopmentInterface.dll
+\\psf\Home\Desktop\New folder (5)\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\ScrumDevelopmentServer.pdb
+\\psf\Home\Desktop\New folder (5)\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\EntityFramework.xml
+\\psf\Home\Desktop\New folder (5)\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\EntityFramework.SqlServer.xml
+\\psf\Home\Desktop\New folder (5)\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\ScrumDevelopmentInterface.pdb
+\\psf\Home\Desktop\New folder (5)\ScrumDevelopmentApplication\ScrumDevelopmentServices\obj\Debug\ScrumDevelopmentServices.csprojResolveAssemblyReference.cache
+\\psf\Home\Desktop\New folder (5)\ScrumDevelopmentApplication\ScrumDevelopmentServices\obj\Debug\ScrumDevelopmentServices.dll
+\\psf\Home\Desktop\New folder (5)\ScrumDevelopmentApplication\ScrumDevelopmentServices\obj\Debug\ScrumDevelopmentServices.pdb
+\\psf\Home\Desktop\New folder (10)\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\ScrumDevelopmentServices.dll.config
+\\psf\Home\Desktop\New folder (10)\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\ScrumDevelopmentServices.dll
+\\psf\Home\Desktop\New folder (10)\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\ScrumDevelopmentServices.pdb
+\\psf\Home\Desktop\New folder (10)\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\EntityFramework.dll
+\\psf\Home\Desktop\New folder (10)\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\EntityFramework.SqlServer.dll
+\\psf\Home\Desktop\New folder (10)\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\ScrumDevelopmentServer.exe
+\\psf\Home\Desktop\New folder (10)\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\ScrumDevelopmentInterface.dll
+\\psf\Home\Desktop\New folder (10)\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\ScrumDevelopmentServer.pdb
+\\psf\Home\Desktop\New folder (10)\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\EntityFramework.xml
+\\psf\Home\Desktop\New folder (10)\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\EntityFramework.SqlServer.xml
+\\psf\Home\Desktop\New folder (10)\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\ScrumDevelopmentInterface.pdb
+\\psf\Home\Desktop\New folder (10)\ScrumDevelopmentApplication\ScrumDevelopmentServices\obj\Debug\ScrumDevelopmentServices.csprojResolveAssemblyReference.cache
+\\psf\Home\Desktop\New folder (10)\ScrumDevelopmentApplication\ScrumDevelopmentServices\obj\Debug\ScrumDevelopmentServices.dll
+\\psf\Home\Desktop\New folder (10)\ScrumDevelopmentApplication\ScrumDevelopmentServices\obj\Debug\ScrumDevelopmentServices.pdb
+C:\Users\Message\Desktop\CS10\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\ScrumDevelopmentServices.dll.config
+C:\Users\Message\Desktop\CS10\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\ScrumDevelopmentServices.dll
+C:\Users\Message\Desktop\CS10\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\ScrumDevelopmentServices.pdb
+C:\Users\Message\Desktop\CS10\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\EntityFramework.dll
+C:\Users\Message\Desktop\CS10\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\EntityFramework.SqlServer.dll
+C:\Users\Message\Desktop\CS10\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\ScrumDevelopmentServer.exe
+C:\Users\Message\Desktop\CS10\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\ScrumDevelopmentInterface.dll
+C:\Users\Message\Desktop\CS10\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\ScrumDevelopmentServer.pdb
+C:\Users\Message\Desktop\CS10\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\EntityFramework.xml
+C:\Users\Message\Desktop\CS10\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\EntityFramework.SqlServer.xml
+C:\Users\Message\Desktop\CS10\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\ScrumDevelopmentInterface.pdb
+C:\Users\Message\Desktop\CS10\ScrumDevelopmentApplication\ScrumDevelopmentServices\obj\Debug\ScrumDevelopmentServices.csprojResolveAssemblyReference.cache
+C:\Users\Message\Desktop\CS10\ScrumDevelopmentApplication\ScrumDevelopmentServices\obj\Debug\ScrumDevelopmentServices.dll
+C:\Users\Message\Desktop\CS10\ScrumDevelopmentApplication\ScrumDevelopmentServices\obj\Debug\ScrumDevelopmentServices.pdb
+\\psf\Home\Documents\Qub\Level_3\Agile\AgileWorkspace\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\ScrumDevelopmentServices.dll.config
+\\psf\Home\Documents\Qub\Level_3\Agile\AgileWorkspace\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\ScrumDevelopmentServices.dll
+\\psf\Home\Documents\Qub\Level_3\Agile\AgileWorkspace\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\ScrumDevelopmentServices.pdb
+\\psf\Home\Documents\Qub\Level_3\Agile\AgileWorkspace\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\EntityFramework.dll
+\\psf\Home\Documents\Qub\Level_3\Agile\AgileWorkspace\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\EntityFramework.SqlServer.dll
+\\psf\Home\Documents\Qub\Level_3\Agile\AgileWorkspace\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\ScrumDevelopmentServer.exe
+\\psf\Home\Documents\Qub\Level_3\Agile\AgileWorkspace\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\ScrumDevelopmentInterface.dll
+\\psf\Home\Documents\Qub\Level_3\Agile\AgileWorkspace\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\ScrumDevelopmentServer.pdb
+\\psf\Home\Documents\Qub\Level_3\Agile\AgileWorkspace\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\EntityFramework.xml
+\\psf\Home\Documents\Qub\Level_3\Agile\AgileWorkspace\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\EntityFramework.SqlServer.xml
+\\psf\Home\Documents\Qub\Level_3\Agile\AgileWorkspace\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\ScrumDevelopmentInterface.pdb
+\\psf\Home\Documents\Qub\Level_3\Agile\AgileWorkspace\ScrumDevelopmentApplication\ScrumDevelopmentServices\obj\Debug\ScrumDevelopmentServices.csprojResolveAssemblyReference.cache
+\\psf\Home\Documents\Qub\Level_3\Agile\AgileWorkspace\ScrumDevelopmentApplication\ScrumDevelopmentServices\obj\Debug\ScrumDevelopmentServices.dll
+\\psf\Home\Documents\Qub\Level_3\Agile\AgileWorkspace\ScrumDevelopmentApplication\ScrumDevelopmentServices\obj\Debug\ScrumDevelopmentServices.pdb
+\\psf\Home\Desktop\AgileCheckout\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\ScrumDevelopmentServices.dll.config
+\\psf\Home\Desktop\AgileCheckout\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\ScrumDevelopmentServices.dll
+\\psf\Home\Desktop\AgileCheckout\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\ScrumDevelopmentServices.pdb
+\\psf\Home\Desktop\AgileCheckout\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\EntityFramework.dll
+\\psf\Home\Desktop\AgileCheckout\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\EntityFramework.SqlServer.dll
+\\psf\Home\Desktop\AgileCheckout\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\ScrumDevelopmentServer.exe
+\\psf\Home\Desktop\AgileCheckout\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\ScrumDevelopmentInterface.dll
+\\psf\Home\Desktop\AgileCheckout\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\ScrumDevelopmentServer.pdb
+\\psf\Home\Desktop\AgileCheckout\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\EntityFramework.xml
+\\psf\Home\Desktop\AgileCheckout\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\EntityFramework.SqlServer.xml
+\\psf\Home\Desktop\AgileCheckout\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\ScrumDevelopmentInterface.pdb
+\\psf\Home\Desktop\AgileCheckout\ScrumDevelopmentApplication\ScrumDevelopmentServices\obj\Debug\ScrumDevelopmentServices.csprojResolveAssemblyReference.cache
+\\psf\Home\Desktop\AgileCheckout\ScrumDevelopmentApplication\ScrumDevelopmentServices\obj\Debug\ScrumDevelopmentServices.dll
+\\psf\Home\Desktop\AgileCheckout\ScrumDevelopmentApplication\ScrumDevelopmentServices\obj\Debug\ScrumDevelopmentServices.pdb
+C:\Users\Pawel\Desktop\new\ScrumDevelopmentServices\bin\ScrumDevelopmentServices.dll.config
+C:\Users\Pawel\Desktop\new\ScrumDevelopmentServices\bin\ScrumDevelopmentServices.dll
+C:\Users\Pawel\Desktop\new\ScrumDevelopmentServices\bin\ScrumDevelopmentServices.pdb
+C:\Users\Pawel\Desktop\new\ScrumDevelopmentServices\bin\EntityFramework.dll
+C:\Users\Pawel\Desktop\new\ScrumDevelopmentServices\bin\EntityFramework.SqlServer.dll
+C:\Users\Pawel\Desktop\new\ScrumDevelopmentServices\bin\ScrumDevelopmentServer.exe
+C:\Users\Pawel\Desktop\new\ScrumDevelopmentServices\bin\ScrumDevelopmentInterface.dll
+C:\Users\Pawel\Desktop\new\ScrumDevelopmentServices\bin\ScrumDevelopmentServer.pdb
+C:\Users\Pawel\Desktop\new\ScrumDevelopmentServices\bin\EntityFramework.xml
+C:\Users\Pawel\Desktop\new\ScrumDevelopmentServices\bin\EntityFramework.SqlServer.xml
+C:\Users\Pawel\Desktop\new\ScrumDevelopmentServices\bin\ScrumDevelopmentInterface.pdb
+C:\Users\Pawel\Desktop\new\ScrumDevelopmentServices\obj\Debug\ScrumDevelopmentServices.csprojResolveAssemblyReference.cache
+C:\Users\Pawel\Desktop\new\ScrumDevelopmentServices\obj\Debug\ScrumDevelopmentServices.dll
+C:\Users\Pawel\Desktop\new\ScrumDevelopmentServices\obj\Debug\ScrumDevelopmentServices.pdb
+\\psf\Home\Documents\Qub\Level_3\Agile\PuttingTestsbackinSolution\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\ScrumDevelopmentServices.dll.config
+\\psf\Home\Documents\Qub\Level_3\Agile\PuttingTestsbackinSolution\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\ScrumDevelopmentServices.dll
+\\psf\Home\Documents\Qub\Level_3\Agile\PuttingTestsbackinSolution\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\ScrumDevelopmentServices.pdb
+\\psf\Home\Documents\Qub\Level_3\Agile\PuttingTestsbackinSolution\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\EntityFramework.dll
+\\psf\Home\Documents\Qub\Level_3\Agile\PuttingTestsbackinSolution\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\EntityFramework.SqlServer.dll
+\\psf\Home\Documents\Qub\Level_3\Agile\PuttingTestsbackinSolution\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\ScrumDevelopmentServer.exe
+\\psf\Home\Documents\Qub\Level_3\Agile\PuttingTestsbackinSolution\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\ScrumDevelopmentInterface.dll
+\\psf\Home\Documents\Qub\Level_3\Agile\PuttingTestsbackinSolution\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\ScrumDevelopmentServer.pdb
+\\psf\Home\Documents\Qub\Level_3\Agile\PuttingTestsbackinSolution\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\EntityFramework.xml
+\\psf\Home\Documents\Qub\Level_3\Agile\PuttingTestsbackinSolution\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\EntityFramework.SqlServer.xml
+\\psf\Home\Documents\Qub\Level_3\Agile\PuttingTestsbackinSolution\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\ScrumDevelopmentInterface.pdb
+\\psf\Home\Documents\Qub\Level_3\Agile\PuttingTestsbackinSolution\ScrumDevelopmentApplication\ScrumDevelopmentServices\obj\Debug\ScrumDevelopmentServices.csprojResolveAssemblyReference.cache
+\\psf\Home\Documents\Qub\Level_3\Agile\PuttingTestsbackinSolution\ScrumDevelopmentApplication\ScrumDevelopmentServices\obj\Debug\ScrumDevelopmentServices.dll
+\\psf\Home\Documents\Qub\Level_3\Agile\PuttingTestsbackinSolution\ScrumDevelopmentApplication\ScrumDevelopmentServices\obj\Debug\ScrumDevelopmentServices.pdb
+C:\Users\Pawel\Desktop\nowy\ScrumDevelopmentServices\bin\ScrumDevelopmentServices.dll.config
+C:\Users\Pawel\Desktop\nowy\ScrumDevelopmentServices\bin\ScrumDevelopmentServices.dll
+C:\Users\Pawel\Desktop\nowy\ScrumDevelopmentServices\bin\ScrumDevelopmentServices.pdb
+C:\Users\Pawel\Desktop\nowy\ScrumDevelopmentServices\bin\EntityFramework.dll
+C:\Users\Pawel\Desktop\nowy\ScrumDevelopmentServices\bin\EntityFramework.SqlServer.dll
+C:\Users\Pawel\Desktop\nowy\ScrumDevelopmentServices\bin\ScrumDevelopmentServer.exe
+C:\Users\Pawel\Desktop\nowy\ScrumDevelopmentServices\bin\ScrumDevelopmentInterface.dll
+C:\Users\Pawel\Desktop\nowy\ScrumDevelopmentServices\bin\ScrumDevelopmentServer.pdb
+C:\Users\Pawel\Desktop\nowy\ScrumDevelopmentServices\bin\EntityFramework.xml
+C:\Users\Pawel\Desktop\nowy\ScrumDevelopmentServices\bin\EntityFramework.SqlServer.xml
+C:\Users\Pawel\Desktop\nowy\ScrumDevelopmentServices\bin\ScrumDevelopmentInterface.pdb
+C:\Users\Pawel\Desktop\nowy\ScrumDevelopmentServices\obj\Debug\ScrumDevelopmentServices.csprojResolveAssemblyReference.cache
+C:\Users\Pawel\Desktop\nowy\ScrumDevelopmentServices\obj\Debug\ScrumDevelopmentServices.dll
+C:\Users\Pawel\Desktop\nowy\ScrumDevelopmentServices\obj\Debug\ScrumDevelopmentServices.pdb
+C:\Users\Message\Documents\Visual Studio 2013\Projects\ScrumDevelopmentApplication(76)\ScrumDevelopmentServices\bin\ScrumDevelopmentServices.dll.config
+C:\Users\Message\Documents\Visual Studio 2013\Projects\ScrumDevelopmentApplication(76)\ScrumDevelopmentServices\bin\ScrumDevelopmentServices.dll
+C:\Users\Message\Documents\Visual Studio 2013\Projects\ScrumDevelopmentApplication(76)\ScrumDevelopmentServices\bin\ScrumDevelopmentServices.pdb
+C:\Users\Message\Documents\Visual Studio 2013\Projects\ScrumDevelopmentApplication(76)\ScrumDevelopmentServices\bin\EntityFramework.dll
+C:\Users\Message\Documents\Visual Studio 2013\Projects\ScrumDevelopmentApplication(76)\ScrumDevelopmentServices\bin\EntityFramework.SqlServer.dll
+C:\Users\Message\Documents\Visual Studio 2013\Projects\ScrumDevelopmentApplication(76)\ScrumDevelopmentServices\bin\ScrumDevelopmentServer.exe
+C:\Users\Message\Documents\Visual Studio 2013\Projects\ScrumDevelopmentApplication(76)\ScrumDevelopmentServices\bin\ScrumDevelopmentInterface.dll
+C:\Users\Message\Documents\Visual Studio 2013\Projects\ScrumDevelopmentApplication(76)\ScrumDevelopmentServices\bin\ScrumDevelopmentServer.pdb
+C:\Users\Message\Documents\Visual Studio 2013\Projects\ScrumDevelopmentApplication(76)\ScrumDevelopmentServices\bin\EntityFramework.xml
+C:\Users\Message\Documents\Visual Studio 2013\Projects\ScrumDevelopmentApplication(76)\ScrumDevelopmentServices\bin\EntityFramework.SqlServer.xml
+C:\Users\Message\Documents\Visual Studio 2013\Projects\ScrumDevelopmentApplication(76)\ScrumDevelopmentServices\bin\ScrumDevelopmentInterface.pdb
+C:\Users\Message\Documents\Visual Studio 2013\Projects\ScrumDevelopmentApplication(76)\ScrumDevelopmentServices\obj\Debug\ScrumDevelopmentServices.csprojResolveAssemblyReference.cache
+C:\Users\Message\Documents\Visual Studio 2013\Projects\ScrumDevelopmentApplication(76)\ScrumDevelopmentServices\obj\Debug\ScrumDevelopmentServices.dll
+C:\Users\Message\Documents\Visual Studio 2013\Projects\ScrumDevelopmentApplication(76)\ScrumDevelopmentServices\obj\Debug\ScrumDevelopmentServices.pdb
+D:\Desktop\Monday\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\ScrumDevelopmentServices.dll.config
+D:\Desktop\Monday\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\ScrumDevelopmentServices.dll
+D:\Desktop\Monday\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\ScrumDevelopmentServices.pdb
+D:\Desktop\Monday\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\EntityFramework.dll
+D:\Desktop\Monday\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\EntityFramework.SqlServer.dll
+D:\Desktop\Monday\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\ScrumDevelopmentServer.exe
+D:\Desktop\Monday\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\ScrumDevelopmentInterface.dll
+D:\Desktop\Monday\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\ScrumDevelopmentServer.pdb
+D:\Desktop\Monday\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\EntityFramework.xml
+D:\Desktop\Monday\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\EntityFramework.SqlServer.xml
+D:\Desktop\Monday\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\ScrumDevelopmentInterface.pdb
+D:\Desktop\Monday\ScrumDevelopmentApplication\ScrumDevelopmentServices\obj\Debug\ScrumDevelopmentServices.csprojResolveAssemblyReference.cache
+D:\Desktop\Monday\ScrumDevelopmentApplication\ScrumDevelopmentServices\obj\Debug\ScrumDevelopmentServices.dll
+D:\Desktop\Monday\ScrumDevelopmentApplication\ScrumDevelopmentServices\obj\Debug\ScrumDevelopmentServices.pdb
+\\psf\Home\Documents\Qub\Level_3\Agile\AgileWorkspace3\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\ScrumDevelopmentServices.dll.config
+\\psf\Home\Documents\Qub\Level_3\Agile\AgileWorkspace3\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\ScrumDevelopmentServices.dll
+\\psf\Home\Documents\Qub\Level_3\Agile\AgileWorkspace3\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\ScrumDevelopmentServices.pdb
+\\psf\Home\Documents\Qub\Level_3\Agile\AgileWorkspace3\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\EntityFramework.dll
+\\psf\Home\Documents\Qub\Level_3\Agile\AgileWorkspace3\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\EntityFramework.SqlServer.dll
+\\psf\Home\Documents\Qub\Level_3\Agile\AgileWorkspace3\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\ScrumDevelopmentServer.exe
+\\psf\Home\Documents\Qub\Level_3\Agile\AgileWorkspace3\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\ScrumDevelopmentInterface.dll
+\\psf\Home\Documents\Qub\Level_3\Agile\AgileWorkspace3\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\ScrumDevelopmentServer.pdb
+\\psf\Home\Documents\Qub\Level_3\Agile\AgileWorkspace3\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\EntityFramework.xml
+\\psf\Home\Documents\Qub\Level_3\Agile\AgileWorkspace3\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\EntityFramework.SqlServer.xml
+\\psf\Home\Documents\Qub\Level_3\Agile\AgileWorkspace3\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\ScrumDevelopmentInterface.pdb
+\\psf\Home\Documents\Qub\Level_3\Agile\AgileWorkspace3\ScrumDevelopmentApplication\ScrumDevelopmentServices\obj\Debug\ScrumDevelopmentServices.csprojResolveAssemblyReference.cache
+\\psf\Home\Documents\Qub\Level_3\Agile\AgileWorkspace3\ScrumDevelopmentApplication\ScrumDevelopmentServices\obj\Debug\ScrumDevelopmentServices.dll
+\\psf\Home\Documents\Qub\Level_3\Agile\AgileWorkspace3\ScrumDevelopmentApplication\ScrumDevelopmentServices\obj\Debug\ScrumDevelopmentServices.pdb
+\\psf\Home\Documents\Qub\Level_3\Agile\AgileWorkspace4\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\ScrumDevelopmentServices.dll.config
+\\psf\Home\Documents\Qub\Level_3\Agile\AgileWorkspace4\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\ScrumDevelopmentServices.dll
+\\psf\Home\Documents\Qub\Level_3\Agile\AgileWorkspace4\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\ScrumDevelopmentServices.pdb
+\\psf\Home\Documents\Qub\Level_3\Agile\AgileWorkspace4\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\EntityFramework.dll
+\\psf\Home\Documents\Qub\Level_3\Agile\AgileWorkspace4\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\EntityFramework.SqlServer.dll
+\\psf\Home\Documents\Qub\Level_3\Agile\AgileWorkspace4\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\ScrumDevelopmentServer.exe
+\\psf\Home\Documents\Qub\Level_3\Agile\AgileWorkspace4\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\ScrumDevelopmentInterface.dll
+\\psf\Home\Documents\Qub\Level_3\Agile\AgileWorkspace4\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\ScrumDevelopmentServer.pdb
+\\psf\Home\Documents\Qub\Level_3\Agile\AgileWorkspace4\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\EntityFramework.xml
+\\psf\Home\Documents\Qub\Level_3\Agile\AgileWorkspace4\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\EntityFramework.SqlServer.xml
+\\psf\Home\Documents\Qub\Level_3\Agile\AgileWorkspace4\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\ScrumDevelopmentInterface.pdb
+\\psf\Home\Documents\Qub\Level_3\Agile\AgileWorkspace4\ScrumDevelopmentApplication\ScrumDevelopmentServices\obj\Debug\ScrumDevelopmentServices.csprojResolveAssemblyReference.cache
+\\psf\Home\Documents\Qub\Level_3\Agile\AgileWorkspace4\ScrumDevelopmentApplication\ScrumDevelopmentServices\obj\Debug\ScrumDevelopmentServices.dll
+\\psf\Home\Documents\Qub\Level_3\Agile\AgileWorkspace4\ScrumDevelopmentApplication\ScrumDevelopmentServices\obj\Debug\ScrumDevelopmentServices.pdb
+\\psf\Home\Documents\Qub\Level_3\Agile\AgileWorkspace2\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\ScrumDevelopmentServices.dll.config
+\\psf\Home\Documents\Qub\Level_3\Agile\AgileWorkspace2\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\ScrumDevelopmentServices.dll
+\\psf\Home\Documents\Qub\Level_3\Agile\AgileWorkspace2\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\ScrumDevelopmentServices.pdb
+\\psf\Home\Documents\Qub\Level_3\Agile\AgileWorkspace2\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\EntityFramework.dll
+\\psf\Home\Documents\Qub\Level_3\Agile\AgileWorkspace2\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\EntityFramework.SqlServer.dll
+\\psf\Home\Documents\Qub\Level_3\Agile\AgileWorkspace2\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\ScrumDevelopmentServer.exe
+\\psf\Home\Documents\Qub\Level_3\Agile\AgileWorkspace2\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\ScrumDevelopmentInterface.dll
+\\psf\Home\Documents\Qub\Level_3\Agile\AgileWorkspace2\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\ScrumDevelopmentServer.pdb
+\\psf\Home\Documents\Qub\Level_3\Agile\AgileWorkspace2\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\EntityFramework.xml
+\\psf\Home\Documents\Qub\Level_3\Agile\AgileWorkspace2\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\EntityFramework.SqlServer.xml
+\\psf\Home\Documents\Qub\Level_3\Agile\AgileWorkspace2\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\ScrumDevelopmentInterface.pdb
+\\psf\Home\Documents\Qub\Level_3\Agile\AgileWorkspace2\ScrumDevelopmentApplication\ScrumDevelopmentServices\obj\Debug\ScrumDevelopmentServices.csprojResolveAssemblyReference.cache
+\\psf\Home\Documents\Qub\Level_3\Agile\AgileWorkspace2\ScrumDevelopmentApplication\ScrumDevelopmentServices\obj\Debug\ScrumDevelopmentServices.dll
+\\psf\Home\Documents\Qub\Level_3\Agile\AgileWorkspace2\ScrumDevelopmentApplication\ScrumDevelopmentServices\obj\Debug\ScrumDevelopmentServices.pdb
+C:\Users\Stuart\Desktop\Fri8\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\ScrumDevelopmentServices.dll.config
+C:\Users\Stuart\Desktop\Fri8\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\ScrumDevelopmentServices.dll
+C:\Users\Stuart\Desktop\Fri8\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\ScrumDevelopmentServices.pdb
+C:\Users\Stuart\Desktop\Fri8\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\EntityFramework.dll
+C:\Users\Stuart\Desktop\Fri8\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\EntityFramework.SqlServer.dll
+C:\Users\Stuart\Desktop\Fri8\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\ScrumDevelopmentServer.exe
+C:\Users\Stuart\Desktop\Fri8\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\ScrumDevelopmentInterface.dll
+C:\Users\Stuart\Desktop\Fri8\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\ScrumDevelopmentServer.pdb
+C:\Users\Stuart\Desktop\Fri8\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\EntityFramework.xml
+C:\Users\Stuart\Desktop\Fri8\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\EntityFramework.SqlServer.xml
+C:\Users\Stuart\Desktop\Fri8\ScrumDevelopmentApplication\ScrumDevelopmentServices\bin\ScrumDevelopmentInterface.pdb
+C:\Users\Stuart\Desktop\Fri8\ScrumDevelopmentApplication\ScrumDevelopmentServices\obj\Debug\ScrumDevelopmentServices.csprojResolveAssemblyReference.cache
+C:\Users\Stuart\Desktop\Fri8\ScrumDevelopmentApplication\ScrumDevelopmentServices\obj\Debug\ScrumDevelopmentServices.dll
+C:\Users\Stuart\Desktop\Fri8\ScrumDevelopmentApplication\ScrumDevelopmentServices\obj\Debug\ScrumDevelopmentServices.pdb
