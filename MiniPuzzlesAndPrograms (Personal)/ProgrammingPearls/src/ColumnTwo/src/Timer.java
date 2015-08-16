@@ -1,4 +1,3 @@
-package ColumnTwo;
 
 public class Timer implements Runnable {
 	

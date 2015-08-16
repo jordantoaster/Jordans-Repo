@@ -1,5 +1,3 @@
-package ColumnTwo;
-
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -42,11 +40,6 @@ public class CalculateMissingNumProblem {
 		}
 	}
 
-	/*
-	 * V1 - start at 1 and evaluate the array of size n, n amount of times for each index...
-	 * searching for a new integer each time in the array.
-	 * AVERAGE TIME (3 runs) FOR 100,000 integers processed = 23.9 seconds
-	 * */
 	private static ArrayList<Integer> findMissingNumbersNxNSolution(int[] randomNumbers) {
 		ArrayList<Integer> missingNumbers = new ArrayList<Integer>();
 		final int maxAmount = randomNumbers.length;
@@ -65,10 +58,10 @@ public class CalculateMissingNumProblem {
 	}
 
 	//Fills an int array with random values
-	private static int[] getArrayOfRandomInts() {	
+	static int[] getArrayOfRandomInts() {	
 		
 		//max amount is an indicator of size and the potential amount of integers in each index.
-		final int maxAmount = 100000;
+		final int maxAmount = 100;
 		
 		Random rand = new Random();
 		int[] randomNumbers = new int[maxAmount];

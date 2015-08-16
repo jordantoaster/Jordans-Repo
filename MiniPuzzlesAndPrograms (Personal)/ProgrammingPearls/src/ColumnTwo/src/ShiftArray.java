@@ -1,4 +1,3 @@
-package ColumnTwo;
 
 /*
  * Program takes an array and shifts each element to the right by an amount 'n'
