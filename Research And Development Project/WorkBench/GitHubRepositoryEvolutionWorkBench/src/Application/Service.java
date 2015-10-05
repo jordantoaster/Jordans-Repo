@@ -33,8 +33,8 @@ public class Service extends HttpServlet {
 		
 		Action action = ActionFactory.getAction(request);
 		String view = action.execute(request, response);
-
-		//change link to JSP - TODO
-        //request.getRequestDispatcher("/WEB-INF/" + view + ".jsp").forward(request, response);		
+		
+		request.setAttribute("message", "injected message");
+        request.getRequestDispatcher("/jsp/"+ view +".jsp").forward(request, response);
 	}
 }

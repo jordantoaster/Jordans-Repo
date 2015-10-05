@@ -8,7 +8,8 @@ public class LoginAction implements Action {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
 
-		return null;
+		//if user found return splash else return new page
+		return "QueryPage";
 	}
 
 }

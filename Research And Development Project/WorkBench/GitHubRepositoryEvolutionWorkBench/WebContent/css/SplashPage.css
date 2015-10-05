@@ -1,0 +1,46 @@
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
+	/*background-color: rgba(0, 0, 0, 0);
+	color: white;
+	border-width: 1px;*/
+}
+
+
+.submitButton {
+	/*margin-left: 45%;
+	margin-right: 45%;
+	background-color: rgba(0, 0, 0, 0);
+	color: white;
+	border: 1px solid white;
+	padding: 10px;
+	border-radius: 8px;*/
+}
+
+.tabListCustom {
+
+}
+
+.tabText {
+
+	}
+
+a:hover {
+
+}
+
+.tab-content {
+	/*padding-top: 10px;*/
+}
+
+#container {
+	/*background-color: rgba(0, 0, 0, 0);
+	margin-left: auto;
+  	margin-right: auto;
+  	width: 90%;*/
+}
+
+#tabContainer {
+	width: 45%;
+    margin: 0 auto;
+    padding: 10px;
+    margin-top: 10%;   
+}
