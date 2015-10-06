@@ -1,4 +1,4 @@
-package Application;
+package Daos;
 
 public class UserDao {
 

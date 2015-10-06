@@ -1,4 +1,4 @@
-package Application;
+package Servlets;
 
 
 import java.io.IOException;
@@ -7,6 +7,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import Actions.Action;
+import Actions.ActionFactory;
 
 /**
  * Servlet implementation class Service - Implements the front controller (mediator) pattern

@@ -1,4 +1,4 @@
-package Application;
+package Models;
 
 public class User {
 	

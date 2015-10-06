@@ -1,4 +1,4 @@
-package Application;
+package Actions;
 
 import javax.servlet.http.HttpServletRequest;
 

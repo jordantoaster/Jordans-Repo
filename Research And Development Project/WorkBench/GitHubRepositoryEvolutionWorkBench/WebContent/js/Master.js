@@ -2,16 +2,13 @@
  * 
  */
 
-function performAjaxRequest(action, data, type, url, callback){  
+function performAjaxRequestGitHub(url, callback){  
 	$.ajax({
-	  type : type,
+	  dataType: 'JSON',
+	  type : "GET",
 	  url : url,
-	  data : {
-	    action : action,
-	    data : data
-       },
 	  success : function(response) {
-		  //callback();
+		  callback(response);
 	  },
 	  error: function() {
 		            	
