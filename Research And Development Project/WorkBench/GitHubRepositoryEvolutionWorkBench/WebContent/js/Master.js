@@ -11,7 +11,7 @@ function performAjaxRequestGitHub(url, callback){
 		  callback(response);
 	  },
 	  error: function() {
-		            	
+		  //show error message         	
 	  }
 	 });
 };
