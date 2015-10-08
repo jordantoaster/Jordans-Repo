@@ -47,4 +47,3 @@ function convertISO8601toDate(dtstr) {
 
 	  //return convdt.toUTCString();
 	}
-

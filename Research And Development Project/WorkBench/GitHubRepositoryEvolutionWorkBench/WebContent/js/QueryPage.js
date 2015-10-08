@@ -31,7 +31,7 @@ function collectCommitData(json){
 		//date = new date();
 		//date = Date.parse(json[0].commit.author.date);
 		
-		var date = convertISO8601toDate(json[i].commit.author.date);
+		var date = convertISO8601toDate(json[i].commit.committer.date);
 		
 		//increment each time month and year havnt changed
 		if(firstDate){
@@ -40,6 +40,8 @@ function collectCommitData(json){
 			commitsPerMonth[monthCounter] = 0;
 		}
 		
+		console.log(date[1] + "  " + date[2])
+				
 		if(date[1] < dates[monthCounter][1] || date[2] < dates[monthCounter][2]){
 			monthCounter++;
 			dates[monthCounter] = date;
@@ -101,7 +103,9 @@ function drawChart(){
     data.addColumn('string', 'Month')
     data.addColumn('number', 'Commits')
     
+    
     for(var i =0; i<dates.length; i++){
+       // console.log(dates[i][2])
     	data.addRow([dates[i][0] + "-" + dates[i][1] + "-" + dates[i][2], commitsPerMonth[i]])
     }
     
