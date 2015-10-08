@@ -2,10 +2,10 @@
  * 
  */
 
-function performAjaxRequestGitHub(url, callback){  
+function performAjaxRequestGitHub(url, type, callback){  
 	$.ajax({
 	  dataType: 'JSON',
-	  type : "GET",
+	  type : type,
 	  url : url,
 	  beforeSend: function(req) {
 	      req.setRequestHeader('Authorization', 'Basic ' + btoa('jordantoaster:jordan321'));

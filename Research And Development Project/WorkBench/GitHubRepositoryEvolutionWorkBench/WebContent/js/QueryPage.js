@@ -20,7 +20,7 @@ $(document).ready(function(e) {
 });
 
 function getApiCommitData(url, callback){
-	performAjaxRequestGitHub(url, callback);
+	performAjaxRequestGitHub(url, "GET", callback);
 }
 
 function collectCommitData(json){	
@@ -67,6 +67,8 @@ function collectCommitData(json){
 }
 
 function visualiseData(commits, dates){
+	
+	$('#total').text(commitIterator);
 	
 	//this stops chart library overriding page
 	if(google) {
