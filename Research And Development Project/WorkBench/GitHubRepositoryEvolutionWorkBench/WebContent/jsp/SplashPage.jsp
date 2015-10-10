@@ -13,15 +13,19 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </head>
 <body>
-<div id="tabContainer">
+ <div id="tabContainer">
   <ul class="nav nav-tabs tabListCustom">
     <li class="active"><a class="tabText" data-toggle="tab" href="#login">Login</a></li>
     <li><a class="tabText" data-toggle="tab" href="#register">Register</a></li>
   </ul>
   <div class="tab-content">
     <div id="login" class="tab-pane fade in active">
-    <form name="loginForm" method="post" action="Service">
-       <input name="action" type="submit" value="login" class="submitButton" id="submitButtonLog" class="btn btn-default">
+    <form id="loginForm" name="loginForm" method="post">
+      <p class="formHeader">Username</p>
+      <input type="text" name="username" id="passwordFeild">
+      <p class="formHeader">Password</p>
+      <input type="text" name="password" id="userNameFeild">
+      <input name="action" type="submit" value="login" class="submitButton" id="submitButtonLog" class="btn btn-default">
     </form>
   </div>
   <div id="register" class="tab-pane fade">

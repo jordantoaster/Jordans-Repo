@@ -2,14 +2,19 @@ package Models;
 
 public class User {
 	
-	public String name;
+	public String username;
 	public String password;
 	
-	public String getName() {
-		return name;
+	public User(String username, String password){
+		this.username = username;
+		this.password = password;
 	}
-	public void setName(String name) {
-		this.name = name;
+	
+	public String getName() {
+		return username;
+	}
+	public void setName(String username) {
+		this.username = username;
 	}
 	public String getPassword() {
 		return password;

@@ -19,6 +19,23 @@ function performAjaxRequestGitHub(url, type, callback){
 	 });
 };
 
+function performAjaxRequestServer(action, callback, type, input){  
+	$.ajax({
+	  type : type,
+	  url : 'http://localhost:8080/GitHubRepositoryEvolutionWorkBench/Service',
+      data : { 
+      	input: input,
+      	action: action
+      },
+	  success : function(response) {
+		  callback(response);
+	  },
+	  error: function() {
+		  //error message add here
+	  }
+	 });
+};
+
 function convertISO8601toDate(dtstr) {
 
 	  // replace anything but numbers by spaces

@@ -32,12 +32,12 @@ public class Service extends HttpServlet {
 	}
 	
 	protected void performAction(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-		
 		Action action = ActionFactory.getAction(request);
-		String view = action.execute(request, response);
+		String outcome = action.execute(request, response);
 		
-		request.setAttribute("message", "injected message");
-        request.getRequestDispatcher("/jsp/"+ view +".jsp").forward(request, response);
+		response.getWriter().write(outcome);
+		
+		//request.setAttribute("message", "injected message");
+        //request.getRequestDispatcher("/jsp/"+ view +".jsp").forward(request, response);
 	}
 }
