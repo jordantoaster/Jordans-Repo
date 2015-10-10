@@ -4,8 +4,8 @@
 <html>
   <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/QueryPage.js?v3"></script>
-    <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Master.js?v3"></script>
+    <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/QueryPage2.js?v3"></script>
+    <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Master2.js?v3"></script>
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
