@@ -22,16 +22,26 @@
   <div class="tab-content">
     <div id="login" class="tab-pane fade in active">
     <form id="loginForm" name="loginForm" method="post">
-      <p class="formHeader">Username</p>
-      <input type="text" name="username" id="passwordFeild">
+      <p class="formHeader">Username   <span class="glyphicon glyphicon-user icon" aria-hidden="true"></span></p> 
+      <input type="text" name="username" class="fields" id="passwordFeild">
       <p class="formHeader">Password</p>
-      <input type="text" name="password" id="userNameFeild">
+      <input type="password" name="password" class="fields" id="userNameFeild">
       <input name="action" type="submit" value="Click To Login" class="submitButton" id="submitButtonLog" class="btn btn-default">
     </form>
   </div>
   <div id="register" class="tab-pane fade">
+   <form id="loginForm" name="loginForm" method="post">
+    <p class="formHeader">Username   <span class="glyphicon glyphicon-user icon" aria-hidden="true"></span></p> 
+    <input type="text" name="username" class="fields" id="passwordFeild">
+    <p class="formHeader">Password</p>
+    <input type="password" name="password" class="fields" id="userNameFeild">
+    <p class="formHeader">Confirm Password</p>
+    <input type="password" name="password" class="fields" id="userNameFeild">
+    <input name="action" type="submit" value="Click To Register" class="submitButton" id="submitButtonReg" class="btn btn-default">
+   </form>
   </div>
   </div>
  </div>
+ <div id="ajaxGetUserServletResponse" class="alert alert-success" role="alert"></div>   
 </body>
 </html>

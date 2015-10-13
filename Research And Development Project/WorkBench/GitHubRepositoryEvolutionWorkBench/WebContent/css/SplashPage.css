@@ -1,20 +1,21 @@
 .nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
-	background-color: rgba(0, 0, 0, 0) !important;
-	color: #5f5f5f;
+	background-color: #00CC66 !important;
+	color: white !important;
 	border-width: 1px;
 	border-color: #5f5f5f;
 }
 
-.nav-tabs li{
+.nav-tabs li a {
 	color: #5f5f5f;
 	font-size: 2.5em;
-	border-color: #5f5f5f;
+	border-color: #5f5f5f !important;
 	border-width: 1px;
 	margin-left: 10px;
 }
 
 .formHeader {
 	font-size: 2em;
+	margin-top: 2%;
 }
 
 .nav-tabs {
@@ -23,11 +24,16 @@
 
 
 .submitButton {
-	background-color: rgba(0, 0, 0, 0);
+	background-color: rgba(0, 204, 102,1) !important;
 	border: 1px solid #5f5f5f;
 	padding: 15px;
 	font-size: 2em;
 	border-radius: 10px;
+	display: block;
+	margin-top: 3%;
+	color: white;
+	margin-left: 40%;
+    text-align:center;
 }
 
 .tabText {
@@ -35,7 +41,7 @@
 }
 
 a:hover {
-	background-color: rgba(0, 0, 0, 0) !important;
+	background-color: rgba(0, 204, 102, 0.4) !important;
 	border-color: #5f5f5f !important;
 }
 
@@ -43,12 +49,19 @@ a:hover {
 	padding-top: 10px;
 }
 
+.fields {
+	width: 100%;
+	font-size: 1.75em
+}
+
+.icon {
+	color: rgba(0, 204, 102,1) ;
+}
 
 #tabContainer {
 	width: 45%;
     margin: 0 auto;
     padding: 20px;
-    margin-top: 15%;   
+    margin-top: 12.5%;   
     background-color: rgb(0,0,0,0);
-    border: 2px solid #5f5f5f;
 }
