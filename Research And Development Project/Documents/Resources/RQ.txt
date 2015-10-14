@@ -35,12 +35,14 @@ RQ8 - How does the evolution of a software project on Github affect the users wh
 *do users who are watching also commit to other projects aside from proj in question, if so how many, how often do they commit etc
 *need to word this better (refine)
 
-RQ9 - 
+RQ9 - Is it possible to extract data about a project hosted on Github which can be used to measure a projects health? (is it losing users, less watchers, downloads etc)
+*will allow aspects of 'feature extraction' from which we can apply the likes of nearest neighbour to classify based on the repo data against a training set
 
 
 
 General notes:
 * we can create graphs that compare forks (or pulls) as stars (contributors, LOC) increase (scatter graphs etc)
+* some of these couldbe supporting hypotheses or supporting Rq's
 * additional parameters on github api calls for starring can get time user starred the repo (very useful)
 *can list all contributors
 *can list comments (analyse for comment length changes over time etc)
