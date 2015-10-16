@@ -12,6 +12,10 @@ public class ActionFactory {
 			return new LoginAction();
 		}
 		
+		if(request.getParameter("action").equals("register")){
+			return new RegisterAction();
+		}
+		
 		return new NoAction();
 	}
 }

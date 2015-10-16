@@ -7,9 +7,9 @@
 <title>Login Or Register</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Master.js"></script>
-<script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/SplashPage.js"></script>
+<script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/SplashPage.js?v2"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-<link rel="stylesheet" href="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/css/SplashPage.css">
+<link rel="stylesheet" href="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/css/SplashPage.css?v2">
 <link rel="stylesheet" href="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/css/Master.css?v2">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </head>
@@ -32,11 +32,11 @@
   <div id="register" class="tab-pane fade">
    <form id="loginForm" name="loginForm" method="post">
     <p class="formHeader">Username   <span class="glyphicon glyphicon-user icon" aria-hidden="true"></span></p> 
-    <input type="text" name="username" class="fields" id="passwordFeild">
+    <input type="text" name="username" class="fields" id="userNameFeildReg">
     <p class="formHeader">Password</p>
-    <input type="password" name="password" class="fields" id="userNameFeild">
+    <input type="password" name="password" class="fields" id="passwordFeildReg">
     <p class="formHeader">Confirm Password</p>
-    <input type="password" name="password" class="fields" id="userNameFeild">
+    <input type="password" name="password" class="fields" id="passwordFeildConfirmReg">
     <input name="action" type="submit" value="Click To Register" class="submitButton" id="submitButtonReg" class="btn btn-default">
    </form>
   </div>

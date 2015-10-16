@@ -24,16 +24,21 @@
 
 
 .submitButton {
-	background-color: rgba(0, 204, 102,1) !important;
+	background-color: rgba(0, 204, 102,0.5) !important;
 	border: 1px solid #5f5f5f;
 	padding: 15px;
 	font-size: 2em;
 	border-radius: 10px;
 	display: block;
 	margin-top: 3%;
-	color: white;
+	color: #5f5f5f;
 	margin-left: 40%;
     text-align:center;
+}
+
+.submitButton:hover {
+	background-color: #00CC66 !important;
+	color: white;
 }
 
 .tabText {

@@ -14,8 +14,8 @@ function performAjaxRequestGitHub(url, type, callback){
 		  callback(response);
 	  },
 	  error: function() {
-		  //show error message         	
-	  }
+       	$('#ajaxGetUserServletResponse').text("An error occured when connecting to the server");
+      	$("#ajaxGetUserServletResponse").css({"opacity":"1"});	  }
 	 });
 };
 
