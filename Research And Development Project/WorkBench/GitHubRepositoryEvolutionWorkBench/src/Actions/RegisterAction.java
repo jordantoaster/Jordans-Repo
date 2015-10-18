@@ -3,8 +3,11 @@ package Actions;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
+
 import Daos.UserDao;
 import Models.User;
+import Utility.ResponseBase;
 
 public class RegisterAction implements Action{
 
@@ -16,15 +19,16 @@ public class RegisterAction implements Action{
 		boolean isValidated = validateRegisterDetails(user, loginDetails[2]);
 
 		UserDao dao = new UserDao();
+		Gson gson = new Gson();
 		
 		if(!isValidated){
-			return "false";
+			return gson.toJson(new ResponseBase("false","Ensure your username is correct - The password contains a letter, number and a symbol - Passwords match"));
 		}
 		
 		String alreadyInSystem = dao.findUser(user);
 		
 		if(alreadyInSystem.equals(true)){
-			return "false";
+			return gson.toJson(new ResponseBase("false","username is already on the system"));
 		}
 
 		return dao.createUser(user);

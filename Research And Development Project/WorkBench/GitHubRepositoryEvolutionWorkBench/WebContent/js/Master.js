@@ -14,14 +14,16 @@ function performAjaxRequestGitHub(url, type, callback){
 		  callback(response);
 	  },
 	  error: function() {
-       	$('#ajaxGetUserServletResponse').text("An error occured when connecting to the server");
-      	$("#ajaxGetUserServletResponse").css({"opacity":"1"});	  }
+       	$('#ajaxGetUserServletResponse').text("An error occured when connecting to the API");
+      	$("#ajaxGetUserServletResponse").css({"opacity":"1"});	  
+     }
 	 });
 };
 
 function performAjaxRequestServer(action, callback, type, input){  
 	$.ajax({
 	  type : type,
+	  contentType: "application/json",
 	  url : 'http://localhost:8080/GitHubRepositoryEvolutionWorkBench/Service',
       data : { 
       	input: input,
@@ -31,7 +33,8 @@ function performAjaxRequestServer(action, callback, type, input){
 		  callback(response);
 	  },
 	  error: function() {
-		  //error message add here
+	       	$('#ajaxGetUserServletResponse').text("An error occured when connecting to the Server");
+	      	$("#ajaxGetUserServletResponse").css({"opacity":"1"});	 
 	  }
 	 });
 };

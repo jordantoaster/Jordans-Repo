@@ -1,15 +1,19 @@
 package Daos;
 
+import com.google.gson.Gson;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
 import com.mongodb.MongoException;
 
 import Models.User;
+import Utility.ResponseBase;
 
 public class UserDao {
 	
 	public String findUser(User user){
+		
+		Gson gson = new Gson();
 		
 		try {
 			DBCollection userCollection = new dbConnectionBuilder().getMongoCollection("Users");
@@ -21,13 +25,13 @@ public class UserDao {
 			DBCursor cursor = userCollection.find(searchQuery);
 		
 			while (cursor.hasNext()) {
-				return "true";
+				return gson.toJson(new ResponseBase("true","found user"));
 			}
 		} catch(MongoException e){
 			System.out.println(e);
 		}
 		
-		return "false";
+		return gson.toJson(new ResponseBase("false","Your details are not on the system"));
 	}
 	
 	public String createUser(User user){

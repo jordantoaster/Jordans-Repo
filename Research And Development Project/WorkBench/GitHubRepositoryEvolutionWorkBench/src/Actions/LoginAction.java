@@ -3,8 +3,11 @@ package Actions;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
+
 import Daos.UserDao;
 import Models.User;
+import Utility.ResponseBase;
 
 public class LoginAction implements Action {
 
@@ -15,10 +18,12 @@ public class LoginAction implements Action {
 		User user = new User(loginDetails[0], loginDetails[1], "standard");
 		
 		boolean isValidated = validateLoginDetails(user);
+		
 		UserDao dao = new UserDao();
+		Gson gson = new Gson();
 		
 		if(!isValidated){
-			return "false";
+			return gson.toJson(new ResponseBase("false","Ensure your username is correct - The password contains a letter, number and a symbol"));
 		}
 
 		return dao.findUser(user);
@@ -26,10 +31,10 @@ public class LoginAction implements Action {
 		
 	public boolean validateLoginDetails(User user){
 		
-        String patternString = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[$@$!%*#?&])[A-Za-z\\d$@$!%*#?&]{6,}$";
+        String patternString = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[$@$!%*#?&])[A-Za-z\\d$@$!%*#?&]{8,}$";
         boolean matches = user.password.matches(patternString);
 		
-		if(user.password.length() < 6 || user.username.length() < 6 || !matches){
+		if(user.username.length() < 6 || !matches){
 			return false;
 		}
 				

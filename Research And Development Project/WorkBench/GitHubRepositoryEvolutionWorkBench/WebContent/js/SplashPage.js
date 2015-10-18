@@ -27,11 +27,13 @@ $(document).ready(function(e) {
 	});
 });
 
-function handleResponse(outcome){
-	if(outcome == "true"){
+function handleResponse(response){
+	json = JSON.parse(response);
+
+	if(json.outcome == "true"){
 		window.location = "http://localhost:8080/GitHubRepositoryEvolutionWorkBench/jsp/QueryPage.jsp";
 	} else {
-     	$('#ajaxGetUserServletResponse').text("Add a more specific message here - yes you jordan");
+     	$('#ajaxGetUserServletResponse').text(json.message);
       	$("#ajaxGetUserServletResponse").css({"opacity":"1"});
 	}
 }
