@@ -2,14 +2,17 @@
 %watermarked image.
 function watermarkedImage = embedWatermark(originalImage, watermarkMessage)
     
-    %get dimensions of the image
-    imageRows = size(originalImage,1);
-    imageColumns = size(originalImage,2);
+    %get dimensions of the WM
+    wmRows = size(watermarkMessage,1);
+    wmColumns = size(watermarkMessage,2);
     
-    %convert watermark to 2d matrix
+    %convert image to a vector
     originalImage = reshape(originalImage, [], 1);
+    %convert watermark to a vector
+    watermarkMessage = reshape(watermarkMessage, [], 1);
+    
+    %initialise watermarked image
     watermarkedImage = size(originalImage);
-    a = originalImage;
     
     %check if watermark is smaller than image
     if(size(watermarkMessage) <= size(originalImage, 1))
@@ -38,5 +41,6 @@ function watermarkedImage = embedWatermark(originalImage, watermarkMessage)
         errordlg('watermark is greater than image size')
     end 
     
-    originalImage = reshape(originalImage, [imageRows,imageColumns]);
+    watermarkedImage = reshape(watermarkedImage, [wmRows,wmColumns]);
+    %originalImage = reshape(originalImage, [imageRows,imageColumns]);
 end
