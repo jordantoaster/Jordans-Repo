@@ -14,6 +14,9 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </head>
 <body>
+
+  	<img class="darwinLogo" src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/images/darwin.png">
+
   <div id="tabContainer">
   <ul class="nav nav-tabs tabListCustom">
     <li class="active"><a class="tabText" data-toggle="tab" href="#login">Login</a></li>
