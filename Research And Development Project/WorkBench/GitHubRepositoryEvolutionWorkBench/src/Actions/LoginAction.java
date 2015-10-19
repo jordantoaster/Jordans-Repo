@@ -23,10 +23,16 @@ public class LoginAction implements Action {
 		Gson gson = new Gson();
 		
 		if(!isValidated){
-			return gson.toJson(new ResponseBase("false","Ensure your username is correct - The password contains a letter, number and a symbol"));
+			return gson.toJson(new ResponseBase("false","Ensure your username is correct - The password contains a letter, number and a symbol", "login"));
+		}
+		
+		boolean foundUser = dao.findUser(user);
+		
+		if(!foundUser){
+			return gson.toJson(new ResponseBase("false","Your details are not on the system", "login"));
 		}
 
-		return dao.findUser(user);
+		return gson.toJson(new ResponseBase("true","User found", "login"));
 	}
 		
 	public boolean validateLoginDetails(User user){

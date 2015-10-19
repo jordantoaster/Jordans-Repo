@@ -22,13 +22,13 @@ public class RegisterAction implements Action{
 		Gson gson = new Gson();
 		
 		if(!isValidated){
-			return gson.toJson(new ResponseBase("false","Ensure your username is correct - The password contains a letter, number and a symbol - Passwords match"));
+			return gson.toJson(new ResponseBase("false","Ensure your username is correct - The password contains a letter, number and a symbol - Passwords match", "register"));
 		}
 		
-		String alreadyInSystem = dao.findUser(user);
+		boolean alreadyInSystem = dao.findUser(user);
 		
-		if(alreadyInSystem.equals(true)){
-			return gson.toJson(new ResponseBase("false","username is already on the system"));
+		if(alreadyInSystem){
+			return gson.toJson(new ResponseBase("false","username is already on the system", "register"));
 		}
 
 		return dao.createUser(user);

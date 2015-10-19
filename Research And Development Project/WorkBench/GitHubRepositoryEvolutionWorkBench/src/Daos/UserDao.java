@@ -10,11 +10,11 @@ import Models.User;
 import Utility.ResponseBase;
 
 public class UserDao {
-	
-	public String findUser(User user){
+		
+	public boolean findUser(User user){
 		
 		Gson gson = new Gson();
-		
+				
 		try {
 			DBCollection userCollection = new dbConnectionBuilder().getMongoCollection("Users");
 		
@@ -25,16 +25,18 @@ public class UserDao {
 			DBCursor cursor = userCollection.find(searchQuery);
 		
 			while (cursor.hasNext()) {
-				return gson.toJson(new ResponseBase("true","found user"));
+				return true;
 			}
 		} catch(MongoException e){
 			System.out.println(e);
 		}
-		
-		return gson.toJson(new ResponseBase("false","Your details are not on the system"));
+		return false;
+		//return gson.toJson(new ResponseBase("false","Your details are not on the system", "login"));
 	}
 	
 	public String createUser(User user){
+		
+		Gson gson = new Gson();
 		
 		try {
 			DBCollection userCollection = new dbConnectionBuilder().getMongoCollection("Users");
@@ -47,9 +49,9 @@ public class UserDao {
 			userCollection.insert(documentDetail);
 		} catch(MongoException e){
 			System.out.println(e);
-			return "false";
+			return gson.toJson(new ResponseBase("false","Database error has occured", "register"));
 		}
 		
-		return "true";		
+		return gson.toJson(new ResponseBase("true","Successful Registration, please log in", "register"));	
 	}
 }

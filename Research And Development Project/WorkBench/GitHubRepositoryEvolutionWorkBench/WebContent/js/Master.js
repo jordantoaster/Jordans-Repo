@@ -1,8 +1,11 @@
 /**
- * 
+ * KEEP AN EYE ON DARWIN NAME SPACE CAUSING AN UNDEFINED< JUST ADD darwin. to access a function
  */
 
-function performAjaxRequestGitHub(url, type, callback){  
+//Creates new namespace if not already defined
+var darwin = darwin || {};
+
+darwin.performAjaxRequestGitHub = function(url, type, callback){  
 	$.ajax({
 	  dataType: 'JSON',
 	  type : type,
@@ -20,14 +23,13 @@ function performAjaxRequestGitHub(url, type, callback){
 	 });
 };
 
-function performAjaxRequestServer(action, callback, type, input){  
+darwin.performAjaxRequestServer = function(action, callback, type, input){  
 	$.ajax({
 	  type : type,
-	  contentType: "application/json",
 	  url : 'http://localhost:8080/GitHubRepositoryEvolutionWorkBench/Service',
       data : { 
+      	action: action,
       	input: input,
-      	action: action
       },
 	  success : function(response) {
 		  callback(response);
@@ -39,7 +41,7 @@ function performAjaxRequestServer(action, callback, type, input){
 	 });
 };
 
-function convertISO8601toDate(dtstr) {
+darwin.convertISO8601toDate = function(dtstr) {
 
 	  // replace anything but numbers by spaces
 	  dtstr = dtstr.replace(/\D/g," ");
@@ -66,4 +68,4 @@ function convertISO8601toDate(dtstr) {
 	//Date(Date.UTC(dtcomps[0],dtcomps[1],dtcomps[2],dtcomps[3],dtcomps[4],dtcomps[5]));
 
 	  //return convdt.toUTCString();
-	}
+}

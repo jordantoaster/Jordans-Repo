@@ -2,6 +2,10 @@
  * 
  */
 
+//Creates new namespace if not already defined
+var darwin = darwin || {};
+
+
 responsePage = 1;
 baseRequestUrl = ""
 totalCommits = 0; //not in use
@@ -12,18 +16,19 @@ firstDate = true;
 commitsPerMonth = [];
 
 $(document).ready(function(e) {
-	$("#urlButton").on("click", function(e){
+	$("#urlButton").on("click.darwin", function(e){
 		e.preventDefault();
 		baseRequestUrl = "https://api.github.com/repos/"+$("#urlOwner").val()+'/'+$("#urlName").val()+"/commits?per_page=100&page="+responsePage;
-		getApiCommitData(baseRequestUrl,collectCommitData);
+		darwin.getApiCommitData(baseRequestUrl,collectCommitData);
 	});
 });
 
-function getApiCommitData(url, callback){
-	performAjaxRequestGitHub(url, "GET", callback);
+
+darwin.getApiCommitData = function(url, callback){
+	darwin.performAjaxRequestGitHub(url, "GET", callback);
 }
 
-function collectCommitData(json){	
+darwin.collectCommitData = function(json){	
 	
 	for(i =0; i < json.length;i++){
 		
@@ -31,7 +36,7 @@ function collectCommitData(json){
 		//date = new date();
 		//date = Date.parse(json[0].commit.author.date);
 		
-		var date = convertISO8601toDate(json[i].commit.committer.date);
+		var date = darwin.convertISO8601toDate(json[i].commit.committer.date);
 		
 		//increment each time month and year havnt changed
 		if(firstDate){
@@ -60,15 +65,15 @@ function collectCommitData(json){
 		responsePage = responsePage + 1;
 		url = "https://api.github.com/repos/"+$("#urlOwner").val()+'/'+$("#urlName").val()+"/commits?per_page=100&page="+responsePage;
 	
-		getApiCommitData(url,collectCommitData);
+		darwin.getApiCommitData(url,collectCommitData);
 	} else {
 		dates.reverse();
 		commitsPerMonth.reverse();
-		visualiseData();
+		darwin.visualiseData();
 	}
 }
 
-function visualiseData(commits, dates){
+darwin.visualiseData = function(commits, dates){
 	
 	$('#total').text(commitIterator);
 	
@@ -77,13 +82,13 @@ function visualiseData(commits, dates){
 	    google.load('visualization', '1.0', {
 	        packages: ['corechart'],
 	        callback: function() {
-	        	drawChart();
+	        	darwin.drawChart();
 	        }
 	    } )
 	}
 }
 
-function drawChart(){
+darwin.drawChart = function(){
     // Create and populate the data table.
     /*var data = google.visualization.arrayToDataTable([
       ['Flavour', 'Percent'],
@@ -124,7 +129,7 @@ function drawChart(){
 }
 
 
-//this method does not match the master data on github website WHY? (NOT IN USE CURRENTLY)
+//this method does not match the master data on github website WHY? (NOT IN USE CURRENTLY) remove into parse file if needed
 function parseJsonReponseForTotalCommits(json, url){
 	for(i = 0; i < json.length; i++){
 		totalCommits = totalCommits + json[i].contributions;
@@ -139,7 +144,7 @@ function parseJsonReponseForTotalCommits(json, url){
 	} else {
 		responsePage = responsePage + 1;
 		url = "https://api.github.com/repos/"+$("#urlOwner").val()+'/'+$("#urlName").val()+"/contributors?per_page=100&page="+responsePage;
-		getApiCommitData(url, parseJsonReponseForTotalCommits);
+		getApiCommitData(url, darwin.parseJsonReponseForTotalCommits);
 	}
 }
 

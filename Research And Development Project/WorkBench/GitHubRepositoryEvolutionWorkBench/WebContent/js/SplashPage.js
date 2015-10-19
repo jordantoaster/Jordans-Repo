@@ -2,8 +2,11 @@
  * 
  */
 
+//Creates new namespace if not already defined
+var darwin = darwin || {};
+
 $(document).ready(function(e) {
-	$("#submitButtonLog").on("click", function(e){
+	$("#submitButtonLog").on("click.darwin", function(e){
 		
 		e.preventDefault();
 		
@@ -11,7 +14,7 @@ $(document).ready(function(e) {
     	requestData[0] = $("#passwordFeild").val();
     	requestData[1] = $("#userNameFeild").val();
     		
-    	performAjaxRequestServer("login", handleResponse, "GET", requestData);   
+    	darwin.performAjaxRequestServer("login", darwin.handleResponse, "POST", requestData);   
 	});
 	
 	$("#submitButtonReg").on("click", function(e){
@@ -23,14 +26,14 @@ $(document).ready(function(e) {
     	requestData[1] = $("#passwordFeildConfirmReg").val();
     	requestData[0] = $("#userNameFeildReg").val();
     		
-    	performAjaxRequestServer("register", handleResponse, "POST", requestData);   
+    	darwin.performAjaxRequestServer("register", darwin.handleResponse, "POST", requestData);   
 	});
 });
 
-function handleResponse(response){
+darwin.handleResponse = function(response){
 	json = JSON.parse(response);
 
-	if(json.outcome == "true"){
+	if(json.outcome == "true" && json.action == "login"){
 		window.location = "http://localhost:8080/GitHubRepositoryEvolutionWorkBench/jsp/QueryPage.jsp";
 	} else {
      	$('#ajaxGetUserServletResponse').text(json.message);
