@@ -2,7 +2,7 @@
 %The output should be the recovered watermark signal
 function watermark = extractWatermark(imageUnderTest, watermarkSize)
 
-    %initialise an empty watermakr container
+    %initialise an empty watermark container
     watermark = zeros(watermarkSize);
     
     %convert image to a vector

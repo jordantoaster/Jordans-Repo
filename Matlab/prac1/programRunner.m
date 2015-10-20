@@ -1,9 +1,9 @@
-%Im = imread('baboon256.bmp');
+Im = imread('baboon256.bmp');
 %Im = imread('polarbear512.bmp');
-%Im = rgb2gray(Im);
+Im = rgb2gray(Im);
 
 %this image is already grayscale so wont need conversion
-Im = imread('rice.png');      
+%Im = imread('rice.png');      
 
 %get watermark
 watermark = generateWatermark(Im);
@@ -15,11 +15,10 @@ watermarkedImage = embedWatermark(Im, watermark);
 watermarkedImage = applyFilter(watermarkedImage);
 
 %save the new image
-imwrite(watermarkedImage, 'watermarkBaboon.bmp','bmp');
+imwrite(watermarkedImage, 'watermarkImage.bmp','bmp');
 
 %shows difference image
 %DifIm = abs( double(Im) - double(watermarkedImage) );
-%figure, imshow(120 * uint8(DifIm));
 
 %PSNR atained for each image using function
 %smooth image will have a lowe PSNR score, due to greater distortion
