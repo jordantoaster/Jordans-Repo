@@ -14,34 +14,42 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </head>
 <body>
-
-  	<img class="darwinLogo" src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/images/darwin.png">
-
+  	<img class="darwinLogo" src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/images/darwin3.png">
   <div id="tabContainer">
   <ul class="nav nav-tabs tabListCustom">
     <li class="active"><a class="tabText" data-toggle="tab" href="#login">Login</a></li>
     <li><a class="tabText" data-toggle="tab" href="#register">Register</a></li>
   </ul>
-  <div class="tab-content">
+    <div class="tab-content">
     <div id="login" class="tab-pane fade in active">
-    <form id="loginForm" name="loginForm" method="post">
-      <p class="formHeader">Username   <span class="glyphicon glyphicon-user icon" aria-hidden="true"></span></p> 
-      <input type="text" name="username" class="fields" id="passwordFeild">
-      <p class="formHeader">Password</p>
-      <input type="password" name="password" class="fields" id="userNameFeild">
-      <input type="submit" value="Click To Login" class="submitButton" id="submitButtonLog" class="btn btn-default">
-    </form>
-  </div>
+       <div class="input-group input-group-lg fields">
+         <span class="input-group-addon glyphicon glyphicon-user icon" id="basic-addon1"></span>
+         <input type="text" class="form-control" id="passwordFeild" placeholder="Username" aria-describedby="basic-addon1">
+       </div>
+       <div class="input-group input-group-lg fields">
+         <span class="input-group-addon glyphicon glyphicon-rub icon" id="basic-addon1"></span>
+         <input type="text" class="form-control" id="userNameFeild" placeholder="Password" aria-describedby="basic-addon1">
+       </div>
+       <button type="submit" id="submitButtonLog" class="btn btn-primary submitButton">
+  	     <i class="icon-user icon-white">Login To Darwin</i> 
+       </button>
+    </div>
   <div id="register" class="tab-pane fade">
-   <form id="loginForm" name="registerForm" method="post">
-    <p class="formHeader">Username   <span class="glyphicon glyphicon-user icon" aria-hidden="true"></span></p> 
-    <input type="text" name="username" class="fields" id="userNameFeildReg">
-    <p class="formHeader">Password</p>
-    <input type="password" name="password" class="fields" id="passwordFeildReg">
-    <p class="formHeader">Confirm Password</p>
-    <input type="password" name="password" class="fields" id="passwordFeildConfirmReg">
-    <input type="submit" value="Click To Register" class="submitButton" id="submitButtonReg" class="btn btn-default">
-   </form>
+       <div class="input-group input-group-lg fields">
+         <span class="input-group-addon glyphicon glyphicon-user icon" id="basic-addon1"></span>
+         <input type="text" class="form-control" id="userNameFeildReg" placeholder="Username" aria-describedby="basic-addon1">
+       </div>
+       <div class="input-group input-group-lg fields">
+         <span class="input-group-addon glyphicon glyphicon-rub icon" id="basic-addon1"></span>
+         <input type="text" class="form-control" id="passwordFeildReg" placeholder="Password" aria-describedby="basic-addon1">
+       </div>
+       <div class="input-group input-group-lg fields">
+         <span class="input-group-addon glyphicon glyphicon-rub icon" id="basic-addon1"></span>
+         <input type="text" class="form-control" id="passwordFeildConfirmReg" placeholder="Password" aria-describedby="basic-addon1">
+       </div>       
+       <button type="submit" id="submitButtonReg" class="btn btn-primary submitButton">
+  	     <i class="icon-user icon-white">Register To Darwin</i> 
+       </button>
   </div>
   </div>
  </div>

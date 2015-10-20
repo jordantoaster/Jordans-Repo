@@ -1,0 +1,13 @@
+@CHARSET "ISO-8859-1";
+
+.navbar-brand,
+.navbar-nav li a {
+    height: 10%;
+    padding-top: 0;
+}
+
+.darwinLogo {
+	height: 20%;
+	width: 20%;
+	margin-top: 1%;
+}

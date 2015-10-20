@@ -2,6 +2,11 @@
  * KEEP AN EYE ON DARWIN NAME SPACE CAUSING AN UNDEFINED< JUST ADD darwin. to access a function
  */
 
+$(document).ready(function(e) {
+	$('#navbar').load('http://localhost:8080/GitHubRepositoryEvolutionWorkBench/html/NavBar.html');
+});
+
+
 //Creates new namespace if not already defined
 var darwin = darwin || {};
 
