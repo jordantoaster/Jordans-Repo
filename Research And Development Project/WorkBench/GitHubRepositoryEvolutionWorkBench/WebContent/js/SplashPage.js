@@ -11,8 +11,8 @@ $(document).ready(function(e) {
 		e.preventDefault();
 		
     	var requestData = [];
-    	requestData[0] = $("#passwordFeild").val();
-    	requestData[1] = $("#userNameFeild").val();
+    	requestData[0] = $("#userNameFeild").val();
+    	requestData[1] = $("#passwordFeild").val();
     		
     	darwin.performAjaxRequestServer("login", darwin.handleResponse, "POST", requestData);   
 	});

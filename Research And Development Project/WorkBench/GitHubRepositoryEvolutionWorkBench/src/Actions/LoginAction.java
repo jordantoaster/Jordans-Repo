@@ -14,24 +14,32 @@ public class LoginAction implements Action {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
 		
-		String[] loginDetails = request.getParameterValues("input[]");	
-		User user = new User(loginDetails[0], loginDetails[1], "standard");
-		
-		boolean isValidated = validateLoginDetails(user);
-		
-		UserDao dao = new UserDao();
+		String[] loginDetails = request.getParameterValues("input[]");			
+		User user  = new User("","",""); //placeholder for facebook login scenario	
 		Gson gson = new Gson();
 		
-		if(!isValidated){
-			return gson.toJson(new ResponseBase("false","Ensure your username is correct - The password contains a letter, number and a symbol", "login"));
+		if(!loginDetails[0].equals("facebook")){
+			user = new User(loginDetails[0], loginDetails[1], "standard");
+		
+			boolean isValidated = validateLoginDetails(user);
+		
+			UserDao dao = new UserDao();
+		
+			if(!isValidated){
+				return gson.toJson(new ResponseBase("false","Ensure your username is correct - The password contains a letter, number and a symbol", "login"));
+			}
+		
+			boolean foundUser = dao.findUser(user);
+		
+			if(!foundUser){
+				return gson.toJson(new ResponseBase("false","Your details are not on the system", "login"));
+			}
+		
 		}
 		
-		boolean foundUser = dao.findUser(user);
-		
-		if(!foundUser){
-			return gson.toJson(new ResponseBase("false","Your details are not on the system", "login"));
-		}
-
+		//lets the session know the user is valid, incase the routing structure is manipulated
+		request.getSession().setAttribute("loggedInUser", user);
+	    
 		return gson.toJson(new ResponseBase("true","User found", "login"));
 	}
 		

@@ -7,6 +7,7 @@
 <title>Login Or Register</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Master.js"></script>
+<script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/FacebookSDK.js"></script>
 <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/SplashPage.js?v2"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 <link rel="stylesheet" href="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/css/SplashPage.css?v2">
@@ -14,7 +15,9 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </head>
 <body>
-  	<img class="darwinLogo" src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/images/darwin3.png">
+  <div id="facebookContainer" class="fb-like" data-share="false"data-width="450" data-show-faces="true"></div>
+  <div id="status"></div>
+  <img class="darwinLogo" src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/images/darwin3.png">
   <div id="tabContainer">
   <ul class="nav nav-tabs tabListCustom">
     <li class="active"><a class="tabText" data-toggle="tab" href="#login">Login</a></li>
@@ -24,15 +27,18 @@
     <div id="login" class="tab-pane fade in active">
        <div class="input-group input-group-lg fields">
          <span class="input-group-addon glyphicon glyphicon-user icon" id="basic-addon1"></span>
-         <input type="text" class="form-control" id="passwordFeild" placeholder="Username" aria-describedby="basic-addon1">
+         <input type="text" class="form-control" id="userNameFeild" placeholder="Username" aria-describedby="basic-addon1">
        </div>
        <div class="input-group input-group-lg fields">
          <span class="input-group-addon glyphicon glyphicon-rub icon" id="basic-addon1"></span>
-         <input type="text" class="form-control" id="userNameFeild" placeholder="Password" aria-describedby="basic-addon1">
+         <input type="password" class="form-control" id="passwordFeild" placeholder="Password" aria-describedby="basic-addon1">
        </div>
+       <div id="loginButtonBlock">
        <button type="submit" id="submitButtonLog" class="btn btn-primary submitButton">
   	     <i class="icon-user icon-white">Login To Darwin</i> 
        </button>
+       <fb:login-button id="FacebookLogin" scope="public_profile,email" onlogin="checkLoginState();"></fb:login-button>
+       </div>
     </div>
   <div id="register" class="tab-pane fade">
        <div class="input-group input-group-lg fields">
