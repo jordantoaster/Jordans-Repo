@@ -3,7 +3,7 @@
  */
 
 $(document).ready(function(e) {
-	$('#navbar').load('http://localhost:8080/GitHubRepositoryEvolutionWorkBench/html/NavBar.html');
+	$('#navbar').load('http://localhost:8080/GitHubRepositoryEvolutionWorkBench/html/NavBar.html?2');
 });
 
 

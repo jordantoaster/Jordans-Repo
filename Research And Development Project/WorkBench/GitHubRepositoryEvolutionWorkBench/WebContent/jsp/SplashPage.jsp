@@ -15,8 +15,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </head>
 <body>
-  <div id="facebookContainer" class="fb-like" data-share="false"data-width="450" data-show-faces="true"></div>
-  <div id="status"></div>
+<div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-width="100px" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>  <div id="status"></div>
   <img class="darwinLogo" src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/images/darwin3.png">
   <div id="tabContainer">
   <ul class="nav nav-tabs tabListCustom">
@@ -33,12 +32,10 @@
          <span class="input-group-addon glyphicon glyphicon-rub icon" id="basic-addon1"></span>
          <input type="password" class="form-control" id="passwordFeild" placeholder="Password" aria-describedby="basic-addon1">
        </div>
-       <div id="loginButtonBlock">
        <button type="submit" id="submitButtonLog" class="btn btn-primary submitButton">
   	     <i class="icon-user icon-white">Login To Darwin</i> 
        </button>
-       <fb:login-button id="FacebookLogin" scope="public_profile,email" onlogin="checkLoginState();"></fb:login-button>
-       </div>
+       <fb:login-button id="FacebookLogin" scope="public_profile,email" onlogin="checkLoginState();"></fb:login-button>      
     </div>
   <div id="register" class="tab-pane fade">
        <div class="input-group input-group-lg fields">

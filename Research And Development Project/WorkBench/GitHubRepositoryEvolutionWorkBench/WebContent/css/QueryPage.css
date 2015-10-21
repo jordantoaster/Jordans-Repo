@@ -7,7 +7,25 @@
 }
 
 .darwinLogo {
-	height: 20%;
-	width: 20%;
-	margin-top: 1%;
+	width: 7%;
+	margin-top: 0.5%;
+	float: left;
+}
+
+.navbar-nav {
+	margin-left: 5%;
+}
+
+#tabContainer {
+	width: 80% !important;
+	font-size: 0.8em !important;
+}
+
+.tab-content {
+	margin-top: 2%;
+	margin-bottom: 2%;
+}
+
+.submitButton {
+	margin-left: 45% !important;
 }

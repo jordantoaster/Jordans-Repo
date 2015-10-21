@@ -16,13 +16,23 @@ firstDate = true;
 commitsPerMonth = [];
 
 $(document).ready(function(e) {
-	$("#urlButton").on("click.darwin", function(e){
+	
+	//disableTabs();
+	
+	$("#submitButtonQuery").on("click.darwin", function(e){
 		e.preventDefault();
-		baseRequestUrl = "https://api.github.com/repos/"+$("#urlOwner").val()+'/'+$("#urlName").val()+"/commits?per_page=100&page="+responsePage;
-		darwin.getApiCommitData(baseRequestUrl,collectCommitData);
+		
+		//make api request process
+		
+		//baseRequestUrl = "https://api.github.com/repos/"+$("#urlOwner").val()+'/'+$("#urlName").val()+"/commits?per_page=100&page="+responsePage;
+		//darwin.getApiCommitData(baseRequestUrl,collectCommitData);
 	});
 });
 
+//TODO
+darwin.disableTabs = function(){
+
+}
 
 darwin.getApiCommitData = function(url, callback){
 	darwin.performAjaxRequestGitHub(url, "GET", callback);
