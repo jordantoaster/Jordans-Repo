@@ -3,9 +3,12 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
   <head>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/QueryPage.js?v4"></script>
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Master.js?v5"></script>
+    <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Visualiser.js?v5"></script>
+    <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/GitHubApiExtractor.js?v5"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link rel="stylesheet" href="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/css/QueryPage.css?v4">
@@ -25,15 +28,15 @@
       <div id="urlInput" class="tab-pane fade in active">
 	   <div class="input-group input-group-lg fields">
          <span class="input-group-addon glyphicon glyphicon-cog icon" id="basic-addon1"></span>
-         <input type="text" class="form-control" id="userNameFeild" placeholder="GitHub repository URL" aria-describedby="basic-addon1">
+         <input type="text" class="form-control" id="urlField" placeholder="GitHub repository URL" aria-describedby="basic-addon1">
        </div>  
        <button type="submit" id="submitButtonQuery" class="btn btn-primary submitButton">
   	     <i class="icon-user icon-white">Get Data</i> 
        </button>
-       <p>Add cool explanatory text here</p> 
+       <p>Add cool explanatory text here</p>
+       <div id="contributorChart"></div> 
       </div>
     <div id="ContributorTab" class="tab-pane fade">
-	  hi2
     </div>
     </div>
    </div>

@@ -6,14 +6,16 @@
 var darwin = darwin || {};
 
 
-responsePage = 1;
-baseRequestUrl = ""
-totalCommits = 0; //not in use
-commitIterator = 0; // only used for my own debugging
-dates = []
-monthCounter = 0;
-firstDate = true;
-commitsPerMonth = [];
+//responsePage = 1;
+//baseRequestUrl = ""
+//totalCommits = 0; //not in use
+//commitIterator = 0; // only used for my own debugging
+//dates = []
+//monthCounter = 0;
+//firstDate = true;
+//commitsPerMonth = [];
+
+darwin.responsePage = 0;
 
 $(document).ready(function(e) {
 	
@@ -21,13 +23,18 @@ $(document).ready(function(e) {
 	
 	$("#submitButtonQuery").on("click.darwin", function(e){
 		e.preventDefault();
-		
-		//make api request process
-		
-		//baseRequestUrl = "https://api.github.com/repos/"+$("#urlOwner").val()+'/'+$("#urlName").val()+"/commits?per_page=100&page="+responsePage;
-		//darwin.getApiCommitData(baseRequestUrl,collectCommitData);
+		parsedUrl = darwin.parseGithubURL($("#urlField").val());
+				
+        baseRequestUrl = "https://api.github.com/repos"+parsedUrl+"/stats/code_frequency?per_page=100&page="+darwin.responsePage;
+		darwin.getApiCodeFrequency(baseRequestUrl,darwin.collectCodefrequencyData);
 	});
 });
+
+darwin.parseGithubURL = function(url){
+	var el = document.createElement('a');
+	el.href = url;
+	return el.pathname;
+}
 
 //TODO
 darwin.disableTabs = function(){

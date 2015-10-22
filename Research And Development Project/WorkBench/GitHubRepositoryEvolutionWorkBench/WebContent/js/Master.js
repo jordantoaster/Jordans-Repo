@@ -22,7 +22,7 @@ darwin.performAjaxRequestGitHub = function(url, type, callback){
 		  callback(response);
 	  },
 	  error: function() {
-       	$('#ajaxGetUserServletResponse').text("An error occured when connecting to the API");
+       	$('#ajaxGetUserServletResponse').text("An error occured when connecting to the API, make sure the url is correct");
       	$("#ajaxGetUserServletResponse").css({"opacity":"1"});	  
      }
 	 });
