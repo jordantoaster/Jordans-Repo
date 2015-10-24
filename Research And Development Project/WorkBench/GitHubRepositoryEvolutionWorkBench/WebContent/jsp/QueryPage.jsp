@@ -34,9 +34,31 @@
   	     <i class="icon-user icon-white">Get Data</i> 
        </button>
        <p>Add cool explanatory text here</p>
-       <div id="contributorChart"></div> 
       </div>
-    <div id="ContributorTab" class="tab-pane fade">
+    <div id="ContributorTab" class="tab-pane fade customTab">
+    	<div class="dropdown">
+  			<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    			Change Metric
+    		<span class="caret"></span>
+  		</button>
+  		<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+  		  <li><a href="#" id="changeValues1">Addition/Deletion Diff</a></li>
+    	  <li><a href="#" id="changeValues2">Additions</a></li>
+    	  <li><a href="#" id="changeValues3">Deletions</a></li>
+  		</ul>
+		</div>
+		<div class="dropdown">
+  			<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    			Change Sample Size
+    		<span class="caret"></span>
+  		</button>
+  		<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+  		  <li><a href="#" id="sampleRate1">6 Weeks</a></li>
+    	  <li><a href="#" id="sampleRate2">13 Weeks</a></li>
+    	  <li><a href="#" id="sampleRate3">26 Weeks</a></li>
+  		</ul>
+		</div>
+    	<div id="contributorChart"></div> 
     </div>
     </div>
    </div>

@@ -16,6 +16,8 @@ darwin.difference = [];
 darwin.SamplingRate = 13;
 darwin.SamplingIterator = 0;
 darwin.firstOperation = true;
+darwin.currentJson;
+darwin.currentAction = "difference"
 
 //Gets data from the api, where specified
 darwin.getApiCodeFrequency = function(url, callback) {
@@ -24,6 +26,10 @@ darwin.getApiCodeFrequency = function(url, callback) {
 
 //collates the data in a usable form - CLEAN THIS UP A BIT, CODE IS VERY VARIABLE DEPENDENT, CLEAN UP IFS, SOME WASTED EVALUATIONS
 darwin.collectCodefrequencyData = function(json){
+	darwin.dates = []
+
+	darwin.currentJson = json;
+
 	for(i =0; i < json.length;i++){
 		
 		//Gets the data in a useable form
@@ -65,6 +71,34 @@ darwin.collectCodefrequencyData = function(json){
 		darwin.totalWeeks++;
 	}
 	
-	//vars are global to namespace so do they need to be passed in?
-	darwin.renderContributionGraph(darwin.dates, darwin.additions, darwin.deletions, darwin.difference);
+	if(darwin.currentAction == "difference"){
+		darwin.drawContributionGraph(darwin.dates, darwin.difference);
+	}
+	if(darwin.currentAction == "addition"){
+		darwin.drawContributionGraph(darwin.dates, darwin.additions);
+	}
+	if(darwin.currentAction == "deletion"){
+		darwin.drawContributionGraph(darwin.dates, darwin.deletions);
+	}
+}
+
+darwin.resetVariables = function(){
+	
+	if(darwin.currentAction == "difference"){
+		darwin.difference = [];
+	}
+	if(darwin.currentAction == "addition"){
+		darwin.additions = [];
+	}
+	if(darwin.currentAction == "deletion"){
+		darwin.deletions = [];
+	}
+	
+	darwin.totalWeeks = 0;
+	darwin.totalSamples = 0;
+	darwin.responsePage = 0;
+	//represents the period each point in the graph represents
+	darwin.SamplingRate = 13;
+	darwin.SamplingIterator = 0;
+	darwin.firstOperation = true;
 }

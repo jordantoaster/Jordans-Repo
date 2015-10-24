@@ -19,7 +19,9 @@ darwin.responsePage = 0;
 
 $(document).ready(function(e) {
 	
-	//disableTabs();
+	//darwin.disableTabs();
+	darwin.loadGraph();
+
 	
 	$("#submitButtonQuery").on("click.darwin", function(e){
 		e.preventDefault();
@@ -28,6 +30,56 @@ $(document).ready(function(e) {
         baseRequestUrl = "https://api.github.com/repos"+parsedUrl+"/stats/code_frequency?per_page=100&page="+darwin.responsePage;
 		darwin.getApiCodeFrequency(baseRequestUrl,darwin.collectCodefrequencyData);
 	});
+	
+	$('#changeValues1').click(function(e){
+		e.preventDefault();
+
+		darwin.currentAction = "difference"
+		darwin.drawContributionGraph(darwin.dates, darwin.difference);
+
+	});
+	
+	$('#changeValues2').click(function(e){
+		e.preventDefault();
+
+		darwin.currentAction = "addition"
+		darwin.drawContributionGraph(darwin.dates, darwin.additions);
+
+	});
+	
+	$('#changeValues3').click(function(e){
+		e.preventDefault();
+
+		darwin.currentAction = "deletion"
+		darwin.drawContributionGraph(darwin.dates, darwin.deletions);
+	});
+	
+	//wont works for other metrics yet on this page
+	$('#sampleRate1').click(function(e){
+		e.preventDefault();
+	    darwin.resetVariables();
+
+		darwin.SamplingRate = 6;
+		darwin.collectCodefrequencyData(darwin.currentJson);
+	});
+	
+	$('#sampleRate2').click(function(e){
+		e.preventDefault();
+	    darwin.resetVariables();
+
+		darwin.SamplingRate = 13;
+		darwin.collectCodefrequencyData(darwin.currentJson);
+
+	});
+	
+	$('#sampleRate3').click(function(e){
+		e.preventDefault();
+	    darwin.resetVariables();
+
+		darwin.SamplingRate = 26;
+		darwin.collectCodefrequencyData(darwin.currentJson);
+	});
+
 });
 
 darwin.parseGithubURL = function(url){
@@ -105,20 +157,8 @@ darwin.visualiseData = function(commits, dates){
 	}
 }
 
-darwin.drawChart = function(){
+/*darwin.drawChart = function(){
     // Create and populate the data table.
-    /*var data = google.visualization.arrayToDataTable([
-      ['Flavour', 'Percent'],
-      ['Apple', 17.36],
-      ['Strawberry Rhubarb', 15.62],
-      ['Pumpkin', 13.63],
-      ['Cherry', 11.25],
-      ['Blueberry', 7.53],
-      ['Lemon Meringue', 6.45],
-      ['Chocolate', 3.97],
-      ['Chess', 1.46],
-      ['Other', 7.09]
-    ]);*/
     
     var data = new google.visualization.DataTable();
     
@@ -163,5 +203,5 @@ function parseJsonReponseForTotalCommits(json, url){
 		url = "https://api.github.com/repos/"+$("#urlOwner").val()+'/'+$("#urlName").val()+"/contributors?per_page=100&page="+responsePage;
 		getApiCommitData(url, darwin.parseJsonReponseForTotalCommits);
 	}
-}
+}*/
 
