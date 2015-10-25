@@ -24,13 +24,29 @@ darwin.drawContributionGraph = function(dates, values, xAxis, chartTitle){
       title: chartTitle,
       hAxis: { slantedText:true, slantedTextAngle:45 }, 
       chartArea:{
-          left: 50, width: '95%'
+          left: 100, width: '95%'
       },
       legend: {position: 'top'},
       height: 550,
-      width: 1450
+      width: 1450,
+      animation:{
+          duration: 800,
+          easing: 'out',
+          startup: true,
+        }
     };
         
     // Create and draw the visualization.
-    new google.visualization.LineChart(document.getElementById('contributorChart')).draw(data, options);
+    if(darwin.currentAction == "LOC"){
+        new google.visualization.SteppedAreaChart(document.getElementById('contributorChart')).draw(data, options);
+    } else {
+    	new google.visualization.LineChart(document.getElementById('contributorChart')).draw(data, options);
+    }
+    
+    darwin.populateSupplementaryStats();
+}
+
+darwin.populateSupplementaryStats = function(){
+	$('#contributorTotalWeeks').text('Total Amount Of Weeks on GitHub: ' + darwin.totalWeeks);
+	$('#contributorLOC').text('Total Lines Of Code On GitHub: ' + darwin.LOC);
 }

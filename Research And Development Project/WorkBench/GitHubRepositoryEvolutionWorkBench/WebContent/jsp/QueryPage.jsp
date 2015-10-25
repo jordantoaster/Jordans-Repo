@@ -46,6 +46,7 @@
   		  <li><a href="#" id="changeValues1">Addition/Deletion Diff</a></li>
     	  <li><a href="#" id="changeValues2">Additions</a></li>
     	  <li><a href="#" id="changeValues3">Deletions</a></li>
+    	  <li><a href="#" id="changeValues4">LOC Over Time</a></li>
   		</ul>
 		</div>
 		<div class="dropdown">
@@ -59,6 +60,8 @@
     	  <li><a href="#" id="sampleRate3">26 Weeks</a></li>
   		</ul>
 		</div>
+		<p id="contributorTotalWeeks" class="contributorExtra"></p>
+		<p id="contributorLOC" class="contributorExtra"></p>
     	<div id="contributorChart"></div> 
     </div>
     </div>

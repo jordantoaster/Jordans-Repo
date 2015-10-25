@@ -18,6 +18,7 @@ darwin.responsePage = 0;
 darwin.additions = [];
 darwin.deletions = [];
 darwin.difference = [];
+darwin.LOCOverTime = [];
 
 /*Increments each time data is added to arrays, determines if sampling rate has been bypassed*/
 darwin.SamplingIterator = 0;
@@ -25,6 +26,10 @@ darwin.firstOperation = true;
 
 /*Keeps track of the code frequency response, to ensure only one api call is required*/
 darwin.currentJson;
+
+/*Supplmentary metric, no purpose in the main loop structure*/
+darwin.totalWeeks = 0;
+darwin.LOC = 0;
 
 /*This function is called each time the sampling rate changes*/
 darwin.collectCodefrequencyData = function(json){
@@ -43,6 +48,8 @@ darwin.collectCodefrequencyData = function(json){
 		
 		/*calculate the difference between additions and deletions*/
 		currDiff = json[i][1] + json[i][2];
+		
+		darwin.LOC = darwin.LOC + currDiff;
 		
 		/*Checks if the iterator (each increment represents a week) has surpassed the sampling rate - Change date*/
 		/*boolean is required to ensure that the date can be initilised on the first pass of the processs*/
@@ -63,6 +70,8 @@ darwin.collectCodefrequencyData = function(json){
 			darwin.additions[darwin.contributionSampleCounter] = json[i][1];
 			darwin.deletions[darwin.contributionSampleCounter] = Math.abs(json[i][2]);
 			darwin.difference[darwin.contributionSampleCounter] = currDiff; 
+			/*Each new sample, set LOC to current total*/
+			darwin.LOCOverTime[darwin.contributionSampleCounter] = darwin.LOC;
 			
 			/*increment iterator, monitors sample progress*/
 			darwin.SamplingIterator++;	
@@ -70,14 +79,20 @@ darwin.collectCodefrequencyData = function(json){
 			/*It is no longer the first op*/
 			darwin.firstOperation = false;
 			
+			/*Basic counter for total weeks*/
+			darwin.totalWeeks++;
+			
 		} else { /*If we are inside the same sampling, add to existing values - then increment sample iterator*/			
 			/*Add to current values for this sampling period*/
 			darwin.additions[darwin.contributionSampleCounter] = darwin.additions[darwin.contributionSampleCounter] + json[i][1];
 			darwin.deletions[darwin.contributionSampleCounter] = darwin.deletions[darwin.contributionSampleCounter] + Math.abs(json[i][2]);
 			darwin.difference[darwin.contributionSampleCounter] = darwin.difference[darwin.contributionSampleCounter] + currDiff;
-			
+			darwin.LOCOverTime[darwin.contributionSampleCounter] = darwin.LOC;
 			/*increment iterator, monitors sample progress*/
 			darwin.SamplingIterator++;
+			
+			/*Basic counter for total weeks*/
+			darwin.totalWeeks++;
 		}			
 	}
 	
@@ -91,10 +106,15 @@ darwin.collectCodefrequencyData = function(json){
 	if(darwin.currentAction == "deletion"){
 		darwin.drawContributionGraph(darwin.contributionDates, darwin.deletions, 'Sample Size: ' + darwin.samplingRate + ' Weeks', 'Amount of Deletions');
 	}
+	if(darwin.currentAction == "LOC"){
+		darwin.drawContributionGraph(darwin.contributionDates, darwin.LOCOverTime, 'Sample Size: ' + darwin.samplingRate + ' Weeks', 'LOC Over Time');
+	}
 }
 
+/*DURING RESAMPLING ALL VARIABLES ARE RESET*/
 darwin.resetVariables = function(){
 	
+	/*RESAMPLING DATA CAUSES IT TO BE REPOPULATED*/
 	if(darwin.currentAction == "difference"){
 		darwin.difference = [];
 	}
@@ -104,7 +124,11 @@ darwin.resetVariables = function(){
 	if(darwin.currentAction == "deletion"){
 		darwin.deletions = [];
 	}
+	if (darwin.currentAction == "LOC"){
+		darwin.LOCOverTime = []
+	}
 	
+	/*ALL SAMPLING VARIABLES ARE RESET, OR A NEW URL IS ENTERED, RESET ANYWAY*/
 	darwin.totalWeeks = 0;
 	darwin.contributionSampleCounter = 0;
 	darwin.responsePage = 0;
@@ -112,4 +136,5 @@ darwin.resetVariables = function(){
 	darwin.samplingRate = 13;
 	darwin.SamplingIterator = 0;
 	darwin.firstOperation = true;
+	darwin.LOC = 0;
 }

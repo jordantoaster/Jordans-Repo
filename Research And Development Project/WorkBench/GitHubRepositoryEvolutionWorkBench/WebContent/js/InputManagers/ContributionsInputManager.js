@@ -45,6 +45,12 @@ $(document).ready(function(e) {
 		darwin.currentAction = "deletion"
 		darwin.drawContributionGraph(darwin.contributionDates, darwin.deletions, 'Sample Size: ' + darwin.samplingRate + ' Weeks', 'Amount of Deletions');
 	});
+	$('#changeValues4').on("click.darwin", function(e){
+		e.preventDefault();
+
+		darwin.currentAction = "LOC"
+		darwin.drawContributionGraph(darwin.contributionDates, darwin.LOCOverTime, 'Sample Size: ' + darwin.samplingRate + ' Weeks', 'LOC Over Time');
+	});
 	
 
 	/*NEXT THREE BLOCKS*/
@@ -71,5 +77,4 @@ $(document).ready(function(e) {
 		darwin.samplingRate = 26;
 		darwin.collectCodefrequencyData(darwin.currentJson);
 	});
-
 });
