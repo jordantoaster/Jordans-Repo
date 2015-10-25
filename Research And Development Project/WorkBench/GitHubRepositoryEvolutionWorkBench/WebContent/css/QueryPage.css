@@ -30,11 +30,11 @@
 	margin-left: 45% !important;
 }
 
-#ContributorTab {
-
+.dropdown {
+	display: inline;
 }
 
-#contributorChart {
-
+.btn-default {
+	background-color: #666699;
+	color: white;
 }
-

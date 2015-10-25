@@ -1,7 +1,5 @@
-/**
- * KEEP AN EYE ON DARWIN NAME SPACE CAUSING AN UNDEFINED< JUST ADD darwin. to access a function
- */
 
+//Loads the navigation bar (consistent on every post splash web page)
 $(document).ready(function(e) {
 	$('#navbar').load('http://localhost:8080/GitHubRepositoryEvolutionWorkBench/html/NavBar.html?2');
 });
@@ -45,6 +43,18 @@ darwin.performAjaxRequestServer = function(action, callback, type, input){
 	  }
 	 });
 };
+
+darwin.loadGraphLibrary = function() {
+	//this stops chart library overriding page
+	if(google) {
+	    google.load('visualization', '1.0', {
+	        packages: ['corechart'],
+	        callback: function() {
+	        	//No call back required for my app
+	        }
+	    })
+	}
+}
 
 darwin.convertISO8601toDate = function(dtstr) {
 

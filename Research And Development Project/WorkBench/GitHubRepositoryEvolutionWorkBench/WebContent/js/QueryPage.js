@@ -2,86 +2,15 @@
  * 
  */
 
-//Creates new namespace if not already defined
+//Creates new name space if not already defined
 var darwin = darwin || {};
 
-
-//responsePage = 1;
-//baseRequestUrl = ""
-//totalCommits = 0; //not in use
-//commitIterator = 0; // only used for my own debugging
-//dates = []
-//monthCounter = 0;
-//firstDate = true;
-//commitsPerMonth = [];
-
-darwin.responsePage = 0;
-
 $(document).ready(function(e) {
-	
 	//darwin.disableTabs();
-	darwin.loadGraph();
-
-	
-	$("#submitButtonQuery").on("click.darwin", function(e){
-		e.preventDefault();
-		parsedUrl = darwin.parseGithubURL($("#urlField").val());
-				
-        baseRequestUrl = "https://api.github.com/repos"+parsedUrl+"/stats/code_frequency?per_page=100&page="+darwin.responsePage;
-		darwin.getApiCodeFrequency(baseRequestUrl,darwin.collectCodefrequencyData);
-	});
-	
-	$('#changeValues1').click(function(e){
-		e.preventDefault();
-
-		darwin.currentAction = "difference"
-		darwin.drawContributionGraph(darwin.dates, darwin.difference);
-
-	});
-	
-	$('#changeValues2').click(function(e){
-		e.preventDefault();
-
-		darwin.currentAction = "addition"
-		darwin.drawContributionGraph(darwin.dates, darwin.additions);
-
-	});
-	
-	$('#changeValues3').click(function(e){
-		e.preventDefault();
-
-		darwin.currentAction = "deletion"
-		darwin.drawContributionGraph(darwin.dates, darwin.deletions);
-	});
-	
-	//wont works for other metrics yet on this page
-	$('#sampleRate1').click(function(e){
-		e.preventDefault();
-	    darwin.resetVariables();
-
-		darwin.SamplingRate = 6;
-		darwin.collectCodefrequencyData(darwin.currentJson);
-	});
-	
-	$('#sampleRate2').click(function(e){
-		e.preventDefault();
-	    darwin.resetVariables();
-
-		darwin.SamplingRate = 13;
-		darwin.collectCodefrequencyData(darwin.currentJson);
-
-	});
-	
-	$('#sampleRate3').click(function(e){
-		e.preventDefault();
-	    darwin.resetVariables();
-
-		darwin.SamplingRate = 26;
-		darwin.collectCodefrequencyData(darwin.currentJson);
-	});
-
+	darwin.loadGraphLibrary();
 });
 
+//Extracts the repo owner and name from the input url
 darwin.parseGithubURL = function(url){
 	var el = document.createElement('a');
 	el.href = url;
@@ -93,7 +22,18 @@ darwin.disableTabs = function(){
 
 }
 
-darwin.getApiCommitData = function(url, callback){
+
+
+//responsePage = 1;
+//baseRequestUrl = ""
+//totalCommits = 0; //not in use
+//commitIterator = 0; // only used for my own debugging
+//dates = []
+//monthCounter = 0;
+//firstDate = true;
+//commitsPerMonth = [];
+
+/*darwin.getApiCommitData = function(url, callback){
 	darwin.performAjaxRequestGitHub(url, "GET", callback);
 }
 
@@ -140,8 +80,9 @@ darwin.collectCommitData = function(json){
 		commitsPerMonth.reverse();
 		darwin.visualiseData();
 	}
-}
+}*/
 
+/*
 darwin.visualiseData = function(commits, dates){
 	
 	$('#total').text(commitIterator);
@@ -155,7 +96,7 @@ darwin.visualiseData = function(commits, dates){
 	        }
 	    } )
 	}
-}
+}*/
 
 /*darwin.drawChart = function(){
     // Create and populate the data table.

@@ -6,8 +6,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Login Or Register</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Master.js"></script>
-<script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/FacebookSDK.js"></script>
+<script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Utility/Master.js"></script>
+<script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/FacebookIntegration/FacebookSDK.js"></script>
+<script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/InputManagers/SplashInputManager.js?v5"></script>
 <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/SplashPage.js?v2"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 <link rel="stylesheet" href="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/css/SplashPage.css?v2">
@@ -35,7 +36,7 @@
        <button type="submit" id="submitButtonLog" class="btn btn-primary submitButton">
   	     <i class="icon-user icon-white">Login To Darwin</i> 
        </button>
-       <fb:login-button id="FacebookLogin" scope="public_profile,email" onlogin="checkLoginState();"></fb:login-button>      
+       <fb:login-button id="FacebookLogin" scope="public_profile,email" onlogin="darwin.checkLoginState();"></fb:login-button>      
     </div>
   <div id="register" class="tab-pane fade">
        <div class="input-group input-group-lg fields">
