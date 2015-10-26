@@ -1,3 +1,4 @@
+%Choose image input
 Im = imread('baboon256.bmp');
 %Im = imread('polarbear512.bmp');
 Im = rgb2gray(Im);
@@ -22,8 +23,10 @@ imwrite(watermarkedImage, 'watermarkImage.bmp','bmp');
 
 %PSNR atained for each image using function
 %smooth image will have a lowe PSNR score, due to greater distortion
-PSNR = Fidelity_Measure(Im, watermarkedImage);
+%PSNR = Fidelity_Measure(Im, watermarkedImage);
+PSNR = Peak_SNR(Im, watermarkedImage);
 
+%extracts the watermark from watermarked image
 extractedWatermark = extractWatermark(watermarkedImage, size(watermarkedImage));
 
 %gets the bit rate error for the specified watermarks
