@@ -43,6 +43,8 @@ darwin.drawContributionGraph = function(dates, values, xAxis, chartTitle){
     	new google.visualization.LineChart(document.getElementById('contributorChart')).draw(data, options);
     }
     
+    darwin.loadProgress = darwin.loadProgress + darwin.loadIntervalSize;
+    darwin.updateProgressBar();
     darwin.populateSupplementaryStats();
 }
 

@@ -23,7 +23,7 @@
    <div id="tabContainer">
     <ul class="nav nav-tabs tabListCustom">
       <li class="active"><a class="tabText" data-toggle="tab" href="#urlInput">Input Repository</a></li>
-      <li><a class="tabText" data-toggle="tab" href="#ContributorTab">Contributors</a></li>
+      <li><a class="tabText disabled" data-toggle="tab" href="#ContributorTab">Contributors</a></li>
     </ul>
       <div class="tab-content">
       <div id="urlInput" class="tab-pane fade in active">
@@ -33,9 +33,14 @@
        </div>  
        <button type="submit" id="submitButtonQuery" class="btn btn-primary submitButton">
   	     <i class="icon-user icon-white">Get Data</i> 
-       </button>
+       </button>   
        <p>Add cool explanatory text here</p>
-      </div>
+ 		<div class="progress">
+  			<div class="progress-bar progress-bar-striped active" role="progressbar"
+			 aria-valuenow="1" aria-valuemin="0" aria-valuemax="100">
+  			</div>
+		</div>        
+      </div>   
     <div id="ContributorTab" class="tab-pane fade customTab">
     	<div class="dropdown">
   			<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -55,9 +60,10 @@
     		<span class="caret"></span>
   		</button>
   		<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-  		  <li><a href="#" id="sampleRate1">6 Weeks</a></li>
-    	  <li><a href="#" id="sampleRate2">13 Weeks</a></li>
-    	  <li><a href="#" id="sampleRate3">26 Weeks</a></li>
+  		  <li><a href="#" id="sampleRate1">1 Weeks</a></li>
+  		  <li><a href="#" id="sampleRate2">6 Weeks</a></li>
+    	  <li><a href="#" id="sampleRate3">13 Weeks</a></li>
+    	  <li><a href="#" id="sampleRate4">26 Weeks</a></li>
   		</ul>
 		</div>
 		<p id="contributorTotalWeeks" class="contributorExtra"></p>
@@ -66,5 +72,6 @@
     </div>
     </div>
    </div>
+    <div id="ajaxGetUserServletResponse" class="alert alert-success" role="alert"></div>   
   </body>
 </html>

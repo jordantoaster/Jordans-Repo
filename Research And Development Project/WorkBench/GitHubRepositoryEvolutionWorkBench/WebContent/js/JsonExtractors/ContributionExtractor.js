@@ -96,6 +96,10 @@ darwin.collectCodefrequencyData = function(json){
 		}			
 	}
 	
+	/*Each tab has two loading bar points - extraction + visualisation*/
+	darwin.loadProgress = darwin.loadProgress + darwin.loadIntervalSize;
+    darwin.updateProgressBar();
+	
 	/*Depending on the current user input, data passed into the draw function varies*/
 	if(darwin.currentAction == "difference"){
 		darwin.drawContributionGraph(darwin.contributionDates, darwin.difference, 'Sample Size: ' + darwin.samplingRate + ' Weeks','Difference Of Additions And Deletions');

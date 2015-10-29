@@ -45,3 +45,12 @@
 	margin-left: 5%;
 	font-size: 1.5em;
 }
+
+.progress {
+	width: 100%;
+	margin: 0 auto;
+	margin-top: 2%;
+}
+
+.progress-bar-custom {background: #666699;} 
+

@@ -18,7 +18,10 @@ $(document).ready(function(e) {
 	$("#submitButtonQuery").on("click.darwin", function(e){
 		e.preventDefault();
 		parsedUrl = darwin.parseGithubURL($("#urlField").val());
+		
+		/*contributution variables*/
 	    darwin.resetVariables();
+	    darwin.resetUtilityVariables();
 				
         baseRequestUrl = "https://api.github.com/repos"+parsedUrl+"/stats/code_frequency?per_page=100&page="+darwin.responsePage;
         darwin.performAjaxRequestGitHub(baseRequestUrl, "GET", darwin.collectCodefrequencyData)
@@ -59,18 +62,25 @@ $(document).ready(function(e) {
 		e.preventDefault();
 	    darwin.resetVariables();
 
-		darwin.samplingRate = 6;
+		darwin.samplingRate = 1;
 		darwin.collectCodefrequencyData(darwin.currentJson);
 	});	
 	$('#sampleRate2').on("click.darwin", function(e){
 		e.preventDefault();
 	    darwin.resetVariables();
 
-		darwin.samplingRate = 13;
+		darwin.samplingRate = 6;
 		darwin.collectCodefrequencyData(darwin.currentJson);
 
 	});	
 	$('#sampleRate3').on("click.darwin", function(e){
+		e.preventDefault();
+	    darwin.resetVariables();
+
+		darwin.samplingRate = 13;
+		darwin.collectCodefrequencyData(darwin.currentJson);
+	});
+	$('#sampleRate4').on("click.darwin", function(e){
 		e.preventDefault();
 	    darwin.resetVariables();
 

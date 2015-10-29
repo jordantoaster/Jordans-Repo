@@ -5,6 +5,9 @@
 //Creates new name space if not already defined
 var darwin = darwin || {};
 
+darwin.loadProgress = 0;
+darwin.loadIntervalSize = 50;
+
 $(document).ready(function(e) {
 	//darwin.disableTabs();
 	darwin.loadGraphLibrary();
@@ -17,9 +20,22 @@ darwin.parseGithubURL = function(url){
 	return el.pathname;
 }
 
+darwin.updateProgressBar = function() {
+	$('.progress-bar').css('width', darwin.loadProgress+'%').attr('aria-valuenow', darwin.loadProgress);    
+	
+	if(darwin.loadProgress == 100){
+		//do something - visual - unblock tabs
+	}
+}
+
 //TODO
 darwin.disableTabs = function(){
 
+}
+
+darwin.resetUtilityVariables = function(){
+	darwin.loadProgress = 0;
+	darwin.updateProgressBar();
 }
 
 
