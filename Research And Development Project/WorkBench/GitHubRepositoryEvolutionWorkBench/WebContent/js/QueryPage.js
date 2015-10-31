@@ -8,10 +8,6 @@ var darwin = darwin || {};
 darwin.loadProgress = 0;
 darwin.loadIntervalSize = 50;
 
-$(document).ready(function(e) {
-	//darwin.disableTabs();
-	darwin.loadGraphLibrary();
-});
 
 //Extracts the repo owner and name from the input url
 darwin.parseGithubURL = function(url){
@@ -19,26 +15,6 @@ darwin.parseGithubURL = function(url){
 	el.href = url;
 	return el.pathname;
 }
-
-darwin.updateProgressBar = function() {
-	$('.progress-bar').css('width', darwin.loadProgress+'%').attr('aria-valuenow', darwin.loadProgress);    
-	
-	if(darwin.loadProgress == 100){
-		//do something - visual - unblock tabs
-	}
-}
-
-//TODO
-darwin.disableTabs = function(){
-
-}
-
-darwin.resetUtilityVariables = function(){
-	darwin.loadProgress = 0;
-	darwin.updateProgressBar();
-}
-
-
 
 //responsePage = 1;
 //baseRequestUrl = ""
