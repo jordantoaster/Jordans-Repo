@@ -12,9 +12,9 @@ $(document).ready(function(e) {
     	var requestData = [];
     	requestData[0] = $("#userNameFeild").val();
     	requestData[1] = $("#passwordFeild").val();
-    		
-    	darwin.performAjaxRequestServer("login", darwin.handleResponse, "POST", requestData);   
-	});
+    	
+    	darwin.Facade.authenticate("login", darwin.Mediator.authenticateUpdateView, "POST", requestData);
+   	});
 	
 	$("#submitButtonReg").on("click.darwin", function(e){
 		
@@ -24,7 +24,7 @@ $(document).ready(function(e) {
     	requestData[2] = $("#passwordFeildReg").val();
     	requestData[1] = $("#passwordFeildConfirmReg").val();
     	requestData[0] = $("#userNameFeildReg").val();
-    		
-    	darwin.performAjaxRequestServer("register", darwin.handleResponse, "POST", requestData);   
+    	
+    	darwin.Facade.authenticate("register", darwin.Mediator.authenticateUpdateView, "POST", requestData);   		
 	});
 });

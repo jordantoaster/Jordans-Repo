@@ -26,24 +26,6 @@ darwin.performAjaxRequestGitHub = function(url, type, callback){
 	 });
 };
 
-darwin.performAjaxRequestServer = function(action, callback, type, input){  
-	$.ajax({
-	  type : type,
-	  url : 'http://localhost:8080/GitHubRepositoryEvolutionWorkBench/Service',
-      data : { 
-      	action: action,
-      	input: input,
-      },
-	  success : function(response) {
-		  callback(response);
-	  },
-	  error: function() {
-	       	$('#ajaxGetUserServletResponse').text("An error occured when connecting to the Server");
-	      	$("#ajaxGetUserServletResponse").css({"opacity":"1"});	 
-	  }
-	 });
-};
-
 darwin.loadGraphLibrary = function() {
 	//this stops chart library overriding page
 	if(google) {

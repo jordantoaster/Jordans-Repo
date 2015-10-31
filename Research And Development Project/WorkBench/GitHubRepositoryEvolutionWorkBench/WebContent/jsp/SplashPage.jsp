@@ -6,10 +6,12 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Login Or Register</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Utility/Master.js"></script>
-<script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/FacebookIntegration/FacebookSDK.js"></script>
+<script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Modules/FacebookSDK.js"></script>
+<script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Modules/ServerCommunication.js"></script>
 <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/InputManagers/SplashInputManager.js?v5"></script>
 <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/SplashPage.js?v2"></script>
+<script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Facade/Facade.js?v2"></script>
+<script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Mediator/Mediator.js?v2"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 <link rel="stylesheet" href="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/css/SplashPage.css?v2">
 <link rel="stylesheet" href="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/css/Master.css?v2">
@@ -45,11 +47,11 @@
        </div>
        <div class="input-group input-group-lg fields">
          <span class="input-group-addon glyphicon glyphicon-rub icon" id="basic-addon1"></span>
-         <input type="text" class="form-control" id="passwordFeildReg" placeholder="Password" aria-describedby="basic-addon1">
+         <input type="password" class="form-control" id="passwordFeildReg" placeholder="Password" aria-describedby="basic-addon1">
        </div>
        <div class="input-group input-group-lg fields">
          <span class="input-group-addon glyphicon glyphicon-rub icon" id="basic-addon1"></span>
-         <input type="text" class="form-control" id="passwordFeildConfirmReg" placeholder="Password" aria-describedby="basic-addon1">
+         <input type="password" class="form-control" id="passwordFeildConfirmReg" placeholder="Password" aria-describedby="basic-addon1">
        </div>       
        <button type="submit" id="submitButtonReg" class="btn btn-primary submitButton">
   	     <i class="icon-user icon-white">Register To Darwin</i> 
