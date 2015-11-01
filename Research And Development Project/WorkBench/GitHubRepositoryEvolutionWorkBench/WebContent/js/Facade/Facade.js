@@ -8,8 +8,8 @@ var darwin = darwin || {};
 
 darwin.Facade = (function () {
     return {
-    	authenticate: function (action, callback, type, input) {
-        	darwin.Mediator.authenticate(action, callback, type, input);
+    	makeServerRequest: function (action, callback, type, input) {
+        	darwin.Mediator.makeServerRequest(action, callback, type, input);
         },
         makeGithubRequest: function (url, type, callback) {
         	darwin.Mediator.makeGithubRequest(url, type, callback);

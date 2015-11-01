@@ -112,6 +112,9 @@ darwin.contributionExtractorModule = (function() {
     		if(darwin.currentContrubutionAction == "LOC"){
     			darwin.Mediator.drawContributionGraph(contributionDates, LOCOverTime, 'Sample Size: ' + darwin.samplingRate + ' Weeks', 'LOC Over Time', LOC, totalWeeks);
     		}
+    		
+    		/*Uncomment when sending data to the DB*/
+    		darwin.Mediator.packager(additions, deletions, LOCOverTime, "contributions");
         },
         getAddition: function(){
         	return additions;

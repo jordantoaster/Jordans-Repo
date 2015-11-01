@@ -13,6 +13,10 @@ $(document).ready(function(e) {
 		
 		/*contributution variables*/
 	    darwin.resetVariables();
+	 
+	    /*use this to change starting variable, so isnt affected by reset*/
+	    darwin.samplingRate = 1;
+
 		$('.progress-bar').css('width', 0+'%').attr('aria-valuenow', 0);    
 				
         baseRequestUrl = "https://api.github.com/repos"+parsedUrl+"/stats/code_frequency?per_page=100&page="+darwin.responsePage;

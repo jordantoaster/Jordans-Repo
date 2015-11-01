@@ -18,6 +18,10 @@ public class ActionFactory {
 			return new RegisterAction();
 		}
 		
+		if(request.getParameter("action").equals("store")){
+			return new StoreAction();
+		}
+		
 		return new NoAction();
 	}
 }

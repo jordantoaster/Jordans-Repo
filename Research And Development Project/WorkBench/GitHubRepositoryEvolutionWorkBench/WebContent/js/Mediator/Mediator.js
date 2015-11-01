@@ -6,7 +6,7 @@ var darwin = darwin || {};
 
 darwin.Mediator = (function () {
     return {
-    	authenticate: function (action, callback, type, input) {
+    	makeServerRequest: function (action, callback, type, input) {
     		darwin.serverModule.send(action, callback, type, input);
         },
 		authenticateUpdateView: function (response) {
@@ -46,6 +46,15 @@ darwin.Mediator = (function () {
 		},
 		parseInputUrl : function(url){
 			return darwin.ParseUrlInputModule.parse(url);
+		},
+		packager : function(seriesA, SeriesB, seriesC, dataType){
+			if(dataType == "contributions"){
+				darwin.packager.contributions(seriesA, SeriesB, seriesC);
+			}
+		},
+		emptyCallback : function(){
+			
 		}
+
     };
 })();
