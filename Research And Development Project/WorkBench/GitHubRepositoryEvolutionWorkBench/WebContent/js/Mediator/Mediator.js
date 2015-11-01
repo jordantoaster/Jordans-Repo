@@ -28,8 +28,12 @@ darwin.Mediator = (function () {
 		githubParseContributionData: function (response) {
 			darwin.contributionExtractorModule.extract(response);
 		},
-		drawContributionGraph: function (dates, values, xAxis, chartTitle) {
+		drawContributionGraph: function (dates, values, xAxis, chartTitle, LOC, totalLines) {
 			darwin.ContributionVisualiser.draw(dates, values, xAxis, chartTitle);
+			
+			if(typeof LOC != 'undefined'){
+				darwin.ContributionVisualiser.populateSupplementaryStats(LOC,totalLines);
+			}
 		},
 		loadGraphLibrary: function(){
 			darwin.loadGraphModule.load();
@@ -39,6 +43,9 @@ darwin.Mediator = (function () {
 		},
 		resampleContributions : function(currData){
 			darwin.contributionExtractorModule.extract(currData);
+		},
+		parseInputUrl : function(url){
+			return darwin.ParseUrlInputModule.parse(url);
 		}
     };
 })();

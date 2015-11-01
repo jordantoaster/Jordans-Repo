@@ -100,17 +100,17 @@ darwin.contributionExtractorModule = (function() {
     	    darwin.Mediator.updateProgressBar();
     	    
     		/*Depending on the current user input, data passed into the draw function varies*/
-    		if(darwin.currentAction == "difference"){
-    			darwin.Mediator.drawContributionGraph(contributionDates, difference, 'Sample Size: ' + darwin.samplingRate + ' Weeks','Difference Of Additions And Deletions');
+    		if(darwin.currentContrubutionAction == "difference"){
+    			darwin.Mediator.drawContributionGraph(contributionDates, difference, 'Sample Size: ' + darwin.samplingRate + ' Weeks','Difference Of Additions And Deletions', LOC, totalWeeks);
     		}
-    		if(darwin.currentAction == "addition"){
-    			darwin.Mediator.drawContributionGraph(contributionDates, additions, 'Sample Size: ' + darwin.samplingRate + ' Weeks', 'Amount of Additions');
+    		if(darwin.currentContrubutionAction == "addition"){
+    			darwin.Mediator.drawContributionGraph(contributionDates, additions, 'Sample Size: ' + darwin.samplingRate + ' Weeks', 'Amount of Additions', LOC, totalWeeks);
     		}
-    		if(darwin.currentAction == "deletion"){
-    			darwin.Mediator.drawContributionGraph(contributionDates, deletions, 'Sample Size: ' + darwin.samplingRate + ' Weeks', 'Amount of Deletions');
+    		if(darwin.currentContrubutionAction == "deletion"){
+    			darwin.Mediator.drawContributionGraph(contributionDates, deletions, 'Sample Size: ' + darwin.samplingRate + ' Weeks', 'Amount of Deletions', LOC, totalWeeks);
     		}
-    		if(darwin.currentAction == "LOC"){
-    			darwin.Mediator.drawContributionGraph(contributionDates, LOCOverTime, 'Sample Size: ' + darwin.samplingRate + ' Weeks', 'LOC Over Time');
+    		if(darwin.currentContrubutionAction == "LOC"){
+    			darwin.Mediator.drawContributionGraph(contributionDates, LOCOverTime, 'Sample Size: ' + darwin.samplingRate + ' Weeks', 'LOC Over Time', LOC, totalWeeks);
     		}
         },
         getAddition: function(){

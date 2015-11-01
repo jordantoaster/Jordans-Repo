@@ -36,18 +36,17 @@ darwin.ContributionVisualiser = (function () {
     	    };
     	        
     	    // Create and draw the visualization.
-    	    if(darwin.currentAction == "LOC"){
+    	    if(darwin.currentContrubutionAction == "LOC"){
     	        new google.visualization.SteppedAreaChart(document.getElementById('contributorChart')).draw(data, options);
     	    } else {
     	    	new google.visualization.LineChart(document.getElementById('contributorChart')).draw(data, options);
     	    }
     	    
     	    darwin.Mediator.updateProgressBar();
-    	    darwin.ContributionVisualiser.populateSupplementaryStats();
         },
-        populateSupplementaryStats: function(){
-        	//$('#contributorTotalWeeks').text('Total Amount Of Weeks on GitHub: ' + totalWeeks);
-        	//$('#contributorLOC').text('Total Lines Of Code On GitHub: ' + LOC);
+        populateSupplementaryStats: function(LOC, totalWeeks){
+        	$('#contributorTotalWeeks').text('Total Amount Of Weeks on GitHub: ' + totalWeeks);
+        	$('#contributorLOC').text('Total Lines Of Code On GitHub: ' + LOC);
         }
     };
 })();

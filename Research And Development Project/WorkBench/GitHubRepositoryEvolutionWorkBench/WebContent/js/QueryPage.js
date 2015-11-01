@@ -1,20 +1,4 @@
-/**
- * 
- */
 
-//Creates new name space if not already defined
-var darwin = darwin || {};
-
-darwin.loadProgress = 0;
-darwin.loadIntervalSize = 50;
-
-
-//Extracts the repo owner and name from the input url
-darwin.parseGithubURL = function(url){
-	var el = document.createElement('a');
-	el.href = url;
-	return el.pathname;
-}
 
 //responsePage = 1;
 //baseRequestUrl = ""
