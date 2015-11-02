@@ -44,8 +44,10 @@ darwin.contributionExtractorModule = (function() {
     		/*Loops through each json element*/
     		for(i =0; i < json.length;i++){
     			
+				totalWeeks++;
+    			
     			/*Gets the current index's date*/
-    			var date = new Date(json[i][0]*1000);	
+    			var date = new Date(json[i][0]*1000);
     			
     			/*calculate the difference between additions and deletions*/
     			currDiff = json[i][1] + json[i][2];
@@ -54,7 +56,7 @@ darwin.contributionExtractorModule = (function() {
     			
     			/*Checks if the iterator (each increment represents a week) has surpassed the sampling rate - Change date*/
     			/*boolean is required to ensure that the date can be initilised on the first pass of the processs*/
-    			if(darwin.samplingRate < SamplingIterator || firstOperation == true){
+    			if(darwin.samplingRate == SamplingIterator || firstOperation == true){
     				
     				/*Resets iterator to allow next sample set to be organised*/
     				SamplingIterator = 0;		
@@ -79,10 +81,7 @@ darwin.contributionExtractorModule = (function() {
     				
     				/*It is no longer the first op*/
     				firstOperation = false;
-    				
-    				/*Basic counter for total weeks*/
-    				totalWeeks++;
-    				
+    				    				
     			} else { /*If we are inside the same sampling, add to existing values - then increment sample iterator*/			
     				/*Add to current values for this sampling period*/
     				additions[contributionSampleCounter] = additions[contributionSampleCounter] + json[i][1];
@@ -93,7 +92,6 @@ darwin.contributionExtractorModule = (function() {
     				SamplingIterator++;
     				
     				/*Basic counter for total weeks*/
-    				totalWeeks++;
     			}			
     		}
     		
@@ -114,7 +112,7 @@ darwin.contributionExtractorModule = (function() {
     		}
     		
     		/*Uncomment when sending data to the DB*/
-    		darwin.Mediator.packager(additions, deletions, LOCOverTime, "contributions");
+    		//darwin.Mediator.packager(additions, deletions, LOCOverTime, contributionDates, "contributions");
         },
         getAddition: function(){
         	return additions;
@@ -158,31 +156,3 @@ darwin.contributionExtractorModule = (function() {
         }
     };
 })();
-
-/*DURING RESAMPLING ALL VARIABLES ARE RESET*/
-darwin.resetVariables = function(){
-	
-	/*RESAMPLING DATA CAUSES IT TO BE REPOPULATED*/
-	if(darwin.currentAction == "difference"){
-		darwin.difference = [];
-	}
-	if(darwin.currentAction == "addition"){
-		darwin.additions = [];
-	}
-	if(darwin.currentAction == "deletion"){
-		darwin.deletions = [];
-	}
-	if (darwin.currentAction == "LOC"){
-		darwin.LOCOverTime = []
-	}
-	
-	/*ALL SAMPLING VARIABLES ARE RESET, OR A NEW URL IS ENTERED, RESET ANYWAY*/
-	darwin.totalWeeks = 0;
-	darwin.contributionSampleCounter = 0;
-	darwin.responsePage = 0;
-	//represents the period each point in the graph represents
-	darwin.samplingRate = 13;
-	darwin.SamplingIterator = 0;
-	darwin.firstOperation = true;
-	darwin.LOC = 0;
-}

@@ -16,7 +16,7 @@ darwin.ContributionVisualiser = (function () {
     	    
     	    
     	    for(var i =0; i<dates.length; i++){
-    	    	data.addRow([dates[i].getMonth() + "-" + dates[i].getFullYear(), values[i]])
+    	    	data.addRow([dates[i].getMonth()+1  + "-" + dates[i].getFullYear(), values[i]])
     	    }
     	    	
     	    var options = {

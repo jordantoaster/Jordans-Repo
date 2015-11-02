@@ -47,9 +47,9 @@ darwin.Mediator = (function () {
 		parseInputUrl : function(url){
 			return darwin.ParseUrlInputModule.parse(url);
 		},
-		packager : function(seriesA, SeriesB, seriesC, dataType){
+		packager : function(seriesA, SeriesB, seriesC, seriesD ,dataType){
 			if(dataType == "contributions"){
-				darwin.packager.contributions(seriesA, SeriesB, seriesC);
+				darwin.packager.contributions(seriesA, SeriesB, seriesC,seriesD);
 			}
 		},
 		emptyCallback : function(){

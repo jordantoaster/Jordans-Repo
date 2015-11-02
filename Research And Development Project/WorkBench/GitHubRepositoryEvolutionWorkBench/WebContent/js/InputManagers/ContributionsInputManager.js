@@ -6,7 +6,6 @@ var darwin = darwin || {};
 
 //Used by a large number of files, global use makes sense
 darwin.currentContrubutionAction = "difference";
-darwin.samplingRate = 13;
 
 $(document).ready(function(e) {
 	

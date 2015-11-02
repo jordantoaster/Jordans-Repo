@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 
+import Daos.ContributionDao;
 import Models.Contributions;
 
 public class StoreAction implements Action{
@@ -17,57 +18,50 @@ public class StoreAction implements Action{
 	List<Integer> additions = new ArrayList<Integer>();
 	List<Integer> deletions  = new ArrayList<Integer>();
 	List<Integer> LOC  = new ArrayList<Integer>();
+	List<String> dates  = new ArrayList<String>();
+	String project = "";
+
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
 		
 		String[] contribDetails = request.getParameterValues("input[]");
-		int partitionLength = getPartitionLength(contribDetails);
 		
-		getData(contribDetails,partitionLength);
+		getData(contribDetails);
 		
-		Contributions contributions = new Contributions(additions, deletions, LOC);
+		Contributions contributions = new Contributions(additions, deletions, LOC, dates, project);
+		
+		ContributionDao dao = new ContributionDao();
+		dao.insertContributions(contributions);
 		
 		return "mongo sync complete";
 	}
 
 	/*Removes the terminators and splits the main list into each category*/
-	private void getData(String[] contribDetails, int partitionLength) {
+	private void getData(String[] contribDetails) {
 		
-		ArrayList<Integer> adjustedContribDetails = removeTerminator(contribDetails, partitionLength);
-		
-		additions = adjustedContribDetails.subList(0, partitionLength);
-		deletions = adjustedContribDetails.subList(partitionLength, partitionLength*2);
-		LOC = adjustedContribDetails.subList(partitionLength*2, partitionLength*3);
-	}
-
-	/*returns three datasets, so removes the two terminators but creating a new list without them*/
-	private ArrayList<Integer> removeTerminator(String[] contribDetails, int partitionLength) {
-		
-		ArrayList<Integer> adjustedDetails = new ArrayList<Integer>();
+		int count = 0;
 		
 		for(int i =0; i<contribDetails.length; i++){
-			if(!contribDetails[i].equals("#")){
-				adjustedDetails.add(Integer.parseInt(contribDetails[i]));
-			}
-		}		
-		return adjustedDetails;
-	}
-
-	/*Gets the length of each data series, by counting up to the first terminator*/
-	private int getPartitionLength(String[] contribDetails) {
-		
-		int count =0;
-		
-		for(int i =0;i<contribDetails.length;i++){
-
 			if(contribDetails[i].equals("#")){
-				break;
-			}
-			count++;
-		}
-		
-		return count;
+				count++;
+			} else {
+				if(count == 0){
+					additions.add(Integer.parseInt(contribDetails[i]));
+				}
+				if(count == 1){
+					deletions.add(Integer.parseInt(contribDetails[i]));
+				}
+				if(count == 2){
+					LOC.add(Integer.parseInt(contribDetails[i]));
+				}
+				if(count == 3){
+					dates.add(contribDetails[i]);
+				}
+				if(count == 4){
+					project = contribDetails[i];
+				}
+			}		
+		}		
 	}
-
 }

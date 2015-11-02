@@ -12,9 +12,7 @@ import Utility.ResponseBase;
 public class UserDao {
 		
 	public boolean findUser(User user){
-		
-		Gson gson = new Gson();
-				
+						
 		try {
 			DBCollection userCollection = new dbConnectionBuilder().getMongoCollection("Users");
 		

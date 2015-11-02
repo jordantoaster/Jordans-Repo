@@ -1,4 +1,10 @@
+var darwin = darwin || {};
+
+darwin.samplingRate = 13;
+darwin.projectId = "";
+
 $(document).ready(function(e) {
+	
 	$('#navbar').load('http://localhost:8080/GitHubRepositoryEvolutionWorkBench/html/NavBar.html?2');
 	
 	
@@ -11,11 +17,13 @@ $(document).ready(function(e) {
 		e.preventDefault();
 		parsedUrl = darwin.Facade.parseInputUrl($("#urlField").val());
 		
-		/*contributution variables*/
-	    darwin.resetVariables();
+		darwin.projectId = parsedUrl;
+		
+		/*contributution variables, CHANGE TO POINT TO RIGHT METHOD*/
+	    darwin.Facade.resetContributionVariables();
 	 
 	    /*use this to change starting variable, so isnt affected by reset*/
-	    darwin.samplingRate = 1;
+	    //darwin.samplingRate = 13;
 
 		$('.progress-bar').css('width', 0+'%').attr('aria-valuenow', 0);    
 				
