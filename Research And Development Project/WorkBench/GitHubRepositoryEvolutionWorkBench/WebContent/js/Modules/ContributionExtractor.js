@@ -56,7 +56,7 @@ darwin.contributionExtractorModule = (function() {
     			
     			/*Checks if the iterator (each increment represents a week) has surpassed the sampling rate - Change date*/
     			/*boolean is required to ensure that the date can be initilised on the first pass of the processs*/
-    			if(darwin.samplingRate == SamplingIterator || firstOperation == true){
+    			if(darwin.projectManagerModule.getSamplingRate() == SamplingIterator || firstOperation == true){
     				
     				/*Resets iterator to allow next sample set to be organised*/
     				SamplingIterator = 0;		

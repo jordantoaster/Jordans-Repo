@@ -28,9 +28,6 @@ darwin.Facade = (function () {
         },
         parseInputUrl: function(url){
         	return darwin.Mediator.parseInputUrl(url);
-        },
-        resetContributionVariables : function(){
-        	darwin.Mediator.resetContributionVariables();
         }
     };
 })();

@@ -11,6 +11,7 @@
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Modules/PackagerModule.js?v4"></script>
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Modules/ServerCommunication.js?v4"></script>
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Modules/ProgressbarModule.js?v4"></script>
+    <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Modules/ProjectManagerModule.js?v4"></script>
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Modules/ParseUrlInputModule.js?v4"></script>
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Facade/Facade.js?v4"></script>
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Mediator/Mediator.js?v4"></script>

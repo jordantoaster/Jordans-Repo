@@ -44,14 +44,14 @@ $(document).ready(function(e) {
 		e.preventDefault();
 	    darwin.Facade.resetContributionVariables();
 
-		darwin.samplingRate = 1;
+		darwin.projectManagerModule.setSamplingRate(1);	
 		darwin.Facade.resampleContributions(darwin.currentJson);
 	});	
 	$('#sampleRate2').on("click.darwin", function(e){
 		e.preventDefault();
 	    darwin.Facade.resetContributionVariables();
 
-		darwin.samplingRate = 6;
+	    darwin.projectManagerModule.setSamplingRate(6);	
 		darwin.Facade.resampleContributions(darwin.currentJson);
 
 	});	
@@ -59,14 +59,14 @@ $(document).ready(function(e) {
 		e.preventDefault();
 	    darwin.Facade.resetContributionVariables();
 
-		darwin.samplingRate = 13;
+	    darwin.projectManagerModule.setSamplingRate(13);	
 		darwin.Facade.resampleContributions(darwin.currentJson);
 	});
 	$('#sampleRate4').on("click.darwin", function(e){
 		e.preventDefault();
 	    darwin.Facade.resetContributionVariables();
 
-		darwin.samplingRate = 26;
+	    darwin.projectManagerModule.setSamplingRate(26);	
 		darwin.Facade.resampleContributions(darwin.currentJson);
 	});
 });
