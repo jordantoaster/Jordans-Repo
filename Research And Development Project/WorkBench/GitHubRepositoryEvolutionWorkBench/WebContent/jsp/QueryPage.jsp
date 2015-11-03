@@ -35,10 +35,11 @@
     </ul>
       <div class="tab-content">
       <div id="urlInput" class="tab-pane fade in active">
-	   <div class="input-group input-group-lg fields">
-         <span class="input-group-addon glyphicon glyphicon-cog icon" id="basic-addon1"></span>
+	   <div class="input-group input-group-lg fields urlInputOne">
+         <span class="input-group-addon glyphicon glyphicon-cog" id="basic-addon1"></span>
          <input type="text" class="form-control" id="urlField" placeholder="GitHub repository URL" aria-describedby="basic-addon1">
        </div>  
+       <div id="additionalProject"><span class="input-group-addon glyphicon glyphicon-plus icon" id="basic-addon1"></span></div>
        <button type="submit" id="submitButtonQuery" class="btn btn-primary submitButton">
   	     <i class="icon-user icon-white">Get Data</i> 
        </button>   

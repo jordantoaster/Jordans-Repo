@@ -54,3 +54,20 @@
 
 .progress-bar-custom {background: #666699;} 
 
+.icon {
+	border: 1px solid white;
+	font-size: 2em;
+}
+
+.icon:hover {
+	cursor: pointer;
+}
+
+.input-group-addon {
+	background-color: white !important;
+}
+
+#additionalProject {
+	margin-top: 1%;
+}
+
