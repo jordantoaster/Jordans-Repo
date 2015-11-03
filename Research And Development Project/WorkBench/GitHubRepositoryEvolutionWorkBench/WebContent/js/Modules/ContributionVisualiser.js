@@ -6,17 +6,26 @@ var darwin = darwin || {};
 
 darwin.ContributionVisualiser = (function () {
     return {
-    	draw: function (dates, values, xAxis, chartTitle) {
+    	draw: function (dates, values, xAxis, chartTitle, valuesTwo) {
     		
-    		darwin.currentContributionData = values;
+    		//darwin.currentContributionData = values;
     	    
     	    var data = new google.visualization.DataTable();   
     	    data.addColumn('string', xAxis)
     	    data.addColumn('number', '')
     	    
+    	    if(darwin.projectManagerModule.getComparison()){
+    	    	 data.addColumn('number', '');
+    	    }
     	    
-    	    for(var i =0; i<dates.length; i++){
-    	    	data.addRow([dates[i].getMonth()+1  + "-" + dates[i].getFullYear(), values[i]])
+    	    
+    	    for(var i =0; i<values.length; i++){
+    	    	if(darwin.projectManagerModule.getComparison()){
+        	    	data.addRow(["First n amount of years", values[i], valuesTwo[i]]);
+    	    	} else {
+        	    	data.addRow([dates[i].getMonth()+1  + "-" + dates[i].getFullYear(), values[i]]);
+    	    	}
+
     	    }
     	    	
     	    var options = {

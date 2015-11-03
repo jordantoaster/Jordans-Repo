@@ -11,20 +11,20 @@ darwin.Facade = (function () {
     	makeServerRequest: function (action, callback, type, input) {
         	darwin.Mediator.makeServerRequest(action, callback, type, input);
         },
-        makeGithubRequest: function (url, type, callback) {
-        	darwin.Mediator.makeGithubRequest(url, type, callback);
+        makeGithubRequest: function (url, type, callback, urlTwo) {
+        	darwin.Mediator.makeGithubRequest(url, type, callback, urlTwo);
         },
         loadGraphLibrary: function(){
         	darwin.Mediator.loadGraphLibrary();
         },
-        drawContributionGraph: function (dates, values, xAxis, chartTitle){
-        	darwin.Mediator.drawContributionGraph(dates, values, xAxis, chartTitle);
+        drawContributionGraph: function (dates, values, valuesTwo, xAxis, chartTitle){
+        	darwin.Mediator.drawContributionGraph(dates, values, valuesTwo, xAxis, chartTitle);
         }, 
         resetContributionVariables: function(){
         	darwin.Mediator.resetContributionVariables();
         },
-        resampleContributions: function(currData){
-        	darwin.Mediator.resampleContributions(currData);
+        resampleContributions: function(currentJson, currentJsonTwo){
+        	darwin.Mediator.resampleContributions(currentJson, currentJsonTwo);
         },
         parseInputUrl: function(url){
         	return darwin.Mediator.parseInputUrl(url);

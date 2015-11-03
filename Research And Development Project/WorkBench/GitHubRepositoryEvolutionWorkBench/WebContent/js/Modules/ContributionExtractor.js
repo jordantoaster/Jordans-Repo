@@ -20,96 +20,148 @@ darwin.contributionExtractorModule = (function() {
 	var deletions = [];
 	var difference = [];
 	var LOCOverTime = [];
+	
+	var additionsTwo = [];
+	var deletionsTwo = [];
+	var differenceTwo = [];
+	var LOCOverTimeTwo = [];
 
 	/*Increments each time data is added to arrays, determines if sampling rate has been bypassed*/
 	var SamplingIterator = 0;
 	var firstOperation = true;
 
-	/*Keeps track of the code frequency response, to ensure only one api call is required*/
-	var currentJson;
-
 	/*Supplmentary metric, no purpose in the main loop structure*/
 	var totalWeeks = 0;
+	var inputCount = 0;
+	var jsonDuplicate = [];
+	var currDiff = 0;
+	var currDiffTwo = 0;
 	var LOC = 0;
+	var LOCTwo = 0;
+	
+	var localJson = [];
+	var localJsonTwo = [];
 	
     return {
     	extract: function (json) {
     		
-    		/*Array is reset to account for changing sampling rates*/
-    		contributionDates = [];
+    		//used to track the amount of url inputs
+    		inputCount++;
     		
-    		darwin.currentJson = json;
-    		var currDiff = 0;
+    		//sets original json data
+    		if(darwin.newQuery = true){
+        		if(inputCount == 1){
+        			darwin.currentJson = json;
+        			localJson = darwin.currentJson;
+        		} else {
+        			darwin.currentJsonTwo = json;     			
+        			localJsonTwo = darwin.currentJsonTwo;
+        			
+        			darwin.newQuery = false;
+        		}
+    		}
     		
-    		/*Loops through each json element*/
-    		for(i =0; i < json.length;i++){
+    		
+    		if(darwin.projectManagerModule.getComparison() && inputCount == 2){
+    			iterationCount = darwin.contributionExtractorModule.getIterationCount(localJson, localJsonTwo);
+    		} else {
+    			iterationCount = localJson.length;
+    		}
+    		    		
+    		//if not comparing or we finally have both to comapre
+        	if(!darwin.projectManagerModule.getComparison() || inputCount == 2){
+    		
+        		/*Array is reset to account for changing sampling rates*/
+        		contributionDates = [];
+        		contributionDatesTwo = [];
+        		
+    			/*Loops through each json element*/
+    			for(i =0; i < iterationCount;i++){
     			
-				totalWeeks++;
+					totalWeeks++;
     			
-    			/*Gets the current index's date*/
-    			var date = new Date(json[i][0]*1000);
+    				/*Gets the current index's date*/
+    				var date = new Date(localJson[i][0]*1000);
     			
-    			/*calculate the difference between additions and deletions*/
-    			currDiff = json[i][1] + json[i][2];
-    			
-    			LOC = LOC + currDiff;
-    			
-    			/*Checks if the iterator (each increment represents a week) has surpassed the sampling rate - Change date*/
-    			/*boolean is required to ensure that the date can be initilised on the first pass of the processs*/
-    			if(darwin.projectManagerModule.getSamplingRate() == SamplingIterator || firstOperation == true){
+    				/*calculate the difference between additions and deletions*/
+    				currDiff = localJson[i][1] + localJson[i][2];   			
+    				LOC = LOC + currDiff;
     				
-    				/*Resets iterator to allow next sample set to be organised*/
-    				SamplingIterator = 0;		
+        			if(darwin.projectManagerModule.getComparison()){
+        				currDiffTwo = localJsonTwo[i][1] + localJsonTwo[i][2];   			
+        				LOCTwo = LOCTwo + currDiffTwo;
+        			}
+   			
+    				/*Checks if the iterator (each increment represents a week) has surpassed the sampling rate - Change date*/
+    				/*boolean is required to ensure that the date can be initilised on the first pass of the processs*/
+    				if(darwin.projectManagerModule.getSamplingRate() == SamplingIterator || firstOperation == true){
     				
-    				/*Counts the total number of whole samples - don't increment on first sample set - its already 0*/
-    				if(firstOperation == false){
-    					contributionSampleCounter++;	
-    				}
+    					/*Resets iterator to allow next sample set to be organised*/
+    					SamplingIterator = 0;		
+    				
+    					/*Counts the total number of whole samples - don't increment on first sample set - its already 0*/
+    					if(firstOperation == false){
+    						contributionSampleCounter++;	
+    					}
     								
-    				/*Set the new date - signifies the start of a new sample period*/
-    				contributionDates[contributionSampleCounter] = date;
+    					/*Set the new date - signifies the start of a new sample period*/
+    					contributionDates[contributionSampleCounter] = date;
     				
-    				/*Add addition, deletion and difference data to each relevant array*/
-    				additions[contributionSampleCounter] = json[i][1];
-    				deletions[contributionSampleCounter] = Math.abs(json[i][2]);
-    				difference[contributionSampleCounter] = currDiff; 
-    				/*Each new sample, set LOC to current total*/
-    				LOCOverTime[contributionSampleCounter] = LOC;
+    					/*Add addition, deletion and difference data to each relevant array*/
+    					additions[contributionSampleCounter] = localJson[i][1];
+    					deletions[contributionSampleCounter] = Math.abs(localJson[i][2]);
+    					difference[contributionSampleCounter] = currDiff; 
+    					/*Each new sample, set LOC to current total*/
+    					LOCOverTime[contributionSampleCounter] = LOC;
+    					
+            			if(darwin.projectManagerModule.getComparison()){
+        					additionsTwo[contributionSampleCounter] = localJsonTwo[i][1];
+        					deletionsTwo[contributionSampleCounter] = Math.abs(localJsonTwo[i][2]);
+        					differenceTwo[contributionSampleCounter] = currDiffTwo; 
+        					LOCOverTimeTwo[contributionSampleCounter] = LOCTwo;
+            			}
+   				
+    					/*increment iterator, monitors sample progress*/
+    					SamplingIterator++;	
     				
-    				/*increment iterator, monitors sample progress*/
-    				SamplingIterator++;	
-    				
-    				/*It is no longer the first op*/
-    				firstOperation = false;
+    					/*It is no longer the first op*/
+    					firstOperation = false;
     				    				
-    			} else { /*If we are inside the same sampling, add to existing values - then increment sample iterator*/			
-    				/*Add to current values for this sampling period*/
-    				additions[contributionSampleCounter] = additions[contributionSampleCounter] + json[i][1];
-    				deletions[contributionSampleCounter] = deletions[contributionSampleCounter] + Math.abs(json[i][2]);
-    				difference[contributionSampleCounter] = difference[contributionSampleCounter] + currDiff;
-    				LOCOverTime[contributionSampleCounter] = LOC;
-    				/*increment iterator, monitors sample progress*/
-    				SamplingIterator++;
-    				
-    				/*Basic counter for total weeks*/
-    			}			
-    		}
+    				} else { /*If we are inside the same sampling, add to existing values - then increment sample iterator*/			
+    					/*Add to current values for this sampling period*/
+    					additions[contributionSampleCounter] = additions[contributionSampleCounter] + localJson[i][1];
+    					deletions[contributionSampleCounter] = deletions[contributionSampleCounter] + Math.abs(localJson[i][2]);
+    					difference[contributionSampleCounter] = difference[contributionSampleCounter] + currDiff;
+    					LOCOverTime[contributionSampleCounter] = LOC;
+    					
+            			if(darwin.projectManagerModule.getComparison()){
+        					additionsTwo[contributionSampleCounter] = additionsTwo[contributionSampleCounter] + localJsonTwo[i][1];
+        					deletionsTwo[contributionSampleCounter] = deletionsTwo[contributionSampleCounter] + Math.abs(localJsonTwo[i][2]);
+        					differenceTwo[contributionSampleCounter] = differenceTwo[contributionSampleCounter] + currDiffTwo; 
+        					LOCOverTimeTwo[contributionSampleCounter] = LOCTwo;
+            			}
+    					
+    					/*increment iterator, monitors sample progress*/
+    					SamplingIterator++;
+    				}			
+    			}
     		
-    	    darwin.Mediator.updateProgressBar();
+    	    	darwin.Mediator.updateProgressBar();
     	    
-    		/*Depending on the current user input, data passed into the draw function varies*/
-    		if(darwin.currentContrubutionAction == "difference"){
-    			darwin.Mediator.drawContributionGraph(contributionDates, difference, 'Sample Size: ' + darwin.samplingRate + ' Weeks','Difference Of Additions And Deletions', LOC, totalWeeks);
-    		}
-    		if(darwin.currentContrubutionAction == "addition"){
-    			darwin.Mediator.drawContributionGraph(contributionDates, additions, 'Sample Size: ' + darwin.samplingRate + ' Weeks', 'Amount of Additions', LOC, totalWeeks);
-    		}
-    		if(darwin.currentContrubutionAction == "deletion"){
-    			darwin.Mediator.drawContributionGraph(contributionDates, deletions, 'Sample Size: ' + darwin.samplingRate + ' Weeks', 'Amount of Deletions', LOC, totalWeeks);
-    		}
-    		if(darwin.currentContrubutionAction == "LOC"){
-    			darwin.Mediator.drawContributionGraph(contributionDates, LOCOverTime, 'Sample Size: ' + darwin.samplingRate + ' Weeks', 'LOC Over Time', LOC, totalWeeks);
-    		}
+    			/*Depending on the current user input, data passed into the draw function varies*/
+    			if(darwin.currentContrubutionAction == "difference"){
+    				darwin.Mediator.drawContributionGraph(contributionDates, difference, differenceTwo, 'Sample Size: ' + darwin.projectManagerModule.getSamplingRate() + ' Weeks','Difference Of Additions And Deletions', LOC, totalWeeks);
+    			}
+    			if(darwin.currentContrubutionAction == "addition"){
+    				darwin.Mediator.drawContributionGraph(contributionDates, additions, additionsTwo, 'Sample Size: ' + darwin.projectManagerModule.getSamplingRate() + ' Weeks', 'Amount of Additions', LOC, totalWeeks);
+    			}
+    			if(darwin.currentContrubutionAction == "deletion"){
+    				darwin.Mediator.drawContributionGraph(contributionDates, deletions, deletionsTwo,'Sample Size: ' + darwin.projectManagerModule.getSamplingRate() + ' Weeks', 'Amount of Deletions', LOC, totalWeeks);
+    			}
+    			if(darwin.currentContrubutionAction == "LOC"){
+    				darwin.Mediator.drawContributionGraph(contributionDates, LOCOverTime, LOCOverTimeTwo, 'Sample Size: ' + darwin.projectManagerModule.getSamplingRate() + ' Weeks', 'LOC Over Time', LOC, totalWeeks);
+    			}
+        	}
     		
     		/*Uncomment when sending data to the DB*/
     		//darwin.Mediator.packager(additions, deletions, LOCOverTime, contributionDates, "contributions");
@@ -126,23 +178,46 @@ darwin.contributionExtractorModule = (function() {
         getLOC: function(){
         	return LOCOverTime;
         },
+        getAdditionTwo: function(){
+        	return additionsTwo;
+        },
+        getDeletionTwo: function(){
+        	return deletionsTwo;
+        },
+        getDifferenceTwo: function(){
+        	return differenceTwo;
+        },
+        getLOCTwo: function(){
+        	return LOCOverTimeTwo;
+        },
         getDates: function(){
         	return contributionDates;
         },
+        getIterationCount : function(seriesA, seriesB){
+    		//allows the program to navigate an equal time frame for each project
+    		if(inputCount == 2){
+    			if(seriesA.length > seriesB.length){
+    				iterationNum = seriesB.length;
+    			} else {
+    				iterationNum = seriesA.length;
+    			}
+    		} else {
+				iterationNum = seriesA.length;
+    		}
+    		
+    		return iterationNum;
+        },
         resetVariables: function(){
+        	
         	/*RESAMPLING DATA CAUSES IT TO BE REPOPULATED*/
-        	if(darwin.currentAction == "difference"){
-        		difference = [];
-        	}
-        	if(darwin.currentAction == "addition"){
-        		additions = [];
-        	}
-        	if(darwin.currentAction == "deletion"){
-        		deletions = [];
-        	}
-        	if (darwin.currentAction == "LOC"){
-        		LOCOverTime = []
-        	}
+        	difference = [];
+        	additions = [];
+        	deletions = [];
+        	LOCOverTime = []
+        	differenceTwo = [];
+        	additionsTwo = [];
+        	deletionsTwo = [];
+        	LOCOverTimeTwo = [];
         	
         	/*ALL SAMPLING VARIABLES ARE RESET, OR A NEW URL IS ENTERED, RESET ANYWAY*/
         	totalWeeks = 0;
@@ -153,6 +228,9 @@ darwin.contributionExtractorModule = (function() {
         	SamplingIterator = 0;
         	firstOperation = true;
         	LOC = 0;
+        	LOCTwo = 0;
+        	inputCount = 0;
+        	jsonDuplicate = [];
         }
     };
 })();
