@@ -4,7 +4,7 @@ $(document).ready(function(e) {
 	
 	$('#navbar').load('http://localhost:8080/GitHubRepositoryEvolutionWorkBench/html/NavBar.html?2');
 	
-	//darwin.disableTabs();
+	darwin.projectManagerModule.disableTabs();
 	
 	//load google graph library
 	darwin.Facade.loadGraphLibrary();
@@ -29,8 +29,9 @@ $(document).ready(function(e) {
 	    	darwin.projectManagerModule.setBaseRequestUrl("https://api.github.com/repos"+parsedUrl+"/stats/code_frequency?per_page=100&page="+1);
 	    	darwin.projectManagerModule.setBaseRequestUrlTwo("https://api.github.com/repos"+parsedUrlTwo+"/stats/code_frequency?per_page=100&page="+1);
 	        darwin.Facade.makeGithubRequest(darwin.projectManagerModule.getBaseRequestUrl(), "GET", darwin.Mediator.githubParseContributionData,darwin.projectManagerModule.getBaseRequestUrlTwo());
-
-	    }	       
+	    }	   
+        //when complete allow tab click
+    	darwin.projectManagerModule.enableTabs();
 	});
 	
 	$(".icon").on("click.darwin", function(e){  	

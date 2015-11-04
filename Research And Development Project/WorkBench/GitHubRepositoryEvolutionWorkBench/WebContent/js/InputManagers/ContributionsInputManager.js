@@ -8,7 +8,6 @@ var darwin = darwin || {};
 darwin.currentContrubutionAction = "difference";
 darwin.currentJson = "";
 darwin.currentJsonTwo = "";
-darwin.newQuery = true;
 
 $(document).ready(function(e) {
 	

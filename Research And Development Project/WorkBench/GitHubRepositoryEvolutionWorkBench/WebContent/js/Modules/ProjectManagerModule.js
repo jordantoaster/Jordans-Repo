@@ -47,6 +47,14 @@ darwin.projectManagerModule = (function() {
         },
         resetComponents: function() {
     		$('.progress-bar').css('width', 0+'%').attr('aria-valuenow', 0);    
+        },
+        disableTabs :  function(){
+            $('.nav li').not('.active').addClass('disabled');
+            $('.nav li').not('.active').find('a').removeAttr("data-toggle");
+        },
+        enableTabs :  function(){
+            $('.nav li.active').next('li').removeClass('disabled');
+            $('.nav li.active').next('li').find('a').attr("data-toggle","tab")
         }
     };
 })();

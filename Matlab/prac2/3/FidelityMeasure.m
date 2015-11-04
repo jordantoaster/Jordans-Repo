@@ -6,10 +6,10 @@ function PSNR = FidelityMeasure(originalImage, watermarkImage)
 originalImage = double(originalImage);
 watermarkImage = double(watermarkImage);
 
-%the MSE for the images is then calculated
-MSE = sum( sum ( ( originalImage - watermarkImage ) .^ 2 ) );
-MSE = MSE / size(originalImage,1) * size(watermarkImage,2);
+%calculate MSE
+N = numel(originalImage); 
+MSE = sum(sum((originalImage-watermarkImage).^2)) / N; 
 
-%calculate the PSNR
-PSNR = 10*log10(255^2 / MSE);
+%calculate PSNR
+PSNR = 10*log10((255^2)/MSE);
 end

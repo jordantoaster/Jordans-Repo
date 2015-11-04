@@ -50,6 +50,7 @@
 	width: 100%;
 	margin: 0 auto;
 	margin-top: 2%;
+    background-color: white;
 }
 
 .progress-bar-custom {background: #666699;} 
@@ -63,8 +64,8 @@
 	cursor: pointer;
 }
 
-.input-group-addon {
-	/*background-color: white !important;*/
+.input-group-addon:last-child {
+	background-color: white;
 }
 
 #additionalProject {

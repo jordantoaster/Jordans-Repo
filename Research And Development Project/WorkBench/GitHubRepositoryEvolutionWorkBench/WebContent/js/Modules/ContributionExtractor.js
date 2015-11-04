@@ -49,17 +49,15 @@ darwin.contributionExtractorModule = (function() {
     		inputCount++;
     		
     		//sets original json data
-    		if(darwin.newQuery = true){
-        		if(inputCount == 1){
-        			darwin.currentJson = json;
-        			localJson = darwin.currentJson;
-        		} else {
-        			darwin.currentJsonTwo = json;     			
-        			localJsonTwo = darwin.currentJsonTwo;
+        	if(inputCount == 1){
+        		darwin.currentJson = json;
+        		localJson = darwin.currentJson;
+        	} else {
+        		darwin.currentJsonTwo = json;     			
+        		localJsonTwo = darwin.currentJsonTwo;
         			
-        			darwin.newQuery = false;
-        		}
-    		}
+        		darwin.newQuery = false;
+        	}
     		
     		
     		if(darwin.projectManagerModule.getComparison() && inputCount == 2){
