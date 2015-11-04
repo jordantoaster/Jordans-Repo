@@ -1,24 +1,22 @@
 package Actions;
 
-import javax.servlet.http.HttpServletRequest;
-
 /*
  * Implements the Factory design pattern
  * */
 public class ActionFactory {
-	public static Action getAction(HttpServletRequest request){
+	public static Action getAction(String input){
 		
-		System.out.println(request.getParameter("action"));
+		System.out.println(input);
 		
-		if(request.getParameter("action").equals("login")){
+		if(input.equals("login")){
 			return new LoginAction();
 		}
 		
-		if(request.getParameter("action").equals("register")){
+		if(input.equals("register")){
 			return new RegisterAction();
 		}
 		
-		if(request.getParameter("action").equals("store")){
+		if(input.equals("store")){
 			return new StoreAction();
 		}
 		

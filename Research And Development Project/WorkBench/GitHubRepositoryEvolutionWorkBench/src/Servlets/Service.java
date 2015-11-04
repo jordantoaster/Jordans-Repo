@@ -22,7 +22,6 @@ public class Service extends HttpServlet {
         super();
     }
 
-
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		performAction(request, response);
 	}
@@ -32,7 +31,7 @@ public class Service extends HttpServlet {
 	}
 	
 	protected void performAction(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-		Action action = ActionFactory.getAction(request);
+		Action action = ActionFactory.getAction(request.getParameter("action"));
 		String outcome = action.execute(request, response);
 		
 		response.getWriter().write(outcome);

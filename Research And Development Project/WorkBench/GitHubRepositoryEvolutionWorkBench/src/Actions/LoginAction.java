@@ -14,7 +14,14 @@ public class LoginAction implements Action {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
 		
-		String[] loginDetails = request.getParameterValues("input[]");			
+		//is [] needed after 'input'
+		String[] loginDetails = request.getParameterValues("input[]");		
+		
+		//for unit test mocking
+		if(loginDetails == null){
+			loginDetails = request.getParameterValues("input");
+		}
+			
 		User user  = new User("","",""); //placeholder for facebook login scenario	
 		Gson gson = new Gson();
 		

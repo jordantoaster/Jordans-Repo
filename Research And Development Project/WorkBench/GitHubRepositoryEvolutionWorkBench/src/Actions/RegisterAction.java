@@ -13,10 +13,16 @@ public class RegisterAction implements Action{
 
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
 		
-		String[] loginDetails = request.getParameterValues("input[]");	
-		User user = new User(loginDetails[0], loginDetails[1], "standard");
+		String[] registerDetails = request.getParameterValues("input[]");	
 		
-		boolean isValidated = validateRegisterDetails(user, loginDetails[2]);
+		//for unit test mocking
+		if(registerDetails == null){
+			registerDetails = request.getParameterValues("input");
+		}
+		
+		User user = new User(registerDetails[0], registerDetails[1], "standard");
+		
+		boolean isValidated = validateRegisterDetails(user, registerDetails[2]);
 
 		UserDao dao = new UserDao();
 		Gson gson = new Gson();
@@ -34,7 +40,7 @@ public class RegisterAction implements Action{
 		return dao.createUser(user);
 	}
 
-	private boolean validateRegisterDetails(User user, String confirmPassword) {
+	public boolean validateRegisterDetails(User user, String confirmPassword) {
 		
         String patternString = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[$@$!%*#?&])[A-Za-z\\d$@$!%*#?&]{6,}$";
         boolean matches = user.password.matches(patternString);
