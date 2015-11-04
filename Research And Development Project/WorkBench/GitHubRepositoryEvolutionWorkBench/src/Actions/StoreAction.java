@@ -38,7 +38,7 @@ public class StoreAction implements Action{
 	}
 
 	/*Removes the terminators and splits the main list into each category*/
-	private void getData(String[] contribDetails) {
+	public boolean getData(String[] contribDetails) {
 		
 		int count = 0;
 		
@@ -63,5 +63,6 @@ public class StoreAction implements Action{
 				}
 			}		
 		}		
+		return true;
 	}
 }
