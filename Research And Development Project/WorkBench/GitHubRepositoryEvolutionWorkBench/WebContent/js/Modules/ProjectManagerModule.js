@@ -5,13 +5,19 @@ var darwin = darwin || {};
 darwin.projectManagerModule = (function() {
 	
 	projectId = "";
-    baseRequestUrl = "";
-    baseRequestUrlTwo = "";
+    baseRequestUrl = [];
     samplingRate = 13;
     comparison = false;
+    numProjects = 1;
 		
     return {
     	
+        setNumProjects: function(){
+        	numProjects = numProjects + 1;
+        },
+        getNumProjects: function(){ 
+        	return numProjects;
+        },  
         setProjectId: function(id){
         	projectId = id;
         },
@@ -30,18 +36,15 @@ darwin.projectManagerModule = (function() {
         getSamplingRate: function(){
         	return samplingRate;
         },
-        setBaseRequestUrl: function(url){
-        	baseRequestUrl = url;
+        setBaseRequestUrl: function(index, url){
+        	baseRequestUrl[index] = url;
         },
-        getBaseRequestUrl: function(){
+        getBaseRequestUrl: function(index){
+        	return baseRequestUrl[index];
+        },  
+        getAllBaseRequestUrl: function(){
         	return baseRequestUrl;
-        },        
-        setBaseRequestUrlTwo: function(url){
-        	baseRequestUrlTwo = url;
-        },
-        getBaseRequestUrlTwo: function(){
-        	return baseRequestUrlTwo;
-        },
+        }, 
         resetVariables: function(){      	
     	    darwin.Mediator.resetContributionVariables();      	
         },
@@ -55,6 +58,9 @@ darwin.projectManagerModule = (function() {
         enableTabs :  function(){
             $('.nav li.active').next('li').removeClass('disabled');
             $('.nav li.active').next('li').find('a').attr("data-toggle","tab")
+        },
+        noCallBack : function(){
+        	//do nothing
         }
     };
 })();

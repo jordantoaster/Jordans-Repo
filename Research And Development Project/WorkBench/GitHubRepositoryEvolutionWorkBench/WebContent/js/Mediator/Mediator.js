@@ -22,26 +22,24 @@ darwin.Mediator = (function () {
 		updateProgressBar: function () {
 			darwin.progressbarModule.updateProgressBar();
 		},
-		makeGithubRequest: function (url, type, callback,urlTwo) {
-        	darwin.githubModule.send(url, type, callback);
-            
-        	if(darwin.projectManagerModule.getComparison()){
-        		darwin.githubModule.send(urlTwo, type, callback);
-        	}
+		makeGithubRequest: function (url, type, callback) {
+			for(i=0;i<url.length;i++){
+				
+				//only perform actually call back when all request data collected
+				if(i==(url.length-1)){
+		        	darwin.githubModule.send(url[i], type, callback, i);
+				} else {
+		        	darwin.githubModule.send(url[i], type, darwin.projectManagerModule.noCallBack, i);
+				}				
+			}
 		},
 		githubParseContributionData: function (response) {
 			darwin.contributionExtractorModule.extract(response);
 		},
-		drawContributionGraph: function (dates, values, valuesTwo, xAxis, chartTitle, LOC, totalLines) {
+		drawContributionGraph: function (dates, values, xAxis, chartTitle, LOC, totalLines) {			
+			darwin.ContributionVisualiser.draw(dates, values, xAxis, chartTitle, "");	
 			
-			if(!darwin.projectManagerModule.getComparison()){
-				darwin.ContributionVisualiser.draw(dates, values, xAxis, chartTitle, "");
-			} else {
-				darwin.ContributionVisualiser.draw(dates, values, xAxis, chartTitle, valuesTwo);
-			}
-			
-			//dont show minor stats when comparing - fix this later
-			if(typeof LOC != 'undefined'){
+			if(values.length == 1){
 				darwin.ContributionVisualiser.populateSupplementaryStats(LOC,totalLines);
 			}
 		},
@@ -51,12 +49,8 @@ darwin.Mediator = (function () {
 		resetContributionVariables: function(){
 			darwin.contributionExtractorModule.resetVariables();
 		},
-		resampleContributions : function(currentJson, currentJsonTwo){
+		resampleContributions : function(currentJson){
 			darwin.contributionExtractorModule.extract(currentJson);
-			
-			if(darwin.projectManagerModule.getComparison()){
-				darwin.contributionExtractorModule.extract(currentJsonTwo);
-			}
 		},
 		parseInputUrl : function(url){
 			return darwin.ParseUrlInputModule.parse(url);

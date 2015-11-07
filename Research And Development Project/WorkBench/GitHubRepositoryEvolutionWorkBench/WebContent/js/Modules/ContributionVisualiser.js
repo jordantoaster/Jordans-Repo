@@ -7,26 +7,27 @@ var darwin = darwin || {};
 darwin.ContributionVisualiser = (function () {
     return {
     	draw: function (dates, values, xAxis, chartTitle, valuesTwo) {
-    		
-    		//darwin.currentContributionData = values;
-    	    
+    		    	    
     	    var data = new google.visualization.DataTable();   
     	    data.addColumn('string', xAxis)
-    	    data.addColumn('number', '')
-    	    
-    	    if(darwin.projectManagerModule.getComparison()){
-    	    	 data.addColumn('number', '');
+    	        	            	        	    
+    	    for(var i=0;i<values.length;i++){
+    	    	data.addColumn('number', '');	
     	    }
     	    
-    	    
-    	    for(var i =0; i<values.length; i++){
-    	    	if(darwin.projectManagerModule.getComparison()){
-        	    	data.addRow(["First n amount of years", values[i], valuesTwo[i]]);
-    	    	} else {
-        	    	data.addRow([dates[i].getMonth()+1  + "-" + dates[i].getFullYear(), values[i]]);
+	    	for(var j =0;j<values[0].length-1;j++){
+    	    	if(values.length == 2){
+        	    	data.addRow(["a", values[0][j],values[1][j]]);
+    	    	} else if(values.length == 3){
+        	    	data.addRow(["a", values[0][j],values[1][j],values[2][j]]);
+    	    	}else if(values.length == 4){
+        	    	data.addRow(["a", values[0][j],values[1][j],values[2][j],values[3][j]]);
+  	    		}else if(values.length == 5){
+        	    	data.addRow(["a", values[0][j],values[1][j],values[2][j],values[3][j],values[4][j]]);
+	    		}else {
+        	    	data.addRow([dates[j].getMonth()+1  + "-" + dates[j].getFullYear(), values[0][j]]);
     	    	}
-
-    	    }
+	    	}
     	    	
     	    var options = {
     	      title: chartTitle,

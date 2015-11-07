@@ -6,8 +6,6 @@ var darwin = darwin || {};
 
 //Used by a large number of files, global use makes sense
 darwin.currentContrubutionAction = "difference";
-darwin.currentJson = "";
-darwin.currentJsonTwo = "";
 
 $(document).ready(function(e) {
 	
@@ -18,45 +16,31 @@ $(document).ready(function(e) {
 				
 		darwin.currentContrubutionAction = "difference"
 			
-		if(!darwin.projectManagerModule.getComparison()){	
-			darwin.Facade.drawContributionGraph(darwin.contributionExtractorModule.getDates(), darwin.contributionExtractorModule.getDifference(),"", 'Sample Size: ' + darwin.samplingRate + ' Weeks','Difference Of Additions And Deletions');
-		}
-		else {
-			darwin.Facade.drawContributionGraph(darwin.contributionExtractorModule.getDates(), darwin.contributionExtractorModule.getDifference(), darwin.contributionExtractorModule.getDifferenceTwo(), 'Sample Size: ' + darwin.samplingRate + ' Weeks','Difference Of Additions And Deletions');
-		}
+		darwin.Facade.drawContributionGraph(darwin.contributionExtractorModule.getDates(), darwin.dataManager.getAllDifference(), 'Sample Size: ' + darwin.samplingRate + ' Weeks','Difference Of Additions And Deletions');
 	});	
 	$('#changeValues2').on("click.darwin", function(e){
 		e.preventDefault();
 
 		darwin.currentContrubutionAction = "addition"
-			
-		if(!darwin.projectManagerModule.getComparison()){	
-			darwin.Facade.drawContributionGraph(darwin.contributionExtractorModule.getDates(), darwin.contributionExtractorModule.getAddition(), "", 'Sample Size: ' + darwin.samplingRate + ' Weeks', 'Amount of Additions');
-		} else {
-			darwin.Facade.drawContributionGraph(darwin.contributionExtractorModule.getDates(), darwin.contributionExtractorModule.getAddition(), darwin.contributionExtractorModule.getAdditionTwo(), 'Sample Size: ' + darwin.samplingRate + ' Weeks', 'Amount of Additions');
-		}
+				
+		darwin.Facade.drawContributionGraph(darwin.contributionExtractorModule.getDates(), darwin.dataManager.getAllAdditions(), 'Sample Size: ' + darwin.samplingRate + ' Weeks', 'Amount of Additions');
+
 	});	
 	$('#changeValues3').on("click.darwin", function(e){
 		e.preventDefault();
 
 		darwin.currentContrubutionAction = "deletion"
 			
-		if(!darwin.projectManagerModule.getComparison()){	
-			darwin.Facade.drawContributionGraph(darwin.contributionExtractorModule.getDates(), darwin.contributionExtractorModule.getDeletion(), "", 'Sample Size: ' + darwin.samplingRate + ' Weeks', 'Amount of Deletions');
-		} else {
-			darwin.Facade.drawContributionGraph(darwin.contributionExtractorModule.getDates(), darwin.contributionExtractorModule.getDeletion(), darwin.contributionExtractorModule.getDeletionTwo(), 'Sample Size: ' + darwin.samplingRate + ' Weeks', 'Amount of Deletions');			
-		}
+		darwin.Facade.drawContributionGraph(darwin.contributionExtractorModule.getDates(), darwin.dataManager.getAllDeletions(), 'Sample Size: ' + darwin.samplingRate + ' Weeks', 'Amount of Deletions');	
+
 	});
 	$('#changeValues4').on("click.darwin", function(e){
 		e.preventDefault();
 
 		darwin.currentContrubutionAction = "LOC"
 			
-		if(!darwin.projectManagerModule.getComparison()){	
-			darwin.Facade.drawContributionGraph(darwin.contributionExtractorModule.getDates(), darwin.contributionExtractorModule.getLOC(), "", 'Sample Size: ' + darwin.samplingRate + ' Weeks', 'LOC Over Time');
-		} else {
-			darwin.Facade.drawContributionGraph(darwin.contributionExtractorModule.getDates(), darwin.contributionExtractorModule.getLOC(), darwin.contributionExtractorModule.getLOCTwo(), 'Sample Size: ' + darwin.samplingRate + ' Weeks', 'LOC Over Time');				
-		}
+		darwin.Facade.drawContributionGraph(darwin.contributionExtractorModule.getDates(), darwin.dataManager.getAllLOCOverTime(), "", 'Sample Size: ' + darwin.samplingRate + ' Weeks', 'LOC Over Time');
+
 	});
 	
 
@@ -67,14 +51,14 @@ $(document).ready(function(e) {
 	    darwin.Facade.resetContributionVariables();
 
 		darwin.projectManagerModule.setSamplingRate(1);	
-		darwin.Facade.resampleContributions(darwin.currentJson, darwin.currentJsonTwo);
+		darwin.Facade.resampleContributions(darwin.jsonManagerModule.getAllContributionJson());
 	});	
 	$('#sampleRate2').on("click.darwin", function(e){
 		e.preventDefault();
 	    darwin.Facade.resetContributionVariables();
 
 	    darwin.projectManagerModule.setSamplingRate(6);	
-		darwin.Facade.resampleContributions(darwin.currentJson, darwin.currentJsonTwo);
+		darwin.Facade.resampleContributions(darwin.jsonManagerModule.getAllContributionJson());
 
 	});	
 	$('#sampleRate3').on("click.darwin", function(e){
@@ -82,13 +66,13 @@ $(document).ready(function(e) {
 	    darwin.Facade.resetContributionVariables();
 
 	    darwin.projectManagerModule.setSamplingRate(13);	
-		darwin.Facade.resampleContributions(darwin.currentJson, darwin.currentJsonTwo);
+		darwin.Facade.resampleContributions(darwin.jsonManagerModule.getAllContributionJson());
 	});
 	$('#sampleRate4').on("click.darwin", function(e){
 		e.preventDefault();
 	    darwin.Facade.resetContributionVariables();
 
 	    darwin.projectManagerModule.setSamplingRate(26);	
-		darwin.Facade.resampleContributions(darwin.currentJson, darwin.currentJsonTwo);
+		darwin.Facade.resampleContributions(darwin.jsonManagerModule.getAllContributionJson());
 	});
 });

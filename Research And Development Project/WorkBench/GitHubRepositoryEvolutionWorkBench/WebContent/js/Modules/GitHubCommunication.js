@@ -6,7 +6,7 @@ var darwin = darwin || {};
 
 darwin.githubModule = (function() {
     return {
-    	send: function (url, type, callback) {
+    	send: function (url, type, callback, index) {
     		$.ajax({
     			  dataType: 'JSON',
     			  type : type,
@@ -15,7 +15,8 @@ darwin.githubModule = (function() {
     			      req.setRequestHeader('Authorization', 'Basic ' + btoa('jordantoaster:jordan321'));
     			  },
     			  success : function(response) {
-    				  callback(response);
+    				  darwin.jsonManagerModule.setContributionJson(index,response)
+    				  callback(darwin.jsonManagerModule.getAllContributionJson());
     			  },
     			  error: function() {
     		       	$('#ajaxGetUserServletResponse').text("An error occured when connecting to the API, make sure the url is correct");

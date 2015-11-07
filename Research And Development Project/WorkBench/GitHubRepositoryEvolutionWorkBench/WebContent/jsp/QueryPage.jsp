@@ -9,9 +9,11 @@
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Modules/GitHubCommunication.js?v4"></script>
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Modules/loadGraphModule.js?v4"></script>
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Modules/PackagerModule.js?v4"></script>
+    <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Modules/JsonManagerModule.js?v4"></script>
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Modules/ServerCommunication.js?v4"></script>
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Modules/ProgressbarModule.js?v4"></script>
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Modules/ProjectManagerModule.js?v4"></script>
+    <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Modules/DataManagerModule.js?v4"></script>
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Modules/ParseUrlInputModule.js?v4"></script>
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Facade/Facade.js?v4"></script>
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Mediator/Mediator.js?v4"></script>
@@ -38,7 +40,7 @@
       <div id="urlInput" class="tab-pane fade in active">
 	   <div class="input-group input-group-lg fields urlInputOne">
          <span class="input-group-addon glyphicon glyphicon-cog" id="basic-addon1"></span>
-         <input type="text" class="form-control" id="urlField" placeholder="GitHub repository URL" aria-describedby="basic-addon1">
+         <input type="text" class="form-control" id="urlField0" placeholder="GitHub repository URL" aria-describedby="basic-addon1">
        </div>  
        <div id="additionalProject"><span class="input-group-addon glyphicon glyphicon-plus icon" id="basic-addon1"></span></div>
        <button type="submit" id="submitButtonQuery" class="btn btn-primary submitButton">
