@@ -128,7 +128,7 @@ darwin.contributionExtractorModule = (function() {
 			}
 			if(darwin.currentContrubutionAction == "LOC"){
 				darwin.Mediator.drawContributionGraph(contributionDates, darwin.dataManager.getAllLOCOverTime(), 'Sample Size: ' + darwin.projectManagerModule.getSamplingRate() + ' Weeks', 'LOC Over Time', LOC, totalWeeks);
-			}
+			}		
         },
         getAddition: function(){
         	return additions;
@@ -141,18 +141,6 @@ darwin.contributionExtractorModule = (function() {
         },
         getLOC: function(){
         	return LOCOverTime;
-        },
-        getAdditionTwo: function(){
-        	return additionsTwo;
-        },
-        getDeletionTwo: function(){
-        	return deletionsTwo;
-        },
-        getDifferenceTwo: function(){
-        	return differenceTwo;
-        },
-        getLOCTwo: function(){
-        	return LOCOverTimeTwo;
         },
         getDates: function(){
         	return contributionDates;
