@@ -11,14 +11,14 @@ $(document).ready(function(e) {
 	
 	/*NEXT THREE BLOCKS*/
 	/*CHANGES THE CURRENT USER INPUT ACTION, REQUESTS GRAPH REDRAW*/
-	$('#changeValues1').on("click.darwin", function(e){
+	$('#changeValues1Contributions').on("click.darwin", function(e){
 		e.preventDefault();	
 				
 		darwin.currentContrubutionAction = "difference"
 			
 		darwin.Facade.drawContributionGraph(darwin.contributionExtractorModule.getDates(), darwin.dataManager.getAllDifference(), 'Sample Size: ' + darwin.samplingRate + ' Weeks','Difference Of Additions And Deletions');
 	});	
-	$('#changeValues2').on("click.darwin", function(e){
+	$('#changeValues2Contributions').on("click.darwin", function(e){
 		e.preventDefault();
 
 		darwin.currentContrubutionAction = "addition"
@@ -26,7 +26,7 @@ $(document).ready(function(e) {
 		darwin.Facade.drawContributionGraph(darwin.contributionExtractorModule.getDates(), darwin.dataManager.getAllAdditions(), 'Sample Size: ' + darwin.samplingRate + ' Weeks', 'Amount of Additions');
 
 	});	
-	$('#changeValues3').on("click.darwin", function(e){
+	$('#changeValues3Contributions').on("click.darwin", function(e){
 		e.preventDefault();
 
 		darwin.currentContrubutionAction = "deletion"
@@ -34,7 +34,7 @@ $(document).ready(function(e) {
 		darwin.Facade.drawContributionGraph(darwin.contributionExtractorModule.getDates(), darwin.dataManager.getAllDeletions(), 'Sample Size: ' + darwin.samplingRate + ' Weeks', 'Amount of Deletions');	
 
 	});
-	$('#changeValues4').on("click.darwin", function(e){
+	$('#changeValues4Contributions').on("click.darwin", function(e){
 		e.preventDefault();
 
 		darwin.currentContrubutionAction = "LOC"
@@ -46,14 +46,14 @@ $(document).ready(function(e) {
 
 	/*NEXT THREE BLOCKS*/
 	/*RESET THE VARIABLES USED IN JSON PARSING, ADJUST SAMPLING RATE, REQUEST RESAMPLE*/
-	$('#sampleRate1').on("click.darwin", function(e){
+	$('#sampleRate1Contributions').on("click.darwin", function(e){
 		e.preventDefault();
 	    darwin.Facade.resetContributionVariables();
 
 		darwin.projectManagerModule.setSamplingRate(1);	
 		darwin.Facade.resampleContributions(darwin.jsonManagerModule.getAllContributionJson());
 	});	
-	$('#sampleRate2').on("click.darwin", function(e){
+	$('#sampleRate2Contributions').on("click.darwin", function(e){
 		e.preventDefault();
 	    darwin.Facade.resetContributionVariables();
 
@@ -61,14 +61,14 @@ $(document).ready(function(e) {
 		darwin.Facade.resampleContributions(darwin.jsonManagerModule.getAllContributionJson());
 
 	});	
-	$('#sampleRate3').on("click.darwin", function(e){
+	$('#sampleRate3Contributions').on("click.darwin", function(e){
 		e.preventDefault();
 	    darwin.Facade.resetContributionVariables();
 
 	    darwin.projectManagerModule.setSamplingRate(13);	
 		darwin.Facade.resampleContributions(darwin.jsonManagerModule.getAllContributionJson());
 	});
-	$('#sampleRate4').on("click.darwin", function(e){
+	$('#sampleRate4Contributions').on("click.darwin", function(e){
 		e.preventDefault();
 	    darwin.Facade.resetContributionVariables();
 

@@ -18,12 +18,20 @@ $(document).ready(function(e) {
 		darwin.projectManagerModule.setProjectId(parsedUrl);	
 	    darwin.projectManagerModule.resetVariables();
 	    darwin.projectManagerModule.resetComponents();
-
+	    
+	    //contributions - STAGE 1
 	    for(i=0;i<darwin.projectManagerModule.getNumProjects();i++){
 	    	parsedUrl = darwin.Facade.parseInputUrl($('#urlField' + i).val());
 	    	darwin.projectManagerModule.setBaseRequestUrl(i, "https://api.github.com/repos"+parsedUrl+"/stats/code_frequency?per_page=100&page=1")
 	    }
-	    darwin.Facade.makeGithubRequest(darwin.projectManagerModule.getAllBaseRequestUrl(), "GET", darwin.Mediator.githubParseContributionData);
+	    darwin.Facade.makeGithubRequest(darwin.projectManagerModule.getAllBaseRequestUrl(), "GET", darwin.Mediator.githubParseContributionData, "contribution");
+	    
+	    //commits - STAGE 2
+	    for(i=0;i<darwin.projectManagerModule.getNumProjects();i++){
+	    	parsedUrl = darwin.Facade.parseInputUrl($('#urlField' + i).val());
+	    	darwin.projectManagerModule.setBaseRequestUrl(i, "https://api.github.com/repos"+parsedUrl+"/commits?per_page=100&page=" + darwin.projectManagerModule.getcurrRequestPage())
+	    }
+	    darwin.Facade.makeGithubRequest(darwin.projectManagerModule.getAllBaseRequestUrl(), "GET", darwin.Mediator.githubParseCommitData, "commit");
 
     	darwin.projectManagerModule.enableTabs();
 	});

@@ -22,19 +22,22 @@ darwin.Mediator = (function () {
 		updateProgressBar: function () {
 			darwin.progressbarModule.updateProgressBar();
 		},
-		makeGithubRequest: function (url, type, callback) {
+		makeGithubRequest: function (url, type, callback, action) {
 			for(i=0;i<url.length;i++){
 				
 				//only perform actually call back when all request data collected
 				if(i==(url.length-1)){
-		        	darwin.githubModule.send(url[i], type, callback, i);
+		        	darwin.githubModule.send(url[i], type, callback, i, action);
 				} else {
-		        	darwin.githubModule.send(url[i], type, darwin.projectManagerModule.noCallBack, i);
+		        	darwin.githubModule.send(url[i], type, darwin.projectManagerModule.noCallBack, i, action);
 				}				
 			}
 		},
 		githubParseContributionData: function (response) {
 			darwin.contributionExtractorModule.extract(response);
+		},
+		githubParseCommitData: function (response) {
+			darwin.commitExtractorModule.extract(response);
 		},
 		drawContributionGraph: function (dates, values, xAxis, chartTitle, LOC, totalLines) {			
 			darwin.ContributionVisualiser.draw(dates, values, xAxis, chartTitle, "");	

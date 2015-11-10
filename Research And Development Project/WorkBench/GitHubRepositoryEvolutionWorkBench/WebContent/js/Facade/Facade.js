@@ -11,8 +11,8 @@ darwin.Facade = (function () {
     	makeServerRequest: function (action, callback, type, input) {
         	darwin.Mediator.makeServerRequest(action, callback, type, input);
         },
-        makeGithubRequest: function (url, type, callback) {
-        	darwin.Mediator.makeGithubRequest(url, type, callback);
+        makeGithubRequest: function (url, type, callback, action) {
+        	darwin.Mediator.makeGithubRequest(url, type, callback, action);
         },
         loadGraphLibrary: function(){
         	darwin.Mediator.loadGraphLibrary();

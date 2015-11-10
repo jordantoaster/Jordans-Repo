@@ -9,6 +9,7 @@ darwin.projectManagerModule = (function() {
     samplingRate = 13;
     comparison = false;
     numProjects = 1;
+    currRequestPage = 1;
 		
     return {
     	
@@ -17,6 +18,12 @@ darwin.projectManagerModule = (function() {
         },
         getNumProjects: function(){ 
         	return numProjects;
+        },  
+        setcurrRequestPage: function(val){
+        	currRequestPage = val;
+        },
+        getcurrRequestPage: function(){ 
+        	return currRequestPage;
         },  
         setProjectId: function(id){
         	projectId = id;
@@ -56,8 +63,8 @@ darwin.projectManagerModule = (function() {
             $('.nav li').not('.active').find('a').removeAttr("data-toggle");
         },
         enableTabs :  function(){
-            $('.nav li.active').next('li').removeClass('disabled');
-            $('.nav li.active').next('li').find('a').attr("data-toggle","tab")
+            $('.nav li.active').nextAll('li').removeClass('disabled');
+            $('.nav li.active').nextAll('li').find('a').attr("data-toggle","tab")
         },
         noCallBack : function(){
         	//do nothing

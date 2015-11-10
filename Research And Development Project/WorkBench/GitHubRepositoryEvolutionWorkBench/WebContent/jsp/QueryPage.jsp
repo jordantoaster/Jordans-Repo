@@ -21,6 +21,7 @@
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/InputManagers/ContributionsInputManager.js?v6"></script>
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Modules/ContributionVisualiser.js?v4"></script>
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Modules/ContributionExtractor.js?v7"></script>
+    <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Modules/CommitExtractorModule.js?v8"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link rel="stylesheet" href="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/css/QueryPage.css?v4">
@@ -35,6 +36,8 @@
     <ul class="nav nav-tabs tabListCustom">
       <li class="active"><a class="tabText" data-toggle="tab" href="#urlInput">Input Repository</a></li>
       <li><a class="tabText disabled" data-toggle="tab" href="#ContributorTab">Contributors</a></li>
+      <li><a class="tabText disabled" data-toggle="tab" href="#CommitTab">Commits</a></li>
+      <li><a class="tabText disabled" data-toggle="tab" href="#CustomTab">Custom</a></li>
     </ul>
       <div class="tab-content">
       <div id="urlInput" class="tab-pane fade in active">
@@ -53,17 +56,17 @@
   			</div>
 		</div>        
       </div>   
-    <div id="ContributorTab" class="tab-pane fade customTab">
+   	 <div id="ContributorTab" class="tab-pane fade customTab">
     	<div class="dropdown">
   			<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
     			Change Metric
     		<span class="caret"></span>
   		</button>
   		<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-  		  <li><a href="#" id="changeValues1">Addition/Deletion Diff</a></li>
-    	  <li><a href="#" id="changeValues2">Additions</a></li>
-    	  <li><a href="#" id="changeValues3">Deletions</a></li>
-    	  <li><a href="#" id="changeValues4">LOC Over Time</a></li>
+  		  <li><a href="#" id="changeValues1Contributions">Addition/Deletion Diff</a></li>
+    	  <li><a href="#" id="changeValues2Contributions">Additions</a></li>
+    	  <li><a href="#" id="changeValues3Contributions">Deletions</a></li>
+    	  <li><a href="#" id="changeValues4Contributions">LOC Over Time</a></li>
   		</ul>
 		</div>
 		<div class="dropdown">
@@ -72,17 +75,44 @@
     		<span class="caret"></span>
   		</button>
   		<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-  		  <li><a href="#" id="sampleRate1">1 Weeks</a></li>
-  		  <li><a href="#" id="sampleRate2">6 Weeks</a></li>
-    	  <li><a href="#" id="sampleRate3">13 Weeks</a></li>
-    	  <li><a href="#" id="sampleRate4">26 Weeks</a></li>
+  		  <li><a href="#" id="sampleRate1Contributions">1 Weeks</a></li>
+  		  <li><a href="#" id="sampleRate2Contributions">6 Weeks</a></li>
+    	  <li><a href="#" id="sampleRate3Contributions">13 Weeks</a></li>
+    	  <li><a href="#" id="sampleRate4Contributions">26 Weeks</a></li>
   		</ul>
 		</div>
 		<p id="contributorTotalWeeks" class="contributorExtra"></p>
 		<p id="contributorLOC" class="contributorExtra"></p>
     	<div id="contributorChart"></div> 
+    </div> 
+     <div id="CommitTab" class="tab-pane fade customTab">
+	   <div class="dropdown">
+  		<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    		`Change Sample Size
+    	<span class="caret"></span>
+  		</button>
+  		<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+  		  <li><a href="#" id="sampleRate1Commits">1 Weeks</a></li>
+  		  <li><a href="#" id="sampleRate2Commits">6 Weeks</a></li>
+    	  <li><a href="#" id="sampleRate3Commits">13 Weeks</a></li>
+    	  <li><a href="#" id="sampleRate4Commits">26 Weeks</a></li>
+  		</ul>
+     </div> 
+        <div id="CommitChart"></div>  
     </div>
-    </div>
+    <div id="CustomTab" class="tab-pane fade customTab">
+	    <div id="options">
+     		<div class="checkbox">
+  				<label><input type="checkbox" value="">Commits</label>
+			</div>
+			<div class="checkbox">
+ 		 		<label><input type="checkbox" value="">Additions</label>
+			</div>
+			<div class="checkbox">
+  				<label><input type="checkbox" value="" disabled>Deletions</label>
+			</div>	
+     	</div> 
+     </div>  
    </div>
     <div id="ajaxGetUserServletResponse" class="alert alert-success" role="alert"></div>   
   </body>
