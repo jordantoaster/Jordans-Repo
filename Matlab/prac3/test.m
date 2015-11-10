@@ -28,18 +28,9 @@ function [cac, ca1, ca0] = test()
         
     end
     
-        %experiment 2
+        %experiment 2 - plot
         
-        %generates histogram for each array
-        [Nc, Xc] = hist( cac, 10 );
-        [N1, X1] = hist( ca1, 10);
-        [N0, X0] = hist( ca0, 10); 
-        
-        %plot hisotgrams
-        figure, plot(Xc,Nc, 'Color',[0,0.1,0.9]);
-        hold on
-        plot(X1,N1, 'Color',[0,0.4,0.4]);
-        plot(X0,N0, 'Color',[0,0.9,0.1]);
+        Plot_Correlation_Arrays(cac,ca0,ca1);
         
         %experiment 3/assessment - rate of each one detecting either 0,1 or
         %no paremeter

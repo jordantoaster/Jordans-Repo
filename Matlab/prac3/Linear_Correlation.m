@@ -3,7 +3,7 @@
 function linearCorrelation = Linear_Correlation(image,watermarkPattern)
     image = double(image);
     
-    %this?
+    %gte image tota amount of pixels
     imageSize = size(image,1) * size(image,1);   
     
     %get linear correlation
