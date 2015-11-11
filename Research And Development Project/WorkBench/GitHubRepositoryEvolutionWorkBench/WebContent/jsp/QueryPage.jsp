@@ -90,18 +90,6 @@
     	<div id="contributorChart"></div> 
     </div> 
      <div id="CommitTab" class="tab-pane fade customTab">
-	   <div class="dropdown">
-  		<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-    		`Change Sample Size
-    	<span class="caret"></span>
-  		</button>
-  		<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-  		  <li><a href="#" id="sampleRate1Commits">1 Weeks</a></li>
-  		  <li><a href="#" id="sampleRate2Commits">6 Weeks</a></li>
-    	  <li><a href="#" id="sampleRate3Commits">13 Weeks</a></li>
-    	  <li><a href="#" id="sampleRate4Commits">26 Weeks</a></li>
-  		</ul>
-      </div> 
       <div class="btn-group" id="commitOptions" role="group" aria-label="..."></div>
       <div id="commitChart"></div>  
     </div>

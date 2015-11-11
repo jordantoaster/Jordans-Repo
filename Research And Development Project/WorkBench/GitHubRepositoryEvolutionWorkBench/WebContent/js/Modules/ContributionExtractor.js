@@ -58,6 +58,7 @@ darwin.contributionExtractorModule = (function() {
 					totalWeeks++;
 	    			
     				/*Gets the current index's date*/
+					console.log(localJson[i][0]*1000);
     				var date = new Date(localJson[i][0]*1000);
     			
     				/*calculate the difference between additions and deletions*/

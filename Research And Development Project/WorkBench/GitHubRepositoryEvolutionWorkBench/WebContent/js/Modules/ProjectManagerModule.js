@@ -62,6 +62,9 @@ darwin.projectManagerModule = (function() {
         getAllBaseRequestUrl: function(){
         	return baseRequestUrl;
         }, 
+        resetBaseRequestUrl : function(){
+        	baseRequestUrl = [];
+        },
         resetVariables: function(){      	
     	    darwin.Mediator.resetContributionVariables();      	
         },

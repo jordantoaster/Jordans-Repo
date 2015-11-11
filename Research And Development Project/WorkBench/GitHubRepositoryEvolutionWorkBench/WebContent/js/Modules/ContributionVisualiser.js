@@ -6,7 +6,7 @@ var darwin = darwin || {};
 
 darwin.ContributionVisualiser = (function () {
     return {
-    	draw: function (dates, values, xAxis, chartTitle, valuesTwo) {
+    	draw: function (dates, values, xAxis, chartTitle) {
     		    	    
     	    var data = new google.visualization.DataTable();   
     	    data.addColumn('string', xAxis)

@@ -25,6 +25,11 @@ darwin.Mediator = (function () {
 		makeGithubRequest: function (url, type, callback, action) {
 			for(i=0;i<url.length;i++){
 				
+				darwin.projectManagerModule.noCallBack
+				
+				//stops race conditions
+				timer = setTimeout(darwin.projectManagerModule.noCallBack(), 500);
+				
 				//only perform actually call back when all request data collected
 				if(i==(url.length-1)){
 		        	darwin.githubModule.send(url[i] + darwin.projectManagerModule.getcurrRequestPage(), type, callback, i, action);
@@ -46,8 +51,8 @@ darwin.Mediator = (function () {
 				darwin.ContributionVisualiser.populateSupplementaryStats(LOC,totalLines);
 			}
 		},
-		drawCommitGraph: function (dates, values, xAxis, chartTitle) {			
-			darwin.commitVisualiser.draw(dates, values, xAxis, chartTitle);	
+		drawCommitGraph: function (dates, values, xAxis, chartTitle, iterateNum) {			
+			darwin.commitVisualiser.draw(dates, values, xAxis, chartTitle, iterateNum);	
 		},
 		loadGraphLibrary: function(){
 			darwin.loadGraphModule.load();
@@ -80,6 +85,13 @@ darwin.Mediator = (function () {
 		},
 		getCommitDetails : function(){
 			return darwin.dataManager.getCommits();
+		},
+		setNumCommitProjectSelected : function(){
+			darwin.commitManager.setProjectsAdded(darwin.commitManager.getProjectsAdded() + 1);
+		},
+		getNumCommitProjectSelected : function(){
+			return darwin.commitManager.getProjectsAdded();
 		}
+		
     };
 })();

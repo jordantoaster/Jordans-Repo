@@ -31,6 +31,9 @@ darwin.jsonManagerModule = (function() {
         	} else {
             	commitArray[index].push.apply(commitArray[index], json);
         	}
+        },
+        resetCommitJson : function (){ //concatenate one request with another
+        	commitArray = [[]];
         }
     };
 })();

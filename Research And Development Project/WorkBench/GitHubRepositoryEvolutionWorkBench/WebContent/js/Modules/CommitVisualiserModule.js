@@ -6,17 +6,29 @@ var darwin = darwin || {};
 
 darwin.commitVisualiser = (function() {
 	return {
-		draw : function(dates, values, xAxis, title) {
-			var data = new google.visualization.DataTable();
-
+		draw : function(dates, values, xAxis, title, iterateNum) {
+			
+			var data = new google.visualization.DataTable();			
 			data.addColumn('string', xAxis)
-			data.addColumn('number', 'Commits')
 
-			for (var i = 0; i < dates.length; i++) {
-				data.addRow([
-						dates[i][0] + "-" + dates[i][1] + "-" + dates[i][2],
-						values[i] ])
-			}
+    	    for(var i=0;i<values.length;i++){
+    	    	data.addColumn('number', '');	
+    	    }
+		
+	    	for(var j =0;j < iterateNum-1;j++){
+    	    	if(values.length == 2){
+        	    	data.addRow(["month" + j, values[0][j],values[1][j]]);
+    	    	} else if(values.length == 3){
+        	    	data.addRow(["month" + j, values[0][j],values[1][j],values[2][j]]);
+    	    	}else if(values.length == 4){
+        	    	data.addRow(["month" + j, values[0][j],values[1][j],values[2][j],values[3][j]]);
+  	    		}else if(values.length == 5){
+        	    	data.addRow(["month" + j, values[0][j],values[1][j],values[2][j],values[3][j],values[4][j]]);
+	    		}else {
+	    			console.log(values[0][j]);
+        	    	data.addRow(["month: " + j, values[0][j]]);
+    	    	}
+	    	}
 
 			var options = {
 				title : title,

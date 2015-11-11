@@ -20,15 +20,15 @@ darwin.commitExtractorModule = (function() {
     		
     		var iterationCount = json.reduce(function(p,c) {return p.length>c.length?c:p;},{length:Infinity}).length;
 
-    		for(var i=0;i<json.length;i++){		//here if multiple projects commits in in array
+    		//for(var i=0;i<json.length;i++){		//here if multiple projects commits in in array
     			
-    			localJson = json[i];
+    			localJson = json[0];
     			sampleIterator = 0;
     			commits = [];
     			dates = [];
     			totalCommits = 0;
     			firstDate = true;
-    			    		
+    			    			    		
     			for(var j = 0;j<iterationCount;j++){
     				
         			totalCommits++;
@@ -55,13 +55,15 @@ darwin.commitExtractorModule = (function() {
     			dates.reverse();
     			commits.reverse();
     			
-    			//send to data manager class for storage
-    			darwin.Mediator.setCommitDetails(j, commits);
     			
-    		}   //for
+    			//send to data manager class for storage
+    			darwin.Mediator.setCommitDetails(darwin.Mediator.getNumCommitProjectSelected(), commits);
+    			
+    		//}   //for
     		
-    		//visualise
-    		darwin.Mediator.drawCommitGraph(dates, darwin.Mediator.getCommitDetails(), "Months", "Month On Month Commits");
+    		smallestSize = darwin.Mediator.getCommitDetails().reduce(function(p,c) {return p.length>c.length?c:p;},{length:Infinity}).length;
+    			
+    		darwin.Mediator.drawCommitGraph(dates, darwin.Mediator.getCommitDetails(), "Months", "Month On Month Commits", smallestSize);
     		
     		
     		//send to mongo for storage
