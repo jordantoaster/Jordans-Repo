@@ -1,0 +1,8 @@
+getting commits dynamically has many issues
+
+1. overlapping ajax calls when multiple projects are input, the requests then compete and makes it impossible to track responses
+2. overlapping requests cause variables that I would normally rely on to change, so theres no way of identifying destination variables
+3. The sheer amount of time if multiple commits are input
+4. synchronous is not an option
+
+as a result I am making the commits and on demand service, that the user selects manually. outside of the normal load json process.

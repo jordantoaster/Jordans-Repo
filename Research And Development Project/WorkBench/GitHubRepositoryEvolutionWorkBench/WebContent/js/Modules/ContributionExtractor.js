@@ -103,12 +103,8 @@ darwin.contributionExtractorModule = (function() {
     					SamplingIterator++;
     				}
     			}
-
-				//add all data to global variants of the data
-				darwin.dataManager.setAdditions(j, additions);
-				darwin.dataManager.setDeletions(j, deletions);
-				darwin.dataManager.setDifference(j, difference);
-				darwin.dataManager.setLOCOverTime(j, LOCOverTime);		
+				
+				darwin.Mediator.setContributionDetails(j, additions, deletions, difference, LOCOverTime);
 				
 	    		/*Uncomment when sending data to the DB*/
 	    		//darwin.Mediator.packager(additions, deletions, LOCOverTime, contributionDates, "contributions");

@@ -10,6 +10,7 @@ darwin.dataManager = (function() {
 	additions = [];
 	LOC = [];
 	difference = [];
+	commits = [];
 
     return {
     	getAdditions: function (index) {
@@ -47,6 +48,12 @@ darwin.dataManager = (function() {
         },
     	getAllLOCOverTime: function () {
     		return LOC;
+        },
+    	setCommits: function (index, data) {
+    		commits[index] = data;
+        },
+    	getCommits: function () {
+    		return commits;
         }
     };
 })();

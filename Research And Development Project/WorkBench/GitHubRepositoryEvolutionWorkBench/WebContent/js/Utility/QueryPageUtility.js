@@ -21,18 +21,22 @@ $(document).ready(function(e) {
 	    
 	    //contributions - STAGE 1
 	    for(i=0;i<darwin.projectManagerModule.getNumProjects();i++){
+	    	
+	    	//get parsed url
 	    	parsedUrl = darwin.Facade.parseInputUrl($('#urlField' + i).val());
-	    	darwin.projectManagerModule.setBaseRequestUrl(i, "https://api.github.com/repos"+parsedUrl+"/stats/code_frequency?per_page=100&page=1")
+	    	
+	    	//set project info for future reference
+	    	darwin.projectManagerModule.setProjectNames(parsedUrl);
+	    	
+	    	//set request urls for the specefic api request
+	    	darwin.projectManagerModule.setBaseRequestUrl(i, "https://api.github.com/repos"+parsedUrl+"/stats/code_frequency?per_page=100&page=")
 	    }
 	    darwin.Facade.makeGithubRequest(darwin.projectManagerModule.getAllBaseRequestUrl(), "GET", darwin.Mediator.githubParseContributionData, "contribution");
-	    
-	    //commits - STAGE 2
-	    for(i=0;i<darwin.projectManagerModule.getNumProjects();i++){
-	    	parsedUrl = darwin.Facade.parseInputUrl($('#urlField' + i).val());
-	    	darwin.projectManagerModule.setBaseRequestUrl(i, "https://api.github.com/repos"+parsedUrl+"/commits?per_page=100&page=" + darwin.projectManagerModule.getcurrRequestPage())
-	    }
-	    darwin.Facade.makeGithubRequest(darwin.projectManagerModule.getAllBaseRequestUrl(), "GET", darwin.Mediator.githubParseCommitData, "commit");
-
+	       
+	    //Load options for commit page
+	    darwin.commitManager.loadCommitSelection(darwin.projectManagerModule.getProjectNames());
+	    	    
+	    //activate tabs at the end of the process
     	darwin.projectManagerModule.enableTabs();
 	});
 	

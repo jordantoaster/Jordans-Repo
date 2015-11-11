@@ -9,6 +9,7 @@ darwin.projectManagerModule = (function() {
     samplingRate = 13;
     comparison = false;
     numProjects = 1;
+    projectNames = [];
     currRequestPage = 1;
 		
     return {
@@ -18,9 +19,18 @@ darwin.projectManagerModule = (function() {
         },
         getNumProjects: function(){ 
         	return numProjects;
+        }, 
+        setProjectNames: function(name){
+        	projectNames.push(name);
+        },
+        getProjectNames: function(){ 
+        	return projectNames;
         },  
         setcurrRequestPage: function(val){
-        	currRequestPage = val;
+        	currRequestPage = currRequestPage + val;
+        },
+        resetcurrRequestPage: function(){
+        	currRequestPage = 0;
         },
         getcurrRequestPage: function(){ 
         	return currRequestPage;

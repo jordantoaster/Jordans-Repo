@@ -7,7 +7,7 @@ var darwin = darwin || {};
 darwin.jsonManagerModule = (function() {
 	
 	var contributionArray = [];
-	var commitArray = [];
+	var commitArray = [[]]; //each inner array represents a project
 	
     return {
         getContributionJson : function (index){
@@ -25,8 +25,12 @@ darwin.jsonManagerModule = (function() {
         getAllCommitJson : function (){
         	return commitArray;
         },
-        setCommitJson : function (index, json){
-        	commitArray[index] = json;
+        setCommitJson : function (index, json){ //concatenate one request with another
+        	if(commitArray[index].length === 0){
+        		commitArray[index] = json
+        	} else {
+            	commitArray[index].push.apply(commitArray[index], json);
+        	}
         }
     };
 })();

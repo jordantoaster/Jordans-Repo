@@ -27,9 +27,9 @@ darwin.Mediator = (function () {
 				
 				//only perform actually call back when all request data collected
 				if(i==(url.length-1)){
-		        	darwin.githubModule.send(url[i], type, callback, i, action);
+		        	darwin.githubModule.send(url[i] + darwin.projectManagerModule.getcurrRequestPage(), type, callback, i, action);
 				} else {
-		        	darwin.githubModule.send(url[i], type, darwin.projectManagerModule.noCallBack, i, action);
+		        	darwin.githubModule.send(url[i] + darwin.projectManagerModule.getcurrRequestPage(), type, darwin.projectManagerModule.noCallBack, i, action);
 				}				
 			}
 		},
@@ -45,6 +45,9 @@ darwin.Mediator = (function () {
 			if(values.length == 1){
 				darwin.ContributionVisualiser.populateSupplementaryStats(LOC,totalLines);
 			}
+		},
+		drawCommitGraph: function (dates, values, xAxis, chartTitle) {			
+			darwin.commitVisualiser.draw(dates, values, xAxis, chartTitle);	
 		},
 		loadGraphLibrary: function(){
 			darwin.loadGraphModule.load();
@@ -65,7 +68,18 @@ darwin.Mediator = (function () {
 		},
 		emptyCallback : function(){
 			
+		},
+		setContributionDetails: function(index, additions, deletions, difference, LOCOverTime){
+			darwin.dataManager.setAdditions(index, additions);
+			darwin.dataManager.setDeletions(index, deletions);
+			darwin.dataManager.setDifference(index, difference);
+			darwin.dataManager.setLOCOverTime(index, LOCOverTime);	
+		},
+		setCommitDetails : function(index, commits){
+			darwin.dataManager.setCommits(index, commits);
+		},
+		getCommitDetails : function(){
+			return darwin.dataManager.getCommits();
 		}
-
     };
 })();
