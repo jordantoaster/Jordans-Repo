@@ -25,7 +25,6 @@ darwin.commitVisualiser = (function() {
   	    		}else if(values.length == 5){
         	    	data.addRow(["month" + j, values[0][j],values[1][j],values[2][j],values[3][j],values[4][j]]);
 	    		}else {
-	    			console.log(values[0][j]);
         	    	data.addRow(["month: " + j, values[0][j]]);
     	    	}
 	    	}

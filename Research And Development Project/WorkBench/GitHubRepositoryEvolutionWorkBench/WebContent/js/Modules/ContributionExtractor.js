@@ -38,7 +38,7 @@ darwin.contributionExtractorModule = (function() {
     	extract: function (json) {
     		
     		//gets the shortest array in the set of json project data
-    		var iterationCount = json.reduce(function(p,c) {return p.length>c.length?c:p;},{length:Infinity}).length;
+    		var iterationCount = darwin.Mediator.getSmallestArray(json);
     		
     		for(var j=0;j<json.length;j++){			
     			localJson = json[j];

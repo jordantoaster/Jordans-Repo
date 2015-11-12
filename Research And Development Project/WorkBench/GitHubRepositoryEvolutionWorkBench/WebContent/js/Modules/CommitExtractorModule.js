@@ -18,7 +18,7 @@ darwin.commitExtractorModule = (function() {
     return {
     	extract: function (json) {
     		
-    		var iterationCount = json.reduce(function(p,c) {return p.length>c.length?c:p;},{length:Infinity}).length;
+    		var iterationCount = darwin.Mediator.getSmallestArray(json);
 
     		//for(var i=0;i<json.length;i++){		//here if multiple projects commits in in array
     			

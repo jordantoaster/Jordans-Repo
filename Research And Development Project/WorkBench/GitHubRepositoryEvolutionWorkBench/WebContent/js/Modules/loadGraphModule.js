@@ -12,7 +12,7 @@ darwin.loadGraphModule = (function () {
     		    google.load('visualization', '1.0', {
     		        packages: ['corechart'],
     		        callback: function() {
-    		        	//No call back required for my app
+
     		        }
     		    })
     		}

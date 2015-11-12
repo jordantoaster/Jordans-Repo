@@ -25,7 +25,7 @@ darwin.Mediator = (function () {
 		makeGithubRequest: function (url, type, callback, action) {
 			for(i=0;i<url.length;i++){
 				
-				darwin.projectManagerModule.noCallBack
+				//darwin.projectManagerModule.noCallBack
 				
 				//stops race conditions
 				timer = setTimeout(darwin.projectManagerModule.noCallBack(), 500);
@@ -91,7 +91,36 @@ darwin.Mediator = (function () {
 		},
 		getNumCommitProjectSelected : function(){
 			return darwin.commitManager.getProjectsAdded();
-		}
-		
+		},
+		getSmallestArray : function(json){
+			return darwin.arrayUtilityModule.getSmallestArray(json);
+		},
+		performSuccessAction : function(action, response, callback, index){
+			darwin.AjaxResponseModule.handleSuccess(action, response, callback, index);
+		},
+		setContributionJson : function(index, response){
+			darwin.jsonManagerModule.setContributionJson(index,response)
+		},
+		setCommitJson : function(index, response){
+			darwin.jsonManagerModule.setCommitJson(index,response)
+		},
+		resetcurrRequestPage : function(index){
+			darwin.projectManagerModule.resetcurrRequestPage(index);
+		},
+		getAllCommitJson : function(){
+			return darwin.jsonManagerModule.getAllCommitJson()
+		},
+		setcurrRequestPage : function(val){
+			darwin.projectManagerModule.setcurrRequestPage(val);
+		},
+		getcurrRequestPage : function(){
+			return darwin.projectManagerModule.getcurrRequestPage();
+		},
+		getAllBaseRequestUrl : function(index){
+			return darwin.projectManagerModule.getAllBaseRequestUrl(index)
+		},
+		makeGithubRequestSingleUrl : function(url, type, callback, index, action){
+			  darwin.githubModule.send(url, type, callback, index, action);
+		} 
     };
 })();
