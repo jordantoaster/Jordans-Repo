@@ -10,10 +10,18 @@ darwin.packager = (function () {
     		
     		var datesAsString = darwin.packager.convertDateObjectToString(dates);
     		var splitKey = "#";
-    		var requestData = additions.concat(splitKey).concat(deletions).concat(splitKey).concat(LOC).concat(splitKey).concat(datesAsString).concat(splitKey).concat(darwin.projectId);  		    		
+    		var requestData = additions.concat(splitKey).concat(deletions).concat(splitKey).concat(LOC).concat(splitKey).concat(datesAsString).concat(splitKey).concat(darwin.projectManagerModule.getProjectId);  		    		
     		  		
-    		darwin.Mediator.makeServerRequest("store",darwin.Mediator.emptyCallback,"POST",requestData)	
+    		darwin.Mediator.makeServerRequest("storeContributions",darwin.Mediator.emptyCallback,"POST",requestData)	
     	},    
+    	commits : function(dates, commits, projectId){
+    		
+    		var datesAsString = darwin.packager.convertDateObjectToString(dates);
+    		var splitKey = "#";
+    		var requestData = commits.concat(splitKey).concat(datesAsString).concat(splitKey).concat(projectId);		    		
+
+    		darwin.Mediator.makeServerRequest("storeCommits",darwin.Mediator.emptyCallback,"POST",requestData)	
+    	},
     	convertDateObjectToString : function(dates){
     		var stringArray = [];
     		

@@ -26,6 +26,9 @@ darwin.projectManagerModule = (function() {
         getProjectNames: function(){ 
         	return projectNames;
         },  
+        getProjectNamesIndex: function(i){ 
+        	return projectNames[i];
+        }, 
         setcurrRequestPage: function(val){
         	currRequestPage = currRequestPage + val;
         },
@@ -69,7 +72,8 @@ darwin.projectManagerModule = (function() {
     	    darwin.Mediator.resetContributionVariables();      	
         },
         resetComponents: function() {
-    		$('.progress-bar').css('width', 0+'%').attr('aria-valuenow', 0);    
+    		$('.progress-bar').css('width', 0+'%').attr('aria-valuenow', 0);  
+    		$('#commitChart').empty();
         },
         disableTabs :  function(){
             $('.nav li').not('.active').addClass('disabled');
@@ -78,6 +82,14 @@ darwin.projectManagerModule = (function() {
         enableTabs :  function(){
             $('.nav li.active').nextAll('li').removeClass('disabled');
             $('.nav li.active').nextAll('li').find('a').attr("data-toggle","tab")
+        },
+        disableCommitButton : function(){
+        	$('.btn-group button').attr('disabled','disabled');   commitHeader
+        	$("#commitHeader").text('Please wait until the data is collected');
+        },
+        enableCommitButton :  function(){
+        	$('.btn-group button').removeAttr('disabled');
+       	 	$("#commitHeader").text('You can now select another project');
         },
         noCallBack : function(){
         	//do nothing

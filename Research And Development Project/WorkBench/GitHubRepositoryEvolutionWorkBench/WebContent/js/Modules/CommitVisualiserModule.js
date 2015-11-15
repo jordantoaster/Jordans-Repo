@@ -52,7 +52,7 @@ darwin.commitVisualiser = (function() {
 			};
 
 			// Create and draw the visualization.
-			new google.visualization.LineChart(document
+			new google.visualization.AreaChart(document
 					.getElementById('commitChart')).draw(data, options);
 		}
 	};

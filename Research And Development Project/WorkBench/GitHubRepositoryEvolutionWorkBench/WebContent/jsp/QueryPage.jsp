@@ -92,6 +92,7 @@
     	<div id="contributorChart"></div> 
     </div> 
      <div id="CommitTab" class="tab-pane fade customTab">
+      <p class="inlineText" id="commitHeader">Select a project(s) commits: </p>
       <div class="btn-group" id="commitOptions" role="group" aria-label="..."></div>
       <div id="commitChart"></div>  
     </div>

@@ -21,7 +21,7 @@ darwin.AjaxResponseModule = (function () {
 					  //reset counter for next projects json
 					  darwin.Mediator.resetcurrRequestPage(0);
 					  
-					  callback(darwin.Mediator.getAllCommitJson());
+					  callback(darwin.Mediator.getAllCommitJson(), index);
 					  
 				  } else { //else poll for next set of 100
 					  

@@ -108,7 +108,7 @@ darwin.contributionExtractorModule = (function() {
 				darwin.Mediator.setContributionDetails(j, additions, deletions, difference, LOCOverTime);
 				
 	    		/*Uncomment when sending data to the DB*/
-	    		//darwin.Mediator.packager(additions, deletions, LOCOverTime, contributionDates, "contributions");
+	    		//darwin.Mediator.packager.contributions(additions, deletions, LOCOverTime, contributionDates, "contributions");
     		}
     		
     		darwin.Mediator.updateProgressBar();

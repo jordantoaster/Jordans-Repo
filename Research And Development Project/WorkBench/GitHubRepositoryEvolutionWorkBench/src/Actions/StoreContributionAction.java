@@ -12,7 +12,7 @@ import com.google.gson.Gson;
 import Daos.ContributionDao;
 import Models.Contributions;
 
-public class StoreAction implements Action{
+public class StoreContributionAction implements Action{
 	
 	/*Holds the split version of the input array*/
 	List<Integer> additions = new ArrayList<Integer>();

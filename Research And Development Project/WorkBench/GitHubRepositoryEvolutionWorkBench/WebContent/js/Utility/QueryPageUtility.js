@@ -45,9 +45,7 @@ $(document).ready(function(e) {
 		if(darwin.projectManagerModule.getNumProjects() == 5){
 			$("#additionalProject").remove();
 		} else {
-		
-			//$('#additionalProject').load('http://localhost:8080/GitHubRepositoryEvolutionWorkBench/html/InputField.html?3');
-		
+				
 			var feild = '<div  style="margin-top: 0.75%;" class="input-group input-group-lg fields urlInputOne">' + 
 			'<span class="input-group-addon glyphicon glyphicon-cog" id="basic-addon1"></span>' +
 			'<input type="text" class="form-control" id="urlField' + darwin.projectManagerModule.getNumProjects() + '" placeholder="Extra GitHub repository URL" aria-describedby="basic-addon1">' +

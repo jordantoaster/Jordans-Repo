@@ -72,3 +72,8 @@
 	margin-top: 1%;
 }
 
+.inlineText {
+	display: inline;
+    margin-right: 2%;
+    font-size: 2em;
+}

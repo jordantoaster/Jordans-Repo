@@ -16,8 +16,12 @@ public class ActionFactory {
 			return new RegisterAction();
 		}
 		
-		if(input.equals("store")){
-			return new StoreAction();
+		if(input.equals("storeContribution")){
+			return new StoreContributionAction();
+		}
+		
+		if(input.equals("storeCommits")){
+			return new StoreCommitAction();
 		}
 		
 		return new NoAction();

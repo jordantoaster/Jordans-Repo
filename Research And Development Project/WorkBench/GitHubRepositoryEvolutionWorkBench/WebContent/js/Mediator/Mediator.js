@@ -41,8 +41,8 @@ darwin.Mediator = (function () {
 		githubParseContributionData: function (response) {
 			darwin.contributionExtractorModule.extract(response);
 		},
-		githubParseCommitData: function (response) {
-			darwin.commitExtractorModule.extract(response);
+		githubParseCommitData: function (response, index) {
+			darwin.commitExtractorModule.extract(response, index);
 		},
 		drawContributionGraph: function (dates, values, xAxis, chartTitle, LOC, totalLines) {			
 			darwin.ContributionVisualiser.draw(dates, values, xAxis, chartTitle, "");	
@@ -70,6 +70,9 @@ darwin.Mediator = (function () {
 			if(dataType == "contributions"){
 				darwin.packager.contributions(seriesA, SeriesB, seriesC,seriesD);
 			}
+		},
+		packagerCommits : function(dates, commits,dataType){
+			darwin.packager.commits(dates, commits,dataType);
 		},
 		emptyCallback : function(){
 			
@@ -121,6 +124,22 @@ darwin.Mediator = (function () {
 		},
 		makeGithubRequestSingleUrl : function(url, type, callback, index, action){
 			  darwin.githubModule.send(url, type, callback, index, action);
-		} 
+		},
+		prepareCommitClick : function(index, url){
+			darwin.jsonManagerModule.resetCommitJson(url);
+			darwin.projectManagerModule.resetBaseRequestUrl();
+			darwin.Mediator.disableCommitButton();
+			
+			darwin.projectManagerModule.setBaseRequestUrl(index, url);
+			darwin.Mediator.makeGithubRequest(darwin.projectManagerModule.getAllBaseRequestUrl(), "GET", darwin.Mediator.githubParseCommitData, "commit");		
+		
+			darwin.Mediator.setNumCommitProjectSelected();
+		},
+		disableCommitButton : function(){
+			darwin.projectManagerModule.disableCommitButton();
+		},
+		enableCommitButton : function(){
+			darwin.projectManagerModule.enableCommitButton();
+		}		
     };
 })();
