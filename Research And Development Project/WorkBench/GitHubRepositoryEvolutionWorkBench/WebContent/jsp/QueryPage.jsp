@@ -14,6 +14,7 @@
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Modules/JsonManagerModule.js?v4"></script>
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Modules/ServerCommunication.js?v4"></script>
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Modules/ProgressbarModule.js?v4"></script>
+    <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Modules/CustomTabModule.js?v4"></script>
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Modules/CommitManagerModule.js?v4"></script>
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Modules/ArrayUtilityModule.js?v4"></script>
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Modules/ProjectManagerModule.js?v4"></script>
@@ -97,17 +98,20 @@
       <div id="commitChart"></div>  
     </div>
     <div id="CustomTab" class="tab-pane fade customTab">
+    	<div class="dropdown">
+  			<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    			Chose Project
+    		<span class="caret"></span>
+  		</button>
+  		<ul id="projectOptions" class="dropdown-menu" aria-labelledby="dropdownMenu1"></ul>
+		</div>
 	    <div id="options">
-     		<div class="checkbox">
-  				<label><input type="checkbox" value="">Commits</label>
-			</div>
-			<div class="checkbox">
- 		 		<label><input type="checkbox" value="">Additions</label>
-			</div>
-			<div class="checkbox">
-  				<label><input type="checkbox" value="" disabled>Deletions</label>
-			</div>	
-     	</div> 
+	    	<p class="inlineText" style="display:block;">Options</p>
+	    </div> 
+     	
+       <button type="submit" id="submitButtonCustom" class="btn btn-primary submitButton">
+  	     <i class="icon-user icon-white">Get Custom Graph</i> 
+       </button>   
      </div>  
    </div>
     <div id="ajaxGetUserServletResponse" class="alert alert-success" role="alert"></div>   

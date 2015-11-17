@@ -11,11 +11,7 @@ $(document).ready(function(e) {
 	
 	$("#submitButtonQuery").on("click.darwin", function(e){
 		e.preventDefault();
-		
-		//parse the url
-		parsedUrl = darwin.Facade.parseInputUrl($("#urlField").val());
-				
-		darwin.projectManagerModule.setProjectId(parsedUrl);	
+	
 	    darwin.projectManagerModule.resetVariables();
 	    darwin.projectManagerModule.resetComponents();
 	    
@@ -56,6 +52,12 @@ $(document).ready(function(e) {
 			darwin.projectManagerModule.setNumProjects();
 		}
 	});
+	
+	$(document).on( 'shown.bs.tab', 'a[data-toggle="tab"]', function (e) {
+		if($(this).attr('href') == "#CustomTab"){
+			darwin.Mediator.setupCustomComponents();
+		}// activated tab
+	})
 });
 
 
