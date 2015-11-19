@@ -53,9 +53,11 @@ $(document).ready(function(e) {
 		}
 	});
 	
+	/*remove this and draw components based on drop down not tab*/
 	$(document).on( 'shown.bs.tab', 'a[data-toggle="tab"]', function (e) {
 		if($(this).attr('href') == "#CustomTab"){
-			darwin.Mediator.setupCustomComponents();
+			darwin.Mediator.clearComponents();
+			darwin.Mediator.setupCustomComponentsDropDown();
 		}// activated tab
 	})
 });

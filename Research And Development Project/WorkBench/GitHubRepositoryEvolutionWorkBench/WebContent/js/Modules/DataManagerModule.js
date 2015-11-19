@@ -54,6 +54,9 @@ darwin.dataManager = (function() {
         },
     	getCommits: function () {
     		return commitList;
+        },
+    	getCommitsIndex: function (index) {
+    		return commitList[index];
         }
     };
 })(); 

@@ -141,8 +141,17 @@ darwin.Mediator = (function () {
 		enableCommitButton : function(){
 			darwin.projectManagerModule.enableCommitButton();
 		},
-		setupCustomComponents : function(){
-			darwin.customTabModule.setupUi();
+		setupCustomComponentsOptions : function(){
+			darwin.customTabModule.setupUiOptions();
+		},
+		setupCustomComponentsDropDown : function(){
+			darwin.customTabModule.setupUiDropDown();
+		},
+		clearComponents : function(){
+			darwin.customTabModule.clearComponents();
+		},
+		getCommitsIndex : function(index){
+			return darwin.dataManager.getCommitsIndex(index);
 		}
     };
 })();
