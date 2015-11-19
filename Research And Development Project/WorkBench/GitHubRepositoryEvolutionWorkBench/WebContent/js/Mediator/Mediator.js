@@ -150,8 +150,18 @@ darwin.Mediator = (function () {
 		clearComponents : function(){
 			darwin.customTabModule.clearComponents();
 		},
+		clearOptionsOnly : function(){
+			darwin.customTabModule.clearOptionsOnly();
+		},
 		getCommitsIndex : function(index){
 			return darwin.dataManager.getCommitsIndex(index);
-		}
+		},
+		addToCustomList : function(array, name){
+			darwin.dataManager.addToCustomList(array);
+			darwin.dataManager.addToCustomNameList(name);
+		},
+		drawCustomGraph: function (values, xAxis, chartTitle) {			
+			darwin.customVisualiser.draw(values, xAxis, chartTitle);	
+		},
     };
 })();

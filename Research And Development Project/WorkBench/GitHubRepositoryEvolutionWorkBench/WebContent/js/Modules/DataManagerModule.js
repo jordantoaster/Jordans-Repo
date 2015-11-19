@@ -11,6 +11,8 @@ darwin.dataManager = (function() {
 	LOC = [];
 	difference = [];
 	commitList = [];
+	customDataList = [];
+	customNameList = [];
 
     return {
     	getAdditions: function (index) {
@@ -57,6 +59,24 @@ darwin.dataManager = (function() {
         },
     	getCommitsIndex: function (index) {
     		return commitList[index];
+        },
+        addToCustomList : function(array){
+        	customDataList.push(array);
+        },
+        clearCustomList : function(){
+        	customDataList = [];
+        },
+        addToCustomNameList : function(name){
+        	customNameList.push(name);
+        },
+        clearCustomNameList : function(){
+        	customNameList = [];
+        },
+        getCustomList : function(){
+        	return customDataList;
+        },
+        getCustomNameList : function(){
+        	return customNameList;
         }
     };
 })(); 

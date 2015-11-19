@@ -27,20 +27,23 @@ darwin.customTabModule = (function() {
         },
         setupUiOptions : function(){
         	//draw automatically generated stat check boxes
-			$("#options").append('<div id="additions" class="checkbox"><label><input type="checkbox" value="">Additions</label></div>')
-			$("#options").append('<div id="deletions" class="checkbox"><label><input type="checkbox" value="">Deletions</label></div>')
-			$("#options").append('<div id="loc" class="checkbox"><label><input type="checkbox" value="">LOC</label></div>')
+			$("#options").append('<div id="additionsCheck" class="checkbox"><label><input type="checkbox" value="">Additions</label></div>')
+			$("#options").append('<div id="deletionsCheck" class="checkbox"><label><input type="checkbox" value="">Deletions</label></div>')
+			$("#options").append('<div id="LOCCheck" class="checkbox"><label><input type="checkbox" value="">LOC</label></div>')
 
     		//get all the commits
     		commits = darwin.Mediator.getCommitsIndex(currentIndex);
 
 			//if index has commits then draw checkbox for it
 			if(commits != undefined){
-				$("#options").append('<div id="commits" class="checkbox"><label><input type="checkbox" value="">commits</label></div>')
+				$("#options").append('<div id="commitsCheck" class="checkbox"><label><input type="checkbox" value="">commits</label></div>')
 			}
         },
         clearComponents : function(){
         	$("#projectOptions").empty();
+        	$("#options").empty();
+        },
+        clearOptionsOnly : function(){
         	$("#options").empty();
         },
         getCurrentIndex : function(){
@@ -56,16 +59,16 @@ darwin.customTabModule = (function() {
         	isCommitsChecked = false;
         },
         setAdditionsChecked : function(bool){
-        	isAdditionsChecked = false;
+        	isAdditionsChecked = bool;
         },
         setDeletionsChecked : function(bool){
-        	isDeletionsChecked = false;
+        	isDeletionsChecked = bool;
         },
         setLOCChecked : function(bool){
-        	isLOCChecked = false;
+        	isLOCChecked = bool;
         },
         setCommitsChecked : function(bool){
-        	isCommitsChecked = false;
+        	isCommitsChecked = bool;
         },
         getIsAdditionsChecked : function(){
         	return isAdditionsChecked;
