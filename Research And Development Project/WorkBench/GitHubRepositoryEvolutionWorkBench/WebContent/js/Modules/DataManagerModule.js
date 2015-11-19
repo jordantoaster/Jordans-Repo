@@ -50,11 +50,10 @@ darwin.dataManager = (function() {
     		return LOC;
         },
     	setCommits: function (index, data) {
-    		console.log();
     		commitList[index] = data;
         },
     	getCommits: function () {
     		return commitList;
         }
     };
-})();
+})(); 

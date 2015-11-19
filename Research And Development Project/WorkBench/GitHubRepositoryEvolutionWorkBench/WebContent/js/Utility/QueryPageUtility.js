@@ -7,7 +7,7 @@ $(document).ready(function(e) {
 	darwin.projectManagerModule.disableTabs();
 	
 	//load google graph library
-	darwin.Facade.loadGraphLibrary();
+	darwin.Mediator.loadGraphLibrary();
 	
 	$("#submitButtonQuery").on("click.darwin", function(e){
 		e.preventDefault();
@@ -19,7 +19,7 @@ $(document).ready(function(e) {
 	    for(i=0;i<darwin.projectManagerModule.getNumProjects();i++){
 	    	
 	    	//get parsed url
-	    	parsedUrl = darwin.Facade.parseInputUrl($('#urlField' + i).val());
+	    	parsedUrl = darwin.Mediator.parseInputUrl($('#urlField' + i).val());
 	    	
 	    	//set project info for future reference
 	    	darwin.projectManagerModule.setProjectNames(parsedUrl);
@@ -27,7 +27,7 @@ $(document).ready(function(e) {
 	    	//set request urls for the specefic api request
 	    	darwin.projectManagerModule.setBaseRequestUrl(i, "https://api.github.com/repos"+parsedUrl+"/stats/code_frequency?per_page=100&page=")
 	    }
-	    darwin.Facade.makeGithubRequest(darwin.projectManagerModule.getAllBaseRequestUrl(), "GET", darwin.Mediator.githubParseContributionData, "contribution");
+	    darwin.Mediator.makeGithubRequest(darwin.projectManagerModule.getAllBaseRequestUrl(), "GET", darwin.Mediator.githubParseContributionData, "contribution");
 	       
 	    //Load options for commit page
 	    darwin.commitManager.loadCommitSelection(darwin.projectManagerModule.getProjectNames());

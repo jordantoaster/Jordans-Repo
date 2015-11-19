@@ -13,7 +13,7 @@ $(document).ready(function(e) {
     	requestData[0] = $("#userNameFeild").val();
     	requestData[1] = $("#passwordFeild").val();
     	
-    	darwin.Facade.makeServerRequest("login", darwin.Mediator.authenticateUpdateView, "POST", requestData);
+    	darwin.Mediator.makeServerRequest("login", darwin.Mediator.authenticateUpdateView, "POST", requestData);
    	});
 	
 	$("#submitButtonReg").on("click.darwin", function(e){
@@ -25,6 +25,6 @@ $(document).ready(function(e) {
     	requestData[1] = $("#passwordFeildConfirmReg").val();
     	requestData[0] = $("#userNameFeildReg").val();
     	
-    	darwin.Facade.makeServerRequest("register", darwin.Mediator.authenticateUpdateView, "POST", requestData);   		
+    	darwin.Mediator.makeServerRequest("register", darwin.Mediator.authenticateUpdateView, "POST", requestData);   		
 	});
 });

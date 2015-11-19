@@ -67,7 +67,7 @@ darwin.commitExtractorModule = (function() {
 			darwin.Mediator.enableCommitButton();
     		
     		//send to mongo for storage
-			darwin.Mediator.packagerCommits(dates, commits, darwin.projectManagerModule.getProjectNamesIndex(index));
+			//darwin.Mediator.packagerCommits(dates, commits, darwin.projectManagerModule.getProjectNamesIndex(index));
     		
         },
         resetVariables: function(){      	

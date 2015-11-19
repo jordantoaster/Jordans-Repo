@@ -14,7 +14,7 @@ darwin.statusChangeCallback = function(response) {
 	  // Logged into your app and Facebook.
 	  var requestData = [];
 	  requestData[0] = "facebook";	    
-	  darwin.Facade.makeServerRequest("login", darwin.Mediator.authenticateUpdateView, "POST", requestData);
+	  darwin.Mediator.makeServerRequest("login", darwin.Mediator.authenticateUpdateView, "POST", requestData);
 	  //testAPI();
 	} else if (response.status === 'not_authorized') {
 	  // The person is logged into Facebook, but not your app.
