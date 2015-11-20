@@ -113,7 +113,7 @@
        <button type="submit" id="submitButtonCustom" class="btn btn-primary submitButton">
   	     <i class="icon-user icon-white">Get Custom Graph</i> 
        </button>   
-       <div id="customhart"></div>  
+       <div id="customChart"></div>  
      </div>  
    </div>
     <div id="ajaxGetUserServletResponse" class="alert alert-success" role="alert"></div>   

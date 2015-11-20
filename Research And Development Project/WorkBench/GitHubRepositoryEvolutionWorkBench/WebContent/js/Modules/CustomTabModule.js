@@ -81,6 +81,16 @@ darwin.customTabModule = (function() {
         },
         getIsCommitsChecked : function(){
         	return isCommitsChecked;
+        },
+        removeChecks : function(){
+            $('input').not('#additionsCheck').prop('checked', false)
+            darwin.customTabModule.setAdditionsChecked(false);
+            $('input').not('#deletionsCheck').prop('checked', false)
+            darwin.customTabModule.setDeletionsChecked(false);
+            $('input').not('#LOCCheck').prop('checked', false);
+            darwin.customTabModule.setLOCChecked(false);            
+            $('input').not('#commitsCheck').prop('checked', false);
+            darwin.customTabModule.setCommitsChecked(false);
         }
     };
 })();

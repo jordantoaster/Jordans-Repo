@@ -163,5 +163,10 @@ darwin.Mediator = (function () {
 		drawCustomGraph: function (values, xAxis, chartTitle) {			
 			darwin.customVisualiser.draw(values, xAxis, chartTitle);	
 		},
+		resetCustomProcess : function(){
+			darwin.dataManager.clearCustomList();
+			darwin.dataManager.clearCustomNameList();
+			darwin.customTabModule.removeChecks();
+		}
     };
 })();

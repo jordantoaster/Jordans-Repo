@@ -28,6 +28,7 @@
 
 .submitButton {
 	margin-left: 45% !important;
+	display: block !important;
 }
 
 .dropdown {
@@ -76,4 +77,15 @@
 	display: inline;
     margin-right: 2%;
     font-size: 2em;
+}
+
+#options {
+	display:inline;
+	margin-left: 5%;
+}
+
+.checkbox {
+	display:inline !important;
+	margin-left: 1%;
+	font-size: 1.5em;
 }
