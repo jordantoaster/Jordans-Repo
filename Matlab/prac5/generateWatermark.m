@@ -1,9 +1,9 @@
 %this function generates the watermark
-function message = generateWatermark(Im)
+function message = generateWatermark()
     
     % msize should be equal or less than the image size. this generates a 1D vector
     % with random values between 0 and 1.0
-    message = rand(round(size(10))); 
+    message = rand(3,3); 
     
     %To convert these numbers to binary, we get the indicies of nums < > 0
     x0 = find (message <= 0.5); 

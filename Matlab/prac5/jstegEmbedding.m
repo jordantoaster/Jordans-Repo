@@ -1,13 +1,11 @@
+%this has been created based on the algorithm in paper...[]
+
 function embeddedImage =  jstegEmbedding(originalImage, message)
 
-    figure, imshow(originalImage);
-
-    %Generate DCT coefficient matrix using Matlab’s DCT function.
     originalImage = double(originalImage);
-    ImDCT = dct(originalImage);
     
-  %  fun = @dct2;
-   % ImDCT = blkproc(originalImage,[8 8],fun);
+    %divide into blocks and perform dct on each element in each block
+    ImDCT = blkproc(originalImage,[8 8],@dct2);
             
     %quantisization of the double to int
     ImDCT = uint8(ImDCT);
@@ -15,36 +13,37 @@ function embeddedImage =  jstegEmbedding(originalImage, message)
     %make message and image 1d for easier processing
     ImDCT = reshape(ImDCT, [], 1);
     message = reshape(message, [], 1);
-
+    
+    %iterates the image when 0 and 1 coeffients are skipped
+    currVal = 1;
+    
     %iterate each message bit
     for i = 1:size(message)
+        %used to move through pixels that are 0 and 1
         %dont embed any 0 or 1
-        if(ImDCT(i) ~=0 && ImDCT(i) ~= 1)
-                % get next bit
-                currBit = bitget(message(i),1);
-                if(currBit ~= -1)  %else return unadjusted dct value
-                    
-                    %get the current image pixel lsb
-                    imageBit = bitget(ImDCT(i),1);
+        while(ImDCT(currVal) ==0 || ImDCT(currVal) == 1) 
+            %if 0 or 1  move onto next dct coefficent
+            currVal = currVal + 1;      
+        end
 
-                    %overwrite the lsb
-                    ImDCT(i) = bitset(ImDCT(i), 1, bitand(imageBit, 0));
-
-                    %with this bit
-                    result = bitor(bitget(ImDCT(i),1), currBit);
-                    ImDCT(i) = bitset(ImDCT(i), 1, result);
-                end           
-        end               
+        %get the current image dct lsb
+        imageBit = bitget(ImDCT(currVal),1);
+        
+        %embed new pixel value with the one in the message if not equal
+        if(imageBit ~= message(i))
+            ImDCT(currVal) = bitset(ImDCT(currVal), 1, message(i));
+        end
+        
+        %so we can move onto next dct
+        currVal = currVal + 1;      
     end
     
     %return to a 2d form
     ImDCT = reshape(ImDCT, size(originalImage));
     
     %reverse dct
-    embeddedImage = idct(double(ImDCT));  
+    embeddedImage = blkproc(ImDCT,[8 8],@idct2);  
     
     %return to int8 format
-    embeddedImage = uint8(embeddedImage);  
-    
-    figure, imshow(embeddedImage);
+   % embeddedImage = uint8(ImDCT);     
 end

@@ -17,15 +17,15 @@ darwin.commitVisualiser = (function() {
 		
 	    	for(var j =0;j < iterateNum-1;j++){
     	    	if(values.length == 2){
-        	    	data.addRow(["month" + j, values[0][j],values[1][j]]);
+        	    	data.addRow(["week" + j, values[0][j],values[1][j]]);
     	    	} else if(values.length == 3){
-        	    	data.addRow(["month" + j, values[0][j],values[1][j],values[2][j]]);
+        	    	data.addRow(["week" + j, values[0][j],values[1][j],values[2][j]]);
     	    	}else if(values.length == 4){
-        	    	data.addRow(["month" + j, values[0][j],values[1][j],values[2][j],values[3][j]]);
+        	    	data.addRow(["week" + j, values[0][j],values[1][j],values[2][j],values[3][j]]);
   	    		}else if(values.length == 5){
-        	    	data.addRow(["month" + j, values[0][j],values[1][j],values[2][j],values[3][j],values[4][j]]);
+        	    	data.addRow(["week" + j, values[0][j],values[1][j],values[2][j],values[3][j],values[4][j]]);
 	    		}else {
-        	    	data.addRow(["month: " + j, values[0][j]]);
+        	    	data.addRow(["week: " + j, values[0][j]]);
     	    	}
 	    	}
 
