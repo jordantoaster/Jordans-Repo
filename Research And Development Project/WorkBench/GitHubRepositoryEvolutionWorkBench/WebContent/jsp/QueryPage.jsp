@@ -96,6 +96,18 @@
      <div id="CommitTab" class="tab-pane fade customTab">
       <p class="inlineText" id="commitHeader">Select a project(s) commits: </p>
       <div class="btn-group" id="commitOptions" role="group" aria-label="..."></div>
+      <div class="dropdown">
+  			<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    			Change Sampling Rate
+    		<span class="caret"></span>
+  		</button>
+  		<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+  		  <li><a href="#" id="sampleRate1Commits">1 Week</a></li>
+    	  <li><a href="#" id="sampleRate2Commits">6 Weeks</a></li>
+    	  <li><a href="#" id="sampleRate3Commits">13 Weeks</a></li>
+    	  <li><a href="#" id="sampleRate4Commits">26 Weeks</a></li>
+  		</ul>
+	  </div>
       <div id="commitChart"></div>  
     </div>
     <div id="CustomTab" class="tab-pane fade customTab">

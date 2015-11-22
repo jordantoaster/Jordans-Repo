@@ -12,18 +12,20 @@ darwin.commitExtractorModule = (function() {
 	totalCommits = 0;
 	firstDate = true;
 	localJson = [];
-	//two makes it biweekly
-	sampleRate = 1;
 		
     return {
     	// data comes in front to back, so < is used in place of > then reversed at the end
-    	extract: function (json, index) {
+    	extract: function (json, index) {   		
     		
-    		var iterationCount = darwin.Mediator.getSmallestArray(json);
-
-    		//for(var i=0;i<json.length;i++){		//here if multiple projects commits in in array
+    		for(var i=0;i<json.length;i++){		//here if multiple projects commits in in array
     			
-    			localJson = json[0];
+    			if(darwin.projectManagerModule.getCommitExtractorType()){
+    	    		var iterationCount = darwin.Mediator.getSmallestArray(json[i]);
+    			} else{
+    	    		var iterationCount = darwin.Mediator.getSmallestArray(json);
+    			}
+    			
+    			localJson = json[i];
 				localJson.reverse();
     			sampleIterator = 0;
     			commits = [];
@@ -36,7 +38,11 @@ darwin.commitExtractorModule = (function() {
     				    				
         			totalCommits++;
     				
-    				var date = darwin.ISO601toDateModule.convert(localJson[j].commit.committer.date);
+        			if(darwin.projectManagerModule.getCommitExtractorType()){
+        				var date = darwin.ISO601toDateModule.convert(localJson[0][j].commit.committer.date);
+        			} else {
+        				var date = darwin.ISO601toDateModule.convert(localJson[j].commit.committer.date);
+        			}
     				    				
     				if(firstDate){
     					// get range
@@ -67,7 +73,7 @@ darwin.commitExtractorModule = (function() {
         		//send to mongo for storage
     			//darwin.Mediator.packagerCommits(dates, commits, darwin.projectManagerModule.getProjectNamesIndex(index));
     			
-    		//}   //for
+    		}   //for
     		
     		smallestSize = darwin.Mediator.getCommitDetails().reduce(function(p,c) {return p.length>c.length?c:p;},{length:Infinity}).length;
     			
@@ -88,7 +94,8 @@ darwin.commitExtractorModule = (function() {
         },
         getDateRange : function(inputDate){	
         	var dateRange = new Date(inputDate);
-        	dateRange.setDate(dateRange.getDate()+(sampleRate * 7)) //-1 accounts for including initial date in range
+        	console.log(darwin.projectManagerModule.getCommitSamplingRate());
+        	dateRange.setDate(dateRange.getDate()+(darwin.projectManagerModule.getCommitSamplingRate() * 7)) //-1 accounts for including initial date in range
         	return dateRange;
         },
 

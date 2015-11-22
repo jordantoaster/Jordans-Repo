@@ -11,6 +11,8 @@ darwin.projectManagerModule = (function() {
     numProjects = 1;
     projectNames = [];
     currRequestPage = 1;
+    commitSamplingRate = 1;
+    commitExtractorType = false;
 		
     return {
     	
@@ -56,6 +58,12 @@ darwin.projectManagerModule = (function() {
         getSamplingRate: function(){
         	return samplingRate;
         },
+        setCommitSamplingRate: function(sample){
+        	commitSamplingRate = sample;
+        },
+        getCommitSamplingRate: function(){
+        	return commitSamplingRate;
+        },
         setBaseRequestUrl: function(index, url){
         	baseRequestUrl[index] = url;
         },
@@ -90,6 +98,12 @@ darwin.projectManagerModule = (function() {
         enableCommitButton :  function(){
         	$('.btn-group button').removeAttr('disabled');
        	 	$("#commitHeader").text('You can now select another project');
+        },
+        setCommitExtractorType : function(type){
+        	commitExtractorType = type;
+        },
+        getCommitExtractorType : function(){
+        	return commitExtractorType;
         },
         noCallBack : function(){
         	//do nothing

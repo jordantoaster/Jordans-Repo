@@ -63,6 +63,9 @@ darwin.Mediator = (function () {
 		resampleContributions : function(currentJson){
 			darwin.contributionExtractorModule.extract(currentJson);
 		},
+		resampleCommits : function(currentJson){
+			darwin.commitExtractorModule.extract(currentJson);
+		},
 		parseInputUrl : function(url){
 			return darwin.ParseUrlInputModule.parse(url);
 		},

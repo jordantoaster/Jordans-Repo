@@ -23,11 +23,7 @@ darwin.ISO601toDateModule = (function () {
     		  //date[2] = dtcomps[0]
     		 // date[3] = darwin.ISO601toDateModule.getMonthLength(date[1],date[2])
 
-    		  var date = new Date(dtcomps[0],dtcomps[1]-1,dtcomps[2],0,0,0,0);
-    		  
-    		  console.log(date.getFullYear());
-    		  console.log(date.getDate());
-    		  console.log(date.getMonth()); 	
+    		  var date = new Date(dtcomps[0],dtcomps[1]-1,dtcomps[2],0,0,0,0);	
     		  
     		  return date;
         },

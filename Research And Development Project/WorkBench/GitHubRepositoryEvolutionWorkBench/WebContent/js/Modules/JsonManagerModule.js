@@ -7,7 +7,8 @@ var darwin = darwin || {};
 darwin.jsonManagerModule = (function() {
 	
 	var contributionArray = [];
-	var commitArray = [[]]; //each inner array represents a project
+	var mergedCommits = [];
+	var commitArray = []; //each inner array represents a project
 	
     return {
         getContributionJson : function (index){
@@ -26,11 +27,20 @@ darwin.jsonManagerModule = (function() {
         	return commitArray;
         },
         setCommitJson : function (index, json){ //concatenate one request with another
-        	if(commitArray[index].length === 0){
-        		commitArray[index] = json
+        	if(commitArray.length === 0){
+        		commitArray = json
         	} else {
-            	commitArray[index].push.apply(commitArray[index], json);
+            	commitArray.push.apply(commitArray[index], json);
         	}
+        	if(json.length < 100){
+        		darwin.jsonManagerModule.setMergedCommits(commitArray, index);
+        	}
+        },
+        setMergedCommits : function(commitArray, index){
+        	mergedCommits[index] = commitArray;
+        },
+        getMergedCommits : function(){
+        	return mergedCommits;
         },
         resetCommitJson : function (){ //concatenate one request with another
         	commitArray = [[]];
