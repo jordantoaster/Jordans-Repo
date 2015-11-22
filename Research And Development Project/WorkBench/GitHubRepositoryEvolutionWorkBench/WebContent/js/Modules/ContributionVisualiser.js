@@ -44,6 +44,7 @@ darwin.ContributionVisualiser = (function () {
     	      legend: {position: 'top'},
     	      height: 550,
     	      width: 1450,
+			  curveType: 'function',
     	      animation:{
     	          duration: 800,
     	          easing: 'out',
