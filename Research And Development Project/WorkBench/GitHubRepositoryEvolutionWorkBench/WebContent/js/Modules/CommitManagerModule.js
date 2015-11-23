@@ -25,11 +25,7 @@ darwin.commitManager = (function () {
         	return projectsAdded;
         },
         setProjectsAdded : function(val){
-        	if(!firstAdd){
-            	projectsAdded = val;
-        	} else {
-        		firstAdd = false;
-        	}
+            projectsAdded = val;
         },
         resetProjectsAdded : function(){
         	projectsAdded = 0;

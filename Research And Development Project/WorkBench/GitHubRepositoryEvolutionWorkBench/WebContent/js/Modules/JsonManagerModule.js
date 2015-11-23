@@ -21,16 +21,16 @@ darwin.jsonManagerModule = (function() {
         	contributionArray[index] = json;
         },
         getCommitJson : function (index){
-        	return commitArray[index];
+        	return mergedCommits[index];
         },
         getAllCommitJson : function (){
-        	return commitArray;
+        	return mergedCommits;
         },
         setCommitJson : function (index, json){ //concatenate one request with another
         	if(commitArray.length === 0){
         		commitArray = json
         	} else {
-            	commitArray.push.apply(commitArray[index], json);
+            	commitArray.push.apply(commitArray, json);
         	}
         	if(json.length < 100){
         		darwin.jsonManagerModule.setMergedCommits(commitArray, index);
@@ -39,11 +39,8 @@ darwin.jsonManagerModule = (function() {
         setMergedCommits : function(commitArray, index){
         	mergedCommits[index] = commitArray;
         },
-        getMergedCommits : function(){
-        	return mergedCommits;
-        },
         resetCommitJson : function (){ //concatenate one request with another
-        	commitArray = [[]];
+        	commitArray = [];
         }
     };
 })();

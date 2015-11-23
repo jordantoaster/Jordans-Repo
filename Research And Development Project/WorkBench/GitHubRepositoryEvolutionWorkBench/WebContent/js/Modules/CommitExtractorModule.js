@@ -6,43 +6,33 @@ var darwin = darwin || {};
 
 darwin.commitExtractorModule = (function() {
 	
-	sampleIterator = 0;
-	commits = [];
-	dates = [];
-	totalCommits = 0;
-	firstDate = true;
-	localJson = [];
+	var sampleIterator = 0;
+	var commits = [];
+	var dates = [];
+	var totalCommits = 0;
+	var firstDate = true;
+	var localJson = [];
 		
     return {
     	// data comes in front to back, so < is used in place of > then reversed at the end
-    	extract: function (json, index) {   		
+    	extract: function (json, index) {   
     		
-    		for(var i=0;i<json.length;i++){		//here if multiple projects commits in in array
+    			//to avoid pass by referecence and changing the original values during reverse we need to copy it to another object
+    			localJson = darwin.Mediator.copyObject(json);
     			
-    			if(darwin.projectManagerModule.getCommitExtractorType()){
-    	    		var iterationCount = darwin.Mediator.getSmallestArray(json[i]);
-    			} else{
-    	    		var iterationCount = darwin.Mediator.getSmallestArray(json);
-    			}
-    			
-    			localJson = json[i];
-				localJson.reverse();
+    			localJson.reverse();
     			sampleIterator = 0;
     			commits = [];
     			dates = [];
     			totalCommits = 0;
     			firstDate = true;
-    			lastDateInSample = [];
+    			var lastDateInSample = [];
     			    			    		
-    			for(var j = 0;j<iterationCount;j++){
+    			for(var j = 0;j<localJson.length;j++){
     				    				
         			totalCommits++;
     				
-        			if(darwin.projectManagerModule.getCommitExtractorType()){
-        				var date = darwin.ISO601toDateModule.convert(localJson[0][j].commit.committer.date);
-        			} else {
-        				var date = darwin.ISO601toDateModule.convert(localJson[j].commit.committer.date);
-        			}
+        			var date = darwin.ISO601toDateModule.convert(localJson[j].commit.committer.date);
     				    				
     				if(firstDate){
     					// get range
@@ -63,17 +53,15 @@ darwin.commitExtractorModule = (function() {
     					commits[sampleIterator]=1;  
     				} else {
     					commits[sampleIterator]++;
-    				}   				
+    				}
 
     			} //for   			
     			
     			//send to data manager class for storage
-    			darwin.Mediator.setCommitDetails(darwin.Mediator.getNumCommitProjectSelected(), commits, darwin.projectManagerModule.getProjectNames());
+    			darwin.Mediator.setCommitDetails(index, commits, darwin.projectManagerModule.getProjectNames());
     			
         		//send to mongo for storage
     			//darwin.Mediator.packagerCommits(dates, commits, darwin.projectManagerModule.getProjectNamesIndex(index));
-    			
-    		}   //for
     		
     		smallestSize = darwin.Mediator.getCommitDetails().reduce(function(p,c) {return p.length>c.length?c:p;},{length:Infinity}).length;
     			
@@ -94,7 +82,6 @@ darwin.commitExtractorModule = (function() {
         },
         getDateRange : function(inputDate){	
         	var dateRange = new Date(inputDate);
-        	console.log(darwin.projectManagerModule.getCommitSamplingRate());
         	dateRange.setDate(dateRange.getDate()+(darwin.projectManagerModule.getCommitSamplingRate() * 7)) //-1 accounts for including initial date in range
         	return dateRange;
         },

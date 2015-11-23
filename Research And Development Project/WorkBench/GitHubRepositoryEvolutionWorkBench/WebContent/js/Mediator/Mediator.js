@@ -24,18 +24,20 @@ darwin.Mediator = (function () {
 		},
 		makeGithubRequest: function (url, type, callback, action) {
 			for(i=0;i<url.length;i++){
-				
-				//darwin.projectManagerModule.noCallBack
-				
+								
 				//stops race conditions
-				timer = setTimeout(darwin.projectManagerModule.noCallBack(), 500);
-				
+				timer = setTimeout(darwin.projectManagerModule.noCallBack(), 100);
+
 				//only perform actually call back when all request data collected
 				if(i==(url.length-1)){
-		        	darwin.githubModule.send(url[i] + darwin.projectManagerModule.getcurrRequestPage(), type, callback, i, action);
+					if(action == "commit"){
+						darwin.githubModule.send(url[i] + darwin.projectManagerModule.getcurrRequestPage(), type, callback, darwin.Mediator.getNumCommitProjectSelected(), action);
+					} else {
+						darwin.githubModule.send(url[i] + darwin.projectManagerModule.getcurrRequestPage(), type, callback, i, action);
+					}
 				} else {
-		        	darwin.githubModule.send(url[i] + darwin.projectManagerModule.getcurrRequestPage(), type, darwin.projectManagerModule.noCallBack, i, action);
-				}				
+					darwin.githubModule.send(url[i] + darwin.projectManagerModule.getcurrRequestPage(), type, darwin.projectManagerModule.noCallBack, i, action);					
+				}	
 			}
 		},
 		githubParseContributionData: function (response) {
@@ -60,11 +62,19 @@ darwin.Mediator = (function () {
 		resetContributionVariables: function(){
 			darwin.contributionExtractorModule.resetVariables();
 		},
+		resetCommitVariables: function(){
+			darwin.projectManagerModule.resetProjectNames();
+			darwin.projectManagerModule.resetNumProjects();
+			darwin.commitManager.resetProjectsAdded();
+		},
 		resampleContributions : function(currentJson){
 			darwin.contributionExtractorModule.extract(currentJson);
 		},
 		resampleCommits : function(currentJson){
-			darwin.commitExtractorModule.extract(currentJson);
+			//pass in commits one at a time
+			for(var i =0; i<currentJson.length;i++){
+				darwin.commitExtractorModule.extract(currentJson[i],i);
+			}
 		},
 		parseInputUrl : function(url){
 			return darwin.ParseUrlInputModule.parse(url);
@@ -116,6 +126,9 @@ darwin.Mediator = (function () {
 		getAllCommitJson : function(){
 			return darwin.jsonManagerModule.getAllCommitJson()
 		},
+		getIndexCommitJson : function(index){
+			return darwin.jsonManagerModule.getCommitJson(index)
+		},
 		setcurrRequestPage : function(val){
 			darwin.projectManagerModule.setcurrRequestPage(val);
 		},
@@ -128,15 +141,14 @@ darwin.Mediator = (function () {
 		makeGithubRequestSingleUrl : function(url, type, callback, index, action){
 			  darwin.githubModule.send(url, type, callback, index, action);
 		},
-		prepareCommitClick : function(index, url){
+		prepareCommitClick : function(url){
 			darwin.jsonManagerModule.resetCommitJson(url);
 			darwin.projectManagerModule.resetBaseRequestUrl();
 			darwin.Mediator.disableCommitButton();
 			
-			darwin.projectManagerModule.setBaseRequestUrl(index, url);
+			darwin.projectManagerModule.setBaseRequestUrl(0,url);
+			
 			darwin.Mediator.makeGithubRequest(darwin.projectManagerModule.getAllBaseRequestUrl(), "GET", darwin.Mediator.githubParseCommitData, "commit");		
-		
-			darwin.Mediator.setNumCommitProjectSelected();
 		},
 		disableCommitButton : function(){
 			darwin.projectManagerModule.disableCommitButton();
@@ -170,6 +182,9 @@ darwin.Mediator = (function () {
 			darwin.dataManager.clearCustomList();
 			darwin.dataManager.clearCustomNameList();
 			darwin.customTabModule.removeChecks();
+		},
+		copyObject : function(obj){
+			return darwin.copyObjectModule.copyObject(obj);
 		}
     };
 })();

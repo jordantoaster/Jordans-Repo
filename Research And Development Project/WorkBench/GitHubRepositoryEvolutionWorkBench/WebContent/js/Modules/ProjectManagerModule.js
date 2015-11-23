@@ -22,12 +22,18 @@ darwin.projectManagerModule = (function() {
         getNumProjects: function(){ 
         	return numProjects;
         }, 
+        resetNumProjects : function(){
+        	getNumProjects = 1;
+        },
         setProjectNames: function(name){
         	projectNames.push(name);
         },
         getProjectNames: function(){ 
         	return projectNames;
         },  
+        resetProjectNames : function(){
+        	projectNames = [];
+        },
         getProjectNamesIndex: function(i){ 
         	return projectNames[i];
         }, 
@@ -77,11 +83,15 @@ darwin.projectManagerModule = (function() {
         	baseRequestUrl = [];
         },
         resetVariables: function(){      	
-    	    darwin.Mediator.resetContributionVariables();      	
+    	    darwin.Mediator.resetContributionVariables();
+    	    darwin.Mediator.resetCommitVariables();
         },
         resetComponents: function() {
     		$('.progress-bar').css('width', 0+'%').attr('aria-valuenow', 0);  
     		$('#commitChart').empty();
+    		$('#projectOptions').empty();
+    		$('#options').empty();  
+    		$('#commitOptions').empty();
         },
         disableTabs :  function(){
             $('.nav li').not('.active').addClass('disabled');

@@ -10,7 +10,7 @@ darwin.AjaxResponseModule = (function () {
     		
 			  if(action == "contribution"){
 				  darwin.Mediator.setContributionJson(index,response);
-				  callback(darwin.jsonManagerModule.getAllContributionJson());
+				  callback(darwin.jsonManagerModule.getAllContributionJson());					
 			  }
 			  if(action == "commit"){
 				  darwin.Mediator.setCommitJson(index,response)
@@ -21,7 +21,9 @@ darwin.AjaxResponseModule = (function () {
 					  //reset counter for next projects json
 					  darwin.Mediator.resetcurrRequestPage(0);
 					  
-					  callback(darwin.Mediator.getAllCommitJson(), index);
+					  callback(darwin.Mediator.getIndexCommitJson(index), index);
+					  
+					  darwin.Mediator.setNumCommitProjectSelected();
 					  
 				  } else { //else poll for next set of 100
 					  

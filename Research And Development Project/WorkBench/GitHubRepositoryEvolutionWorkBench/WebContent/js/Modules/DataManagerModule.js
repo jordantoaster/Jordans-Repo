@@ -6,13 +6,13 @@ var darwin = darwin || {};
 
 darwin.dataManager = (function() {
 	
-	deletions = [];
-	additions = [];
-	LOC = [];
-	difference = [];
-	commitList = [];
-	customDataList = [];
-	customNameList = [];
+	var deletions = [];
+	var additions = [];
+	var LOC = [];
+	var difference = [];
+	var commitList = [];
+	var customDataList = [];
+	var customNameList = [];
 
     return {
     	getAdditions: function (index) {

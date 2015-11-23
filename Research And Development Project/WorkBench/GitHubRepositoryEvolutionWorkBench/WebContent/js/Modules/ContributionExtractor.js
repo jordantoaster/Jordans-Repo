@@ -40,8 +40,10 @@ darwin.contributionExtractorModule = (function() {
     		//gets the shortest array in the set of json project data
     		var iterationCount = darwin.Mediator.getSmallestArray(json);
     		
-    		for(var j=0;j<json.length;j++){			
-    			localJson = json[j];
+    		for(var j=0;j<json.length;j++){	
+    			
+    			//to avoid pass by referecence and changing the original values during reverse we need to copy it to another object
+    			localJson = darwin.Mediator.copyObject(json[j]);
     			contributionDates = [];
     			additions = [];
     			deletions = [];
