@@ -9,7 +9,12 @@ function runProgram()
 
    jstegEmbeddedImage = jstegEmbedding(Im, watermark);
    
+   f3EmbeddedImage = f3Embedding(Im, watermark);
+   
+   outputMessageTwo = decodeF3(f3EmbeddedImage, watermark);
+   
    outputMessage = decodeJsteg(jstegEmbeddedImage, watermark);
+
       
-   figure, imshow();
+   %figure, imshow();
 end
