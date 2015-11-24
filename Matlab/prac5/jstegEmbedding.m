@@ -1,14 +1,12 @@
 %this has been created based on the algorithm in paper...[]
 
 function embeddedImage =  jstegEmbedding(originalImage, message)
-
-    originalImage = double(originalImage);
     
     %divide into blocks and perform dct on each element in each block
     ImDCT = blkproc(originalImage,[8 8],@dct2);
             
-    %quantisization of the double to int
-    ImDCT = uint8(ImDCT);
+    %quantisization of the double to int, 16 maintains the quality
+    ImDCT = int16(ImDCT);
         
     %make message and image 1d for easier processing
     ImDCT = reshape(ImDCT, [], 1);
@@ -40,10 +38,11 @@ function embeddedImage =  jstegEmbedding(originalImage, message)
     
     %return to a 2d form
     ImDCT = reshape(ImDCT, size(originalImage));
-    
+        
     %reverse dct
     embeddedImage = blkproc(ImDCT,[8 8],@idct2);  
     
-    %return to int8 format
-   % embeddedImage = uint8(ImDCT);     
+    %to display convert output into image range of 0-255
+    %embeddedImage = uint8(embeddedImage);      
+    %figure, imshow(embeddedImage);
 end

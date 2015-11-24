@@ -8,7 +8,7 @@ function [message] = decodeJsteg(Im, origMessage)
     ImDCT = blkproc(Im,[8 8],@dct2);
             
     %quantisization of the double to int
-    ImDCT = uint8(ImDCT);
+    ImDCT = int16(ImDCT);
         
     %make message and image 1d for easier processing
     ImDCT = reshape(ImDCT, [], 1);

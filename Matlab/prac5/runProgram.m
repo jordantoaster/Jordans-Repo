@@ -11,5 +11,5 @@ function runProgram()
    
    outputMessage = decodeJsteg(jstegEmbeddedImage, watermark);
       
-   plot(outputMessage);
+   figure, imshow();
 end
