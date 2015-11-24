@@ -6,12 +6,12 @@ darwin.projectManagerModule = (function() {
 	
 	projectId = "";
     baseRequestUrl = [];
-    samplingRate = 13;
+    samplingRate = 6;
     comparison = false;
     numProjects = 1;
     projectNames = [];
     currRequestPage = 1;
-    commitSamplingRate = 1;
+    commitSamplingRate = 6;
     commitExtractorType = false;
 		
     return {

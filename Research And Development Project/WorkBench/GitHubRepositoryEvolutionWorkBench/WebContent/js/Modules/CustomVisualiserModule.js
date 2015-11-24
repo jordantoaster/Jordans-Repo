@@ -19,8 +19,10 @@ darwin.customVisualiser = (function() {
     	    	data.addColumn('number', '');	
     	    }
     	    
+    		var iterationCount = darwin.Mediator.getSmallestArray(values);
+    	    
     	    //add data to each row, a a numeral for the y axis and string for x
-	    	for(var j =0;j<values[0].length-1;j++){
+	    	for(var j =0;j<iterationCount;j++){
     	    	if(values.length == 2){
         	    	data.addRow(["sample: " + j, values[0][j],values[1][j]]);
     	    	} else if(values.length == 3){
@@ -42,7 +44,7 @@ darwin.customVisualiser = (function() {
     	          left: 100, width: '95%'
     	      },
     	      legend: {position: 'top'},
-    	      height: 550,
+    	      height: 500,
     	      width: 1450,
     	      animation:{
     	          duration: 800,

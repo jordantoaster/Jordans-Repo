@@ -42,6 +42,7 @@ darwin.customTabModule = (function() {
         clearComponents : function(){
         	$("#projectOptions").empty();
         	$("#options").empty();
+        	$("#customChart").empty();
         },
         clearOptionsOnly : function(){
         	$("#options").empty();

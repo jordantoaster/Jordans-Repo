@@ -122,11 +122,10 @@
 	    <div id="options">
 	    	<p class="inlineText" style="display:block;">Options</p>
 	    </div> 
-     	
+       <div id="customChart"></div> 
        <button type="submit" id="submitButtonCustom" class="btn btn-primary submitButton">
   	     <i class="icon-user icon-white">Get Custom Graph</i> 
-       </button>   
-       <div id="customChart"></div>  
+       </button>    
      </div>  
    </div>
     <div id="ajaxGetUserServletResponse" class="alert alert-success" role="alert"></div>   

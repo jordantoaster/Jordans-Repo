@@ -83,7 +83,7 @@ $(document).ready(function(e) {
 		}
 		
 		if(darwin.customTabModule.getIsCommitsChecked()){
-			darwin.Mediator.addToCustomList(darwin.dataManager.getCommits(darwin.customTabModule.getCurrentIndex()), darwin.projectManagerModule.getProjectNamesIndex(darwin.customTabModule.getCurrentIndex()));
+			darwin.Mediator.addToCustomList(darwin.dataManager.getCommitsIndex(darwin.customTabModule.getCurrentIndex()), darwin.projectManagerModule.getProjectNamesIndex(darwin.customTabModule.getCurrentIndex()));
 		}
 	});	
 	

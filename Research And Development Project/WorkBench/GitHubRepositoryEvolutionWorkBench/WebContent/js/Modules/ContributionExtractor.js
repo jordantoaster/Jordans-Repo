@@ -173,8 +173,6 @@ darwin.contributionExtractorModule = (function() {
         	totalWeeks = 0;
         	contributionSampleCounter = 0;
         	responsePage = 0;
-        	//represents the period each point in the graph represents
-        	samplingRate = 13;
         	SamplingIterator = 0;
         	firstOperation = true;
         	LOC = 0;
