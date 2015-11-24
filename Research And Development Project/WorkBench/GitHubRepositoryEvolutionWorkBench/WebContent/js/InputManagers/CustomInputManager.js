@@ -9,24 +9,28 @@ $(document).ready(function(e) {
 	$(document).on("click.darwin","#0", function (e) {			
 		e.preventDefault();	
 		darwin.Mediator.clearOptionsOnly();
+    	$("#customChart").empty();
 		darwin.customTabModule.setCurrentIndex(0);
 		darwin.Mediator.setupCustomComponentsOptions();
 	});	
 	$(document).on("click.darwin","#1", function (e) {			
 		e.preventDefault();	
 		darwin.Mediator.clearOptionsOnly();
+    	$("#customChart").empty();
 		darwin.customTabModule.setCurrentIndex(1);
 		darwin.Mediator.setupCustomComponentsOptions();
 	});	
 	$(document).on("click.darwin","#2", function (e) {			
 		e.preventDefault();	
 		darwin.Mediator.clearOptionsOnly();
+    	$("#customChart").empty();
 		darwin.customTabModule.setCurrentIndex(2);
 		darwin.Mediator.setupCustomComponentsOptions();
 	});	
 	$(document).on("click.darwin","#3", function (e) {			
 		e.preventDefault();
 		darwin.Mediator.clearOptionsOnly();
+    	$("#customChart").empty();
 		darwin.customTabModule.setCurrentIndex(3);
 		darwin.Mediator.setupCustomComponentsOptions();
 	});	

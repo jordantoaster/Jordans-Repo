@@ -6,6 +6,8 @@ var darwin = darwin || {};
 
 darwin.customVisualiser = (function() {
 	return {
+		// commit data is indepedent from contributions, so it may come through bigger
+		//iteration count restricts it well. 
 		draw : function(values, xAxis, title) {
 			
     		//create data element for the chart
