@@ -1,7 +1,3 @@
-%the message is only ever compared for equality with the abs value, never
-%directly embedded, so we can extract the modified dct values but not the
-%message???
-
 function [message] = decodeF3(Im, origMessage)
     
     %divide into blocks and perform dct on each element in each block
@@ -29,8 +25,9 @@ function [message] = decodeF3(Im, origMessage)
             currVal = currVal + 1;      
         end
         
-        %populate message
-        message(i) =  abs(ImDCT(currVal));
+        %populate message with lsb of abs
+        message(i) =  bitget(abs(ImDCT(currVal)),1);
+        
         currVal = currVal + 1;     
     end
     

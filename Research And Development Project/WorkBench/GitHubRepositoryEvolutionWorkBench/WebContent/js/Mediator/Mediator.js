@@ -65,6 +65,7 @@ darwin.Mediator = (function () {
 		resetCommitVariables: function(){
 			darwin.projectManagerModule.resetProjectNames();
 			darwin.projectManagerModule.resetNumProjects();
+			darwin.dataManager.resetCommitsList();
 			darwin.commitManager.resetProjectsAdded();
 		},
 		resampleContributions : function(currentJson){

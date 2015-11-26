@@ -60,6 +60,9 @@ darwin.dataManager = (function() {
     	getCommitsIndex: function (index) {
     		return commitList[index];
         },
+        resetCommitsList : function(){
+        	commitList = [];
+        },
         addToCustomList : function(array){
         	customDataList.push(array);
         },

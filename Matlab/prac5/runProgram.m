@@ -9,8 +9,14 @@ function runProgram()
 
    jstegEmbeddedImage = jstegEmbedding(Im, watermark);
    
-   f3EmbeddedImage = f3Embedding(Im, watermark);
    
+   geometricAttackImage = geometricAttack(jstegEmbeddedImage);
+   figure, imshow(geometricAttackImage);
+   diffImageVisualAttack(Im, jstegEmbeddedImage);
+   %jstegEmbeddedImage = gaussianAttack(jstegEmbeddedImage);
+   
+   f3EmbeddedImage = f3Embedding(Im, watermark);
+      
    outputMessageTwo = decodeF3(f3EmbeddedImage, watermark);
    
    outputMessage = decodeJsteg(jstegEmbeddedImage, watermark);

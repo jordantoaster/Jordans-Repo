@@ -25,8 +25,12 @@ function [embeddedImage] = f3Embedding(originalImage, message )
         %get absolute value of the coefficient
         absoluteValue = abs(ImDCT(currVal));
         
+        %get lsb of abs value to compare with message
+        %should this be the abs lsb not the curr dct???
+        lsb =  bitget(absoluteValue,1);
+        
         %if abs != message
-        if(absoluteValue ~=  message(i))
+        if(lsb ~=  message(i))
             
             %decrement abs value
             absoluteValue = absoluteValue -1;
