@@ -77,8 +77,11 @@ darwin.dataManager = (function() {
     	getAllLOCOverTime: function () {
     		return LOC;
         },
-    	setCommits: function (index, data) {
-    		commitList[index] = data;
+    	setCommits: function (index, data, projectNames, SampleIndexCommits) {
+    		if(commitList[index] === undefined)
+    			commitList[index] = [];
+
+    		commitList[index][SampleIndexCommits]  = data;
         },
     	getCommits: function () {
     		return commitList;

@@ -12,10 +12,16 @@ darwin.commitExtractorModule = (function() {
 	var totalCommits = 0;
 	var firstDate = true;
 	var localJson = [];
+	var sampleRateCommit = 0;
 		
     return {
     	// data comes in front to back, so < is used in place of > then reversed at the end
     	extract: function (json, index) {   
+    		
+    		for(sampleIndexCommit = 0; sampleIndexCommit < 4;sampleIndexCommit++){
+    			
+    			//get the current sample rate
+    			sampleRateCommit = darwin.projectManagerModule.swapSampleRate(sampleIndexCommit);
     		
     			//to avoid pass by referecence and changing the original values during reverse we need to copy it to another object
     			localJson = darwin.Mediator.copyObject(json);
@@ -58,19 +64,18 @@ darwin.commitExtractorModule = (function() {
     			} //for   			
     			
     			//send to data manager class for storage
-    			darwin.Mediator.setCommitDetails(index, commits, darwin.projectManagerModule.getProjectNames());
-    			
+    			darwin.Mediator.setCommitDetails(index, commits, darwin.projectManagerModule.getProjectNames(), sampleIndexCommit);
+    					
         		//send to mongo for storage
-    			//darwin.Mediator.packagerCommits(dates, commits, darwin.projectManagerModule.getProjectNamesIndex(index));
+    			//darwin.Mediator.packagerCommits(dates, commits, darwin.projectManagerModule.getProjectNamesIndex(index));  	
     		
-    		smallestSize = darwin.Mediator.getCommitDetails().reduce(function(p,c) {return p.length>c.length?c:p;},{length:Infinity}).length;
-    			
-    		darwin.Mediator.drawCommitGraph(dates, darwin.Mediator.getCommitDetails(), "weeks", "week On week Commits", smallestSize);
+    		}
+			
+    		darwin.Mediator.drawCommitGraph(darwin.Mediator.getCommitDetails(), "weeks", "week On week Commits", darwin.projectManagerModule.getSampleIndex());
     		
     		//enable clicking on another project
 			darwin.Mediator.enableCommitButton();
-    		
-    		
+			
         },
         resetVariables: function(){      	
         	sampleIterator = 0;
@@ -82,7 +87,7 @@ darwin.commitExtractorModule = (function() {
         },
         getDateRange : function(inputDate){	
         	var dateRange = new Date(inputDate);
-        	dateRange.setDate(dateRange.getDate()+(darwin.projectManagerModule.getCommitSamplingRate() * 7)) //-1 accounts for including initial date in range
+        	dateRange.setDate(dateRange.getDate()+(sampleRateCommit * 7)) //-1 accounts for including initial date in range
         	return dateRange;
         },
 

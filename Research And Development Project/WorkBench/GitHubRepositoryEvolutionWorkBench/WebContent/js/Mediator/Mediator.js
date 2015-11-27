@@ -53,8 +53,8 @@ darwin.Mediator = (function () {
 				darwin.ContributionVisualiser.populateSupplementaryStats(LOC,totalLines);
 			}
 		},
-		drawCommitGraph: function (dates, values, xAxis, chartTitle, iterateNum) {			
-			darwin.commitVisualiser.draw(dates, values, xAxis, chartTitle, iterateNum);	
+		drawCommitGraph: function (values, xAxis, chartTitle, sampleIndex) {			
+			darwin.commitVisualiser.draw(values, xAxis, chartTitle, sampleIndex);	
 		},
 		loadGraphLibrary: function(){
 			darwin.loadGraphModule.load();
@@ -95,8 +95,8 @@ darwin.Mediator = (function () {
 			darwin.dataManager.setLOCOverTime(index, LOCOverTime, sampleIndex);	
 			darwin.dataManager.setContributionDates(index, contributionDates, sampleIndex);
 		},
-		setCommitDetails : function(index, commits){
-			darwin.dataManager.setCommits(index, commits);
+		setCommitDetails : function(index, commits, projectNames, sampleIndex){
+			darwin.dataManager.setCommits(index, commits, projectNames, sampleIndex);
 		},
 		getCommitDetails : function(){
 			return darwin.dataManager.getCommits();

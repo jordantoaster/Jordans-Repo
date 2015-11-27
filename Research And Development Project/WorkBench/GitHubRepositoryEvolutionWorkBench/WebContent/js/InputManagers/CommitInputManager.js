@@ -28,28 +28,37 @@ $(document).ready(function(e) {
 		e.preventDefault();
 
 		darwin.projectManagerModule.setCommitExtractorType(true);
-		darwin.projectManagerModule.setCommitSamplingRate(1);	
-		darwin.Mediator.resampleCommits(darwin.jsonManagerModule.getAllCommitJson());
+	    darwin.projectManagerModule.setSampleIndex(0);	
+
+		darwin.Mediator.drawCommitGraph(darwin.Mediator.getCommitDetails(), "weeks", "week On week Commits", darwin.projectManagerModule.getSampleIndex());
+
 	});	
 	$('#sampleRate2Commits').on("click.darwin", function(e){
 		e.preventDefault();
 
 		darwin.projectManagerModule.setCommitExtractorType(true);
-		darwin.projectManagerModule.setCommitSamplingRate(6);	
-		darwin.Mediator.resampleCommits(darwin.jsonManagerModule.getAllCommitJson());
+	    darwin.projectManagerModule.setSampleIndex(1);	
+	    
+		darwin.Mediator.drawCommitGraph(darwin.Mediator.getCommitDetails(), "weeks", "week On week Commits", darwin.projectManagerModule.getSampleIndex());
+
 	});	
 	$('#sampleRate3Commits').on("click.darwin", function(e){
 		e.preventDefault();
 
 		darwin.projectManagerModule.setCommitExtractorType(true);
-		darwin.projectManagerModule.setCommitSamplingRate(13);	
-		darwin.Mediator.resampleCommits(darwin.jsonManagerModule.getAllCommitJson());
+	    darwin.projectManagerModule.setSampleIndex(2);	
+	    
+		darwin.Mediator.drawCommitGraph(darwin.Mediator.getCommitDetails(), "weeks", "week On week Commits", darwin.projectManagerModule.getSampleIndex());
+
 	});	
 	$('#sampleRate4Commits').on("click.darwin", function(e){
 		e.preventDefault();
 
 		darwin.projectManagerModule.setCommitExtractorType(true);
-		darwin.projectManagerModule.setCommitSamplingRate(26);	
-		darwin.Mediator.resampleCommits(darwin.jsonManagerModule.getAllCommitJson());
+	    darwin.projectManagerModule.setSampleIndex(3);	
+	    
+	    //add a redraw here
+		darwin.Mediator.drawCommitGraph(darwin.Mediator.getCommitDetails(), "weeks", "week On week Commits", darwin.projectManagerModule.getSampleIndex());
+
 	});	
 });

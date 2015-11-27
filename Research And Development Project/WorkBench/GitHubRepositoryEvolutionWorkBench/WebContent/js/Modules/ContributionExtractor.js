@@ -47,7 +47,7 @@ darwin.contributionExtractorModule = (function() {
 				// iterate to get all three sample rates
 				for (var sampleIndex = 0; sampleIndex < 4; sampleIndex++) {
 
-					var sampleRate = darwin.contributionExtractorModule.swapSampleRate(sampleIndex);
+					var sampleRate = darwin.projectManagerModule.swapSampleRate(sampleIndex);
 
 					// to avoid pass by referecence and changing the original values during reverse we need to copy it to another object
 					localJson = darwin.Mediator.copyObject(json[j]);
@@ -138,50 +138,15 @@ darwin.contributionExtractorModule = (function() {
 
 			darwin.Mediator.updateProgressBar();
 
-			/*
-			 * Depending on the current user input, data passed into the draw function varies
-			 */
-			if (darwin.projectManagerModule.getCurrentContributionMetric() == "difference") {
-				darwin.Mediator.drawContributionGraph(
-						darwin.dataManager.getAllDifference(), 'Sample Size: '
-								+ darwin.projectManagerModule.getSamplingRate()
-								+ ' Weeks',
-						'Difference Of Additions And Deletions', LOC,
-						totalWeeks, darwin.projectManagerModule.getSampleIndex());
-			}
-			if (darwin.projectManagerModule.getCurrentContributionMetric() == "addition") {
-				darwin.Mediator.drawContributionGraph(contributionDates,
-						darwin.dataManager.getAllAdditions(), 'Sample Size: '
-								+ darwin.projectManagerModule.getSamplingRate()
-								+ ' Weeks', 'Amount of Additions', LOC,
-						totalWeeks);
-			}
-			if (darwin.projectManagerModule.getCurrentContributionMetric() == "deletion") {
-				darwin.Mediator.drawContributionGraph(contributionDates,
-						darwin.dataManager.getAllDeletions(), 'Sample Size: '
-								+ darwin.projectManagerModule.getSamplingRate()
-								+ ' Weeks', 'Amount of Deletions', LOC,
-						totalWeeks);
-			}
-			if (darwin.projectManagerModule.getCurrentContributionMetric() == "LOC") {
-				darwin.Mediator.drawContributionGraph(contributionDates,
-						darwin.dataManager.getAllLOCOverTime(), 'Sample Size: '
-								+ darwin.projectManagerModule.getSamplingRate()
-								+ ' Weeks', 'LOC Over Time', LOC, totalWeeks);
-			}
+			
+			//create Initial graph
+			darwin.Mediator.drawContributionGraph(darwin.dataManager.getAllDifference(), 'Sample Size: '
+				+ darwin.projectManagerModule.getSamplingRate()+ ' Weeks', 'Difference Of Additions And Deletions', LOC,
+				totalWeeks, darwin.projectManagerModule.getSampleIndex());
+
 		},
 		getAddition : function() {
 			return additions;
-		},
-		swapSampleRate : function(index) {
-			if (index == 0)
-				return 1;
-			if (index == 1)
-				return 6;
-			if (index == 2)
-				return 13;
-			if (index == 3)
-				return 26;
 		},
 		getDeletion : function() {
 			return deletions;

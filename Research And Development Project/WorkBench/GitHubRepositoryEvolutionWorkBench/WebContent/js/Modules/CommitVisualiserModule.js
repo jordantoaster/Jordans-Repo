@@ -6,7 +6,11 @@ var darwin = darwin || {};
 
 darwin.commitVisualiser = (function() {
 	return {
-		draw : function(dates, values, xAxis, title, iterateNum) {
+		draw : function(values, xAxis, title, sampleIndex) {
+			
+			//get smallest array iterate Num Here
+			//based on smallest sample index for each project			
+			iterateNum =  darwin.arrayUtilityModule.getSmallestCommitArray(values, sampleIndex);
 			
 			var data = new google.visualization.DataTable();			
 			data.addColumn('string', xAxis)
@@ -15,17 +19,17 @@ darwin.commitVisualiser = (function() {
     	    	data.addColumn('number', '');	
     	    }
 		
-	    	for(var j =0;j < iterateNum-1;j++){
+	    	for(var j =0;j < iterateNum;j++){
     	    	if(values.length == 2){
-        	    	data.addRow(["sample" + j, values[0][j],values[1][j]]);
+        	    	data.addRow(["sample" + j, values[0][sampleIndex][j],values[1][sampleIndex][j]]);
     	    	} else if(values.length == 3){
-        	    	data.addRow(["sample" + j, values[0][j],values[1][j],values[2][j]]);
+        	    	data.addRow(["sample" + j, values[0][sampleIndex][j],values[1][sampleIndex][j],values[2][sampleIndex][j]]);
     	    	}else if(values.length == 4){
-        	    	data.addRow(["sample" + j, values[0][j],values[1][j],values[2][j],values[3][j]]);
+        	    	data.addRow(["sample" + j, values[0][sampleIndex][j],values[1][sampleIndex][j],values[2][sampleIndex][j],values[3][sampleIndex][j]]);
   	    		}else if(values.length == 5){
-        	    	data.addRow(["sample" + j, values[0][j],values[1][j],values[2][j],values[3][j],values[4][j]]);
+        	    	data.addRow(["sample" + j, values[0][sampleIndex][j],values[1][sampleIndex][j],values[2][sampleIndex][j],values[3][sampleIndex][j],values[4][sampleIndex][j]]);
 	    		}else {
-        	    	data.addRow(["sample: " + j, values[0][j]]);
+        	    	data.addRow(["sample: " + j, values[0][sampleIndex][j]]);
     	    	}
 	    	}
 

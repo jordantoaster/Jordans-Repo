@@ -151,6 +151,16 @@ darwin.projectManagerModule = (function() {
         		return darwin.dataManager.getAllLOCOverTime();
 
         },
+		swapSampleRate : function(index) {
+			if (index == 0)
+				return 1;
+			if (index == 1)
+				return 6;
+			if (index == 2)
+				return 13;
+			if (index == 3)
+				return 26;
+		},
         noCallBack : function(){
         	//do nothing
         }
