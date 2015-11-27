@@ -13,13 +13,29 @@ darwin.dataManager = (function() {
 	var commitList = [];
 	var customDataList = [];
 	var customNameList = [];
+	var contributionDates = [];
 
     return {
+    	getContributionDates: function (index) {
+    		return contributionDates[index];
+        },
+    	setContributionDates: function (index, data, sampleIndex) {
+    		if(contributionDates[index] === undefined)
+    			contributionDates[index] = [];
+    		
+    		contributionDates[index][sampleIndex]  = data;
+        },
+    	getAllContributionDates: function () {
+    		return contributionDates;
+        },
     	getAdditions: function (index) {
     		return additions[index];
         },
-    	setAdditions: function (index, data) {
-    		additions[index] = data;
+    	setAdditions: function (index, data, sampleIndex) {
+    		if(additions[index] === undefined)
+    			additions[index] = [];
+    		
+    		additions[index][sampleIndex]  = data;
         },
     	getAllAdditions: function () {
     		return additions;
@@ -27,8 +43,11 @@ darwin.dataManager = (function() {
     	getDeletions: function (index) {
     		return deletions[index];
         },
-    	setDeletions: function (index, data) {
-    		deletions[index] = data;
+    	setDeletions: function (index, data, sampleIndex) {
+    		if(deletions[index] === undefined)
+    			deletions[index] = [];
+    		
+    		deletions[index][sampleIndex]  = data;
         },
     	getAllDeletions: function () {
     		return deletions;
@@ -36,8 +55,11 @@ darwin.dataManager = (function() {
     	getDifference: function (index) {
     		return difference[index];
         },
-    	setDifference: function (index, data) {
-    		difference[index] = data;
+    	setDifference: function (index, data, sampleIndex) {
+    		if(difference[index] === undefined) 		
+    			difference[index] = [];
+    			
+    		difference[index][sampleIndex]  = data;
         },
     	getAllDifference: function () {
     		return difference;
@@ -45,8 +67,12 @@ darwin.dataManager = (function() {
     	getLOCOverTime: function (index) {
     		return LOC[index];
         },
-    	setLOCOverTime: function (index, data) {
-    		LOC[index] = data;
+    	setLOCOverTime: function (index, data, sampleIndex) {
+    		
+    		if(LOC[index] === undefined)
+    			LOC[index] = [];
+    		
+    		LOC[index][sampleIndex] = data;
         },
     	getAllLOCOverTime: function () {
     		return LOC;

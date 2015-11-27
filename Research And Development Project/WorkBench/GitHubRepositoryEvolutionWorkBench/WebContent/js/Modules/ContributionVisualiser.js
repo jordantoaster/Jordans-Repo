@@ -6,7 +6,7 @@ var darwin = darwin || {};
 
 darwin.ContributionVisualiser = (function () {
     return {
-    	draw: function (dates, values, xAxis, chartTitle) {
+    	draw: function (values, xAxis, chartTitle, sampleIndex) {
     		  
     		//create data element for the chart
     	    var data = new google.visualization.DataTable();   
@@ -20,21 +20,21 @@ darwin.ContributionVisualiser = (function () {
     	    }
     	        	   	    
     	    //add data to each row, a a numeral for the y axis and string for x
-	    	for(var j =0;j<values[0].length-1;j++){
+	    	for(var j =0;j<values[0][sampleIndex].length-1;j++){
     	    	if(values.length == 2){
-        	    	data.addRow(["sample: " + j, values[0][j],values[1][j]]);
+        	    	data.addRow(["sample: " + j, values[0][sampleIndex][j],values[1][sampleIndex][j]]);
     	    	} else if(values.length == 3){
-        	    	data.addRow(["sample: " + j, values[0][j],values[1][j],values[2][j]]);
+        	    	data.addRow(["sample: " + j, values[0][sampleIndex][j],values[1][sampleIndex][j],values[2][sampleIndex][j]]);
     	    	}else if(values.length == 4){
-        	    	data.addRow(["sample: " + j, values[0][j],values[1][j],values[2][j],values[3][j]]);
+        	    	data.addRow(["sample: " + j, values[0][sampleIndex][j],values[1][sampleIndex][j],values[2][sampleIndex][j],values[3][sampleIndex][j]]);
   	    		}else if(values.length == 5){
-        	    	data.addRow(["sample: " + j, values[0][j],values[1][j],values[2][j],values[3][j],values[4][j]]);
+        	    	data.addRow(["sample: " + j, values[0][sampleIndex][j],values[1][sampleIndex][j],values[2][sampleIndex][j],values[3][sampleIndex][j],values[4][sampleIndex][j]]);
 	    		}else {
-        	    	data.addRow([dates[j].getMonth()+1  + "-" + dates[j].getFullYear(), values[0][j]]);
+        	    	data.addRow(["sample: " + j, values[0][sampleIndex][j]]);
     	    	}
 	    	}
     	    	
-	    	//populate additional iptions
+	    	//populate additional options
     	    var options = {
     	      title: chartTitle,
     	      hAxis: { slantedText:true, slantedTextAngle:45 }, 
@@ -53,7 +53,7 @@ darwin.ContributionVisualiser = (function () {
     	    };
     	        
     	    // Create and draw the visualization - change depending on type of chart
-    	    if(darwin.currentContrubutionAction == "LOC"){
+    	    if(darwin.projectManagerModule.getCurrentContributionMetric() == "LOC"){
     	        new google.visualization.SteppedAreaChart(document.getElementById('contributorChart')).draw(data, options);
     	    } else {
     	    	new google.visualization.LineChart(document.getElementById('contributorChart')).draw(data, options);

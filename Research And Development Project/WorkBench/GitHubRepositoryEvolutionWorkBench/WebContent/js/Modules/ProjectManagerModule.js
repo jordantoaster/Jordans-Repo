@@ -13,14 +13,28 @@ darwin.projectManagerModule = (function() {
     currRequestPage = 1;
     commitSamplingRate = 6;
     commitExtractorType = false;
+    sampleIndex = 2;
+    currentProjectIndex = 0;
+    currentContribution = "difference";
 		
     return {
-    	
+        setCurrentProjectIndex: function(index){
+        	currentProjectIndex = index
+        },
+        getCurrentProjectIndex: function(){ 
+        	return currentProjectIndex;
+        }, 
         setNumProjects: function(){
         	numProjects = numProjects + 1;
         },
         getNumProjects: function(){ 
         	return numProjects;
+        }, 
+        setSampleIndex: function(index){
+        	sampleIndex = index;
+        },
+        getSampleIndex: function(){ 
+        	return sampleIndex;
         }, 
         resetNumProjects : function(){
         	getNumProjects = 1;
@@ -114,6 +128,28 @@ darwin.projectManagerModule = (function() {
         },
         getCommitExtractorType : function(){
         	return commitExtractorType;
+        },
+        getCurrentContributionMetric : function(){
+        	return currentContribution;
+        },
+        setCurrentContributionMetric : function(metricName){
+        	currentContribution = metricName;
+        },
+        getContributionMetricArray : function(metricName){
+        	if(metricName == "difference")
+        		return darwin.dataManager.getAllDifference();
+        		
+            if(metricName == "addition")
+        		return darwin.dataManager.getAllAdditions();
+
+            		
+            if(metricName == "deletion")
+        		return darwin.dataManager.getAllDeletions();
+
+                		
+            if(metricName == "LOC")
+        		return darwin.dataManager.getAllLOCOverTime();
+
         },
         noCallBack : function(){
         	//do nothing

@@ -4,9 +4,6 @@
 
 var darwin = darwin || {};
 
-//Used by a large number of files, global use makes sense
-darwin.currentContrubutionAction = "difference";
-
 $(document).ready(function(e) {
 	
 	/*NEXT THREE BLOCKS*/
@@ -14,32 +11,31 @@ $(document).ready(function(e) {
 	$('#changeValues1Contributions').on("click.darwin", function(e){
 		e.preventDefault();	
 				
-		darwin.currentContrubutionAction = "difference"
+		darwin.projectManagerModule.setCurrentContributionMetric("difference");		
 			
-		darwin.Mediator.drawContributionGraph(darwin.contributionExtractorModule.getDates(), darwin.dataManager.getAllDifference(), 'Sample Size: ' + darwin.samplingRate + ' Weeks','Difference Of Additions And Deletions');
+		darwin.Mediator.drawContributionGraph(darwin.dataManager.getAllDifference(), "","","","", darwin.projectManagerModule.getSampleIndex());
 	});	
 	$('#changeValues2Contributions').on("click.darwin", function(e){
 		e.preventDefault();
 
-		darwin.currentContrubutionAction = "addition"
+		darwin.projectManagerModule.setCurrentContributionMetric("addition");		
 				
-		darwin.Mediator.drawContributionGraph(darwin.contributionExtractorModule.getDates(), darwin.dataManager.getAllAdditions(), 'Sample Size: ' + darwin.samplingRate + ' Weeks', 'Amount of Additions');
+		darwin.Mediator.drawContributionGraph(darwin.dataManager.getAllAdditions(), "","","","", darwin.projectManagerModule.getSampleIndex());
 
 	});	
 	$('#changeValues3Contributions').on("click.darwin", function(e){
 		e.preventDefault();
 
-		darwin.currentContrubutionAction = "deletion"
+		darwin.projectManagerModule.setCurrentContributionMetric("deletion");		
 			
-		darwin.Mediator.drawContributionGraph(darwin.contributionExtractorModule.getDates(), darwin.dataManager.getAllDeletions(), 'Sample Size: ' + darwin.samplingRate + ' Weeks', 'Amount of Deletions');	
+		darwin.Mediator.drawContributionGraph(darwin.dataManager.getAllDeletions(), "","","","",darwin.projectManagerModule.getSampleIndex());	
 
 	});
 	$('#changeValues4Contributions').on("click.darwin", function(e){
 		e.preventDefault();
 
-		darwin.currentContrubutionAction = "LOC"
-			
-		darwin.Mediator.drawContributionGraph(darwin.contributionExtractorModule.getDates(), darwin.dataManager.getAllLOCOverTime(), "", 'Sample Size: ' + darwin.samplingRate + ' Weeks', 'LOC Over Time');
+		darwin.projectManagerModule.setCurrentContributionMetric("LOC");		
+		darwin.Mediator.drawContributionGraph(darwin.dataManager.getAllLOCOverTime(), "","","","",darwin.projectManagerModule.getSampleIndex());
 
 	});
 	
@@ -50,29 +46,29 @@ $(document).ready(function(e) {
 		e.preventDefault();
 	    darwin.Mediator.resetContributionVariables();
 
-		darwin.projectManagerModule.setSamplingRate(1);	
-		darwin.Mediator.resampleContributions(darwin.jsonManagerModule.getAllContributionJson());
+		darwin.projectManagerModule.setSampleIndex(0);	
+		darwin.Mediator.drawContributionGraph(darwin.projectManagerModule.getContributionMetricArray(darwin.projectManagerModule.getCurrentContributionMetric()), "", "", 0, 0,darwin.projectManagerModule.getSampleIndex());
 	});	
 	$('#sampleRate2Contributions').on("click.darwin", function(e){
 		e.preventDefault();
 	    darwin.Mediator.resetContributionVariables();
 
-	    darwin.projectManagerModule.setSamplingRate(6);	
-		darwin.Mediator.resampleContributions(darwin.jsonManagerModule.getAllContributionJson());
+	    darwin.projectManagerModule.setSampleIndex(1);	
+		darwin.Mediator.drawContributionGraph(darwin.projectManagerModule.getContributionMetricArray(darwin.projectManagerModule.getCurrentContributionMetric()), "", "", 0, 0, darwin.projectManagerModule.getSampleIndex());
 
 	});	
 	$('#sampleRate3Contributions').on("click.darwin", function(e){
 		e.preventDefault();
 	    darwin.Mediator.resetContributionVariables();
 
-	    darwin.projectManagerModule.setSamplingRate(13);	
-		darwin.Mediator.resampleContributions(darwin.jsonManagerModule.getAllContributionJson());
+	    darwin.projectManagerModule.setSampleIndex(2);	
+		darwin.Mediator.drawContributionGraph(darwin.projectManagerModule.getContributionMetricArray(darwin.projectManagerModule.getCurrentContributionMetric()), "", "", 0, 0, darwin.projectManagerModule.getSampleIndex());
 	});
 	$('#sampleRate4Contributions').on("click.darwin", function(e){
 		e.preventDefault();
 	    darwin.Mediator.resetContributionVariables();
 
-	    darwin.projectManagerModule.setSamplingRate(26);	
-		darwin.Mediator.resampleContributions(darwin.jsonManagerModule.getAllContributionJson());
+	    darwin.projectManagerModule.setSampleIndex(3);	
+		darwin.Mediator.drawContributionGraph(darwin.projectManagerModule.getContributionMetricArray(darwin.projectManagerModule.getCurrentContributionMetric()), "", "", 0, 0, darwin.projectManagerModule.getSampleIndex());
 	});
 });
