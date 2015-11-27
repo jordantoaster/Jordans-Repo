@@ -119,6 +119,18 @@
   		</button>
   		<ul id="projectOptions" class="dropdown-menu" aria-labelledby="dropdownMenu1"></ul>
 		</div>
+		<div class="dropdown">
+  		<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    		Change Sampling Rate
+    	<span class="caret"></span>
+  		</button>
+		<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+  		  <li><a href="#" id="sampleRate1Custom">1 Week</a></li>
+    	  <li><a href="#" id="sampleRate2Custom">6 Weeks</a></li>
+    	  <li><a href="#" id="sampleRate3Custom">13 Weeks</a></li>
+    	  <li><a href="#" id="sampleRate4Custom">26 Weeks</a></li>
+  		</ul>
+  		</div>
 	    <div id="options">
 	    	<p class="inlineText" style="display:block;">Options</p>
 	    </div> 

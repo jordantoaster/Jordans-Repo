@@ -11,6 +11,7 @@ darwin.customTabModule = (function() {
 	isDeletionsChecked = false;
 	isLOCChecked = false;
 	isCommitsChecked = false;
+	stilOnCustom = true;
 	
     return {
     	//This function is called each time a new project is selected
@@ -82,6 +83,12 @@ darwin.customTabModule = (function() {
         },
         getIsCommitsChecked : function(){
         	return isCommitsChecked;
+        },
+        getIsOnCustom : function(){
+        	return stilOnCustom;
+        },
+        setIsOnCustom : function(val){
+        	stilOnCustom = val;
         },
         removeChecks : function(){
             $('input').not('#additionsCheck').prop('checked', false)

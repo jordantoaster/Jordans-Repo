@@ -174,13 +174,21 @@ darwin.Mediator = (function () {
 			darwin.dataManager.addToCustomList(array);
 			darwin.dataManager.addToCustomNameList(name);
 		},
-		drawCustomGraph: function (values, xAxis, chartTitle) {			
-			darwin.customVisualiser.draw(values, xAxis, chartTitle);	
+		drawCustomGraph: function (values, xAxis, chartTitle, sampleIndex) {			
+			darwin.customVisualiser.draw(values, xAxis, chartTitle, sampleIndex);	
 		},
 		resetCustomProcess : function(){
-			darwin.dataManager.clearCustomList();
 			darwin.dataManager.clearCustomNameList();
 			darwin.customTabModule.removeChecks();
+		},
+		resetCustomList: function(){
+			darwin.dataManager.clearCustomList();
+		},
+		setCurrentCustomSearch : function(val){
+			darwin.customTabModule.setIsOnCustom(val);
+		},
+		getCurrentCustomSearch : function(){
+			return darwin.customTabModule.getIsOnCustom();
 		},
 		copyObject : function(obj){
 			return darwin.copyObjectModule.copyObject(obj);
