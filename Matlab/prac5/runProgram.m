@@ -6,9 +6,11 @@ function runProgram()
    
    %get message
    watermark = generateWatermark();
-
-   jstegEmbeddedImage = jstegEmbedding(Im, watermark);
    
+   outguessEmbeddedImage =  outGuessEmbedding(Im,watermark,5);
+   outputMessageThree =  decodeOutGuess(outguessEmbeddedImage,watermark,5);
+
+   jstegEmbeddedImage = jstegEmbedding(Im, watermark); 
    
    geometricAttackImage = geometricAttack(jstegEmbeddedImage);
    figure, imshow(geometricAttackImage);
