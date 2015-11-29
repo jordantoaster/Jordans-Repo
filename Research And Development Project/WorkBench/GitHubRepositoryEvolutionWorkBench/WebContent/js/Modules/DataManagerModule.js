@@ -11,6 +11,7 @@ darwin.dataManager = (function() {
 	var LOC = [];
 	var difference = [];
 	var commitList = [];
+	var starList = [];
 	var customDataList = [];
 	var customNameList = [];
 	var contributionDates = [];
@@ -91,6 +92,21 @@ darwin.dataManager = (function() {
         },
         resetCommitsList : function(){
         	commitList = [];
+        },
+    	setStars: function (index, data, projectNames, SampleIndex) {
+    		if(starList[index] === undefined)
+    			starList[index] = [];
+
+    		starList[index][SampleIndex]  = data;
+        },
+    	getStars: function () {
+    		return starList;
+        },
+    	getStarsIndex: function (index) {
+    		return starList[index];
+        },
+        resetStarsList : function(){
+        	starList = [];
         },
         addToCustomList : function(array){
         	customDataList.push(array);

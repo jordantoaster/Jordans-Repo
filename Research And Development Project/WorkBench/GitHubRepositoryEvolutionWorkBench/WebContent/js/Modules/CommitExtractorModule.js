@@ -16,9 +16,10 @@ darwin.commitExtractorModule = (function() {
 		
     return {
     	// data comes in front to back, so < is used in place of > then reversed at the end
-    	extract: function (json, index) {   
-    		
+    	extract: function (json, index, action) {   
+    		    		
     		for(sampleIndexCommit = 0; sampleIndexCommit < 4;sampleIndexCommit++){
+    		
     			
     			//get the current sample rate
     			sampleRateCommit = darwin.projectManagerModule.swapSampleRate(sampleIndexCommit);
@@ -26,7 +27,10 @@ darwin.commitExtractorModule = (function() {
     			//to avoid pass by referecence and changing the original values during reverse we need to copy it to another object
     			localJson = darwin.Mediator.copyObject(json);
     			
-    			localJson.reverse();
+    			if(action == "commit"){
+        			localJson.reverse();
+    			}    
+    			
     			sampleIterator = 0;
     			commits = [];
     			dates = [];
@@ -37,9 +41,14 @@ darwin.commitExtractorModule = (function() {
     			for(var j = 0;j<localJson.length;j++){
     				    				
         			totalCommits++;
-    				
-        			var date = darwin.ISO601toDateModule.convert(localJson[j].commit.committer.date);
-    				    				
+        			
+        			if(action == "commit"){
+            			var date = darwin.ISO601toDateModule.convert(localJson[j].commit.committer.date);
+        			}    
+        			if(action == "star"){
+            			var date = darwin.ISO601toDateModule.convert(localJson[j].starred_at);
+        			}
+        			
     				if(firstDate){
     					// get range
     					lastDateInSample = darwin.commitExtractorModule.getDateRange(date);
@@ -63,16 +72,25 @@ darwin.commitExtractorModule = (function() {
 
     			} //for   			
     			
-    			//send to data manager class for storage
-    			darwin.Mediator.setCommitDetails(index, commits, darwin.projectManagerModule.getProjectNames(), sampleIndexCommit);
+    			if(action == "commit"){
+        			darwin.Mediator.setCommitDetails(index, commits, darwin.projectManagerModule.getProjectNames(), sampleIndexCommit);
+    			}    
+    			if(action == "star"){
+        			darwin.Mediator.setStarDetails(index, commits, darwin.projectManagerModule.getProjectNames(), sampleIndexCommit);
+    			}
     					
         		//send to mongo for storage
     			//darwin.Mediator.packagerCommits(dates, commits, darwin.projectManagerModule.getProjectNamesIndex(index));  	
     		
     		}
-			
-    		darwin.Mediator.drawCommitGraph(darwin.Mediator.getCommitDetails(), "weeks", "week On week Commits", darwin.projectManagerModule.getSampleIndex());
     		
+			if(action == "commit"){
+	    		darwin.Mediator.drawCommitGraph(darwin.Mediator.getCommitDetails(), "weeks", "week On week Commits", darwin.projectManagerModule.getSampleIndex(), action);
+			}    
+			if(action == "star"){
+	    		darwin.Mediator.drawCommitGraph(darwin.Mediator.getStarDetails(), "weeks", "week On week Stars", darwin.projectManagerModule.getSampleIndex(), action);
+			}
+			    		
     		//enable clicking on another project
 			darwin.Mediator.enableCommitButton();
 			

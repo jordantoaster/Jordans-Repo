@@ -43,8 +43,8 @@ darwin.Mediator = (function () {
 		githubParseContributionData: function (response) {
 			darwin.contributionExtractorModule.extract(response);
 		},
-		githubParseCommitData: function (response, index) {
-			darwin.commitExtractorModule.extract(response, index);
+		githubParseCommitData: function (response, index, action) {
+			darwin.commitExtractorModule.extract(response, index, action);
 		},
 		githubParseStarData: function (response, index) {
 			darwin.starExtractorModule.extract(response, index);
@@ -56,8 +56,11 @@ darwin.Mediator = (function () {
 				darwin.ContributionVisualiser.populateSupplementaryStats(LOC,totalLines);
 			}
 		},
-		drawCommitGraph: function (values, xAxis, chartTitle, sampleIndex) {			
-			darwin.commitVisualiser.draw(values, xAxis, chartTitle, sampleIndex);	
+		drawCommitGraph: function (values, xAxis, chartTitle, sampleIndex, action) {			
+			darwin.commitVisualiser.draw(values, xAxis, chartTitle, sampleIndex, action);	
+		},
+		drawStarGraph: function (values, xAxis, chartTitle, sampleIndex) {			
+			console.log("a");
 		},
 		loadGraphLibrary: function(){
 			darwin.loadGraphModule.load();
@@ -101,14 +104,23 @@ darwin.Mediator = (function () {
 		setCommitDetails : function(index, commits, projectNames, sampleIndex){
 			darwin.dataManager.setCommits(index, commits, projectNames, sampleIndex);
 		},
+		setStarDetails : function(index, commits, projectNames, sampleIndex){
+			darwin.dataManager.setStars(index, commits, projectNames, sampleIndex);
+		},
 		getCommitDetails : function(){
 			return darwin.dataManager.getCommits();
 		},
+		getStarDetails : function(){
+			return darwin.dataManager.getStars();
+		},
 		setNumCommitProjectSelected : function(){
-			darwin.commitManager.setProjectsAdded(darwin.commitManager.getProjectsAdded() + 1);
+			darwin.projectManagerModule.setCommitProjectsAdded(darwin.Mediator.getNumCommitProjectSelected + 1);
 		},
 		getNumCommitProjectSelected : function(){
-			return darwin.commitManager.getProjectsAdded();
+			return darwin.projectManagerModule.getCommitProjectsAdded();
+		},
+		getNumStarProjectSelected : function(){
+			return darwin.projectManagerModule.getStarProjectsAdded();
 		},
 		setNumStarProjectSelected : function(){
 			darwin.projectManagerModule.setStarProjectsAdded();
@@ -168,7 +180,7 @@ darwin.Mediator = (function () {
 			
 			darwin.projectManagerModule.setBaseRequestUrl(0,url);
 			
-			darwin.Mediator.makeGithubRequest(darwin.projectManagerModule.getAllBaseRequestUrl(), "GET", darwin.Mediator.githubParseStarData, "star");		
+			darwin.Mediator.makeGithubRequest(darwin.projectManagerModule.getAllBaseRequestUrl(), "GET", darwin.Mediator.githubParseCommitData, "star");		
 		},
 		disableCommitButton : function(){
 			darwin.projectManagerModule.disableCommitButton();

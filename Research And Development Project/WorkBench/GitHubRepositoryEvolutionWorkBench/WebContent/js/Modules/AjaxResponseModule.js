@@ -12,7 +12,7 @@ darwin.AjaxResponseModule = (function () {
 				  darwin.Mediator.setContributionJson(index,response);
 				  callback(darwin.jsonManagerModule.getAllContributionJson());					
 			  }
-			  if(action == "commit" || "star"){
+			  if(action == "commit" || action == "star"){
 				  
 				  if(action == "commit"){
 					  darwin.Mediator.setCommitJson(index,response)
@@ -29,11 +29,11 @@ darwin.AjaxResponseModule = (function () {
 					  
 					  if(action == "commit"){
 						  //gets the commits and passes in the index
-						  callback(darwin.Mediator.getIndexCommitJson(index), index);  
+						  callback(darwin.Mediator.getIndexCommitJson(index), darwin.Mediator.getNumCommitProjectSelected(), action);  
 						  darwin.Mediator.setNumCommitProjectSelected();
 					  }
 					  if(action == "star"){
-						  callback(darwin.Mediator.getStarJson(), index);  
+						  callback(darwin.Mediator.getStarJson(), darwin.Mediator.getNumStarProjectSelected(), action);
 						  darwin.Mediator.setNumStarProjectSelected();
 					  }
 						  					  

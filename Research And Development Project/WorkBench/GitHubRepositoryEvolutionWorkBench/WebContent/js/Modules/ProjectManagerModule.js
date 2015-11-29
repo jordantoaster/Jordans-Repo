@@ -17,6 +17,7 @@ darwin.projectManagerModule = (function() {
     currentProjectIndex = 0;
     currentContribution = "difference";
     starProjectsAdded = 0;
+    commitProjectsAdded = 0;
 		
     return {
     	loadCommitSelection: function (projects) {
@@ -181,6 +182,15 @@ darwin.projectManagerModule = (function() {
 		},
 		resetStarProjectsAdded : function(){
 			starProjectsAdded = 0;
+		},
+		setCommitProjectsAdded : function(){
+			commitProjectsAdded = commitProjectsAdded +1;
+		},
+		getCommitProjectsAdded : function(){
+			return commitProjectsAdded;
+		},
+		resetCommitProjectsAdded : function(){
+			commitProjectsAdded = 0;
 		},
         noCallBack : function(){
         	//do nothing

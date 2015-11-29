@@ -26,7 +26,7 @@ darwin.jsonManagerModule = (function() {
         	return mergedCommits[index];
         },
         getStarJson : function (){
-        	return mergedStars;
+        	return mergedStars[0];
         },
         getAllCommitJson : function (){
         	return mergedCommits;

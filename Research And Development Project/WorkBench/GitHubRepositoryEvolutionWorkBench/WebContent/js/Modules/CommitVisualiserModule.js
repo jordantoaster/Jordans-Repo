@@ -6,7 +6,7 @@ var darwin = darwin || {};
 
 darwin.commitVisualiser = (function() {
 	return {
-		draw : function(values, xAxis, title, sampleIndex) {
+		draw : function(values, xAxis, title, sampleIndex, action) {
 			
 			//get smallest array iterate Num Here
 			//based on smallest sample index for each project			
@@ -54,10 +54,17 @@ darwin.commitVisualiser = (function() {
 					startup : true,
 				}
 			};
-
-			// Create and draw the visualization.
-			new google.visualization.AreaChart(document
-					.getElementById('commitChart')).draw(data, options);
+			
+			if(action == "commit"){
+				// Create and draw the visualization.
+				new google.visualization.AreaChart(document
+						.getElementById('commitChart')).draw(data, options);
+			}    
+			if(action == "star"){
+				// Create and draw the visualization.
+				new google.visualization.AreaChart(document
+						.getElementById('starChart')).draw(data, options);
+			}
 		}
 	};
 })();
