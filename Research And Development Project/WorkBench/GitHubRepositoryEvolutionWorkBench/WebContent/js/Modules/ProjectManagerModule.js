@@ -16,8 +16,15 @@ darwin.projectManagerModule = (function() {
     sampleIndex = 2;
     currentProjectIndex = 0;
     currentContribution = "difference";
+    starProjectsAdded = 0;
 		
     return {
+    	loadCommitSelection: function (projects) {
+    		for(var i=0;i<projects.length;i++){  			
+    			$("#commitOptions").append('<button type="button" id="commitOption'+(i+1)+'" class="btn btn-default">'+projects[i]+'</button>');
+    			$("#starOptions").append('<button type="button" id="starOption'+(i+1)+'" class="btn btn-default">'+projects[i]+'</button>');
+    		}
+        },
         setCurrentProjectIndex: function(index){
         	currentProjectIndex = index
         },
@@ -106,6 +113,7 @@ darwin.projectManagerModule = (function() {
     		$('#projectOptions').empty();
     		$('#options').empty();  
     		$('#commitOptions').empty();
+    		$('#starOptions').empty();
         },
         disableTabs :  function(){
             $('.nav li').not('.active').addClass('disabled');
@@ -116,8 +124,12 @@ darwin.projectManagerModule = (function() {
             $('.nav li.active').nextAll('li').find('a').attr("data-toggle","tab")
         },
         disableCommitButton : function(){
-        	$('.btn-group button').attr('disabled','disabled');   commitHeader
+        	$('.btn-group button').attr('disabled','disabled');   
         	$("#commitHeader").text('Please wait until the data is collected');
+        },
+        disableStarButton : function(){
+        	$('.btn-group button').attr('disabled','disabled');   
+        	$("#starHeader").text('Please wait until the data is collected');
         },
         enableCommitButton :  function(){
         	$('.btn-group button').removeAttr('disabled');
@@ -160,6 +172,15 @@ darwin.projectManagerModule = (function() {
 				return 13;
 			if (index == 3)
 				return 26;
+		},
+		setStarProjectsAdded : function(){
+			starProjectsAdded = starProjectsAdded +1;
+		},
+		getStarProjectsAdded : function(){
+			return starProjectsAdded;
+		},
+		resetStarProjectsAdded : function(){
+			starProjectsAdded = 0;
 		},
         noCallBack : function(){
         	//do nothing

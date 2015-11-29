@@ -29,9 +29,9 @@ $(document).ready(function(e) {
 	    }
 	    darwin.Mediator.makeGithubRequest(darwin.projectManagerModule.getAllBaseRequestUrl(), "GET", darwin.Mediator.githubParseContributionData, "contribution");
 	       
-	    //Load options for commit page
-	    darwin.commitManager.loadCommitSelection(darwin.projectManagerModule.getProjectNames());
-	    	    
+	    //Load options for manual pages
+	    darwin.projectManagerModule.loadCommitSelection(darwin.projectManagerModule.getProjectNames());
+	        	    
 	    //activate tabs at the end of the process
     	darwin.projectManagerModule.enableTabs();
 	});

@@ -23,6 +23,7 @@
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Mediator/Mediator.js?v4"></script>
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Utility/QueryPageUtility.js?v5"></script>
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/InputManagers/ContributionsInputManager.js?v6"></script>
+    <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/InputManagers/StarsInputManager.js?v6"></script>
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/InputManagers/CustomInputManager.js?v6"></script>
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/InputManagers/CommitInputManager.js?v7"></script>
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Modules/ContributionVisualiser.js?v4"></script>
@@ -31,6 +32,7 @@
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Modules/ContributionExtractor.js?v7"></script>
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Modules/CopyObjectModule.js?v7"></script>
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Modules/CommitExtractorModule.js?v8"></script>
+    <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Modules/StarExtractorModule.js?v8"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link rel="stylesheet" href="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/css/QueryPage.css?v4">
@@ -46,6 +48,7 @@
       <li class="active"><a class="tabText" data-toggle="tab" href="#urlInput">Input Repository</a></li>
       <li><a class="tabText disabled" data-toggle="tab" href="#ContributorTab">Contributors</a></li>
       <li><a class="tabText disabled" data-toggle="tab" href="#CommitTab">Commits</a></li>
+      <li><a class="tabText disabled" data-toggle="tab" href="#StarTab">Stars</a></li>
       <li><a class="tabText disabled" data-toggle="tab" href="#CustomTab">Custom</a></li>
     </ul>
       <div class="tab-content">
@@ -110,6 +113,23 @@
   		</ul>
 	  </div>
       <div id="commitChart"></div>  
+    </div>
+    <div id="StarTab" class="tab-pane fade customTab">
+      <p class="inlineText" id="commitHeader">Select a project(s) to get stars</p>
+      <div class="btn-group" id="starOptions" role="group" aria-label="..."></div>
+      <div class="dropdown">
+  			<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    			Change Sampling Rate
+    		<span class="caret"></span>
+  		</button>
+  		<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+  		  <li><a href="#" id="sampleRate1Stars">1 Week</a></li>
+    	  <li><a href="#" id="sampleRate2Stars">6 Weeks</a></li>
+    	  <li><a href="#" id="sampleRate3Stars">13 Weeks</a></li>
+    	  <li><a href="#" id="sampleRate4Stars">26 Weeks</a></li>
+  		</ul>
+	  </div>
+      <div id="starChart"></div>  
     </div>
     <div id="CustomTab" class="tab-pane fade customTab">
     	<div class="dropdown">

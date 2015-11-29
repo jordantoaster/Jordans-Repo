@@ -11,6 +11,9 @@ darwin.githubModule = (function() {
     			  dataType: 'JSON',
     			  type : type,
     			  url : url,
+    			  headers : {
+    				  Accept: "application/vnd.github.v3.star+json"
+    			  },
     			  beforeSend: function(req) {
     			      req.setRequestHeader('Authorization', 'Basic ' + btoa('jordantoaster:jordan321'));
     			  },

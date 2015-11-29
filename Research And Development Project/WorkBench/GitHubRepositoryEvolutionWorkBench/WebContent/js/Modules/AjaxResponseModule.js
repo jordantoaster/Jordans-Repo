@@ -12,8 +12,14 @@ darwin.AjaxResponseModule = (function () {
 				  darwin.Mediator.setContributionJson(index,response);
 				  callback(darwin.jsonManagerModule.getAllContributionJson());					
 			  }
-			  if(action == "commit"){
-				  darwin.Mediator.setCommitJson(index,response)
+			  if(action == "commit" || "star"){
+				  
+				  if(action == "commit"){
+					  darwin.Mediator.setCommitJson(index,response)
+				  }
+				  if(action == "star"){
+					  darwin.Mediator.setStarJson(index,response)
+				  }
 				 
 				  //Only when json is less then 100 is true callback made. 
 				  if(response.length < 100){    						
@@ -21,9 +27,16 @@ darwin.AjaxResponseModule = (function () {
 					  //reset counter for next projects json
 					  darwin.Mediator.resetcurrRequestPage(0);
 					  
-					  callback(darwin.Mediator.getIndexCommitJson(index), index);
-					  
-					  darwin.Mediator.setNumCommitProjectSelected();
+					  if(action == "commit"){
+						  //gets the commits and passes in the index
+						  callback(darwin.Mediator.getIndexCommitJson(index), index);  
+						  darwin.Mediator.setNumCommitProjectSelected();
+					  }
+					  if(action == "star"){
+						  callback(darwin.Mediator.getStarJson(), index);  
+						  darwin.Mediator.setNumStarProjectSelected();
+					  }
+						  					  
 					  
 				  } else { //else poll for next set of 100
 					  

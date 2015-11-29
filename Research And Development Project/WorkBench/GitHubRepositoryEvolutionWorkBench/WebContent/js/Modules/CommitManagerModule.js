@@ -9,12 +9,6 @@ darwin.commitManager = (function () {
 	projectsAdded = 0;
 	
     return {
-    	loadCommitSelection: function (projects) {
-    		for(var i=0;i<projects.length;i++){
-    			
-    			$("#commitOptions").append('<button type="button" id="commitOption'+(i+1)+'" class="btn btn-default">'+projects[i]+'</button>');
-    		}
-        },
         getSampleRate : function(){
         	return sampleRate;
         },
