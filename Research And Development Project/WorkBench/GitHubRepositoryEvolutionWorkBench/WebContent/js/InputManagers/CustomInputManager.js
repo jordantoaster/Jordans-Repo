@@ -114,6 +114,24 @@ $(document).ready(function(e) {
 			darwin.Mediator.addToCustomList(darwin.dataManager.getCommitsIndex(darwin.customTabModule.getCurrentIndex()), darwin.projectManagerModule.getProjectNamesIndex(darwin.customTabModule.getCurrentIndex()));
 		}
 	});	
+	$(document).on("click.darwin","#starsCheck", function (e) {	
+		
+		//allows resamping to take place until a new check is clicked
+		if(darwin.Mediator.getCurrentCustomSearch()){
+    		darwin.Mediator.setCurrentCustomSearch(false);
+    		darwin.Mediator.resetCustomList();
+		}
+		
+		if(darwin.customTabModule.getIsStarsChecked()){
+			darwin.customTabModule.setStarsChecked(false);
+		} else {
+			darwin.customTabModule.setStarsChecked(true);
+		}
+		
+		if(darwin.customTabModule.getIsStarsChecked()){
+			darwin.Mediator.addToCustomList(darwin.dataManager.getStarsIndex(darwin.customTabModule.getCurrentIndex()), darwin.projectManagerModule.getProjectNamesIndex(darwin.customTabModule.getCurrentIndex()));
+		}
+	});	
 	
 	$('#sampleRate1Custom').on("click.darwin", function(e){
 		e.preventDefault();

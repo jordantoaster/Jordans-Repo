@@ -21,7 +21,7 @@ darwin.customVisualiser = (function() {
     	    	data.addColumn('number', '');	
     	    }
     	    
-    	    iterationCount =  darwin.arrayUtilityModule.getSmallestCommitArray(values, sampleIndex);
+    	    iterationCount =  darwin.arrayUtilityModule.getSmallestGenericArray(values, sampleIndex);
     	    
     	    //add data to each row, a a numeral for the y axis and string for x
 	    	for(var j =0;j<iterationCount;j++){

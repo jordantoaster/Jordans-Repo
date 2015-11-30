@@ -206,6 +206,9 @@ darwin.Mediator = (function () {
 		getCommitsIndex : function(index){
 			return darwin.dataManager.getCommitsIndex(index);
 		},
+		getStarsIndex : function(index){
+			return darwin.dataManager.getStarsIndex(index);
+		},
 		addToCustomList : function(array, name){
 			darwin.dataManager.addToCustomList(array);
 			darwin.dataManager.addToCustomNameList(name);

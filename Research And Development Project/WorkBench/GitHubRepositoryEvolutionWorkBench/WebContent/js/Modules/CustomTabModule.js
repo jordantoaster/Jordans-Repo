@@ -12,6 +12,8 @@ darwin.customTabModule = (function() {
 	var isLOCChecked = false;
 	var isCommitsChecked = false;
 	var stilOnCustom = true;
+	var isStarsChecked = false;
+
 	
     return {
     	//This function is called each time a new project is selected
@@ -34,10 +36,14 @@ darwin.customTabModule = (function() {
 
     		//get all the commits
     		commits = darwin.Mediator.getCommitsIndex(currentIndex);
+			stars = darwin.Mediator.getStarsIndex(currentIndex);
 
 			//if index has commits then draw checkbox for it
 			if(commits != undefined){
-				$("#options").append('<div id="commitsCheck" class="checkbox"><label><input type="checkbox" value="">commits</label></div>')
+				$("#options").append('<div id="commitsCheck" class="checkbox"><label><input type="checkbox" value="">Commits</label></div>')
+			}
+			if(stars != undefined){
+				$("#options").append('<div id="starsCheck" class="checkbox"><label><input type="checkbox" value="">Stars</label></div>')
 			}
         },
         clearComponents : function(){
@@ -59,6 +65,7 @@ darwin.customTabModule = (function() {
         	isDeletionsChecked = false;
         	isLOCChecked = false;
         	isCommitsChecked = false;
+        	isStarsChecked = false;
         },
         setAdditionsChecked : function(bool){
         	isAdditionsChecked = bool;
@@ -72,6 +79,9 @@ darwin.customTabModule = (function() {
         setCommitsChecked : function(bool){
         	isCommitsChecked = bool;
         },
+        setStarsChecked : function(bool){
+        	isStarsChecked = bool;
+        },
         getIsAdditionsChecked : function(){
         	return isAdditionsChecked;
         },
@@ -83,6 +93,9 @@ darwin.customTabModule = (function() {
         },
         getIsCommitsChecked : function(){
         	return isCommitsChecked;
+        },
+        getIsStarsChecked : function(){
+        	return isStarsChecked;
         },
         getIsOnCustom : function(){
         	return stilOnCustom;
@@ -99,6 +112,8 @@ darwin.customTabModule = (function() {
             darwin.customTabModule.setLOCChecked(false);            
             $('input').not('#commitsCheck').prop('checked', false);
             darwin.customTabModule.setCommitsChecked(false);
+            $('input').not('#starsCheck').prop('checked', false);
+            darwin.customTabModule.setStarsChecked(false);
         },
         resetCustomTabData : function(){
         	currentIndex = 0;
