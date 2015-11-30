@@ -44,7 +44,7 @@ darwin.Mediator = (function () {
 			darwin.contributionExtractorModule.extract(response);
 		},
 		githubParseCommitData: function (response, index, action) {
-			darwin.commitExtractorModule.extract(response, index, action);
+			darwin.genericExtractorModule.extract(response, index, action);
 		},
 		githubParseStarData: function (response, index) {
 			darwin.starExtractorModule.extract(response, index);
@@ -56,8 +56,8 @@ darwin.Mediator = (function () {
 				darwin.ContributionVisualiser.populateSupplementaryStats(LOC,totalLines);
 			}
 		},
-		drawCommitGraph: function (values, xAxis, chartTitle, sampleIndex, action) {			
-			darwin.commitVisualiser.draw(values, xAxis, chartTitle, sampleIndex, action);	
+		drawGenericGraph: function (values, xAxis, chartTitle, sampleIndex, action) {			
+			darwin.genericVisualiser.draw(values, xAxis, chartTitle, sampleIndex, action);	
 		},
 		drawStarGraph: function (values, xAxis, chartTitle, sampleIndex) {			
 			console.log("a");
@@ -77,7 +77,7 @@ darwin.Mediator = (function () {
 		resampleCommits : function(currentJson){
 			//pass in commits one at a time
 			for(var i =0; i<currentJson.length;i++){
-				darwin.commitExtractorModule.extract(currentJson[i],i);
+				darwin.genericExtractorModule.extract(currentJson[i],i);
 			}
 		},
 		parseInputUrl : function(url){
@@ -185,8 +185,8 @@ darwin.Mediator = (function () {
 		disableCommitButton : function(){
 			darwin.projectManagerModule.disableCommitButton();
 		},
-		enableCommitButton : function(){
-			darwin.projectManagerModule.enableCommitButton();
+		enableButtons : function(){
+			darwin.projectManagerModule.enableButtons();
 		},
 		setupCustomComponentsOptions : function(){
 			darwin.customTabModule.setupUiOptions();

@@ -29,7 +29,7 @@ $(document).ready(function(e) {
 
 	    darwin.projectManagerModule.setSampleIndex(0);	
 
-		darwin.Mediator.drawCommitGraph(darwin.Mediator.getStarDetails(), "weeks", "week On week Commits", darwin.projectManagerModule.getSampleIndex(), "star");
+		darwin.Mediator.drawGenericGraph(darwin.Mediator.getStarDetails(), "weeks", "week On week Commits", darwin.projectManagerModule.getSampleIndex(), "star");
 
 	});	
 	$('#sampleRate2Stars').on("click.darwin", function(e){
@@ -37,7 +37,7 @@ $(document).ready(function(e) {
 
 	    darwin.projectManagerModule.setSampleIndex(1);	
 	    
-		darwin.Mediator.drawCommitGraph(darwin.Mediator.getStarDetails(), "weeks", "week On week Commits", darwin.projectManagerModule.getSampleIndex(), "star");
+		darwin.Mediator.drawGenericGraph(darwin.Mediator.getStarDetails(), "weeks", "week On week Commits", darwin.projectManagerModule.getSampleIndex(), "star");
 
 	});	
 	$('#sampleRate3Stars').on("click.darwin", function(e){
@@ -45,7 +45,7 @@ $(document).ready(function(e) {
 
 	    darwin.projectManagerModule.setSampleIndex(2);	
 	    
-		darwin.Mediator.drawCommitGraph(darwin.Mediator.getStarDetails(), "weeks", "week On week Commits", darwin.projectManagerModule.getSampleIndex(), "star");
+		darwin.Mediator.drawGenericGraph(darwin.Mediator.getStarDetails(), "weeks", "week On week Commits", darwin.projectManagerModule.getSampleIndex(), "star");
 
 
 	});	
@@ -54,7 +54,7 @@ $(document).ready(function(e) {
 
 	    darwin.projectManagerModule.setSampleIndex(3);	
 	    
-		darwin.Mediator.drawCommitGraph(darwin.Mediator.getStarDetails(), "weeks", "week On week Commits", darwin.projectManagerModule.getSampleIndex(), "star");
+		darwin.Mediator.drawGenericGraph(darwin.Mediator.getStarDetails(), "weeks", "week On week Commits", darwin.projectManagerModule.getSampleIndex(), "star");
 
 	});	
 });

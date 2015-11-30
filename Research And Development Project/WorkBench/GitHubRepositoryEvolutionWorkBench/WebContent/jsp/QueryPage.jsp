@@ -27,12 +27,11 @@
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/InputManagers/CustomInputManager.js?v6"></script>
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/InputManagers/CommitInputManager.js?v7"></script>
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Modules/ContributionVisualiser.js?v4"></script>
-    <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Modules/CommitVisualiserModule.js?v5"></script>
+    <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Modules/GenericVisualiserModule.js?v5"></script>
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Modules/CustomVisualiserModule.js?v4"></script>
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Modules/ContributionExtractor.js?v7"></script>
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Modules/CopyObjectModule.js?v7"></script>
-    <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Modules/CommitExtractorModule.js?v8"></script>
-    <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Modules/StarExtractorModule.js?v8"></script>
+    <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Modules/GenericExtractorModule.js?v8"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link rel="stylesheet" href="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/css/QueryPage.css?v4">

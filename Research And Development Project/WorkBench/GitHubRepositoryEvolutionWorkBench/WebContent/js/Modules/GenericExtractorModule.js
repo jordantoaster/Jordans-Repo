@@ -4,25 +4,25 @@
 
 var darwin = darwin || {};
 
-darwin.commitExtractorModule = (function() {
+darwin.genericExtractorModule = (function() {
 	
 	var sampleIterator = 0;
-	var commits = [];
+	var data = [];
 	var dates = [];
-	var totalCommits = 0;
+	var total= 0;
 	var firstDate = true;
 	var localJson = [];
-	var sampleRateCommit = 0;
+	var sampleRate = 0;
 		
     return {
     	// data comes in front to back, so < is used in place of > then reversed at the end
     	extract: function (json, index, action) {   
     		    		
-    		for(sampleIndexCommit = 0; sampleIndexCommit < 4;sampleIndexCommit++){
+    		for(sampleIndex = 0; sampleIndex < 4;sampleIndex++){
     		
     			
     			//get the current sample rate
-    			sampleRateCommit = darwin.projectManagerModule.swapSampleRate(sampleIndexCommit);
+    			sampleRate = darwin.projectManagerModule.swapSampleRate(sampleIndex);
     		
     			//to avoid pass by referecence and changing the original values during reverse we need to copy it to another object
     			localJson = darwin.Mediator.copyObject(json);
@@ -32,15 +32,15 @@ darwin.commitExtractorModule = (function() {
     			}    
     			
     			sampleIterator = 0;
-    			commits = [];
+    			data = [];
     			dates = [];
-    			totalCommits = 0;
+    			total = 0;
     			firstDate = true;
     			var lastDateInSample = [];
     			    			    		
     			for(var j = 0;j<localJson.length;j++){
     				    				
-        			totalCommits++;
+        			total++;
         			
         			if(action == "commit"){
             			var date = darwin.ISO601toDateModule.convert(localJson[j].commit.committer.date);
@@ -51,53 +51,53 @@ darwin.commitExtractorModule = (function() {
         			
     				if(firstDate){
     					// get range
-    					lastDateInSample = darwin.commitExtractorModule.getDateRange(date);
+    					lastDateInSample = darwin.genericExtractorModule.getDateRange(date);
     					firstDate = false;
     					dates[sampleIterator] = lastDateInSample;
-    					commits[sampleIterator] = 1;
+    					data[sampleIterator] = 1;
     				}
     				   
     				//checks if a date is out of the sample range
-    				outOfSample = darwin.commitExtractorModule.checkDateBeyondSample(date, lastDateInSample);
+    				outOfSample = darwin.genericExtractorModule.checkDateBeyondSample(date, lastDateInSample);
     				
     				if(outOfSample){
-    					lastDateInSample = darwin.commitExtractorModule.addSamplesSkipped(date, lastDateInSample);
+    					lastDateInSample = darwin.genericExtractorModule.addSamplesSkipped(date, lastDateInSample);
     	 					
     					sampleIterator++;
     					dates[sampleIterator] = lastDateInSample;
-    					commits[sampleIterator]=1;  
+    					data[sampleIterator]=1;  
     				} else {
-    					commits[sampleIterator]++;
+    					data[sampleIterator]++;
     				}
 
     			} //for   			
     			
     			if(action == "commit"){
-        			darwin.Mediator.setCommitDetails(index, commits, darwin.projectManagerModule.getProjectNames(), sampleIndexCommit);
+        			darwin.Mediator.setCommitDetails(index, data, darwin.projectManagerModule.getProjectNames(), sampleIndex);
     			}    
     			if(action == "star"){
-        			darwin.Mediator.setStarDetails(index, commits, darwin.projectManagerModule.getProjectNames(), sampleIndexCommit);
+        			darwin.Mediator.setStarDetails(index, data, darwin.projectManagerModule.getProjectNames(), sampleIndex);
     			}
     					
         		//send to mongo for storage
-    			//darwin.Mediator.packagerCommits(dates, commits, darwin.projectManagerModule.getProjectNamesIndex(index));  	
+    			//darwin.Mediator.packagerCommits(dates, data, darwin.projectManagerModule.getProjectNamesIndex(index));  	
     		
     		}
     		
 			if(action == "commit"){
-	    		darwin.Mediator.drawCommitGraph(darwin.Mediator.getCommitDetails(), "weeks", "week On week Commits", darwin.projectManagerModule.getSampleIndex(), action);
+	    		darwin.Mediator.drawGenericGraph(darwin.Mediator.getCommitDetails(), "weeks", "week On week Commits", darwin.projectManagerModule.getSampleIndex(), action);
 			}    
 			if(action == "star"){
-	    		darwin.Mediator.drawCommitGraph(darwin.Mediator.getStarDetails(), "weeks", "week On week Stars", darwin.projectManagerModule.getSampleIndex(), action);
+	    		darwin.Mediator.drawGenericGraph(darwin.Mediator.getStarDetails(), "weeks", "week On week Stars", darwin.projectManagerModule.getSampleIndex(), action);
 			}
 			    		
     		//enable clicking on another project
-			darwin.Mediator.enableCommitButton();
+			darwin.Mediator.enableButtons();
 			
         },
         resetVariables: function(){      	
         	sampleIterator = 0;
-        	commits = [];
+        	data = [];
         	dates = [];
         	totalCommits = 0;
         	firstDate = true;
@@ -105,7 +105,7 @@ darwin.commitExtractorModule = (function() {
         },
         getDateRange : function(inputDate){	
         	var dateRange = new Date(inputDate);
-        	dateRange.setDate(dateRange.getDate()+(sampleRateCommit * 7)) //-1 accounts for including initial date in range
+        	dateRange.setDate(dateRange.getDate()+(sampleRate * 7)) //-1 accounts for including initial date in range
         	return dateRange;
         },
 
@@ -124,14 +124,14 @@ darwin.commitExtractorModule = (function() {
         	//loop until we find new date inside a range
         	while(notFoundDate){
         		
-        		lastKnownDate = darwin.commitExtractorModule.getDateRange(lastKnownDate)
+        		lastKnownDate = darwin.genericExtractorModule.getDateRange(lastKnownDate)
         		
-        		notFoundDate = darwin.commitExtractorModule.checkDateBeyondSample(currDate, lastKnownDate);
+        		notFoundDate = darwin.genericExtractorModule.checkDateBeyondSample(currDate, lastKnownDate);
               		
         		if(notFoundDate){
 					sampleIterator++;
 					dates[sampleIterator] = lastKnownDate;
-					commits[sampleIterator] = 0;  	
+					data[sampleIterator] = 0;  	
         		} 
         	}
         	return lastKnownDate;

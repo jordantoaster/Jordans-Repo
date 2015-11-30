@@ -4,13 +4,13 @@
 
 var darwin = darwin || {};
 
-darwin.commitVisualiser = (function() {
+darwin.genericVisualiser = (function() {
 	return {
 		draw : function(values, xAxis, title, sampleIndex, action) {
 			
 			//get smallest array iterate Num Here
 			//based on smallest sample index for each project			
-			iterateNum =  darwin.arrayUtilityModule.getSmallestCommitArray(values, sampleIndex);
+			iterateNum =  darwin.arrayUtilityModule.getSmallestGenericArray(values, sampleIndex);
 			
 			var data = new google.visualization.DataTable();			
 			data.addColumn('string', xAxis)

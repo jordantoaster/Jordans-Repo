@@ -4,20 +4,20 @@ var darwin = darwin || {};
 
 darwin.projectManagerModule = (function() {
 	
-	projectId = "";
-    baseRequestUrl = [];
-    samplingRate = 6;
-    comparison = false;
-    numProjects = 1;
-    projectNames = [];
-    currRequestPage = 1;
-    commitSamplingRate = 6;
-    commitExtractorType = false;
-    sampleIndex = 2;
-    currentProjectIndex = 0;
-    currentContribution = "difference";
-    starProjectsAdded = 0;
-    commitProjectsAdded = 0;
+	var projectId = "";
+    var baseRequestUrl = [];
+    var samplingRate = 6;
+    var comparison = false;
+    var numProjects = 1;
+    var projectNames = [];
+    var currRequestPage = 1;
+    var commitSamplingRate = 6;
+    var commitExtractorType = false;
+    var sampleIndex = 2;
+    var currentProjectIndex = 0;
+    var currentContribution = "difference";
+    var starProjectsAdded = 0;
+    var commitProjectsAdded = 0;
 		
     return {
     	loadCommitSelection: function (projects) {
@@ -132,7 +132,7 @@ darwin.projectManagerModule = (function() {
         	$('.btn-group button').attr('disabled','disabled');   
         	$("#starHeader").text('Please wait until the data is collected');
         },
-        enableCommitButton :  function(){
+        enableButtons :  function(){
         	$('.btn-group button').removeAttr('disabled');
        	 	$("#commitHeader").text('You can now select another project');
         },

@@ -10,7 +10,7 @@ darwin.arrayUtilityModule = (function() {
     	getSmallestArray: function (array) {
     		return array.reduce(function(p,c) {return p.length>c.length?c:p;},{length:Infinity}).length;
         },
-    	getSmallestCommitArray: function (array, sampleIndex) {
+    	getSmallestGenericArray: function (array, sampleIndex) {
     		
     		var arraysToCompare = [];
     		

@@ -30,7 +30,7 @@ $(document).ready(function(e) {
 		darwin.projectManagerModule.setCommitExtractorType(true);
 	    darwin.projectManagerModule.setSampleIndex(0);	
 
-		darwin.Mediator.drawCommitGraph(darwin.Mediator.getCommitDetails(), "weeks", "week On week Commits", darwin.projectManagerModule.getSampleIndex(), "commit");
+		darwin.Mediator.drawGenericGraph(darwin.Mediator.getCommitDetails(), "weeks", "week On week Commits", darwin.projectManagerModule.getSampleIndex(), "commit");
 
 	});	
 	$('#sampleRate2Commits').on("click.darwin", function(e){
@@ -39,7 +39,7 @@ $(document).ready(function(e) {
 		darwin.projectManagerModule.setCommitExtractorType(true);
 	    darwin.projectManagerModule.setSampleIndex(1);	
 	    
-		darwin.Mediator.drawCommitGraph(darwin.Mediator.getCommitDetails(), "weeks", "week On week Commits", darwin.projectManagerModule.getSampleIndex(), "commit");
+		darwin.Mediator.drawGenericGraph(darwin.Mediator.getCommitDetails(), "weeks", "week On week Commits", darwin.projectManagerModule.getSampleIndex(), "commit");
 
 	});	
 	$('#sampleRate3Commits').on("click.darwin", function(e){
@@ -48,7 +48,7 @@ $(document).ready(function(e) {
 		darwin.projectManagerModule.setCommitExtractorType(true);
 	    darwin.projectManagerModule.setSampleIndex(2);	
 	    
-		darwin.Mediator.drawCommitGraph(darwin.Mediator.getCommitDetails(), "weeks", "week On week Commits", darwin.projectManagerModule.getSampleIndex(), "commit");
+		darwin.Mediator.drawGenericGraph(darwin.Mediator.getCommitDetails(), "weeks", "week On week Commits", darwin.projectManagerModule.getSampleIndex(), "commit");
 
 	});	
 	$('#sampleRate4Commits').on("click.darwin", function(e){
@@ -58,7 +58,7 @@ $(document).ready(function(e) {
 	    darwin.projectManagerModule.setSampleIndex(3);	
 	    
 	    //add a redraw here
-		darwin.Mediator.drawCommitGraph(darwin.Mediator.getCommitDetails(), "weeks", "week On week Commits", darwin.projectManagerModule.getSampleIndex(), "commit");
+		darwin.Mediator.drawGenericGraph(darwin.Mediator.getCommitDetails(), "weeks", "week On week Commits", darwin.projectManagerModule.getSampleIndex(), "commit");
 
 	});	
 });
