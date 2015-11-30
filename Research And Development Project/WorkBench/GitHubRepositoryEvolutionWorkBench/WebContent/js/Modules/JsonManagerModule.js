@@ -62,6 +62,13 @@ darwin.jsonManagerModule = (function() {
         },
         resetStarJson : function (){ //concatenate one request with another
         	starArray = [];
+        },
+        resetAllData : function(){
+        	 contributionArray = [];
+        	 mergedCommits = [];
+        	 mergedStars = [];
+        	 commitArray = [];
+        	 starArray = [];
         }
     };
 })();

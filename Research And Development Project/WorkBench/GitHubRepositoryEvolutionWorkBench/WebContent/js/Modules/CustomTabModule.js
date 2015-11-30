@@ -6,12 +6,12 @@ var darwin = darwin || {};
 
 darwin.customTabModule = (function() {
 	
-	currentIndex = 0;
-	isAdditionsChecked = false;
-	isDeletionsChecked = false;
-	isLOCChecked = false;
-	isCommitsChecked = false;
-	stilOnCustom = true;
+	var currentIndex = 0;
+	var isAdditionsChecked = false;
+	var isDeletionsChecked = false;
+	var isLOCChecked = false;
+	var isCommitsChecked = false;
+	var stilOnCustom = true;
 	
     return {
     	//This function is called each time a new project is selected
@@ -99,6 +99,14 @@ darwin.customTabModule = (function() {
             darwin.customTabModule.setLOCChecked(false);            
             $('input').not('#commitsCheck').prop('checked', false);
             darwin.customTabModule.setCommitsChecked(false);
+        },
+        resetCustomTabData : function(){
+        	currentIndex = 0;
+        	isAdditionsChecked = false;
+        	isDeletionsChecked = false;
+        	isLOCChecked = false;
+        	isCommitsChecked = false;
+        	stilOnCustom = true;
         }
     };
 })();

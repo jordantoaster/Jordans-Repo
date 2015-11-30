@@ -35,6 +35,10 @@ darwin.projectManagerModule = (function() {
         setNumProjects: function(){
         	numProjects = numProjects + 1;
         },
+        decNumProjects : function(){
+        	if(numProjects != 0)
+        		numProjects = numProjects -1;
+        },
         getNumProjects: function(){ 
         	return numProjects;
         }, 
@@ -105,12 +109,13 @@ darwin.projectManagerModule = (function() {
         	baseRequestUrl = [];
         },
         resetVariables: function(){      	
-    	    darwin.Mediator.resetContributionVariables();
-    	    darwin.Mediator.resetCommitVariables();
+    	    darwin.Mediator.resetVariables();
         },
         resetComponents: function() {
     		$('.progress-bar').css('width', 0+'%').attr('aria-valuenow', 0);  
     		$('#commitChart').empty();
+    		$('#starChart').empty();
+    		$('#contributorChart').empty();
     		$('#projectOptions').empty();
     		$('#options').empty();  
     		$('#commitOptions').empty();
@@ -194,6 +199,22 @@ darwin.projectManagerModule = (function() {
 		},
         noCallBack : function(){
         	//do nothing
+        },
+        resetAllProjectManager : function(){
+        	 projectId = "";
+             baseRequestUrl = [];
+             samplingRate = 6;
+             comparison = false;
+             //numProjects = 1;
+             projectNames = [];
+             currRequestPage = 1;
+             commitSamplingRate = 6;
+             commitExtractorType = false;
+             sampleIndex = 2;
+             currentProjectIndex = 0;
+             currentContribution = "difference";
+             starProjectsAdded = 0;
+             commitProjectsAdded = 0;
         }
     };
 })();

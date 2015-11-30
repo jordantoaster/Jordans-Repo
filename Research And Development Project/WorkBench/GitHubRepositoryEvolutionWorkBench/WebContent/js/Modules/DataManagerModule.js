@@ -125,6 +125,17 @@ darwin.dataManager = (function() {
         },
         getCustomNameList : function(){
         	return customNameList;
+        },
+        resetAllDataManager : function(){
+        	 deletions = [];
+        	 additions = [];
+        	 LOC = [];
+        	 difference = [];
+        	 commitList = [];
+        	 starList = [];
+        	 customDataList = [];
+        	 customNameList = [];
+        	 contributionDates = [];
         }
     };
 })(); 

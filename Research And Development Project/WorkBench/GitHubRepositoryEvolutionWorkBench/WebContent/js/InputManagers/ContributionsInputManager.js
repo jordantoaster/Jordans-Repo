@@ -44,14 +44,12 @@ $(document).ready(function(e) {
 	/*RESET THE VARIABLES USED IN JSON PARSING, ADJUST SAMPLING RATE, REQUEST RESAMPLE*/
 	$('#sampleRate1Contributions').on("click.darwin", function(e){
 		e.preventDefault();
-	    darwin.Mediator.resetContributionVariables();
 
 		darwin.projectManagerModule.setSampleIndex(0);	
 		darwin.Mediator.drawContributionGraph(darwin.projectManagerModule.getContributionMetricArray(darwin.projectManagerModule.getCurrentContributionMetric()), "", "", 0, 0,darwin.projectManagerModule.getSampleIndex());
 	});	
 	$('#sampleRate2Contributions').on("click.darwin", function(e){
 		e.preventDefault();
-	    darwin.Mediator.resetContributionVariables();
 
 	    darwin.projectManagerModule.setSampleIndex(1);	
 		darwin.Mediator.drawContributionGraph(darwin.projectManagerModule.getContributionMetricArray(darwin.projectManagerModule.getCurrentContributionMetric()), "", "", 0, 0, darwin.projectManagerModule.getSampleIndex());
@@ -59,14 +57,12 @@ $(document).ready(function(e) {
 	});	
 	$('#sampleRate3Contributions').on("click.darwin", function(e){
 		e.preventDefault();
-	    darwin.Mediator.resetContributionVariables();
 
 	    darwin.projectManagerModule.setSampleIndex(2);	
 		darwin.Mediator.drawContributionGraph(darwin.projectManagerModule.getContributionMetricArray(darwin.projectManagerModule.getCurrentContributionMetric()), "", "", 0, 0, darwin.projectManagerModule.getSampleIndex());
 	});
 	$('#sampleRate4Contributions').on("click.darwin", function(e){
 		e.preventDefault();
-	    darwin.Mediator.resetContributionVariables();
 
 	    darwin.projectManagerModule.setSampleIndex(3);	
 		darwin.Mediator.drawContributionGraph(darwin.projectManagerModule.getContributionMetricArray(darwin.projectManagerModule.getCurrentContributionMetric()), "", "", 0, 0, darwin.projectManagerModule.getSampleIndex());

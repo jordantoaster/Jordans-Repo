@@ -65,14 +65,17 @@ darwin.Mediator = (function () {
 		loadGraphLibrary: function(){
 			darwin.loadGraphModule.load();
 		},
-		resetContributionVariables: function(){
-			darwin.contributionExtractorModule.resetVariables();
-		},
-		resetCommitVariables: function(){
+		resetVariables: function(){
 			darwin.projectManagerModule.resetProjectNames();
 			darwin.projectManagerModule.resetNumProjects();
-			darwin.dataManager.resetCommitsList();
-			darwin.commitManager.resetProjectsAdded();
+			darwin.dataManager.resetAllDataManager();
+			darwin.projectManagerModule.resetCommitProjectsAdded();
+			darwin.projectManagerModule.resetStarProjectsAdded();
+			darwin.projectManagerModule.setSampleIndex(0);
+			darwin.jsonManagerModule.resetAllData();
+			darwin.contributionExtractorModule.resetVariables();
+			darwin.projectManagerModule.resetAllProjectManager();
+			darwin.customTabModule.resetCustomTabData();
 		},
 		resampleCommits : function(currentJson){
 			//pass in commits one at a time

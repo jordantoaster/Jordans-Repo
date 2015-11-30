@@ -21,11 +21,17 @@ $(document).ready(function(e) {
 	    	//get parsed url
 	    	parsedUrl = darwin.Mediator.parseInputUrl($('#urlField' + i).val());
 	    	
-	    	//set project info for future reference
-	    	darwin.projectManagerModule.setProjectNames(parsedUrl);
+	    	//blank check
+	    	if(parsedUrl != "/GitHubRepositoryEvolutionWorkBench/jsp/QueryPage.jsp"){
+	    		//set project info for future reference
+	    		darwin.projectManagerModule.setProjectNames(parsedUrl);
 	    	
-	    	//set request urls for the specefic api request
-	    	darwin.projectManagerModule.setBaseRequestUrl(i, "https://api.github.com/repos"+parsedUrl+"/stats/code_frequency?per_page=100&page=")
+	    		//set request urls for the specefic api request
+	    		darwin.projectManagerModule.setBaseRequestUrl(i, "https://api.github.com/repos"+parsedUrl+"/stats/code_frequency?per_page=100&page=")
+	    	} else {
+	    		//reduce num projects
+				darwin.projectManagerModule.decNumProjects();
+	    	}
 	    }
 	    darwin.Mediator.makeGithubRequest(darwin.projectManagerModule.getAllBaseRequestUrl(), "GET", darwin.Mediator.githubParseContributionData, "contribution");
 	       
@@ -38,7 +44,7 @@ $(document).ready(function(e) {
 	
 	$(".icon").on("click.darwin", function(e){  	
 		
-		if(darwin.projectManagerModule.getNumProjects() == 5){
+		if(darwin.projectManagerModule.getNumProjects() == 4){
 			$("#additionalProject").remove();
 		} else {
 				
