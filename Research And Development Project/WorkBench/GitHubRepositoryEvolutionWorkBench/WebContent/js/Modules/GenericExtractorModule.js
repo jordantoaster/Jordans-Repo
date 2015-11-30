@@ -9,7 +9,7 @@ darwin.genericExtractorModule = (function() {
 	var sampleIterator = 0;
 	var data = [];
 	var dates = [];
-	var total= 0;
+	var totalStars= 0;
 	var firstDate = true;
 	var localJson = [];
 	var sampleRate = 0;
@@ -27,6 +27,8 @@ darwin.genericExtractorModule = (function() {
     			//to avoid pass by referecence and changing the original values during reverse we need to copy it to another object
     			localJson = darwin.Mediator.copyObject(json);
     			
+    			
+    			//commit json comes in back to front
     			if(action == "commit"){
         			localJson.reverse();
     			}    
@@ -37,11 +39,13 @@ darwin.genericExtractorModule = (function() {
     			total = 0;
     			firstDate = true;
     			var lastDateInSample = [];
-    			    			    		
+    			    
+    			//if there are multiple json input loop each
     			for(var j = 0;j<localJson.length;j++){
     				    				
-        			total++;
+        			totalStars++;
         			
+        			//get the data required
         			if(action == "commit"){
             			var date = darwin.ISO601toDateModule.convert(localJson[j].commit.committer.date);
         			}    
@@ -49,6 +53,7 @@ darwin.genericExtractorModule = (function() {
             			var date = darwin.ISO601toDateModule.convert(localJson[j].starred_at);
         			}
         			
+        			//if first date then intialise the structures
     				if(firstDate){
     					// get range
     					lastDateInSample = darwin.genericExtractorModule.getDateRange(date);
@@ -60,18 +65,24 @@ darwin.genericExtractorModule = (function() {
     				//checks if a date is out of the sample range
     				outOfSample = darwin.genericExtractorModule.checkDateBeyondSample(date, lastDateInSample);
     				
+    				//if out of sample
     				if(outOfSample){
+    					//find out how many samples skipped and get the last date in sample
     					lastDateInSample = darwin.genericExtractorModule.addSamplesSkipped(date, lastDateInSample);
     	 					
+    					//store and move onto next sample
     					sampleIterator++;
     					dates[sampleIterator] = lastDateInSample;
     					data[sampleIterator]=1;  
     				} else {
+    					//if in sample just keep incrementing
     					data[sampleIterator]++;
     				}
 
     			} //for   			
     			
+    			
+    			//depending on action set different data
     			if(action == "commit"){
         			darwin.Mediator.setCommitDetails(index, data, darwin.projectManagerModule.getProjectNames(), sampleIndex);
     			}    
@@ -84,6 +95,7 @@ darwin.genericExtractorModule = (function() {
     		
     		}
     		
+    		//depending on action draw graph with different data
 			if(action == "commit"){
 	    		darwin.Mediator.drawGenericGraph(darwin.Mediator.getCommitDetails(), "weeks", "week On week Commits", darwin.projectManagerModule.getSampleIndex(), action);
 			}    
@@ -103,9 +115,10 @@ darwin.genericExtractorModule = (function() {
         	firstDate = true;
         	localJson = [];
         },
+        //based on an input date calculate the last date in the sample
         getDateRange : function(inputDate){	
         	var dateRange = new Date(inputDate);
-        	dateRange.setDate(dateRange.getDate()+(sampleRate * 7)) //-1 accounts for including initial date in range
+        	dateRange.setDate(dateRange.getDate()+(sampleRate * 7));
         	return dateRange;
         },
 
@@ -116,6 +129,7 @@ darwin.genericExtractorModule = (function() {
         	}
         	return false;
         },
+        //Find out how many samples have been skipped if any between two dates
         addSamplesSkipped : function(currDate, lastKnownDate){
         	
         	notFoundDate = true;

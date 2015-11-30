@@ -110,6 +110,7 @@
     	  <li><a href="#" id="sampleRate4Commits">26 Weeks</a></li>
   		</ul>
 	  </div>
+	  <p class="inlineText" id="commitProgress"></p>
       <div id="commitChart"></div>  
     </div>
     <div id="StarTab" class="tab-pane fade customTab">
@@ -127,6 +128,7 @@
     	  <li><a href="#" id="sampleRate4Stars">26 Weeks</a></li>
   		</ul>
 	  </div>
+	  <p class="inlineText" id="starProgress"></p>
       <div id="starChart"></div>  
     </div>
     <div id="CustomTab" class="tab-pane fade customTab">

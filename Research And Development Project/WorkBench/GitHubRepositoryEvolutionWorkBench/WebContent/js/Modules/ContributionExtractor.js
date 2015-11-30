@@ -80,8 +80,7 @@ darwin.contributionExtractorModule = (function() {
 						 * Checks if the iterator (each increment represents a week) has surpassed the sampling rate - Change date
 						 * boolean is required to ensure that the date can be initilised on the first pass of the processs
 						 */
-						if (sampleRate == SamplingIterator
-								|| firstOperation == true) {
+						if (sampleRate == SamplingIterator || firstOperation == true) {
 
 							/*
 							 * Resets iterator to allow next sample set to be organised
@@ -104,8 +103,7 @@ darwin.contributionExtractorModule = (function() {
 							 * Add addition, deletion and difference data to each relevant array
 							 */
 							additions[contributionSampleCounter] = localJson[i][1];
-							deletions[contributionSampleCounter] = Math
-									.abs(localJson[i][2]);
+							deletions[contributionSampleCounter] = Math.abs(localJson[i][2]);
 							difference[contributionSampleCounter] = currDiff;
 							/* Each new sample, set LOC to current total */
 							LOCOverTime[contributionSampleCounter] = LOC;
@@ -117,8 +115,7 @@ darwin.contributionExtractorModule = (function() {
 							firstOperation = false;
 
 						} else {
-							/*
-							 * If we are inside the same sampling, add to existing values - then increment sample iterator
+							/*  If we are inside the same sampling, add to existing values - then increment sample iterator
 								Add to current values for this sampling period */
 							additions[contributionSampleCounter] = additions[contributionSampleCounter] + localJson[i][1];
 							deletions[contributionSampleCounter] = deletions[contributionSampleCounter] + Math.abs(localJson[i][2]);
@@ -144,21 +141,6 @@ darwin.contributionExtractorModule = (function() {
 				+ darwin.projectManagerModule.getSamplingRate()+ ' Weeks', 'Difference Of Additions And Deletions', LOC,
 				totalWeeks, darwin.projectManagerModule.getSampleIndex());
 
-		},
-		getAddition : function() {
-			return additions;
-		},
-		getDeletion : function() {
-			return deletions;
-		},
-		getDifference : function() {
-			return difference;
-		},
-		getLOC : function() {
-			return LOCOverTime;
-		},
-		getDates : function() {
-			return contributionDates;
 		},
 		getIterationCount : function(seriesA, seriesB) {
 			// allows the program to navigate an equal time frame for each

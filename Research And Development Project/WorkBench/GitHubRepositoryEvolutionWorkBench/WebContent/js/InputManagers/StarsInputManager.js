@@ -8,21 +8,28 @@ $(document).ready(function(e) {
 	
 	$(document).on("click.darwin","#starOption1", function () {
 		darwin.Mediator.prepareStarClick("https://api.github.com/repos"+$("#starOption1").text()+"/stargazers?per_page=100&page=");	
+		darwin.progressbarModule.reset();
 
 	});
 	$(document).on("click.darwin","#starOption2", function () {
 		darwin.Mediator.prepareStarClick("https://api.github.com/repos"+$("#starOption2").text()+"/stargazers?per_page=100&page=");	
-	
+		darwin.progressbarModule.reset();
+
 	});
 	$(document).on("click.darwin","#starOption3", function () {		
 		darwin.Mediator.prepareStarClick("https://api.github.com/repos"+$("#starOption3").text()+"/stargazers?per_page=100&page=");	
+		darwin.progressbarModule.reset();
+
 	});
 	$(document).on("click.darwin","#starOption4", function () {
 		darwin.Mediator.prepareStarClick("https://api.github.com/repos"+$("#starOption4").text()+"/stargazers?per_page=100&page=");	
+		darwin.progressbarModule.reset();
 
 	});
 	$(document).on("click.darwin","#starption5", function () {			
 		darwin.Mediator.prepareStarClick("https://api.github.com/repos"+$("#starOption5").text()+"/stargazersper_page=100&page=");	
+		darwin.progressbarModule.reset();
+
 	});	
 	$('#sampleRate1Stars').on("click.darwin", function(e){
 		e.preventDefault();

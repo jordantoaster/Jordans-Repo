@@ -22,22 +22,25 @@ darwin.Mediator = (function () {
 		updateProgressBar: function () {
 			darwin.progressbarModule.updateProgressBar();
 		},
-		makeGithubRequest: function (url, type, callback, action) {
-			for(i=0;i<url.length;i++){
-								
-				//stops race conditions
-				timer = setTimeout(darwin.projectManagerModule.noCallBack(), 100);
+		makeGithubRequest: function (url, callback, action) {
+			
+			//if not a stat api dataset then perform one manual call
+			if(action == "commit" || action == "star"){
+				darwin.githubModule.send(url[0] + darwin.projectManagerModule.getcurrRequestPage(), callback, 0, action);
+			} else {
+				//if a stat api then loop each url, only send true callback on final url
+				for(i=0;i<url.length;i++){
+									
+					//stops race conditions
+					timer = setTimeout(darwin.projectManagerModule.noCallBack(), 10);
 
-				//only perform actually call back when all request data collected
-				if(i==(url.length-1)){
-					if(action == "commit" || "star"){
-						darwin.githubModule.send(url[i] + darwin.projectManagerModule.getcurrRequestPage(), type, callback, i, action);
+					//only perform actually call back when all request data collected
+					if(i==(url.length-1)){
+						darwin.githubModule.send(url[i] + darwin.projectManagerModule.getcurrRequestPage(), callback, i, action);
 					} else {
-						darwin.githubModule.send(url[i] + darwin.projectManagerModule.getcurrRequestPage(), type, callback, i, action);
-					}
-				} else {
-					darwin.githubModule.send(url[i] + darwin.projectManagerModule.getcurrRequestPage(), type, darwin.projectManagerModule.noCallBack, i, action);					
-				}	
+						darwin.githubModule.send(url[i] + darwin.projectManagerModule.getcurrRequestPage(), darwin.projectManagerModule.noCallBack, i, action);					
+					}	
+				}
 			}
 		},
 		githubParseContributionData: function (response) {
@@ -76,6 +79,7 @@ darwin.Mediator = (function () {
 			darwin.contributionExtractorModule.resetVariables();
 			darwin.projectManagerModule.resetAllProjectManager();
 			darwin.customTabModule.resetCustomTabData();
+			darwin.progressbarModule.reset();
 		},
 		resampleCommits : function(currentJson){
 			//pass in commits one at a time
@@ -164,8 +168,8 @@ darwin.Mediator = (function () {
 		getAllBaseRequestUrl : function(index){
 			return darwin.projectManagerModule.getAllBaseRequestUrl(index)
 		},
-		makeGithubRequestSingleUrl : function(url, type, callback, index, action){
-			  darwin.githubModule.send(url, type, callback, index, action);
+		makeGithubRequestSingleUrl : function(url, callback, index, action){
+			  darwin.githubModule.send(url, callback, index, action);
 		},
 		prepareCommitClick : function(url){
 			darwin.jsonManagerModule.resetCommitJson(url);
@@ -174,7 +178,7 @@ darwin.Mediator = (function () {
 			
 			darwin.projectManagerModule.setBaseRequestUrl(0,url);
 			
-			darwin.Mediator.makeGithubRequest(darwin.projectManagerModule.getAllBaseRequestUrl(), "GET", darwin.Mediator.githubParseCommitData, "commit");		
+			darwin.Mediator.makeGithubRequest(darwin.projectManagerModule.getAllBaseRequestUrl(), darwin.Mediator.githubParseCommitData, "commit");		
 		},
 		prepareStarClick : function(url){
 			darwin.jsonManagerModule.resetStarJson();
@@ -183,7 +187,7 @@ darwin.Mediator = (function () {
 			
 			darwin.projectManagerModule.setBaseRequestUrl(0,url);
 			
-			darwin.Mediator.makeGithubRequest(darwin.projectManagerModule.getAllBaseRequestUrl(), "GET", darwin.Mediator.githubParseCommitData, "star");		
+			darwin.Mediator.makeGithubRequest(darwin.projectManagerModule.getAllBaseRequestUrl(), darwin.Mediator.githubParseCommitData, "star");		
 		},
 		disableCommitButton : function(){
 			darwin.projectManagerModule.disableCommitButton();
@@ -231,6 +235,12 @@ darwin.Mediator = (function () {
 		},
 		copyObject : function(obj){
 			return darwin.copyObjectModule.copyObject(obj);
+		},
+		updateCommitProgress : function(val){
+			darwin.progressbarModule.updateCommitProgress(val);
+		},
+		updateStarProgress : function(val){
+			darwin.progressbarModule.updateStarProgress(val);
 		}
     };
 })();

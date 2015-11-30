@@ -7,6 +7,8 @@ var darwin = darwin || {};
 darwin.progressbarModule = (function() {
 	var intervalSize = 50;
 	var adjustedWidth = 0;
+	var commitProgress =0;
+	var starProgress =0;
 	
     return {
     	updateProgressBar: function () {
@@ -21,8 +23,17 @@ darwin.progressbarModule = (function() {
     			adjustedWidth = 0;
     		}
         },
-        enableTabs : function (){
-        	//TODO
+        updateCommitProgress : function(value){
+        	commitProgress = commitProgress + value;
+            $('#commitProgress').text("Commits Processed : " + commitProgress);
+        },
+        updateStarProgress : function(value){
+        	starProgress = starProgress + value;
+            $('#starProgress').text("stars Processed : " + starProgress);
+        },
+        reset : function(){
+        	 commitProgress =0;
+        	 starProgress =0;
         }
     };
 })();

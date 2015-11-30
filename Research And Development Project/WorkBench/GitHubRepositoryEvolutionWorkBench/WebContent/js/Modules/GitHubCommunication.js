@@ -6,10 +6,10 @@ var darwin = darwin || {};
 
 darwin.githubModule = (function() {
     return {
-    	send: function (url, type, callback, index, action) {
+    	send: function (url, callback, index, action) {
     		$.ajax({
     			  dataType: 'JSON',
-    			  type : type,
+    			  type : "GET",
     			  url : url,
     			  headers : {
     				  Accept: "application/vnd.github.v3.star+json"
