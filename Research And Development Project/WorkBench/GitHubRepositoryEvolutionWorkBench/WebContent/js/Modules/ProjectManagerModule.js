@@ -17,6 +17,7 @@ darwin.projectManagerModule = (function() {
     var currentContribution = "difference";
     var starProjectsAdded = 0;
     var commitProjectsAdded = 0;
+    var spaceAjaxQueueAvaliable = true;
 		
     return {
     	loadCommitSelection: function (projects) {

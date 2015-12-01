@@ -30,12 +30,14 @@ $(document).ready(function(e) {
 	    		//set project info for future reference
 	    		darwin.projectManagerModule.setProjectNames(parsedUrl);
 	    	
+	    		
+	    		//set request urls for the specefic api request
+	    		darwin.projectManagerModule.setBaseRequestUrl(darwin.projectManagerModule.getNumProjects(), "https://api.github.com/repos"+parsedUrl+"/stats/code_frequency?per_page=100&page=")
+	    	
 	    		//total the num of projects accepted
 	    		darwin.projectManagerModule.setNumProjects();
 	    		
-	    		//set request urls for the specefic api request
-	    		darwin.projectManagerModule.setBaseRequestUrl(i, "https://api.github.com/repos"+parsedUrl+"/stats/code_frequency?per_page=100&page=")
-	    	} 
+	    		} 
 	    }
 	    
 	    //send the urls and associated data to the next module
@@ -50,7 +52,7 @@ $(document).ready(function(e) {
 	
 	$(".icon").on("click.darwin", function(e){  
 				
-		if(darwin.projectManagerModule.getNumProjects() == 4){
+		if(numFeilds == 5){
 			$("#additionalProject").remove();
 		} else {
 							

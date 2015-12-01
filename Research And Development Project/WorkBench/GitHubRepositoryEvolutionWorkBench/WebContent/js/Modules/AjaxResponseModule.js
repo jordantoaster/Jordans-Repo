@@ -8,9 +8,17 @@ darwin.AjaxResponseModule = (function () {
     return {
     	handleSuccess: function (action, response, callback, index) {
     		
+    		
 			  if(action == "contribution"){
 				  darwin.Mediator.setContributionJson(index,response);
-				  callback(darwin.jsonManagerModule.getAllContributionJson());					
+				  
+				  var contributions = darwin.jsonManagerModule.getAllContributionJson();
+				  var size = darwin.AjaxResponseModule.getSizeOfArray(contributions);
+				  
+				  //only make call back when we have all the required json
+				  if(size == darwin.projectManagerModule.getNumProjects()){
+					  callback(darwin.jsonManagerModule.getAllContributionJson());					
+				  }
 			  } else {
 				  
 				  if(action == "commit"){
@@ -48,6 +56,15 @@ darwin.AjaxResponseModule = (function () {
 					  darwin.Mediator.makeGithubRequestSingleUrl(darwin.Mediator.getAllBaseRequestUrl(index) + darwin.Mediator.getcurrRequestPage(), callback, index, action);
 				  }
 			  }
+        },
+        getSizeOfArray : function(array){
+        	var size = 0;
+        	
+        	for(var i =0; i<array.length;i++){
+        		if(array[i] != undefined)
+        			size++;
+        	}
+        	return size;
         }
     };
 })();

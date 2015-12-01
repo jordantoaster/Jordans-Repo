@@ -5,6 +5,7 @@
 var darwin = darwin || {};
 
 darwin.Mediator = (function () {
+	
     return {
     	makeServerRequest: function (action, callback, type, input) {
     		darwin.serverModule.send(action, callback, type, input);
@@ -23,7 +24,7 @@ darwin.Mediator = (function () {
 			darwin.progressbarModule.updateProgressBar();
 		},
 		makeGithubRequest: function (url, callback, action) {
-			
+				
 			//if not a stat api dataset then perform one manual call
 			if(action == "commit" || action == "star"){
 				darwin.githubModule.send(url[0] + darwin.projectManagerModule.getcurrRequestPage(), callback, 0, action);
@@ -31,14 +32,11 @@ darwin.Mediator = (function () {
 				//if a stat api then loop each url, only send true callback on final url
 				for(i=0;i<url.length;i++){
 									
-					//stops race conditions
-					timer = setTimeout(darwin.projectManagerModule.noCallBack(), 10);
-
 					//only perform actually call back when all request data collected
 					if(i==(url.length-1)){
 						darwin.githubModule.send(url[i] + darwin.projectManagerModule.getcurrRequestPage(), callback, i, action);
 					} else {
-						darwin.githubModule.send(url[i] + darwin.projectManagerModule.getcurrRequestPage(), darwin.projectManagerModule.noCallBack, i, action);					
+						darwin.githubModule.send(url[i] + darwin.projectManagerModule.getcurrRequestPage(), callback, i, action);					
 					}	
 				}
 			}
