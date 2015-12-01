@@ -8,37 +8,28 @@ $(document).ready(function(e) {
 	
 	$(document).on("click.darwin","#0", function (e) {			
 		e.preventDefault();	
-		darwin.Mediator.clearOptionsOnly();
-    	$("#customChart").empty();
 		darwin.customTabModule.setCurrentIndex(0);
-		darwin.Mediator.setupCustomComponentsOptions();
+		setupNewProject();
 	});	
 	$(document).on("click.darwin","#1", function (e) {			
 		e.preventDefault();	
-		darwin.Mediator.clearOptionsOnly();
-    	$("#customChart").empty();
 		darwin.customTabModule.setCurrentIndex(1);
-		darwin.Mediator.setupCustomComponentsOptions();
+		setupNewProject();
 	});	
 	$(document).on("click.darwin","#2", function (e) {			
 		e.preventDefault();	
-		darwin.Mediator.clearOptionsOnly();
-    	$("#customChart").empty();
 		darwin.customTabModule.setCurrentIndex(2);
-		darwin.Mediator.setupCustomComponentsOptions();
+		setupNewProject()
 	});	
 	$(document).on("click.darwin","#3", function (e) {			
 		e.preventDefault();
-		darwin.Mediator.clearOptionsOnly();
-    	$("#customChart").empty();
 		darwin.customTabModule.setCurrentIndex(3);
-		darwin.Mediator.setupCustomComponentsOptions();
+		setupNewProject();
 	});	
 	$(document).on("click.darwin","#4", function (e) {			
 		e.preventDefault();	
-		darwin.Mediator.clearOptionsOnly();
 		darwin.customTabModule.setCurrentIndex(4);
-		darwin.Mediator.setupCustomComponentsOptions();
+		setupNewProject()
 	});	
 	$(document).on("click.darwin","#additionsCheck", function (e) {		
 		
@@ -55,7 +46,6 @@ $(document).ready(function(e) {
 		}
 		
 		if(darwin.customTabModule.getIsAdditionsChecked()){
-			//pass additions and project name to customlist
 			darwin.Mediator.addToCustomList(darwin.dataManager.getAdditions(darwin.customTabModule.getCurrentIndex()), darwin.projectManagerModule.getProjectNamesIndex(darwin.customTabModule.getCurrentIndex()));
 		}
 			
@@ -138,7 +128,7 @@ $(document).ready(function(e) {
 
 	    darwin.projectManagerModule.setSampleIndex(0);	
 
-		darwin.Mediator.drawCustomGraph(darwin.dataManager.getCustomList(), "","", darwin.projectManagerModule.getSampleIndex());
+	    redrawCustomGraph();
 
 	});	
 	$('#sampleRate2Custom').on("click.darwin", function(e){
@@ -146,7 +136,7 @@ $(document).ready(function(e) {
 
 	    darwin.projectManagerModule.setSampleIndex(1);	
 	    
-		darwin.Mediator.drawCustomGraph(darwin.dataManager.getCustomList(), "","", darwin.projectManagerModule.getSampleIndex());
+	    redrawCustomGraph();
 
 	});	
 	$('#sampleRate3Custom').on("click.darwin", function(e){
@@ -154,7 +144,7 @@ $(document).ready(function(e) {
 
 	    darwin.projectManagerModule.setSampleIndex(2);	
 	    
-		darwin.Mediator.drawCustomGraph(darwin.dataManager.getCustomList(), "","", darwin.projectManagerModule.getSampleIndex());
+	    redrawCustomGraph();
 
 	});	
 	$('#sampleRate4Custom').on("click.darwin", function(e){
@@ -162,13 +152,21 @@ $(document).ready(function(e) {
 
 	    darwin.projectManagerModule.setSampleIndex(3);	
 	    
-	    //add a redraw here
-		darwin.Mediator.drawCustomGraph(darwin.dataManager.getCustomList(), "","", darwin.projectManagerModule.getSampleIndex());
-
+	    redrawCustomGraph();
 	});	
 	
 	$('#submitButtonCustom').on("click.darwin", function(e){
 		darwin.Mediator.drawCustomGraph(darwin.dataManager.getCustomList(), "","", darwin.projectManagerModule.getSampleIndex());
 	});	
+	
+	function redrawCustomGraph(){
+		darwin.Mediator.drawCustomGraph(darwin.dataManager.getCustomList(), "","", darwin.projectManagerModule.getSampleIndex());
+	}
+	
+	function setupNewProject(){
+		darwin.Mediator.clearOptionsOnly();
+    	$("#customChart").empty();
+		darwin.Mediator.setupCustomComponentsOptions();
+	}
 	
 });

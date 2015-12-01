@@ -8,27 +8,27 @@ $(document).ready(function(e) {
 	
 	$(document).on("click.darwin","#starOption1", function () {
 		darwin.Mediator.prepareStarClick("https://api.github.com/repos"+$("#starOption1").text()+"/stargazers?per_page=100&page=");	
-		darwin.progressbarModule.reset();
+		starReset();
 
 	});
 	$(document).on("click.darwin","#starOption2", function () {
 		darwin.Mediator.prepareStarClick("https://api.github.com/repos"+$("#starOption2").text()+"/stargazers?per_page=100&page=");	
-		darwin.progressbarModule.reset();
+		starReset();
 
 	});
 	$(document).on("click.darwin","#starOption3", function () {		
 		darwin.Mediator.prepareStarClick("https://api.github.com/repos"+$("#starOption3").text()+"/stargazers?per_page=100&page=");	
-		darwin.progressbarModule.reset();
+		starReset();
 
 	});
 	$(document).on("click.darwin","#starOption4", function () {
 		darwin.Mediator.prepareStarClick("https://api.github.com/repos"+$("#starOption4").text()+"/stargazers?per_page=100&page=");	
-		darwin.progressbarModule.reset();
+		starReset();
 
 	});
-	$(document).on("click.darwin","#starption5", function () {			
+	$(document).on("click.darwin","#starOption5", function () {			
 		darwin.Mediator.prepareStarClick("https://api.github.com/repos"+$("#starOption5").text()+"/stargazersper_page=100&page=");	
-		darwin.progressbarModule.reset();
+		starReset();
 
 	});	
 	$('#sampleRate1Stars').on("click.darwin", function(e){
@@ -36,7 +36,7 @@ $(document).ready(function(e) {
 
 	    darwin.projectManagerModule.setSampleIndex(0);	
 
-		darwin.Mediator.drawGenericGraph(darwin.Mediator.getStarDetails(), "weeks", "week On week Commits", darwin.projectManagerModule.getSampleIndex(), "star");
+		drawStarGraph();
 
 	});	
 	$('#sampleRate2Stars').on("click.darwin", function(e){
@@ -44,7 +44,7 @@ $(document).ready(function(e) {
 
 	    darwin.projectManagerModule.setSampleIndex(1);	
 	    
-		darwin.Mediator.drawGenericGraph(darwin.Mediator.getStarDetails(), "weeks", "week On week Commits", darwin.projectManagerModule.getSampleIndex(), "star");
+		drawStarGraph();
 
 	});	
 	$('#sampleRate3Stars').on("click.darwin", function(e){
@@ -52,8 +52,7 @@ $(document).ready(function(e) {
 
 	    darwin.projectManagerModule.setSampleIndex(2);	
 	    
-		darwin.Mediator.drawGenericGraph(darwin.Mediator.getStarDetails(), "weeks", "week On week Commits", darwin.projectManagerModule.getSampleIndex(), "star");
-
+		drawStarGraph();
 
 	});	
 	$('#sampleRate4Stars').on("click.darwin", function(e){
@@ -61,7 +60,15 @@ $(document).ready(function(e) {
 
 	    darwin.projectManagerModule.setSampleIndex(3);	
 	    
-		darwin.Mediator.drawGenericGraph(darwin.Mediator.getStarDetails(), "weeks", "week On week Commits", darwin.projectManagerModule.getSampleIndex(), "star");
+		drawStarGraph();
 
 	});	
+	
+	function drawStarGraph(){
+		darwin.Mediator.drawGenericGraph(darwin.Mediator.getStarDetails(), "weeks", "week On week Commits", darwin.projectManagerModule.getSampleIndex(), "star");
+	}
+
+	function starReset(){
+		darwin.progressbarModule.reset();
+	}
 });

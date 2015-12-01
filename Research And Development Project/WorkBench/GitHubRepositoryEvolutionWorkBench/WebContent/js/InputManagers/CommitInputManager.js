@@ -8,64 +8,62 @@ $(document).ready(function(e) {
 	
 	$(document).on("click.darwin","#commitOption1", function () {
 		darwin.Mediator.prepareCommitClick("https://api.github.com/repos"+$("#commitOption1").text()+"/commits?per_page=100&page=");	
-		darwin.progressbarModule.reset();
-
+		resetCommit();
 	});
 	$(document).on("click.darwin","#commitOption2", function () {
 		darwin.Mediator.prepareCommitClick("https://api.github.com/repos"+$("#commitOption2").text()+"/commits?per_page=100&page=");	
-		darwin.progressbarModule.reset();
-
+		resetCommit();
 	});
 	$(document).on("click.darwin","#commitOption3", function () {		
 		darwin.Mediator.prepareCommitClick("https://api.github.com/repos"+$("#commitOption3").text()+"/commits?per_page=100&page=");	
-		darwin.progressbarModule.reset();
+		resetCommit();
 
 	});
 	$(document).on("click.darwin","#commitOption4", function () {
 		darwin.Mediator.prepareCommitClick("https://api.github.com/repos"+$("#commitOption4").text()+"/commits?per_page=100&page=");	
-		darwin.progressbarModule.reset();
-
+		resetCommit();
 	});
 	$(document).on("click.darwin","#commitOption5", function () {			
 		darwin.Mediator.prepareCommitClick("https://api.github.com/repos"+$("#commitOption5").text()+"/commits?per_page=100&page=");	
-		darwin.progressbarModule.reset();
-
+		resetCommit();
 	});	
 	$('#sampleRate1Commits').on("click.darwin", function(e){
 		e.preventDefault();
 
-		darwin.projectManagerModule.setCommitExtractorType(true);
 	    darwin.projectManagerModule.setSampleIndex(0);	
 
-		darwin.Mediator.drawGenericGraph(darwin.Mediator.getCommitDetails(), "weeks", "week On week Commits", darwin.projectManagerModule.getSampleIndex(), "commit");
+	    drawCommitGraph();
 
 	});	
 	$('#sampleRate2Commits').on("click.darwin", function(e){
 		e.preventDefault();
 
-		darwin.projectManagerModule.setCommitExtractorType(true);
 	    darwin.projectManagerModule.setSampleIndex(1);	
 	    
-		darwin.Mediator.drawGenericGraph(darwin.Mediator.getCommitDetails(), "weeks", "week On week Commits", darwin.projectManagerModule.getSampleIndex(), "commit");
+	    drawCommitGraph();
 
 	});	
 	$('#sampleRate3Commits').on("click.darwin", function(e){
 		e.preventDefault();
 
-		darwin.projectManagerModule.setCommitExtractorType(true);
 	    darwin.projectManagerModule.setSampleIndex(2);	
 	    
-		darwin.Mediator.drawGenericGraph(darwin.Mediator.getCommitDetails(), "weeks", "week On week Commits", darwin.projectManagerModule.getSampleIndex(), "commit");
+	    drawCommitGraph();
 
 	});	
 	$('#sampleRate4Commits').on("click.darwin", function(e){
 		e.preventDefault();
 
-		darwin.projectManagerModule.setCommitExtractorType(true);
 	    darwin.projectManagerModule.setSampleIndex(3);	
 	    
-	    //add a redraw here
-		darwin.Mediator.drawGenericGraph(darwin.Mediator.getCommitDetails(), "weeks", "week On week Commits", darwin.projectManagerModule.getSampleIndex(), "commit");
-
+	    drawCommitGraph();
 	});	
+	
+	function drawCommitGraph(){
+		darwin.Mediator.drawGenericGraph(darwin.Mediator.getCommitDetails(), "weeks", "week On week Commits", darwin.projectManagerModule.getSampleIndex(), "commit");
+	}
+	
+	function resetCommit(){
+		darwin.progressbarModule.reset();
+	}
 });

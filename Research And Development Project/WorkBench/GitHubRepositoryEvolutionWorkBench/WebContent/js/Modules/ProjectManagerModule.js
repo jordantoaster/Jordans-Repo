@@ -12,7 +12,6 @@ darwin.projectManagerModule = (function() {
     var projectNames = [];
     var currRequestPage = 1;
     var commitSamplingRate = 6;
-    var commitExtractorType = false;
     var sampleIndex = 2;
     var currentProjectIndex = 0;
     var currentContribution = "difference";
@@ -140,12 +139,6 @@ darwin.projectManagerModule = (function() {
         enableButtons :  function(){
         	$('.btn-group button').removeAttr('disabled');
        	 	$("#commitHeader").text('You can now select another project');
-        },
-        setCommitExtractorType : function(type){
-        	commitExtractorType = type;
-        },
-        getCommitExtractorType : function(){
-        	return commitExtractorType;
         },
         getCurrentContributionMetric : function(){
         	return currentContribution;
