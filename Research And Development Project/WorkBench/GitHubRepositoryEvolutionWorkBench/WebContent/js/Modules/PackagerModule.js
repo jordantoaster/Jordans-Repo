@@ -14,13 +14,13 @@ darwin.packager = (function () {
     		  		
     		darwin.Mediator.makeServerRequest("storeContributions",darwin.Mediator.emptyCallback,"POST",requestData)	
     	},    
-    	commits : function(dates, commits, projectId){
+    	generic : function(dates, commits, projectId, action){
     		
     		var datesAsString = darwin.packager.convertDateObjectToString(dates);
     		var splitKey = "#";
-    		var requestData = commits.concat(splitKey).concat(datesAsString).concat(splitKey).concat(projectId);		    		
+    		var requestData = commits.concat(splitKey).concat(datesAsString).concat(splitKey).concat(projectId).concat(splitKey).concat(action);		    		
 
-    		darwin.Mediator.makeServerRequest("storeCommits",darwin.Mediator.emptyCallback,"POST",requestData)	
+    		darwin.Mediator.makeServerRequest("storeGeneric",darwin.Mediator.emptyCallback,"POST",requestData)	
     	},
     	convertDateObjectToString : function(dates){
     		var stringArray = [];

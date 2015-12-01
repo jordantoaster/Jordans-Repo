@@ -20,8 +20,8 @@ public class ActionFactory {
 			return new StoreContributionAction();
 		}
 		
-		if(input.equals("storeCommits")){
-			return new StoreCommitAction();
+		if(input.equals("storeGeneric")){
+			return new StoreGenericAction();
 		}
 		
 		return new NoAction();

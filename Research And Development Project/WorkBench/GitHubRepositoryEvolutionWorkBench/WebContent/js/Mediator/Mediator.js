@@ -95,8 +95,8 @@ darwin.Mediator = (function () {
 				darwin.packager.contributions(seriesA, SeriesB, seriesC,seriesD);
 			}
 		},
-		packagerCommits : function(dates, commits,dataType){
-			darwin.packager.commits(dates, commits,dataType);
+		packagerGeneric : function(dates, commits,projectname, action){
+			darwin.packager.generic(dates, commits,projectname, action);
 		},
 		emptyCallback : function(){
 			
