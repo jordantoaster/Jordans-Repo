@@ -6,7 +6,7 @@ var darwin = darwin || {};
 
 darwin.genericVisualiser = (function() {
 	return {
-		draw : function(values, xAxis, title, sampleIndex, action) {
+		draw : function(values, xAxis, title, sampleIndex, action, chartType) {
 			
 			//get smallest array iterate Num Here
 			//based on smallest sample index for each project			
@@ -56,15 +56,21 @@ darwin.genericVisualiser = (function() {
 			};
 			
 			if(action == "commit"){
-				// Create and draw the visualization.
-				new google.visualization.AreaChart(document
-						.getElementById('commitChart')).draw(data, options);
+				darwin.genericVisualiser.drawChart("commitChart", chartType, data, options);
 			}    
 			if(action == "star"){
-				// Create and draw the visualization.
-				new google.visualization.AreaChart(document
-						.getElementById('starChart')).draw(data, options);
+				darwin.genericVisualiser.drawChart("starChart", chartType, data, options);
 			}
+		},
+		drawChart : function(id, chartType, data, options){
+    	    // Create and draw the visualization - change depending on type of chart
+    	    if(chartType == "LineChart"){
+    	        new google.visualization.LineChart(document.getElementById(id)).draw(data, options);
+    	    } else if (chartType == "SteppedAreaChart") {
+    	    	new google.visualization.SteppedAreaChart(document.getElementById(id)).draw(data, options);
+    	    } else if (chartType == "ScatterChart") {
+    	    	new google.visualization.ScatterChart(document.getElementById(id)).draw(data, options);
+    	    }
 		}
 	};
 })();

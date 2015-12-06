@@ -8,7 +8,7 @@ darwin.customVisualiser = (function() {
 	return {
 		// commit data is indepedent from contributions, so it may come through bigger
 		//iteration count restricts it well. 
-		draw : function(values, xAxis, title, sampleIndex) {
+		draw : function(values, xAxis, title, sampleIndex, chartType) {
 			
     		//create data element for the chart
     	    var data = new google.visualization.DataTable();  
@@ -54,13 +54,18 @@ darwin.customVisualiser = (function() {
     	          startup: true,
     	        }
     	    };
-    	        
-    	    new google.visualization.LineChart(document.getElementById('customChart')).draw(data, options);
+    	            	    
+    	    if(chartType == "LineChart"){
+    	        new google.visualization.LineChart(document.getElementById('customChart')).draw(data, options);
+    	    } else if (chartType == "SteppedAreaChart") {
+    	    	new google.visualization.SteppedAreaChart(document.getElementById('customChart')).draw(data, options);
+    	    } else if (chartType == "ScatterChart") {
+    	    	new google.visualization.ScatterChart(document.getElementById('customChart')).draw(data, options);
+    	    }
     	        	
     		darwin.Mediator.resetCustomProcess();
     		darwin.Mediator.setCurrentCustomSearch(true);
 
-			console.log("done done done");
 		}
 	};
 })();

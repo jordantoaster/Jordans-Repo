@@ -18,6 +18,7 @@ darwin.projectManagerModule = (function() {
     var starProjectsAdded = 0;
     var commitProjectsAdded = 0;
     var spaceAjaxQueueAvaliable = true;
+    var chartType = "LineChart";
 		
     return {
     	loadCommitSelection: function (projects) {
@@ -26,6 +27,12 @@ darwin.projectManagerModule = (function() {
     			$("#starOptions").append('<button type="button" id="starOption'+(i+1)+'" class="btn btn-default">'+projects[i]+'</button>');
     		}
         },
+        setChartType : function(val){
+        	chartType = val;
+        }, 
+        getChartType : function(){
+        	return chartType;
+        }, 
         setCurrentProjectIndex: function(index){
         	currentProjectIndex = index
         },

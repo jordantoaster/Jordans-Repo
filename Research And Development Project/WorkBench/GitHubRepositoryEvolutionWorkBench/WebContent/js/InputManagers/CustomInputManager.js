@@ -155,12 +155,32 @@ $(document).ready(function(e) {
 	    redrawCustomGraph();
 	});	
 	
+	$('#chartType1Custom').on("click.darwin", function(e){
+		e.preventDefault();
+
+		darwin.Mediator.setChartType("LineChart");
+		redrawCustomGraph();
+	});
+	$('#chartType2Custom').on("click.darwin", function(e){
+		e.preventDefault();
+
+		darwin.Mediator.setChartType("SteppedAreaChart");
+		redrawCustomGraph();
+	});
+	$('#chartType3Custom').on("click.darwin", function(e){
+		e.preventDefault();
+
+		darwin.Mediator.setChartType("ScatterChart");
+		redrawCustomGraph();
+
+	});
+	
 	$('#submitButtonCustom').on("click.darwin", function(e){
-		darwin.Mediator.drawCustomGraph(darwin.dataManager.getCustomList(), "","", darwin.projectManagerModule.getSampleIndex());
+		darwin.Mediator.drawCustomGraph(darwin.dataManager.getCustomList(), "","", darwin.projectManagerModule.getSampleIndex(), darwin.Mediator.getChartType());
 	});	
 	
 	function redrawCustomGraph(){
-		darwin.Mediator.drawCustomGraph(darwin.dataManager.getCustomList(), "","", darwin.projectManagerModule.getSampleIndex());
+		darwin.Mediator.drawCustomGraph(darwin.dataManager.getCustomList(), "","", darwin.projectManagerModule.getSampleIndex(), darwin.Mediator.getChartType());
 	}
 	
 	function setupNewProject(){

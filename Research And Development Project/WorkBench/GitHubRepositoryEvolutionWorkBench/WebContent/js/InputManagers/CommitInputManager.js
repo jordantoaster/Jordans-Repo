@@ -58,9 +58,28 @@ $(document).ready(function(e) {
 	    
 	    drawCommitGraph();
 	});	
+	$('#chartType1Commits').on("click.darwin", function(e){
+		e.preventDefault();
+
+		darwin.Mediator.setChartType("LineChart");
+		drawCommitGraph();
+	});
+	$('#chartType2Commits').on("click.darwin", function(e){
+		e.preventDefault();
+
+		darwin.Mediator.setChartType("SteppedAreaChart");
+		drawCommitGraph();
+	});
+	$('#chartType3Commits').on("click.darwin", function(e){
+		e.preventDefault();
+
+		darwin.Mediator.setChartType("ScatterChart");
+		drawCommitGraph();
+
+	});
 	
 	function drawCommitGraph(){
-		darwin.Mediator.drawGenericGraph(darwin.Mediator.getCommitDetails(), "weeks", "week On week Commits", darwin.projectManagerModule.getSampleIndex(), "commit");
+		darwin.Mediator.drawGenericGraph(darwin.Mediator.getCommitDetails(), "weeks", "week On week Commits", darwin.projectManagerModule.getSampleIndex(), "commit", darwin.Mediator.getChartType());
 	}
 	
 	function resetCommit(){

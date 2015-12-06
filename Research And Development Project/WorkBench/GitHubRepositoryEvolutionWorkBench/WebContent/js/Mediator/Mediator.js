@@ -50,15 +50,16 @@ darwin.Mediator = (function () {
 		githubParseStarData: function (response, index) {
 			darwin.starExtractorModule.extract(response, index);
 		},
-		drawContributionGraph: function (values, xAxis, chartTitle, LOC, totalLines, sampleIndex) {			
-			darwin.ContributionVisualiser.draw(values, xAxis, chartTitle, sampleIndex);	
+		drawContributionGraph: function (values, xAxis, chartTitle, LOC, totalLines, sampleIndex, chartType) {	
+			
+			darwin.ContributionVisualiser.draw(values, xAxis, chartTitle, sampleIndex, chartType);	
 			
 			if(values.length == 1){
 				darwin.ContributionVisualiser.populateSupplementaryStats(LOC,totalLines);
 			}
 		},
-		drawGenericGraph: function (values, xAxis, chartTitle, sampleIndex, action) {			
-			darwin.genericVisualiser.draw(values, xAxis, chartTitle, sampleIndex, action);	
+		drawGenericGraph: function (values, xAxis, chartTitle, sampleIndex, action, chartType) {			
+			darwin.genericVisualiser.draw(values, xAxis, chartTitle, sampleIndex, action, chartType);	
 		},
 		drawStarGraph: function (values, xAxis, chartTitle, sampleIndex) {			
 			console.log("a");
@@ -215,8 +216,8 @@ darwin.Mediator = (function () {
 			darwin.dataManager.addToCustomList(array);
 			darwin.dataManager.addToCustomNameList(name);
 		},
-		drawCustomGraph: function (values, xAxis, chartTitle, sampleIndex) {			
-			darwin.customVisualiser.draw(values, xAxis, chartTitle, sampleIndex);	
+		drawCustomGraph: function (values, xAxis, chartTitle, sampleIndex, chartType) {			
+			darwin.customVisualiser.draw(values, xAxis, chartTitle, sampleIndex, chartType);	
 		},
 		resetCustomProcess : function(){
 			darwin.dataManager.clearCustomNameList();
@@ -239,6 +240,12 @@ darwin.Mediator = (function () {
 		},
 		updateStarProgress : function(val){
 			darwin.progressbarModule.updateStarProgress(val);
+		},
+		getChartType : function(){
+			return darwin.projectManagerModule.getChartType();
+		},
+		setChartType : function(val){
+			darwin.projectManagerModule.setChartType(val);
 		}
     };
 })();

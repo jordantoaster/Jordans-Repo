@@ -6,7 +6,7 @@ var darwin = darwin || {};
 
 darwin.ContributionVisualiser = (function () {
     return {
-    	draw: function (values, xAxis, chartTitle, sampleIndex) {
+    	draw: function (values, xAxis, chartTitle, sampleIndex, chartType) {
     		  
     		//create data element for the chart
     	    var data = new google.visualization.DataTable();   
@@ -53,10 +53,12 @@ darwin.ContributionVisualiser = (function () {
     	    };
     	        
     	    // Create and draw the visualization - change depending on type of chart
-    	    if(darwin.projectManagerModule.getCurrentContributionMetric() == "LOC"){
-    	        new google.visualization.SteppedAreaChart(document.getElementById('contributorChart')).draw(data, options);
-    	    } else {
-    	    	new google.visualization.LineChart(document.getElementById('contributorChart')).draw(data, options);
+    	    if(chartType == "LineChart"){
+    	        new google.visualization.LineChart(document.getElementById('contributorChart')).draw(data, options);
+    	    } else if (chartType == "SteppedAreaChart") {
+    	    	new google.visualization.SteppedAreaChart(document.getElementById('contributorChart')).draw(data, options);
+    	    } else if (chartType == "ScatterChart") {
+    	    	new google.visualization.ScatterChart(document.getElementById('contributorChart')).draw(data, options);
     	    }
     	    
     	    //update ui

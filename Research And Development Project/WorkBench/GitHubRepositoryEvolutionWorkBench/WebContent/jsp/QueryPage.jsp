@@ -91,6 +91,17 @@
     	  <li><a href="#" id="sampleRate4Contributions">26 Weeks</a></li>
   		</ul>
 		</div>
+		<div class="dropdown">
+  			<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    			Change Chart Type
+    		<span class="caret"></span>
+  		</button>
+  		<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+  		  <li><a href="#" id="chartType1Contribution"> Line Chart</a></li>
+  		  <li><a href="#" id="chartType2Contribution">Stepped Area Chart</a></li>
+  		  <li><a href="#" id="chartType3Contribution">Scatter Chart</a></li>
+  		</ul>
+		</div>
 		<p id="contributorTotalWeeks" class="contributorExtra"></p>
 		<p id="contributorLOC" class="contributorExtra"></p>
     	<div id="contributorChart"></div> 
@@ -110,6 +121,17 @@
     	  <li><a href="#" id="sampleRate4Commits">26 Weeks</a></li>
   		</ul>
 	  </div>
+	  <div class="dropdown">
+  			<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    			Change Chart Type
+    		<span class="caret"></span>
+  		</button>
+  		<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+  		  <li><a href="#" id="chartType1Commits"> Line Chart</a></li>
+  		  <li><a href="#" id="chartType2Commits">Stepped Area Chart</a></li>
+  		  <li><a href="#" id="chartType3Commits">Scatter Chart</a></li>
+  		</ul>
+		</div>
 	  <p class="inlineText" id="commitProgress"></p>
       <div id="commitChart"></div>  
     </div>
@@ -126,6 +148,17 @@
     	  <li><a href="#" id="sampleRate2Stars">6 Weeks</a></li>
     	  <li><a href="#" id="sampleRate3Stars">13 Weeks</a></li>
     	  <li><a href="#" id="sampleRate4Stars">26 Weeks</a></li>
+  		</ul>
+	  </div>
+	  <div class="dropdown">
+  			<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    			Change Chart Type
+    		<span class="caret"></span>
+  		</button>
+  		<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+  		  <li><a href="#" id="chartType1Stars"> Line Chart</a></li>
+  		  <li><a href="#" id="chartType2Stars">Stepped Area Chart</a></li>
+  		  <li><a href="#" id="chartType3Stars">Scatter Chart</a></li>
   		</ul>
 	  </div>
 	  <p class="inlineText" id="starProgress"></p>
@@ -151,6 +184,17 @@
     	  <li><a href="#" id="sampleRate4Custom">26 Weeks</a></li>
   		</ul>
   		</div>
+  		<div class="dropdown">
+  			<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    			Change Chart Type
+    		<span class="caret"></span>
+  		</button>
+  		<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+  		  <li><a href="#" id="chartType1Custom"> Line Chart</a></li>
+  		  <li><a href="#" id="chartType2Custom">Stepped Area Chart</a></li>
+  		  <li><a href="#" id="chartType3Custom">Scatter Chart</a></li>
+  		</ul>
+		</div>
 	    <div id="options">
 	    	<p class="inlineText" style="display:block;">Options</p>
 	    </div> 

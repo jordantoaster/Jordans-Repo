@@ -64,8 +64,28 @@ $(document).ready(function(e) {
 
 	});	
 	
+	$('#chartType1Stars').on("click.darwin", function(e){
+		e.preventDefault();
+
+		darwin.Mediator.setChartType("LineChart");
+		drawStarGraph();
+	});
+	$('#chartType2Stars').on("click.darwin", function(e){
+		e.preventDefault();
+
+		darwin.Mediator.setChartType("SteppedAreaChart");
+		drawStarGraph();
+	});
+	$('#chartType3Stars').on("click.darwin", function(e){
+		e.preventDefault();
+
+		darwin.Mediator.setChartType("ScatterChart");
+		drawStarGraph();
+
+	});
+	
 	function drawStarGraph(){
-		darwin.Mediator.drawGenericGraph(darwin.Mediator.getStarDetails(), "weeks", "week On week Commits", darwin.projectManagerModule.getSampleIndex(), "star");
+		darwin.Mediator.drawGenericGraph(darwin.Mediator.getStarDetails(), "weeks", "week On week Commits", darwin.projectManagerModule.getSampleIndex(), "star", darwin.Mediator.getChartType());
 	}
 
 	function starReset(){
