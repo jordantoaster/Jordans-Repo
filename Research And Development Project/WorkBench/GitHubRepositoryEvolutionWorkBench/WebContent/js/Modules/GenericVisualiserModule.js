@@ -64,6 +64,9 @@ darwin.genericVisualiser = (function() {
 			if(action == "fork"){
 				darwin.genericVisualiser.drawChart("ForkChart", chartType, data, options);
 			}
+			if(action == "tags"){
+				darwin.genericVisualiser.drawChart("TagsChart", chartType, data, options);
+			}
 		},
 		drawChart : function(id, chartType, data, options){
     	    // Create and draw the visualization - change depending on type of chart

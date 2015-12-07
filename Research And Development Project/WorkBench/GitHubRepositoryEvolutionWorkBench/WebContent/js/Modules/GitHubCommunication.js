@@ -23,8 +23,7 @@ darwin.githubModule = (function() {
     			      req.setRequestHeader('Authorization', 'Basic ' + btoa('jordantoaster:jordan321'));
     			  },
     			  success : function(response) {  
-    				  
-    				  darwin.Mediator.performSuccessAction(action, response, callback, index);   				  
+    				darwin.Mediator.performSuccessAction(action, response, callback, index);   
     			  },
     			  error: function() {
     		       	$('#ajaxGetUserServletResponse').text("An error occured when connecting to the API, make sure the url is correct");

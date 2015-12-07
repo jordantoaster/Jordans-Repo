@@ -15,8 +15,28 @@ darwin.jsonManagerModule = (function() {
 	var watcherArray = [];
 	var forkArray = [];
 	var mergedForks = [];
+	var TagsArray = [];
+	var mergedTags = [];
+	var tagSupplement = [];
+	var mergedTagSupplement = [];
 	
     return {
+    	getMergedSupplementTag: function (index) {
+    		return mergedTagSupplement[index];
+        },        
+    	getSupplementTag: function() {
+    		return tagSupplement;
+        },   
+        setSupplementTag : function (json, index){ //concatenate one request with another
+        	if(tagSupplement.length === 0){
+        		tagSupplement = [json]
+        	} else {
+        		tagSupplement.push.apply(tagSupplement, [json]);
+        	}
+        	if(json.length == 0){ //OR if(darwin.Mediator.getSupplementTag(index).length == darwin.Mediator.targetSupplementSize())
+        		darwin.jsonManagerModule.setMergedCommits(tagSupplement, index);
+        	}
+        },
         getContributionJson : function (index){
         	return contributionArray[index];
         },
@@ -34,6 +54,9 @@ darwin.jsonManagerModule = (function() {
         },
         getForkJson : function (){
         	return mergedForks[0];
+        },
+        getTagsJson : function (index){
+        	return mergedTags[index];
         },
         getWatcherJson : function (){
         	return mergedWatchers[0];
@@ -81,6 +104,19 @@ darwin.jsonManagerModule = (function() {
         		darwin.jsonManagerModule.setMergedForks(forkArray, index);
         	}
         },
+        setTagsJson : function (index, json){ //concatenate one request with another
+        	if(TagsArray.length === 0){
+        		TagsArray = json
+        	} else {
+        		TagsArray.push.apply(TagsArray, json);
+        	}
+        	if(json.length < 100){
+        		darwin.jsonManagerModule.setMergedTags(TagsArray, index);
+        	}
+        },
+        setMergedTags : function(TagsArray, index){
+        	mergedTags[index] = TagsArray;
+        },
         setMergedCommits : function(commitArray, index){
         	mergedCommits[index] = commitArray;
         },
@@ -105,6 +141,9 @@ darwin.jsonManagerModule = (function() {
         resetWatcherJson : function (){ //concatenate one request with another
         	watcherArray = [];
         },
+        resetTagsJson : function (){ //concatenate one request with another
+        	TagsArray = [];
+        },
         resetAllData : function(){
         	 contributionArray = [];
         	 mergedCommits = [];
@@ -114,7 +153,8 @@ darwin.jsonManagerModule = (function() {
         	 starArray = [];
         	 watcherArray = [];
         	 mergedForks = [];
-        	 forArray = [];
+        	 forkArray = [];
+        	 TagsArray = [];
         }
     };
 })();

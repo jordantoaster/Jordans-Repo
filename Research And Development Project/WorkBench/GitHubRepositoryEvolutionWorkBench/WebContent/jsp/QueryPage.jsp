@@ -22,6 +22,7 @@
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Mediator/Mediator.js?v4"></script>
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Utility/QueryPageUtility.js?v5"></script>
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/InputManagers/ContributionsInputManager.js?v6"></script>
+    <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/InputManagers/TagsInputManager.js?v6"></script>
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/InputManagers/WatcherInputManager.js?v6"></script>
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/InputManagers/ForkInputManager.js?v6"></script>
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/InputManagers/StarsInputManager.js?v6"></script>
@@ -49,7 +50,7 @@
       <li><a class="tabText disabled" data-toggle="tab" href="#ContributorTab">Contributors</a></li>
       <li><a class="tabText disabled" data-toggle="tab" href="#CommitTab">Commits</a></li>
       <li><a class="tabText disabled" data-toggle="tab" href="#StarTab">Stars</a></li>
-      <li><a class="tabText disabled" data-toggle="tab" href="#ReleasesTab">Forks</a></li>
+      <li><a class="tabText disabled" data-toggle="tab" href="#TagsTab">Tags</a></li>
       <li><a class="tabText disabled" data-toggle="tab" href="#ForkTab">Forks</a></li>
       <li><a class="tabText disabled" data-toggle="tab" href="#WatcherTab">Watchers</a></li>
       <li><a class="tabText disabled" data-toggle="tab" href="#CustomTab">Custom</a></li> 
@@ -169,19 +170,19 @@
 	  <p class="inlineText" id="starProgress"></p>
       <div id="starChart"></div>  
     </div>
-    <div id="ReleasesTab" class="tab-pane fade customTab">
-      <p class="inlineText" id="ReleasesHeader">Select a project(s) to get stars</p>
-      <div class="btn-group" id="ReleasesOptions" role="group" aria-label="..."></div>
+    <div id="TagsTab" class="tab-pane fade customTab">
+      <p class="inlineText" id="TagsHeader">Select a project(s) to get stars</p>
+      <div class="btn-group" id="TagsOptions" role="group" aria-label="..."></div>
       <div class="dropdown">
   			<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
     			Change Sampling Rate
     		<span class="caret"></span>
   		</button>
   		<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-  		  <li><a href="#" id="sampleRate1Releases">1 Week</a></li>
-    	  <li><a href="#" id="sampleRate2Releases">6 Weeks</a></li>
-    	  <li><a href="#" id="sampleRate3Releases">13 Weeks</a></li>
-    	  <li><a href="#" id="sampleRate4Releases">26 Weeks</a></li>
+  		  <li><a href="#" id="sampleRate1Tags">1 Week</a></li>
+    	  <li><a href="#" id="sampleRate2Tags">6 Weeks</a></li>
+    	  <li><a href="#" id="sampleRate3Tags">13 Weeks</a></li>
+    	  <li><a href="#" id="sampleRate4Tags">26 Weeks</a></li>
   		</ul>
 	  </div>
 	  <div class="dropdown">
@@ -190,13 +191,13 @@
     		<span class="caret"></span>
   		</button>
   		<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-  		  <li><a href="#" id="chartType1Releases"> Line Chart</a></li>
-  		  <li><a href="#" id="chartType2Releases">Stepped Area Chart</a></li>
-  		  <li><a href="#" id="chartType3Releases">Scatter Chart</a></li>
+  		  <li><a href="#" id="chartType1Tags"> Line Chart</a></li>
+  		  <li><a href="#" id="chartType2Tags">Stepped Area Chart</a></li>
+  		  <li><a href="#" id="chartType3Tags">Scatter Chart</a></li>
   		</ul>
 	  </div>
-	  <p class="inlineText" id="ReleasesProgress"></p>
-      <div id="ReleasesChart"></div>  
+	  <p class="inlineText" id="TagsProgress"></p>
+      <div id="TagsChart"></div>  
     </div>
     <div id="ForkTab" class="tab-pane fade customTab">
       <p class="inlineText" id="ForkHeader">Select a project(s) to get forks</p>

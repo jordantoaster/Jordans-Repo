@@ -36,7 +36,20 @@ darwin.AjaxResponseModule = (function () {
 				  if(action == "fork" && response.length != 0){
 					  darwin.Mediator.setForkJson(index,response)
 					  darwin.Mediator.updateForkProgress(response.length);
-				  }		 
+				  }		
+				  if(action == "tags" && response.length != 0){
+					  darwin.Mediator.setTagsJson(index,response)
+				  }	
+				  if(action == "tagSupplement" && response.length != 0){
+					  darwin.Mediator.setSupplementTag(response, index);
+					  darwin.Mediator.updateTagsProgress(1);
+					  
+					  if(darwin.Mediator.getSupplementTag(index).length == darwin.Mediator.targetSupplementSize()){
+						  callback(darwin.Mediator.getTagsJson(index), darwin.Mediator.getNumTagsProjectSelected(), "tags", darwin.Mediator.getSupplementTag(index));
+					  	  darwin.Mediator.setNumTagsProjectSelected();
+					  }
+
+				  }
 				 
 				  //Only when json is less then 100 is true callback made. 
 				  if(response.length == 0){    						
@@ -61,7 +74,9 @@ darwin.AjaxResponseModule = (function () {
 						  callback(darwin.Mediator.getForkJson(), darwin.Mediator.getNumForkProjectSelected(), action);
 						  darwin.Mediator.setNumForkProjectSelected();
 					  }
-						  	
+					  if(action == "tags"){
+						  darwin.Mediator.supplementTagData(darwin.Mediator.getTagsJson(index), callback, action, index);
+					  }  	
 						  					  
 					  
 				  } else { //else poll for next set of 100

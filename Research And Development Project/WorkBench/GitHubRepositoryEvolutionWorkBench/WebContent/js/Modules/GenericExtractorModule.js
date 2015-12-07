@@ -16,7 +16,7 @@ darwin.genericExtractorModule = (function() {
 		
     return {
     	// data comes in front to back, so < is used in place of > then reversed at the end
-    	extract: function (json, index, action) {   
+    	extract: function (json, index, action, supplementData) {   
     		    		
     		for(sampleIndex = 0; sampleIndex < 4;sampleIndex++){
     		
@@ -29,9 +29,12 @@ darwin.genericExtractorModule = (function() {
     			
     			
     			//commit json comes in back to front
-    			if(action == "commit" || action == "fork"){
+    			if(action == "commit" || action == "fork" || action == "tags"){
         			localJson.reverse();
     			}    
+    			if(action =="tags"){
+    				supplementData.reverse();
+    			}
     			
     			sampleIterator = 0;
     			data = [];
@@ -55,6 +58,9 @@ darwin.genericExtractorModule = (function() {
         			if(action == "fork"){
             			var date = darwin.ISO601toDateModule.convert(localJson[j].created_at);
         			}
+          			if(action == "tags"){
+          				var date = darwin.ISO601toDateModule.convert(supplementData[j].commit.committer.date);
+          			}
         			
         			
         			//if first date then intialise the structures
@@ -96,6 +102,9 @@ darwin.genericExtractorModule = (function() {
       			if(action == "fork"){
         			darwin.Mediator.setForkDetails(index, data, darwin.projectManagerModule.getProjectNames(), sampleIndex);
     			}
+      			if(action == "tags"){
+        			darwin.Mediator.setTagsDetails(index, data, darwin.projectManagerModule.getProjectNames(), sampleIndex);
+    			}
     					
         		//send to mongo for storage
     			//darwin.Mediator.packagerGeneric(dates, data, darwin.projectManagerModule.getProjectNamesIndex(index), action);  	
@@ -111,6 +120,9 @@ darwin.genericExtractorModule = (function() {
 			}
 			if(action == "fork"){
 	    		darwin.Mediator.drawGenericGraph(darwin.Mediator.getForkDetails(), "weeks", "week On week Forks", darwin.projectManagerModule.getSampleIndex(), action, darwin.Mediator.getChartType());
+			}
+			if(action == "tags"){
+	    		darwin.Mediator.drawGenericGraph(darwin.Mediator.getTagsDetails(), "weeks", "week On week Tags", darwin.projectManagerModule.getSampleIndex(), action, darwin.Mediator.getChartType());
 			}
 			    		
     		//enable clicking on another project

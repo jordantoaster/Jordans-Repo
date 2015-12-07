@@ -11,6 +11,7 @@ darwin.progressbarModule = (function() {
 	var starProgress =0;
 	var watcherProgress=0;
 	var forkProgress =0;
+	var tagsProgress =0;
 	
     return {
     	updateProgressBar: function () {
@@ -41,11 +42,16 @@ darwin.progressbarModule = (function() {
         	forkProgress = forkProgress + value;
             $('#ForkProgress').text("Forks Processed : " + forkProgress);
         },
+        updateReleaseProgress : function(value){
+        	tagsProgress = tagsProgress + value;
+            $('#TagsProgress').text("Tags Processed : " + tagsProgress);
+        },
         reset : function(){
         	 commitProgress =0;
         	 starProgress =0;
         	 watcherProgress=0;
         	 forkProgress = 0;
+        	 tagsProgress =0;
         }
     };
 })();

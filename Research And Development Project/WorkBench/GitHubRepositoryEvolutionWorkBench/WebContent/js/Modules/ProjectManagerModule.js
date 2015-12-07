@@ -21,15 +21,23 @@ darwin.projectManagerModule = (function() {
     var chartType = "LineChart";
     var watcherProjectsAdded =0;
     var forkProjectsAdded =0;
-
+    var releaseProjectsAdded = 0;
+    var supplementSize = 0;
 		
     return {
+    	setSupplmentSize : function(val){
+    		supplementSize = val;
+    	},
+    	getSupplementSize : function(){
+    		return supplementSize;
+    	},
     	loadProjectSelection: function (projects) {
     		for(var i=0;i<projects.length;i++){  			
     			$("#commitOptions").append('<button type="button" id="commitOption'+(i+1)+'" class="btn btn-default">'+projects[i]+'</button>');
     			$("#starOptions").append('<button type="button" id="starOption'+(i+1)+'" class="btn btn-default">'+projects[i]+'</button>');
     			$("#WatcherOptions").append('<button type="button" id="WatcherOption'+(i+1)+'" class="btn btn-default">'+projects[i]+'</button>');
     			$("#ForkOptions").append('<button type="button" id="ForkOption'+(i+1)+'" class="btn btn-default">'+projects[i]+'</button>');
+    			$("#TagsOptions").append('<button type="button" id="TagsOption'+(i+1)+'" class="btn btn-default">'+projects[i]+'</button>');
     		}
         },
         setChartType : function(val){
@@ -134,6 +142,7 @@ darwin.projectManagerModule = (function() {
     		$('#starOptions').empty();
     		$('#ForkOptions').empty();
     		$('#WatcherOptions').empty();
+    		$('#TagsOptions').empty();
         },
         disableTabs :  function(){
             $('.nav li').not('.active').addClass('disabled');
@@ -158,6 +167,10 @@ darwin.projectManagerModule = (function() {
         disableForkButton : function(){
         	$('.btn-group button').attr('disabled','disabled');   
         	$("#ForkHeader").text('Please wait until the data is collected');
+        },
+        disableTagsButton : function(){
+        	$('.btn-group button').attr('disabled','disabled');   
+        	$("#TagsHeader").text('Please wait until the data is collected');
         },
         enableButtons :  function(){
         	$('.btn-group button').removeAttr('disabled');
@@ -216,6 +229,12 @@ darwin.projectManagerModule = (function() {
 		setForkProjectsAdded : function(){
 			forkProjectsAdded = forkProjectsAdded +1;
 		},
+		getTagsProjectsAdded : function(){
+			return releaseProjectsAdded;
+		},
+		setTagsProjectsAdded : function(){
+			releaseProjectsAdded = releaseProjectsAdded +1;
+		},
 		resetForkProjectsAdded : function(){
 			forkProjectsAdded = 0;
 		},
@@ -249,6 +268,7 @@ darwin.projectManagerModule = (function() {
              currentContribution = "difference";
              starProjectsAdded = 0;
              commitProjectsAdded = 0;
+             releaseProjectsAdded = 0;
         }
     };
 })();

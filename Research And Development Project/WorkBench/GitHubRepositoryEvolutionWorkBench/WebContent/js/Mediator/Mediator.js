@@ -26,7 +26,7 @@ darwin.Mediator = (function () {
 		makeGithubRequest: function (url, callback, action) {
 				
 			//if not a stat api dataset then perform one manual call
-			if(action == "commit" || action == "star" || action == "watcher" || action == "fork"){
+			if(action == "commit" || action == "star" || action == "watcher" || action == "fork" || action == "tag"){
 				darwin.githubModule.send(url[0] + darwin.projectManagerModule.getcurrRequestPage(), callback, 0, action);
 			} else {
 				//if a stat api then loop each url, only send true callback on final url
@@ -44,8 +44,8 @@ darwin.Mediator = (function () {
 		githubParseContributionData: function (response) {
 			darwin.contributionExtractorModule.extract(response);
 		},
-		githubParseGenericData: function (response, index, action) {
-			darwin.genericExtractorModule.extract(response, index, action);
+		githubParseGenericData: function (response, index, action, supplement) {
+			darwin.genericExtractorModule.extract(response, index, action, supplement);
 		},
 		githubParseStarData: function (response, index) {
 			darwin.starExtractorModule.extract(response, index);
@@ -113,6 +113,9 @@ darwin.Mediator = (function () {
 		setForkDetails : function(index, commits, projectNames, sampleIndex){
 			darwin.dataManager.setForks(index, commits, projectNames, sampleIndex);
 		},
+		setTagsDetails : function(index, commits, projectNames, sampleIndex){
+			darwin.dataManager.setTags(index, commits, projectNames, sampleIndex);
+		},
 		getCommitDetails : function(){
 			return darwin.dataManager.getCommits();
 		},
@@ -121,6 +124,9 @@ darwin.Mediator = (function () {
 		},
 		getForkDetails : function(){
 			return darwin.dataManager.getForks();
+		},
+		getTagsDetails : function(){
+			return darwin.dataManager.getTags();
 		},
 		setNumCommitProjectSelected : function(){
 			darwin.projectManagerModule.setCommitProjectsAdded(darwin.Mediator.getNumCommitProjectSelected + 1);
@@ -140,11 +146,17 @@ darwin.Mediator = (function () {
 		getNumForkProjectSelected : function(){
 			return darwin.projectManagerModule.getForkProjectsAdded();
 		},
+		getNumTagsProjectSelected : function(){
+			return darwin.projectManagerModule.getTagsProjectsAdded();
+		},
 		setNumWatcherProjectSelected : function(){
 			darwin.projectManagerModule.setWatcherProjectsAdded();
 		},
 		setNumForkProjectSelected : function(){
 			darwin.projectManagerModule.setForkProjectsAdded();
+		},
+		setNumTagsProjectSelected : function(){
+			darwin.projectManagerModule.setTagsProjectsAdded();
 		},
 		getSmallestArray : function(json){
 			return darwin.arrayUtilityModule.getSmallestArray(json);
@@ -182,8 +194,17 @@ darwin.Mediator = (function () {
 		getForkJson : function(){
 			return darwin.jsonManagerModule.getForkJson()
 		},
+		getTagsJson : function(){
+			return darwin.jsonManagerModule.getTagsJson()
+		},
 		setForkJson : function(index, response){
 			darwin.jsonManagerModule.setForkJson(index,response)
+		},
+		setTagsJson : function(index, response){
+			darwin.jsonManagerModule.setTagsJson(index,response)
+		},
+		getTagsJson : function(index){
+			return 	darwin.jsonManagerModule.getTagsJson(index);
 		},
 		setcurrRequestPage : function(val){
 			darwin.projectManagerModule.setcurrRequestPage(val);
@@ -232,6 +253,22 @@ darwin.Mediator = (function () {
 			darwin.projectManagerModule.setBaseRequestUrl(0,url);
 			
 			darwin.Mediator.makeGithubRequest(darwin.projectManagerModule.getAllBaseRequestUrl(), darwin.Mediator.githubParseGenericData, "fork");		
+		},
+		prepareTagsClick : function(url){
+			darwin.jsonManagerModule.resetTagsJson();
+			darwin.projectManagerModule.resetBaseRequestUrl();
+			darwin.projectManagerModule.disableTagsButton();
+			
+			darwin.projectManagerModule.setBaseRequestUrl(0,url);
+			
+			darwin.Mediator.makeGithubRequest(darwin.projectManagerModule.getAllBaseRequestUrl(), darwin.Mediator.githubParseGenericData, "tags");		
+		},
+		getTagDate : function(sha, index){
+			var projectList = darwin.projectManagerModule.getProjectNames();
+			var project = projectList[index];
+			var commit = darwin.githubModule.send("https://api.github.com/repos"+project+"/commits/"+sha+"", darwin.projectManagerModule.noCallBack, index, "tagCommit")			
+		
+			return darwin.ISO601toDateModule.convert(commit.commit.committer.date);		
 		},
 		disableCommitButton : function(){
 			darwin.projectManagerModule.disableCommitButton();
@@ -292,11 +329,29 @@ darwin.Mediator = (function () {
 		updateForkProgress : function(val){
 			darwin.progressbarModule.updateForkProgress(val);
 		},
+		updateTagsProgress : function(val){
+			darwin.progressbarModule.updateReleaseProgress(val);
+		},
 		getChartType : function(){
 			return darwin.projectManagerModule.getChartType();
 		},
 		setChartType : function(val){
 			darwin.projectManagerModule.setChartType(val);
+		},
+		supplementTagData : function(tagData, callback, action, index){
+			darwin.projectManagerModule.setSupplmentSize(tagData.length);
+			for(var i = 0; i<tagData.length; i++){
+				darwin.Mediator.makeGithubRequestSingleUrl("https://api.github.com/repos"+darwin.projectManagerModule.getProjectNamesIndex(index)+"/commits/"+tagData[i].commit.sha+"", callback, index, "tagSupplement");
+			}
+		},
+		setSupplementTag : function(value, index){
+			darwin.jsonManagerModule.setSupplementTag(value, index);
+		},
+		getSupplementTag : function(){
+			return darwin.jsonManagerModule.getSupplementTag();
+		}, 
+		targetSupplementSize : function(){
+			return darwin.projectManagerModule.getSupplementSize();
 		}
     };
 })();
