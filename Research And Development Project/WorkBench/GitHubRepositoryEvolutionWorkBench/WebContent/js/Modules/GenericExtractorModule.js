@@ -91,7 +91,7 @@ darwin.genericExtractorModule = (function() {
     			}
     					
         		//send to mongo for storage
-    			darwin.Mediator.packagerGeneric(dates, data, darwin.projectManagerModule.getProjectNamesIndex(index), action);  	
+    			//darwin.Mediator.packagerGeneric(dates, data, darwin.projectManagerModule.getProjectNamesIndex(index), action);  	
     		
     		}
     		

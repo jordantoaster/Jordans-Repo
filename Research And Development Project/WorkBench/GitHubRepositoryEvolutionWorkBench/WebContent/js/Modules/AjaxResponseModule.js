@@ -7,8 +7,7 @@ var darwin = darwin || {};
 darwin.AjaxResponseModule = (function () {
     return {
     	handleSuccess: function (action, response, callback, index) {
-    		
-    		
+    				
 			  if(action == "contribution"){
 				  darwin.Mediator.setContributionJson(index,response);
 				  
@@ -29,6 +28,11 @@ darwin.AjaxResponseModule = (function () {
 					  darwin.Mediator.setStarJson(index,response)
 					  darwin.Mediator.updateStarProgress(response.length);
 				  }
+				  //watcher call does no return all 100 that i expect, so numbers are slightly off
+				  if(action == "watcher"){
+					  darwin.Mediator.setWatcherJson(index,response)
+					  darwin.Mediator.updateWatcherProgress(response.length);
+				  }
 				 
 				  //Only when json is less then 100 is true callback made. 
 				  if(response.length < 100){    						
@@ -44,6 +48,10 @@ darwin.AjaxResponseModule = (function () {
 					  if(action == "star"){
 						  callback(darwin.Mediator.getStarJson(), darwin.Mediator.getNumStarProjectSelected(), action);
 						  darwin.Mediator.setNumStarProjectSelected();
+					  }
+					  if(action == "watcher"){
+						  callback(darwin.Mediator.getWatcherJson(), darwin.Mediator.getNumStarProjectSelected(), action);
+						  darwin.Mediator.setNumWatcherProjectSelected();
 					  }
 						  					  
 					  

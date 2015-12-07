@@ -9,6 +9,7 @@ darwin.progressbarModule = (function() {
 	var adjustedWidth = 0;
 	var commitProgress =0;
 	var starProgress =0;
+	var watcherProgress=0;
 	
     return {
     	updateProgressBar: function () {
@@ -31,9 +32,14 @@ darwin.progressbarModule = (function() {
         	starProgress = starProgress + value;
             $('#starProgress').text("stars Processed : " + starProgress);
         },
+        updateWatcherProgress : function(value){
+        	watcherProgress = watcherProgress + value;
+            $('#WatcherProgress').text("Watchers Processed : " + watcherProgress);
+        },
         reset : function(){
         	 commitProgress =0;
         	 starProgress =0;
+        	 watcherProgress=0;
         }
     };
 })();

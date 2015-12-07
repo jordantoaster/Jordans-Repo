@@ -19,12 +19,14 @@ darwin.projectManagerModule = (function() {
     var commitProjectsAdded = 0;
     var spaceAjaxQueueAvaliable = true;
     var chartType = "LineChart";
+    var watcherProjectsAdded =0;
 		
     return {
-    	loadCommitSelection: function (projects) {
+    	loadProjectSelection: function (projects) {
     		for(var i=0;i<projects.length;i++){  			
     			$("#commitOptions").append('<button type="button" id="commitOption'+(i+1)+'" class="btn btn-default">'+projects[i]+'</button>');
     			$("#starOptions").append('<button type="button" id="starOption'+(i+1)+'" class="btn btn-default">'+projects[i]+'</button>');
+    			$("#WatcherOptions").append('<button type="button" id="WatcherOption'+(i+1)+'" class="btn btn-default">'+projects[i]+'</button>');
     		}
         },
         setChartType : function(val){
@@ -144,6 +146,10 @@ darwin.projectManagerModule = (function() {
         	$('.btn-group button').attr('disabled','disabled');   
         	$("#starHeader").text('Please wait until the data is collected');
         },
+        disableWatcherButton : function(){
+        	$('.btn-group button').attr('disabled','disabled');   
+        	$("#watcherHeader").text('Please wait until the data is collected');
+        },
         enableButtons :  function(){
         	$('.btn-group button').removeAttr('disabled');
        	 	$("#commitHeader").text('You can now select another project');
@@ -188,6 +194,15 @@ darwin.projectManagerModule = (function() {
 		},
 		resetStarProjectsAdded : function(){
 			starProjectsAdded = 0;
+		},
+		setWatcherProjectsAdded : function(){
+			watcherProjectsAdded = watcherProjectsAdded +1;
+		},
+		getWatcherProjectsAdded : function(){
+			return watcherProjectsAdded;
+		},
+		resetWatcherProjectsAdded : function(){
+			watcherProjectsAdded = 0;
 		},
 		setCommitProjectsAdded : function(){
 			commitProjectsAdded = commitProjectsAdded +1;

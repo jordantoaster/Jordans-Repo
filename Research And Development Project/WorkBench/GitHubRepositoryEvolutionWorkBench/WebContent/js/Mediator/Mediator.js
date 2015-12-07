@@ -44,7 +44,7 @@ darwin.Mediator = (function () {
 		githubParseContributionData: function (response) {
 			darwin.contributionExtractorModule.extract(response);
 		},
-		githubParseCommitData: function (response, index, action) {
+		githubParseGenericData: function (response, index, action) {
 			darwin.genericExtractorModule.extract(response, index, action);
 		},
 		githubParseStarData: function (response, index) {
@@ -131,6 +131,12 @@ darwin.Mediator = (function () {
 		setNumStarProjectSelected : function(){
 			darwin.projectManagerModule.setStarProjectsAdded();
 		},
+		getNumWatcherProjectSelected : function(){
+			return darwin.projectManagerModule.getWatcherProjectsAdded();
+		},
+		setNumWatcherProjectSelected : function(){
+			darwin.projectManagerModule.setWatcherProjectsAdded();
+		},
 		getSmallestArray : function(json){
 			return darwin.arrayUtilityModule.getSmallestArray(json);
 		},
@@ -146,6 +152,9 @@ darwin.Mediator = (function () {
 		setStarJson : function(index, response){
 			darwin.jsonManagerModule.setStarJson(index,response)
 		},
+		setWatcherJson : function(index, response){
+			darwin.jsonManagerModule.setWatcherJson(index,response)
+		},
 		resetcurrRequestPage : function(index){
 			darwin.projectManagerModule.resetcurrRequestPage(index);
 		},
@@ -157,6 +166,9 @@ darwin.Mediator = (function () {
 		},
 		getStarJson : function(){
 			return darwin.jsonManagerModule.getStarJson()
+		},
+		getWatcherJson : function(){
+			return darwin.jsonManagerModule.getWatcherJson()
 		},
 		setcurrRequestPage : function(val){
 			darwin.projectManagerModule.setcurrRequestPage(val);
@@ -177,7 +189,7 @@ darwin.Mediator = (function () {
 			
 			darwin.projectManagerModule.setBaseRequestUrl(0,url);
 			
-			darwin.Mediator.makeGithubRequest(darwin.projectManagerModule.getAllBaseRequestUrl(), darwin.Mediator.githubParseCommitData, "commit");		
+			darwin.Mediator.makeGithubRequest(darwin.projectManagerModule.getAllBaseRequestUrl(), darwin.Mediator.githubParseGenericData, "commit");		
 		},
 		prepareStarClick : function(url){
 			darwin.jsonManagerModule.resetStarJson();
@@ -186,7 +198,16 @@ darwin.Mediator = (function () {
 			
 			darwin.projectManagerModule.setBaseRequestUrl(0,url);
 			
-			darwin.Mediator.makeGithubRequest(darwin.projectManagerModule.getAllBaseRequestUrl(), darwin.Mediator.githubParseCommitData, "star");		
+			darwin.Mediator.makeGithubRequest(darwin.projectManagerModule.getAllBaseRequestUrl(), darwin.Mediator.githubParseGenericData, "star");		
+		},
+		prepareWatcherClick : function(url){
+			darwin.jsonManagerModule.resetWatcherJson();
+			darwin.projectManagerModule.resetBaseRequestUrl();
+			darwin.projectManagerModule.disableWatcherButton();
+			
+			darwin.projectManagerModule.setBaseRequestUrl(0,url);
+			
+			darwin.Mediator.makeGithubRequest(darwin.projectManagerModule.getAllBaseRequestUrl(), darwin.Mediator.githubParseGenericData, "watcher");		
 		},
 		disableCommitButton : function(){
 			darwin.projectManagerModule.disableCommitButton();
@@ -240,6 +261,9 @@ darwin.Mediator = (function () {
 		},
 		updateStarProgress : function(val){
 			darwin.progressbarModule.updateStarProgress(val);
+		},
+		updateWatcherProgress : function(val){
+			darwin.progressbarModule.updateWatcherProgress(val);
 		},
 		getChartType : function(){
 			return darwin.projectManagerModule.getChartType();

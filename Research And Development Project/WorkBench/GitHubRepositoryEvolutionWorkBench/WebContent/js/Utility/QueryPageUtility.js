@@ -44,7 +44,7 @@ $(document).ready(function(e) {
 	    darwin.Mediator.makeGithubRequest(darwin.projectManagerModule.getAllBaseRequestUrl(), darwin.Mediator.githubParseContributionData, "contribution");
 	       
 	    //Load options for manual pages
-	    darwin.projectManagerModule.loadCommitSelection(darwin.projectManagerModule.getProjectNames());
+	    darwin.projectManagerModule.loadProjectSelection(darwin.projectManagerModule.getProjectNames());
 	        	    
 	    //activate tabs at the end of the process
     	darwin.projectManagerModule.enableTabs();
