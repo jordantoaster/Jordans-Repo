@@ -23,6 +23,7 @@
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Utility/QueryPageUtility.js?v5"></script>
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/InputManagers/ContributionsInputManager.js?v6"></script>
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/InputManagers/WatcherInputManager.js?v6"></script>
+    <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/InputManagers/ForkInputManager.js?v6"></script>
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/InputManagers/StarsInputManager.js?v6"></script>
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/InputManagers/CustomInputManager.js?v6"></script>
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/InputManagers/CommitInputManager.js?v7"></script>
@@ -48,6 +49,8 @@
       <li><a class="tabText disabled" data-toggle="tab" href="#ContributorTab">Contributors</a></li>
       <li><a class="tabText disabled" data-toggle="tab" href="#CommitTab">Commits</a></li>
       <li><a class="tabText disabled" data-toggle="tab" href="#StarTab">Stars</a></li>
+      <li><a class="tabText disabled" data-toggle="tab" href="#ReleasesTab">Forks</a></li>
+      <li><a class="tabText disabled" data-toggle="tab" href="#ForkTab">Forks</a></li>
       <li><a class="tabText disabled" data-toggle="tab" href="#WatcherTab">Watchers</a></li>
       <li><a class="tabText disabled" data-toggle="tab" href="#CustomTab">Custom</a></li> 
     </ul>
@@ -166,6 +169,64 @@
 	  <p class="inlineText" id="starProgress"></p>
       <div id="starChart"></div>  
     </div>
+    <div id="ReleasesTab" class="tab-pane fade customTab">
+      <p class="inlineText" id="ReleasesHeader">Select a project(s) to get stars</p>
+      <div class="btn-group" id="ReleasesOptions" role="group" aria-label="..."></div>
+      <div class="dropdown">
+  			<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    			Change Sampling Rate
+    		<span class="caret"></span>
+  		</button>
+  		<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+  		  <li><a href="#" id="sampleRate1Releases">1 Week</a></li>
+    	  <li><a href="#" id="sampleRate2Releases">6 Weeks</a></li>
+    	  <li><a href="#" id="sampleRate3Releases">13 Weeks</a></li>
+    	  <li><a href="#" id="sampleRate4Releases">26 Weeks</a></li>
+  		</ul>
+	  </div>
+	  <div class="dropdown">
+  			<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    			Change Chart Type
+    		<span class="caret"></span>
+  		</button>
+  		<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+  		  <li><a href="#" id="chartType1Releases"> Line Chart</a></li>
+  		  <li><a href="#" id="chartType2Releases">Stepped Area Chart</a></li>
+  		  <li><a href="#" id="chartType3Releases">Scatter Chart</a></li>
+  		</ul>
+	  </div>
+	  <p class="inlineText" id="ReleasesProgress"></p>
+      <div id="ReleasesChart"></div>  
+    </div>
+    <div id="ForkTab" class="tab-pane fade customTab">
+      <p class="inlineText" id="ForkHeader">Select a project(s) to get forks</p>
+      <div class="btn-group" id="ForkOptions" role="group" aria-label="..."></div>
+      <div class="dropdown">
+  			<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    			Change Sampling Rate
+    		<span class="caret"></span>
+  		</button>
+  		<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+  		  <li><a href="#" id="sampleRate1Fork">1 Week</a></li>
+    	  <li><a href="#" id="sampleRate2Fork">6 Weeks</a></li>
+    	  <li><a href="#" id="sampleRate3Fork">13 Weeks</a></li>
+    	  <li><a href="#" id="sampleRate4Fork">26 Weeks</a></li>
+  		</ul>
+	  </div>
+	  <div class="dropdown">
+  			<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    			Change Chart Type
+    		<span class="caret"></span>
+  		</button>
+  		<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+  		  <li><a href="#" id="chartType1Fork"> Line Chart</a></li>
+  		  <li><a href="#" id="chartType2Fork">Stepped Area Chart</a></li>
+  		  <li><a href="#" id="chartType3Fork">Scatter Chart</a></li>
+  		</ul>
+	  </div>
+	  <p class="inlineText" id="ForkProgress"></p>
+      <div id="ForkChart"></div>  
+    </div>
     <div id="WatcherTab" class="tab-pane fade customTab">
       <p class="inlineText" id="watcherHeader">Select a project(s) to get stars</p>
       <div class="btn-group" id="WatcherOptions" role="group" aria-label="..."></div>
@@ -192,7 +253,7 @@
   		  <li><a href="#" id="chartType3Watcher">Scatter Chart</a></li>
   		</ul>
 	  </div>
-	  <p class="inlineText" id=watcherProgress"></p>
+	  <p class="inlineText" id="watcherProgress"></p>
       <div id="watcherChart"></div>  
     </div>
     <div id="CustomTab" class="tab-pane fade customTab">

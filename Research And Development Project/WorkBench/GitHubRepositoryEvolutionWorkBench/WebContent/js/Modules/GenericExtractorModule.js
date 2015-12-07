@@ -29,7 +29,7 @@ darwin.genericExtractorModule = (function() {
     			
     			
     			//commit json comes in back to front
-    			if(action == "commit"){
+    			if(action == "commit" || action == "fork"){
         			localJson.reverse();
     			}    
     			
@@ -52,6 +52,10 @@ darwin.genericExtractorModule = (function() {
         			if(action == "star"){
             			var date = darwin.ISO601toDateModule.convert(localJson[j].starred_at);
         			}
+        			if(action == "fork"){
+            			var date = darwin.ISO601toDateModule.convert(localJson[j].created_at);
+        			}
+        			
         			
         			//if first date then intialise the structures
     				if(firstDate){
@@ -89,6 +93,9 @@ darwin.genericExtractorModule = (function() {
     			if(action == "star"){
         			darwin.Mediator.setStarDetails(index, data, darwin.projectManagerModule.getProjectNames(), sampleIndex);
     			}
+      			if(action == "fork"){
+        			darwin.Mediator.setForkDetails(index, data, darwin.projectManagerModule.getProjectNames(), sampleIndex);
+    			}
     					
         		//send to mongo for storage
     			//darwin.Mediator.packagerGeneric(dates, data, darwin.projectManagerModule.getProjectNamesIndex(index), action);  	
@@ -101,6 +108,9 @@ darwin.genericExtractorModule = (function() {
 			}    
 			if(action == "star"){
 	    		darwin.Mediator.drawGenericGraph(darwin.Mediator.getStarDetails(), "weeks", "week On week Stars", darwin.projectManagerModule.getSampleIndex(), action, darwin.Mediator.getChartType());
+			}
+			if(action == "fork"){
+	    		darwin.Mediator.drawGenericGraph(darwin.Mediator.getForkDetails(), "weeks", "week On week Forks", darwin.projectManagerModule.getSampleIndex(), action, darwin.Mediator.getChartType());
 			}
 			    		
     		//enable clicking on another project

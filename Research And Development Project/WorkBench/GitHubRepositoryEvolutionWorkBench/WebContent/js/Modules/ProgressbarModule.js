@@ -10,6 +10,7 @@ darwin.progressbarModule = (function() {
 	var commitProgress =0;
 	var starProgress =0;
 	var watcherProgress=0;
+	var forkProgress =0;
 	
     return {
     	updateProgressBar: function () {
@@ -36,10 +37,15 @@ darwin.progressbarModule = (function() {
         	watcherProgress = watcherProgress + value;
             $('#WatcherProgress').text("Watchers Processed : " + watcherProgress);
         },
+        updateForkProgress : function(value){
+        	forkProgress = forkProgress + value;
+            $('#ForkProgress').text("Forks Processed : " + forkProgress);
+        },
         reset : function(){
         	 commitProgress =0;
         	 starProgress =0;
         	 watcherProgress=0;
+        	 forkProgress = 0;
         }
     };
 })();

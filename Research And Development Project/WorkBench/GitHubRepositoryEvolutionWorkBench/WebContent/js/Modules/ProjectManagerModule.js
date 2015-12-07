@@ -20,6 +20,8 @@ darwin.projectManagerModule = (function() {
     var spaceAjaxQueueAvaliable = true;
     var chartType = "LineChart";
     var watcherProjectsAdded =0;
+    var forkProjectsAdded =0;
+
 		
     return {
     	loadProjectSelection: function (projects) {
@@ -27,6 +29,7 @@ darwin.projectManagerModule = (function() {
     			$("#commitOptions").append('<button type="button" id="commitOption'+(i+1)+'" class="btn btn-default">'+projects[i]+'</button>');
     			$("#starOptions").append('<button type="button" id="starOption'+(i+1)+'" class="btn btn-default">'+projects[i]+'</button>');
     			$("#WatcherOptions").append('<button type="button" id="WatcherOption'+(i+1)+'" class="btn btn-default">'+projects[i]+'</button>');
+    			$("#ForkOptions").append('<button type="button" id="ForkOption'+(i+1)+'" class="btn btn-default">'+projects[i]+'</button>');
     		}
         },
         setChartType : function(val){
@@ -76,7 +79,7 @@ darwin.projectManagerModule = (function() {
         	currRequestPage = currRequestPage + val;
         },
         resetcurrRequestPage: function(){
-        	currRequestPage = 0;
+        	currRequestPage = 1;
         },
         getcurrRequestPage: function(){ 
         	return currRequestPage;
@@ -129,6 +132,8 @@ darwin.projectManagerModule = (function() {
     		$('#options').empty();  
     		$('#commitOptions').empty();
     		$('#starOptions').empty();
+    		$('#ForkOptions').empty();
+    		$('#WatcherOptions').empty();
         },
         disableTabs :  function(){
             $('.nav li').not('.active').addClass('disabled');
@@ -149,6 +154,10 @@ darwin.projectManagerModule = (function() {
         disableWatcherButton : function(){
         	$('.btn-group button').attr('disabled','disabled');   
         	$("#watcherHeader").text('Please wait until the data is collected');
+        },
+        disableForkButton : function(){
+        	$('.btn-group button').attr('disabled','disabled');   
+        	$("#ForkHeader").text('Please wait until the data is collected');
         },
         enableButtons :  function(){
         	$('.btn-group button').removeAttr('disabled');
@@ -200,6 +209,15 @@ darwin.projectManagerModule = (function() {
 		},
 		getWatcherProjectsAdded : function(){
 			return watcherProjectsAdded;
+		},
+		getForkProjectsAdded : function(){
+			return forkProjectsAdded;
+		},
+		setForkProjectsAdded : function(){
+			forkProjectsAdded = forkProjectsAdded +1;
+		},
+		resetForkProjectsAdded : function(){
+			forkProjectsAdded = 0;
 		},
 		resetWatcherProjectsAdded : function(){
 			watcherProjectsAdded = 0;

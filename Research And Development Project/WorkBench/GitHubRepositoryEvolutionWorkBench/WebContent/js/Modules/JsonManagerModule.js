@@ -13,6 +13,8 @@ darwin.jsonManagerModule = (function() {
 	var commitArray = []; //each inner array represents a project
 	var starArray = [];
 	var watcherArray = [];
+	var forkArray = [];
+	var mergedForks = [];
 	
     return {
         getContributionJson : function (index){
@@ -29,6 +31,9 @@ darwin.jsonManagerModule = (function() {
         },
         getStarJson : function (){
         	return mergedStars[0];
+        },
+        getForkJson : function (){
+        	return mergedForks[0];
         },
         getWatcherJson : function (){
         	return mergedWatchers[0];
@@ -66,6 +71,16 @@ darwin.jsonManagerModule = (function() {
         		darwin.jsonManagerModule.setMergedWatchers(watcherArray, index);
         	}
         },
+        setForkJson : function (index, json){ //concatenate one request with another
+        	if(forkArray.length === 0){
+        		forkArray = json
+        	} else {
+        		watcherArray.push.apply(forkArray, json);
+        	}
+        	if(json.length < 100){
+        		darwin.jsonManagerModule.setMergedForks(forkArray, index);
+        	}
+        },
         setMergedCommits : function(commitArray, index){
         	mergedCommits[index] = commitArray;
         },
@@ -75,14 +90,17 @@ darwin.jsonManagerModule = (function() {
         setMergedWatchers : function(watcherArray, index){
         	mergedWatchers[index] = watcherArray;
         },
+        setMergedForks : function(forkArray, index){
+        	mergedForks[index] = forkArray;
+        },
         resetCommitJson : function (){ //concatenate one request with another
         	commitArray = [];
         },
         resetStarJson : function (){ //concatenate one request with another
         	starArray = [];
         },
-        resetWatcherJson : function (){ //concatenate one request with another
-        	watcherArray = [];
+        resetForkJson : function (){ //concatenate one request with another
+        	forkArray = [];
         },
         resetWatcherJson : function (){ //concatenate one request with another
         	watcherArray = [];
@@ -95,6 +113,8 @@ darwin.jsonManagerModule = (function() {
         	 commitArray = [];
         	 starArray = [];
         	 watcherArray = [];
+        	 mergedForks = [];
+        	 forArray = [];
         }
     };
 })();
