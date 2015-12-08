@@ -27,7 +27,7 @@ darwin.Mediator = (function () {
 				
 			//if not a stat api dataset then perform one manual call
 			if(action == "commit"){
-				darwin.githubModule.send(url[0] + darwin.projectManagerModule.getcurrRequestPage(), callback, 0, action);
+				darwin.githubModule.send(url[0] + darwin.projectManagerModule.getcurrRequestPage(), callback, index, action);
 			}
 			else if(action == "star"){
 				darwin.githubModule.send(url[0] + darwin.projectManagerModule.getcurrRequestPage(), callback, 0, action);
@@ -230,14 +230,16 @@ darwin.Mediator = (function () {
 		makeGithubRequestSingleUrl : function(url, callback, index, action){
 			  darwin.githubModule.send(url, callback, index, action);
 		},
-		prepareCommitClick : function(url){
+		prepareCommitClick : function(url, projectName){
 			darwin.jsonManagerModule.resetCommitJson(url);
 			darwin.projectManagerModule.resetBaseRequestUrl();
 			darwin.Mediator.disableCommitButton();
 			
+			index = darwin.Mediator.getProjNameIndex(projectName);
+			
 			darwin.projectManagerModule.setBaseRequestUrl(0,url);
 			
-			darwin.Mediator.makeGithubRequest(darwin.projectManagerModule.getAllBaseRequestUrl(), darwin.Mediator.githubParseGenericData, "commit");		
+			darwin.Mediator.makeGithubRequest(darwin.projectManagerModule.getAllBaseRequestUrl(), darwin.Mediator.githubParseGenericData, "commit", index);		
 		},
 		prepareStarClick : function(url){
 			darwin.jsonManagerModule.resetStarJson();

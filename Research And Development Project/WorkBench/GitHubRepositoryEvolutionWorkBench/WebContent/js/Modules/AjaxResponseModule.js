@@ -63,19 +63,19 @@ darwin.AjaxResponseModule = (function () {
 					  
 					  if(action == "commit"){
 						  //gets the commits and passes in the index (how many commits selected)
-						  callback(darwin.Mediator.getIndexCommitJson(index), darwin.Mediator.getNumCommitProjectSelected(), action);  
+						  callback(darwin.Mediator.getIndexCommitJson(index), index, action);  
 						  darwin.Mediator.setNumCommitProjectSelected();
 					  }
 					  if(action == "star"){
-						  callback(darwin.Mediator.getStarJson(), darwin.Mediator.getNumStarProjectSelected(), action);
+						  callback(darwin.Mediator.getStarJson(), index, action);
 						  darwin.Mediator.setNumStarProjectSelected();
 					  }
 					  if(action == "watcher"){
-						  callback(darwin.Mediator.getWatcherJson(), darwin.Mediator.getNumWatcherProjectSelected(), action);
+						  callback(darwin.Mediator.getWatcherJson(), index, action);
 						  darwin.Mediator.setNumWatcherProjectSelected();
 					  }
 					  if(action == "fork"){
-						  callback(darwin.Mediator.getForkJson(), darwin.Mediator.getNumForkProjectSelected(), action);
+						  callback(darwin.Mediator.getForkJson(), index, action);
 						  darwin.Mediator.setNumForkProjectSelected();
 					  }
 					  if(action == "tags"){
