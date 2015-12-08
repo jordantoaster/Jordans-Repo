@@ -26,8 +26,20 @@ darwin.Mediator = (function () {
 		makeGithubRequest: function (url, callback, action) {
 				
 			//if not a stat api dataset then perform one manual call
-			if(action == "commit" || action == "star" || action == "watcher" || action == "fork" || action == "tag"){
+			if(action == "commit"){
 				darwin.githubModule.send(url[0] + darwin.projectManagerModule.getcurrRequestPage(), callback, 0, action);
+			}
+			else if(action == "star"){
+				darwin.githubModule.send(url[0] + darwin.projectManagerModule.getcurrRequestPage(), callback, 0, action);
+			}
+			else if(action == "watcher"){
+				darwin.githubModule.send(url[0] + darwin.projectManagerModule.getcurrRequestPage(), callback, 0, action);
+			}
+			else if(action == "fork"){
+				darwin.githubModule.send(url[0] + darwin.projectManagerModule.getcurrRequestPage(), callback, 0, action);
+			}
+			else if(action == "tags"){
+				darwin.githubModule.send(url[0] + darwin.projectManagerModule.getcurrRequestPage(), callback, darwin.projectManagerModule.getTagsProjectsAdded(), action);
 			} else {
 				//if a stat api then loop each url, only send true callback on final url
 				for(i=0;i<url.length;i++){
@@ -338,20 +350,66 @@ darwin.Mediator = (function () {
 		setChartType : function(val){
 			darwin.projectManagerModule.setChartType(val);
 		},
-		supplementTagData : function(tagData, callback, action, index){
-			darwin.projectManagerModule.setSupplmentSize(tagData.length);
-			for(var i = 0; i<tagData.length; i++){
-				darwin.Mediator.makeGithubRequestSingleUrl("https://api.github.com/repos"+darwin.projectManagerModule.getProjectNamesIndex(index)+"/commits/"+tagData[i].commit.sha+"", callback, index, "tagSupplement");
-			}
+		supplementTagData : function(callback, action, index){
+			tagData = darwin.Mediator.getTagsJson(index);
+			darwin.projectManagerModule.setSupplmentSize(tagData.length); 
+			darwin.Mediator.makeGithubRequestSingleUrl("https://api.github.com/repos"+darwin.projectManagerModule.getSelectedTagProject(index)+"/commits/"+tagData[darwin.Mediator.getTagSuppIndex()].commit.sha+"", callback, index, "tagSupplement");
 		},
 		setSupplementTag : function(value, index){
 			darwin.jsonManagerModule.setSupplementTag(value, index);
+		},
+		getTagSuppIndex : function(){
+			return darwin.projectManagerModule.getTagSuppIndex();
+		},
+		setTagSuppIndex : function(){
+			darwin.projectManagerModule.setTagSuppIndex();
+		},
+		resetTagSuppIndex : function(){
+			darwin.projectManagerModule.resetTagSuppIndex();
 		},
 		getSupplementTag : function(){
 			return darwin.jsonManagerModule.getSupplementTag();
 		}, 
 		targetSupplementSize : function(){
 			return darwin.projectManagerModule.getSupplementSize();
+		},
+		sortSuppDataDates : function(index){
+			
+			(function(){
+				  if (typeof Object.defineProperty === 'function'){
+				    try{Object.defineProperty(Array.prototype,'sortBy',{value:sb}); }catch(e){}
+				  }
+				  if (!Array.prototype.sortBy) Array.prototype.sortBy = sb;
+
+				  function sb(f){
+				    for (var i=this.length;i;){
+				      var o = this[--i];
+				      this[i] = [].concat(f.call(o,o,i),o);
+				    }
+				    this.sort(function(a,b){
+				      for (var i=0,len=a.length;i<len;++i){
+				        if (a[i]!=b[i]) return a[i]<b[i]?-1:1;
+				      }
+				      return 0;
+				    });
+				    for (var i=this.length;i;){
+				      this[--i]=this[i][this[i].length-1];
+				    }
+				    return this;
+				  }
+				})();
+			
+			var data = darwin.Mediator.getSupplementTag(index);
+			var dateArray = [];
+			
+			for(var i=0;i<data.length;i++){
+				dateArray[i] = darwin.ISO601toDateModule.convert(data[i].commit.committer.date);
+			}
+			
+			dateArray.sortBy(function(o){ return o.date });
+			
+			return dateArray;
+			
 		}
     };
 })();

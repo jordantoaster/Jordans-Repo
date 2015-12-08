@@ -143,6 +143,7 @@ darwin.jsonManagerModule = (function() {
         },
         resetTagsJson : function (){ //concatenate one request with another
         	TagsArray = [];
+        	tagSupplement = [];
         },
         resetAllData : function(){
         	 contributionArray = [];

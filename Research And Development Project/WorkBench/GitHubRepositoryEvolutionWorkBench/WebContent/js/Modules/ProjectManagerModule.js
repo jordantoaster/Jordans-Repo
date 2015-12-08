@@ -23,8 +23,25 @@ darwin.projectManagerModule = (function() {
     var forkProjectsAdded =0;
     var releaseProjectsAdded = 0;
     var supplementSize = 0;
+    var tagSuppIndex = 0;
+    var selectedTagProject = [];
 		
     return {
+    	getSelectedTagProject : function(index){
+    		return selectedTagProject[index];
+    	},
+    	setSelectedTagProject : function(index, name){
+    		selectedTagProject[index] = name;
+    	},
+    	getTagSuppIndex: function(){
+    		return tagSuppIndex
+    	},
+    	setTagSuppIndex : function(){
+    		tagSuppIndex = tagSuppIndex + 1;
+    	},
+    	resetTagSuppIndex : function(){
+    		tagSuppIndex =0;
+    	},
     	setSupplmentSize : function(val){
     		supplementSize = val;
     	},

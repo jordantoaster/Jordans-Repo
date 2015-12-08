@@ -43,10 +43,14 @@ darwin.AjaxResponseModule = (function () {
 				  if(action == "tagSupplement" && response.length != 0){
 					  darwin.Mediator.setSupplementTag(response, index);
 					  darwin.Mediator.updateTagsProgress(1);
+					  darwin.Mediator.setTagSuppIndex();
 					  
 					  if(darwin.Mediator.getSupplementTag(index).length == darwin.Mediator.targetSupplementSize()){
-						  callback(darwin.Mediator.getTagsJson(index), darwin.Mediator.getNumTagsProjectSelected(), "tags", darwin.Mediator.getSupplementTag(index));
+						  darwin.Mediator.resetTagSuppIndex();
+						  callback(darwin.Mediator.getTagsJson(index), darwin.Mediator.getNumTagsProjectSelected(), "tags", darwin.Mediator.sortSuppDataDates(index));
 					  	  darwin.Mediator.setNumTagsProjectSelected();
+					  } else {
+						  darwin.Mediator.supplementTagData(callback, action, index);
 					  }
 
 				  }
@@ -75,17 +79,18 @@ darwin.AjaxResponseModule = (function () {
 						  darwin.Mediator.setNumForkProjectSelected();
 					  }
 					  if(action == "tags"){
-						  darwin.Mediator.supplementTagData(darwin.Mediator.getTagsJson(index), callback, action, index);
+						  darwin.Mediator.supplementTagData(callback, action, index);
 					  }  	
 						  					  
 					  
 				  } else { //else poll for next set of 100
+					  if(action != "tagSupplement"){
+						  //update counter
+						  darwin.Mediator.setcurrRequestPage(1);
 					  
-					  //update counter
-					  darwin.Mediator.setcurrRequestPage(1);
-					  
-					  //repeat request but with different page number
-					  darwin.Mediator.makeGithubRequestSingleUrl(darwin.Mediator.getAllBaseRequestUrl(index) + darwin.Mediator.getcurrRequestPage(), callback, index, action);
+					  	//repeat request but with different page number
+					  	darwin.Mediator.makeGithubRequestSingleUrl(darwin.Mediator.getAllBaseRequestUrl(index) + darwin.Mediator.getcurrRequestPage(), callback, index, action);
+					  }
 				  }
 			  }
         },

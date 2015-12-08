@@ -15,6 +15,7 @@ darwin.genericExtractorModule = (function() {
 	var sampleRate = 0;
 		
     return {
+    	
     	// data comes in front to back, so < is used in place of > then reversed at the end
     	extract: function (json, index, action, supplementData) {   
     		    		
@@ -33,7 +34,9 @@ darwin.genericExtractorModule = (function() {
         			localJson.reverse();
     			}    
     			if(action =="tags"){
-    				supplementData.reverse();
+    				
+    				supplementDataLocal = darwin.Mediator.copyObject(supplementData);
+    				//supplementDataLocal.reverse();
     			}
     			
     			sampleIterator = 0;
@@ -59,7 +62,7 @@ darwin.genericExtractorModule = (function() {
             			var date = darwin.ISO601toDateModule.convert(localJson[j].created_at);
         			}
           			if(action == "tags"){
-          				var date = darwin.ISO601toDateModule.convert(supplementData[j].commit.committer.date);
+          				var date = supplementData[j];
           			}
         			
         			

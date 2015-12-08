@@ -7,29 +7,30 @@ var darwin = darwin || {};
 $(document).ready(function(e) {
 	
 	$(document).on("click.darwin","#TagsOption1", function () {
-		darwin.Mediator.prepareTagsClick("https://api.github.com/repos"+$("#TagsOption1").text()+"/tags?per_page=100&page=");	
+		darwin.Mediator.prepareTagsClick("https://api.github.com/repos"+$("#TagsOption1").text()+"/tags?per_page=100&page=");
+		darwin.projectManagerModule.setSelectedTagProject(darwin.Mediator.getNumTagsProjectSelected(), $("#TagsOption1").text());
 		TagsReset();
 
 	});
 	$(document).on("click.darwin","#TagsOption2", function () {
 		darwin.Mediator.prepareTagsClick("https://api.github.com/repos"+$("#TagsOption2").text()+"/tags?per_page=100&page=");	
+		darwin.projectManagerModule.setSelectedTagProject(darwin.Mediator.getNumTagsProjectSelected(), $("#TagsOption2").text());
 		TagsReset();
-
 	});
 	$(document).on("click.darwin","#TagsOption3", function () {		
 		darwin.Mediator.prepareTagsClick("https://api.github.com/repos"+$("#TagsOption3").text()+"/tags?per_page=100&page=");	
+		darwin.projectManagerModule.setSelectedTagProject(darwin.Mediator.getNumTagsProjectSelected(), $("#TagsOption3").text());
 		TagsReset();
-
 	});
 	$(document).on("click.darwin","#TagsOption4", function () {
 		darwin.Mediator.prepareTagsClick("https://api.github.com/repos"+$("#TagsOption4").text()+"/tags?per_page=100&page=");	
+		darwin.projectManagerModule.setSelectedTagProject(darwin.Mediator.getNumTagsProjectSelected(), $("#TagsOption4").text());
 		TagsReset();
-
 	});
 	$(document).on("click.darwin","#TagsOption5", function () {			
 		darwin.Mediator.prepareTagsClick("https://api.github.com/repos"+$("#TagsOption5").text()+"/tags?per_page=100&page=");	
+		darwin.projectManagerModule.setSelectedTagProject(darwin.Mediator.getNumTagsProjectSelected(), $("#TagsOption5").text());
 		TagsReset();
-
 	});	
 	$('#sampleRate1Tags').on("click.darwin", function(e){
 		e.preventDefault();
@@ -85,7 +86,7 @@ $(document).ready(function(e) {
 	});
 	
 	function drawTagsGraph(){
-		darwin.Mediator.drawGenericGraph(darwin.Mediator.getForkDetails(), "weeks", "week On week Watchers", darwin.projectManagerModule.getSampleIndex(), "fork", darwin.Mediator.getChartType());
+		darwin.Mediator.drawGenericGraph(darwin.Mediator.getTagsDetails(), "weeks", "week On week tags", darwin.projectManagerModule.getSampleIndex(), "tags", darwin.Mediator.getChartType());
 	}
 
 	function TagsReset(){
