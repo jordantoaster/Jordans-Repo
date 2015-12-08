@@ -16,7 +16,7 @@ darwin.AjaxResponseModule = (function () {
 				  
 				  //only make call back when we have all the required json
 				  if(size == darwin.projectManagerModule.getNumProjects()){
-					  callback(darwin.jsonManagerModule.getAllContributionJson());					
+					  callback(darwin.jsonManagerModule.getAllContributionJson(), index);					
 				  }
 			  } else {
 				  
@@ -67,15 +67,15 @@ darwin.AjaxResponseModule = (function () {
 						  darwin.Mediator.setNumCommitProjectSelected();
 					  }
 					  if(action == "star"){
-						  callback(darwin.Mediator.getStarJson(), index, action);
+						  callback(darwin.Mediator.getIndexStarJson(index), index, action);
 						  darwin.Mediator.setNumStarProjectSelected();
 					  }
 					  if(action == "watcher"){
-						  callback(darwin.Mediator.getWatcherJson(), index, action);
+						  callback(darwin.Mediator.getIndexWatcherJson(), index, action);
 						  darwin.Mediator.setNumWatcherProjectSelected();
 					  }
 					  if(action == "fork"){
-						  callback(darwin.Mediator.getForkJson(), index, action);
+						  callback(darwin.Mediator.getIndexForkJson(index), index, action);
 						  darwin.Mediator.setNumForkProjectSelected();
 					  }
 					  if(action == "tags"){

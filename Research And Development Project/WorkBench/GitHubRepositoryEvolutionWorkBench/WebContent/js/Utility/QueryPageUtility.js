@@ -41,7 +41,7 @@ $(document).ready(function(e) {
 	    }
 	    
 	    //send the urls and associated data to the next module
-	    darwin.Mediator.makeGithubRequest(darwin.projectManagerModule.getAllBaseRequestUrl(), darwin.Mediator.githubParseContributionData, "contribution");
+	    darwin.Mediator.makeGithubRequest(darwin.projectManagerModule.getAllBaseRequestUrl(), darwin.Mediator.githubParseContributionData, "contribution","");
 	       
 	    //Load options for manual pages
 	    darwin.projectManagerModule.loadProjectSelection(darwin.projectManagerModule.getProjectNames());

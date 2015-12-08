@@ -52,6 +52,12 @@ darwin.jsonManagerModule = (function() {
         getStarJson : function (){
         	return mergedStars[0];
         },
+        getIndexStarJson : function (index){
+        	return mergedStars[index];
+        },
+        getIndexForkJson : function (index){
+        	return mergedForks[index];
+        },
         getForkJson : function (){
         	return mergedForks[0];
         },

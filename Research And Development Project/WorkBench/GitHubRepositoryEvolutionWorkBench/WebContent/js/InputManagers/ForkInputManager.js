@@ -7,27 +7,27 @@ var darwin = darwin || {};
 $(document).ready(function(e) {
 	
 	$(document).on("click.darwin","#ForkOption1", function () {
-		darwin.Mediator.prepareForkClick("https://api.github.com/repos"+$("#ForkOption1").text()+"/forks?per_page=100&page=");	
+		darwin.Mediator.prepareForkClick("https://api.github.com/repos"+$("#ForkOption1").text()+"/forks?per_page=100&page=", $("#ForkOption1").text());	
 		ForkReset();
 
 	});
 	$(document).on("click.darwin","#ForkOption2", function () {
-		darwin.Mediator.prepareForkClick("https://api.github.com/repos"+$("#ForkOption2").text()+"/forks?per_page=100&page=");	
+		darwin.Mediator.prepareForkClick("https://api.github.com/repos"+$("#ForkOption2").text()+"/forks?per_page=100&page=", $("#ForkOption2").text());	
 		ForkReset();
 
 	});
 	$(document).on("click.darwin","#ForkOption3", function () {		
-		darwin.Mediator.prepareForkClick("https://api.github.com/repos"+$("#ForkOption3").text()+"/forks?per_page=100&page=");	
+		darwin.Mediator.prepareForkClick("https://api.github.com/repos"+$("#ForkOption3").text()+"/forks?per_page=100&page=", $("#ForkOption3").text());	
 		ForkReset();
 
 	});
 	$(document).on("click.darwin","#ForkOption4", function () {
-		darwin.Mediator.prepareForkClick("https://api.github.com/repos"+$("#ForkOption4").text()+"/forks?per_page=100&page=");	
+		darwin.Mediator.prepareForkClick("https://api.github.com/repos"+$("#ForkOption4").text()+"/forks?per_page=100&page=", $("#ForkOption4").text());	
 		ForkReset();
 
 	});
 	$(document).on("click.darwin","#ForkOption5", function () {			
-		darwin.Mediator.prepareForkClick("https://api.github.com/repos"+$("#ForkOption5").text()+"/forks?per_page=100&page=");	
+		darwin.Mediator.prepareForkClick("https://api.github.com/repos"+$("#ForkOption5").text()+"/forks?per_page=100&page=", $("#ForkOption5").text());	
 		ForkReset();
 
 	});	

@@ -7,27 +7,27 @@ var darwin = darwin || {};
 $(document).ready(function(e) {
 	
 	$(document).on("click.darwin","#WatcherOption1", function () {
-		darwin.Mediator.prepareWatcherClick("https://api.github.com/repos"+$("#WatcherOption1").text()+"/subscribers?per_page=100&page=");	
+		darwin.Mediator.prepareWatcherClick("https://api.github.com/repos"+$("#WatcherOption1").text()+"/subscribers?per_page=100&page=", $("#WatcherOption1").text());	
 		WatcherReset();
 
 	});
 	$(document).on("click.darwin","#WatcherOption2", function () {
-		darwin.Mediator.prepareWatcherClick("https://api.github.com/repos"+$("#WatcherOption2").text()+"/subscribers?per_page=100&page=");	
+		darwin.Mediator.prepareWatcherClick("https://api.github.com/repos"+$("#WatcherOption2").text()+"/subscribers?per_page=100&page=", $("#WatcherOption2").text());	
 		WatcherReset();
 
 	});
 	$(document).on("click.darwin","#WatcherOption3", function () {		
-		darwin.Mediator.prepareWatcherClick("https://api.github.com/repos"+$("#WatcherOption3").text()+"/subscribers?per_page=100&page=");	
+		darwin.Mediator.prepareWatcherClick("https://api.github.com/repos"+$("#WatcherOption3").text()+"/subscribers?per_page=100&page=", $("#WatcherOption3").text());	
 		WatcherReset();
 
 	});
 	$(document).on("click.darwin","#WatcherOption4", function () {
-		darwin.Mediator.prepareWatcherClick("https://api.github.com/repos"+$("#WatcherOption4").text()+"/subscribers?per_page=100&page=");	
+		darwin.Mediator.prepareWatcherClick("https://api.github.com/repos"+$("#WatcherOption4").text()+"/subscribers?per_page=100&page=", $("#WatcherOption4").text());	
 		WatcherReset();
 
 	});
 	$(document).on("click.darwin","#WatcherOption5", function () {			
-		darwin.Mediator.prepareWatcherClick("https://api.github.com/repos"+$("#WatcherOption5").text()+"/subscribersper_page=100&page=");	
+		darwin.Mediator.prepareWatcherClick("https://api.github.com/repos"+$("#WatcherOption5").text()+"/subscribersper_page=100&page=", $("#WatcherOption5").text());	
 		sWatcherReset();
 
 	});	

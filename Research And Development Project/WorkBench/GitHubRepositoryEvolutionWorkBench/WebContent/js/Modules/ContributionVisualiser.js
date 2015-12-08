@@ -13,24 +13,34 @@ darwin.ContributionVisualiser = (function () {
     	    
     	    //add column to represent time passing
     	    data.addColumn('string', xAxis)
+    	    
+    	    valuesPresent = [];
+			valCounter = 0;
+			
+			for(var i =0;i<values.length;i++){
+				if(values[i] != undefined){
+					valuesPresent[valCounter] = values[i];
+					valCounter++;
+				}
+			}
     	       
     	    //add a new column for each input project
-    	    for(var i=0;i<values.length;i++){
+    	    for(var i=0;i<valuesPresent.length;i++){
     	    	data.addColumn('number', '');	
     	    }
     	        	   	    
     	    //add data to each row, a a numeral for the y axis and string for x
-	    	for(var j =0;j<values[0][sampleIndex].length-1;j++){
-    	    	if(values.length == 2){
-        	    	data.addRow(["sample: " + j, values[0][sampleIndex][j],values[1][sampleIndex][j]]);
-    	    	} else if(values.length == 3){
-        	    	data.addRow(["sample: " + j, values[0][sampleIndex][j],values[1][sampleIndex][j],values[2][sampleIndex][j]]);
-    	    	}else if(values.length == 4){
-        	    	data.addRow(["sample: " + j, values[0][sampleIndex][j],values[1][sampleIndex][j],values[2][sampleIndex][j],values[3][sampleIndex][j]]);
-  	    		}else if(values.length == 5){
-        	    	data.addRow(["sample: " + j, values[0][sampleIndex][j],values[1][sampleIndex][j],values[2][sampleIndex][j],values[3][sampleIndex][j],values[4][sampleIndex][j]]);
+	    	for(var j =0;j<valuesPresent[0][sampleIndex].length-1;j++){
+    	    	if(valuesPresent.length == 2){
+        	    	data.addRow(["sample: " + j, valuesPresent[0][sampleIndex][j],valuesPresent[1][sampleIndex][j]]);
+    	    	} else if(valuesPresent.length == 3){
+        	    	data.addRow(["sample: " + j, valuesPresent[0][sampleIndex][j],valuesPresent[1][sampleIndex][j],valuesPresent[2][sampleIndex][j]]);
+    	    	}else if(valuesPresent.length == 4){
+        	    	data.addRow(["sample: " + j, valuesPresent[0][sampleIndex][j],valuesPresent[1][sampleIndex][j],valuesPresent[2][sampleIndex][j],valuesPresent[3][sampleIndex][j]]);
+  	    		}else if(valuesPresent.length == 5){
+        	    	data.addRow(["sample: " + j, valuesPresent[0][sampleIndex][j],valuesPresent[1][sampleIndex][j],valuesPresent[2][sampleIndex][j],valuesPresent[3][sampleIndex][j],valuesPresent[4][sampleIndex][j]]);
 	    		}else {
-        	    	data.addRow(["sample: " + j, values[0][sampleIndex][j]]);
+        	    	data.addRow(["sample: " + j, valuesPresent[0][sampleIndex][j]]);
     	    	}
 	    	}
     	    	

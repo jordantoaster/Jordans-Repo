@@ -27,34 +27,40 @@ darwin.Mediator = (function () {
 				
 			//if not a stat api dataset then perform one manual call
 			if(action == "commit"){
-				darwin.githubModule.send(url[0] + darwin.projectManagerModule.getcurrRequestPage(), callback, index, action);
+				darwin.githubModule.send(url[0] + darwin.projectManagerModule.getcurrRequestPage(), callback, projectIndex, action);
 			}
 			else if(action == "star"){
-				darwin.githubModule.send(url[0] + darwin.projectManagerModule.getcurrRequestPage(), callback, 0, action);
+				darwin.githubModule.send(url[0] + darwin.projectManagerModule.getcurrRequestPage(), callback, projectIndex, action);
 			}
 			else if(action == "watcher"){
-				darwin.githubModule.send(url[0] + darwin.projectManagerModule.getcurrRequestPage(), callback, 0, action);
+				darwin.githubModule.send(url[0] + darwin.projectManagerModule.getcurrRequestPage(), callback, projectIndex, action);
 			}
 			else if(action == "fork"){
-				darwin.githubModule.send(url[0] + darwin.projectManagerModule.getcurrRequestPage(), callback, 0, action);
+				darwin.githubModule.send(url[0] + darwin.projectManagerModule.getcurrRequestPage(), callback, projectIndex, action);
 			}
 			else if(action == "tags"){
 				darwin.githubModule.send(url[0] + darwin.projectManagerModule.getcurrRequestPage(), callback, projectIndex, action);
 			} else {
 				//if a stat api then loop each url, only send true callback on final url
-				for(i=0;i<url.length;i++){
+	    		projectNames = darwin.projectManagerModule.getProjectNames();
+				
+	    		for(i=0;i<url.length;i++){
+					
+					
+					name = projectNames[i];
+					index = darwin.Mediator.getProjNameIndex(name);
 									
 					//only perform actually call back when all request data collected
 					if(i==(url.length-1)){
-						darwin.githubModule.send(url[i] + darwin.projectManagerModule.getcurrRequestPage(), callback, i, action);
+						darwin.githubModule.send(url[i] + darwin.projectManagerModule.getcurrRequestPage(), callback, index, action);
 					} else {
-						darwin.githubModule.send(url[i] + darwin.projectManagerModule.getcurrRequestPage(), callback, i, action);					
+						darwin.githubModule.send(url[i] + darwin.projectManagerModule.getcurrRequestPage(), callback, index, action);					
 					}	
 				}
 			}
 		},
-		githubParseContributionData: function (response) {
-			darwin.contributionExtractorModule.extract(response);
+		githubParseContributionData: function (response, index) {
+			darwin.contributionExtractorModule.extract(response, index);
 		},
 		githubParseGenericData: function (response, index, action, supplement) {
 			darwin.genericExtractorModule.extract(response, index, action, supplement);
@@ -200,6 +206,15 @@ darwin.Mediator = (function () {
 		getStarJson : function(){
 			return darwin.jsonManagerModule.getStarJson()
 		},
+		getIndexStarJson : function(index){
+			return darwin.jsonManagerModule.getIndexStarJson(index)
+		},
+		getIndexForkJson : function(index){
+			return darwin.jsonManagerModule.getIndexForkJson(index)
+		},
+		getIndexWatcherJson : function(index){
+			return darwin.jsonManagerModule.getIndexWatcherJson(index)
+		},
 		getWatcherJson : function(){
 			return darwin.jsonManagerModule.getWatcherJson()
 		},
@@ -238,35 +253,38 @@ darwin.Mediator = (function () {
 			index = darwin.Mediator.getProjNameIndex(projectName);
 			
 			darwin.projectManagerModule.setBaseRequestUrl(0,url);
-			
+
 			darwin.Mediator.makeGithubRequest(darwin.projectManagerModule.getAllBaseRequestUrl(), darwin.Mediator.githubParseGenericData, "commit", index);		
 		},
-		prepareStarClick : function(url){
+		prepareStarClick : function(url, projectName){
 			darwin.jsonManagerModule.resetStarJson();
 			darwin.projectManagerModule.resetBaseRequestUrl();
 			darwin.projectManagerModule.disableStarButton();
 			
 			darwin.projectManagerModule.setBaseRequestUrl(0,url);
-			
-			darwin.Mediator.makeGithubRequest(darwin.projectManagerModule.getAllBaseRequestUrl(), darwin.Mediator.githubParseGenericData, "star");		
+			index = darwin.Mediator.getProjNameIndex(projectName);
+
+			darwin.Mediator.makeGithubRequest(darwin.projectManagerModule.getAllBaseRequestUrl(), darwin.Mediator.githubParseGenericData, "star", index);		
 		},
-		prepareWatcherClick : function(url){
+		prepareWatcherClick : function(url, projectName){
 			darwin.jsonManagerModule.resetWatcherJson();
 			darwin.projectManagerModule.resetBaseRequestUrl();
 			darwin.projectManagerModule.disableWatcherButton();
 			
 			darwin.projectManagerModule.setBaseRequestUrl(0,url);
-			
-			darwin.Mediator.makeGithubRequest(darwin.projectManagerModule.getAllBaseRequestUrl(), darwin.Mediator.githubParseGenericData, "watcher");		
+			index = darwin.Mediator.getProjNameIndex(projectName);
+
+			darwin.Mediator.makeGithubRequest(darwin.projectManagerModule.getAllBaseRequestUrl(), darwin.Mediator.githubParseGenericData, "watcher", index);		
 		},
-		prepareForkClick : function(url){
+		prepareForkClick : function(url, projectName){
 			darwin.jsonManagerModule.resetForkJson();
 			darwin.projectManagerModule.resetBaseRequestUrl();
 			darwin.projectManagerModule.disableForkButton();
 			
 			darwin.projectManagerModule.setBaseRequestUrl(0,url);
-			
-			darwin.Mediator.makeGithubRequest(darwin.projectManagerModule.getAllBaseRequestUrl(), darwin.Mediator.githubParseGenericData, "fork");		
+			index = darwin.Mediator.getProjNameIndex(projectName);
+
+			darwin.Mediator.makeGithubRequest(darwin.projectManagerModule.getAllBaseRequestUrl(), darwin.Mediator.githubParseGenericData, "fork", index);		
 		},
 		prepareTagsClick : function(url, projectName){
 			darwin.jsonManagerModule.resetTagsJson();
