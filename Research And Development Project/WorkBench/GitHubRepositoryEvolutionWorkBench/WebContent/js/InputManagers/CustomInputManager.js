@@ -122,6 +122,42 @@ $(document).ready(function(e) {
 			darwin.Mediator.addToCustomList(darwin.dataManager.getStarsIndex(darwin.customTabModule.getCurrentIndex()), darwin.projectManagerModule.getProjectNamesIndex(darwin.customTabModule.getCurrentIndex()));
 		}
 	});	
+	$(document).on("click.darwin","#forksCheck", function (e) {	
+		
+		//allows resamping to take place until a new check is clicked
+		if(darwin.Mediator.getCurrentCustomSearch()){
+    		darwin.Mediator.setCurrentCustomSearch(false);
+    		darwin.Mediator.resetCustomList();
+		}
+		
+		if(darwin.customTabModule.getIsForksChecked()){
+			darwin.customTabModule.setForksChecked(false);
+		} else {
+			darwin.customTabModule.setForksChecked(true);
+		}
+		
+		if(darwin.customTabModule.getIsForksChecked()){
+			darwin.Mediator.addToCustomList(darwin.dataManager.getForksIndex(darwin.customTabModule.getCurrentIndex()), darwin.projectManagerModule.getProjectNamesIndex(darwin.customTabModule.getCurrentIndex()));
+		}
+	});	
+	$(document).on("click.darwin","#tagsCheck", function (e) {	
+		
+		//allows resamping to take place until a new check is clicked
+		if(darwin.Mediator.getCurrentCustomSearch()){
+    		darwin.Mediator.setCurrentCustomSearch(false);
+    		darwin.Mediator.resetCustomList();
+		}
+		
+		if(darwin.customTabModule.getIsTagsChecked()){
+			darwin.customTabModule.setTagsChecked(false);
+		} else {
+			darwin.customTabModule.setTagsChecked(true);
+		}
+		
+		if(darwin.customTabModule.getIsTagsChecked()){
+			darwin.Mediator.addToCustomList(darwin.dataManager.getTagsIndex(darwin.customTabModule.getCurrentIndex()), darwin.projectManagerModule.getProjectNamesIndex(darwin.customTabModule.getCurrentIndex()));
+		}
+	});	
 	
 	$('#sampleRate1Custom').on("click.darwin", function(e){
 		e.preventDefault();

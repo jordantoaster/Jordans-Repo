@@ -13,6 +13,8 @@ darwin.customTabModule = (function() {
 	var isCommitsChecked = false;
 	var stilOnCustom = true;
 	var isStarsChecked = false;
+	var isTagsChecked = false;
+	var isForksChecked = false;
 
 	
     return {
@@ -37,6 +39,8 @@ darwin.customTabModule = (function() {
     		//get all the commits
     		commits = darwin.Mediator.getCommitsIndex(currentIndex);
 			stars = darwin.Mediator.getStarsIndex(currentIndex);
+			forks = darwin.Mediator.getForksIndex(currentIndex);
+			tags = darwin.Mediator.getTagsIndex(currentIndex);
 
 			//if index has commits then draw checkbox for it
 			if(commits != undefined){
@@ -44,6 +48,12 @@ darwin.customTabModule = (function() {
 			}
 			if(stars != undefined){
 				$("#options").append('<div id="starsCheck" class="checkbox"><label><input type="checkbox" value="">Stars</label></div>')
+			}
+			if(tags != undefined){
+				$("#options").append('<div id="tagsCheck" class="checkbox"><label><input type="checkbox" value="">Tags</label></div>')
+			}
+			if(forks != undefined){
+				$("#options").append('<div id="forksCheck" class="checkbox"><label><input type="checkbox" value="">Forks</label></div>')
 			}
         },
         clearComponents : function(){
@@ -82,6 +92,12 @@ darwin.customTabModule = (function() {
         setStarsChecked : function(bool){
         	isStarsChecked = bool;
         },
+        setTagsChecked : function(bool){
+        	isTagsChecked = bool;
+        },
+        setForksChecked : function(bool){
+        	isForksChecked = bool;
+        },
         getIsAdditionsChecked : function(){
         	return isAdditionsChecked;
         },
@@ -96,6 +112,12 @@ darwin.customTabModule = (function() {
         },
         getIsStarsChecked : function(){
         	return isStarsChecked;
+        },
+        getIsForksChecked : function(){
+        	return isForksChecked;
+        },
+        getIsTagsChecked : function(){
+        	return isTagsChecked;
         },
         getIsOnCustom : function(){
         	return stilOnCustom;

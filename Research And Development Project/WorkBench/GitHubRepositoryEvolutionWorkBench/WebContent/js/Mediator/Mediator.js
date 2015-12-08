@@ -306,6 +306,12 @@ darwin.Mediator = (function () {
 		getStarsIndex : function(index){
 			return darwin.dataManager.getStarsIndex(index);
 		},
+		getForksIndex  : function(index){
+			return darwin.dataManager.getForksIndex(index);
+		},
+		getTagsIndex : function(index){
+			return darwin.dataManager.getTagsIndex(index);
+		},
 		addToCustomList : function(array, name){
 			darwin.dataManager.addToCustomList(array);
 			darwin.dataManager.addToCustomNameList(name);
