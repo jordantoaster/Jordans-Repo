@@ -7,28 +7,28 @@ var darwin = darwin || {};
 $(document).ready(function(e) {
 	
 	$(document).on("click.darwin","#TagsOption1", function () {
-		darwin.Mediator.prepareTagsClick("https://api.github.com/repos"+$("#TagsOption1").text()+"/tags?per_page=100&page=");
+		darwin.Mediator.prepareTagsClick("https://api.github.com/repos"+$("#TagsOption1").text()+"/tags?per_page=100&page=", $("#TagsOption1").text());
 		darwin.projectManagerModule.setSelectedTagProject(darwin.Mediator.getNumTagsProjectSelected(), $("#TagsOption1").text());
 		TagsReset();
 
 	});
 	$(document).on("click.darwin","#TagsOption2", function () {
-		darwin.Mediator.prepareTagsClick("https://api.github.com/repos"+$("#TagsOption2").text()+"/tags?per_page=100&page=");	
+		darwin.Mediator.prepareTagsClick("https://api.github.com/repos"+$("#TagsOption2").text()+"/tags?per_page=100&page=", $("#TagsOption2").text());	
 		darwin.projectManagerModule.setSelectedTagProject(darwin.Mediator.getNumTagsProjectSelected(), $("#TagsOption2").text());
 		TagsReset();
 	});
 	$(document).on("click.darwin","#TagsOption3", function () {		
-		darwin.Mediator.prepareTagsClick("https://api.github.com/repos"+$("#TagsOption3").text()+"/tags?per_page=100&page=");	
+		darwin.Mediator.prepareTagsClick("https://api.github.com/repos"+$("#TagsOption3").text()+"/tags?per_page=100&page=", $("#TagsOption3").text());	
 		darwin.projectManagerModule.setSelectedTagProject(darwin.Mediator.getNumTagsProjectSelected(), $("#TagsOption3").text());
 		TagsReset();
 	});
 	$(document).on("click.darwin","#TagsOption4", function () {
-		darwin.Mediator.prepareTagsClick("https://api.github.com/repos"+$("#TagsOption4").text()+"/tags?per_page=100&page=");	
+		darwin.Mediator.prepareTagsClick("https://api.github.com/repos"+$("#TagsOption4").text()+"/tags?per_page=100&page=", $("#TagsOption4").text());	
 		darwin.projectManagerModule.setSelectedTagProject(darwin.Mediator.getNumTagsProjectSelected(), $("#TagsOption4").text());
 		TagsReset();
 	});
 	$(document).on("click.darwin","#TagsOption5", function () {			
-		darwin.Mediator.prepareTagsClick("https://api.github.com/repos"+$("#TagsOption5").text()+"/tags?per_page=100&page=");	
+		darwin.Mediator.prepareTagsClick("https://api.github.com/repos"+$("#TagsOption5").text()+"/tags?per_page=100&page=", $("#TagsOption5").text());	
 		darwin.projectManagerModule.setSelectedTagProject(darwin.Mediator.getNumTagsProjectSelected(), $("#TagsOption5").text());
 		TagsReset();
 	});	

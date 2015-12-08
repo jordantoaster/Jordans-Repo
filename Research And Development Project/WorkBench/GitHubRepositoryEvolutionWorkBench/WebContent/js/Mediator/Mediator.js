@@ -23,7 +23,7 @@ darwin.Mediator = (function () {
 		updateProgressBar: function () {
 			darwin.progressbarModule.updateProgressBar();
 		},
-		makeGithubRequest: function (url, callback, action) {
+		makeGithubRequest: function (url, callback, action, projectIndex) {
 				
 			//if not a stat api dataset then perform one manual call
 			if(action == "commit"){
@@ -39,7 +39,7 @@ darwin.Mediator = (function () {
 				darwin.githubModule.send(url[0] + darwin.projectManagerModule.getcurrRequestPage(), callback, 0, action);
 			}
 			else if(action == "tags"){
-				darwin.githubModule.send(url[0] + darwin.projectManagerModule.getcurrRequestPage(), callback, darwin.projectManagerModule.getTagsProjectsAdded(), action);
+				darwin.githubModule.send(url[0] + darwin.projectManagerModule.getcurrRequestPage(), callback, projectIndex, action);
 			} else {
 				//if a stat api then loop each url, only send true callback on final url
 				for(i=0;i<url.length;i++){
@@ -266,14 +266,28 @@ darwin.Mediator = (function () {
 			
 			darwin.Mediator.makeGithubRequest(darwin.projectManagerModule.getAllBaseRequestUrl(), darwin.Mediator.githubParseGenericData, "fork");		
 		},
-		prepareTagsClick : function(url){
+		prepareTagsClick : function(url, projectName){
 			darwin.jsonManagerModule.resetTagsJson();
 			darwin.projectManagerModule.resetBaseRequestUrl();
 			darwin.projectManagerModule.disableTagsButton();
 			
 			darwin.projectManagerModule.setBaseRequestUrl(0,url);
+			index = darwin.Mediator.getProjNameIndex(projectName);
 			
-			darwin.Mediator.makeGithubRequest(darwin.projectManagerModule.getAllBaseRequestUrl(), darwin.Mediator.githubParseGenericData, "tags");		
+			darwin.Mediator.makeGithubRequest(darwin.projectManagerModule.getAllBaseRequestUrl(), darwin.Mediator.githubParseGenericData, "tags", index);		
+		},
+		getProjNameIndex : function(name){
+			var names = darwin.projectManagerModule.getProjectNames();
+			var index = 0;
+			
+			for(var i =0;i<names.length;i++){
+				if(names[i] == name){
+					break;
+				} else {
+					index++;
+				}
+			}
+			return index
 		},
 		getTagDate : function(sha, index){
 			var projectList = darwin.projectManagerModule.getProjectNames();
@@ -359,7 +373,7 @@ darwin.Mediator = (function () {
 		supplementTagData : function(callback, action, index){
 			tagData = darwin.Mediator.getTagsJson(index);
 			darwin.projectManagerModule.setSupplmentSize(tagData.length); 
-			darwin.Mediator.makeGithubRequestSingleUrl("https://api.github.com/repos"+darwin.projectManagerModule.getSelectedTagProject(index)+"/commits/"+tagData[darwin.Mediator.getTagSuppIndex()].commit.sha+"", callback, index, "tagSupplement");
+			darwin.Mediator.makeGithubRequestSingleUrl("https://api.github.com/repos"+darwin.projectManagerModule.getProjectNamesIndex(index)+"/commits/"+tagData[darwin.Mediator.getTagSuppIndex()].commit.sha+"", callback, index, "tagSupplement");
 		},
 		setSupplementTag : function(value, index){
 			darwin.jsonManagerModule.setSupplementTag(value, index);

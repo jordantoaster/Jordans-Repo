@@ -15,7 +15,8 @@ darwin.arrayUtilityModule = (function() {
     		var arraysToCompare = [];
     		
     		for(var i=0; i<array.length;i++){
-    			arraysToCompare[i]  = array[i][sampleIndex];
+    			if(array[i] != undefined)
+    				arraysToCompare[i]  = array[i][sampleIndex];
     		}
     		
     		return darwin.arrayUtilityModule.getSmallestArray(arraysToCompare);

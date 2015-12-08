@@ -47,7 +47,7 @@ darwin.AjaxResponseModule = (function () {
 					  
 					  if(darwin.Mediator.getSupplementTag(index).length == darwin.Mediator.targetSupplementSize()){
 						  darwin.Mediator.resetTagSuppIndex();
-						  callback(darwin.Mediator.getTagsJson(index), darwin.Mediator.getNumTagsProjectSelected(), "tags", darwin.Mediator.sortSuppDataDates(index));
+						  callback(darwin.Mediator.getTagsJson(index), index, "tags", darwin.Mediator.sortSuppDataDates(index));
 					  	  darwin.Mediator.setNumTagsProjectSelected();
 					  } else {
 						  darwin.Mediator.supplementTagData(callback, action, index);

@@ -8,27 +8,37 @@ $(document).ready(function(e) {
 	
 	$(document).on("click.darwin","#0", function (e) {			
 		e.preventDefault();	
-		darwin.customTabModule.setCurrentIndex(0);
+		project = $("#0").text();
+		index = darwin.Mediator.getProjNameIndex(project);
+		darwin.customTabModule.setCurrentIndex(index);
 		setupNewProject();
 	});	
 	$(document).on("click.darwin","#1", function (e) {			
 		e.preventDefault();	
-		darwin.customTabModule.setCurrentIndex(1);
+		project = $("#1").text();
+		index = darwin.Mediator.getProjNameIndex(project);
+		darwin.customTabModule.setCurrentIndex(index);
 		setupNewProject();
 	});	
 	$(document).on("click.darwin","#2", function (e) {			
 		e.preventDefault();	
-		darwin.customTabModule.setCurrentIndex(2);
+		project = $("#2").text();
+		index = darwin.Mediator.getProjNameIndex(project);
+		darwin.customTabModule.setCurrentIndex(index);	
 		setupNewProject()
 	});	
 	$(document).on("click.darwin","#3", function (e) {			
 		e.preventDefault();
-		darwin.customTabModule.setCurrentIndex(3);
+		project = $("#3").text();
+		index = darwin.Mediator.getProjNameIndex(project);
+		darwin.customTabModule.setCurrentIndex(index);
 		setupNewProject();
 	});	
 	$(document).on("click.darwin","#4", function (e) {			
 		e.preventDefault();	
-		darwin.customTabModule.setCurrentIndex(4);
+		project = $("#4").text();
+		index = darwin.Mediator.getProjNameIndex(project);
+		darwin.customTabModule.setCurrentIndex(index);
 		setupNewProject()
 	});	
 	$(document).on("click.darwin","#additionsCheck", function (e) {		
