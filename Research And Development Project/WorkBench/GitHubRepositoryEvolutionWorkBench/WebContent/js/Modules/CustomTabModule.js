@@ -144,6 +144,9 @@ darwin.customTabModule = (function() {
         	isLOCChecked = false;
         	isCommitsChecked = false;
         	stilOnCustom = true;
+        	isStarsChecked = false;
+        	isTagsChecked = false;
+        	isForksChecked = false;
         }
     };
 })();

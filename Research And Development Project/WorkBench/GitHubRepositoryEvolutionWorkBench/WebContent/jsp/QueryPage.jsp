@@ -20,7 +20,7 @@
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Modules/DataManagerModule.js?v4"></script>
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Modules/ParseUrlInputModule.js?v4"></script>
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Mediator/Mediator.js?v4"></script>
-    <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Utility/QueryPageUtility.js?v5"></script>
+    <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/InputManagers/Utility.js?v5"></script>
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/InputManagers/ContributionsInputManager.js?v6"></script>
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/InputManagers/TagsInputManager.js?v6"></script>
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/InputManagers/WatcherInputManager.js?v6"></script>
@@ -43,17 +43,23 @@
     <title>Main Application</title>
   </head>
   <body>
-   <div id="navbar"></div>
-   <div id="tabContainer">
+  <div id="selectionHolder">
+     <button type="submit" id="selectInput" class="btn btn-primary button">
+       	   <i class="icon-user icon-white">Add URL(s)</i> 
+     </button> 
+     <button type="submit" id="selectVisualiser" class="btn btn-primary button">
+       	   <i class="icon-user icon-white">Visualiser</i> 
+     </button> 
+     <button type="submit" id="selectStats" class="btn btn-primary button">
+       	   <i class="icon-user icon-white">Statistics</i> 
+     </button> 
+     <button type="submit" id="selectPrediction" class="btn btn-primary button">
+       	   <i class="icon-user icon-white">Predictor</i> 
+     </button> 
+  </div>
+  <div id="urlContainer">
     <ul class="nav nav-tabs tabListCustom">
       <li class="active"><a class="tabText" data-toggle="tab" href="#urlInput">Input Repository</a></li>
-      <li><a class="tabText disabled" data-toggle="tab" href="#ContributorTab">Contributors</a></li>
-      <li><a class="tabText disabled" data-toggle="tab" href="#CommitTab">Commits</a></li>
-      <li><a class="tabText disabled" data-toggle="tab" href="#StarTab">Stars</a></li>
-      <li><a class="tabText disabled" data-toggle="tab" href="#TagsTab">Tags</a></li>
-      <li><a class="tabText disabled" data-toggle="tab" href="#ForkTab">Forks</a></li>
-      <li><a class="tabText disabled" data-toggle="tab" href="#WatcherTab">Watchers</a></li>
-      <li><a class="tabText disabled" data-toggle="tab" href="#CustomTab">Custom</a></li> 
     </ul>
       <div class="tab-content">
       <div id="urlInput" class="tab-pane fade in active">
@@ -65,14 +71,26 @@
        <button type="submit" id="submitButtonQuery" class="btn btn-primary submitButton">
   	     <i class="icon-user icon-white">Get Data</i> 
        </button>   
-       <p>Add cool explanatory text here</p>
  		<div class="progress">
   			<div class="progress-bar progress-bar-striped active" role="progressbar"
 			 aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
   			</div>
-		</div>        
-      </div>   
-   	 <div id="ContributorTab" class="tab-pane fade customTab">
+		</div>
+	 </div>
+     </div>
+  </div>
+   <div id="visualiserContainer" class="hidden">
+    <ul class="nav nav-tabs tabListCustom">
+      <li><a class="tabText disabled" data-toggle="tab" href="#ContributorTab">Contributors</a></li>
+      <li><a class="tabText disabled" data-toggle="tab" href="#CommitTab">Commits</a></li>
+      <li><a class="tabText disabled" data-toggle="tab" href="#StarTab">Stars</a></li>
+      <li><a class="tabText disabled" data-toggle="tab" href="#TagsTab">Tags</a></li>
+      <li><a class="tabText disabled" data-toggle="tab" href="#ForkTab">Forks</a></li>
+      <li><a class="tabText disabled" data-toggle="tab" href="#WatcherTab">Watchers</a></li>
+      <li><a class="tabText disabled" data-toggle="tab" href="#CustomTab">Custom</a></li> 
+    </ul>
+      <div class="tab-content">  
+   	  <div id="ContributorTab" class="tab-pane fade customTab">
     	<div class="dropdown">
   			<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
     			Change Metric
@@ -296,6 +314,7 @@
   	     <i class="icon-user icon-white">Get Custom Graph</i> 
        </button>    
      </div>  
+   </div>
    </div>
     <div id="ajaxGetUserServletResponse" class="alert alert-success" role="alert"></div>   
   </body>

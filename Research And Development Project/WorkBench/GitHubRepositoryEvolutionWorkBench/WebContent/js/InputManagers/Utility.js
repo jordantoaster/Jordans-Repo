@@ -1,9 +1,7 @@
 var darwin = darwin || {};
 
 $(document).ready(function(e) {
-	
-	$('#navbar').load('http://localhost:8080/GitHubRepositoryEvolutionWorkBench/html/NavBar.html?2');
-	
+		
 	darwin.projectManagerModule.disableTabs();
 	
 	
@@ -65,6 +63,21 @@ $(document).ready(function(e) {
 			
 			$("#additionalProject").before(feild);
 		}
+	});
+	
+	$("#selectInput").on("click.darwin", function(e){  
+		$("#urlContainer").removeClass('hidden');
+		$("#visualiserContainer").addClass('hidden');
+	});
+	$("#selectVisualiser").on("click.darwin", function(e){  
+		$("#visualiserContainer").removeClass('hidden');
+		$("#urlContainer").addClass('hidden');
+	});
+	$("#selectStats").on("click.darwin", function(e){  
+
+	});
+	$("#selectPrediction").on("click.darwin", function(e){  
+
 	});
 	
 	/*remove this and draw components based on drop down not tab*/

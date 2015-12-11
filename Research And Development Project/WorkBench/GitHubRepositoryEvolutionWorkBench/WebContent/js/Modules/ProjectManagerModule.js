@@ -152,6 +152,8 @@ darwin.projectManagerModule = (function() {
     		$('.progress-bar').css('width', 0+'%').attr('aria-valuenow', 0);  
     		$('#commitChart').empty();
     		$('#starChart').empty();
+    		$('#TagsChart').empty();
+    		$('#ForkChart').empty();
     		$('#contributorChart').empty();
     		$('#projectOptions').empty();
     		$('#options').empty();  
@@ -162,12 +164,14 @@ darwin.projectManagerModule = (function() {
     		$('#TagsOptions').empty();
         },
         disableTabs :  function(){
-            $('.nav li').not('.active').addClass('disabled');
-            $('.nav li').not('.active').find('a').removeAttr("data-toggle");
+            $('#selectVisualiser').addClass('disabled');
+            $('#selectStats').addClass('disabled');
+            $('#selectPrediction').addClass('disabled');
         },
         enableTabs :  function(){
-            $('.nav li.active').nextAll('li').removeClass('disabled');
-            $('.nav li.active').nextAll('li').find('a').attr("data-toggle","tab")
+            $('#selectVisualiser').removeClass('disabled');
+            $('#selectStats').removeClass('disabled');
+            $('#selectPrediction').removeClass('disabled');
         },
         disableCommitButton : function(){
         	$('.btn-group button').attr('disabled','disabled');   
