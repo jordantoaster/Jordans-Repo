@@ -16,6 +16,7 @@ darwin.projectManagerModule = (function() {
     var currentProjectIndex = 0;
     var currentContribution = "difference";
     var starProjectsAdded = 0;
+    var issuesProjectsAdded = 0;
     var commitProjectsAdded = 0;
     var spaceAjaxQueueAvaliable = true;
     var chartType = "LineChart";
@@ -55,6 +56,7 @@ darwin.projectManagerModule = (function() {
     			$("#WatcherOptions").append('<button type="button" id="WatcherOption'+(i+1)+'" class="btn btn-default">'+projects[i]+'</button>');
     			$("#ForkOptions").append('<button type="button" id="ForkOption'+(i+1)+'" class="btn btn-default">'+projects[i]+'</button>');
     			$("#TagsOptions").append('<button type="button" id="TagsOption'+(i+1)+'" class="btn btn-default">'+projects[i]+'</button>');
+    			$("#IssuesOptions").append('<button type="button" id="IssuesOption'+(i+1)+'" class="btn btn-default">'+projects[i]+'</button>');
     		}
         },
         setChartType : function(val){
@@ -154,6 +156,7 @@ darwin.projectManagerModule = (function() {
     		$('#starChart').empty();
     		$('#TagsChart').empty();
     		$('#ForkChart').empty();
+    		$('#IssuesChart').empty();
     		$('#contributorChart').empty();
     		$('#projectOptions').empty();
     		$('#options').empty();  
@@ -162,6 +165,7 @@ darwin.projectManagerModule = (function() {
     		$('#ForkOptions').empty();
     		$('#WatcherOptions').empty();
     		$('#TagsOptions').empty();
+    		$('#Issuesptions').empty();
         },
         disableTabs :  function(){
             $('#selectVisualiser').addClass('disabled');
@@ -188,6 +192,10 @@ darwin.projectManagerModule = (function() {
         disableForkButton : function(){
         	$('.btn-group button').attr('disabled','disabled');   
         	$("#ForkHeader").text('Please wait until the data is collected');
+        },
+        disableIssuesButton : function(){
+        	$('.btn-group button').attr('disabled','disabled');   
+        	$("#IssuesHeader").text('Please wait until the data is collected');
         },
         disableTagsButton : function(){
         	$('.btn-group button').attr('disabled','disabled');   
@@ -234,6 +242,12 @@ darwin.projectManagerModule = (function() {
 		},
 		getStarProjectsAdded : function(){
 			return starProjectsAdded;
+		},
+		setIssuesProjectsAdded : function(){
+			issuesProjectsAdded = issuesProjectsAdded +1;
+		},
+		getissuesProjectsAdded : function(){
+			return issuesProjectsAdded;
 		},
 		resetStarProjectsAdded : function(){
 			starProjectsAdded = 0;
@@ -290,6 +304,7 @@ darwin.projectManagerModule = (function() {
              starProjectsAdded = 0;
              commitProjectsAdded = 0;
              releaseProjectsAdded = 0;
+             issuesProjectsAdded = 0;
         }
     };
 })();

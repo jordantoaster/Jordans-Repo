@@ -76,6 +76,9 @@ darwin.genericVisualiser = (function() {
 			if(action == "tags"){
 				darwin.genericVisualiser.drawChart("TagsChart", chartType, data, options);
 			}
+			if(action == "Issues"){
+				darwin.genericVisualiser.drawChart("IssuesChart", chartType, data, options);
+			}
 		},
 		drawChart : function(id, chartType, data, options){
     	    // Create and draw the visualization - change depending on type of chart

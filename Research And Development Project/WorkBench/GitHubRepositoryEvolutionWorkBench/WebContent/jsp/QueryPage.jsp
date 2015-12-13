@@ -26,6 +26,7 @@
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/InputManagers/WatcherInputManager.js?v6"></script>
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/InputManagers/ForkInputManager.js?v6"></script>
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/InputManagers/StarsInputManager.js?v6"></script>
+    <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/InputManagers/IssuesInputManager.js?v6"></script>
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/InputManagers/CustomInputManager.js?v6"></script>
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/InputManagers/CommitInputManager.js?v7"></script>
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Modules/ContributionVisualiser.js?v4"></script>
@@ -86,6 +87,7 @@
       <li><a class="tabText disabled" data-toggle="tab" href="#StarTab">Stars</a></li>
       <li><a class="tabText disabled" data-toggle="tab" href="#TagsTab">Tags</a></li>
       <li><a class="tabText disabled" data-toggle="tab" href="#ForkTab">Forks</a></li>
+      <li><a class="tabText disabled" data-toggle="tab" href="#IssuesTab">Issues</a></li> 
       <li><a class="tabText disabled" data-toggle="tab" href="#WatcherTab">Watchers</a></li>
       <li><a class="tabText disabled" data-toggle="tab" href="#CustomTab">Custom</a></li> 
     </ul>
@@ -245,6 +247,35 @@
 	  </div>
 	  <p class="inlineText" id="ForkProgress"></p>
       <div id="ForkChart"></div>  
+    </div>
+        <div id="IssuesTab" class="tab-pane fade customTab">
+      <p class="inlineText" id="IssuesHeader">Select a project(s) to get issues</p>
+      <div class="btn-group" id="IssuesOptions" role="group" aria-label="..."></div>
+      <div class="dropdown">
+  			<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    			Change Sampling Rate
+    		<span class="caret"></span>
+  		</button>
+  		<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+  		  <li><a href="#" id="sampleRate1Issues">1 Week</a></li>
+    	  <li><a href="#" id="sampleRate2Issues">6 Weeks</a></li>
+    	  <li><a href="#" id="sampleRate3Issues">13 Weeks</a></li>
+    	  <li><a href="#" id="sampleRate4Issues">26 Weeks</a></li>
+  		</ul>
+	  </div>
+	  <div class="dropdown">
+  			<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    			Change Chart Type
+    		<span class="caret"></span>
+  		</button>
+  		<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+  		  <li><a href="#" id="chartType1Issues"> Line Chart</a></li>
+  		  <li><a href="#" id="chartType2Issues">Stepped Area Chart</a></li>
+  		  <li><a href="#" id="chartType3Issues">Scatter Chart</a></li>
+  		</ul>
+	  </div>
+	  <p class="inlineText" id="IssuesProgress"></p>
+      <div id="IssuesChart"></div>  
     </div>
     <div id="WatcherTab" class="tab-pane fade customTab">
       <p class="inlineText" id="watcherHeader">Select a project(s) to get stars</p>

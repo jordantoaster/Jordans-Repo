@@ -15,7 +15,7 @@ darwin.customTabModule = (function() {
 	var isStarsChecked = false;
 	var isTagsChecked = false;
 	var isForksChecked = false;
-
+	var isIssuesChecked = false;
 	
     return {
     	//This function is called each time a new project is selected
@@ -41,6 +41,7 @@ darwin.customTabModule = (function() {
 			stars = darwin.Mediator.getStarsIndex(currentIndex);
 			forks = darwin.Mediator.getForksIndex(currentIndex);
 			tags = darwin.Mediator.getTagsIndex(currentIndex);
+			issues = darwin.Mediator.getIssuesIndex(currentIndex);
 
 			//if index has commits then draw checkbox for it
 			if(commits != undefined){
@@ -54,6 +55,9 @@ darwin.customTabModule = (function() {
 			}
 			if(forks != undefined){
 				$("#options").append('<div id="forksCheck" class="checkbox"><label><input type="checkbox" value="">Forks</label></div>')
+			}
+			if(issues != undefined){
+				$("#options").append('<div id="issuesCheck" class="checkbox"><label><input type="checkbox" value="">Issues</label></div>')
 			}
         },
         clearComponents : function(){
@@ -98,6 +102,12 @@ darwin.customTabModule = (function() {
         setForksChecked : function(bool){
         	isForksChecked = bool;
         },
+        setIssuesChecked : function(bool){
+        	isIssuesChecked = bool;
+        },
+        getIsIssuesChecked : function(){
+        	return isIssuesChecked;
+        },
         getIsAdditionsChecked : function(){
         	return isAdditionsChecked;
         },
@@ -136,6 +146,8 @@ darwin.customTabModule = (function() {
             darwin.customTabModule.setCommitsChecked(false);
             $('input').not('#starsCheck').prop('checked', false);
             darwin.customTabModule.setStarsChecked(false);
+            $('input').not('#issuessCheck').prop('checked', false);
+            darwin.customTabModule.setIssuesChecked(false);
         },
         resetCustomTabData : function(){
         	currentIndex = 0;

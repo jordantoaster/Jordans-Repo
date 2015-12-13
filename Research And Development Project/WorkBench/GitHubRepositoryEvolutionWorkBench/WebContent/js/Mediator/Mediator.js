@@ -40,7 +40,10 @@ darwin.Mediator = (function () {
 			}
 			else if(action == "tags"){
 				darwin.githubModule.send(url[0] + darwin.projectManagerModule.getcurrRequestPage(), callback, projectIndex, action);
-			} else {
+			}
+			else if(action == "Issues"){
+				darwin.githubModule.send(url[0] + darwin.projectManagerModule.getcurrRequestPage(), callback, projectIndex, action);
+			}else {
 				//if a stat api then loop each url, only send true callback on final url
 	    		projectNames = darwin.projectManagerModule.getProjectNames();
 				
@@ -134,6 +137,9 @@ darwin.Mediator = (function () {
 		setTagsDetails : function(index, commits, projectNames, sampleIndex){
 			darwin.dataManager.setTags(index, commits, projectNames, sampleIndex);
 		},
+		setIssuesDetails : function(index, commits, projectNames, sampleIndex){
+			darwin.dataManager.setIssues(index, commits, projectNames, sampleIndex);
+		},
 		getCommitDetails : function(){
 			return darwin.dataManager.getCommits();
 		},
@@ -146,6 +152,9 @@ darwin.Mediator = (function () {
 		getTagsDetails : function(){
 			return darwin.dataManager.getTags();
 		},
+		getIssuesDetails : function(){
+			return darwin.dataManager.getIssues();
+		},
 		setNumCommitProjectSelected : function(){
 			darwin.projectManagerModule.setCommitProjectsAdded(darwin.Mediator.getNumCommitProjectSelected + 1);
 		},
@@ -157,6 +166,9 @@ darwin.Mediator = (function () {
 		},
 		setNumStarProjectSelected : function(){
 			darwin.projectManagerModule.setStarProjectsAdded();
+		},
+		setNumIssuesProjectSelected : function(){
+			darwin.projectManagerModule.setIssuesProjectsAdded();
 		},
 		getNumWatcherProjectSelected : function(){
 			return darwin.projectManagerModule.getWatcherProjectsAdded();
@@ -212,6 +224,9 @@ darwin.Mediator = (function () {
 		getIndexForkJson : function(index){
 			return darwin.jsonManagerModule.getIndexForkJson(index)
 		},
+		getIndexIssuesJson : function(index){
+			return darwin.jsonManagerModule.getIndexIssues(index)
+		},
 		getIndexWatcherJson : function(index){
 			return darwin.jsonManagerModule.getIndexWatcherJson(index)
 		},
@@ -229,6 +244,9 @@ darwin.Mediator = (function () {
 		},
 		setTagsJson : function(index, response){
 			darwin.jsonManagerModule.setTagsJson(index,response)
+		},
+		setIssuesJson : function(index, response){
+			darwin.jsonManagerModule.setIssuesJson(index,response)
 		},
 		getTagsJson : function(index){
 			return 	darwin.jsonManagerModule.getTagsJson(index);
@@ -279,12 +297,22 @@ darwin.Mediator = (function () {
 		prepareForkClick : function(url, projectName){
 			darwin.jsonManagerModule.resetForkJson();
 			darwin.projectManagerModule.resetBaseRequestUrl();
-			darwin.projectManagerModule.disableForkButton();
+			darwin.projectManagerModule.disableIssuesButton();
 			
 			darwin.projectManagerModule.setBaseRequestUrl(0,url);
 			index = darwin.Mediator.getProjNameIndex(projectName);
 
 			darwin.Mediator.makeGithubRequest(darwin.projectManagerModule.getAllBaseRequestUrl(), darwin.Mediator.githubParseGenericData, "fork", index);		
+		},
+		prepareIssuesClick : function(url, projectName){
+			darwin.jsonManagerModule.resetIssuesJson();
+			darwin.projectManagerModule.resetBaseRequestUrl();
+			darwin.projectManagerModule.disableIssuesButton();
+			
+			darwin.projectManagerModule.setBaseRequestUrl(0,url);
+			index = darwin.Mediator.getProjNameIndex(projectName);
+
+			darwin.Mediator.makeGithubRequest(darwin.projectManagerModule.getAllBaseRequestUrl(), darwin.Mediator.githubParseGenericData, "Issues", index);		
 		},
 		prepareTagsClick : function(url, projectName){
 			darwin.jsonManagerModule.resetTagsJson();
@@ -346,6 +374,9 @@ darwin.Mediator = (function () {
 		getTagsIndex : function(index){
 			return darwin.dataManager.getTagsIndex(index);
 		},
+		getIssuesIndex : function(index){
+			return darwin.dataManager.getIssuesIndex(index);
+		},
 		addToCustomList : function(array, name){
 			darwin.dataManager.addToCustomList(array);
 			darwin.dataManager.addToCustomNameList(name);
@@ -380,6 +411,9 @@ darwin.Mediator = (function () {
 		},
 		updateForkProgress : function(val){
 			darwin.progressbarModule.updateForkProgress(val);
+		},
+		updateIssuesProgress : function(val){
+			darwin.progressbarModule.updateIssuesProgress(val);
 		},
 		updateTagsProgress : function(val){
 			darwin.progressbarModule.updateReleaseProgress(val);

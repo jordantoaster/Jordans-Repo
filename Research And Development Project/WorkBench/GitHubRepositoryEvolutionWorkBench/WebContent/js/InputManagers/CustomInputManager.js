@@ -168,6 +168,24 @@ $(document).ready(function(e) {
 			darwin.Mediator.addToCustomList(darwin.dataManager.getTagsIndex(darwin.customTabModule.getCurrentIndex()), darwin.projectManagerModule.getProjectNamesIndex(darwin.customTabModule.getCurrentIndex()));
 		}
 	});	
+	$(document).on("click.darwin","#issuesCheck", function (e) {	
+		
+		//allows resamping to take place until a new check is clicked
+		if(darwin.Mediator.getCurrentCustomSearch()){
+    		darwin.Mediator.setCurrentCustomSearch(false);
+    		darwin.Mediator.resetCustomList();
+		}
+		
+		if(darwin.customTabModule.getIsIssuesChecked()){
+			darwin.customTabModule.setIssuesChecked(false);
+		} else {
+			darwin.customTabModule.setIssuesChecked(true);
+		}
+		
+		if(darwin.customTabModule.getIsIssuesChecked()){
+			darwin.Mediator.addToCustomList(darwin.dataManager.getIssuesIndex(darwin.customTabModule.getCurrentIndex()), darwin.projectManagerModule.getProjectNamesIndex(darwin.customTabModule.getCurrentIndex()));
+		}
+	});	
 	
 	$('#sampleRate1Custom').on("click.darwin", function(e){
 		e.preventDefault();

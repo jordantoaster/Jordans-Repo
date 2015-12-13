@@ -33,10 +33,8 @@ darwin.genericExtractorModule = (function() {
     			if(action == "commit" || action == "fork" || action == "tags"){
         			localJson.reverse();
     			}    
-    			if(action =="tags"){
-    				
+    			if(action =="tags"){	
     				supplementDataLocal = darwin.Mediator.copyObject(supplementData);
-    				//supplementDataLocal.reverse();
     			}
     			
     			sampleIterator = 0;
@@ -47,7 +45,7 @@ darwin.genericExtractorModule = (function() {
     			var lastDateInSample = [];
     			    
     			//if there are multiple json input loop each
-    			for(var j = 0;j<localJson.length;j++){
+    			for(var j = 0;j<localJson.length-1;j++){
     				    				
         			totalStars++;
         			
@@ -63,6 +61,9 @@ darwin.genericExtractorModule = (function() {
         			}
           			if(action == "tags"){
           				var date = supplementData[j];
+          			}
+          			if(action == "Issues"){
+          				var date = darwin.ISO601toDateModule.convert(localJson[j].created_at);
           			}
         			
         			
@@ -108,6 +109,9 @@ darwin.genericExtractorModule = (function() {
       			if(action == "tags"){
         			darwin.Mediator.setTagsDetails(index, data, darwin.projectManagerModule.getProjectNames(), sampleIndex);
     			}
+      			if(action == "Issues"){
+        			darwin.Mediator.setIssuesDetails(index, data, darwin.projectManagerModule.getProjectNames(), sampleIndex);
+    			}
     					
         		//send to mongo for storage
     			//darwin.Mediator.packagerGeneric(dates, data, darwin.projectManagerModule.getProjectNamesIndex(index), action);  	
@@ -126,6 +130,9 @@ darwin.genericExtractorModule = (function() {
 			}
 			if(action == "tags"){
 	    		darwin.Mediator.drawGenericGraph(darwin.Mediator.getTagsDetails(), "weeks", "week On week Tags", darwin.projectManagerModule.getSampleIndex(), action, darwin.Mediator.getChartType());
+			}
+			if(action == "Issues"){
+	    		darwin.Mediator.drawGenericGraph(darwin.Mediator.getIssuesDetails(), "weeks", "week On week issues", darwin.projectManagerModule.getSampleIndex(), action, darwin.Mediator.getChartType());
 			}
 			    		
     		//enable clicking on another project

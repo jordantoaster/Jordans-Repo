@@ -40,6 +40,10 @@ darwin.AjaxResponseModule = (function () {
 				  if(action == "tags" && response.length != 0){
 					  darwin.Mediator.setTagsJson(index,response)
 				  }	
+				  if(action == "Issues"){
+					  darwin.Mediator.setIssuesJson(index,response)
+					  darwin.Mediator.updateIssuesProgress(1);
+				  }	
 				  if(action == "tagSupplement" && response.length != 0){
 					  darwin.Mediator.setSupplementTag(response, index);
 					  darwin.Mediator.updateTagsProgress(1);
@@ -81,7 +85,10 @@ darwin.AjaxResponseModule = (function () {
 					  if(action == "tags"){
 						  darwin.Mediator.supplementTagData(callback, action, index);
 					  }  	
-						  					  
+					  if(action == "Issues"){
+						  callback(darwin.Mediator.getIndexIssuesJson(index), index, action);
+						  darwin.Mediator.setNumIssuesProjectSelected();					  
+					  }  				  					  
 					  
 				  } else { //else poll for next set of 100
 					  if(action != "tagSupplement"){

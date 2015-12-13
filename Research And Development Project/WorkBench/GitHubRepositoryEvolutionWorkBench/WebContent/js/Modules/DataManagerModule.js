@@ -18,6 +18,7 @@ darwin.dataManager = (function() {
 	var forkList = [];
 	var TagsList =[];
 	var tagSupplement = [];
+	var IssuesList = [];
 
     return {
     	getContributionDates: function (index) {
@@ -141,6 +142,21 @@ darwin.dataManager = (function() {
         resetTagsList : function(){
         	TagsList = [];
         },
+    	setIssues: function (index, data, projectNames, SampleIndex) {
+    		if(IssuesList[index] === undefined)
+    			IssuesList[index] = [];
+
+    		IssuesList[index][SampleIndex]  = data;
+        },
+    	getIssues: function () {
+    		return IssuesList;
+        },
+    	getIssuesIndex: function (index) {
+    		return IssuesList[index];
+        },
+        resetTagsList : function(){
+        	IssuesList = [];
+        },
         addToCustomList : function(array){
         	customDataList.push(array);
         },
@@ -172,6 +188,7 @@ darwin.dataManager = (function() {
         	 forkList = [];
         	 TagsList  =[];
         	 tagSupplment = [];
+        	 IssuesList = [];
         }
     };
 })(); 

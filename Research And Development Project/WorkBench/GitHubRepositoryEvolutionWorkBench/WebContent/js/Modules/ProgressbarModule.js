@@ -12,6 +12,7 @@ darwin.progressbarModule = (function() {
 	var watcherProgress=0;
 	var forkProgress =0;
 	var tagsProgress =0;
+	var issuesProgress = 0;
 	
     return {
     	updateProgressBar: function () {
@@ -46,12 +47,17 @@ darwin.progressbarModule = (function() {
         	tagsProgress = tagsProgress + value;
             $('#TagsProgress').text("Tags Processed : " + tagsProgress);
         },
+        updateIssuesProgress : function(value){
+        	issuesProgress = issuesProgress + value;
+            $('#IssuesProgress').text("Issues Processed : " + issuesProgress);
+        },
         reset : function(){
         	 commitProgress =0;
         	 starProgress =0;
         	 watcherProgress=0;
         	 forkProgress = 0;
         	 tagsProgress =0;
+        	 issuesProgress =0;
         }
     };
 })();
