@@ -68,13 +68,17 @@ $(document).ready(function(e) {
 	$("#selectInput").on("click.darwin", function(e){  
 		$("#urlContainer").removeClass('hidden');
 		$("#visualiserContainer").addClass('hidden');
+		$("#statContainer").addClass('hidden');
 	});
 	$("#selectVisualiser").on("click.darwin", function(e){  
 		$("#visualiserContainer").removeClass('hidden');
 		$("#urlContainer").addClass('hidden');
+		$("#statContainer").addClass('hidden');
 	});
 	$("#selectStats").on("click.darwin", function(e){  
-
+		$("#statContainer").removeClass('hidden');
+		$("#visualiserContainer").addClass('hidden');
+		$("#urlContainer").addClass('hidden');
 	});
 	$("#selectPrediction").on("click.darwin", function(e){  
 

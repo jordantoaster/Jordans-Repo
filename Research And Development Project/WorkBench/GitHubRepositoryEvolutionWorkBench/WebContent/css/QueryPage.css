@@ -39,6 +39,16 @@
     border-bottom: 1px solid #5f5f5f;
 }
 
+#statContainer {
+	width: 80% !important;
+	font-size: 0.8em !important;
+    margin: 0 auto;
+    padding: 20px;
+    margin-top: 1%; 
+    background-color: rgb(0,0,0,0);
+    border-bottom: 1px solid #5f5f5f;
+}
+
 #urlContainer {
 	width: 80% !important;
 	font-size: 0.8em !important;

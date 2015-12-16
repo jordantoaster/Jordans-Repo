@@ -82,14 +82,14 @@
   </div>
    <div id="visualiserContainer" class="hidden">
     <ul class="nav nav-tabs tabListCustom">
-      <li><a class="tabText disabled" data-toggle="tab" href="#ContributorTab">Contributors</a></li>
-      <li><a class="tabText disabled" data-toggle="tab" href="#CommitTab">Commits</a></li>
-      <li><a class="tabText disabled" data-toggle="tab" href="#StarTab">Stars</a></li>
-      <li><a class="tabText disabled" data-toggle="tab" href="#TagsTab">Tags</a></li>
-      <li><a class="tabText disabled" data-toggle="tab" href="#ForkTab">Forks</a></li>
-      <li><a class="tabText disabled" data-toggle="tab" href="#IssuesTab">Issues</a></li> 
-      <li><a class="tabText disabled" data-toggle="tab" href="#WatcherTab">Watchers</a></li>
-      <li><a class="tabText disabled" data-toggle="tab" href="#CustomTab">Custom</a></li> 
+      <li><a class="tabText " data-toggle="tab" href="#ContributorTab">Contributors</a></li>
+      <li><a class="tabText " data-toggle="tab" href="#CommitTab">Commits</a></li>
+      <li><a class="tabText " data-toggle="tab" href="#StarTab">Stars</a></li>
+      <li><a class="tabText " data-toggle="tab" href="#TagsTab">Tags</a></li>
+      <li><a class="tabText " data-toggle="tab" href="#ForkTab">Forks</a></li>
+      <li><a class="tabText " data-toggle="tab" href="#IssuesTab">Issues</a></li> 
+      <li><a class="tabText " data-toggle="tab" href="#WatcherTab">Watchers</a></li>
+      <li><a class="tabText " data-toggle="tab" href="#CustomTab">Custom</a></li> 
     </ul>
       <div class="tab-content">  
    	  <div id="ContributorTab" class="tab-pane fade customTab">
@@ -347,6 +347,20 @@
      </div>  
    </div>
    </div>
+  <div id="statContainer" class="hidden">
+    <ul class="nav nav-tabs tabListCustom">
+      <li class=""><a class="tabText" data-toggle="tab" href="#meanInput">Mean</a></li>
+      <li class=""><a class="tabText" data-toggle="tab" href="#correlationInput">correlation</a></li>
+    </ul>
+      <div class="tab-content">
+        <div id="#meanInput" class="tab-pane fade customTab">
+        1 
+	    </div>
+	    <div id="#correlationInput" class="tab-pane fade customTab">
+        2 
+	    </div>
+     </div>
+  </div>
     <div id="ajaxGetUserServletResponse" class="alert alert-success" role="alert"></div>   
   </body>
 </html>
