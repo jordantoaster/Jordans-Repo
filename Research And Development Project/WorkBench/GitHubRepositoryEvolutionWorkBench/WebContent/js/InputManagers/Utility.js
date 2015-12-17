@@ -1,8 +1,13 @@
 var darwin = darwin || {};
 
 $(document).ready(function(e) {
+	
+    $('.nav-tabs a').click(function () {
+        var href = $(this).attr('href');
+        var elem = $('a[href="' + href + '"]').tab('show');
+    });
 		
-	darwin.projectManagerModule.disableTabs();
+	///darwin.projectManagerModule.disableTabs();
 	
 	
 	//add to project manager

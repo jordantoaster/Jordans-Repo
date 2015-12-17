@@ -5,6 +5,10 @@
   <head>
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/css/QueryPage.css?v4">
+    <link rel="stylesheet" href="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/css/Master.css?v2">
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/QueryPage.js?v4"></script>
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Modules/GitHubCommunication.js?v4"></script>
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Modules/loadGraphModule.js?v4"></script>
@@ -35,10 +39,6 @@
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Modules/ContributionExtractor.js?v7"></script>
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Modules/CopyObjectModule.js?v7"></script>
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Modules/GenericExtractorModule.js?v8"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <link rel="stylesheet" href="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/css/QueryPage.css?v4">
-    <link rel="stylesheet" href="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/css/Master.css?v2">
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
     <title>Main Application</title>
@@ -82,17 +82,17 @@
   </div>
    <div id="visualiserContainer" class="hidden">
     <ul class="nav nav-tabs tabListCustom">
-      <li><a class="tabText " data-toggle="tab" href="#ContributorTab">Contributors</a></li>
-      <li><a class="tabText " data-toggle="tab" href="#CommitTab">Commits</a></li>
-      <li><a class="tabText " data-toggle="tab" href="#StarTab">Stars</a></li>
-      <li><a class="tabText " data-toggle="tab" href="#TagsTab">Tags</a></li>
-      <li><a class="tabText " data-toggle="tab" href="#ForkTab">Forks</a></li>
-      <li><a class="tabText " data-toggle="tab" href="#IssuesTab">Issues</a></li> 
-      <li><a class="tabText " data-toggle="tab" href="#WatcherTab">Watchers</a></li>
-      <li><a class="tabText " data-toggle="tab" href="#CustomTab">Custom</a></li> 
+      <li class="active"><a class="tabText" data-toggle="tab" href="#ContributorTab">Contributors</a></li>
+      <li><a class="tabText" data-toggle="tab" href="#CommitTab">Commits</a></li>
+      <li><a class="tabText" data-toggle="tab" href="#StarTab">Stars</a></li>
+      <li><a class="tabText" data-toggle="tab" href="#TagsTab">Tags</a></li>
+      <li><a class="tabText" data-toggle="tab" href="#ForkTab">Forks</a></li>
+      <li><a class="tabText" data-toggle="tab" href="#IssuesTab">Issues</a></li> 
+      <li><a class="tabText" data-toggle="tab" href="#WatcherTab">Watchers</a></li>
+      <li><a class="tabText" data-toggle="tab" href="#CustomTab">Custom</a></li> 
     </ul>
       <div class="tab-content">  
-   	  <div id="ContributorTab" class="tab-pane fade customTab">
+   	  <div id="ContributorTab" class="tab-pane fade in active customTab">
     	<div class="dropdown">
   			<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
     			Change Metric
@@ -349,16 +349,16 @@
    </div>
   <div id="statContainer" class="hidden">
     <ul class="nav nav-tabs tabListCustom">
-      <li class=""><a class="tabText" data-toggle="tab" href="#meanInput">Mean</a></li>
-      <li class=""><a class="tabText" data-toggle="tab" href="#correlationInput">correlation</a></li>
+      <li class="active"><a class="tabText" data-toggle="tab" href="#meanBlock">Mean</a></li>
+      <li class=""><a class="tabText" data-toggle="tab" href="#correlationBLock">Correlation</a></li>
     </ul>
       <div class="tab-content">
-        <div id="#meanInput" class="tab-pane fade customTab">
-        1 
-	    </div>
-	    <div id="#correlationInput" class="tab-pane fade customTab">
-        2 
-	    </div>
+      	<div id="meanBlock" class="tab-pane fade in active">
+			a
+	 	</div>
+	 	<div id="correlationBLock" class="tab-pane fade">
+			b
+	 	</div>
      </div>
   </div>
     <div id="ajaxGetUserServletResponse" class="alert alert-success" role="alert"></div>   
