@@ -122,6 +122,11 @@
 	margin-left: 5%;
 }
 
+#meanOptions {
+	display:inline;
+	margin-left: 5%;
+}
+
 .checkbox {
 	display:inline !important;
 	margin-left: 1%;

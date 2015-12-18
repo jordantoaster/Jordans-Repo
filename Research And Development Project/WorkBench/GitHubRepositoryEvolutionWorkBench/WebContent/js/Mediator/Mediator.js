@@ -353,8 +353,12 @@ darwin.Mediator = (function () {
 		setupCustomComponentsOptions : function(){
 			darwin.customTabModule.setupUiOptions();
 		},
-		setupCustomComponentsDropDown : function(){
-			darwin.customTabModule.setupUiDropDown();
+		setupCustomComponentsDropDown : function(type){
+			if(type =="custom"){
+				darwin.customTabModule.setupUiDropDown();
+			} else if (type=="mean"){
+				darwin.projectManagerModule.setupMeanUi();
+			}
 		},
 		clearComponents : function(){
 			darwin.customTabModule.clearComponents();

@@ -7,7 +7,7 @@ $(document).ready(function(e) {
         var elem = $('a[href="' + href + '"]').tab('show');
     });
 		
-	///darwin.projectManagerModule.disableTabs();
+	darwin.projectManagerModule.disableTabs();
 	
 	
 	//add to project manager
@@ -93,7 +93,7 @@ $(document).ready(function(e) {
 	$(document).on( 'shown.bs.tab', 'a[data-toggle="tab"]', function (e) {
 		if($(this).attr('href') == "#CustomTab"){
 			darwin.Mediator.clearComponents();
-			darwin.Mediator.setupCustomComponentsDropDown();
+			darwin.Mediator.setupCustomComponentsDropDown("custom");
 		}// activated tab
 	})
 });

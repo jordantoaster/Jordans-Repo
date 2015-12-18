@@ -33,6 +33,7 @@
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/InputManagers/IssuesInputManager.js?v6"></script>
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/InputManagers/CustomInputManager.js?v6"></script>
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/InputManagers/CommitInputManager.js?v7"></script>
+    <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/InputManagers/MeanInputManager.js?v7"></script>
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Modules/ContributionVisualiser.js?v4"></script>
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Modules/GenericVisualiserModule.js?v5"></script>
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Modules/CustomVisualiserModule.js?v4"></script>
@@ -354,7 +355,29 @@
     </ul>
       <div class="tab-content">
       	<div id="meanBlock" class="tab-pane fade in active">
-			a
+			<div class="dropdown">
+  			<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    			Change Chart Type
+    		<span class="caret"></span>
+  			</button>
+  			<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+  		  		<li><a href="#" id="MeanChoice1">Additions</a></li>
+  		  		<li><a href="#" id="MeanChoice2">Deletions</a></li>
+  		  		<li><a href="#" id="MeanChoice3">LOC</a></li>
+  		  		<li><a href="#" id="MeanChoice4">Commits</a></li>
+  		  		<li><a href="#" id="MeanChoice5">Stars</a></li>
+  		  		<li><a href="#" id="MeanChoice6">Tags</a></li>
+  		  		<li><a href="#" id="MeanChoice7">Forks</a></li>
+  		  		<li><a href="#" id="MeanChoice8">Issues</a></li>
+  		  		<li><a href="#" id="MeanChoice9">Watchers</a></li>
+  			</ul>
+			</div>
+			<div id="meanOptions">
+	    	<p class="inlineText" style="display:block;">Options</p>
+	    	</div> 
+	    	 <button type="submit" id="submitButtonMean" class="btn btn-primary submitButton">
+  	     		<i class="icon-user icon-white">Get Custom Graph</i> 
+      		 </button>  
 	 	</div>
 	 	<div id="correlationBLock" class="tab-pane fade">
 			b

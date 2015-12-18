@@ -165,7 +165,8 @@ darwin.projectManagerModule = (function() {
     		$('#ForkOptions').empty();
     		$('#WatcherOptions').empty();
     		$('#TagsOptions').empty();
-    		$('#Issuesptions').empty();
+        	$('#meanOptions').empty();
+    		$('#IssuesOptions').empty();
         },
         disableTabs :  function(){
             $('#selectVisualiser').addClass('disabled');
@@ -287,6 +288,61 @@ darwin.projectManagerModule = (function() {
 		},
         noCallBack : function(){
         	//do nothing
+        },
+        setupMeanUi : function(dataType){
+        	
+    		var numProjects = darwin.projectManagerModule.getNumProjects();
+    		var projectNames = darwin.projectManagerModule.getProjectNames();
+        	
+        	//check boxes - find out who has the selected information and show
+        	for(var i =0; i<numProjects;i++){
+        		
+        		if(dataType == "additions"){
+        			$("#meanOptions").append('<div id="additionsCheckMean'+i+'" class="checkbox"><label><input type="checkbox" value="">'+projectNames[i]+'</label></div>')
+        		}
+        		if(dataType == "deletions"){
+        			$("#meanOptions").append('<div id="deletionsCheckMean'+i+'" class="checkbox"><label><input type="checkbox" value="">'+projectNames[i]+'</label></div>')
+        		}
+        		if(dataType == "LOC"){
+        			$("#meanOptions").append('<div id="LOCCheckMean'+i+'" class="checkbox"><label><input type="checkbox" value="">'+projectNames[i]+'</label></div>')
+        		}
+        		if(dataType == "forks"){
+        			forks = darwin.Mediator.getForksIndex(i);
+        			if(forks != undefined){
+        				$("#meanOptions").append('<div id="forksCheckMean'+i+'" class="checkbox"><label><input type="checkbox" value="">Forks</label></div>')
+        			}
+        		}
+        		if(dataType == "tags"){
+           			tags = darwin.Mediator.getTagsIndex(i);
+        			if(tags != undefined){
+        				$("#meanOptions").append('<div id="tagsCheckMean'+i+'" class="checkbox"><label><input type="checkbox" value="">tags</label></div>')
+        			}
+        		}
+        		if(dataType == "issues"){
+           			issues = darwin.Mediator.getIssuesIndex(i);
+        			if(issues != undefined){
+        				$("#meanOptions").append('<div id="issuesCheckMean'+i+'" class="checkbox"><label><input type="checkbox" value="">issues</label></div>')
+        			}
+        		}
+        		if(dataType == "commits"){
+           			commits = darwin.Mediator.getCommitsIndex(i);
+        			if(commits != undefined){
+        				$("#meanOptions").append('<div id="commitsCheckMean'+i+'" class="checkbox"><label><input type="checkbox" value="">commits</label></div>')
+        			}
+        		}
+        		if(dataType == "stars"){
+          			stars = darwin.Mediator.getStarsIndex(i);
+        			if(stars != undefined){
+        				$("#meanOptions").append('<div id="starsCheckMean'+i+'" class="checkbox"><label><input type="checkbox" value="">stars</label></div>')
+        			}
+        		}
+        		if(dataType == "watchers"){
+        			
+        		}	
+        	}
+        },
+        resetMeanOptions : function(){
+        	$('#meanOptions').empty();
         },
         resetAllProjectManager : function(){
         	 projectId = "";

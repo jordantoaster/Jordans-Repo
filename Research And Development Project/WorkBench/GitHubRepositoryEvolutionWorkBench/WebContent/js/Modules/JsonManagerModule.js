@@ -84,7 +84,7 @@ darwin.jsonManagerModule = (function() {
         	} else {
             	commitArray.push.apply(commitArray, json);
         	}
-        	if(json == 100){
+        	if(json.length == 100){
         		darwin.jsonManagerModule.setMergedCommits(commitArray, index);
         	}
         },
