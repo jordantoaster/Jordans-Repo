@@ -26,6 +26,7 @@ darwin.projectManagerModule = (function() {
     var supplementSize = 0;
     var tagSuppIndex = 0;
     var selectedTagProject = [];
+    var meanType = "";
 		
     return {
     	getSelectedTagProject : function(index){
@@ -289,7 +290,15 @@ darwin.projectManagerModule = (function() {
         noCallBack : function(){
         	//do nothing
         },
+        setMeanType : function(type){
+        	meanType = type;
+        },
+        getMeanType : function(){
+        	return meanType;
+        },
         setupMeanUi : function(dataType){
+        	
+        	darwin.projectManagerModule.setMeanType(dataType);
         	
     		var numProjects = darwin.projectManagerModule.getNumProjects();
     		var projectNames = darwin.projectManagerModule.getProjectNames();
@@ -298,42 +307,42 @@ darwin.projectManagerModule = (function() {
         	for(var i =0; i<numProjects;i++){
         		
         		if(dataType == "additions"){
-        			$("#meanOptions").append('<div id="additionsCheckMean'+i+'" class="checkbox"><label><input type="checkbox" value="">'+projectNames[i]+'</label></div>')
+        			$("#meanOptions").append('<div class="checkbox"><label><input id="checkMean'+i+'" type="checkbox" value="">'+projectNames[i]+'</label></div>')
         		}
         		if(dataType == "deletions"){
-        			$("#meanOptions").append('<div id="deletionsCheckMean'+i+'" class="checkbox"><label><input type="checkbox" value="">'+projectNames[i]+'</label></div>')
+        			$("#meanOptions").append('<div class="checkbox"><label><input id="checkMean'+i+'" type="checkbox" value="">'+projectNames[i]+'</label></div>')
         		}
         		if(dataType == "LOC"){
-        			$("#meanOptions").append('<div id="LOCCheckMean'+i+'" class="checkbox"><label><input type="checkbox" value="">'+projectNames[i]+'</label></div>')
+        			$("#meanOptions").append('<div  class="checkbox"><label><input id="checkMean'+i+'" type="checkbox" value="">'+projectNames[i]+'</label></div>')
         		}
         		if(dataType == "forks"){
         			forks = darwin.Mediator.getForksIndex(i);
         			if(forks != undefined){
-        				$("#meanOptions").append('<div id="forksCheckMean'+i+'" class="checkbox"><label><input type="checkbox" value="">Forks</label></div>')
+        				$("#meanOptions").append('<div class="checkbox"><label><input id="checkMean'+i+'" type="checkbox" value="">Forks</label></div>')
         			}
         		}
         		if(dataType == "tags"){
            			tags = darwin.Mediator.getTagsIndex(i);
         			if(tags != undefined){
-        				$("#meanOptions").append('<div id="tagsCheckMean'+i+'" class="checkbox"><label><input type="checkbox" value="">tags</label></div>')
+        				$("#meanOptions").append('<div class="checkbox"><label><input id="checkMean'+i+'" type="checkbox" value="">tags</label></div>')
         			}
         		}
         		if(dataType == "issues"){
            			issues = darwin.Mediator.getIssuesIndex(i);
         			if(issues != undefined){
-        				$("#meanOptions").append('<div id="issuesCheckMean'+i+'" class="checkbox"><label><input type="checkbox" value="">issues</label></div>')
+        				$("#meanOptions").append('<div  class="checkbox"><label><input id="checkMean'+i+'" type="checkbox" value="">issues</label></div>')
         			}
         		}
         		if(dataType == "commits"){
            			commits = darwin.Mediator.getCommitsIndex(i);
         			if(commits != undefined){
-        				$("#meanOptions").append('<div id="commitsCheckMean'+i+'" class="checkbox"><label><input type="checkbox" value="">commits</label></div>')
+        				$("#meanOptions").append('<div class="checkbox"><label><input id="checkMean'+i+'" type="checkbox" value="">commits</label></div>')
         			}
         		}
         		if(dataType == "stars"){
           			stars = darwin.Mediator.getStarsIndex(i);
         			if(stars != undefined){
-        				$("#meanOptions").append('<div id="starsCheckMean'+i+'" class="checkbox"><label><input type="checkbox" value="">stars</label></div>')
+        				$("#meanOptions").append('<div class="checkbox"><label><input id="checkMean'+i+'" type="checkbox" value="">stars</label></div>')
         			}
         		}
         		if(dataType == "watchers"){
@@ -343,6 +352,61 @@ darwin.projectManagerModule = (function() {
         },
         resetMeanOptions : function(){
         	$('#meanOptions').empty();
+        },
+        getCheckedMeanData : function(dataType){
+        	
+        	numProjects = darwin.projectManagerModule.getNumProjects();
+        	selectedMeanData = [];
+        	selectedMeanProjectName = [];
+        	dataCounter = 0;
+        	
+        	//finds out and records which checks have been chosen
+			for(var i =0; i< numProjects;i++){
+				if($('#checkMean'+i+'').is(':checked')) {		
+					
+		        	if(dataType == "additions"){
+		        		selectedMeanData[dataCounter] = darwin.Mediator.getAdditionsIndex(i)[0];
+		        		dataCounter++;
+		        	}
+		        	if(dataType == "deletions"){
+		        		selectedMeanData[dataCounter] = darwin.Mediator.getDeletionsIndex(i)[0];
+		        		dataCounter++;
+		        	}
+		        	if(dataType == "LOC"){
+		        		selectedMeanData[dataCounter] = darwin.Mediator.getLOCIndex(i)[0];
+		        		dataCounter++;
+		        	}
+		        	if(dataType == "forks"){
+		        		selectedMeanData[dataCounter] = darwin.Mediator.getForksIndex(i)[0];
+		        		dataCounter++;
+		        	}
+		        	if(dataType == "tags"){
+		        		selectedMeanData[dataCounter] = darwin.Mediator.getTagsIndex(i)[0];
+		        		dataCounter++;
+		        	}
+		        	if(dataType == "issues"){
+		        		selectedMeanData[dataCounter] = darwin.Mediator.getIssuesIndex(i)[0];
+		        		dataCounter++;
+		        	}
+		        	if(dataType == "commits"){
+		        		selectedMeanData[dataCounter] = darwin.Mediator.getCommitsIndex(i)[0];
+		        		dataCounter++;
+		        	}
+		        	if(dataType == "stars"){
+		        		selectedMeanData[dataCounter] = darwin.Mediator.getStarsIndex(i)[0];
+		        		dataCounter++;
+		        	}
+		        	if(dataType == "watchers"){
+		        			
+		        	}	
+		        	
+	        		selectedMeanProjectName[dataCounter] = darwin.projectManagerModule.getProjectNamesIndex(i);
+
+				}				
+			}
+			
+			darwin.packager.mean(selectedMeanProjectName, selectedMeanData);			
+
         },
         resetAllProjectManager : function(){
         	 projectId = "";
@@ -361,6 +425,7 @@ darwin.projectManagerModule = (function() {
              commitProjectsAdded = 0;
              releaseProjectsAdded = 0;
              issuesProjectsAdded = 0;
+             meanType = "";
         }
     };
 })();

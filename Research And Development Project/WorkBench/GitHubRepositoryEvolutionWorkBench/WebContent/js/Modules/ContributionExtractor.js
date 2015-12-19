@@ -129,7 +129,7 @@ darwin.contributionExtractorModule = (function() {
 					darwin.Mediator.setContributionDetails(j, additions, deletions, difference, LOCOverTime, sampleIndex, contributionDates);
 
 					/* Uncomment when sending data to the DB */
-					// darwin.Mediator.packager.contributions(additions, deletions, LOCOverTime, contributionDates, "contributions");
+					darwin.packager.contributions(additions, deletions, LOCOverTime, contributionDates, "contributions");
 				}
 			}
 

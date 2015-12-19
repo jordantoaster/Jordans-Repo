@@ -381,6 +381,15 @@ darwin.Mediator = (function () {
 		getIssuesIndex : function(index){
 			return darwin.dataManager.getIssuesIndex(index);
 		},
+		getAdditionsIndex : function(index){
+			return darwin.dataManager.getAdditions(index);
+		},
+		getDeletionsIndex : function(index){
+			return darwin.dataManager.getDeletions(index);
+		},
+		getLOCIndex : function(index){
+			return darwin.dataManager.getLOCOverTime(index);
+		},
 		addToCustomList : function(array, name){
 			darwin.dataManager.addToCustomList(array);
 			darwin.dataManager.addToCustomNameList(name);
@@ -488,6 +497,9 @@ darwin.Mediator = (function () {
 			
 			return dateArray;
 			
+		},
+		getCheckedMeanData : function(dataType){
+			darwin.projectManagerModule.getCheckedMeanData(dataType);
 		}
     };
 })();

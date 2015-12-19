@@ -29,6 +29,13 @@ darwin.packager = (function () {
     			stringArray[i] = dates[i].toString();
     		}
     		return stringArray;
+    	},
+    	mean : function(names, data){
+    		var splitKey = "#";
+    		var requestData = names.concat(splitKey).concat(data);		    		
+
+    		
+			darwin.Mediator.makeServerRequest("mean", darwin.Mediator.drawGenericGraph, "GET", requestData);
     	}
     };
 })();

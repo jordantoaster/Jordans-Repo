@@ -48,4 +48,8 @@ $(document).ready(function(e) {
 		darwin.projectManagerModule.setupMeanUi("watchers");
 	});
 	
+	$('#submitButtonMean').on("click.darwin", function(e){
+		darwin.Mediator.getCheckedMeanData(darwin.projectManagerModule.getMeanType());
+	});	
+	
 });

@@ -10,10 +10,10 @@ darwin.serverModule = (function() {
     		$.ajax({
     			  type : type,
     			  url : 'http://localhost:8080/GitHubRepositoryEvolutionWorkBench/Service',
-    			  data : { 
+    			  data : JSON.stringify({ 
     			    	action: action,
     			    	input: input,
-    			  },
+    			  }),
     			  success : function(response) {
     			    	callback(response);
     			  },
