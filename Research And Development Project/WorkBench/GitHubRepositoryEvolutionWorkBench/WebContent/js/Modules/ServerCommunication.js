@@ -65,7 +65,8 @@ darwin.serverModule = (function() {
   			  }
   		});
         },
-        sendStat : function(action, subAction, projectNames, data){
+        sendStat : function(action, subAction, projectNames, data, type){
+    	
     		$.ajax({
     			  type : type,
     			  url : 'http://localhost:8080/GitHubRepositoryEvolutionWorkBench/Service',
@@ -73,7 +74,7 @@ darwin.serverModule = (function() {
     				  	action:action,
     				  	subAction:subAction,
     				  	projectNames: projectNames,
-    			    	data: data,
+    			    	data: JSON.stringify(data)
     			  },
     			  success : function(response) {
     			    	callback(response);

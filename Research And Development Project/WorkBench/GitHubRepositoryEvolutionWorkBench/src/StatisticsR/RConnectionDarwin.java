@@ -5,7 +5,8 @@ import org.rosuda.REngine.Rserve.RConnection;
 import org.rosuda.REngine.Rserve.RserveException;
 
 public class RConnectionDarwin {
-	public int[] mean(String a[]) {
+	
+	public  int[] mean(String a[]) {
 		
 		RConnection connection = null;
 		 
@@ -23,7 +24,9 @@ public class RConnectionDarwin {
             e.printStackTrace();
         } catch (REXPMismatchException e) {
             e.printStackTrace();
-        }      
+        }  
+        
+        connection.close();
         
 		return null;
     }

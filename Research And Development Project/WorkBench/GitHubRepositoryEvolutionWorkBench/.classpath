@@ -23,7 +23,15 @@
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="D:/Program Files/R-3.2.3/library/Rserve/java/REngine.jar"/>
-	<classpathentry kind="lib" path="D:/Program Files/R-3.2.3/library/Rserve/java/Rserve.jar"/>
+	<classpathentry kind="lib" path="D:/Program Files/R-3.2.3/library/Rserve/java/REngine.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="D:/Program Files/R-3.2.3/library/Rserve/java/Rserve.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

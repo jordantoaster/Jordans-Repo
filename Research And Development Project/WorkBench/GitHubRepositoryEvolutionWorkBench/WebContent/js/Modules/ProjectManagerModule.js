@@ -366,46 +366,39 @@ darwin.projectManagerModule = (function() {
 					
 		        	if(dataType == "additions"){
 		        		selectedMeanData[dataCounter] = darwin.Mediator.getAdditionsIndex(i)[0];
-		        		dataCounter++;
 		        	}
 		        	if(dataType == "deletions"){
 		        		selectedMeanData[dataCounter] = darwin.Mediator.getDeletionsIndex(i)[0];
-		        		dataCounter++;
 		        	}
 		        	if(dataType == "LOC"){
 		        		selectedMeanData[dataCounter] = darwin.Mediator.getLOCIndex(i)[0];
-		        		dataCounter++;
 		        	}
 		        	if(dataType == "forks"){
 		        		selectedMeanData[dataCounter] = darwin.Mediator.getForksIndex(i)[0];
-		        		dataCounter++;
 		        	}
 		        	if(dataType == "tags"){
 		        		selectedMeanData[dataCounter] = darwin.Mediator.getTagsIndex(i)[0];
-		        		dataCounter++;
 		        	}
 		        	if(dataType == "issues"){
 		        		selectedMeanData[dataCounter] = darwin.Mediator.getIssuesIndex(i)[0];
-		        		dataCounter++;
 		        	}
 		        	if(dataType == "commits"){
 		        		selectedMeanData[dataCounter] = darwin.Mediator.getCommitsIndex(i)[0];
-		        		dataCounter++;
 		        	}
 		        	if(dataType == "stars"){
 		        		selectedMeanData[dataCounter] = darwin.Mediator.getStarsIndex(i)[0];
-		        		dataCounter++;
 		        	}
 		        	if(dataType == "watchers"){
 		        			
 		        	}	
 		        	
 	        		selectedMeanProjectName[dataCounter] = darwin.projectManagerModule.getProjectNamesIndex(i);
+	        		dataCounter++;
 
 				}				
 			}
 			
-			darwin.serverModule.sendStat("stats","mean",selectedMeanProjectName, selectedMeanData);			
+			darwin.serverModule.sendStat("stats","mean",selectedMeanProjectName, selectedMeanData, "POST");	
 
         },
         resetAllProjectManager : function(){

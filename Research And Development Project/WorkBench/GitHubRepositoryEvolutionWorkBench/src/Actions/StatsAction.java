@@ -6,14 +6,20 @@ import javax.servlet.http.HttpServletResponse;
 import StatisticsR.RConnectionDarwin;
 
 public class StatsAction implements Action{
+	
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
 
 		String subAction = request.getParameter("subAction");
 		String[] projects = request.getParameterValues("projectNames[]");
-		String[] data = request.getParameterValues("data[]");
-		RConnectionDarwin R = new RConnectionDarwin();
+		String[] data = request.getParameterValues("data");
+		
+		//parse the data
+		
+		//RConnectionDarwin r = new RConnectionDarwin();
+		//r.mean(data);
+
 		
 		if(subAction.equals("mean")){
 			
@@ -25,7 +31,7 @@ public class StatsAction implements Action{
 			//loop all sets in aray 	//get mean
 			for(int i =0; i<data.length;i++){
 				//get mean
-				//mean[i] =  R.mean(data[i]);
+				//mean[i] =  r.mean(data[i]);
 			}
 			
 			//store mean
