@@ -13,56 +13,26 @@ import Daos.ContributionDao;
 import Models.Contributions;
 
 public class StoreContributionAction implements Action{
-	
-	/*Holds the split version of the input array*/
-	List<Integer> additions = new ArrayList<Integer>();
-	List<Integer> deletions  = new ArrayList<Integer>();
-	List<Integer> LOC  = new ArrayList<Integer>();
-	List<String> dates  = new ArrayList<String>();
-	String project = "";
 
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
 		
-		String[] contribDetails = request.getParameterValues("input[]");
+		System.out.println();
 		
-		getData(contribDetails);
 		
-		Contributions contributions = new Contributions(additions, deletions, LOC, dates, project);
+		String[] additions = request.getParameterValues("additions[]");
+		String[] deletions = request.getParameterValues("deletions[]");
+		String[] difference = request.getParameterValues("difference[]");
+		String[] LOCOverTIme = request.getParameterValues("LOCOverTime[]");
+		String[] contributionDates = request.getParameterValues("contributionDates[]");
+		String project = request.getParameter("project");
+				
+		Contributions contributions = new Contributions(additions, deletions, difference, LOCOverTIme, contributionDates, project);
 		
 		ContributionDao dao = new ContributionDao();
 		dao.insertContributions(contributions);
 		
 		return "mongo sync complete";
-	}
-
-	/*Removes the terminators and splits the main list into each category*/
-	public boolean getData(String[] contribDetails) {
-		
-		int count = 0;
-		
-		for(int i =0; i<contribDetails.length; i++){
-			if(contribDetails[i].equals("#")){
-				count++;
-			} else {
-				if(count == 0){
-					additions.add(Integer.parseInt(contribDetails[i]));
-				}
-				if(count == 1){
-					deletions.add(Integer.parseInt(contribDetails[i]));
-				}
-				if(count == 2){
-					LOC.add(Integer.parseInt(contribDetails[i]));
-				}
-				if(count == 3){
-					dates.add(contribDetails[i]);
-				}
-				if(count == 4){
-					project = contribDetails[i];
-				}
-			}		
-		}		
-		return true;
 	}
 }

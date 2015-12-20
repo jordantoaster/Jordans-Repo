@@ -5,29 +5,30 @@ import java.util.List;
 
 public class Commits {
 
-	private List<String> dates = new ArrayList<String>();
-	private List<Integer> commits  = new ArrayList<Integer>();
+
+	private String[]  commits;
+	private String[]  dates;
 	private String project = "";
 	
-	public Commits(List<String> dates, List<Integer> commits, String project){
+	public Commits(String[] dates, String[] data, String project){
 		this.dates = dates;
-		this.commits = commits;
+		this.commits = data;
 		this.project = project;
 	}
 	
-	public List<String> getDates() {
+	public String[] getDates() {
 		return dates;
 	}
 
-	public void setDates(List<String> dates) {
+	public void setDates(String[] dates) {
 		this.dates = dates;
 	}
 
-	public List<Integer> getCommits() {
+	public String[] getCommits() {
 		return commits;
 	}
 
-	public void setCommits(List<Integer> commits) {
+	public void setCommits(String[] commits) {
 		this.commits = commits;
 	}
 

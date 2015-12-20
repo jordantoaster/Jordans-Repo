@@ -15,7 +15,7 @@ public class LoginAction implements Action {
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
 		
 		//is [] needed after 'input'
-		String[] loginDetails = request.getParameterValues("input[]");		
+		String[] loginDetails = request.getParameterValues("input");		
 		
 		//for unit test mocking
 		if(loginDetails == null){
@@ -25,7 +25,9 @@ public class LoginAction implements Action {
 		User user  = new User("","",""); //placeholder for facebook login scenario	
 		Gson gson = new Gson();
 		
-		if(!loginDetails[0].equals("facebook")){
+		String loginType = loginDetails[0];
+		
+		if(!loginType.equals("facebook")){
 			user = new User(loginDetails[0], loginDetails[1], "standard");
 		
 			boolean isValidated = validateLoginDetails(user);

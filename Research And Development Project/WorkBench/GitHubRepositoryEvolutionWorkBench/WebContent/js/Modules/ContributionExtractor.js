@@ -127,9 +127,10 @@ darwin.contributionExtractorModule = (function() {
 					}
 
 					darwin.Mediator.setContributionDetails(j, additions, deletions, difference, LOCOverTime, sampleIndex, contributionDates);
-
-					/* Uncomment when sending data to the DB */
-					darwin.packager.contributions(additions, deletions, LOCOverTime, contributionDates, "contributions");
+					
+					//DB
+		    		//var datesAsString = darwin.dateManager.convertDateObjectToString(contributionDates);
+		    		//darwin.Mediator.makeServerRequestContributions("storeContributions",darwin.Mediator.emptyCallback,"POST",additions, deletions, difference, LOCOverTime, datesAsString, darwin.projectManagerModule.getProjectNamesIndex(j))	
 				}
 			}
 

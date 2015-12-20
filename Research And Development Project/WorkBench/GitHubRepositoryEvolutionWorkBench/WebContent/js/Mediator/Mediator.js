@@ -7,8 +7,14 @@ var darwin = darwin || {};
 darwin.Mediator = (function () {
 	
     return {
-    	makeServerRequest: function (action, callback, type, input) {
-    		darwin.serverModule.send(action, callback, type, input);
+    	makeServerRequestSplash: function (action, callback, type, input) {
+    		darwin.serverModule.sendSplash(action, callback, type, input);
+        },
+        makeServerRequestContributions : function(action,callback,type,additions, deletions, difference, LOCOverTime, contributionDates, project){
+        	darwin.serverModule.sendContributions(action,callback,type,additions, deletions, difference, LOCOverTime, contributionDates, project);
+        },
+        makeServerRequestGeneric : function(action, subAction, callback,type,data,datesAsString, project){
+        	darwin.serverModule.sendGeneric(action,subAction,callback,type,data, datesAsString, project);
         },
 		authenticateUpdateView: function (response) {
 			json = JSON.parse(response);

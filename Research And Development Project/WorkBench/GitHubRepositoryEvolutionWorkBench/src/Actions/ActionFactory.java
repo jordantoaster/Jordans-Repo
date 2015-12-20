@@ -16,12 +16,15 @@ public class ActionFactory {
 			return new RegisterAction();
 		}
 		
-		if(input.equals("storeContribution")){
+		if(input.equals("storeContributions")){
 			return new StoreContributionAction();
 		}
 		
 		if(input.equals("storeGeneric")){
 			return new StoreGenericAction();
+		}
+		if(input.equals("stats")){
+			return new StatsAction();
 		}
 		
 		return new NoAction();

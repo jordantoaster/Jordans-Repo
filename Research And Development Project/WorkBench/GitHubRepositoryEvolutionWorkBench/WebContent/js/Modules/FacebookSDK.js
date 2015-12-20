@@ -12,9 +12,9 @@ darwin.statusChangeCallback = function(response) {
 	// Full docs on the response object can be found in the documentation for FB.getLoginStatus().
 	if (response.status === 'connected') {
 	  // Logged into your app and Facebook.
-	  var requestData = [];
-	  requestData[0] = "facebook";	    
-	  darwin.Mediator.makeServerRequest("login", darwin.Mediator.authenticateUpdateView, "POST", requestData);
+	  //var requestData = [];
+	  requestData = "facebook";	    
+	  darwin.Mediator.makeServerRequestSplash("login", darwin.Mediator.authenticateUpdateView, "POST", requestData);
 	  //testAPI();
 	} else if (response.status === 'not_authorized') {
 	  // The person is logged into Facebook, but not your app.

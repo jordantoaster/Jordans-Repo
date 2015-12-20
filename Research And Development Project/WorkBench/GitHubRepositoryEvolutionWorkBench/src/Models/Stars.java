@@ -4,29 +4,29 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Stars {
-	private List<String> dates = new ArrayList<String>();
-	private List<Integer> stars  = new ArrayList<Integer>();
+	private String[]  stars;
+	private String[]  dates;
 	private String project = "";
 	
-	public Stars(List<String> dates, List<Integer> stars, String project){
+	public Stars(String[] dates, String[] data, String project){
 		this.dates = dates;
-		this.stars = stars;
+		this.stars = data;
 		this.project = project;
 	}
 	
-	public List<String> getDates() {
+	public String[] getDates() {
 		return dates;
 	}
 
-	public void setDates(List<String> dates) {
+	public void setDates(String[] dates) {
 		this.dates = dates;
 	}
 
-	public List<Integer> getStars() {
+	public String[] getStars() {
 		return stars;
 	}
 
-	public void setCommits(List<Integer> stars) {
+	public void setCommits(String[] stars) {
 		this.stars = stars;
 	}
 

@@ -32,7 +32,6 @@ public class Service extends HttpServlet {
 	
 	protected void performAction(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		
-		System.out.println("aaa");
 		Action action = ActionFactory.getAction(request.getParameter("action"));
 		String outcome = action.execute(request, response);
 		

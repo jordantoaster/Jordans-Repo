@@ -1,24 +1,40 @@
 package Models;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Contributions {
 	
-	private List<Integer> additions = new ArrayList<Integer>();
-	private List<Integer> deletions  = new ArrayList<Integer>();
-	private List<Integer> LOC  = new ArrayList<Integer>();
-	private List<String> dates  = new ArrayList<String>();
+
+
+	private String[]  additions;
+	private String[]  deletions;
+	private String[]  difference;
+	private String[]  LOC;
+	private String[]  dates;
 	private String project = "";
 	
-	public Contributions(List<Integer> additions, List<Integer> deletions, List<Integer> LOC, List<String> dates, String project) {
-		this.additions = additions;
-		this.deletions = deletions;
-		this.LOC = LOC;
-		this.dates = dates;
+	public Contributions(String[] additions, String[] deletions, String[] difference, String[] LOC,
+			String[] dates, String project) {
+		
+		this.additions = Arrays.copyOf(additions, additions.length);
+		this.deletions = Arrays.copyOf(deletions, deletions.length);
+		this.difference = Arrays.copyOf(difference, difference.length);
+		this.LOC = Arrays.copyOf(LOC, LOC.length);
+		this.dates = Arrays.copyOf(dates, dates.length);
 		this.project = project;
 	}
 	
+	public String[] getDifference() {
+		return difference;
+	}
+
+	public void setDifference(String[] difference) {
+		this.difference = difference;
+	}
+
 	public String getProject() {
 		return project;
 	}
@@ -27,35 +43,35 @@ public class Contributions {
 		this.project = project;
 	}
 	
-	public List<String> getDates() {
+	public String[] getDates() {
 		return dates;
 	}
 
-	public void setDates(List<String> dates) {
+	public void setDates(String[] dates) {
 		this.dates = dates;
 	}
 
-	public List<Integer> getAdditions() {
+	public String[] getAdditions() {
 		return additions;
 	}
 
-	public void setAdditions(List<Integer> additions) {
+	public void setAdditions(String[] additions) {
 		this.additions = additions;
 	}
 
-	public List<Integer> getDeletions() {
+	public String[] getDeletions() {
 		return deletions;
 	}
 
-	public void setDeletions(List<Integer> deletions) {
+	public void setDeletions(String[] deletions) {
 		this.deletions = deletions;
 	}
 
-	public List<Integer> getLOC() {
+	public String[] getLOC() {
 		return LOC;
 	}
 
-	public void setLOC(List<Integer> lOC) {
+	public void setLOC(String[] lOC) {
 		LOC = lOC;
 	}
 }

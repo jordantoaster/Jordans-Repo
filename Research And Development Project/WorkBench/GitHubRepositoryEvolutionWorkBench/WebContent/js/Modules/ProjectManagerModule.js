@@ -405,7 +405,7 @@ darwin.projectManagerModule = (function() {
 				}				
 			}
 			
-			darwin.packager.mean(selectedMeanProjectName, selectedMeanData);			
+			darwin.serverModule.sendStat("stats","mean",selectedMeanProjectName, selectedMeanData);			
 
         },
         resetAllProjectManager : function(){
