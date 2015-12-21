@@ -362,43 +362,44 @@ darwin.projectManagerModule = (function() {
         	
         	//finds out and records which checks have been chosen
 			for(var i =0; i< numProjects;i++){
-				if($('#checkMean'+i+'').is(':checked')) {		
-					
+				if($('#checkMean'+i+'').is(':checked')) {	
+										
 		        	if(dataType == "additions"){
-		        		selectedMeanData[dataCounter] = darwin.Mediator.getAdditionsIndex(i)[0];
+		        		selectedMeanData = selectedMeanData.concat(darwin.Mediator.getAdditionsIndex(i)[0]);
 		        	}
 		        	if(dataType == "deletions"){
-		        		selectedMeanData[dataCounter] = darwin.Mediator.getDeletionsIndex(i)[0];
+		        		selectedMeanData = selectedMeanData.concat(darwin.Mediator.getDeletionsIndex(i)[0]);
 		        	}
 		        	if(dataType == "LOC"){
-		        		selectedMeanData[dataCounter] = darwin.Mediator.getLOCIndex(i)[0];
+		        		selectedMeanData = selectedMeanData.concat(darwin.Mediator.getLOCIndex(i)[0]);
 		        	}
 		        	if(dataType == "forks"){
-		        		selectedMeanData[dataCounter] = darwin.Mediator.getForksIndex(i)[0];
+		        		selectedMeanData = selectedMeanData.concat(darwin.Mediator.getForksIndex(i)[0]);
 		        	}
 		        	if(dataType == "tags"){
-		        		selectedMeanData[dataCounter] = darwin.Mediator.getTagsIndex(i)[0];
+		        		selectedMeanData = selectedMeanData.concat(darwin.Mediator.getTagsIndex(i)[0]);
 		        	}
 		        	if(dataType == "issues"){
-		        		selectedMeanData[dataCounter] = darwin.Mediator.getIssuesIndex(i)[0];
+		        		selectedMeanData = selectedMeanData.concat(darwin.Mediator.getIssuesIndex(i)[0]);
 		        	}
 		        	if(dataType == "commits"){
-		        		selectedMeanData[dataCounter] = darwin.Mediator.getCommitsIndex(i)[0];
+		        		selectedMeanData = selectedMeanData.concat(darwin.Mediator.getCommitsIndex(i)[0]);
 		        	}
 		        	if(dataType == "stars"){
-		        		selectedMeanData[dataCounter] = darwin.Mediator.getStarsIndex(i)[0];
+		        		selectedMeanData = selectedMeanData.concat(darwin.Mediator.getStarsIndex(i)[0]);
 		        	}
 		        	if(dataType == "watchers"){
 		        			
 		        	}	
 		        	
-	        		selectedMeanProjectName[dataCounter] = darwin.projectManagerModule.getProjectNamesIndex(i);
+		        	selectedMeanData = selectedMeanData.concat("*");
+		        	
+		        	selectedMeanProjectName[dataCounter] = darwin.projectManagerModule.getProjectNamesIndex(i);
 	        		dataCounter++;
-
 				}				
 			}
 			
-			darwin.serverModule.sendStat("stats","mean",selectedMeanProjectName, selectedMeanData, "POST");	
+			darwin.serverModule.sendStat("stats","mean",selectedMeanProjectName, selectedMeanData, "POST", darwin.Mediator.drawGenericStat);	
 
         },
         resetAllProjectManager : function(){

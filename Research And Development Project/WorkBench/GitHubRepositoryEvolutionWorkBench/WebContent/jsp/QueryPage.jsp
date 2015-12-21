@@ -12,6 +12,7 @@
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/QueryPage.js?v4"></script>
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Modules/GitHubCommunication.js?v4"></script>
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Modules/DateManager.js?v4"></script>
+    <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Modules/StatVisualiser.js?v4"></script>
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Modules/loadGraphModule.js?v4"></script>
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Modules/AjaxResponseModule.js?v4"></script>
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Modules/ISO601toDateModule.js?v4"></script>
@@ -376,8 +377,9 @@
 	    	<p class="inlineText" style="display:block;">Options</p>
 	    	</div> 
 	    	 <button type="submit" id="submitButtonMean" class="btn btn-primary submitButton">
-  	     		<i class="icon-user icon-white">Get Custom Graph</i> 
+  	     		<i class="icon-user icon-white">Get Mean Graph</i> 
       		 </button>  
+      		 <div id="meanChart"></div> 
 	 	</div>
 	 	<div id="correlationBLock" class="tab-pane fade">
 			b

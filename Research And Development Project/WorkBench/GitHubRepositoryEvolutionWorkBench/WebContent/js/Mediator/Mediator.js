@@ -29,6 +29,20 @@ darwin.Mediator = (function () {
 		updateProgressBar: function () {
 			darwin.progressbarModule.updateProgressBar();
 		},
+		drawGenericStat : function(data){
+			
+			//sort the response
+			var sortedData = data.split('*');
+			
+			for(var i = 0; i<sortedData.length; i++){
+				if(sortedData[i] != ""){
+					sortedData[i] = parseInt(sortedData[i]);
+				}
+			}
+			
+			darwin.statVisualiser.drawMean(sortedData);
+
+		},
 		makeGithubRequest: function (url, callback, action, projectIndex) {
 				
 			//if not a stat api dataset then perform one manual call

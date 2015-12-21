@@ -35,4 +35,5 @@ public class StoreContributionAction implements Action{
 		
 		return "mongo sync complete";
 	}
+
 }

@@ -33,6 +33,7 @@ public class StoreGenericAction implements Action{
 
 		return "insert complete";
 	}
-	
+
+
 
 }

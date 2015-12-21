@@ -65,7 +65,7 @@ darwin.serverModule = (function() {
   			  }
   		});
         },
-        sendStat : function(action, subAction, projectNames, data, type){
+        sendStat : function(action, subAction, projectNames, data, type, callback){
     	
     		$.ajax({
     			  type : type,
@@ -74,7 +74,7 @@ darwin.serverModule = (function() {
     				  	action:action,
     				  	subAction:subAction,
     				  	projectNames: projectNames,
-    			    	data: JSON.stringify(data)
+    			    	data: data
     			  },
     			  success : function(response) {
     			    	callback(response);

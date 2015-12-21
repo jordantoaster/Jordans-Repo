@@ -33,11 +33,10 @@ public class Service extends HttpServlet {
 	protected void performAction(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		
 		Action action = ActionFactory.getAction(request.getParameter("action"));
-		String outcome = action.execute(request, response);
+		
+		String outcome = "";
+		outcome = action.execute(request, response);
 		
 		response.getWriter().write(outcome);
-		
-		//request.setAttribute("message", "injected message");
-        //request.getRequestDispatcher("/jsp/"+ view +".jsp").forward(request, response);
 	}
 }

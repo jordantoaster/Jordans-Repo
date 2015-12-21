@@ -33,6 +33,7 @@ $(document).ready(function(e) {
 	    		//set project info for future reference
 	    		darwin.projectManagerModule.setProjectNames(parsedUrl);
 	    	
+	    		//CHECK HERE IF ANY ARE THE SAME URL INPUT
 	    		
 	    		//set request urls for the specefic api request
 	    		darwin.projectManagerModule.setBaseRequestUrl(darwin.projectManagerModule.getNumProjects(), "https://api.github.com/repos"+parsedUrl+"/stats/code_frequency?per_page=100&page=")
