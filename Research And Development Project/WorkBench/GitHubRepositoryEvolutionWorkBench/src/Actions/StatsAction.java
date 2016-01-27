@@ -11,6 +11,8 @@ import org.rosuda.REngine.REngineException;
 
 import com.google.gson.Gson;
 
+import Daos.MeanDao;
+import Models.Mean;
 import StatisticsR.RConnectionDarwin;
 
 public class StatsAction implements Action{
@@ -30,7 +32,7 @@ public class StatsAction implements Action{
 		if(subAction.equals("mean")){
 			
 			//holds the means
-			String[] mean = new String[5];
+			String[] mean = new String[projects.length];
 			int[] dataSubset = null;
 			int startPosition = 0;
 			int meanCounter = 0;
@@ -69,7 +71,13 @@ public class StatsAction implements Action{
 				}
 			}
 			
+			MeanDao dao = new MeanDao();
+
 			//store mean
+			for(int i =0; i < mean.length;i++){
+				Mean meanModel = new Mean(projects[i],Integer.parseInt(mean[i]));
+				dao.insertMean(meanModel);
+			}
 			
 			//return mean to client
 			return combinedMean;

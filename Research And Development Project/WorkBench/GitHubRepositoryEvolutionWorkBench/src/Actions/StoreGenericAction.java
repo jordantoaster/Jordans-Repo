@@ -29,6 +29,7 @@ public class StoreGenericAction implements Action{
 			StarDao dao = new StarDao();
 			dao.insertStars(star);
 		}
+		
 
 
 		return "insert complete";

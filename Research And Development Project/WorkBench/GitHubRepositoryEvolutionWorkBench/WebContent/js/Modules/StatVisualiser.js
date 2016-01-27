@@ -6,7 +6,7 @@ var darwin = darwin || {};
 
 darwin.statVisualiser = (function() {
     return {
-    	drawMean : function(values){
+    	drawMean : function(values, projectNames){
     		
     		//create data element for the chart
     	    var data = new google.visualization.DataTable();   
@@ -16,7 +16,8 @@ darwin.statVisualiser = (function() {
 			
 			//add column to represent time passing
     	    data.addColumn('string', 'Projects')
-    	    data.addColumn('number', '');	
+    	    data.addColumn('number', 'Value');	
+    	    data.addColumn({type: 'string', role: 'annotation'});
 			
 			for(var i =0;i<values.length;i++){
 				if(values[i] != ""){
@@ -27,8 +28,11 @@ darwin.statVisualiser = (function() {
     	        	   	    
     	    //add data to each row, a a numeral for the y axis and string for x
 	    	for(var j =0;j<valuesPresent.length;j++){
-        	    data.addRow(['',valuesPresent[j]]);
+        	    data.addRow([projectNames[j],valuesPresent[j], projectNames[j]]);
 	    	}
+	    	
+	    	//var view = new google.visualization.DataView(data);
+	    	//data.setColumns([0, 1, 1, 2]);
     	    	
 	    	//populate additional options
     	    var options = {
@@ -37,7 +41,7 @@ darwin.statVisualiser = (function() {
     	      chartArea:{
     	          left: 100, width: '95%'
     	      },
-    	      legend: {position: 'top'},
+    	      legend: {position: 'none'},
     	      height: 550,
     	      width: 1450,
 			  curveType: 'function',
