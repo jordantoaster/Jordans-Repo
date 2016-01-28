@@ -54,6 +54,10 @@ darwin.statVisualiser = (function() {
     	        
     	    new google.visualization.BarChart(document.getElementById('meanChart')).draw(data, options);
 
-    	}
+    	},
+		writeCorrelations : function(correlation, projects){
+		     $('#pearsonCorr').text('Pearons Correlation - for ' + projects[0] + ' and ' + projects[1] + ' is ' + correlation);
+
+		}
     };
 })();

@@ -122,13 +122,22 @@
 	margin-left: 5%;
 }
 
-#meanOptions {
+.options {
 	display:inline;
-	margin-left: 5%;
+	margin-left: 2.5%;
+	margin-right: 2.5%;
 }
 
 .checkbox {
 	display:inline !important;
 	margin-left: 1%;
 	font-size: 1.5em;
+}
+
+#correlationInfoBox {
+	margin: 2%;
+}
+
+#pearsonCorr {
+	font-size: 2.5em;
 }

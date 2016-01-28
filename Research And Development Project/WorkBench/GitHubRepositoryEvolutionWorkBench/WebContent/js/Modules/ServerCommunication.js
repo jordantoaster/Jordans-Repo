@@ -84,6 +84,27 @@ darwin.serverModule = (function() {
     			    	$("#ajaxGetUserServletResponse").css({"opacity":"1"});	 
     			  }
     		});
+        },
+        sendStatCorr : function(action, subAction, projectNames, data, dataTwo, type, callback){
+        	
+    		$.ajax({
+    			  type : type,
+    			  url : 'http://localhost:8080/GitHubRepositoryEvolutionWorkBench/Service',
+    			  data : { 
+    				  	action:action,
+    				  	subAction:subAction,
+    				  	projectNames: projectNames,
+    			    	data: data,
+    			    	dataTwo: dataTwo
+    			  },
+    			  success : function(response) {
+    			    	callback(response, projectNames);
+    			  },
+    			  error: function() {
+    			    	$('#ajaxGetUserServletResponse').text("An error occured when connecting to the Server");
+    			    	$("#ajaxGetUserServletResponse").css({"opacity":"1"});	 
+    			  }
+    		});
         }
     };
 })();

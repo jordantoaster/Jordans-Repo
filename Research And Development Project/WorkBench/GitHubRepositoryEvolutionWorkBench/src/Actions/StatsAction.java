@@ -11,7 +11,8 @@ import org.rosuda.REngine.REngineException;
 
 import com.google.gson.Gson;
 
-import Daos.MeanDao;
+import Daos.StatDao;
+import Models.Correlation;
 import Models.Mean;
 import StatisticsR.RConnectionDarwin;
 
@@ -71,7 +72,7 @@ public class StatsAction implements Action{
 				}
 			}
 			
-			MeanDao dao = new MeanDao();
+			StatDao dao = new StatDao();
 
 			//store mean
 			for(int i =0; i < mean.length;i++){
@@ -81,6 +82,34 @@ public class StatsAction implements Action{
 			
 			//return mean to client
 			return combinedMean;
+		}
+		if(subAction.equals("correlation")){
+
+			String correlation = "";
+			String[] dataTwo = request.getParameterValues("dataTwo[]");
+			
+			//convert to int arrays
+			int[] SeriesA = parseArrayToInt(data);
+			int[] SeriesB = parseArrayToInt(dataTwo);
+
+			//get correlation
+			try {
+				correlation =  r.pearsonCorr(SeriesA, SeriesB);
+			} catch (REngineException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (REXPMismatchException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			//store
+			StatDao dao = new StatDao();
+
+			Correlation correlationModel = new Correlation(projects[0],projects[1],correlation);
+			dao.insertCorrelation(correlationModel);
+			
+			return correlation; 
 		}
 		
 		return null;
@@ -99,6 +128,15 @@ public class StatsAction implements Action{
 			parsedIndex++;
 		}
 		
+		return parsedArray;
+	}
+	
+	private int[] parseArrayToInt(String[] data){
+		int[] parsedArray = new int[data.length];
+
+		for(int i =0;i<data.length;i++){
+			parsedArray[i] = Integer.parseInt(data[i]);
+		}
 		return parsedArray;
 	}
 }

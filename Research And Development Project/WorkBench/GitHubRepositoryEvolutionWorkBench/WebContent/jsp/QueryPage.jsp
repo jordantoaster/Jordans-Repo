@@ -34,6 +34,7 @@
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/InputManagers/IssuesInputManager.js?v6"></script>
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/InputManagers/CustomInputManager.js?v6"></script>
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/InputManagers/CommitInputManager.js?v7"></script>
+    <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/InputManagers/CorrelationInputManager.js?v7"></script>
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/InputManagers/MeanInputManager.js?v7"></script>
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Modules/ContributionVisualiser.js?v4"></script>
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Modules/GenericVisualiserModule.js?v5"></script>
@@ -373,7 +374,7 @@
   		  		<li><a href="#" id="MeanChoice9">Watchers</a></li>
   			</ul>
 			</div>
-			<div id="meanOptions">
+			<div id="meanOptions" class="options">>
 	    	<p class="inlineText" style="display:block;">Options</p>
 	    	</div> 
 	    	 <button type="submit" id="submitButtonMean" class="btn btn-primary submitButton">
@@ -382,7 +383,51 @@
       		 <div id="meanChart"></div> 
 	 	</div>
 	 	<div id="correlationBLock" class="tab-pane fade">
-			b
+			<p class="inlineText">Series A</p>
+			<div class="dropdown">
+  			<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    			Change Chart Type
+    		<span class="caret"></span>
+  			</button>
+  			<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+  		  		<li><a href="#" id="CorrelationChoice1S1">Additions</a></li>
+  		  		<li><a href="#" id="CorrelationChoice2S1">Deletions</a></li>
+  		  		<li><a href="#" id="CorrelationChoice3S1">LOC</a></li>
+  		  		<li><a href="#" id="CorrelationChoice4S1">Commits</a></li>
+  		  		<li><a href="#" id="CorrelationChoice5S1">Stars</a></li>
+  		  		<li><a href="#" id="CorrelationChoice6S1">Tags</a></li>
+  		  		<li><a href="#" id="CorrelationChoice7S1">Forks</a></li>
+  		  		<li><a href="#" id="CorrelationChoice8S1">Issues</a></li>
+  		  		<li><a href="#" id="CorrelationChoice9S1">Watchers</a></li>
+  			</ul>
+			</div>
+			<div id="correlationOptions1" class="options"></div>
+		
+			<p class="inlineText">Series B</p>
+			<div class="dropdown">
+  			<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    			Change Chart Type
+    		<span class="caret"></span>
+  			</button>
+  			<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+  		  		<li><a href="#" id="CorrelationChoice1S2">Additions</a></li>
+  		  		<li><a href="#" id="CorrelationChoice2S2">Deletions</a></li>
+  		  		<li><a href="#" id="CorrelationChoice3S2">LOC</a></li>
+  		  		<li><a href="#" id="CorrelationChoice4S2">Commits</a></li>
+  		  		<li><a href="#" id="CorrelationChoice5S2">Stars</a></li>
+  		  		<li><a href="#" id="CorrelationChoice6S2">Tags</a></li>
+  		  		<li><a href="#" id="CorrelationChoice7S2">Forks</a></li>
+  		  		<li><a href="#" id="CorrelationChoice8S2">Issues</a></li>
+  		  		<li><a href="#" id="CorrelationChoice9S2">Watchers</a></li>
+  			</ul>
+			</div>
+			<div id="correlationOptions2" class="options"></div>		
+			<div id="correlationInfoBox">
+      			<p id="pearsonCorr"></p>
+      		</div>	
+			<button type="submit" id="submitButtonCorrelation" class="btn btn-primary submitButton">
+  	     		<i class="icon-user icon-white">Get Correlation Information</i> 
+      		</button>  		
 	 	</div>
      </div>
   </div>

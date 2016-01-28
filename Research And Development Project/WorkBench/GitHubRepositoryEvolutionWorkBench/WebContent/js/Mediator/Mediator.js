@@ -520,6 +520,12 @@ darwin.Mediator = (function () {
 		},
 		getCheckedMeanData : function(dataType){
 			darwin.projectManagerModule.getCheckedMeanData(dataType);
+		},
+		getCheckedCorrelationsData : function(seriesOne, seriesTwo){
+			darwin.projectManagerModule.getCheckedCorrelationsData(seriesOne, seriesTwo);
+		},
+		drawCorrelation : function(correlation, projects){
+			darwin.statVisualiser .writeCorrelations(correlation, projects);
 		}
     };
 })();

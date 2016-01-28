@@ -89,6 +89,7 @@ darwin.genericVisualiser = (function() {
     	    } else if (chartType == "ScatterChart") {
     	    	new google.visualization.ScatterChart(document.getElementById(id)).draw(data, options);
     	    }
-		}
+		},
+
 	};
 })();
