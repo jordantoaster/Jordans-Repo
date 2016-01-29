@@ -3,9 +3,15 @@ package Actions;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import Daos.CommitsDao;
+import Daos.ForkDao;
+import Daos.IssueDao;
 import Daos.StarDao;
+import Daos.TagDao;
 import Models.Commits;
+import Models.Forks;
+import Models.Issues;
 import Models.Stars;
+import Models.Tags;
 
 public class StoreGenericAction implements Action{
 
@@ -29,8 +35,21 @@ public class StoreGenericAction implements Action{
 			StarDao dao = new StarDao();
 			dao.insertStars(star);
 		}
-		
-
+		if(subAction.equals("tags")){
+			Tags tag = new Tags(dates, data, project);		
+			TagDao dao = new TagDao();
+			dao.insertStars(tag);
+		}
+		if(subAction.equals("fork")){
+			Forks fork = new Forks(dates, data, project);		
+			ForkDao dao = new ForkDao();
+			dao.insertStars(fork);
+		}
+		if(subAction.equals("Issues")){
+			Issues issue = new Issues(dates, data, project);		
+			IssueDao dao = new IssueDao();
+			dao.insertStars(issue);
+		}
 
 		return "insert complete";
 	}

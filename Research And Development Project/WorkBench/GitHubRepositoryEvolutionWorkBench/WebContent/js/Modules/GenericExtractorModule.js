@@ -116,9 +116,10 @@ darwin.genericExtractorModule = (function() {
         		//send to mongo for storage
     			//darwin.Mediator.packagerGeneric(dates, data, darwin.projectManagerModule.getProjectNamesIndex(index), action);  	
       			
-      			var datesAsString = darwin.dateManager.convertDateObjectToString(dates);
-	    		darwin.Mediator.makeServerRequestGeneric("storeGeneric", action, darwin.Mediator.emptyCallback,"POST",data, datesAsString, darwin.projectManagerModule.getProjectNamesIndex(index))	
-			
+      			if(sampleRate == 1){
+      				var datesAsString = darwin.dateManager.convertDateObjectToString(dates);
+      				darwin.Mediator.makeServerRequestGeneric("storeGeneric", action, darwin.Mediator.emptyCallback,"POST",data, datesAsString, darwin.projectManagerModule.getProjectNamesIndex(index))	
+    			}
     		
     		}
     		
