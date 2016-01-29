@@ -19,6 +19,8 @@ darwin.dataManager = (function() {
 	var TagsList =[];
 	var tagSupplement = [];
 	var IssuesList = [];
+	var closedIssues = [];
+	var openIssues = [];
 
     return {
     	getContributionDates: function (index) {
@@ -142,17 +144,46 @@ darwin.dataManager = (function() {
         resetTagsList : function(){
         	TagsList = [];
         },
-    	setIssues: function (index, data, projectNames, SampleIndex) {
+    	setIssues: function (index, data, projectNames, SampleIndex,open, closed) {
     		if(IssuesList[index] === undefined)
-    			IssuesList[index] = [];
+    			IssuesList[index] = []; 
+    			
+    		if(closedIssues[index] === undefined)
+    			closedIssues[index] = []; 
+    			
+    		if(openIssues[index] === undefined)
+    			openIssues[index] = []; 
 
     		IssuesList[index][SampleIndex]  = data;
+    		closedIssues[index][SampleIndex]  = closed;
+    		openIssues[index][SampleIndex]  = open;
         },
     	getIssues: function () {
-    		return IssuesList;
+    		var issueType = darwin.projectManagerModule.getIssuesType();
+    		if(issueType == "all"){
+        		return IssuesList;
+    		}
+    		if(issueType == "open"){
+    			return openIssues;
+    		}
+    		if(issueType == "closed"){
+    			return closedIssues;
+    		}
         },
     	getIssuesIndex: function (index) {
     		return IssuesList[index];
+        },
+    	getClosedIssues: function () {
+    		return closedIssues;
+        },
+    	getClosedIssuesIndex: function (index) {
+    		return closedIssues[index];
+        },
+    	getOpenIssues: function () {
+    		return openIssues;
+        },
+    	getOpenIssuesIndex: function (index) {
+    		return openIssues[index];
         },
         resetTagsList : function(){
         	IssuesList = [];

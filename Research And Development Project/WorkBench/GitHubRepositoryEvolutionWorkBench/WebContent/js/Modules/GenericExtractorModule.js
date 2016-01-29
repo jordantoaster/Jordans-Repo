@@ -13,6 +13,10 @@ darwin.genericExtractorModule = (function() {
 	var firstDate = true;
 	var localJson = [];
 	var sampleRate = 0;
+	
+	//added stuff for open/closed issues
+	var openIssues = [];
+	var closedIssues = [];
 		
     return {
     	
@@ -39,6 +43,9 @@ darwin.genericExtractorModule = (function() {
     			
     			sampleIterator = 0;
     			data = [];
+    			//added stuff for open/closed issues
+    			var openIssues = [];
+    			var closedIssues = [];
     			dates = [];
     			total = 0;
     			firstDate = true;
@@ -74,6 +81,19 @@ darwin.genericExtractorModule = (function() {
     					firstDate = false;
     					dates[sampleIterator] = lastDateInSample;
     					data[sampleIterator] = 1;
+    					
+    					//issues specefic
+              			if(action == "Issues"){              				
+              				if(localJson[j].state == "open"){
+              					openIssues[sampleIterator]=1;
+              					closedIssues[sampleIterator]=0;
+              				} else {
+              					openIssues[sampleIterator]=0;
+              					closedIssues[sampleIterator]=1;
+              				}
+              			}
+              			//end issues
+              			
     				}
     				   
     				//checks if a date is out of the sample range
@@ -88,9 +108,33 @@ darwin.genericExtractorModule = (function() {
     					sampleIterator++;
     					dates[sampleIterator] = lastDateInSample;
     					data[sampleIterator]=1;  
+    					
+    					//issues specefic
+              			if(action == "Issues"){              				
+              				if(localJson[j].state == "open"){
+              					openIssues[sampleIterator]=1;
+              					closedIssues[sampleIterator]=0;
+              				} else {
+              					openIssues[sampleIterator]=0;
+              					closedIssues[sampleIterator]=1;
+              				}
+              			}
+              			//end issues
+              			
     				} else {
     					//if in sample just keep incrementing
     					data[sampleIterator]++;
+    					
+    					//issues specefic
+              			if(action == "Issues"){              				
+              				if(localJson[j].state == "open"){
+              					openIssues[sampleIterator]++;
+              				}
+              				if(localJson[j].state == "closed"){
+              					closedIssues[sampleIterator]++;
+              				}
+              			}
+              			//end issues
     				}
 
     			} //for   			
@@ -110,7 +154,7 @@ darwin.genericExtractorModule = (function() {
         			darwin.Mediator.setTagsDetails(index, data, darwin.projectManagerModule.getProjectNames(), sampleIndex);
     			}
       			if(action == "Issues"){
-        			darwin.Mediator.setIssuesDetails(index, data, darwin.projectManagerModule.getProjectNames(), sampleIndex);
+        			darwin.Mediator.setIssuesDetails(index, data, darwin.projectManagerModule.getProjectNames(), sampleIndex, openIssues, closedIssues);
     			}
     					
         		//send to mongo for storage
@@ -118,8 +162,16 @@ darwin.genericExtractorModule = (function() {
       			
       			if(sampleRate == 1){
       				var datesAsString = darwin.dateManager.convertDateObjectToString(dates);
-      				darwin.Mediator.makeServerRequestGeneric("storeGeneric", action, darwin.Mediator.emptyCallback,"POST",data, datesAsString, darwin.projectManagerModule.getProjectNamesIndex(index))	
-    			}
+      				
+      				if(action != "Issues"){
+      					darwin.Mediator.makeServerRequestGeneric("storeGeneric", action, darwin.Mediator.emptyCallback,"POST",data, datesAsString, darwin.projectManagerModule.getProjectNamesIndex(index))	      				
+      				} else {
+      					var mergedIssues = openIssues.concat(closedIssues);
+      					
+      					//send issues that are open/closed independently
+      					darwin.Mediator.makeServerRequestGeneric("storeGeneric", action, darwin.Mediator.emptyCallback,"POST",mergedIssues, datesAsString, darwin.projectManagerModule.getProjectNamesIndex(index))	      				
+      				}															
+      			}
     		
     		}
     		
@@ -151,6 +203,9 @@ darwin.genericExtractorModule = (function() {
         	totalCommits = 0;
         	firstDate = true;
         	localJson = [];
+        	//added stuff for open/closed issues
+        	var openIssues = [];
+        	var closedIssues = [];
         },
         //based on an input date calculate the last date in the sample
         getDateRange : function(inputDate){	
@@ -183,6 +238,11 @@ darwin.genericExtractorModule = (function() {
 					sampleIterator++;
 					dates[sampleIterator] = lastKnownDate;
 					data[sampleIterator] = 0;  	
+					
+					//issue stuff
+  					openIssues[sampleIterator]=0;
+  					closedIssues[sampleIterator]=0;
+
         		} 
         	}
         	return lastKnownDate;

@@ -1,5 +1,7 @@
 package Actions;
 
+import java.util.Arrays;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import Daos.CommitsDao;
@@ -46,7 +48,14 @@ public class StoreGenericAction implements Action{
 			dao.insertStars(fork);
 		}
 		if(subAction.equals("Issues")){
-			Issues issue = new Issues(dates, data, project);		
+				
+			//split array into two - closed + open
+			int size = data.length;
+			String[] openIssues = Arrays.copyOfRange(data, 0, size/2);
+			String[] closedIssues = Arrays.copyOfRange(data, size/2, size);
+			
+			//store
+			Issues issue = new Issues(dates, openIssues, closedIssues, project);		
 			IssueDao dao = new IssueDao();
 			dao.insertStars(issue);
 		}

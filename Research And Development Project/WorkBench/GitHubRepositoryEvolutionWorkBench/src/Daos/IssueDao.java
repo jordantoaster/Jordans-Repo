@@ -15,7 +15,8 @@ public class IssueDao {
 		
 			BasicDBObject documentDetail = new BasicDBObject();
 			documentDetail.put("Dates", issue.getDates());
-			documentDetail.put("Issues", issue.getIssues());
+			documentDetail.put("openIssues", issue.getIssues());
+			documentDetail.put("closedIssues", issue.getClosedIssues());
 			documentDetail.put("Project", issue.getProject());
 	
 			userCollection.insert(documentDetail);

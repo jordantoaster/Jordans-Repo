@@ -251,7 +251,7 @@
 	  <p class="inlineText" id="ForkProgress"></p>
       <div id="ForkChart"></div>  
     </div>
-        <div id="IssuesTab" class="tab-pane fade customTab">
+      <div id="IssuesTab" class="tab-pane fade customTab">
       <p class="inlineText" id="IssuesHeader">Select a project(s) to get issues</p>
       <div class="btn-group" id="IssuesOptions" role="group" aria-label="..."></div>
       <div class="dropdown">
@@ -275,6 +275,17 @@
   		  <li><a href="#" id="chartType1Issues"> Line Chart</a></li>
   		  <li><a href="#" id="chartType2Issues">Stepped Area Chart</a></li>
   		  <li><a href="#" id="chartType3Issues">Scatter Chart</a></li>
+  		</ul>
+	  </div>
+	  	<div class="dropdown">
+  			<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    			Change Issue Type
+    		<span class="caret"></span>
+  		    </button>
+  		<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+  		  <li><a href="#" id="issueType1">Open</a></li>
+  		  <li><a href="#" id="issueType2">Closed</a></li>
+  		  <li><a href="#" id="issueType3">All</a></li>
   		</ul>
 	  </div>
 	  <p class="inlineText" id="IssuesProgress"></p>

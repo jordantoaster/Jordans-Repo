@@ -29,6 +29,7 @@ darwin.projectManagerModule = (function() {
     var meanType = "";
     var CorrelationTypeS2 = "";
     var CorrelationTypeS1 = "";
+    var issuesType = "all";
 		
     return {
     	getSelectedTagProject : function(index){
@@ -65,8 +66,14 @@ darwin.projectManagerModule = (function() {
         setChartType : function(val){
         	chartType = val;
         }, 
+        setIssuesType : function(val){
+        	issuesType = val;
+        }, 
         getChartType : function(){
         	return chartType;
+        },
+        getIssuesType : function(){
+        	return issuesType;
         }, 
         setCurrentProjectIndex: function(index){
         	currentProjectIndex = index

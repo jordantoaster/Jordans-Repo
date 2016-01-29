@@ -84,8 +84,28 @@ $(document).ready(function(e) {
 
 	});
 	
+	$('#issueType1').on("click.darwin", function(e){
+		e.preventDefault();
+
+		darwin.Mediator.setIssuesType("open");
+		drawIssuesGraph();
+	});
+	$('#issueType2').on("click.darwin", function(e){
+		e.preventDefault();
+
+		darwin.Mediator.setIssuesType("closed");
+		drawIssuesGraph();
+	});
+	$('#issueType3').on("click.darwin", function(e){
+		e.preventDefault();
+
+		darwin.Mediator.setIssuesType("all");
+		drawIssuesGraph();
+
+	});
+	
 	function drawIssuesGraph(){
-		darwin.Mediator.drawGenericGraph(darwin.Mediator.getIssuesDetails(), "weeks", "week On week Watchers", darwin.projectManagerModule.getSampleIndex(), "Issues", darwin.Mediator.getChartType());
+		darwin.Mediator.drawGenericGraph(darwin.Mediator.getIssuesDetails(), "weeks", "week On week Issues", darwin.projectManagerModule.getSampleIndex(), "Issues", darwin.Mediator.getChartType());
 	}
 
 	function IssuesReset(){

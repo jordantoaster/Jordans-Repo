@@ -157,8 +157,8 @@ darwin.Mediator = (function () {
 		setTagsDetails : function(index, commits, projectNames, sampleIndex){
 			darwin.dataManager.setTags(index, commits, projectNames, sampleIndex);
 		},
-		setIssuesDetails : function(index, commits, projectNames, sampleIndex){
-			darwin.dataManager.setIssues(index, commits, projectNames, sampleIndex);
+		setIssuesDetails : function(index, commits, projectNames, sampleIndex, open, closed){
+			darwin.dataManager.setIssues(index, commits, projectNames, sampleIndex, open, closed);
 		},
 		getCommitDetails : function(){
 			return darwin.dataManager.getCommits();
@@ -456,6 +456,9 @@ darwin.Mediator = (function () {
 		},
 		setChartType : function(val){
 			darwin.projectManagerModule.setChartType(val);
+		},
+		setIssuesType : function(val){
+			darwin.projectManagerModule.setIssuesType(val);
 		},
 		supplementTagData : function(callback, action, index){
 			tagData = darwin.Mediator.getTagsJson(index);

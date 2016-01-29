@@ -4,13 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Issues {
-	private String[]  issues;
+	
+	private String[]  openIssues;
+	private String[]  closedIssues;
 	private String[]  dates;
 	private String project = "";
 	
-	public Issues(String[] dates, String[] data, String project){
+	public Issues(String[] dates, String[] data, String[] dataTwo, String project){
 		this.dates = dates;
-		this.issues = data;
+		this.openIssues = data;
+		this.closedIssues = dataTwo;
 		this.project = project;
 	}
 	
@@ -23,11 +26,11 @@ public class Issues {
 	}
 
 	public String[] getIssues() {
-		return issues;
+		return openIssues;
 	}
 
 	public void setCommits(String[] issues) {
-		this.issues = issues;
+		this.openIssues = issues;
 	}
 
 	public String getProject() {
@@ -36,6 +39,14 @@ public class Issues {
 
 	public void setProject(String project) {
 		this.project = project;
+	}
+	
+	public String[] getClosedIssues() {
+		return closedIssues;
+	}
+
+	public void setClosedIssues(String[] closedIssues) {
+		this.closedIssues = closedIssues;
 	}
 }
 
