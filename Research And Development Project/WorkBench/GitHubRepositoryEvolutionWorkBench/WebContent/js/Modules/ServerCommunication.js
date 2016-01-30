@@ -78,7 +78,7 @@ darwin.serverModule = (function() {
     			    	typeOne : dataTypeOne,
     			  },
     			  success : function(response) {
-    			    	callback(response, projectNames);
+    			    	callback(response, projectNames, subAction);
     			  },
     			  error: function() {
     			    	$('#ajaxGetUserServletResponse').text("An error occured when connecting to the Server");

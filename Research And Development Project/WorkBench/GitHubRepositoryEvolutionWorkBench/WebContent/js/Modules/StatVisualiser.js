@@ -6,8 +6,18 @@ var darwin = darwin || {};
 
 darwin.statVisualiser = (function() {
     return {
-    	drawMean : function(values, projectNames){
+    	drawStat : function(values, projectNames, metricType){
     		
+    		var height = 550;
+    		var width = 0;
+    		
+    		if(metricType == "mean"){
+    			width = 700;
+    		}
+    		if(metricType == "correlation"){
+    			width = 1450;
+    		}
+
     		//create data element for the chart
     	    var data = new google.visualization.DataTable();   
     	    
@@ -42,8 +52,8 @@ darwin.statVisualiser = (function() {
     	          left: 100, width: '95%'
     	      },
     	      legend: {position: 'none'},
-    	      height: 550,
-    	      width: 1450,
+    	      height: height,
+    	      width: width,
 			  curveType: 'function',
     	      animation:{
     	          duration: 800,

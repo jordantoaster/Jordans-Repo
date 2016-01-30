@@ -141,3 +141,18 @@
 #pearsonCorr {
 	font-size: 2.5em;
 }
+
+#meanBlock {
+
+}
+
+#meanChart {
+	float: left;
+}
+
+#additionalMean{
+	float: right;
+	width: 50%;
+	margin-left: 1%;
+	visibility: hidden;
+}

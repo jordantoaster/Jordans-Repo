@@ -29,7 +29,7 @@ darwin.Mediator = (function () {
 		updateProgressBar: function () {
 			darwin.progressbarModule.updateProgressBar();
 		},
-		drawGenericStat : function(data, projectNames){
+		drawGenericStat : function(data, projectNames, metricType){
 			
 			//sort the response
 			var sortedData = data.split('*');
@@ -40,7 +40,7 @@ darwin.Mediator = (function () {
 				}
 			}
 			
-			darwin.statVisualiser.drawMean(sortedData, projectNames);
+			darwin.statVisualiser.drawStat(sortedData, projectNames, metricType);
 
 		},
 		makeGithubRequest: function (url, callback, action, projectIndex) {

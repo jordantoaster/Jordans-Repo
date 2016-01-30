@@ -392,6 +392,10 @@
   	     		<i class="icon-user icon-white">Get Mean Graph</i> 
       		 </button>  
       		 <div id="meanChart"></div> 
+      		 <div id="additionalMean">
+      		 	<h1>Side Data</h1>
+      		 </div>
+      		     <div class="spacer" style="clear: both;"></div>
 	 	</div>
 	 	<div id="correlationBLock" class="tab-pane fade">
 			<p class="inlineText">Series A</p>
