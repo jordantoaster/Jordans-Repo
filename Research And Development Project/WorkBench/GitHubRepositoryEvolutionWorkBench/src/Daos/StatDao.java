@@ -1,7 +1,11 @@
 package Daos;
 
+import java.util.ArrayList;
+
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBCollection;
+import com.mongodb.DBCursor;
+import com.mongodb.DBObject;
 import com.mongodb.MongoException;
 
 import Models.Correlation;
@@ -25,6 +29,26 @@ public class StatDao {
 		}
 		
 		return true;	
+	}
+	
+	public int[] getAllMean(String meanType) {
+		DBCollection collection = new dbConnectionBuilder().getMongoCollection("Mean");
+	    ArrayList<Integer> means = new ArrayList();
+		
+		DBCursor cursor = collection.find();
+		while (cursor.hasNext()) {
+		   BasicDBObject obj = (BasicDBObject) cursor.next();
+		   if(obj.getString("MeanType").equals(meanType)){
+			   means.add(Integer.parseInt(obj.getString("Mean")));
+		   }
+		}
+		
+		int[] fixedMeans = new int[means.size()];
+		for(int i=0; i<means.size();i++){
+			fixedMeans[i] = means.get(i);
+		}
+		
+		return fixedMeans;
 	}
 	
 	public boolean insertCorrelation(Correlation correlation){

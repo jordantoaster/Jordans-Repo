@@ -1,16 +1,12 @@
 package Actions;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Map;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import org.rosuda.REngine.REXPMismatchException;
 import org.rosuda.REngine.REngineException;
-
-import com.google.gson.Gson;
-
 import Daos.StatDao;
 import Models.Correlation;
 import Models.Mean;
@@ -39,7 +35,7 @@ public class StatsAction implements Action{
 			int startPosition = 0;
 			int meanCounter = 0;
 						
-			//loop all sets in array 	
+			//loop all sets in array to get each seperate mean	
 			for(int i =0; i<data.length;i++){
 				
 				//when we encounter a * split it from main array for use later
@@ -73,6 +69,7 @@ public class StatsAction implements Action{
 				}
 			}
 			
+			
 			StatDao dao = new StatDao();
 
 			//store mean
@@ -81,8 +78,26 @@ public class StatsAction implements Action{
 				dao.insertMean(meanModel);
 			}
 			
+			//get mean of means
+			StatDao statDao = new StatDao();
+			int[] means = statDao.getAllMean(meanType);
+			String collatedMean = "";
+			
+			//get mean
+			try {
+				collatedMean =  r.mean(means);
+			} catch (REngineException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (REXPMismatchException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}			
+			
 			//return mean to client
-			return combinedMean;
+			//return combinedMean;
+			String t = String.format("{ \"means\": \"%s\", \"collatedMean\": \"%s\"}", combinedMean, collatedMean);
+			return t;
 		}
 		if(subAction.equals("correlation")){
 

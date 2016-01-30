@@ -1,6 +1,8 @@
 package StatisticsR;
 
 
+import java.util.ArrayList;
+
 import org.rosuda.REngine.REXP;
 import org.rosuda.REngine.REXPMismatchException;
 import org.rosuda.REngine.REngineException;
@@ -45,6 +47,7 @@ public class RConnectionDarwin {
 		return "";
     }
 
+
 	public String pearsonCorr(int[] data, int[] dataTwo) throws REngineException, REXPMismatchException {
 		
 		RConnection connection = null;
@@ -76,4 +79,5 @@ public class RConnectionDarwin {
 		
 		return "Could not calculate";
 	}
+
 }

@@ -393,7 +393,8 @@
       		 </button>  
       		 <div id="meanChart"></div> 
       		 <div id="additionalMean">
-      		 	<h1>Side Data</h1>
+      		 	<h1 id="meanHeader">Side Data</h1>
+      		 	<p id="collatedMean"></p>
       		 </div>
       		     <div class="spacer" style="clear: both;"></div>
 	 	</div>

@@ -6,7 +6,7 @@ var darwin = darwin || {};
 
 darwin.statVisualiser = (function() {
     return {
-    	drawStat : function(values, projectNames, metricType){
+    	drawStat : function(values, projectNames, metricType, collatedMean){
     		
     		var height = 550;
     		var width = 0;
@@ -62,6 +62,10 @@ darwin.statVisualiser = (function() {
     	        }
     	    };
     	        
+    	    //show new side info
+    	    $("#additionalMean").css({"visibility":"visible"});
+    	    $("#collatedMean").text("collated mean oon the system " + collatedMean);
+
     	    new google.visualization.BarChart(document.getElementById('meanChart')).draw(data, options);
 
     	},

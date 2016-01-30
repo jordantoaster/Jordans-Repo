@@ -31,16 +31,20 @@ darwin.Mediator = (function () {
 		},
 		drawGenericStat : function(data, projectNames, metricType){
 			
+		    obj = JSON.parse(data);
+		    var parsedData = [];
+		    
 			//sort the response
-			var sortedData = data.split('*');
+			var sortedData = obj.means.split('*');
+			var collatedMean = obj.collatedMean;
 			
 			for(var i = 0; i<sortedData.length; i++){
 				if(sortedData[i] != ""){
-					sortedData[i] = parseInt(sortedData[i]);
+					parsedData[i] = parseInt(sortedData[i]);
 				}
 			}
 			
-			darwin.statVisualiser.drawStat(sortedData, projectNames, metricType);
+			darwin.statVisualiser.drawStat(parsedData, projectNames, metricType, collatedMean);
 
 		},
 		makeGithubRequest: function (url, callback, action, projectIndex) {

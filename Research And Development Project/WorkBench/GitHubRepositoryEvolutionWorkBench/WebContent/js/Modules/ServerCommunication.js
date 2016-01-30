@@ -77,7 +77,7 @@ darwin.serverModule = (function() {
     			    	data: data,
     			    	typeOne : dataTypeOne,
     			  },
-    			  success : function(response) {
+    			  success : function(response) {   				    
     			    	callback(response, projectNames, subAction);
     			  },
     			  error: function() {
