@@ -34,6 +34,7 @@ public class StatsAction implements Action{
 			
 			//holds the means
 			String[] mean = new String[projects.length];
+			String meanType = request.getParameter("typeOne");
 			int[] dataSubset = null;
 			int startPosition = 0;
 			int meanCounter = 0;
@@ -76,7 +77,7 @@ public class StatsAction implements Action{
 
 			//store mean
 			for(int i =0; i < mean.length;i++){
-				Mean meanModel = new Mean(projects[i],Integer.parseInt(mean[i]));
+				Mean meanModel = new Mean(projects[i],Integer.parseInt(mean[i]), meanType);
 				dao.insertMean(meanModel);
 			}
 			
@@ -87,6 +88,8 @@ public class StatsAction implements Action{
 
 			String correlation = "";
 			String[] dataTwo = request.getParameterValues("dataTwo[]");
+			String TypeOne =  request.getParameter("seriesA");
+			String TypeTwo =  request.getParameter("seriesB");
 			
 			//convert to int arrays
 			int[] SeriesA = parseArrayToInt(data);
@@ -106,7 +109,7 @@ public class StatsAction implements Action{
 			//store
 			StatDao dao = new StatDao();
 
-			Correlation correlationModel = new Correlation(projects[0],projects[1],correlation);
+			Correlation correlationModel = new Correlation(projects[0],projects[1],correlation, TypeOne, TypeTwo);
 			dao.insertCorrelation(correlationModel);
 			
 			return correlation; 

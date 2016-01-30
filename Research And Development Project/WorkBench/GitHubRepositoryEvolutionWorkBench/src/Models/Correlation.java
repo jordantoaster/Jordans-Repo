@@ -6,11 +6,31 @@ public class Correlation {
 	String SeriesBName = "";
 	String Pearsons = "";
 	String Spearman = "";
+	String TypeOne = "";
+	String TypeTwo = "";
 	
-	public Correlation(String Sa, String Sb, String p){
+	public Correlation(String Sa, String Sb, String p, String t1, String t2){
 		this.SeriesAName = Sa;
 		this.SeriesBName = Sb;
 		this.Pearsons = p;
+		this.TypeOne = t1;
+		this.TypeTwo = t2;
+	}
+	
+	public String getTypeOne() {
+		return TypeOne;
+	}
+
+	public void setTypeOne(String typeOne) {
+		TypeOne = typeOne;
+	}
+
+	public String getTypeTwo() {
+		return TypeTwo;
+	}
+
+	public void setTypeTwo(String typeTwo) {
+		TypeTwo = typeTwo;
 	}
 	
 	public String getSeriesAName() {

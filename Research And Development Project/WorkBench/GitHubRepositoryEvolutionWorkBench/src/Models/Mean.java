@@ -4,13 +4,20 @@ public class Mean {
 	
 	String projectName = "";
 	int mean = 0;
-
-
-	public Mean(String pName, int mean){
+	String meanType = "";
+	
+	public Mean(String pName, int mean, String type){
 		this.projectName = pName;
 		this.mean = mean;
+		this.meanType = type;
 	}
-	
+
+	public String getMeanType() {
+		return meanType;
+	}
+	public void setMeanType(String meanType) {
+		this.meanType = meanType;
+	}	
 	public String getProjectName() {
 		return projectName;
 	}

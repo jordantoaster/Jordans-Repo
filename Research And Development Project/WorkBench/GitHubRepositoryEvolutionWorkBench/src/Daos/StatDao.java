@@ -16,6 +16,7 @@ public class StatDao {
 			BasicDBObject documentDetail = new BasicDBObject();
 			documentDetail.put("Mean", mean.getMean());
 			documentDetail.put("ProjectName", mean.getProjectName());
+			documentDetail.put("MeanType", mean.getMeanType());
 	
 			userCollection.insert(documentDetail);
 		} catch(MongoException e){
@@ -35,6 +36,8 @@ public class StatDao {
 			documentDetail.put("Mean", correlation.getPearsons());
 			documentDetail.put("ProjectNameA", correlation.getSeriesAName());
 			documentDetail.put("ProjectNameB", correlation.getSeriesBName());
+			documentDetail.put("SeriesAType", correlation.getTypeOne());
+			documentDetail.put("SeriesBType", correlation.getTypeTwo());
 	
 			userCollection.insert(documentDetail);
 		} catch(MongoException e){

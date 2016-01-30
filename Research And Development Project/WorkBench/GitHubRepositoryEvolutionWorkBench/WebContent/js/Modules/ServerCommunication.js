@@ -65,7 +65,7 @@ darwin.serverModule = (function() {
   			  }
   		});
         },
-        sendStat : function(action, subAction, projectNames, data, type, callback){
+        sendStat : function(action, subAction, projectNames, data, type, callback, dataTypeOne){
     	
     		$.ajax({
     			  type : type,
@@ -74,7 +74,8 @@ darwin.serverModule = (function() {
     				  	action:action,
     				  	subAction:subAction,
     				  	projectNames: projectNames,
-    			    	data: data
+    			    	data: data,
+    			    	typeOne : dataTypeOne,
     			  },
     			  success : function(response) {
     			    	callback(response, projectNames);
@@ -85,7 +86,7 @@ darwin.serverModule = (function() {
     			  }
     		});
         },
-        sendStatCorr : function(action, subAction, projectNames, data, dataTwo, type, callback){
+        sendStatCorr : function(action, subAction, projectNames, data, dataTwo, type, callback, seriesA, seriesB){
         	
     		$.ajax({
     			  type : type,
@@ -95,7 +96,9 @@ darwin.serverModule = (function() {
     				  	subAction:subAction,
     				  	projectNames: projectNames,
     			    	data: data,
-    			    	dataTwo: dataTwo
+    			    	dataTwo: dataTwo,
+    			    	seriesA : seriesA,
+    			    	seriesB : seriesB
     			  },
     			  success : function(response) {
     			    	callback(response, projectNames);

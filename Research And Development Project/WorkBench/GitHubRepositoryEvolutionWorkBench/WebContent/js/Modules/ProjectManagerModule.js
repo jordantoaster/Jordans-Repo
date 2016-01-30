@@ -319,7 +319,7 @@ darwin.projectManagerModule = (function() {
         },
         setupStatUi : function(metricType, ElementId, dataType){
         	
-        	if(metricType == "Mean"){
+        	if(metricType == "mean"){
         		darwin.projectManagerModule.setMeanType(dataType);
         	}
         	if(metricType == "CorrelationS1"){
@@ -397,7 +397,7 @@ darwin.projectManagerModule = (function() {
         	
         	//finds out and records which checks have been chosen
 			for(var i =0; i< numProjects;i++){
-				if($('#checkMean'+i+'').is(':checked')) {	
+				if($('#checkmean'+i+'').is(':checked')) {	
 										
 		        	if(dataType == "additions"){
 		        		selectedMeanData = selectedMeanData.concat(darwin.Mediator.getAdditionsIndex(i)[0]);
@@ -434,7 +434,7 @@ darwin.projectManagerModule = (function() {
 				}				
 			}
 			
-			darwin.serverModule.sendStat("stats","mean",selectedMeanProjectName, selectedMeanData, "POST", darwin.Mediator.drawGenericStat);	
+			darwin.serverModule.sendStat("stats","mean",selectedMeanProjectName, selectedMeanData, "POST", darwin.Mediator.drawGenericStat, dataType);	
 
         },
         getCheckedCorrelationsData : function(seriesA, seriesB){
@@ -515,7 +515,7 @@ darwin.projectManagerModule = (function() {
 				}
 			}
 			
-			darwin.serverModule.sendStatCorr("stats","correlation",selectedProjectName, selectedSeriesAData, selectedSeriesBData, "POST", darwin.Mediator.drawCorrelation);	
+			darwin.serverModule.sendStatCorr("stats","correlation",selectedProjectName, selectedSeriesAData, selectedSeriesBData, "POST", darwin.Mediator.drawCorrelation, seriesA, seriesB);	
 
         },
         resetAllProjectManager : function(){
