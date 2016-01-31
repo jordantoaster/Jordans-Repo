@@ -92,11 +92,24 @@ public class StatsAction implements Action{
 			} catch (REXPMismatchException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}			
+			}	
+			
+			//get standard deviation
+			String standardDev = "";
+			
+			try {
+				standardDev =  r.standardDev(means);
+			} catch (REngineException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (REXPMismatchException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}	
 			
 			//return mean to client
 			//return combinedMean;
-			String t = String.format("{ \"means\": \"%s\", \"collatedMean\": \"%s\"}", combinedMean, collatedMean);
+			String t = String.format("{ \"means\": \"%s\", \"collatedMean\": \"%s\", \"standardDev\": \"%s\"}", combinedMean, collatedMean, standardDev);
 			return t;
 		}
 		if(subAction.equals("correlation")){

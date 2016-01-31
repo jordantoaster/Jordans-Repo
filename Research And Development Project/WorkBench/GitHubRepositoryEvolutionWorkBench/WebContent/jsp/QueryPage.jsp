@@ -395,6 +395,7 @@
       		 <div id="additionalMean">
       		 	<h1 id="meanHeader">Side Data</h1>
       		 	<p id="collatedMean"></p>
+      		 	<p id="meanSd"></p>
       		 </div>
       		     <div class="spacer" style="clear: both;"></div>
 	 	</div>

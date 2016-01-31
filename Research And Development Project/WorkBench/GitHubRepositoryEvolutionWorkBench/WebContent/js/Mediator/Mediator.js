@@ -37,6 +37,7 @@ darwin.Mediator = (function () {
 			//sort the response
 			var sortedData = obj.means.split('*');
 			var collatedMean = obj.collatedMean;
+			var standardDev = obj.standardDev;
 			
 			for(var i = 0; i<sortedData.length; i++){
 				if(sortedData[i] != ""){
@@ -44,7 +45,7 @@ darwin.Mediator = (function () {
 				}
 			}
 			
-			darwin.statVisualiser.drawStat(parsedData, projectNames, metricType, collatedMean);
+			darwin.statVisualiser.drawMean(parsedData, projectNames, metricType, collatedMean, standardDev);
 
 		},
 		makeGithubRequest: function (url, callback, action, projectIndex) {
