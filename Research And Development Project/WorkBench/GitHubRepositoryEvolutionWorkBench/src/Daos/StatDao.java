@@ -73,8 +73,21 @@ public class StatDao {
 		return true;	
 	}
 
-	public void insertGrowthRate(GrowthRateModel growthRateModel) {
-		// TODO Auto-generated method stub
+	public boolean insertGrowthRate(GrowthRateModel growthRateModel) {
+		try {
+			DBCollection userCollection = new dbConnectionBuilder().getMongoCollection("GrowthRate");
 		
+			BasicDBObject documentDetail = new BasicDBObject();
+			documentDetail.put("ProjectName", growthRateModel.getProjectName());
+			documentDetail.put("MetricType", growthRateModel.getMetricType());
+			documentDetail.put("GrowthRate", growthRateModel.getGrowth());
+	
+			userCollection.insert(documentDetail);
+		} catch(MongoException e){
+			System.out.println(e);
+			return false;
+		}
+		
+		return true;		
 	}
 }
