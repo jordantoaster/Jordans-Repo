@@ -9,6 +9,7 @@ import org.rosuda.REngine.REXPMismatchException;
 import org.rosuda.REngine.REngineException;
 import Daos.StatDao;
 import Models.Correlation;
+import Models.GrowthRateModel;
 import Models.Mean;
 import StatisticsR.RConnectionDarwin;
 
@@ -143,7 +144,38 @@ public class StatsAction implements Action{
 			return correlation; 
 		}
 		
+		if(subAction.equals("growth")){
+			String growthType = request.getParameter("typeOne");
+			int[] parsedData = parseArrayToInt(data);
+			int[] growthRate = getGrowthRate(parsedData);
+			
+			int absoluteGrowthRate = singleGrowthRate(parsedData[0], parsedData[parsedData.length]);
+			GrowthRateModel growthRateModel = new GrowthRateModel(projects[0], growthType, growthRate);
+			
+			StatDao dao = new StatDao();
+			dao.insertGrowthRate(growthRateModel);
+			
+			String t = String.format("{ \"absoluteGrowthRate\": \"%s\", \"growthRate\": \"%s\"}", absoluteGrowthRate, growthRate);
+			return t;		}
+		
 		return null;
+	}
+
+	private int singleGrowthRate(int past, int present) {
+		return (((present - past) / past) * 100);
+	}
+
+	private int[] getGrowthRate(int[] parsedData) {
+
+		int[] growthRate = new int[parsedData.length];
+		int past =0;
+		int present =1;
+		
+		for(int i=0;i<growthRate.length;i++){
+			growthRate[i] = (((parsedData[present] - parsedData[past]) / parsedData[past]) * 100) / parsedData.length;
+		}
+		
+		return growthRate;
 	}
 
 	private int[] parseData(String[] data, int startPosition, int terminatorPosition) {

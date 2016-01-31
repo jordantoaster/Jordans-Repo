@@ -9,6 +9,7 @@ import com.mongodb.DBObject;
 import com.mongodb.MongoException;
 
 import Models.Correlation;
+import Models.GrowthRateModel;
 import Models.Mean;
 
 public class StatDao {
@@ -70,5 +71,10 @@ public class StatDao {
 		}
 		
 		return true;	
+	}
+
+	public void insertGrowthRate(GrowthRateModel growthRateModel) {
+		// TODO Auto-generated method stub
+		
 	}
 }
