@@ -142,15 +142,11 @@
 	font-size: 2.5em;
 }
 
-#meanBlock {
-
-}
-
-#meanChart {
+.statChart {
 	float: left;
 }
 
-#additionalMean{
+.additional{
 	float: right;
 	width: 50%;
 	margin-left: 1%;

@@ -81,6 +81,8 @@ public class StatDao {
 			documentDetail.put("ProjectName", growthRateModel.getProjectName());
 			documentDetail.put("MetricType", growthRateModel.getMetricType());
 			documentDetail.put("GrowthRate", growthRateModel.getGrowth());
+			documentDetail.put("AbsoluteGrowth", growthRateModel.getAbsGrowth());
+			documentDetail.put("GrowthRateOverTime", growthRateModel.getGrowthOverTime());
 	
 			userCollection.insert(documentDetail);
 		} catch(MongoException e){

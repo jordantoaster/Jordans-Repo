@@ -31,21 +31,35 @@ darwin.Mediator = (function () {
 		},
 		drawGenericStat : function(data, projectNames, metricType){
 			
-		    obj = JSON.parse(data);
-		    var parsedData = [];
-		    
-			//sort the response
-			var sortedData = obj.means.split('*');
-			var collatedMean = obj.collatedMean;
-			var standardDev = obj.standardDev;
-			
-			for(var i = 0; i<sortedData.length; i++){
-				if(sortedData[i] != ""){
-					parsedData[i] = parseInt(sortedData[i]);
+			if(metricType == "mean"){
+			    obj = JSON.parse(data);
+			    var parsedData = [];
+			    
+				//sort the response
+				var sortedData = obj.means.split('*');
+				var collatedMean = obj.collatedMean;
+				var standardDev = obj.standardDev;
+				
+				for(var i = 0; i<sortedData.length; i++){
+					if(sortedData[i] != ""){
+						parsedData[i] = parseInt(sortedData[i]);
+					}
 				}
+				
+				darwin.statVisualiser.drawMean(parsedData, projectNames, metricType, collatedMean, standardDev);
 			}
-			
-			darwin.statVisualiser.drawMean(parsedData, projectNames, metricType, collatedMean, standardDev);
+			if(metricType == "growth"){
+			    obj = JSON.parse(data);
+			    //var parsedData = [];
+			    
+			    //use split if accepting many sets of growths 
+			    
+			    var growthRate = obj.growthRate;
+			    var absolute = obj.absoluteGrowthRate;
+			    var overTime = obj.growthRateOverTime;
+			    
+				darwin.statVisualiser.drawGrowth(growthRate, projectNames, metricType, absolute, overTime);
+			}
 
 		},
 		makeGithubRequest: function (url, callback, action, projectIndex) {
@@ -528,6 +542,9 @@ darwin.Mediator = (function () {
 		},
 		getCheckedMeanData : function(dataType){
 			darwin.projectManagerModule.getCheckedMeanData(dataType);
+		},
+		getCheckedGrowthData : function(dataType){
+			darwin.projectManagerModule.getCheckedGrowthData(dataType);
 		},
 		getCheckedCorrelationsData : function(seriesOne, seriesTwo){
 			darwin.projectManagerModule.getCheckedCorrelationsData(seriesOne, seriesTwo);

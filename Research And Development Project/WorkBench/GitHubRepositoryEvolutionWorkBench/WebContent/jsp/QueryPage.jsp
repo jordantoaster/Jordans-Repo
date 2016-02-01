@@ -35,6 +35,7 @@
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/InputManagers/CustomInputManager.js?v6"></script>
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/InputManagers/CommitInputManager.js?v7"></script>
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/InputManagers/CorrelationInputManager.js?v7"></script>
+    <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/InputManagers/GrowthInputManager.js?v7"></script>
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/InputManagers/MeanInputManager.js?v7"></script>
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Modules/ContributionVisualiser.js?v4"></script>
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Modules/GenericVisualiserModule.js?v5"></script>
@@ -365,6 +366,7 @@
     <ul class="nav nav-tabs tabListCustom">
       <li class="active"><a class="tabText" data-toggle="tab" href="#meanBlock">Mean</a></li>
       <li class=""><a class="tabText" data-toggle="tab" href="#correlationBLock">Correlation</a></li>
+      <li class=""><a class="tabText" data-toggle="tab" href="#growthBlock">Growth Rate</a></li>
     </ul>
       <div class="tab-content">
       	<div id="meanBlock" class="tab-pane fade in active">
@@ -391,9 +393,9 @@
 	    	 <button type="submit" id="submitButtonMean" class="btn btn-primary submitButton">
   	     		<i class="icon-user icon-white">Get Mean Graph</i> 
       		 </button>  
-      		 <div id="meanChart"></div> 
-      		 <div id="additionalMean">
-      		 	<h1 id="meanHeader">Side Data</h1>
+      		 <div id="meanChart" class="statChart"></div> 
+      		 <div id="additionalMean" class="additional">
+      		 	<h1 >Side Data</h1>
       		 	<p id="collatedMean"></p>
       		 	<p id="meanSd"></p>
       		 </div>
@@ -445,6 +447,38 @@
 			<button type="submit" id="submitButtonCorrelation" class="btn btn-primary submitButton">
   	     		<i class="icon-user icon-white">Get Correlation Information</i> 
       		</button>  		
+	 	</div>
+	 	<div id="growthBlock" class="tab-pane fade">
+			<div class="dropdown">
+  			<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    			Change Chart Type
+    		<span class="caret"></span>
+  			</button>
+  			<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+  		  		<li><a href="#" id="growthChoice1">Additions</a></li>
+  		  		<li><a href="#" id="growthChoice2">Deletions</a></li>
+  		  		<li><a href="#" id="growthChoice3">LOC</a></li>
+  		  		<li><a href="#" id="growthChoice4">Commits</a></li>
+  		  		<li><a href="#" id="growthChoice5">Stars</a></li>
+  		  		<li><a href="#" id="growthChoice6">Tags</a></li>
+  		  		<li><a href="#" id="growthChoice7">Forks</a></li>
+  		  		<li><a href="#" id="growthChoice8">Issues</a></li>
+  		  		<li><a href="#" id="growthChoice9">Watchers</a></li>
+  			</ul>
+			</div>
+			<div id="growthOptions" class="options">
+	    	</div> 
+	    	 <button type="submit" id="submitButtonGrowth" class="btn btn-primary submitButton">
+  	     		<i class="icon-user icon-white">Get growth Graph</i> 
+      		 </button>  
+      		 <div id="growthChart" class="statChart"></div> 
+      		 <div id="additionalgrowth" class="additional" style="width: 30%;">
+      		 	<h1>Side Data</h1>
+      		 	<p id="growthAbsolute"></p>
+      		 	<p id="growthTime"></p>
+      		 	<p id="growthSd"></p>
+      		 </div>
+      		     <div class="spacer" style="clear: both;"></div>
 	 	</div>
      </div>
   </div>
