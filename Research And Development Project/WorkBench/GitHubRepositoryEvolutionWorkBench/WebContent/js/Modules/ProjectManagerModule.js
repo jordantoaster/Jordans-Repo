@@ -384,6 +384,36 @@ darwin.projectManagerModule = (function() {
         				$(ElementId).append('<div class="checkbox"><label><input id="check'+metricType+''+i+'" type="checkbox" value="">stars</label></div>')
         			}
         		}
+        		if(dataType == "forksAcc"){
+        			forks = darwin.dataManager.getForksAccIndex(i);
+        			if(forks != undefined){
+        				$(ElementId).append('<div class="checkbox"><label><input id="check'+metricType+''+i+'" type="checkbox" value="">Forks</label></div>')
+        			}
+        		}
+        		if(dataType == "tagsAcc"){
+           			tags = darwin.dataManager.getTagsAccIndex(i);
+        			if(tags != undefined){
+        				$(ElementId).append('<div class="checkbox"><label><input id="check'+metricType+''+i+'" type="checkbox" value="">tags</label></div>')
+        			}
+        		}
+        		if(dataType == "issuesAcc"){
+           			issues = darwin.dataManager.getIssuesAccIndex(i);
+        			if(issues != undefined){
+        				$(ElementId).append('<div  class="checkbox"><label><input id="check'+metricType+''+i+'" type="checkbox" value="">issues</label></div>')
+        			}
+        		}
+        		if(dataType == "commitsAcc"){
+           			commits = darwin.dataManager.getCommitsAccIndex(i);
+        			if(commits != undefined){
+        				$(ElementId).append('<div class="checkbox"><label><input id="check'+metricType+''+i+'" type="checkbox" value="">commits</label></div>')
+        			}
+        		}
+        		if(dataType == "starsAcc"){
+          			stars = darwin.dataManager.getStarsAccIndex(i);
+        			if(stars != undefined){
+        				$(ElementId).append('<div class="checkbox"><label><input id="check'+metricType+''+i+'" type="checkbox" value="">stars</label></div>')
+        			}
+        		}
         		if(dataType == "watchers"){
         			
         		}	
@@ -462,28 +492,28 @@ darwin.projectManagerModule = (function() {
 				if($('#checkgrowth'+i+'').is(':checked')) {	
 										
 		        	if(dataType == "additions"){
-		        		selectedGrowthData = selectedGrowthData.concat(darwin.Mediator.getAdditionsIndex(i)[0]);
+		        		selectedGrowthData = selectedGrowthData.concat(darwin.dataManager.getAdditionsAccIndex(i)[0]);
 		        	}
 		        	if(dataType == "deletions"){
-		        		selectedGrowthData = selectedGrowthData.concat(darwin.Mediator.getDeletionsIndex(i)[0]);
+		        		selectedGrowthData = selectedGrowthData.concat(darwin.dataManager.getDeletionsAccIndex(i)[0]);
 		        	}
 		        	if(dataType == "LOC"){
-		        		selectedGrowthData = selectedGrowthData.concat(darwin.Mediator.getLOCIndex(i)[0]);
+		        		selectedGrowthData = selectedGrowthData.concat(darwin.dataManager.getLOCIndex(i)[0]);
 		        	}
-		        	if(dataType == "forks"){
-		        		selectedGrowthData = selectedGrowthData.concat(darwin.Mediator.getForksIndex(i)[0]);
+		        	if(dataType == "forksAcc"){
+		        		selectedGrowthData = selectedGrowthData.concat(darwin.dataManager.getForksAccIndex(i)[0]);
 		        	}
-		        	if(dataType == "tags"){
-		        		selectedGrowthData = selectedGrowthData.concat(darwin.Mediator.getTagsIndex(i)[0]);
+		        	if(dataType == "tagsAcc"){
+		        		selectedGrowthData = selectedGrowthData.concat(darwin.dataManager.getTagsAccIndex(i)[0]);
 		        	}
-		        	if(dataType == "issues"){
-		        		selectedGrowthData = selectedGrowthData.concat(darwin.Mediator.getIssuesIndex(i)[0]);
+		        	if(dataType == "issuesAcc"){
+		        		selectedGrowthData = selectedGrowthData.concat(darwin.dataManager.getIssuesAccIndex(i)[0]);
 		        	}
-		        	if(dataType == "commits"){
-		        		selectedGrowthData = selectedGrowthData.concat(darwin.Mediator.getCommitsIndex(i)[0]);
+		        	if(dataType == "commitsAcc"){
+		        		selectedGrowthData = selectedGrowthData.concat(darwin.dataManager.getCommitsAccIndex(i)[0]);
 		        	}
-		        	if(dataType == "stars"){
-		        		selectedGrowthData = selectedGrowthData.concat(darwin.Mediator.getStarsIndex(i)[0]);
+		        	if(dataType == "starsAcc"){
+		        		selectedGrowthData = selectedGrowthData.concat(darwin.dataManager.getStarsAccIndex(i)[0]);
 		        	}
 		        	if(dataType == "watchers"){
 		        			

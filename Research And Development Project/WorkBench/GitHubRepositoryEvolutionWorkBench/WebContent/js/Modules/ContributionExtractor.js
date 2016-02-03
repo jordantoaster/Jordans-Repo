@@ -21,7 +21,10 @@ darwin.contributionExtractorModule = (function() {
 	var deletions = [];
 	var difference = [];
 	var LOCOverTime = [];
-
+	
+	var additionsAcc = [];
+	var deletionsAcc = [];
+	
 	/*Increments each time data is added to arrays, determines if sampling rate has been bypassed*/
 	var SamplingIterator = 0;
 	var firstOperation = true;
@@ -32,6 +35,8 @@ darwin.contributionExtractorModule = (function() {
 	var jsonDuplicate = [];
 	var currDiff = 0;
 	var LOC = 0;
+	var numAdditions = 0;
+	var numDeletions = 0;
 
 	var localJson = [];
 	
@@ -56,8 +61,12 @@ darwin.contributionExtractorModule = (function() {
 					deletions = [];
 					difference = [];
 					LOCOverTime = [];
+					additionsAcc = [];
+					deletionsAcc = [];
 					totalWeeks = 0;
 					LOC = 0;
+					numAdditions = 0;
+					numDeletions = 0;
 					currDiff = 0;
 					firstOperation = true;
 					SamplingIterator = 0;
@@ -75,6 +84,13 @@ darwin.contributionExtractorModule = (function() {
 						 */
 						currDiff = localJson[i][1] + localJson[i][2];
 						LOC = LOC + currDiff;
+						
+						/**
+						 * calculate the current total num of additions and deletiosn
+						 */
+						numAdditions = numAdditions + localJson[i][1];
+						numDeletions = numDeletions + Math.abs(localJson[i][2]);
+						
 
 						/*
 						 * Checks if the iterator (each increment represents a week) has surpassed the sampling rate - Change date
@@ -107,6 +123,10 @@ darwin.contributionExtractorModule = (function() {
 							difference[contributionSampleCounter] = currDiff;
 							/* Each new sample, set LOC to current total */
 							LOCOverTime[contributionSampleCounter] = LOC;
+							
+							/*update the total additions/deletions over time*/
+							deletionsAcc[contributionSampleCounter] = numDeletions;
+							additionsAcc[contributionSampleCounter] = numAdditions;
 
 							/* increment iterator, monitors sample progress */
 							SamplingIterator++;
@@ -126,7 +146,7 @@ darwin.contributionExtractorModule = (function() {
 						}
 					}
 
-					darwin.Mediator.setContributionDetails(j, additions, deletions, difference, LOCOverTime, sampleIndex, contributionDates);
+					darwin.Mediator.setContributionDetails(j, additions, deletions, difference, LOCOverTime, sampleIndex, contributionDates, additionsAcc, deletionsAcc);
 					
 					//DB
 		    		//var datesAsString = darwin.dateManager.convertDateObjectToString(contributionDates);
@@ -169,6 +189,8 @@ darwin.contributionExtractorModule = (function() {
 			additionsTwo = [];
 			deletionsTwo = [];
 			LOCOverTimeTwo = [];
+			additionsAcc = [];
+			deletionsAcc = [];
 
 			/*
 			 * ALL SAMPLING VARIABLES ARE RESET, OR A NEW URL IS ENTERED, RESET ANYWAY
@@ -182,6 +204,8 @@ darwin.contributionExtractorModule = (function() {
 			LOCTwo = 0;
 			inputCount = 0;
 			jsonDuplicate = [];
+			numAdditions = 0;
+			numDeletions = 0;
 		}
 	};
 })();

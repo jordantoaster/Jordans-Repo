@@ -157,12 +157,31 @@ darwin.Mediator = (function () {
 		emptyCallback : function(){
 			
 		},
-		setContributionDetails: function(index, additions, deletions, difference, LOCOverTime, sampleIndex, contributionDates){
+		setGenericAcc : function(index, genericAcc, action, sampleIndex){
+			if(action == "commit"){
+				darwin.dataManager.setCommitsAcc(index, genericAcc, sampleIndex);
+			}    
+			if(action == "star"){
+				darwin.dataManager.setStarsAcc(index, genericAcc, sampleIndex);
+			}
+  			if(action == "fork"){
+  				darwin.dataManager.setForksAcc(index, genericAcc, sampleIndex);
+			}
+  			if(action == "tags"){
+  				darwin.dataManager.setTagsAcc(index, genericAcc, sampleIndex);
+			}
+  			if(action == "Issues"){
+  				darwin.dataManager.setIssuesAcc(index, genericAcc, sampleIndex);
+  			}
+		},
+		setContributionDetails: function(index, additions, deletions, difference, LOCOverTime, sampleIndex, contributionDates, additionsAcc, deletionsAcc){
 			darwin.dataManager.setAdditions(index, additions, sampleIndex);
 			darwin.dataManager.setDeletions(index, deletions, sampleIndex);
 			darwin.dataManager.setDifference(index, difference, sampleIndex);
 			darwin.dataManager.setLOCOverTime(index, LOCOverTime, sampleIndex);	
 			darwin.dataManager.setContributionDates(index, contributionDates, sampleIndex);
+			darwin.dataManager.setAdditionsAcc(index, additionsAcc, sampleIndex);
+			darwin.dataManager.setDeletionsAcc(index, deletionsAcc, sampleIndex)
 		},
 		setCommitDetails : function(index, commits, projectNames, sampleIndex){
 			darwin.dataManager.setCommits(index, commits, projectNames, sampleIndex);

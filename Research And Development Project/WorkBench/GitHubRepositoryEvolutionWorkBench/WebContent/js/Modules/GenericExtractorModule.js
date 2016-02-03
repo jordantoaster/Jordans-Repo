@@ -13,6 +13,8 @@ darwin.genericExtractorModule = (function() {
 	var firstDate = true;
 	var localJson = [];
 	var sampleRate = 0;
+	var genericAcc = [];
+	var genericTotal = 0;
 	
 	//added stuff for open/closed issues
 	var openIssues = [];
@@ -43,6 +45,8 @@ darwin.genericExtractorModule = (function() {
     			
     			sampleIterator = 0;
     			data = [];
+    			genericAcc = [];
+    			genericTotal = 0
     			//added stuff for open/closed issues
     			var openIssues = [];
     			var closedIssues = [];
@@ -103,6 +107,10 @@ darwin.genericExtractorModule = (function() {
     				if(outOfSample){
     					//find out how many samples skipped and get the last date in sample
     					lastDateInSample = darwin.genericExtractorModule.addSamplesSkipped(date, lastDateInSample);
+    					
+            			//set current data total
+            			genericTotal = genericTotal + data[sampleIterator];
+            			genericAcc[sampleIterator] = genericTotal;
     	 					
     					//store and move onto next sample
     					sampleIterator++;
@@ -139,6 +147,8 @@ darwin.genericExtractorModule = (function() {
 
     			} //for   			
     			
+    			//set Acc Data
+    			darwin.Mediator.setGenericAcc(index, genericAcc, action, sampleIndex);
     			
     			//depending on action set different data
     			if(action == "commit"){
@@ -203,6 +213,8 @@ darwin.genericExtractorModule = (function() {
         	totalCommits = 0;
         	firstDate = true;
         	localJson = [];
+        	genericAcc = [];
+        	genericTotal = 0
         	//added stuff for open/closed issues
         	var openIssues = [];
         	var closedIssues = [];
@@ -235,6 +247,12 @@ darwin.genericExtractorModule = (function() {
         		notFoundDate = darwin.genericExtractorModule.checkDateBeyondSample(currDate, lastKnownDate);
               		
         		if(notFoundDate){
+        			
+        			//set current data total
+        			genericTotal = genericTotal + data[sampleIterator];
+        			genericAcc[sampleIterator] = genericTotal;
+        			
+        			
 					sampleIterator++;
 					dates[sampleIterator] = lastKnownDate;
 					data[sampleIterator] = 0;  	

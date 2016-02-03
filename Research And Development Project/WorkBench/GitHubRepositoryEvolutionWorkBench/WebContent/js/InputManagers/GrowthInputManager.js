@@ -20,32 +20,32 @@ $(document).ready(function(e) {
 	$(document).on("click.darwin","#growthChoice4", function () {
 		darwin.projectManagerModule.resetGrowthOptions();
 
-		darwin.projectManagerModule.setupStatUi("growth","#growthOptions","commits");
+		darwin.projectManagerModule.setupStatUi("growth","#growthOptions","commitsAcc");
 	});
 	$(document).on("click.darwin","#growthChoice5", function () {	
 		darwin.projectManagerModule.resetGrowthOptions();
 
-		darwin.projectManagerModule.setupStatUi("growth","#growthOptions","stars");
+		darwin.projectManagerModule.setupStatUi("growth","#growthOptions","starsAcc");
 	});		
 	$(document).on("click.darwin","#growthChoice6", function () {
 		darwin.projectManagerModule.resetGrowthOptions();
 
-		darwin.projectManagerModule.setupStatUi("growth","#growthOptions","tags");
+		darwin.projectManagerModule.setupStatUi("growth","#growthOptions","tagsAcc");
 	});
 	$(document).on("click.darwin","#growthChoice7", function () {
 		darwin.projectManagerModule.resetGrowthOptions();
 
-		darwin.projectManagerModule.setupStatUi("growth","#growthOptions","forks");
+		darwin.projectManagerModule.setupStatUi("growth","#growthOptions","forksAcc");
 	});
 	$(document).on("click.darwin","#growthChoice8", function () {		
 		darwin.projectManagerModule.resetGrowthOptions();
 
-		darwin.projectManagerModule.setupStatUi("growth","#growthOptions","issues");
+		darwin.projectManagerModule.setupStatUi("growth","#growthOptions","issuesAcc");
 	});
 	$(document).on("click.darwin","#growthChoice9", function () {
 		darwin.projectManagerModule.resetGrowthOptions();
 
-		darwin.projectManagerModule.setupStatUi("growth","#growthOptions", "watchers");
+		darwin.projectManagerModule.setupStatUi("growth","#growthOptions", "watchersAcc");
 	});
 	
 	$('#submitButtonGrowth').on("click.darwin", function(e){

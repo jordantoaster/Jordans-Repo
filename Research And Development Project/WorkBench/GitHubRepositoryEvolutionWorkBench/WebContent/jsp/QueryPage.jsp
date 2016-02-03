@@ -455,15 +455,14 @@
     		<span class="caret"></span>
   			</button>
   			<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-  		  		<li><a href="#" id="growthChoice1">Additions</a></li>
-  		  		<li><a href="#" id="growthChoice2">Deletions</a></li>
-  		  		<li><a href="#" id="growthChoice3">LOC</a></li>
-  		  		<li><a href="#" id="growthChoice4">Commits</a></li>
-  		  		<li><a href="#" id="growthChoice5">Stars</a></li>
-  		  		<li><a href="#" id="growthChoice6">Tags</a></li>
-  		  		<li><a href="#" id="growthChoice7">Forks</a></li>
-  		  		<li><a href="#" id="growthChoice8">Issues</a></li>
-  		  		<li><a href="#" id="growthChoice9">Watchers</a></li>
+  		  		<li><a href="#" id="growthChoice1">Additions Acc</a></li>
+  		  		<li><a href="#" id="growthChoice2">Deletions Acc</a></li>
+  		  		<li><a href="#" id="growthChoice3">LOC Acc</a></li>
+  		  		<li><a href="#" id="growthChoice4">Commits Acc</a></li>
+  		  		<li><a href="#" id="growthChoice5">Stars Acc</a></li>
+  		  		<li><a href="#" id="growthChoice6">Tags Acc</a></li>
+  		  		<li><a href="#" id="growthChoice7">Forks Acc</a></li>
+  		  		<li><a href="#" id="growthChoice8">Issues Acc</a></li>
   			</ul>
 			</div>
 			<div id="growthOptions" class="options">

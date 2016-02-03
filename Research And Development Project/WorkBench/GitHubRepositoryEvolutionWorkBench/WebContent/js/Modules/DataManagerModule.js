@@ -8,6 +8,13 @@ darwin.dataManager = (function() {
 	
 	var deletions = [];
 	var additions = [];
+	var deletionsAcc = [];
+	var additionsAcc = [];
+	var starsAcc = [];
+	var issuesAcc = [];
+	var commitsAcc = [];
+	var forksAcc = [];
+	var tagsAcc = [];
 	var LOC = [];
 	var difference = [];
 	var commitList = [];
@@ -84,6 +91,90 @@ darwin.dataManager = (function() {
     	getAllLOCOverTime: function () {
     		return LOC;
         },
+        setAdditionsAcc : function(index, data, sampleIndex){
+    		if(additionsAcc[index] === undefined)
+    			additionsAcc[index] = [];
+    		
+    		additionsAcc[index][sampleIndex]  = data;
+        },
+        getAdditionsAccIndex : function(index){
+        	return additionsAcc[index];
+        },
+        getAllAdditionsAcc: function(){
+        	return additionsAcc;
+        }, 
+        setDeletionsAcc : function(index, data, sampleIndex){
+    		if(deletionsAcc[index] === undefined)
+    			deletionsAcc[index] = [];
+    		
+    		deletionsAcc[index][sampleIndex]  = data;
+        },
+        getDeletionsAccIndex : function(index){
+        	return deletionsAcc[index];
+        },
+        getAllDeletionsAcc: function(){
+        	return deletionsAcc;
+        },
+        setCommitsAcc : function(index, data, sampleIndex){
+    		if(commitsAcc[index] === undefined)
+    			commitsAcc[index] = [];
+    		
+    		commitsAcc[index][sampleIndex]  = data;
+        },
+        getCommitsAccIndex : function(index){
+        	return commitsAcc[index];
+        },
+        getAllCommitsAcc: function(){
+        	return commitsAcc;
+        }, 
+        setStarsAcc : function(index, data, sampleIndex){
+    		if(starsAcc[index] === undefined)
+    			starsAcc[index] = [];
+    		
+    		starsAcc[index][sampleIndex]  = data;
+        },
+        getStarsAccIndex : function(index){
+        	return starsAcc[index];
+        },
+        getAllStarsAcc: function(){
+        	return starsAcc;
+        }, 
+        setTagsAcc : function(index, data, sampleIndex){
+    		if(tagsAcc[index] === undefined)
+    			tagsAcc[index] = [];
+    		
+    		tagsAcc[index][sampleIndex]  = data;
+        },
+        getTagsAccIndex : function(index){
+        	return tagsAcc[index];
+        },
+        getAllTagsAcc: function(){
+        	return tagsAcc;
+        }, 
+        setIssuesAcc : function(index, data, sampleIndex){
+    		if(issuesAcc[index] === undefined)
+    			issuesAcc[index] = [];
+    		
+    		issuesAcc[index][sampleIndex]  = data;
+        },
+        getIssuesAccIndex : function(index){
+        	return issuesAcc[index];
+        },
+        getAllIssuesAcc: function(){
+        	return issuesAcc;
+        }, 
+        setForksAcc : function(index, data, sampleIndex){
+    		if(forksAcc[index] === undefined)
+    			forksAcc[index] = [];
+    		
+    		forksAcc[index][sampleIndex]  = data;
+        },
+        getForksAccIndex : function(index){
+        	return forksAcc[index];
+        },
+        getAllForksAcc: function(){
+        	return forksAcc;
+        }, 
     	setCommits: function (index, data, projectNames, SampleIndexCommits) {
     		if(commitList[index] === undefined)
     			commitList[index] = [];
