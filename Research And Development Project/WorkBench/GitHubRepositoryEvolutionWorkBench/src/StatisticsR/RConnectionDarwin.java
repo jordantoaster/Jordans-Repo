@@ -79,6 +79,38 @@ public class RConnectionDarwin {
 		
 		return "Could not calculate";
 	}
+	
+
+	public String spearmannCorr(int[] data, int[] dataTwo) throws REngineException, REXPMismatchException {
+		RConnection connection = null;
+		
+        try {
+            /* Create a connection to Rserve instance running
+             * on default port 6311
+             */
+            connection = new RConnection();
+
+            connection.assign("vectorA", data);
+            connection.assign("vectorB", dataTwo);
+			REXP x = connection.eval("cor(vectorA, vectorB, method='spearman')");
+			System.out.println(x.asDouble());
+			
+			double result = x.asDouble();
+			String parsedResult = Double.toString(result);
+
+            connection.close();
+            
+            return parsedResult;
+            
+        } catch (RserveException e) {
+            connection.close();
+            e.printStackTrace();
+        }  
+        
+        connection.close();
+		
+		return "Could not calculate";
+	}
 
 
 	public String standardDev(int[] means) throws REngineException, REXPMismatchException {

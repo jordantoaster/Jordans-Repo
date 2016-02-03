@@ -86,7 +86,8 @@ public class StatsAction implements Action{
 
 	private String processCorrelation(String[] data, String[] d2, String[] projects, String t1, String t2) {
 		
-		String correlation = "";
+		String correlationP = "";
+		String correlationS = "";
 		String[] dataTwo = d2;
 		String TypeOne =  t1;
 		String TypeTwo =  t2;
@@ -97,7 +98,8 @@ public class StatsAction implements Action{
 
 		//get correlation
 		try {
-			correlation =  r.pearsonCorr(SeriesA, SeriesB);
+			correlationP =  r.pearsonCorr(SeriesA, SeriesB);
+			correlationS = r.spearmannCorr(SeriesA, SeriesB);
 		} catch (REngineException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -109,10 +111,12 @@ public class StatsAction implements Action{
 		//store
 		StatDao dao = new StatDao();
 
-		Correlation correlationModel = new Correlation(projects[0],projects[1],correlation, TypeOne, TypeTwo);
+		Correlation correlationModel = new Correlation(projects[0],projects[1],correlationP, TypeOne, TypeTwo, correlationS);
 		dao.insertCorrelation(correlationModel);
 		
-		return correlation; 
+		String t = String.format("{ \"pearson\": \"%s\", \"spearman"
+				+ "\": \"%s\"}", correlationP, correlationS);
+		return t;
 	}
 
 	private String processMean(String[] data, String[] projects, String type) {

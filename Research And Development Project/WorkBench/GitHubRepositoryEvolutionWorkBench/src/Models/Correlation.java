@@ -9,12 +9,13 @@ public class Correlation {
 	String TypeOne = "";
 	String TypeTwo = "";
 	
-	public Correlation(String Sa, String Sb, String p, String t1, String t2){
+	public Correlation(String Sa, String Sb, String p, String t1, String t2, String s){
 		this.SeriesAName = Sa;
 		this.SeriesBName = Sb;
 		this.Pearsons = p;
 		this.TypeOne = t1;
 		this.TypeTwo = t2;
+		this.Spearman = s;
 	}
 	
 	public String getTypeOne() {

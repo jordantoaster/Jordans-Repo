@@ -442,7 +442,8 @@
 			</div>
 			<div id="correlationOptions2" class="options"></div>		
 			<div id="correlationInfoBox">
-      			<p id="pearsonCorr"></p>
+      			<p id="pearsonCorr" class="largeText"></p>
+      			<p id="spearmanCorr" class="largeText"></p>
       		</div>	
 			<button type="submit" id="submitButtonCorrelation" class="btn btn-primary submitButton">
   	     		<i class="icon-user icon-white">Get Correlation Information</i> 

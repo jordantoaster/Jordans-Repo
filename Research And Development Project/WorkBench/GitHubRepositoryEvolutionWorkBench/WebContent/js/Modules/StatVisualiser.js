@@ -118,8 +118,16 @@ darwin.statVisualiser = (function() {
     	    new google.visualization.LineChart(document.getElementById('growthChart')).draw(data, options);
 
     	},
-		writeCorrelations : function(correlation, projects){
-		     $('#pearsonCorr').text('Pearons Correlation - for ' + projects[0] + ' and ' + projects[1] + ' is ' + correlation);
+		writeCorrelations : function(correlations, projects){
+			
+			 obj = JSON.parse(correlations);
+			 var parsedData = [];
+			    
+			 var pearson = obj.pearson;
+			 var spearman = obj.spearman;
+				
+		     $('#pearsonCorr').text('Pearons Correlation - for ' + projects[0] + ' and ' + projects[1] + ' is ' + pearson);
+		     $('#spearmanCorr').text('Spearman Correlation - for ' + projects[0] + ' and ' + projects[1] + ' is ' + spearman);
 
 		}
     };

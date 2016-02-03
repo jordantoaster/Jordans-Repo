@@ -58,7 +58,8 @@ public class StatDao {
 			DBCollection userCollection = new dbConnectionBuilder().getMongoCollection("Correlation");
 		
 			BasicDBObject documentDetail = new BasicDBObject();
-			documentDetail.put("Mean", correlation.getPearsons());
+			documentDetail.put("Pearson", correlation.getPearsons());
+			documentDetail.put("Spearman", correlation.getSpearman());
 			documentDetail.put("ProjectNameA", correlation.getSeriesAName());
 			documentDetail.put("ProjectNameB", correlation.getSeriesBName());
 			documentDetail.put("SeriesAType", correlation.getTypeOne());
