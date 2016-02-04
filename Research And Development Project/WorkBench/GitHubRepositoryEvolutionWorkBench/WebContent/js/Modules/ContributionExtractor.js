@@ -160,7 +160,7 @@ darwin.contributionExtractorModule = (function() {
 			//create Initial graph
 			darwin.Mediator.drawContributionGraph(darwin.dataManager.getAllDifference(), 'Sample Size: '
 				+ darwin.projectManagerModule.getSamplingRate()+ ' Weeks', 'Difference Of Additions And Deletions', LOC,
-				totalWeeks, darwin.projectManagerModule.getSampleIndex(), darwin.Mediator.getChartType());
+				totalWeeks, darwin.projectManagerModule.getSampleIndex(), darwin.Mediator.getChartType(),  darwin.projectManagerModule.getProjectNames());
 
 		},
 		getIterationCount : function(seriesA, seriesB) {

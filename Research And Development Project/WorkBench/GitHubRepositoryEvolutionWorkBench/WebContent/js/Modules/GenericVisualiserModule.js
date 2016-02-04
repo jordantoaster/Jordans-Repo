@@ -6,7 +6,7 @@ var darwin = darwin || {};
 
 darwin.genericVisualiser = (function() {
 	return {
-		draw : function(values, xAxis, title, sampleIndex, action, chartType) {
+		draw : function(values, xAxis, title, sampleIndex, action, chartType, projectNames) {
 			
 			//get smallest array iterate Num Here
 			//based on smallest sample index for each project			
@@ -25,37 +25,36 @@ darwin.genericVisualiser = (function() {
 			data.addColumn('string', xAxis)
 
     	    for(var i=0;i<valuesPresent.length;i++){
-    	    	data.addColumn('number', '');	
+    	    	data.addColumn('number', projectNames[i]);	
     	    }
 		
 	    	for(var j =0;j < iterateNum;j++){
     	    	if(valuesPresent.length == 2){
-        	    	data.addRow(["sample" + j, valuesPresent[0][sampleIndex][j],valuesPresent[1][sampleIndex][j]]);
+        	    	data.addRow(["" + j, valuesPresent[0][sampleIndex][j],valuesPresent[1][sampleIndex][j]]);
     	    	} else if(valuesPresent.length == 3){
-        	    	data.addRow(["sample" + j, valuesPresent[0][sampleIndex][j],valuesPresent[1][sampleIndex][j],valuesPresent[2][sampleIndex][j]]);
+        	    	data.addRow(["" + j, valuesPresent[0][sampleIndex][j],valuesPresent[1][sampleIndex][j],valuesPresent[2][sampleIndex][j]]);
     	    	}else if(valuesPresent.length == 4){
-        	    	data.addRow(["sample" + j, valuesPresent[0][sampleIndex][j],valuesPresent[1][sampleIndex][j],valuesPresent[2][sampleIndex][j],valuesPresent[3][sampleIndex][j]]);
+        	    	data.addRow(["" + j, valuesPresent[0][sampleIndex][j],valuesPresent[1][sampleIndex][j],valuesPresent[2][sampleIndex][j],valuesPresent[3][sampleIndex][j]]);
   	    		}else if(valuesPresent.length == 5){
-        	    	data.addRow(["sample" + j, valuesPresent[0][sampleIndex][j],valuesPresent[1][sampleIndex][j],valuesPresent[2][sampleIndex][j],valuesPresent[3][sampleIndex][j],valuesPresent[4][sampleIndex][j]]);
+        	    	data.addRow(["" + j, valuesPresent[0][sampleIndex][j],valuesPresent[1][sampleIndex][j],valuesPresent[2][sampleIndex][j],valuesPresent[3][sampleIndex][j],valuesPresent[4][sampleIndex][j]]);
 	    		}else {
-        	    	data.addRow(["sample: " + j, valuesPresent[0][sampleIndex][j]]);
+        	    	data.addRow(["" + j, valuesPresent[0][sampleIndex][j]]);
     	    	}
 	    	}
 
 			var options = {
 				title : title,
-				hAxis : {
-					slantedText : true,
-					slantedTextAngle : 45
-				},
+	    	      hAxis: { slantedText:true, slantedTextAngle:45 , title:'sample', textStyle: {fontSize: 11}}, 
+	    	      vAxis: {
+	    	          title: 'amount',
+	    	          textStyle: {fontSize: 11}
+	    	        },
 				chartArea : {
 					left : 100,
-					width : '95%'
+					width : '85%'
 				},
-				legend : {
-					position : 'top'
-				},
-				height : 550,
+	    	    legend: {textStyle: {fontSize: 11}}, 
+				height : 600,
 				width : 1450,
 				animation : {
 					duration : 800,

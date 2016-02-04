@@ -110,16 +110,17 @@ darwin.Mediator = (function () {
 		githubParseStarData: function (response, index) {
 			darwin.starExtractorModule.extract(response, index);
 		},
-		drawContributionGraph: function (values, xAxis, chartTitle, LOC, totalLines, sampleIndex, chartType) {	
+		drawContributionGraph: function (values, xAxis, chartTitle, LOC, totalLines, sampleIndex, chartType, projectNames) {	
 			
-			darwin.ContributionVisualiser.draw(values, xAxis, chartTitle, sampleIndex, chartType);	
+			darwin.ContributionVisualiser.draw(values, xAxis, chartTitle, sampleIndex, chartType,projectNames);	
 			
 			if(values.length == 1){
 				darwin.ContributionVisualiser.populateSupplementaryStats(LOC,totalLines);
 			}
 		},
-		drawGenericGraph: function (values, xAxis, chartTitle, sampleIndex, action, chartType) {			
-			darwin.genericVisualiser.draw(values, xAxis, chartTitle, sampleIndex, action, chartType);	
+		drawGenericGraph: function (values, xAxis, chartTitle, sampleIndex, action, chartType) {
+			//move on data but add project names
+			darwin.genericVisualiser.draw(values, xAxis, chartTitle, sampleIndex, action, chartType, darwin.projectManagerModule.getProjectNames());	
 		},
 		loadGraphLibrary: function(){
 			darwin.loadGraphModule.load();

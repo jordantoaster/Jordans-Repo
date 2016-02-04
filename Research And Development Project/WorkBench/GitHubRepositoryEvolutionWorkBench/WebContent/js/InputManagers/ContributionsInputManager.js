@@ -13,14 +13,14 @@ $(document).ready(function(e) {
 				
 		darwin.projectManagerModule.setCurrentContributionMetric("difference");		
 			
-		darwin.Mediator.drawContributionGraph(darwin.dataManager.getAllDifference(), "","","","", darwin.projectManagerModule.getSampleIndex(), darwin.Mediator.getChartType());
+		darwin.Mediator.drawContributionGraph(darwin.dataManager.getAllDifference(), "","","","", darwin.projectManagerModule.getSampleIndex(), darwin.Mediator.getChartType(), darwin.projectManagerModule.getProjectNames());
 	});	
 	$('#changeValues2Contributions').on("click.darwin", function(e){
 		e.preventDefault();
 
 		darwin.projectManagerModule.setCurrentContributionMetric("addition");		
 				
-		darwin.Mediator.drawContributionGraph(darwin.dataManager.getAllAdditions(), "","","","", darwin.projectManagerModule.getSampleIndex(), darwin.Mediator.getChartType());
+		darwin.Mediator.drawContributionGraph(darwin.dataManager.getAllAdditions(), "","","","", darwin.projectManagerModule.getSampleIndex(), darwin.Mediator.getChartType(), darwin.projectManagerModule.getProjectNames());
 
 	});	
 	$('#changeValues3Contributions').on("click.darwin", function(e){
@@ -28,14 +28,14 @@ $(document).ready(function(e) {
 
 		darwin.projectManagerModule.setCurrentContributionMetric("deletion");		
 			
-		darwin.Mediator.drawContributionGraph(darwin.dataManager.getAllDeletions(), "","","","",darwin.projectManagerModule.getSampleIndex(), darwin.Mediator.getChartType());	
+		darwin.Mediator.drawContributionGraph(darwin.dataManager.getAllDeletions(), "","","","",darwin.projectManagerModule.getSampleIndex(), darwin.Mediator.getChartType(), darwin.projectManagerModule.getProjectNames());	
 
 	});
 	$('#changeValues4Contributions').on("click.darwin", function(e){
 		e.preventDefault();
 
 		darwin.projectManagerModule.setCurrentContributionMetric("LOC");		
-		darwin.Mediator.drawContributionGraph(darwin.dataManager.getAllLOCOverTime(), "","","","",darwin.projectManagerModule.getSampleIndex(), darwin.Mediator.getChartType());
+		darwin.Mediator.drawContributionGraph(darwin.dataManager.getAllLOCOverTime(), "","","","",darwin.projectManagerModule.getSampleIndex(), darwin.Mediator.getChartType(), darwin.projectManagerModule.getProjectNames());
 
 	});
 	
@@ -88,7 +88,7 @@ $(document).ready(function(e) {
 	});
 	
 	function redrawGraph(){
-		darwin.Mediator.drawContributionGraph(darwin.projectManagerModule.getContributionMetricArray(darwin.projectManagerModule.getCurrentContributionMetric()), "", "", 0, 0, darwin.projectManagerModule.getSampleIndex(), darwin.Mediator.getChartType());
+		darwin.Mediator.drawContributionGraph(darwin.projectManagerModule.getContributionMetricArray(darwin.projectManagerModule.getCurrentContributionMetric()), "", "", 0, 0, darwin.projectManagerModule.getSampleIndex(), darwin.Mediator.getChartType(), darwin.projectManagerModule.getProjectNames());
 	}
 
 });
