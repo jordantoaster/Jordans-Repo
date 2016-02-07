@@ -64,6 +64,8 @@ public class StatDao {
 			documentDetail.put("ProjectNameB", correlation.getSeriesBName());
 			documentDetail.put("SeriesAType", correlation.getTypeOne());
 			documentDetail.put("SeriesBType", correlation.getTypeTwo());
+			documentDetail.put("PearsonPval", correlation.getPPVal());
+			documentDetail.put("spearmanPval", correlation.getSPVal());
 	
 			userCollection.insert(documentDetail);
 		} catch(MongoException e){

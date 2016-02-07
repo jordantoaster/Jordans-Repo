@@ -7,6 +7,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
     <link rel="stylesheet" href="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/css/QueryPage.css?v4">
     <link rel="stylesheet" href="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/css/Master.css?v2">
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/QueryPage.js?v4"></script>
@@ -134,6 +136,10 @@
 		</div>
 		<p id="contributorTotalWeeks" class="contributorExtra"></p>
 		<p id="contributorLOC" class="contributorExtra"></p>
+		<div style="width: 50% !important; margin: 0 auto; height: 2%; margin-top: 1%;">
+			<p class="inlineText" style="margin-bottom: 1%; margin: 0 auto;" id="contribRange">Sample Range</p>
+ 			<div id="slider"></div>
+ 		</div>
     	<div id="contributorChart"></div> 
     </div> 
      <div id="CommitTab" class="tab-pane fade customTab">
@@ -372,7 +378,7 @@
       	<div id="meanBlock" class="tab-pane fade in active">
 			<div class="dropdown">
   			<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-    			Change Chart Type
+    			Change Metric Type
     		<span class="caret"></span>
   			</button>
   			<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
@@ -390,14 +396,16 @@
 			<div id="meanOptions" class="options">>
 	    	<p class="inlineText" style="display:block;">Options</p>
 	    	</div> 
-	    	 <button type="submit" id="submitButtonMean" class="btn btn-primary submitButton">
+	    	 <button type="submit" style="display: inline !important; margin-top: 0px;" id="submitButtonMean" class="btn btn-primary submitButton">
   	     		<i class="icon-user icon-white">Get Mean Graph</i> 
       		 </button>  
       		 <div id="meanChart" class="statChart"></div> 
       		 <div id="additionalMean" class="additional">
       		 	<h1 >Side Data</h1>
-      		 	<p id="collatedMean"></p>
-      		 	<p id="meanSd"></p>
+      		 	<ul>
+      		 		<li class="inlineText" style="display:list-item" id="collatedMean"></li>
+      		 		<li class="inlineText" style="display:list-item" id="meanSd"></li>
+      		 	</ul>
       		 </div>
       		     <div class="spacer" style="clear: both;"></div>
 	 	</div>
@@ -405,7 +413,7 @@
 			<p class="inlineText">Series A</p>
 			<div class="dropdown">
   			<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-    			Change Chart Type
+    			Change Metric Type
     		<span class="caret"></span>
   			</button>
   			<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
@@ -421,11 +429,11 @@
   			</ul>
 			</div>
 			<div id="correlationOptions1" class="options"></div>
-		
+			<br>
 			<p class="inlineText">Series B</p>
-			<div class="dropdown">
+			<div class="dropdown" style="display:inline;">
   			<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-    			Change Chart Type
+    			Change Metric Type
     		<span class="caret"></span>
   			</button>
   			<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
@@ -442,8 +450,11 @@
 			</div>
 			<div id="correlationOptions2" class="options"></div>		
 			<div id="correlationInfoBox">
-      			<p id="pearsonCorr" class="largeText"></p>
-      			<p id="spearmanCorr" class="largeText"></p>
+			<h1>Correlation Data</h1>
+			<ul>      			
+				<li id="pearsonCorr" style="visibility: hidden" class="largeText"></li>
+      			<li id="spearmanCorr" style="visibility: hidden" class="largeText"></li>
+      		</ul>
       		</div>	
 			<button type="submit" id="submitButtonCorrelation" class="btn btn-primary submitButton">
   	     		<i class="icon-user icon-white">Get Correlation Information</i> 

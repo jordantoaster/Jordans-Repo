@@ -54,8 +54,8 @@ darwin.statVisualiser = (function() {
     	        
     	    //show new side info
     	    $("#additionalMean").css({"visibility":"visible"});
-    	    $("#collatedMean").text("collated mean on the system " + collatedMean);
-    	    $("#meanSd").text("standard deviation of these means " + standardDev);
+    	    $("#collatedMean").text("Collated mean on the system " + collatedMean);
+    	    $("#meanSd").text("Standard deviation of these means " + standardDev);
 
     	    new google.visualization.BarChart(document.getElementById('meanChart')).draw(data, options);
 
@@ -125,9 +125,14 @@ darwin.statVisualiser = (function() {
 			    
 			 var pearson = obj.pearson;
 			 var spearman = obj.spearman;
+			 var pearsonP = obj.pearsonP;
+			 var spearmanP = obj.spearmanP;
 				
-		     $('#pearsonCorr').text('Pearons Correlation - for ' + projects[0] + ' and ' + projects[1] + ' is ' + pearson);
-		     $('#spearmanCorr').text('Spearman Correlation - for ' + projects[0] + ' and ' + projects[1] + ' is ' + spearman);
+		     $('#pearsonCorr').text('Pearons Correlation - for ' + projects[0] + ' and ' + projects[1] + ' is ' + pearson + ' and P-Value: ' + pearsonP);
+		     $('#spearmanCorr').text('Spearman Correlation - for ' + projects[0] + ' and ' + projects[1] + ' is ' + spearman  + ' and P-Value: ' + spearmanP); 
+		     
+			 $('#pearsonCorr').css('visibility', 'visible')
+			 $('#spearmanCorr').css('visibility','visible')
 
 		}
     };

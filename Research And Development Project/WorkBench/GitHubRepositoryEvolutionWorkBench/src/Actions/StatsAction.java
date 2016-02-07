@@ -33,7 +33,7 @@ public class StatsAction implements Action{
 		}
 		if(subAction.equals("correlation")){
 			
-			String result = processCorrelation(data, request.getParameterValues("dataTwo[]"), projects, request.getParameter("typeOne"), request.getParameter("typeTwo"));
+			String result = processCorrelation(data, request.getParameterValues("dataTwo[]"), projects, request.getParameter("seriesA"), request.getParameter("seriesB"));
 			
 			return result;
 		}
@@ -86,8 +86,7 @@ public class StatsAction implements Action{
 
 	private String processCorrelation(String[] data, String[] d2, String[] projects, String t1, String t2) {
 		
-		String correlationP = "";
-		String correlationS = "";
+		String[] correlation = new String[4];
 		String[] dataTwo = d2;
 		String TypeOne =  t1;
 		String TypeTwo =  t2;
@@ -98,8 +97,7 @@ public class StatsAction implements Action{
 
 		//get correlation
 		try {
-			correlationP =  r.pearsonCorr(SeriesA, SeriesB);
-			correlationS = r.spearmannCorr(SeriesA, SeriesB);
+			correlation =  r.correlation(SeriesA, SeriesB);
 		} catch (REngineException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -111,11 +109,11 @@ public class StatsAction implements Action{
 		//store
 		StatDao dao = new StatDao();
 
-		Correlation correlationModel = new Correlation(projects[0],projects[1],correlationP, TypeOne, TypeTwo, correlationS);
+		Correlation correlationModel = new Correlation(projects[0],projects[1],correlation[0], TypeOne, TypeTwo, correlation[1], correlation[2], correlation[3]);
 		dao.insertCorrelation(correlationModel);
-		
-		String t = String.format("{ \"pearson\": \"%s\", \"spearman"
-				+ "\": \"%s\"}", correlationP, correlationS);
+	
+		String t = String.format("{ \"pearson\": \"%s\", \"spearman\": \"%s\", \"pearsonP\": \"%s\", \"spearmanP"
+				+ "\": \"%s\"}", correlation[0], correlation[1], correlation[2], correlation[3]);
 		return t;
 	}
 

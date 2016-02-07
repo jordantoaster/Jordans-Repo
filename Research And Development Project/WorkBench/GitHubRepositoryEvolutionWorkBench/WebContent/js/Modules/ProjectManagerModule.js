@@ -357,31 +357,31 @@ darwin.projectManagerModule = (function() {
         		if(dataType == "forks"){
         			forks = darwin.Mediator.getForksIndex(i);
         			if(forks != undefined){
-        				$(ElementId).append('<div class="checkbox"><label><input id="check'+metricType+''+i+'" type="checkbox" value="">Forks</label></div>')
+        				$(ElementId).append('<div class="checkbox"><label><input id="check'+metricType+''+i+'" type="checkbox" value="">'+projectNames[i]+'</label></div>')
         			}
         		}
         		if(dataType == "tags"){
            			tags = darwin.Mediator.getTagsIndex(i);
         			if(tags != undefined){
-        				$(ElementId).append('<div class="checkbox"><label><input id="check'+metricType+''+i+'" type="checkbox" value="">tags</label></div>')
+        				$(ElementId).append('<div class="checkbox"><label><input id="check'+metricType+''+i+'" type="checkbox" value="">'+projectNames[i]+'</label></div>')
         			}
         		}
         		if(dataType == "issues"){
            			issues = darwin.Mediator.getIssuesIndex(i);
         			if(issues != undefined){
-        				$(ElementId).append('<div  class="checkbox"><label><input id="check'+metricType+''+i+'" type="checkbox" value="">issues</label></div>')
+        				$(ElementId).append('<div  class="checkbox"><label><input id="check'+metricType+''+i+'" type="checkbox" value="">'+projectNames[i]+'</label></div>')
         			}
         		}
         		if(dataType == "commits"){
            			commits = darwin.Mediator.getCommitsIndex(i);
         			if(commits != undefined){
-        				$(ElementId).append('<div class="checkbox"><label><input id="check'+metricType+''+i+'" type="checkbox" value="">commits</label></div>')
+        				$(ElementId).append('<div class="checkbox"><label><input id="check'+metricType+''+i+'" type="checkbox" value="">'+projectNames[i]+'</label></div>')
         			}
         		}
         		if(dataType == "stars"){
           			stars = darwin.Mediator.getStarsIndex(i);
         			if(stars != undefined){
-        				$(ElementId).append('<div class="checkbox"><label><input id="check'+metricType+''+i+'" type="checkbox" value="">stars</label></div>')
+        				$(ElementId).append('<div class="checkbox"><label><input id="check'+metricType+''+i+'" type="checkbox" value="">'+projectNames[i]+'</label></div>')
         			}
         		}
         		if(dataType == "forksAcc"){
@@ -604,6 +604,24 @@ darwin.projectManagerModule = (function() {
 		        			        	
 		        	selectedProjectName[dataCounter] = darwin.projectManagerModule.getProjectNamesIndex(i);
 	        		dataCounter++;
+				}
+			}
+			
+			if(selectedSeriesAData.length != selectedSeriesBData.length){ 
+				
+				if(selectedSeriesAData.length < selectedSeriesBData.length){
+					
+					var difference = selectedSeriesBData.length - selectedSeriesAData.length ;
+					
+					selectedSeriesBData = darwin.arrayUtilityModule.trimArray(selectedSeriesBData, difference);
+
+				}
+				if(selectedSeriesAData.length > selectedSeriesBData.length){
+					var difference = selectedSeriesAData.length - selectedSeriesBData.length ;
+
+					
+					selectedSeriesAData = darwin.arrayUtilityModule.trimArray(selectedSeriesAData, difference);
+
 				}
 			}
 			

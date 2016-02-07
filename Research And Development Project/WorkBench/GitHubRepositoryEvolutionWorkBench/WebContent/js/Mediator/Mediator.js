@@ -7,6 +7,9 @@ var darwin = darwin || {};
 darwin.Mediator = (function () {
 	
     return {
+    	contribSliderVals : function(start, end){
+    		darwin.dataManager.setContribSlider(start, end);
+    	}, 
     	makeServerRequestSplash: function (action, callback, type, input) {
     		darwin.serverModule.sendSplash(action, callback, type, input);
         },
@@ -115,7 +118,7 @@ darwin.Mediator = (function () {
 			darwin.ContributionVisualiser.draw(values, xAxis, chartTitle, sampleIndex, chartType,projectNames);	
 			
 			if(values.length == 1){
-				darwin.ContributionVisualiser.populateSupplementaryStats(LOC,totalLines);
+				//darwin.ContributionVisualiser.populateSupplementaryStats(LOC,totalLines);
 			}
 		},
 		drawGenericGraph: function (values, xAxis, chartTitle, sampleIndex, action, chartType) {

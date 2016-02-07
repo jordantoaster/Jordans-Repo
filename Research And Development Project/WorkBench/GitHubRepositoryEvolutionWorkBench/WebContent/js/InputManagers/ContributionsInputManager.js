@@ -87,6 +87,19 @@ $(document).ready(function(e) {
 
 	});
 	
+	$(function() {
+	    $("#slider").slider();
+
+	    $("#slider").on("slidestop", function(event, ui) {
+            var start = ui.values[0] ;
+            var end = ui.values[1]; 
+            
+            //store value
+            darwin.Mediator.contribSliderVals(start, end);
+    		darwin.Mediator.drawContributionGraph(darwin.projectManagerModule.getContributionMetricArray(darwin.projectManagerModule.getCurrentContributionMetric()), "", "", 0, 0, darwin.projectManagerModule.getSampleIndex(), darwin.Mediator.getChartType(), darwin.projectManagerModule.getProjectNames());
+	    });
+	});
+	
 	function redrawGraph(){
 		darwin.Mediator.drawContributionGraph(darwin.projectManagerModule.getContributionMetricArray(darwin.projectManagerModule.getCurrentContributionMetric()), "", "", 0, 0, darwin.projectManagerModule.getSampleIndex(), darwin.Mediator.getChartType(), darwin.projectManagerModule.getProjectNames());
 	}

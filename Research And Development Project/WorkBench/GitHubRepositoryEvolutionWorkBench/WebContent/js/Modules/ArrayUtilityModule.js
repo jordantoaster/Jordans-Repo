@@ -20,6 +20,9 @@ darwin.arrayUtilityModule = (function() {
     		}
     		
     		return darwin.arrayUtilityModule.getSmallestArray(arraysToCompare);
+    	}, 
+    	trimArray : function(array, difference){
+    		return array.slice(0, array.length - difference);
     	}
     };
 })();

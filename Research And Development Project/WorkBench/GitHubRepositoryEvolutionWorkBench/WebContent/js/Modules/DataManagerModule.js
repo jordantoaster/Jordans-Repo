@@ -28,8 +28,20 @@ darwin.dataManager = (function() {
 	var IssuesList = [];
 	var closedIssues = [];
 	var openIssues = [];
+	var contribSliderStart;
+	var contribSliderEnd;
 
     return {
+    	setContribSlider : function(start, end){
+    		contribSliderStart = start;
+    		contribSliderEnd = end;
+    	},
+    	getContribSlider : function(){
+    		var slider = [];
+    		slider[0] = contribSliderStart;
+    		slider[1] = contribSliderEnd;
+    		return slider;
+    	},
     	getContributionDates: function (index) {
     		return contributionDates[index];
         },

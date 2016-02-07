@@ -1,6 +1,7 @@
 var darwin = darwin || {};
 
 $(document).ready(function(e) {
+
 	
     $('.nav-tabs a').click(function () {
         var href = $(this).attr('href');

@@ -23,6 +23,19 @@ darwin.ContributionVisualiser = (function () {
 					valCounter++;
 				}
 			}
+			
+			//get slider values and check if defined
+			var sliderVal = [];
+			sliderVal = darwin.dataManager.getContribSlider();
+			
+			
+			var start = 0;
+			var end = valuesPresent[0][sampleIndex].length;
+			
+			if(sliderVal[0] != undefined){
+				start =  sliderVal[0];
+				end = sliderVal[1];
+			}
     	       
     	    //add a new column for each input project
     	    for(var i=0;i<valuesPresent.length;i++){
@@ -31,7 +44,7 @@ darwin.ContributionVisualiser = (function () {
     	    }
     	        	   	    
     	    //add data to each row, a a numeral for the y axis and string for x
-	    	for(var j =0;j<valuesPresent[0][sampleIndex].length-1;j++){
+	    	for(var j =start;j<end;j++){
     	    	if(valuesPresent.length == 2){
         	    	data.addRow(["" + j, valuesPresent[0][sampleIndex][j],valuesPresent[1][sampleIndex][j]]);
     	    	} else if(valuesPresent.length == 3){
@@ -76,10 +89,21 @@ darwin.ContributionVisualiser = (function () {
     	    
     	    //update ui
     	    darwin.Mediator.updateProgressBar();
+    	    darwin.ContributionVisualiser.drawSlider(0, valuesPresent[0][sampleIndex].length, start, end);
         },
         populateSupplementaryStats: function(LOC, totalWeeks){
         	$('#contributorTotalWeeks').text('Total Amount Of Weeks on GitHub: ' + totalWeeks);
         	$('#contributorLOC').text('Total Lines Of Code On GitHub: ' + LOC);
-        }
+        },
+        drawSlider : function(first, last, start, end){
+        	    $("#slider").slider({
+        	        min: first,
+        	        max: last,
+        	        range: true,
+        	        values: [start,end],
+        	        step: 1,
+        	    });
+        	    $("#contribRange").text("Slider Range = " + start + " --> " + end);
+        },
     };
 })();

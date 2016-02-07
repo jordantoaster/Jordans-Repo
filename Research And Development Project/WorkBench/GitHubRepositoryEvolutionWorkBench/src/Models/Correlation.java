@@ -6,16 +6,36 @@ public class Correlation {
 	String SeriesBName = "";
 	String Pearsons = "";
 	String Spearman = "";
+	String PPVal = "";
+	String SPVal = "";
 	String TypeOne = "";
 	String TypeTwo = "";
 	
-	public Correlation(String Sa, String Sb, String p, String t1, String t2, String s){
+	public Correlation(String Sa, String Sb, String p, String t1, String t2, String s, String pP, String sP){
 		this.SeriesAName = Sa;
 		this.SeriesBName = Sb;
 		this.Pearsons = p;
 		this.TypeOne = t1;
 		this.TypeTwo = t2;
 		this.Spearman = s;
+		this.PPVal = pP;
+		this.SPVal = sP;
+	}
+	
+	public String getPPVal() {
+		return PPVal;
+	}
+
+	public void setPPVal(String pPVal) {
+		PPVal = pPVal;
+	}
+
+	public String getSPVal() {
+		return SPVal;
+	}
+
+	public void setSPVal(String sPVal) {
+		SPVal = sPVal;
 	}
 	
 	public String getTypeOne() {

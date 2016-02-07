@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import org.rosuda.REngine.REXP;
 import org.rosuda.REngine.REXPMismatchException;
 import org.rosuda.REngine.REngineException;
+import org.rosuda.REngine.RList;
 import org.rosuda.REngine.Rserve.RConnection;
 import org.rosuda.REngine.Rserve.RserveException;
 
@@ -48,27 +49,45 @@ public class RConnectionDarwin {
     }
 
 
-	public String pearsonCorr(int[] data, int[] dataTwo) throws REngineException, REXPMismatchException {
+	// payload - element data - choose index - payload to get value
+	//check for index names in attribute part of object
+	//2 p value
+	//3 is the correlation
+	//6 - method
+	public String[] correlation(int[] data, int[] dataTwo) throws REngineException, REXPMismatchException {
 		
 		RConnection connection = null;
+        String[] corrResults = new String[4];
 		
         try {
             /* Create a connection to Rserve instance running
              * on default port 6311
              */
             connection = new RConnection();
-
+            
+            //assign vectors
             connection.assign("vectorA", data);
             connection.assign("vectorB", dataTwo);
-			REXP x = connection.eval("cor(vectorA, vectorB)");
-			System.out.println(x.asDouble());
+            
+            //get REXP data
+            REXP pValP = connection.eval("cor.test(vectorA, vectorB)$p.value");
+            REXP pValS = connection.eval("cor.test(vectorA, vectorB, method='spearman')$p.value");
+            REXP pCorr = connection.eval("cor(vectorA, vectorB)");
+			REXP sCorr = connection.eval("cor(vectorA, vectorB, method='spearman')");
+
+            System.out.println(pValP.asDouble());
+            System.out.println(pCorr.asDouble());
+            System.out.println(pValS.asDouble());
+            System.out.println(sCorr.asDouble());
 			
-			double result = x.asDouble();
-			String parsedResult = Double.toString(result);
+            corrResults[0] = Double.toString(pCorr.asDouble());
+            corrResults[1] = Double.toString(sCorr.asDouble());
+            corrResults[2] = Double.toString(pValP.asDouble());
+            corrResults[3] = Double.toString(pValS.asDouble());
 
             connection.close();
             
-            return parsedResult;
+            return corrResults;
             
         } catch (RserveException e) {
             connection.close();
@@ -77,41 +96,9 @@ public class RConnectionDarwin {
         
         connection.close();
 		
-		return "Could not calculate";
+		return corrResults;
 	}
 	
-
-	public String spearmannCorr(int[] data, int[] dataTwo) throws REngineException, REXPMismatchException {
-		RConnection connection = null;
-		
-        try {
-            /* Create a connection to Rserve instance running
-             * on default port 6311
-             */
-            connection = new RConnection();
-
-            connection.assign("vectorA", data);
-            connection.assign("vectorB", dataTwo);
-			REXP x = connection.eval("cor(vectorA, vectorB, method='spearman')");
-			System.out.println(x.asDouble());
-			
-			double result = x.asDouble();
-			String parsedResult = Double.toString(result);
-
-            connection.close();
-            
-            return parsedResult;
-            
-        } catch (RserveException e) {
-            connection.close();
-            e.printStackTrace();
-        }  
-        
-        connection.close();
-		
-		return "Could not calculate";
-	}
-
 
 	public String standardDev(int[] means) throws REngineException, REXPMismatchException {
 		RConnection connection = null;
