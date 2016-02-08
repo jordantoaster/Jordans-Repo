@@ -69,6 +69,10 @@ $(document).ready(function(e) {
 			numFeilds++;
 			
 			$("#additionalProject").before(feild);
+			
+			if(numFeilds == 5){
+				$("#additionalProject").remove();
+			}
 		}
 	});
 	

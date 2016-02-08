@@ -23,7 +23,12 @@ darwin.githubModule = (function() {
     			      req.setRequestHeader('Authorization', 'Basic ' + btoa('jordantoaster:jordan321'));
     			  },
     			  success : function(response) {  
-    				darwin.Mediator.performSuccessAction(action, response, callback, index);   
+    				//sometimes despite a correct url github returns empty json on initial hit of url, repeat if contribution and empty
+    				if(action == "contribution" && Object.keys(response).length == 0){
+    					darwin.githubModule.send(url, callback, index, action); 
+    				} else {
+        				darwin.Mediator.performSuccessAction(action, response, callback, index);   
+    				}
     			  },
     			  error: function() {
     				if(action != "Issues"){
