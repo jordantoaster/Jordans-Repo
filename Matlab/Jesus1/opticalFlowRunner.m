@@ -5,8 +5,10 @@ videoObjOne = VideoReader(fileNameOne);
 vidFramesOne = read(videoObjOne);
 vidSize = size(vidFramesOne);
 
-
+%start at 2 to avoid out of bounds error as we use 2 + 1
 for t = 2:120
+    
+    %get frames and convert to required format
    currentFrame = vidFramesOne(:,:,:,t);   
    currentFrameG = rgb2gray(currentFrame);  
    currentFrameG = double(currentFrameG);
@@ -14,6 +16,7 @@ for t = 2:120
    previousFrame = rgb2gray(previousFrame);
    previousFrame = double(previousFrame);
    
+   %calculates the optical flow
    [u, v] = HS(previousFrame, currentFrameG);
 
     figure(1)
@@ -22,6 +25,7 @@ for t = 2:120
     set(gca,'YDir','reverse');
     hold off
     
+    %convert using the magnitude
     mag = sqrt(u.^2+v.^2);
     vel_th = 3;
     Blobs = mag >= vel_th;
