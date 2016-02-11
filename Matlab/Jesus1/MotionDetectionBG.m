@@ -1,7 +1,7 @@
 function MotionDetectionBG()
 
 %load the video and extract the frames
-fileNameOne = 'viptraffic.avi';
+fileNameOne = 'shopping_center.mpg';
 videoObjOne = VideoReader(fileNameOne);
 vidFramesOne = read(videoObjOne);
 
@@ -27,7 +27,7 @@ for t = 1:120
    
    %plots each and background - waits 0.2 seconds and proceeds
    subplot(2,3,1), imshow(currentFrameG), title(['Frame: ',num2str(t)])
-   subplot(2,3,2), imshow(bkgG), title('Background')
+   subplot(2,3,2), imshow(uint8(bkgG)), title('Background')
    pause(0.1)
    
    %convert to double - black car can now be identified

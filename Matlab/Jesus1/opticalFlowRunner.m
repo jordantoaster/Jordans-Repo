@@ -1,6 +1,6 @@
 
 %load the video and extract the frames
-fileNameOne = 'viptraffic.avi';
+fileNameOne = 'shopping_center.mpg';
 videoObjOne = VideoReader(fileNameOne);
 vidFramesOne = read(videoObjOne);
 vidSize = size(vidFramesOne);
@@ -24,6 +24,7 @@ for t = 2:120
     quiver(u, v, 4, 'color', 'b', 'linewidth', 2);
     set(gca,'YDir','reverse');
     hold off
+    drawnow;
     
     %convert using the magnitude
     mag = sqrt(u.^2+v.^2);

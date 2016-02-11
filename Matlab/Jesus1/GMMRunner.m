@@ -16,7 +16,8 @@ for t = 1:120
    
    [Foreground, Background, GMM] = RunGMM(currentFrameG,GMM);
    
-   figure(1),subplot(2,3,1),imshow(uint8(currentFrameGray)), title(['Frame: ', num2str(t)])
+   figure(1),subplot(2,3,1),imshow(uint8(currentFrameG)), title(['Frame: ', num2str(t)])
    subplot(2,3,2),imshow(uint8(Background)), title('Background')
    subplot(2,3,3),imshow(uint8(Foreground)), title('Foreground')
+   drawnow
 end
