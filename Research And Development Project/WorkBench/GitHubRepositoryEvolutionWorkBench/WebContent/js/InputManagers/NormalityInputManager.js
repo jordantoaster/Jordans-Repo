@@ -3,7 +3,7 @@ var darwin = darwin || {};
 $(document).ready(function(e) {	
 
 	$(document).on("click.darwin","#normalityChoice1", function () {
-		darwin.projectManagerModule.resetNormalityOptions();
+		darwin.projectManagerModule.resetNormalityOptions();//
 
 		darwin.projectManagerModule.setupStatUi("normality","#normalityOptions","additions");
 	});
