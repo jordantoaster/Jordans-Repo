@@ -79,6 +79,9 @@
        <button type="submit" id="submitButtonQuery" class="btn btn-primary submitButton">
   	     <i class="icon-user icon-white">Get Data</i> 
        </button>   
+       <button type="submit" style="margin-left:2% !important;" id="submitButtonAuto" class="btn btn-primary submitButton">
+  	     <i class="icon-user icon-white">Automate Data retrieval</i> 
+       </button>  
  		<div class="progress">
   			<div class="progress-bar progress-bar-striped active" role="progressbar"
 			 aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">

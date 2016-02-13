@@ -205,6 +205,11 @@ darwin.genericExtractorModule = (function() {
     		//enable clicking on another project
 			darwin.Mediator.enableButtons();
 			
+			//only runs when auto getting data 
+    	    if(darwin.projectManagerModule.getIsAuto() == true){
+				darwin.projectManagerModule.handleAuto(action, index);
+			}
+			
         },
         resetVariables: function(){      	
         	sampleIterator = 0;

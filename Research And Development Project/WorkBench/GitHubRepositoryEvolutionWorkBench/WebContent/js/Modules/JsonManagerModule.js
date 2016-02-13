@@ -60,6 +60,9 @@ darwin.jsonManagerModule = (function() {
         getIndexForkJson : function (index){
         	return mergedForks[index];
         },
+        getIndexWatcherJson : function (index){
+        	return mergedWatchers[index];
+        },
         getForkJson : function (){
         	return mergedForks[0];
         },
@@ -112,7 +115,7 @@ darwin.jsonManagerModule = (function() {
         	if(forkArray.length === 0){
         		forkArray = json
         	} else {
-        		watcherArray.push.apply(forkArray, json);
+        		forkArray.push.apply(forkArray, json);
         	}
         	if(json.length < 100){
         		darwin.jsonManagerModule.setMergedForks(forkArray, index);

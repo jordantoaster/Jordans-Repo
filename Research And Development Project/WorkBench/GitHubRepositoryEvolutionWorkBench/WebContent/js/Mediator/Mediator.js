@@ -7,6 +7,43 @@ var darwin = darwin || {};
 darwin.Mediator = (function () {
 	
     return {
+    	initialSetup : function(){
+    	    darwin.projectManagerModule.resetVariables();
+    	    darwin.projectManagerModule.resetComponents();
+    	    
+    	    //contributions - STAGE 1
+    	    for(i=0;i<5;i++){
+    	    	
+    	    	//get parsed url
+    	    	parsedUrl = darwin.Mediator.parseInputUrl($('#urlField' + i).val());
+    	    	
+    	    	//blank check
+    	    	if(parsedUrl != "/GitHubRepositoryEvolutionWorkBench/jsp/QueryPage.jsp" && parsedUrl != "/GitHubRepositoryEvolutionWorkBench/jsp/undefined"){
+    	    		//set project info for future reference
+    	    		darwin.projectManagerModule.setProjectNames(parsedUrl);
+    	    	
+    	    		//CHECK HERE IF ANY ARE THE SAME URL INPUT
+    	    		
+    	    		//set request urls for the specefic api request
+    	    		darwin.projectManagerModule.setBaseRequestUrl(darwin.projectManagerModule.getNumProjects(), "https://api.github.com/repos"+parsedUrl+"/stats/code_frequency?per_page=100&page=")
+    	    	
+    	    		//total the num of projects accepted
+    	    		darwin.projectManagerModule.setNumProjects();
+    	    		
+    	    		} 
+    	    }
+    	    
+    	    //send the urls and associated data to the next module
+    	    darwin.Mediator.makeGithubRequest(darwin.projectManagerModule.getAllBaseRequestUrl(), darwin.Mediator.githubParseContributionData, "contribution","");
+    	    
+    	    //Load options for manual pages
+    	    darwin.projectManagerModule.loadProjectSelection(darwin.projectManagerModule.getProjectNames());
+    	        
+    	    //if(darwin.projectManagerModule.getIsAuto() == false){
+    	    //activate tabs at the end of the process
+        	darwin.projectManagerModule.enableTabs();
+    	    // }
+    	},
     	contribSliderVals : function(start, end){
     		darwin.dataManager.setContribSlider(start, end);
     	}, 

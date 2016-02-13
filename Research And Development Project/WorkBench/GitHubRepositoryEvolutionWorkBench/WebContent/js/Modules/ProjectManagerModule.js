@@ -32,8 +32,15 @@ darwin.projectManagerModule = (function() {
     var issuesType = "all";
     var growthType = "";
     var normalityType = "";
+    var isAuto = false;
 		
     return {
+    	getIsAuto : function(){
+    		return isAuto;
+    	},
+    	setIsAuto : function(val){
+    		isAuto = val;
+    	},
     	getSelectedTagProject : function(index){
     		return selectedTagProject[index];
     	},
@@ -708,6 +715,79 @@ darwin.projectManagerModule = (function() {
              releaseProjectsAdded = 0;
              issuesProjectsAdded = 0;
              meanType = "";
+        },
+        handleAuto : function(autoAction, autoIndex){
+        	
+        	if(autoIndex != darwin.projectManagerModule.getNumProjects()-1){
+        		
+        		/*This block handles when a metric needs the next projects data*/
+        		
+        		//get project names
+        		projectNames = darwin.projectManagerModule.getProjectNames();
+        		
+    			//get the next project name - as we are not at the project num limit
+    			project = projectNames[index+1];
+    			
+    			//get next projects metric type
+    			if(autoAction == "commit"){
+        	    	darwin.Mediator.prepareCommitClick("https://api.github.com/repos"+project+"/commits?per_page=100&page=", project);
+    			}
+    			
+    			if(autoAction == "star"){
+    				darwin.Mediator.prepareStarClick("https://api.github.com/repos"+project+"/stargazers?per_page=100&page=", project);	
+    			}
+    			
+    			if(autoAction == "fork"){
+        			darwin.Mediator.prepareForkClick("https://api.github.com/repos"+project+"/forks?per_page=100&page=", project);	
+    			}
+
+    			if(autoAction == "Issues"){
+        			darwin.Mediator.prepareIssuesClick("https://api.github.com/repos"+project+"/issues/", project);	
+    			}
+    			
+    			//if(autoAction == "watcher"){
+        		//	darwin.Mediator.prepareWatcherClick("https://api.github.com/repos"+project+"/subscribers?per_page=100&page=", project);	
+    			//}
+    			
+    			if(autoAction == "tags"){
+            		darwin.Mediator.prepareTagsClick("https://api.github.com/repos"+project+"/tags?per_page=100&page=", project);
+            		darwin.projectManagerModule.setSelectedTagProject(darwin.Mediator.getNumTagsProjectSelected(), project);
+    			}
+        	} else {
+        		
+        		/*This block handles when a previous metric has data for all projects - each end of action calls next action*/
+
+        		//get project names
+        		projectNames = darwin.projectManagerModule.getProjectNames();
+        		
+    			//get the first project for the new metric
+    			project = projectNames[0];
+    			
+        		if(autoAction == "commit") {
+    				darwin.Mediator.prepareStarClick("https://api.github.com/repos"+project+"/stargazers?per_page=100&page=", project);	
+        		}
+    			if(autoAction == "star"){
+        			darwin.Mediator.prepareForkClick("https://api.github.com/repos"+project+"/forks?per_page=100&page=", project);	
+    			}
+    			
+    			if(autoAction == "fork"){
+        			darwin.Mediator.prepareIssuesClick("https://api.github.com/repos"+project+"/issues/", project);	
+    			}
+
+    			if(autoAction == "Issues"){
+        			darwin.Mediator.prepareTagsClick("https://api.github.com/repos"+project+"/tags?per_page=100&page=", project);	
+    			}
+    			
+    			//if(autoAction == "watcher"){
+            	//	darwin.Mediator.prepareTagsClick("https://api.github.com/repos"+project+"/subscribers?per_page=100&page=", project);   			
+            	//}
+    			
+    			if(autoAction == "tags"){
+    				//now unlock tabs
+        			darwin.projectManagerModule.enableTabs();
+    			}
+        	}
+        	
         }
     };
 })();

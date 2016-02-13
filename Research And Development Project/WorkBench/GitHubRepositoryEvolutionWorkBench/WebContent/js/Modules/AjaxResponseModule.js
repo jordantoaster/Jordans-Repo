@@ -75,7 +75,7 @@ darwin.AjaxResponseModule = (function () {
 						  darwin.Mediator.setNumStarProjectSelected();
 					  }
 					  if(action == "watcher"){
-						  callback(darwin.Mediator.getIndexWatcherJson(), index, action);
+						  callback(darwin.Mediator.getIndexWatcherJson(index), index, action);
 						  darwin.Mediator.setNumWatcherProjectSelected();
 					  }
 					  if(action == "fork"){

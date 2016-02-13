@@ -73,8 +73,8 @@ a:hover {
 	margin-top: 2.5%;
 	color: #5f5f5f;
     text-align:center;
-    display: inline;
-    margin-left: 30%;
+    display: inline !important;
+    margin-left: 35% !important;
 }
 
 .submitButton:hover {
