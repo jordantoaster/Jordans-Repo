@@ -63,6 +63,10 @@ darwin.Mediator = (function () {
 			    
 				darwin.statVisualiser.drawGrowth(growthRate, projectNames, metricType, absolute, overTime);
 			}
+			if(metricType == "normality"){
+			    
+				darwin.statVisualiser.writeNormality(data, projectNames, metricType);
+			}
 
 		},
 		makeGithubRequest: function (url, callback, action, projectIndex) {
@@ -565,6 +569,9 @@ darwin.Mediator = (function () {
 		},
 		getCheckedMeanData : function(dataType){
 			darwin.projectManagerModule.getCheckedMeanData(dataType);
+		},
+		getCheckedNormalityData : function(dataType){
+			darwin.projectManagerModule.getCheckedNormalityData(dataType);
 		},
 		getCheckedGrowthData : function(dataType){
 			darwin.projectManagerModule.getCheckedGrowthData(dataType);

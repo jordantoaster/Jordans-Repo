@@ -134,6 +134,19 @@ darwin.statVisualiser = (function() {
 			 $('#pearsonCorr').css('visibility', 'visible')
 			 $('#spearmanCorr').css('visibility','visible')
 
+		},
+		writeNormality : function(normality, projects){
+			
+			 obj = JSON.parse(normality);
+			 var parsedData = [];
+			 
+			 var wilks = obj.wilks;
+			 var wilksP = obj.wilksP;
+				
+		     $('#wilks').text('Wilks Normality - for ' + projects[0] + ' is ' + wilks  + ' and P-Value: ' + wilksP); 
+		     
+			 $('#wilks').css('visibility','visible')
+
 		}
     };
 })();

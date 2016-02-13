@@ -31,6 +31,7 @@ darwin.projectManagerModule = (function() {
     var CorrelationTypeS1 = "";
     var issuesType = "all";
     var growthType = "";
+    var normalityType = "";
 		
     return {
     	getSelectedTagProject : function(index){
@@ -306,6 +307,12 @@ darwin.projectManagerModule = (function() {
         getMeanType : function(){
         	return meanType;
         },
+        setNormalityType : function(type){
+        	normalityType = type;
+        },
+        getNormalityType : function(){
+        	return normalityType;
+        },
         setGrowthType : function(type){
         	growthType = type;
         },
@@ -337,6 +344,9 @@ darwin.projectManagerModule = (function() {
         	}
         	if(metricType == "growth"){
         		darwin.projectManagerModule.setGrowthType(dataType);
+        	}
+        	if(metricType == "normality"){
+        		darwin.projectManagerModule.setNormalityType(dataType);
         	}
         	
     		var numProjects = darwin.projectManagerModule.getNumProjects();
@@ -425,6 +435,9 @@ darwin.projectManagerModule = (function() {
         resetMeanOptions : function(){
         	$('#meanOptions').empty();
         },
+        resetNormalityOptions : function(){
+        	$('#normalityOptions').empty();
+        },
         resetCorrelationOptionsS1 : function(){
         	$('#correlationOptions1').empty();
         },
@@ -478,6 +491,55 @@ darwin.projectManagerModule = (function() {
 			}
 			
 			darwin.serverModule.sendStat("stats","mean",selectedMeanProjectName, selectedMeanData, "POST", darwin.Mediator.drawGenericStat, dataType);	
+
+        },
+        getCheckedNormalityData : function(dataType){
+        	
+        	numProjects = darwin.projectManagerModule.getNumProjects();
+        	selectedNormalityData = [];
+        	selectedNormalityProjectName = [];
+        	dataCounter = 0;
+        	
+        	//finds out and records which checks have been chosen
+			for(var i =0; i< numProjects;i++){
+				if($('#checknormality'+i+'').is(':checked')) {	
+										
+		        	if(dataType == "additions"){
+		        		selectedNormalityData = selectedNormalityData.concat(darwin.Mediator.getAdditionsIndex(i)[0]);
+		        	}
+		        	if(dataType == "deletions"){
+		        		selectedNormalityData = selectedNormalityData.concat(darwin.Mediator.getDeletionsIndex(i)[0]);
+		        	}
+		        	if(dataType == "LOC"){
+		        		selectedNormalityData = selectedNormalityData.concat(darwin.Mediator.getLOCIndex(i)[0]);
+		        	}
+		        	if(dataType == "forks"){
+		        		selectedNormalityData = selectedNormalityData.concat(darwin.Mediator.getForksIndex(i)[0]);
+		        	}
+		        	if(dataType == "tags"){
+		        		selectedNormalityData = selectedNormalityData.concat(darwin.Mediator.getTagsIndex(i)[0]);
+		        	}
+		        	if(dataType == "issues"){
+		        		selectedNormalityData = selectedNormalityData.concat(darwin.Mediator.getIssuesIndex(i)[0]);
+		        	}
+		        	if(dataType == "commits"){
+		        		selectedNormalityData = selectedNormalityData.concat(darwin.Mediator.getCommitsIndex(i)[0]);
+		        	}
+		        	if(dataType == "stars"){
+		        		selectedNormalityData = selectedNormalityData.concat(darwin.Mediator.getStarsIndex(i)[0]);
+		        	}
+		        	if(dataType == "watchers"){
+		        			
+		        	}	
+		        	
+		        	selectedNormalityData = selectedNormalityData.concat("*");
+		        	
+		        	selectedNormalityProjectName[dataCounter] = darwin.projectManagerModule.getProjectNamesIndex(i);
+	        		dataCounter++;
+				}				
+			}
+			
+			darwin.serverModule.sendStat("stats","normality",selectedNormalityProjectName, selectedNormalityData, "POST", darwin.Mediator.drawGenericStat, dataType);	
 
         },
         getCheckedGrowthData : function(dataType){

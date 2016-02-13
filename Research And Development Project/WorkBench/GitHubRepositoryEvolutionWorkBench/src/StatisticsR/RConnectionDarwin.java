@@ -74,11 +74,6 @@ public class RConnectionDarwin {
             REXP pValS = connection.eval("cor.test(vectorA, vectorB, method='spearman')$p.value");
             REXP pCorr = connection.eval("cor(vectorA, vectorB)");
 			REXP sCorr = connection.eval("cor(vectorA, vectorB, method='spearman')");
-
-            System.out.println(pValP.asDouble());
-            System.out.println(pCorr.asDouble());
-            System.out.println(pValS.asDouble());
-            System.out.println(sCorr.asDouble());
 			
             corrResults[0] = Double.toString(pCorr.asDouble());
             corrResults[1] = Double.toString(sCorr.asDouble());
@@ -99,6 +94,34 @@ public class RConnectionDarwin {
 		return corrResults;
 	}
 	
+	public String[] wilks(int[] dataSubset) throws REngineException, REXPMismatchException {
+		RConnection connection = null;
+        String[] wilksResults = new String[4];
+
+        try {
+
+            connection = new RConnection();
+
+            connection.assign("vectorA", dataSubset);
+			REXP wilksP = connection.eval("shapiro.test(vectorA)$p.value");
+			REXP wilks = connection.eval("shapiro.test(vectorA)$statistic");
+			
+			wilksResults[0] = Double.toString(wilks.asDouble());
+			wilksResults[1] = Double.toString(wilksP.asDouble());
+
+            connection.close();
+            
+            return wilksResults;
+            
+        } catch (RserveException e) {
+            connection.close();
+            e.printStackTrace();
+        }  
+        
+        connection.close();		
+        
+		return null;
+	}
 
 	public String standardDev(int[] means) throws REngineException, REXPMismatchException {
 		RConnection connection = null;

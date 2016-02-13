@@ -11,6 +11,7 @@ import com.mongodb.MongoException;
 import Models.Correlation;
 import Models.GrowthRateModel;
 import Models.Mean;
+import Models.Normality;
 
 public class StatDao {
 	public boolean insertMean(Mean mean){
@@ -86,6 +87,26 @@ public class StatDao {
 			documentDetail.put("GrowthRate", growthRateModel.getGrowth());
 			documentDetail.put("AbsoluteGrowth", growthRateModel.getAbsGrowth());
 			documentDetail.put("GrowthRateOverTime", growthRateModel.getGrowthOverTime());
+	
+			userCollection.insert(documentDetail);
+		} catch(MongoException e){
+			System.out.println(e);
+			return false;
+		}
+		
+		return true;		
+	}
+
+	public boolean insertNormality(Normality normalityModel) {
+		try {
+			DBCollection userCollection = new dbConnectionBuilder().getMongoCollection("Normality");
+		
+			BasicDBObject documentDetail = new BasicDBObject();
+			documentDetail.put("ProjectName", normalityModel.getProjectName());
+			documentDetail.put("NormalityType", normalityModel.getNormalityType());
+			documentDetail.put("Wilks", normalityModel.getWilks());
+			documentDetail.put("WilksP", normalityModel.getWilksP());
+
 	
 			userCollection.insert(documentDetail);
 		} catch(MongoException e){

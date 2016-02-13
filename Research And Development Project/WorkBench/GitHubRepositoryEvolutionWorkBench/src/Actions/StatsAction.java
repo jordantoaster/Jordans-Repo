@@ -12,6 +12,7 @@ import Daos.StatDao;
 import Models.Correlation;
 import Models.GrowthRateModel;
 import Models.Mean;
+import Models.Normality;
 import StatisticsR.RConnectionDarwin;
 
 public class StatsAction implements Action{
@@ -45,7 +46,56 @@ public class StatsAction implements Action{
 			return result;		
 		}
 		
+		if(subAction.equals("normality")){
+			
+			String result = processNormality(data, projects, request.getParameter("typeOne"));
+			
+			return result;		
+		}
+		
 		return "no stat found";
+	}
+
+	private String processNormality(String[] data, String[] projects, String type) {
+		String normalityType = type;		
+		String normality[] = new String[4];
+		int normalityCounter = 0;
+		int[] dataSubset = null;
+		int startPosition = 0;
+		
+		//loop all sets in array to get each seperate mean	
+		for(int i =0; i<data.length;i++){
+			
+			//when we encounter a * split it from main array for use later
+			if(data[i].equals("*")){
+				
+				//get section of array up to the terminator
+				dataSubset = parseData(data, startPosition,i);
+				startPosition = i + 1;
+			
+				//get mean
+				try {
+					normality = r.wilks(dataSubset);
+					normalityCounter++;
+				} catch (REngineException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (REXPMismatchException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+					
+		//store then return
+		Normality normalityModel = new Normality(projects[0], normality, normalityType);
+		
+		StatDao dao = new StatDao();
+		dao.insertNormality(normalityModel);
+		
+		//String t = String.format("{ \"wilks\": \"%s\"}, \"wilksP\": \"%s\"}", normality[0], normality[1]);
+		String t = String.format("{ \"wilks\": \"%s\", \"wilksP\": \"%s\"}", normality[0], normality[1]);
+		return t;
 	}
 
 	private String processGrowth(String[] data, String[] projects, String type) {

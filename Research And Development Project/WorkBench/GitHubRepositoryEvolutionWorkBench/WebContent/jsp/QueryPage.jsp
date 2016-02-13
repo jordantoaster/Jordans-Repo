@@ -39,6 +39,7 @@
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/InputManagers/CorrelationInputManager.js?v7"></script>
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/InputManagers/GrowthInputManager.js?v7"></script>
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/InputManagers/MeanInputManager.js?v7"></script>
+    <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/InputManagers/NormalityInputManager.js?v7"></script>
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Modules/ContributionVisualiser.js?v4"></script>
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Modules/GenericVisualiserModule.js?v5"></script>
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Modules/CustomVisualiserModule.js?v4"></script>
@@ -373,6 +374,7 @@
       <li class="active"><a class="tabText" data-toggle="tab" href="#meanBlock">Mean</a></li>
       <li class=""><a class="tabText" data-toggle="tab" href="#correlationBLock">Correlation</a></li>
       <li class=""><a class="tabText" data-toggle="tab" href="#growthBlock">Growth Rate</a></li>
+      <li class=""><a class="tabText" data-toggle="tab" href="#normalBlock">Normality</a></li>
     </ul>
       <div class="tab-content">
       	<div id="meanBlock" class="tab-pane fade in active">
@@ -490,6 +492,34 @@
       		 	<p id="growthSd"></p>
       		 </div>
       		     <div class="spacer" style="clear: both;"></div>
+	 	</div>
+	    <div id="normalBlock" class="tab-pane fade">
+			<div class="dropdown">
+  			<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    			Change Metric Type
+    		<span class="caret"></span>
+  			</button>
+  			<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+  		  		<li><a href="#" id="normalityChoice1">Additions</a></li>
+  		  		<li><a href="#" id="normalityChoice2">Deletions</a></li>
+  		  		<li><a href="#" id="normalityChoice3">LOC</a></li>
+  		  		<li><a href="#" id="normalityChoice4">Commits</a></li>
+  		  		<li><a href="#" id="normalityChoice5">Stars</a></li>
+  		  		<li><a href="#" id="normalityChoice6">Tags</a></li>
+  		  		<li><a href="#" id="normalityChoice7">Forks</a></li>
+  		  		<li><a href="#" id="normalityChoice8">Issues</a></li>
+  			</ul>
+			</div>
+			<div id="normalityOptions" class="options"></div>
+			<div id="normalityInfoBox">
+			<h1>Normality Data</h1>
+			<ul>      			
+				<li id="wilks" style="visibility: hidden" class="largeText"></li>
+      		</ul>
+      		</div>	
+			<button type="submit" id="submitButtonNormality" class="btn btn-primary submitButton">
+  	     		<i class="icon-user icon-white">Get Normality Information</i> 
+      		</button>  		
 	 	</div>
      </div>
   </div>
