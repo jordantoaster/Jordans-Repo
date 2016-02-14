@@ -33,8 +33,31 @@ darwin.projectManagerModule = (function() {
     var growthType = "";
     var normalityType = "";
     var isAuto = false;
+    var issuesFlag = false;
+    var issuesCounter = 0;
 		
     return {
+    	getIssuesFlag : function(){
+    		return issuesFlag;
+    	},
+    	//needs to be ten issues in a row that are bad for this to happen - should be a big enough threshold
+    	//some projects go 4 in a row etc with bad requests
+    	setIssuesFlag : function(val){
+    		
+    		//if true then increment
+    		if(val == true){
+    			issuesCounter++;
+    		}
+    		
+    		//if false passed in then reset
+    		if(val == false){
+    			issuesCounter == 0;
+    		}    
+    		
+    		if(issuesCounter == 10){
+        		issuesFlag = val;
+    		}
+    	},
     	getIsAuto : function(){
     		return isAuto;
     	},
@@ -715,6 +738,7 @@ darwin.projectManagerModule = (function() {
              releaseProjectsAdded = 0;
              issuesProjectsAdded = 0;
              meanType = "";
+             issuesCounter = 0;
         },
         handleAuto : function(autoAction, autoIndex){
         	

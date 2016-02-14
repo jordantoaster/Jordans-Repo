@@ -348,7 +348,7 @@ darwin.Mediator = (function () {
 		setTagsJson : function(index, response){
 			darwin.jsonManagerModule.setTagsJson(index,response)
 		},
-		setIssuesJson : function(index, response){
+		setIssuesJson : function(index, response){		
 			darwin.jsonManagerModule.setIssuesJson(index,response)
 		},
 		getTagsJson : function(index){

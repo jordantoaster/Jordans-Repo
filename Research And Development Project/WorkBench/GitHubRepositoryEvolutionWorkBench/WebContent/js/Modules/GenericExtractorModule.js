@@ -19,6 +19,9 @@ darwin.genericExtractorModule = (function() {
 	//added stuff for open/closed issues
 	var openIssues = [];
 	var closedIssues = [];
+	
+	//add support to get closed at date
+	var IssuesClosedAtDate = [];
 		
     return {
     	
@@ -74,7 +77,12 @@ darwin.genericExtractorModule = (function() {
           				var date = supplementData[j];
           			}
           			if(action == "Issues"){
+          				console.log(localJson[j].created_at);
           				var date = darwin.ISO601toDateModule.convert(localJson[j].created_at);
+          				
+          				if(localJson[j].state == "closed"){
+              				var closedDate = darwin.ISO601toDateModule.convert(localJson[j].closed_at);
+          				}
           			}
         			
         			

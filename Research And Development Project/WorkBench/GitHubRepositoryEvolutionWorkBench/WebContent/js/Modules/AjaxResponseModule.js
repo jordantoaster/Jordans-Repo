@@ -41,8 +41,13 @@ darwin.AjaxResponseModule = (function () {
 					  darwin.Mediator.setTagsJson(index,response)
 				  }	
 				  if(action == "Issues"){
-					  darwin.Mediator.setIssuesJson(index,response)
-					  darwin.Mediator.updateIssuesProgress(1);
+					  
+					  //allow when not a pull request OR if response is empty for later processing
+					  if(response.pull_request == null){					 
+						  darwin.Mediator.setIssuesJson(index,response)
+						  darwin.Mediator.updateIssuesProgress(1);
+					  }
+		
 				  }	
 				  if(action == "tagSupplement" && response.length != 0){
 					  darwin.Mediator.setSupplementTag(response, index);

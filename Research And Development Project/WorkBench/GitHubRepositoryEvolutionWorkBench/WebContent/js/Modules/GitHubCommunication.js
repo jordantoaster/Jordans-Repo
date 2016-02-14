@@ -30,6 +30,11 @@ darwin.githubModule = (function() {
     				} else {
         				darwin.Mediator.performSuccessAction(action, response, callback, index);   
     				}
+    				
+    				//if successful ensure flag is false (needs to be ten in a row to count as complete issues)
+    				if(action == "Issues"){
+    					darwin.projectManagerModule.setIssuesFlag(false);
+    				}
     	    	    
     			  },
     			  error: function() {
@@ -37,7 +42,23 @@ darwin.githubModule = (function() {
     					$('#ajaxGetUserServletResponse').text("An error occured when connecting to the API, make sure the url is correct");
     					$("#ajaxGetUserServletResponse").css({"opacity":"1"});
     				} else {
-        				darwin.Mediator.performSuccessAction(action, [], callback, index);   
+    					
+    					//moves onto next request if one is missing
+    					if(darwin.projectManagerModule.getIssuesFlag() == false){
+        					darwin.projectManagerModule.setIssuesFlag(true);
+
+        					//move onto next issue
+        					darwin.Mediator.setcurrRequestPage(1);
+        					
+        					//make the next call
+    					  	darwin.Mediator.makeGithubRequestSingleUrl(darwin.Mediator.getAllBaseRequestUrl(index) + darwin.Mediator.getcurrRequestPage(), callback, index, action);
+
+    					} else {
+    						//if two unsuccessful calls then move on with normal process.
+        					darwin.projectManagerModule.setIssuesFlag(false);
+            				darwin.Mediator.performSuccessAction(action, [], callback, index);   
+    					}
+    					
     				}
     		     }
     		});
