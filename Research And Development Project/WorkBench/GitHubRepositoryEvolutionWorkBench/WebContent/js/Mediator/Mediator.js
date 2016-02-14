@@ -348,6 +348,29 @@ darwin.Mediator = (function () {
 		setTagsJson : function(index, response){
 			darwin.jsonManagerModule.setTagsJson(index,response)
 		},
+		issuesCount : function(array){
+			var issuesCount = 0;
+			for(var i=0; i<array.length;i++){
+				
+				if(array[i].pull_request == null){
+					issuesCount++;
+				}
+			}
+			
+			return issuesCount;
+		},
+		removePullRequests : function(array){
+			var filteredArray = [];
+			var filterCounter = 0;
+			for(var i=0; i<array.length;i++){
+				
+				if(array[i].pull_request == null){
+					filteredArray[filterCounter] = array[i];
+					filterCounter++;
+				}
+			}
+			return filteredArray;
+		},
 		setIssuesJson : function(index, response){		
 			darwin.jsonManagerModule.setIssuesJson(index,response)
 		},

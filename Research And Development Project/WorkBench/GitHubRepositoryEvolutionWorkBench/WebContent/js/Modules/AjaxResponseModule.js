@@ -40,14 +40,14 @@ darwin.AjaxResponseModule = (function () {
 				  if(action == "tags" && response.length != 0){
 					  darwin.Mediator.setTagsJson(index,response)
 				  }	
-				  if(action == "Issues"){
+				  if(action == "Issues"  && response.length != 0){
+				 
+					  darwin.Mediator.setIssuesJson(index,response)
 					  
-					  //allow when not a pull request OR if response is empty for later processing
-					  if(response.pull_request == null){					 
-						  darwin.Mediator.setIssuesJson(index,response)
-						  darwin.Mediator.updateIssuesProgress(1);
-					  }
-		
+					  //find out how many are actual issues
+					  var issuesCount = darwin.Mediator.issuesCount(response);
+					  
+					  darwin.Mediator.updateIssuesProgress(issuesCount);
 				  }	
 				  if(action == "tagSupplement" && response.length != 0){
 					  darwin.Mediator.setSupplementTag(response, index);

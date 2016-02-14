@@ -36,14 +36,18 @@ darwin.genericExtractorModule = (function() {
     		
     			//to avoid pass by referecence and changing the original values during reverse we need to copy it to another object
     			localJson = darwin.Mediator.copyObject(json);
-    			
+    			    			
     			
     			//commit json comes in back to front
-    			if(action == "commit" || action == "fork" || action == "tags"){
+    			if(action == "commit" || action == "fork" || action == "tags" || action == "Issues"){
         			localJson.reverse();
     			}    
     			if(action =="tags"){	
     				supplementDataLocal = darwin.Mediator.copyObject(supplementData);
+    			}
+    			
+    			if(action == "Issues"){
+    				localJson = darwin.Mediator.removePullRequests(localJson);
     			}
     			
     			sampleIterator = 0;
@@ -77,7 +81,7 @@ darwin.genericExtractorModule = (function() {
           				var date = supplementData[j];
           			}
           			if(action == "Issues"){
-          				console.log(localJson[j].created_at);
+          				//console.log(localJson[j].created_at);
           				var date = darwin.ISO601toDateModule.convert(localJson[j].created_at);
           				
           				if(localJson[j].state == "closed"){

@@ -7,27 +7,27 @@ var darwin = darwin || {};
 $(document).ready(function(e) {
 	
 	$(document).on("click.darwin","#IssuesOption1", function () {
-		darwin.Mediator.prepareIssuesClick("https://api.github.com/repos"+$("#ForkOption1").text()+"/issues/", $("#IssuesOption1").text());	
+		darwin.Mediator.prepareIssuesClick("https://api.github.com/repos"+$("#ForkOption1").text()+"/issues?state=all&per_page=100&page=", $("#IssuesOption1").text());	
 		IssuesReset();
 
 	});
 	$(document).on("click.darwin","#IssuesOption2", function () {
-		darwin.Mediator.prepareIssuesClick("https://api.github.com/repos"+$("#ForkOption2").text()+"/issues/", $("#IssuesOption2").text());	
+		darwin.Mediator.prepareIssuesClick("https://api.github.com/repos"+$("#ForkOption2").text()+"/issues?state=all&per_page=100&page=", $("#IssuesOption2").text());	
 		IssuesReset();
 
 	});
 	$(document).on("click.darwin","#IssuesOption3", function () {		
-		darwin.Mediator.prepareIssuesClick("https://api.github.com/repos"+$("#ForkOption3").text()+"/issues/", $("#IssuesOption3").text());	
+		darwin.Mediator.prepareIssuesClick("https://api.github.com/repos"+$("#ForkOption3").text()+"/issues?state=all&per_page=100&page=", $("#IssuesOption3").text());	
 		IssuesReset();
 
 	});
 	$(document).on("click.darwin","#IssuesOption4", function () {
-		darwin.Mediator.prepareIssuesClick("https://api.github.com/repos"+$("#ForkOption4").text()+"/issues/", $("#IssuesOption4").text());	
+		darwin.Mediator.prepareIssuesClick("https://api.github.com/repos"+$("#ForkOption4").text()+"/issues?state=all&per_page=100&page=", $("#IssuesOption4").text());	
 		IssuesReset();
 
 	});
 	$(document).on("click.darwin","#IssuesOption5", function () {			
-		darwin.Mediator.prepareIssuesClick("https://api.github.com/repos"+$("#ForkOption5").text()+"/issues/", $("#IssuesOption5").text());	
+		darwin.Mediator.prepareIssuesClick("https://api.github.com/repos"+$("#ForkOption5").text()+"/issues?state=all&per_page=100&page=", $("#IssuesOption5").text());	
 		IssuesReset();
 
 	});	

@@ -766,7 +766,7 @@ darwin.projectManagerModule = (function() {
     			}
 
     			if(autoAction == "Issues"){
-        			darwin.Mediator.prepareIssuesClick("https://api.github.com/repos"+project+"/issues/", project);	
+        			darwin.Mediator.prepareIssuesClick("https://api.github.com/repos"+project+"/issues?state=all&per_page=100&page=", project);	
     			}
     			
     			//if(autoAction == "watcher"){
@@ -795,7 +795,7 @@ darwin.projectManagerModule = (function() {
     			}
     			
     			if(autoAction == "fork"){
-        			darwin.Mediator.prepareIssuesClick("https://api.github.com/repos"+project+"/issues/", project);	
+        			darwin.Mediator.prepareIssuesClick("https://api.github.com/repos"+project+"/issues?&per_page=100&state=all&page=", project);	
     			}
 
     			if(autoAction == "Issues"){

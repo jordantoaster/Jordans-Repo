@@ -132,16 +132,15 @@ darwin.jsonManagerModule = (function() {
         	}
         },
         setIssuesJson : function (index, json){ //concatenate one request with another
-        	var tempIssues = [];
-        	tempIssues[0] = json;
         	if(issuesArray.length === 0){
-        		issuesArray = tempIssues
+        		issuesArray = json
         	} else {
-        		issuesArray.push.apply(issuesArray, tempIssues);
+        		issuesArray.push.apply(issuesArray, json);
         	}
-        	if(json.length == 0){
+        	//should i just keep updating this?
+        	//if(json.length < 100){
         		darwin.jsonManagerModule.setMergedIssues(issuesArray, index);
-        	}
+        	//}
         },
         setMergedTags : function(TagsArray, index){
         	mergedTags[index] = TagsArray;
