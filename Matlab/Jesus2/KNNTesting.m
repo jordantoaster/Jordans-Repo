@@ -1,7 +1,7 @@
 function prediction = KNNTesting(testImage, modelNN, K)
 
 %iterate the test images
-for i=1:size(testImage, 2)  
+for i=1:size(modelNN.neighbours, 1)  
     
     %assign to an index of distance the Euc distance based on test image
     %and row of the training image set (= an image)

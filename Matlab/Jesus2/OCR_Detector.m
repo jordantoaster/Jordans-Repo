@@ -30,8 +30,17 @@ predictedFullImage=[];
 %for each digit within the image, 
 %for r=1:samplingX:size(I,1)
  %   predictedRow=[];
-  %  for c= 1:samplingY:size(I,2)
+  % for c= 1:samplingY:size(I,2)
   
+%V2 Loops - basically changes the sampling to hard code and adds counts for
+% x and y
+county=0;
+for r=1:5:size(I,1)
+    predictedRow=[];
+    county=county+1;
+    countx=0;
+    for c= 1:5:size(I,2)
+    countx=countx+1;
         
         if (c+samplingY-1 <= size(I,2)) && (r+samplingX-1 <= size(I,1))
       
@@ -41,7 +50,7 @@ predictedFullImage=[];
         digitIm = I(r:r+samplingX-1, c:c+samplingY-1);
         
         % we convert it into doubles from 0 to 1 and invert them (rememebr that in the training set, the digitd were white on black background)
-        digitIm = im2double(digitIm);
+        digitIm = im2double(digitIm)>0.5; %> 0.5 sets to binary based on a threshold 0.5
         digitIm = ~digitIm;
         
         %All training examples were 28x28. To have any chance, we need to
@@ -50,11 +59,11 @@ predictedFullImage=[];
         
         
         %We display teh individually segmented digits
-        subplot(numberRows,numberColumns,digitCounter)
+        subplot(samplingX,samplingY,digitCounter)
         imshow(digitIm)
         
-        %preprocess
-        %digitIm = preprocessDigit(digitIm);
+        %preprocess - Turn off for V2
+        digitIm = preprocessDigit(digitIm);
         
         %we reshape the digit into a vector
         digitIm = reshape(digitIm,1,[]); 
@@ -64,8 +73,9 @@ predictedFullImage=[];
       
         predictedRow=[predictedRow prediction];
         end
+        %c
     end
-    
+    %r
     predictedFullImage=[predictedFullImage; predictedRow];
 end
 
