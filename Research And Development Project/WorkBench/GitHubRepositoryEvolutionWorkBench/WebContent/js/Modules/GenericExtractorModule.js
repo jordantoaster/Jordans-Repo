@@ -19,9 +19,8 @@ darwin.genericExtractorModule = (function() {
 	//added stuff for open/closed issues
 	var openIssues = [];
 	var closedIssues = [];
-	
-	//add support to get closed at date
-	var IssuesClosedAtDate = [];
+	var closedAtDates = [];
+	var issueComments = [];
 		
     return {
     	
@@ -49,18 +48,28 @@ darwin.genericExtractorModule = (function() {
     			if(action == "Issues"){
     				localJson = darwin.Mediator.removePullRequests(localJson);
     			}
+    			if(action == "closedAt"){
+        			closedAtDates = [];
+        			
+    				localJson = darwin.Mediator.removePullRequests(localJson);
+
+    				//get the closed at dates - order
+        			localJson = darwin.genericExtractorModule.getClosedAtDates(localJson);
+    			}
+
     			
     			sampleIterator = 0;
     			data = [];
     			genericAcc = [];
     			genericTotal = 0
-    			//added stuff for open/closed issues
-    			var openIssues = [];
-    			var closedIssues = [];
+    			openIssues = [];
+    			closedIssues = [];
     			dates = [];
+    			closedAt = [];
     			total = 0;
     			firstDate = true;
     			var lastDateInSample = [];
+    			var closedDateIndex  =0;
     			    
     			//if there are multiple json input loop each
     			for(var j = 0;j<localJson.length-1;j++){
@@ -81,12 +90,10 @@ darwin.genericExtractorModule = (function() {
           				var date = supplementData[j];
           			}
           			if(action == "Issues"){
-          				//console.log(localJson[j].created_at);
-          				var date = darwin.ISO601toDateModule.convert(localJson[j].created_at);
-          				
-          				if(localJson[j].state == "closed"){
-              				var closedDate = darwin.ISO601toDateModule.convert(localJson[j].closed_at);
-          				}
+          				var date = darwin.ISO601toDateModule.convert(localJson[j].created_at);         	       				       				
+          			}
+          			if(action == "closedAt"){
+          				var date = localJson[j];         	       				       				
           			}
         			
         			
@@ -176,7 +183,10 @@ darwin.genericExtractorModule = (function() {
         			darwin.Mediator.setTagsDetails(index, data, darwin.projectManagerModule.getProjectNames(), sampleIndex);
     			}
       			if(action == "Issues"){
-        			darwin.Mediator.setIssuesDetails(index, data, darwin.projectManagerModule.getProjectNames(), sampleIndex, openIssues, closedIssues);
+      				darwin.Mediator.setIssuesDetails(index, data, darwin.projectManagerModule.getProjectNames(), sampleIndex, openIssues, closedIssues);
+    			}
+      			if(action == "closedAt"){
+      				darwin.Mediator.setClosedAtIssuesDetails(index, data, darwin.projectManagerModule.getProjectNames(), sampleIndex);
     			}
     					
         		//send to mongo for storage
@@ -210,7 +220,7 @@ darwin.genericExtractorModule = (function() {
 			if(action == "tags"){
 	    		darwin.Mediator.drawGenericGraph(darwin.Mediator.getTagsDetails(), "weeks", "week On week Tags", darwin.projectManagerModule.getSampleIndex(), action, darwin.Mediator.getChartType());
 			}
-			if(action == "Issues"){
+			if(action == "Issues" || "closedAt"){
 	    		darwin.Mediator.drawGenericGraph(darwin.Mediator.getIssuesDetails(), "weeks", "week On week issues", darwin.projectManagerModule.getSampleIndex(), action, darwin.Mediator.getChartType());
 			}
 			    		
@@ -282,6 +292,47 @@ darwin.genericExtractorModule = (function() {
         	}
         	return lastKnownDate;
 
-        }
+        },
+        getClosedAtDates : function(json){
+        	var counter = 0;
+        	var closedAtDates = [];
+        	for( var k =0;k<json.length;k++){
+   				if(json[k].state == "closed"){
+      				var closedDate = darwin.ISO601toDateModule.convert(json[k].closed_at);
+      				closedAtDates[counter] = closedDate;
+      				counter++;
+  				}
+        	}
+        	
+        	//performs the actual sort
+			(function(){
+				  if (typeof Object.defineProperty === 'function'){
+				    try{Object.defineProperty(Array.prototype,'sortBy',{value:sb}); }catch(e){}
+				  }
+				  if (!Array.prototype.sortBy) Array.prototype.sortBy = sb;
+
+				  function sb(f){
+				    for (var i=this.length;i;){
+				      var o = this[--i];
+				      this[i] = [].concat(f.call(o,o,i),o);
+				    }
+				    this.sort(function(a,b){
+				      for (var i=0,len=a.length;i<len;++i){
+				        if (a[i]!=b[i]) return a[i]<b[i]?-1:1;
+				      }
+				      return 0;
+				    });
+				    for (var i=this.length;i;){
+				      this[--i]=this[i][this[i].length-1];
+				    }
+				    return this;
+				  }
+				})();
+			
+			closedAtDates.sortBy(function(o){ return o.date });
+        	
+        	return closedAtDates;
+        },
+        
     };
 })();

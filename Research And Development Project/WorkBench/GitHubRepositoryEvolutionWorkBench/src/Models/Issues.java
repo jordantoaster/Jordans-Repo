@@ -9,14 +9,29 @@ public class Issues {
 	private String[]  closedIssues;
 	private String[]  dates;
 	private String project = "";
+	private String[] closedAt;
 	
-	public Issues(String[] dates, String[] data, String[] dataTwo, String project){
+	public Issues(String[] dates, String project, String[] closedAt){
+		this.dates = dates;
+		this.project = project;
+		this.closedAt = closedAt;
+	}
+	
+	public Issues(String[] dates, String[] data, String[] dataTwo, String project) {
 		this.dates = dates;
 		this.openIssues = data;
 		this.closedIssues = dataTwo;
 		this.project = project;
 	}
 	
+	public String[] getClosedAt() {
+		return closedAt;
+	}
+
+	public void setClosedAt(String[] closedAt) {
+		this.closedAt = closedAt;
+	}
+
 	public String[] getDates() {
 		return dates;
 	}

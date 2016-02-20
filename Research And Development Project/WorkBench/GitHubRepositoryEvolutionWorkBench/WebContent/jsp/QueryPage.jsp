@@ -297,6 +297,8 @@
   		  <li><a href="#" id="issueType1">Open</a></li>
   		  <li><a href="#" id="issueType2">Closed</a></li>
   		  <li><a href="#" id="issueType3">All</a></li>
+  		  <li><a href="#" id="issueType4">Closed At</a></li>
+  		  <li><a href="#" id="issueType5">Issue Comments</a></li>
   		</ul>
 	  </div>
 	  <p class="inlineText" id="IssuesProgress"></p>

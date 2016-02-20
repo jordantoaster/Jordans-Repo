@@ -103,6 +103,20 @@ $(document).ready(function(e) {
 		drawIssuesGraph();
 
 	});
+	$('#issueType4').on("click.darwin", function(e){
+		e.preventDefault();
+
+		darwin.Mediator.setIssuesType("closedAt");
+		drawIssuesGraph();
+
+	});
+	$('#issueType5').on("click.darwin", function(e){
+		e.preventDefault();
+
+		darwin.Mediator.setIssuesType("comments");
+		drawIssuesGraph();
+
+	});
 	
 	function drawIssuesGraph(){
 		darwin.Mediator.drawGenericGraph(darwin.Mediator.getIssuesDetails(), "weeks", "week On week Issues", darwin.projectManagerModule.getSampleIndex(), "Issues", darwin.Mediator.getChartType());

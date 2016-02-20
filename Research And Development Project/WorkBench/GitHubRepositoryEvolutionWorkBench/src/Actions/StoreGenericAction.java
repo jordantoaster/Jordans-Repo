@@ -57,7 +57,14 @@ public class StoreGenericAction implements Action{
 			//store
 			Issues issue = new Issues(dates, openIssues, closedIssues, project);		
 			IssueDao dao = new IssueDao();
-			dao.insertStars(issue);
+			dao.insertIssues(issue);
+		}
+		
+		if(subAction.equals("closedAt")){
+			//store
+			Issues issue = new Issues(dates, project, data);		
+			IssueDao dao = new IssueDao();
+			dao.insertIssuesClosedAt(issue);
 		}
 
 		return "insert complete";

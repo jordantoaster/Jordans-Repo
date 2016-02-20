@@ -243,6 +243,9 @@ darwin.Mediator = (function () {
 		setIssuesDetails : function(index, commits, projectNames, sampleIndex, open, closed){
 			darwin.dataManager.setIssues(index, commits, projectNames, sampleIndex, open, closed);
 		},
+		setClosedAtIssuesDetails : function(index, commits, projectNames, sampleIndex){
+			darwin.dataManager.setClosedAtIssues(index, commits, projectNames, sampleIndex);
+		},
 		getCommitDetails : function(){
 			return darwin.dataManager.getCommits();
 		},

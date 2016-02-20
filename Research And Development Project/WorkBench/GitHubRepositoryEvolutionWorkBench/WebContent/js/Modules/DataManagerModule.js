@@ -28,6 +28,8 @@ darwin.dataManager = (function() {
 	var IssuesList = [];
 	var closedIssues = [];
 	var openIssues = [];
+	var closedAtIssues =[];
+	var issueComments = [];
 	var contribSliderStart;
 	var contribSliderEnd;
 
@@ -261,6 +263,16 @@ darwin.dataManager = (function() {
     		closedIssues[index][SampleIndex]  = closed;
     		openIssues[index][SampleIndex]  = open;
         },
+    	setClosedAtIssues: function (index, data, projectNames, SampleIndex) {
+    		if(closedAtIssues[index] === undefined)
+    			closedAtIssues[index] = [];
+
+    		closedAtIssues[index][SampleIndex] = data;
+
+        },
+    	getClosedAtIssues: function () {
+    		return closedAtIssues;
+        },
     	getIssues: function () {
     		var issueType = darwin.projectManagerModule.getIssuesType();
     		if(issueType == "all"){
@@ -271,6 +283,12 @@ darwin.dataManager = (function() {
     		}
     		if(issueType == "closed"){
     			return closedIssues;
+    		}
+    		if(issueType == "closedAt"){
+    			return closedAtIssues;
+    		}
+    		if(issueType == "comments"){
+    			return issueComments;
     		}
         },
     	getIssuesIndex: function (index) {
@@ -323,6 +341,8 @@ darwin.dataManager = (function() {
         	 TagsList  =[];
         	 tagSupplment = [];
         	 IssuesList = [];
+        	 closedAtIssues =[];
+        	 issueComments = [];
         }
     };
 })(); 

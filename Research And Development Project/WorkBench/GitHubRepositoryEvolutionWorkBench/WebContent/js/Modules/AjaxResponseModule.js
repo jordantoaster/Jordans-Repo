@@ -91,7 +91,12 @@ darwin.AjaxResponseModule = (function () {
 						  darwin.Mediator.supplementTagData(callback, action, index);
 					  }  	
 					  if(action == "Issues"){
+						  //get normal issues based on created at date
 						  callback(darwin.Mediator.getIndexIssuesJson(index), index, action);
+						  
+						  //get issues based on closed at date
+						  callback(darwin.Mediator.getIndexIssuesJson(index), index, "closedAt");
+						  
 						  darwin.Mediator.setNumIssuesProjectSelected();					  
 					  }  				  					  
 					  
