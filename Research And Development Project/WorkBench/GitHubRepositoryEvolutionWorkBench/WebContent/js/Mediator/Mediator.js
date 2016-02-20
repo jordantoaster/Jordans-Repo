@@ -126,7 +126,9 @@ darwin.Mediator = (function () {
 			}
 			else if(action == "Issues"){
 				darwin.githubModule.send(url[0] + darwin.projectManagerModule.getcurrRequestPage(), callback, projectIndex, action);
-			}else {
+			} else if(action == "comments") {
+				darwin.githubModule.send(url[0] + darwin.projectManagerModule.getcurrRequestPage(), callback, projectIndex, action);
+			} else {
 				//if a stat api then loop each url, only send true callback on final url
 	    		projectNames = darwin.projectManagerModule.getProjectNames();
 				
@@ -246,6 +248,9 @@ darwin.Mediator = (function () {
 		setClosedAtIssuesDetails : function(index, commits, projectNames, sampleIndex){
 			darwin.dataManager.setClosedAtIssues(index, commits, projectNames, sampleIndex);
 		},
+		setIssueCommentsDetails : function(index, data, projectNames, sampleIndex){
+			darwin.dataManager.setIssueComments(index, data, projectNames, sampleIndex);
+		},
 		getCommitDetails : function(){
 			return darwin.dataManager.getCommits();
 		},
@@ -330,6 +335,9 @@ darwin.Mediator = (function () {
 		getIndexForkJson : function(index){
 			return darwin.jsonManagerModule.getIndexForkJson(index)
 		},
+		getIndexCommentJson : function(index){
+			return darwin.jsonManagerModule.getIndexCommentJson(index)
+		},
 		getIndexIssuesJson : function(index){
 			return darwin.jsonManagerModule.getIndexIssues(index)
 		},
@@ -347,6 +355,9 @@ darwin.Mediator = (function () {
 		},
 		setForkJson : function(index, response){
 			darwin.jsonManagerModule.setForkJson(index,response)
+		},
+		setCommentJson : function(index, response){
+			darwin.jsonManagerModule.setCommentJson(index,response)
 		},
 		setTagsJson : function(index, response){
 			darwin.jsonManagerModule.setTagsJson(index,response)
@@ -426,7 +437,7 @@ darwin.Mediator = (function () {
 		prepareForkClick : function(url, projectName){
 			darwin.jsonManagerModule.resetForkJson();
 			darwin.projectManagerModule.resetBaseRequestUrl();
-			darwin.projectManagerModule.disableIssuesButton();
+			darwin.projectManagerModule.disableForkButton();
 			
 			darwin.projectManagerModule.setBaseRequestUrl(0,url);
 			index = darwin.Mediator.getProjNameIndex(projectName);
@@ -644,6 +655,18 @@ darwin.Mediator = (function () {
 		},
 		drawCorrelation : function(correlation, projects){
 			darwin.statVisualiser .writeCorrelations(correlation, projects);
+		},
+		prepareIssueComment : function(url, projectName){
+			darwin.jsonManagerModule.resetCommentJson(url);
+			darwin.projectManagerModule.resetBaseRequestUrl();
+			darwin.projectManagerModule.disableIssuesButton();
+			
+			index = darwin.Mediator.getProjNameIndex(projectName);
+			
+			darwin.projectManagerModule.setBaseRequestUrl(0,url);
+
+			darwin.Mediator.makeGithubRequest(darwin.projectManagerModule.getAllBaseRequestUrl(), darwin.Mediator.githubParseGenericData, "comments", index);		
+		
 		}
     };
 })();

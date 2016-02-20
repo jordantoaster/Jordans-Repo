@@ -34,6 +34,15 @@ darwin.dataManager = (function() {
 	var contribSliderEnd;
 
     return {
+    	setIssueComments : function(index, data, projectNames, sampleIndex){
+    		if(issueComments[index] === undefined)
+    			issueComments[index] = [];
+    		
+    		issueComments[index][sampleIndex]  = data;
+    	},
+    	getIssueComments : function(){
+    		return closedAtIssues;
+    	},
     	setContribSlider : function(start, end){
     		contribSliderStart = start;
     		contribSliderEnd = end;

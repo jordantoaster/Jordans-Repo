@@ -10,11 +10,21 @@ public class Issues {
 	private String[]  dates;
 	private String project = "";
 	private String[] closedAt;
+	private String[] comments;
 	
-	public Issues(String[] dates, String project, String[] closedAt){
-		this.dates = dates;
-		this.project = project;
-		this.closedAt = closedAt;
+	public Issues(String[] dates, String project, String[] data, String subAction){
+		if(subAction.equals("closedAt")){
+			this.dates = dates;
+			this.project = project;
+			this.closedAt = data;
+		}
+		
+		if(subAction.equals("comments")){
+			this.dates = dates;
+			this.project = project;
+			this.comments = data;
+		}
+
 	}
 	
 	public Issues(String[] dates, String[] data, String[] dataTwo, String project) {
@@ -23,6 +33,15 @@ public class Issues {
 		this.closedIssues = dataTwo;
 		this.project = project;
 	}
+	
+	public String[] getComments() {
+		return comments;
+	}
+
+	public void setComments(String[] comments) {
+		this.comments = comments;
+	}
+
 	
 	public String[] getClosedAt() {
 		return closedAt;

@@ -46,4 +46,23 @@ public class IssueDao {
 		
 		return true;	
 	}
+	
+	public boolean insertIssuesComments(Issues issue){
+		
+		try {
+			DBCollection userCollection = new dbConnectionBuilder().getMongoCollection("IssueComments");
+		
+			BasicDBObject documentDetail = new BasicDBObject();
+			documentDetail.put("Dates", issue.getDates());
+			documentDetail.put("Comments", issue.getComments());
+			documentDetail.put("Project", issue.getProject());
+	
+			userCollection.insert(documentDetail);
+		} catch(MongoException e){
+			System.out.println(e);
+			return false;
+		}
+		
+		return true;	
+	}
 }

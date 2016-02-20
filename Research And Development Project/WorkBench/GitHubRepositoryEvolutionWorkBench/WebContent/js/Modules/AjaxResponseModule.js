@@ -35,11 +35,14 @@ darwin.AjaxResponseModule = (function () {
 				  }
 				  if(action == "fork" && response.length != 0){
 					  darwin.Mediator.setForkJson(index,response)
-					  darwin.Mediator.updateForkProgress(response.length);
+					  darwin.Mediator.updateIssuesProgress(response.length);
 				  }		
 				  if(action == "tags" && response.length != 0){
 					  darwin.Mediator.setTagsJson(index,response)
 				  }	
+				  if(action == "comments" && response.length != 0){
+					  darwin.Mediator.setCommentJson(index,response)
+				  }		
 				  if(action == "Issues"  && response.length != 0){
 				 
 					  darwin.Mediator.setIssuesJson(index,response)
@@ -90,12 +93,21 @@ darwin.AjaxResponseModule = (function () {
 					  if(action == "tags"){
 						  darwin.Mediator.supplementTagData(callback, action, index);
 					  }  	
+					  if(action == "comments"){
+						  callback(darwin.Mediator.getIndexCommentJson(index), index, action);
+					  } 
 					  if(action == "Issues"){
 						  //get normal issues based on created at date
 						  callback(darwin.Mediator.getIndexIssuesJson(index), index, action);
 						  
 						  //get issues based on closed at date
 						  callback(darwin.Mediator.getIndexIssuesJson(index), index, "closedAt");
+						  
+						  
+						  //kick start the get issue comments process
+						  projects = darwin.projectManagerModule.getProjectNames();
+						  project = projects[index];
+						  darwin.Mediator.prepareIssueComment("https://api.github.com/repos"+project+"/issues/comments?per_page=100&page=", project);
 						  
 						  darwin.Mediator.setNumIssuesProjectSelected();					  
 					  }  				  					  

@@ -21,6 +21,8 @@ darwin.jsonManagerModule = (function() {
 	var mergedTagSupplement = [];
 	var issuesArray = [];
 	var mergedIssues = [];
+	var commentArray = [];
+	var mergedComments = [];
 	
     return {
     	getMergedSupplementTag: function (index) {
@@ -51,6 +53,9 @@ darwin.jsonManagerModule = (function() {
         getCommitJson : function (index){
         	return mergedCommits[index];
         },
+        getCommentJson : function (index){
+        	return mergedComments[index];
+        },
         getStarJson : function (){
         	return mergedStars[0];
         },
@@ -59,6 +64,9 @@ darwin.jsonManagerModule = (function() {
         },
         getIndexForkJson : function (index){
         	return mergedForks[index];
+        },
+        getIndexCommentJson : function (index){
+        	return mergedComments[index];
         },
         getIndexWatcherJson : function (index){
         	return mergedWatchers[index];
@@ -75,6 +83,9 @@ darwin.jsonManagerModule = (function() {
         getAllCommitJson : function (){
         	return mergedCommits;
         },
+        getAllCommentJson : function(){
+        	return mergedComments;
+        },
         getAllIssuesJson : function(){
         	return mergedIssues;
         },
@@ -89,6 +100,16 @@ darwin.jsonManagerModule = (function() {
         	}
         	if(json.length == 100){
         		darwin.jsonManagerModule.setMergedCommits(commitArray, index);
+        	}
+        },
+        setCommentJson : function (index, json){ //concatenate one request with another
+        	if(commentArray.length === 0){
+        		commentArray = json
+        	} else {
+        		commentArray.push.apply(commentArray, json);
+        	}
+        	if(json.length == 100){
+        		darwin.jsonManagerModule.setMergedComments(commentArray, index);
         	}
         },
         setStarJson : function (index, json){ //concatenate one request with another
@@ -148,6 +169,9 @@ darwin.jsonManagerModule = (function() {
         setMergedCommits : function(commitArray, index){
         	mergedCommits[index] = commitArray;
         },
+        setMergedComments : function(commentArray, index){
+        	mergedComments[index] = commentArray;
+        },
         setMergedStars : function(starArray, index){
         	mergedStars[index] = starArray;
         },
@@ -162,6 +186,9 @@ darwin.jsonManagerModule = (function() {
         },
         resetCommitJson : function (){ //concatenate one request with another
         	commitArray = [];
+        },
+        resetCommentJson : function (){ //concatenate one request with another
+        	commentArray = [];
         },
         resetStarJson : function (){ //concatenate one request with another
         	starArray = [];
@@ -192,6 +219,8 @@ darwin.jsonManagerModule = (function() {
         	 TagsArray = [];
         	 issuesArray = [];
         	 mergedIssues = [];
+        	 commentArray = [];
+        	 mergedComments = [];
         }
     };
 })();

@@ -89,14 +89,13 @@ darwin.genericExtractorModule = (function() {
           			if(action == "tags"){
           				var date = supplementData[j];
           			}
-          			if(action == "Issues"){
+          			if(action == "Issues" || action == "comments"){
           				var date = darwin.ISO601toDateModule.convert(localJson[j].created_at);         	       				       				
           			}
           			if(action == "closedAt"){
           				var date = localJson[j];         	       				       				
           			}
-        			
-        			
+        						
         			//if first date then intialise the structures
     				if(firstDate){
     					// get range
@@ -188,6 +187,9 @@ darwin.genericExtractorModule = (function() {
       			if(action == "closedAt"){
       				darwin.Mediator.setClosedAtIssuesDetails(index, data, darwin.projectManagerModule.getProjectNames(), sampleIndex);
     			}
+     			if(action == "comments"){
+      				darwin.Mediator.setIssueCommentsDetails(index, data, darwin.projectManagerModule.getProjectNames(), sampleIndex);
+    			}
     					
         		//send to mongo for storage
     			//darwin.Mediator.packagerGeneric(dates, data, darwin.projectManagerModule.getProjectNamesIndex(index), action);  	
@@ -220,7 +222,7 @@ darwin.genericExtractorModule = (function() {
 			if(action == "tags"){
 	    		darwin.Mediator.drawGenericGraph(darwin.Mediator.getTagsDetails(), "weeks", "week On week Tags", darwin.projectManagerModule.getSampleIndex(), action, darwin.Mediator.getChartType());
 			}
-			if(action == "Issues" || "closedAt"){
+			if(action == "Issues"){
 	    		darwin.Mediator.drawGenericGraph(darwin.Mediator.getIssuesDetails(), "weeks", "week On week issues", darwin.projectManagerModule.getSampleIndex(), action, darwin.Mediator.getChartType());
 			}
 			    		
