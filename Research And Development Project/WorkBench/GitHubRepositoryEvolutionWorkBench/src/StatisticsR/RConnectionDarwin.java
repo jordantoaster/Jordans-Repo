@@ -96,7 +96,7 @@ public class RConnectionDarwin {
 	
 	public String[] wilks(int[] dataSubset) throws REngineException, REXPMismatchException {
 		RConnection connection = null;
-        String[] wilksResults = new String[4];
+        String[] wilksResults = new String[2];
 
         try {
 

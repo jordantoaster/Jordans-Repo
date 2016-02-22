@@ -49,13 +49,44 @@ public class StoreGenericAction implements Action{
 		}
 		if(subAction.equals("Issues")){
 				
-			//split array into two - closed + open
-			int size = data.length;
-			String[] openIssues = Arrays.copyOfRange(data, 0, size/2);
-			String[] closedIssues = Arrays.copyOfRange(data, size/2, size);
+			int startPosition = 0;
+			String[] allIssues = null;
+			String[] openIssues = null;
+			String[] closedIssues = null;
+			int count =0;
+			
+			//parse array to get open, closed, all
+			for (int i = 0; i < data.length; i++) {
+				
+				if(data[i].equals("*")){
+					
+					if(count == 0){
+						//get section of array up to the terminator
+						allIssues = parseData(data, startPosition,i);
+						startPosition = i + 1;
+					}
+					
+					if(count == 1){
+						//get section of array up to the terminator
+						openIssues = parseData(data, startPosition,i);
+						startPosition = i + 1;
+						
+					}
+					
+					if(count == 2){
+						
+						//get section of array up to the terminator
+						closedIssues = parseData(data, startPosition,i);
+						startPosition = i + 1;
+					}
+					
+					count++;
+
+				}
+			}
 			
 			//store
-			Issues issue = new Issues(dates, openIssues, closedIssues, project);		
+			Issues issue = new Issues(dates, openIssues, closedIssues, allIssues, project);		
 			IssueDao dao = new IssueDao();
 			dao.insertIssues(issue);
 		}
@@ -77,6 +108,20 @@ public class StoreGenericAction implements Action{
 		return "insert complete";
 	}
 
-
+	private String[] parseData(String[] data, int startPosition, int terminatorPosition) {
+		
+		int range = terminatorPosition - startPosition;
+		
+		String[] parsedArray = new String[range];
+		
+		int parsedIndex = 0;
+				
+		for(int i =startPosition;i<terminatorPosition;i++){
+			parsedArray[parsedIndex] = data[i];
+			parsedIndex++;
+		}
+		
+		return parsedArray;
+	}
 
 }

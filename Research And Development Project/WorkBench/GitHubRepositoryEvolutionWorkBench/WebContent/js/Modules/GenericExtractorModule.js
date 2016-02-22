@@ -190,9 +190,6 @@ darwin.genericExtractorModule = (function() {
      			if(action == "comments"){
       				darwin.Mediator.setIssueCommentsDetails(index, data, darwin.projectManagerModule.getProjectNames(), sampleIndex);
     			}
-    					
-        		//send to mongo for storage
-    			//darwin.Mediator.packagerGeneric(dates, data, darwin.projectManagerModule.getProjectNamesIndex(index), action);  	
       			
       			if(sampleRate == 1){
       				var datesAsString = darwin.dateManager.convertDateObjectToString(dates);
@@ -200,10 +197,10 @@ darwin.genericExtractorModule = (function() {
       				if(action != "Issues"){
       					darwin.Mediator.makeServerRequestGeneric("storeGeneric", action, darwin.Mediator.emptyCallback,"POST",data, datesAsString, darwin.projectManagerModule.getProjectNamesIndex(index))	      				
       				} else {
-      					var mergedIssues = openIssues.concat(closedIssues);
+      					var mergedIssues = data.concat("*").concat(openIssues).concat("*").concat(closedIssues).concat("*");
       					
       					//send issues that are open/closed independently
-      					darwin.Mediator.makeServerRequestGeneric("storeGeneric", action, darwin.Mediator.emptyCallback,"POST",mergedIssues, datesAsString, darwin.projectManagerModule.getProjectNamesIndex(index))	      				
+      					darwin.Mediator.makeServerRequestGeneric("storeGeneric", action, darwin.Mediator.emptyCallback,"POST",mergedIssues, datesAsString, darwin.projectManagerModule.getProjectNamesIndex(index), data)	      				
       				}															
       			}
     		

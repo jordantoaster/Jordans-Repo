@@ -11,6 +11,7 @@ public class Issues {
 	private String project = "";
 	private String[] closedAt;
 	private String[] comments;
+	private String[] allIssues;
 	
 	public Issues(String[] dates, String project, String[] data, String subAction){
 		if(subAction.equals("closedAt")){
@@ -27,11 +28,20 @@ public class Issues {
 
 	}
 	
-	public Issues(String[] dates, String[] data, String[] dataTwo, String project) {
+	public Issues(String[] dates, String[] data, String[] dataTwo, String[] allIssues, String project) {
 		this.dates = dates;
 		this.openIssues = data;
 		this.closedIssues = dataTwo;
 		this.project = project;
+		this.allIssues = allIssues;
+	}
+	
+	public String[] getAllIssues() {
+		return allIssues;
+	}
+
+	public void setAllIssues(String[] allIssues) {
+		this.allIssues = allIssues;
 	}
 	
 	public String[] getComments() {

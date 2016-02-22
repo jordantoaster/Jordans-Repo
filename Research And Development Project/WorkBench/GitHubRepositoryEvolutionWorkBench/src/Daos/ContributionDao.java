@@ -1,7 +1,11 @@
 package Daos;
 
+import java.util.ArrayList;
+
+import com.mongodb.BasicDBList;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBCollection;
+import com.mongodb.DBCursor;
 import com.mongodb.MongoException;
 
 import Models.Contributions;
@@ -29,6 +33,61 @@ public class ContributionDao {
 		}
 		
 		return true;	
+	}
+	
+	public ArrayList<Contributions> getContributions(){
+		
+	    ArrayList<Contributions> contributions = new ArrayList<Contributions>();
+		
+	    try {
+			DBCollection collection = new dbConnectionBuilder().getMongoCollection("Contributions");
+		    DBCursor cursor = collection.find();
+		    Contributions contri;
+		    BasicDBList list;
+		
+		    //allows iteration of every doc in the collection
+			while (cursor.hasNext()) {
+				
+			    BasicDBObject obj = (BasicDBObject) cursor.next();
+
+				//Get all the data from mongo and convert to java structures
+				String project = (String) obj.get("Project");	
+				
+			    list = (BasicDBList) obj.get("Additions");			
+				String[] arrayParsedAdditions =parseMongoArray(list);
+				
+				list = (BasicDBList) obj.get("Deletions");			
+				String[] arrayParsedDeletions =parseMongoArray(list);
+				
+				list = (BasicDBList) obj.get("Difference");			
+				String[] arrayParsedDifference =parseMongoArray(list);
+				
+				list = (BasicDBList) obj.get("Dates");			
+				String[] arrayParsedDates =parseMongoArray(list);
+				
+				list = (BasicDBList) obj.get("Loc");			
+				String[] arrayParsedLoc =parseMongoArray(list);
+
+
+				contri = new Contributions(arrayParsedAdditions, arrayParsedDeletions, arrayParsedDifference, arrayParsedLoc, 
+						arrayParsedDates,project);
+				
+				contributions.add(contri);
+			}
+			
+		} catch(MongoException e){
+			System.out.println(e);
+		}
+		
+
+		return contributions;	
+	}
+	
+	public String[] parseMongoArray(BasicDBList list){
+		list.toArray();
+		String[] arrayParsed = new String[list.size()];
+		arrayParsed = list.toArray(arrayParsed);
+		return arrayParsed;
 	}
 	
 }
