@@ -44,9 +44,6 @@ darwin.contributionExtractorModule = (function() {
 	return {
 		extract : function(json, index) {
 
-			// gets the shortest array in the set of json project data
-			var iterationCount = darwin.Mediator.getSmallestArray(json);
-
 			for (var j = 0; j < json.length; j++) {
 
 				// iterate to get all three sample rates
@@ -72,7 +69,7 @@ darwin.contributionExtractorModule = (function() {
 					SamplingIterator = 0;
 					contributionSampleCounter = 0;
 
-					for (var i = 0; i < iterationCount - 1; i++) {
+					for (var i = 0; i < json[j].length - 1; i++) {
 						totalWeeks++;
 
 						/* Gets the current index's date */
@@ -149,9 +146,11 @@ darwin.contributionExtractorModule = (function() {
 					darwin.Mediator.setContributionDetails(j, additions, deletions, difference, LOCOverTime, sampleIndex, contributionDates, additionsAcc, deletionsAcc);
 					
 					//DB
-		    		//var datesAsString = darwin.dateManager.convertDateObjectToString(contributionDates);
-		    		//darwin.Mediator.makeServerRequestContributions("storeContributions",darwin.Mediator.emptyCallback,"POST",additions, deletions, difference, LOCOverTime, datesAsString, darwin.projectManagerModule.getProjectNamesIndex(j))	
-				}
+	      			if(sampleRate == 1){
+	      				var datesAsString = darwin.dateManager.convertDateObjectToString(contributionDates);
+	      				darwin.Mediator.makeServerRequestContributions("storeContributions",darwin.Mediator.emptyCallback,"POST",additions, deletions, difference, LOCOverTime, datesAsString, darwin.projectManagerModule.getProjectNamesIndex(j))	
+	      			}
+	      		}
 			}
 
 			darwin.Mediator.updateProgressBar();

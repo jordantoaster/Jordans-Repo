@@ -7,6 +7,7 @@ var darwin = darwin || {};
 darwin.ContributionVisualiser = (function () {
     return {
     	draw: function (values, xAxis, chartTitle, sampleIndex, chartType, projectNames) {
+    		
     		  
     		//create data element for the chart
     	    var data = new google.visualization.DataTable();   
@@ -24,13 +25,16 @@ darwin.ContributionVisualiser = (function () {
 				}
 			}
 			
+			// gets the shortest array in the set of json project data
+    	    iterationCount =  darwin.arrayUtilityModule.getSmallestGenericArray(valuesPresent, sampleIndex);
+			
 			//get slider values and check if defined
 			var sliderVal = [];
 			sliderVal = darwin.dataManager.getContribSlider();
 			
 			
 			var start = 0;
-			var end = valuesPresent[0][sampleIndex].length;
+			var end = iterationCount;
 			
 			if(sliderVal[0] != undefined){
 				start =  sliderVal[0];
@@ -89,7 +93,7 @@ darwin.ContributionVisualiser = (function () {
     	    
     	    //update ui
     	    darwin.Mediator.updateProgressBar();
-    	    darwin.ContributionVisualiser.drawSlider(0, valuesPresent[0][sampleIndex].length, start, end);
+    	    darwin.ContributionVisualiser.drawSlider(0, iterationCount, start, end);
         },
         populateSupplementaryStats: function(LOC, totalWeeks){
         	$('#contributorTotalWeeks').text('Total Amount Of Weeks on GitHub: ' + totalWeeks);

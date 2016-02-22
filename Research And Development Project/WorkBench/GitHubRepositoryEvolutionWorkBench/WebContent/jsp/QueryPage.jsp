@@ -380,6 +380,7 @@
       <li class=""><a class="tabText" data-toggle="tab" href="#correlationBLock">Correlation</a></li>
       <li class=""><a class="tabText" data-toggle="tab" href="#growthBlock">Growth Rate</a></li>
       <li class=""><a class="tabText" data-toggle="tab" href="#normalBlock">Normality</a></li>
+      <li class=""><a class="tabText" data-toggle="tab" href="#lawsBlock">Laws</a></li>
     </ul>
       <div class="tab-content">
       	<div id="meanBlock" class="tab-pane fade in active">
@@ -519,12 +520,25 @@
 			<div id="normalityInfoBox">
 			<h1>Normality Data</h1>
 			<ul>      			
-				<li id="wilks" style="visibility: hidden" class="largeText"></li>
+				<li id="wilks0" style="visibility: hidden" class="largeText"></li>
+				<li id="wilks1" style="visibility: hidden" class="largeText"></li>
+				<li id="wilks2" style="visibility: hidden" class="largeText"></li>
+				<li id="wilks3" style="visibility: hidden" class="largeText"></li>
+				<li id="wilks4" style="visibility: hidden" class="largeText"></li>
       		</ul>
       		</div>	
 			<button type="submit" id="submitButtonNormality" class="btn btn-primary submitButton">
   	     		<i class="icon-user icon-white">Get Normality Information</i> 
       		</button>  		
+	 	</div>
+	 	<div id="lawsBlock" class="tab-pane fade">
+			<p id="law1"></p> 
+			<p id="law2"></p> 		
+			<p id="law3"></p> 		
+			<p id="law4"></p> 		
+			<p id="law5"></p> 		
+			<p id="law6"></p> 		
+			<p id="law7"></p> 					
 	 	</div>
      </div>
   </div>

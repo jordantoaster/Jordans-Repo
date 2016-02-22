@@ -590,7 +590,7 @@ darwin.projectManagerModule = (function() {
 		        		selectedGrowthData = selectedGrowthData.concat(darwin.dataManager.getDeletionsAccIndex(i)[0]);
 		        	}
 		        	if(dataType == "LOC"){
-		        		selectedGrowthData = selectedGrowthData.concat(darwin.dataManager.getLOCIndex(i)[0]);
+		        		selectedGrowthData = selectedGrowthData.concat(darwin.dataManager.getLOCOverTime(i)[0]);
 		        	}
 		        	if(dataType == "forksAcc"){
 		        		selectedGrowthData = selectedGrowthData.concat(darwin.dataManager.getForksAccIndex(i)[0]);
@@ -765,7 +765,7 @@ darwin.projectManagerModule = (function() {
         			darwin.Mediator.prepareForkClick("https://api.github.com/repos"+project+"/forks?per_page=100&page=", project);	
     			}
 
-    			if(autoAction == "Issues"){
+    			if(autoAction == "comments"){
         			darwin.Mediator.prepareIssuesClick("https://api.github.com/repos"+project+"/issues?state=all&per_page=100&page=", project);	
     			}
     			
@@ -798,7 +798,7 @@ darwin.projectManagerModule = (function() {
         			darwin.Mediator.prepareIssuesClick("https://api.github.com/repos"+project+"/issues?&per_page=100&state=all&page=", project);	
     			}
 
-    			if(autoAction == "Issues"){
+    			if(autoAction == "comments"){
         			darwin.Mediator.prepareTagsClick("https://api.github.com/repos"+project+"/tags?per_page=100&page=", project);	
     			}
     			

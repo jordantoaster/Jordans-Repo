@@ -85,11 +85,10 @@ darwin.statVisualiser = (function() {
 			//add column to represent time passing
     	    data.addColumn('string', 'Projects')
     	    data.addColumn('number', 'Value');	
-    	    data.addColumn({type: 'string', role: 'annotation'});
     	        	   	    
     	    //add data to each row, a a numeral for the y axis and string for x
 	    	for(var j =0;j<values.length;j++){
-        	    data.addRow([projectNames[j],values[j], projectNames[j]]);
+        	    data.addRow([projectNames[j],values[j]]);
 	    	}
     	    	
 	    	//populate additional options
@@ -137,16 +136,29 @@ darwin.statVisualiser = (function() {
 		},
 		writeNormality : function(normality, projects){
 			
-			 obj = JSON.parse(normality);
-			 var parsedData = [];
-			 
-			 var wilks = obj.wilks;
-			 var wilksP = obj.wilksP;
-				
-		     $('#wilks').text('Wilks Normality - for ' + projects[0] + ' is ' + wilks  + ' and P-Value: ' + wilksP); 
-		     
-			 $('#wilks').css('visibility','visible')
+			var normality = normality.split(',');
+			var counter = 0;
+    		
+    		for(var i=0; i<normality.length;i++){
+    			normality[i] = normality[i].replace('[', '');
+    			normality[i] = normality[i].replace(']', '');
+    		}
 
+			 for(var i = 0; i<normality.length; i = i +3){
+			     $('#wilks' + counter).text('Wilks Normality - for ' + normality[i] + ' is ' + normality[i+1]  + ' and P-Value: ' + normality[i+2]); 
+			     
+				 $('#wilks' + counter).css('visibility','visible')
+				 
+				 counter++;
+			 }
+
+		},
+		
+		drawLaws : function(hp1, hp2, hp3, hp4, hp5, hp6){
+
+			$('#law2').text(hp2 + "% positive average growth rate");
+		
 		}
+		
     };
 })();

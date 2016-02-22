@@ -26,6 +26,9 @@ public class ActionFactory {
 		if(input.equals("stats")){
 			return new StatsAction();
 		}
+		if(input.equals("laws")){
+			return new LawsAction();
+		}
 		
 		return new NoAction();
 	}

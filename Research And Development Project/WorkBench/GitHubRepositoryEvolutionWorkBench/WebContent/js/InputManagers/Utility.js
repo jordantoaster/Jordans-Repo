@@ -81,6 +81,14 @@ $(document).ready(function(e) {
 			darwin.Mediator.setupCustomComponentsDropDown("custom");
 		}// activated tab
 	})
+
+	//Used to auto run the laws code
+	$(document).on( 'shown.bs.tab', 'a[data-toggle="tab"]', function (e) {
+		if($(this).attr('href') == "#lawsBlock"){
+			
+			darwin.Mediator.makeServerRequestGeneric("laws", "", darwin.Mediator.handleLawData,"POST","","", "");
+		}// activated tab
+	})
 });
 
 

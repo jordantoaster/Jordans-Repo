@@ -2,6 +2,7 @@ package Actions;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 import javax.servlet.http.HttpServletRequest;
@@ -58,10 +59,11 @@ public class StatsAction implements Action{
 
 	private String processNormality(String[] data, String[] projects, String type) {
 		String normalityType = type;		
-		String normality[] = new String[4];
-		int normalityCounter = 0;
+		String normality[] = new String[2];
 		int[] dataSubset = null;
 		int startPosition = 0;
+		int normalityCounter = 0;
+		ArrayList<String> allNormality = new ArrayList<String>();
 		
 		//loop all sets in array to get each seperate mean	
 		for(int i =0; i<data.length;i++){
@@ -76,7 +78,19 @@ public class StatsAction implements Action{
 				//get mean
 				try {
 					normality = r.wilks(dataSubset);
+					
+					//model and store
+					Normality normalityModel = new Normality(projects[0], normality, normalityType);
+					StatDao dao = new StatDao();
+					dao.insertNormality(normalityModel);
+					
+					//add to overall list
+					allNormality.add(projects[normalityCounter]);
+					allNormality.add(normality[0]);
+					allNormality.add(normality[1]);
+					
 					normalityCounter++;
+					
 				} catch (REngineException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -86,15 +100,11 @@ public class StatsAction implements Action{
 				}
 			}
 		}
-					
-		//store then return
-		Normality normalityModel = new Normality(projects[0], normality, normalityType);
 		
-		StatDao dao = new StatDao();
-		dao.insertNormality(normalityModel);
+		String[] normalityParsed = new String[allNormality.size()];
+		normalityParsed = allNormality.toArray(normalityParsed);
 		
-		//String t = String.format("{ \"wilks\": \"%s\"}, \"wilksP\": \"%s\"}", normality[0], normality[1]);
-		String t = String.format("{ \"wilks\": \"%s\", \"wilksP\": \"%s\"}", normality[0], normality[1]);
+		String t = String.format("{ \"wilks\": \"%s\"}", Arrays.toString(normalityParsed));
 		return t;
 	}
 
@@ -105,6 +115,8 @@ public class StatsAction implements Action{
 		int[] dataSubset = null;
 		int startPosition = 0;
 		double absoluteGrowthRate  =0.0;
+		double growthOverTime = 0;
+		int counter = 0;
 		
 		//loop all sets in array to get each seperate mean	
 		for(int i =0; i<data.length;i++){
@@ -116,19 +128,23 @@ public class StatsAction implements Action{
 				dataSubset = parseData(data, startPosition,i);
 				startPosition = i + 1;
 			
+				//get required ata for each subset & store
 				growth = getGrowthRate(dataSubset);
+				
+			    growthOverTime = growthRateOverTime(dataSubset[0], dataSubset[dataSubset.length-1], dataSubset.length);
+				absoluteGrowthRate = singleGrowthRate(dataSubset[0], dataSubset[dataSubset.length-1]);
+				
+				//store then return
+				GrowthRateModel growthRateModel = new GrowthRateModel(projects[counter], growthType, growth, growthOverTime, absoluteGrowthRate);			
+				
+				StatDao dao = new StatDao();
+				dao.insertGrowthRate(growthRateModel);
+				
+				counter++;
 			}
 		}
-			
-		double growthOverTime = growthRateOverTime(dataSubset[0], dataSubset[dataSubset.length-1], dataSubset.length);
-		absoluteGrowthRate = singleGrowthRate(dataSubset[0], dataSubset[dataSubset.length-1]);
 		
-		//store then return
-		GrowthRateModel growthRateModel = new GrowthRateModel(projects[0], growthType, growth, growthOverTime, absoluteGrowthRate);
-		
-		StatDao dao = new StatDao();
-		dao.insertGrowthRate(growthRateModel);
-		
+		//gui only allows selection of 1, so return 1.
 		String t = String.format("{ \"absoluteGrowthRate\": \"%s\", \"growthRate\": \"%s\", \"growthRateOverTime"
 				+ "\": \"%s\"}", absoluteGrowthRate, Arrays.toString(growth), growthOverTime);
 		return t;
@@ -266,6 +282,7 @@ public class StatsAction implements Action{
 
 	}
 	
+	//gets an average based on max and min value
 	private double growthRateOverTime(int pa, int pr, int numSamples) {
 		double past = (double) pa;
 		double present = (double) pr;

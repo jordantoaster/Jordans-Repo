@@ -1,0 +1,60 @@
+package Daos;
+
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.util.ArrayList;
+
+import com.mongodb.BasicDBList;
+import com.mongodb.BasicDBObject;
+import com.mongodb.DBCollection;
+import com.mongodb.DBCursor;
+import com.mongodb.MongoException;
+
+import Models.Mean;
+
+public class LawsDao {
+	
+	public ArrayList<Double> getGrowthRateAverages(){
+		
+		ArrayList<Double> averages = new ArrayList<Double>();
+		
+		try {
+			DBCollection collection = new dbConnectionBuilder().getMongoCollection("GrowthRate");			
+		    DBCursor cursor = collection.find();
+		
+		    //allows iteration of every doc in the collection
+			while (cursor.hasNext()) {
+				
+				//get growth rate list
+				BasicDBList list = (BasicDBList) cursor.next().get("GrowthRate");			    
+			    
+				//get average value of the elements in the list
+				double average = getAverageListValue(list);
+				
+				//add average to overall list
+				averages.add(average);
+			}
+			
+		} catch(MongoException e){
+			System.out.println(e);
+			return averages;
+		}
+		
+		return averages;	
+	}
+
+	private double getAverageListValue(BasicDBList list) {
+
+		double total = 0;
+		int size = list.size();
+		
+		for(int i =0; i<size; i++){
+			total += (double)list.get(i);
+		}
+		
+		double average = total / size; 
+		
+		return average;
+	}
+
+}

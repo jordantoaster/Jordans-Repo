@@ -101,8 +101,10 @@ darwin.Mediator = (function () {
 				darwin.statVisualiser.drawGrowth(growthRate, projectNames, metricType, absolute, overTime);
 			}
 			if(metricType == "normality"){
-			    
-				darwin.statVisualiser.writeNormality(data, projectNames, metricType);
+			    obj = JSON.parse(data);
+			    var wilks = obj.wilks;
+
+				darwin.statVisualiser.writeNormality(wilks, projectNames, metricType);
 			}
 
 		},
@@ -667,6 +669,17 @@ darwin.Mediator = (function () {
 
 			darwin.Mediator.makeGithubRequest(darwin.projectManagerModule.getAllBaseRequestUrl(), darwin.Mediator.githubParseGenericData, "comments", index);		
 		
-		}
+		},
+		handleLawData : function(response){
+			
+			//parse laws
+		    obj = JSON.parse(response);
+		    
+			//sort the response
+			var hpTwo = obj.hpTwo
+			
+			//pass for drawing
+			darwin.statVisualiser.drawLaws("",hpTwo,"","","","","");
+		},
     };
 })();
