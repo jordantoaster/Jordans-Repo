@@ -404,7 +404,7 @@
 			<div id="meanOptions" class="options">>
 	    	<p class="inlineText" style="display:block;">Options</p>
 	    	</div> 
-	    	 <button type="submit" style="display: inline !important; margin-top: 0px;" id="submitButtonMean" class="btn btn-primary submitButton">
+	    	 <button type="submit" style="display: inline !important; margin-top: 0px; margin-left:1%  !important; " id="submitButtonMean" class="btn btn-primary submitButton">
   	     		<i class="icon-user icon-white">Get Mean Graph</i> 
       		 </button>  
       		 <div id="meanChart" class="statChart"></div> 
@@ -487,7 +487,7 @@
 			</div>
 			<div id="growthOptions" class="options">
 	    	</div> 
-	    	 <button type="submit" id="submitButtonGrowth" class="btn btn-primary submitButton">
+	    	 <button type="submit" id="submitButtonGrowth" style="margin-left:1%  !important; margin-top:0.1% !important;"  class="btn btn-primary submitButton">
   	     		<i class="icon-user icon-white">Get growth Graph</i> 
       		 </button>  
       		 <div id="growthChart" class="statChart"></div> 
