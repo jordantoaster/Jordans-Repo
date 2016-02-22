@@ -99,6 +99,11 @@ darwin.Mediator = (function () {
 			    var overTime = obj.growthRateOverTime;
 			    
 				darwin.statVisualiser.drawGrowth(growthRate, projectNames, metricType, absolute, overTime);
+				
+				//only runs when auto getting data 
+	    	    if(darwin.projectManagerModule.getIsAuto() == true){
+					darwin.projectManagerModule.handleAuto(metricType, darwin.projectManagerModule.getNumProjects()-1);
+				}
 			}
 			if(metricType == "normality"){
 			    obj = JSON.parse(data);

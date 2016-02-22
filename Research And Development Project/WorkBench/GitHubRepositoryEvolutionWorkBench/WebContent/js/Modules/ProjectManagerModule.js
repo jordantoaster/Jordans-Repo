@@ -777,6 +777,8 @@ darwin.projectManagerModule = (function() {
             		darwin.Mediator.prepareTagsClick("https://api.github.com/repos"+project+"/tags?per_page=100&page=", project);
             		darwin.projectManagerModule.setSelectedTagProject(darwin.Mediator.getNumTagsProjectSelected(), project);
     			}
+    			
+ 
         	} else {
         		
         		/*This block handles when a previous metric has data for all projects - each end of action calls next action*/
@@ -802,14 +804,34 @@ darwin.projectManagerModule = (function() {
         			darwin.Mediator.prepareTagsClick("https://api.github.com/repos"+project+"/tags?per_page=100&page=", project);	
     			}
     			
-    			//if(autoAction == "watcher"){
-            	//	darwin.Mediator.prepareTagsClick("https://api.github.com/repos"+project+"/subscribers?per_page=100&page=", project);   			
-            	//}
-    			
     			if(autoAction == "tags"){
-    				//now unlock tabs
-        			darwin.projectManagerModule.enableTabs();
+    				
+    				//get all the lOC data and send it into the growth process - HP2
+    	        	numProjects = darwin.projectManagerModule.getNumProjects();
+    	        	selectedGrowthData = [];
+    	        	selectedGrowthProjectName = [];
+    	        	dataCounter = 0;
+    				
+    				for(var i =0; i<numProjects;i++){
+        				//get the growth rates for all the projects input
+    	        		selectedGrowthData = selectedGrowthData.concat(darwin.dataManager.getLOCOverTime(i)[0]);
+    	        		selectedGrowthData = selectedGrowthData.concat("*");
+    	        		
+    		        	selectedGrowthProjectName[dataCounter] = darwin.projectManagerModule.getProjectNamesIndex(i);
+    		        	dataCounter++;
+    		        	
+    				}
+		        		        		
+	        		darwin.serverModule.sendStat("stats","growth",selectedGrowthProjectName, selectedGrowthData, "POST", darwin.Mediator.drawGenericStat, "LOC");	
     			}
+    			
+      			if(autoAction == "growth"){
+
+      				//get next stat
+      			}
+    			
+				//now unlock tabs - when done
+    			//darwin.projectManagerModule.enableTabs();
         	}
         	
         }
