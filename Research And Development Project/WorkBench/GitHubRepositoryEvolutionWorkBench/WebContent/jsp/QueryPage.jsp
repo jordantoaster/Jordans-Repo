@@ -532,13 +532,13 @@
       		</button>  		
 	 	</div>
 	 	<div id="lawsBlock" class="tab-pane fade">
-			<p id="law1"></p> 
-			<p id="law2"></p> 		
-			<p id="law3"></p> 		
-			<p id="law4"></p> 		
-			<p id="law5"></p> 		
-			<p id="law6"></p> 		
-			<p id="law7"></p> 					
+			<p id="law1" class="largeText"></p> 
+			<p id="law2" class="largeText"></p> 		
+			<p id="law3" class="largeText"></p> 		
+			<p id="law4" class="largeText"></p> 		
+			<p id="law5" class="largeText"></p> 		
+			<p id="law6" class="largeText"></p> 		
+			<p id="law7" class="largeText"></p> 					
 	 	</div>
      </div>
   </div>

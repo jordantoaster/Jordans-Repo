@@ -679,12 +679,16 @@ darwin.Mediator = (function () {
 			
 			//parse laws
 		    obj = JSON.parse(response);
+		    var HpThree =[];
 		    
-			//sort the response
-			var hpTwo = obj.hpTwo
+			//sort the responses
+			var hpTwo = obj.hpTwo;
+			HpThree[0] = obj.hpThreeI;
+			HpThree[1] = obj.hpThreeA;
+			HpThree[2] = obj.hpThreeD;
 			
 			//pass for drawing
-			darwin.statVisualiser.drawLaws("",hpTwo,"","","","","");
+			darwin.statVisualiser.drawLaws("",hpTwo,HpThree,"","","","");
 		},
     };
 })();

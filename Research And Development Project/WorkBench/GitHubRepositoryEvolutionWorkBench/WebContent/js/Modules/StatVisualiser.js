@@ -157,6 +157,8 @@ darwin.statVisualiser = (function() {
 		drawLaws : function(hp1, hp2, hp3, hp4, hp5, hp6){
 
 			$('#law2').text(hp2 + "% positive average growth rate");
+			
+			$('#law3').text("Num of issues, additions and deletions normally distributed - " + hp3[0] + "%," + hp3[1] + "%," + hp3[2] + "%");
 		
 		}
 		

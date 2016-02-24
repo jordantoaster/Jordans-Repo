@@ -31,7 +31,7 @@ public class LawsAction implements Action {
 
 		
 		//get HP3
-		int[] hpThreeResult = getHPThree();
+		float[] hpThreeResult = getHPThree();
 		
 		//get HP4
 
@@ -42,11 +42,12 @@ public class LawsAction implements Action {
 		//get HP6
 
 
-		String t = String.format("{ \"hpTwo\": \"%s\"}", hpTwoResult);
+		String t = String.format("{ \"hpTwo\": \"%s\", \"hpThreeI\": \"%s\", \"hpThreeA\": \"%s\", \"hpThreeD\": \"%s\"}", 
+				hpTwoResult, hpThreeResult[0],hpThreeResult[1],hpThreeResult[2]);
 		return t;
 	}
 
-	private int[] getHPThree() {
+	private float[] getHPThree() {
 		
 		ContributionDao daoC = new ContributionDao();
 		IssueDao daoI = new IssueDao();
@@ -78,10 +79,15 @@ public class LawsAction implements Action {
 			for (int j = 0; j < issues.size(); j++) {
 				Issues issue = issues.get(j);
 				
+				String [] is = issue.getAllIssues();
+				for (int k = 0; k < is.length; k++) {
+					System.out.print(is[k] + ", ");
+				} 
+				
 				if(issue.getProject().equals(contribution.getProject())){
 					
 					total++;
-
+					
 					//get shapiro for the a,d,i				
 					try {
 						issueWilks = r.wilks(parseArrayToInt(issue.getAllIssues()));
@@ -120,9 +126,13 @@ public class LawsAction implements Action {
 		}
 		
 		//find out how many for each category are in the threshold or 0.05
-		//TODO
+		float[] inThreshold = new float[3];
+		inThreshold[0] = (float) ((issuesInThreshold * 100.0) / total);
+		inThreshold[1] = (float) ((additionsInThreshold * 100.0) / total);
+		inThreshold[2] = (float) ((deletionsInThreshold * 100.0) / total);
+
 		
-		return null;
+		return inThreshold;
 	}
 
 	private float getHPTwo() {
