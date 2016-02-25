@@ -2,6 +2,7 @@ package Daos;
 
 import java.util.ArrayList;
 
+import com.mongodb.BasicDBList;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
@@ -116,4 +117,63 @@ public class StatDao {
 		
 		return true;		
 	}
+	
+	public int getNumInCollection(String collectionName){
+		
+		DBCollection collection = new dbConnectionBuilder().getMongoCollection(collectionName);
+		
+		try {
+
+			DBCursor cursor = collection.find();
+			return cursor.count();
+			
+		} catch(MongoException e){
+			System.out.println(e);
+			return 0;
+		}	
+	}
+
+	
+	public double[] getGrowthRateIndex(int index){
+
+		int counter =0;
+		
+		try {
+			DBCollection collection = new dbConnectionBuilder().getMongoCollection("GrowthRate");			
+		    DBCursor cursor = collection.find();
+		
+		    //allows iteration of every doc in the collection
+			while (cursor.hasNext()) {
+				
+				//get growth rate list
+				BasicDBList list = (BasicDBList) cursor.next().get("GrowthRate");
+				
+				if(counter == index){	
+					
+					double[] listD = convertToDouble(list);
+					
+					
+					return listD;
+				}
+				
+				counter++;
+			}
+			
+		} catch(MongoException e){
+			System.out.println(e);
+		}
+		return null;
+	}
+	
+	public double[] convertToDouble(BasicDBList list){
+		
+		double[] listD = new double[list.size()];
+		
+		for (int i = 0; i < list.size(); i++) {
+			listD[i] = (double) list.get(i);
+		}
+		
+		return listD;		
+	}
+
 }

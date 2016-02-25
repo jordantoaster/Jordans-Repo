@@ -8,9 +8,12 @@ import javax.servlet.http.HttpServletResponse;
 import org.rosuda.REngine.REXPMismatchException;
 import org.rosuda.REngine.REngineException;
 
+import com.mongodb.BasicDBList;
+
 import Daos.ContributionDao;
 import Daos.IssueDao;
 import Daos.LawsDao;
+import Daos.StatDao;
 import Models.Contributions;
 import Models.Issues;
 import StatisticsR.RConnectionDarwin;
@@ -18,22 +21,25 @@ import StatisticsR.RConnectionDarwin;
 public class LawsAction implements Action {
 	
 	LawsDao dao = new LawsDao();
+	StatDao sDao = new StatDao();
 	RConnectionDarwin r = new RConnectionDarwin();
 	
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
 		
-		//get HP1
+		//get law 1 and 6
 		
 		
-		//get HP2
+		//get Law 2
 		float hpTwoResult = getHPTwo();
 
 		
-		//get HP3
+		//get Law 3
 		float[] hpThreeResult = getHPThree();
 		
-		//get HP4
+		
+		//get law 4
+		double hpFourResult = getHPFour();
 
 		
 		//get HP5
@@ -42,9 +48,46 @@ public class LawsAction implements Action {
 		//get HP6
 
 
-		String t = String.format("{ \"hpTwo\": \"%s\", \"hpThreeI\": \"%s\", \"hpThreeA\": \"%s\", \"hpThreeD\": \"%s\"}", 
-				hpTwoResult, hpThreeResult[0],hpThreeResult[1],hpThreeResult[2]);
+		String t = String.format("{ \"hpTwo\": \"%s\", \"hpThreeI\": \"%s\", \"hpThreeA\": \"%s\", \"hpThreeD\": \"%s\", \"hpFour\": \"%s\"}", 
+				hpTwoResult, hpThreeResult[0],hpThreeResult[1],hpThreeResult[2],hpFourResult);
 		return t;
+	}
+
+	private double getHPFour() {
+		
+		int numInCollection = sDao.getNumInCollection("GrowthRate");
+		double[] variance = new double[numInCollection];
+		double mean = 0;
+		
+		//get each growth loc series and get the variance for each
+		for (int i = 0; i < numInCollection; i++) {
+			
+			double[] series = sDao.getGrowthRateIndex(i);
+			
+			try {
+				variance[i] = r.getVariance(series);
+			} catch (REngineException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (REXPMismatchException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
+		//get the mean of the variances
+		try {
+		    mean = r.mean(variance);
+		} catch (REngineException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (REXPMismatchException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		//return
+		return mean;
 	}
 
 	private float[] getHPThree() {
@@ -80,9 +123,9 @@ public class LawsAction implements Action {
 				Issues issue = issues.get(j);
 				
 				String [] is = issue.getAllIssues();
-				for (int k = 0; k < is.length; k++) {
-					System.out.print(is[k] + ", ");
-				} 
+				//for (int k = 0; k < is.length; k++) {
+					//System.out.print(is[k] + ", ");
+				//} 
 				
 				if(issue.getProject().equals(contribution.getProject())){
 					
@@ -102,9 +145,9 @@ public class LawsAction implements Action {
 						e.printStackTrace();
 					}
 					
-					System.out.println(Double.parseDouble(issueWilks[1]));
-					System.out.println(additionsWilks[1]);
-					System.out.println(deletionsWilks[1]);
+					//System.out.println(Double.parseDouble(issueWilks[1]));
+					//System.out.println(additionsWilks[1]);
+					//System.out.println(deletionsWilks[1]);
 
 					
 					//is p less then 0.05?	- if so increment

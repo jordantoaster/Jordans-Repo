@@ -10,6 +10,8 @@ import org.rosuda.REngine.RList;
 import org.rosuda.REngine.Rserve.RConnection;
 import org.rosuda.REngine.Rserve.RserveException;
 
+import com.mongodb.BasicDBList;
+
 public class RConnectionDarwin {
 	
 	public String mean(int[] dataSubset) throws REngineException, REXPMismatchException {
@@ -22,18 +24,12 @@ public class RConnectionDarwin {
              */
             connection = new RConnection();
 
-            //String vector = "c(1,2,3,4)";
             connection.assign("vector", dataSubset);
 			REXP x = connection.eval("mean(vector)");
 			System.out.println(x.asInteger());
 			
 			int result = x.asInteger();
 			String parsedResult = Integer.toString(result);
-
-            //connection.eval("meanVal=mean(vector)");
-           // double mean = connection.eval("meanVal").asDouble();
-            //System.out.println("The mean of given vector is=" + mean);       
-            //String convertedMean = Double.toString(mean);
             
             connection.close();
             
@@ -47,6 +43,35 @@ public class RConnectionDarwin {
         
 		return "";
     }
+	
+	public double mean(double[] dataSubset) throws REngineException, REXPMismatchException {
+		
+		RConnection connection = null;
+		
+        try {
+            /* Create a connection to Rserve instance running
+             * on default port 6311
+             */
+            connection = new RConnection();
+
+            connection.assign("vector", dataSubset);
+			REXP x = connection.eval("mean(vector)");
+			
+			double result = x.asDouble();
+            
+            connection.close();
+            
+            return result;
+            
+        } catch (RserveException e) {
+            e.printStackTrace();
+        }  
+        
+        connection.close();
+        
+		return 0;
+    }
+
 
 
 	// payload - element data - choose index - payload to get value
@@ -151,6 +176,35 @@ public class RConnectionDarwin {
         connection.close();		
         
         return null;
+	}
+	
+	public double getVariance(double[] series) throws REngineException, REXPMismatchException{
+		
+		RConnection connection = null;
+		
+        try {
+            /* Create a connection to Rserve instance running
+             * on default port 6311
+             */
+            connection = new RConnection();
+
+            connection.assign("vectorA", series);
+			REXP x = connection.eval("var(vectorA)");
+			
+			double result = x.asDouble();
+
+            connection.close();
+            
+            return result;
+            
+        } catch (RserveException e) {
+            connection.close();
+            e.printStackTrace();
+        }  
+        
+        connection.close();		
+        		
+		return 0.0;
 	}
 
 }

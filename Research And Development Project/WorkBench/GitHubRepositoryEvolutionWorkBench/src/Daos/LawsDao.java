@@ -25,14 +25,10 @@ public class LawsDao {
 		    //allows iteration of every doc in the collection
 			while (cursor.hasNext()) {
 				
-				//get growth rate list
-				BasicDBList list = (BasicDBList) cursor.next().get("GrowthRate");			    
-			    
-				//get average value of the elements in the list
-				double average = getAverageListValue(list);
+			    BasicDBObject obj = (BasicDBObject) cursor.next();		    
 				
 				//add average to overall list
-				averages.add(average);
+				averages.add((Double) obj.get("GrowthRateOverTime"));
 			}
 			
 		} catch(MongoException e){

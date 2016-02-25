@@ -690,9 +690,10 @@ darwin.Mediator = (function () {
 			HpThree[0] = obj.hpThreeI;
 			HpThree[1] = obj.hpThreeA;
 			HpThree[2] = obj.hpThreeD;
+			var HpFour = obj.hpFour;
 			
 			//pass for drawing
-			darwin.statVisualiser.drawLaws("",hpTwo,HpThree,"","","","");
+			darwin.statVisualiser.drawLaws("",hpTwo,HpThree,HpFour,"","","");
 		},
     };
 })();
