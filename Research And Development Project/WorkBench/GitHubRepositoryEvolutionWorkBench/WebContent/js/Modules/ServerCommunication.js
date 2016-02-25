@@ -86,7 +86,7 @@ darwin.serverModule = (function() {
     			  }
     		});
         },
-        sendStatCorr : function(action, subAction, projectNames, data, dataTwo, type, callback, seriesA, seriesB){
+        sendStatCorr : function(action, subAction, projectNames, data, dataTwo, type, callback, seriesA, seriesB, autoIndex){
         	
     		$.ajax({
     			  type : type,
@@ -101,7 +101,7 @@ darwin.serverModule = (function() {
     			    	seriesB : seriesB
     			  },
     			  success : function(response) {
-    			    	callback(response, projectNames);
+    			    	callback(response, projectNames, autoIndex, subAction);
     			  },
     			  error: function() {
     			    	$('#ajaxGetUserServletResponse').text("An error occured when connecting to the Server");

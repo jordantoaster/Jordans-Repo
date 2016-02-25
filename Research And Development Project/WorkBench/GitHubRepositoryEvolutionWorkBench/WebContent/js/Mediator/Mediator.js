@@ -660,8 +660,12 @@ darwin.Mediator = (function () {
 		getCheckedCorrelationsData : function(seriesOne, seriesTwo){
 			darwin.projectManagerModule.getCheckedCorrelationsData(seriesOne, seriesTwo);
 		},
-		drawCorrelation : function(correlation, projects){
-			darwin.statVisualiser .writeCorrelations(correlation, projects);
+		drawCorrelation : function(correlation, projects, autoIndex, subAction){
+			darwin.statVisualiser.writeCorrelations(correlation, projects);
+			
+    	    if(darwin.projectManagerModule.getIsAuto() == true){
+				darwin.projectManagerModule.handleAuto(subAction, autoIndex);
+			}
 		},
 		prepareIssueComment : function(url, projectName){
 			darwin.jsonManagerModule.resetCommentJson(url);

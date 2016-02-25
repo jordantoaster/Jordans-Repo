@@ -778,6 +778,52 @@ darwin.projectManagerModule = (function() {
             		darwin.projectManagerModule.setSelectedTagProject(darwin.Mediator.getNumTagsProjectSelected(), project);
     			}
     			
+    			if(autoAction == "correlation"){
+    				
+//    				autoIndex = autoIndex +1;
+//    				
+//            		//get project names
+//            		projectNames = darwin.projectManagerModule.getProjectNames();
+//            		
+//        			//get the next project name - as we are not at the project num limit
+//        			project = projectNames[autoIndex];
+//    				
+//      	        	selectedSeriesAData = [];
+//      	        	selectedSeriesBData = [];
+//      	        	
+//      	        	selectedProjectName = [];
+//      	        	selectedProjectName[0] =project;
+//      	        	selectedProjectName[1] =project;
+//      	        	
+//      	        	seriesA = "additions";
+//      	        	seriesB = "deletions";
+//
+//      				//get next stat - correlations
+//	        		selectedSeriesAData = darwin.Mediator.getAdditionsIndex(autoIndex)[0];
+//	        		selectedSeriesBData = darwin.Mediator.getDeletionsIndex(autoIndex)[0];
+//	
+//
+//      				if(selectedSeriesAData.length != selectedSeriesBData.length){ 
+//      					
+//      					if(selectedSeriesAData.length < selectedSeriesBData.length){
+//      						
+//      						var difference = selectedSeriesBData.length - selectedSeriesAData.length ;
+//      						
+//      						selectedSeriesBData = darwin.arrayUtilityModule.trimArray(selectedSeriesBData, difference);
+//
+//      					}
+//      					if(selectedSeriesAData.length > selectedSeriesBData.length){
+//      						var difference = selectedSeriesAData.length - selectedSeriesBData.length ;
+//
+//      						
+//      						selectedSeriesAData = darwin.arrayUtilityModule.trimArray(selectedSeriesAData, difference);
+//
+//      					}
+//      				}
+//      				
+//      				darwin.serverModule.sendStatCorr("stats","correlation",selectedProjectName, selectedSeriesAData, selectedSeriesBData, "POST", darwin.Mediator.drawCorrelation, seriesA, seriesB, autoIndex);
+    				
+    			}
  
         	} else {
         		
@@ -806,7 +852,7 @@ darwin.projectManagerModule = (function() {
     			
     			if(autoAction == "tags"){
     				
-    				//get all the lOC data and send it into the growth process - HP2
+    				//get all the lOC data and send it into the growth process
     	        	numProjects = darwin.projectManagerModule.getNumProjects();
     	        	selectedGrowthData = [];
     	        	selectedGrowthProjectName = [];
@@ -826,10 +872,48 @@ darwin.projectManagerModule = (function() {
     			}
     			
       			if(autoAction == "growth"){
-
-      				//get next stat
+//      				      				      				
+//      	        	selectedSeriesAData = [];
+//      	        	selectedSeriesBData = [];
+//      	        	
+//      	        	selectedProjectName = [];
+//      	        	selectedProjectName[0] =project;
+//      	        	selectedProjectName[1] =project;
+//      	        	
+//      	        	seriesA = "additions";
+//      	        	seriesB = "deletions";
+//
+//      				//get next stat - correlations
+//	        		selectedSeriesAData = darwin.Mediator.getAdditionsIndex(0)[0];
+//	        		selectedSeriesBData = darwin.Mediator.getDeletionsIndex(0)[0];
+//
+//      				if(selectedSeriesAData.length != selectedSeriesBData.length){ 
+//      					
+//      					if(selectedSeriesAData.length < selectedSeriesBData.length){
+//      						
+//      						var difference = selectedSeriesBData.length - selectedSeriesAData.length ;
+//      						
+//      						selectedSeriesBData = darwin.arrayUtilityModule.trimArray(selectedSeriesBData, difference);
+//
+//      					}
+//      					if(selectedSeriesAData.length > selectedSeriesBData.length){
+//      						var difference = selectedSeriesAData.length - selectedSeriesBData.length ;
+//
+//      						
+//      						selectedSeriesAData = darwin.arrayUtilityModule.trimArray(selectedSeriesAData, difference);
+//
+//      					}
+//      				}
+//      				
+//      				darwin.serverModule.sendStatCorr("stats","correlation",selectedProjectName, selectedSeriesAData, selectedSeriesBData, "POST", darwin.Mediator.drawCorrelation, seriesA, seriesB, 0);
       			}
     			
+      			if(autoAction == "correlation"){
+      				
+      				//get the means
+      				
+      				
+      			}
 				//now unlock tabs - when done
     			//darwin.projectManagerModule.enableTabs();
         	}
