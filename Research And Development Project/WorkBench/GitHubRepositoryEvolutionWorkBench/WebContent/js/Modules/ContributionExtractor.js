@@ -155,11 +155,12 @@ darwin.contributionExtractorModule = (function() {
 
 			darwin.Mediator.updateProgressBar();
 		
+    	    if(darwin.projectManagerModule.getIsAuto() == false){
 			//create Initial graph
-			darwin.Mediator.drawContributionGraph(darwin.dataManager.getAllDifference(), 'Sample Size: '
+    	    	darwin.Mediator.drawContributionGraph(darwin.dataManager.getAllDifference(), 'Sample Size: '
 				+ darwin.projectManagerModule.getSamplingRate()+ ' Weeks', 'Difference Of Additions And Deletions', LOC,
 				totalWeeks, darwin.projectManagerModule.getSampleIndex(), darwin.Mediator.getChartType(),  darwin.projectManagerModule.getProjectNames());
-
+    	    }
 			
 			//kick off auto process if required - contribution data is completed at this point
     	    if(darwin.projectManagerModule.getIsAuto()){

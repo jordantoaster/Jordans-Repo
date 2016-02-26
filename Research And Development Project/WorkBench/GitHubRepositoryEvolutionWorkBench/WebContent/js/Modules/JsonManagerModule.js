@@ -98,7 +98,7 @@ darwin.jsonManagerModule = (function() {
         	} else {
             	commitArray.push.apply(commitArray, json);
         	}
-        	if(json.length == 100){
+        	if(json.length != 100){
         		darwin.jsonManagerModule.setMergedCommits(commitArray, index);
         	}
         },
@@ -108,7 +108,7 @@ darwin.jsonManagerModule = (function() {
         	} else {
         		commentArray.push.apply(commentArray, json);
         	}
-        	if(json.length == 100){
+        	if(json.length != 100){
         		darwin.jsonManagerModule.setMergedComments(commentArray, index);
         	}
         },
@@ -118,7 +118,7 @@ darwin.jsonManagerModule = (function() {
         	} else {
         		starArray.push.apply(starArray, json);
         	}
-        	if(json.length < 100){
+        	if(json.length != 100){
         		darwin.jsonManagerModule.setMergedStars(starArray, index);
         	}
         },
@@ -128,7 +128,7 @@ darwin.jsonManagerModule = (function() {
         	} else {
         		watcherArray.push.apply(watcherArray, json);
         	}
-        	if(json.length < 100){
+        	if(json.length != 100){
         		darwin.jsonManagerModule.setMergedWatchers(watcherArray, index);
         	}
         },
@@ -138,7 +138,7 @@ darwin.jsonManagerModule = (function() {
         	} else {
         		forkArray.push.apply(forkArray, json);
         	}
-        	if(json.length < 100){
+        	if(json.length != 100){
         		darwin.jsonManagerModule.setMergedForks(forkArray, index);
         	}
         },
@@ -148,7 +148,7 @@ darwin.jsonManagerModule = (function() {
         	} else {
         		TagsArray.push.apply(TagsArray, json);
         	}
-        	if(json.length < 100){
+        	if(json.length != 100){
         		darwin.jsonManagerModule.setMergedTags(TagsArray, index);
         	}
         },
@@ -159,9 +159,9 @@ darwin.jsonManagerModule = (function() {
         		issuesArray.push.apply(issuesArray, json);
         	}
         	//should i just keep updating this?
-        	//if(json.length < 100){
+        	if(json.length != 100){
         		darwin.jsonManagerModule.setMergedIssues(issuesArray, index);
-        	//}
+        	}
         },
         setMergedTags : function(TagsArray, index){
         	mergedTags[index] = TagsArray;

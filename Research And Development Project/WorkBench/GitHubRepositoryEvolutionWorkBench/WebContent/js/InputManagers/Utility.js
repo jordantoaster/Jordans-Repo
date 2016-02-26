@@ -30,7 +30,7 @@ $(document).ready(function(e) {
 		darwin.projectManagerModule.setIsAuto(true);
 
 		//sets up app and gets contributions
-		darwin.Mediator.initialSetup();
+		darwin.Mediator.initialSetupBulk();
 		
 	});
 	

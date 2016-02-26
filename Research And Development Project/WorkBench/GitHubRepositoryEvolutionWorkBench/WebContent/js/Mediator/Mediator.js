@@ -7,6 +7,37 @@ var darwin = darwin || {};
 darwin.Mediator = (function () {
 	
     return {
+    	initialSetupBulk : function(){
+    	    darwin.projectManagerModule.resetVariables();
+    	    darwin.projectManagerModule.resetComponents();
+    	    
+    	    //get urls
+	    	bulkUrls = $('#bulkUrl').val();
+	    	bulkUrls = bulkUrls.replace(/\s+/g, '');
+	    	
+	    	//split on comma to an array
+	    	var bulkProjects = [];
+	    	bulkProjects = bulkUrls.split(',');
+	    	
+	    	
+	    	for(var i=0; i<bulkProjects.length;i++){
+	    		
+    	    	parsedUrl = darwin.Mediator.parseInputUrl(bulkProjects[i]);
+
+	    		darwin.projectManagerModule.setProjectNames(parsedUrl);
+
+	    		darwin.projectManagerModule.setBaseRequestUrl(darwin.projectManagerModule.getNumProjects(), "https://api.github.com/repos"+parsedUrl+"/stats/code_frequency?per_page=100&page=")
+
+	    		darwin.projectManagerModule.setNumProjects();
+	    		
+	    		
+	    	}
+	    	
+    	    darwin.Mediator.makeGithubRequest(darwin.projectManagerModule.getAllBaseRequestUrl(), darwin.Mediator.githubParseContributionData, "contribution","");
+
+        	//darwin.projectManagerModule.enableTabs();
+
+    	},
     	initialSetup : function(){
     	    darwin.projectManagerModule.resetVariables();
     	    darwin.projectManagerModule.resetComponents();
@@ -147,8 +178,10 @@ darwin.Mediator = (function () {
 									
 					//only perform actually call back when all request data collected
 					if(i==(url.length-1)){
+					    setTimeout('', 50);
 						darwin.githubModule.send(url[i] + darwin.projectManagerModule.getcurrRequestPage(), callback, index, action);
 					} else {
+					    setTimeout('', 50);
 						darwin.githubModule.send(url[i] + darwin.projectManagerModule.getcurrRequestPage(), callback, index, action);					
 					}	
 				}
@@ -200,6 +233,7 @@ darwin.Mediator = (function () {
 		parseInputUrl : function(url){
 			return darwin.ParseUrlInputModule.parse(url);
 		},
+
 		packager : function(seriesA, SeriesB, seriesC, seriesD ,dataType){
 			if(dataType == "contributions"){
 				darwin.packager.contributions(seriesA, SeriesB, seriesC,seriesD);
@@ -589,8 +623,13 @@ darwin.Mediator = (function () {
 		},
 		supplementTagData : function(callback, action, index){
 			tagData = darwin.Mediator.getTagsJson(index);
-			darwin.projectManagerModule.setSupplmentSize(tagData.length); 
-			darwin.Mediator.makeGithubRequestSingleUrl("https://api.github.com/repos"+darwin.projectManagerModule.getProjectNamesIndex(index)+"/commits/"+tagData[darwin.Mediator.getTagSuppIndex()].commit.sha+"", callback, index, "tagSupplement");
+			
+			if(tagData != undefined){
+				darwin.projectManagerModule.setSupplmentSize(tagData.length); 
+				darwin.Mediator.makeGithubRequestSingleUrl("https://api.github.com/repos"+darwin.projectManagerModule.getProjectNamesIndex(index)+"/commits/"+tagData[darwin.Mediator.getTagSuppIndex()].commit.sha+"", callback, index, "tagSupplement");
+			} else {
+				darwin.projectManagerModule.handleAuto(action, index);
+			}
 		},
 		setSupplementTag : function(value, index){
 			darwin.jsonManagerModule.setSupplementTag(value, index);

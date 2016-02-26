@@ -206,22 +206,26 @@ darwin.genericExtractorModule = (function() {
     		
     		}
     		
-    		//depending on action draw graph with different data
-			if(action == "commit"){
-	    		darwin.Mediator.drawGenericGraph(darwin.Mediator.getCommitDetails(), "weeks", "week On week Commits", darwin.projectManagerModule.getSampleIndex(), action, darwin.Mediator.getChartType());
-			}    
-			if(action == "star"){
-	    		darwin.Mediator.drawGenericGraph(darwin.Mediator.getStarDetails(), "weeks", "week On week Stars", darwin.projectManagerModule.getSampleIndex(), action, darwin.Mediator.getChartType());
-			}
-			if(action == "fork"){
-	    		darwin.Mediator.drawGenericGraph(darwin.Mediator.getForkDetails(), "weeks", "week On week Forks", darwin.projectManagerModule.getSampleIndex(), action, darwin.Mediator.getChartType());
-			}
-			if(action == "tags"){
-	    		darwin.Mediator.drawGenericGraph(darwin.Mediator.getTagsDetails(), "weeks", "week On week Tags", darwin.projectManagerModule.getSampleIndex(), action, darwin.Mediator.getChartType());
-			}
-			if(action == "Issues"){
-	    		darwin.Mediator.drawGenericGraph(darwin.Mediator.getIssuesDetails(), "weeks", "week On week issues", darwin.projectManagerModule.getSampleIndex(), action, darwin.Mediator.getChartType());
-			}
+    	    if(darwin.projectManagerModule.getIsAuto() == false){
+
+    	    	//depending on action draw graph with different data
+    	    	if(action == "commit"){
+    	    		darwin.Mediator.drawGenericGraph(darwin.Mediator.getCommitDetails(), "weeks", "week On week Commits", darwin.projectManagerModule.getSampleIndex(), action, darwin.Mediator.getChartType());
+    	    	}    
+    	    	if(action == "star"){
+    	    		darwin.Mediator.drawGenericGraph(darwin.Mediator.getStarDetails(), "weeks", "week On week Stars", darwin.projectManagerModule.getSampleIndex(), action, darwin.Mediator.getChartType());
+    	    	}
+    	    	if(action == "fork"){
+    	    		darwin.Mediator.drawGenericGraph(darwin.Mediator.getForkDetails(), "weeks", "week On week Forks", darwin.projectManagerModule.getSampleIndex(), action, darwin.Mediator.getChartType());
+    	    	}
+    	    	if(action == "tags"){
+    	    		darwin.Mediator.drawGenericGraph(darwin.Mediator.getTagsDetails(), "weeks", "week On week Tags", darwin.projectManagerModule.getSampleIndex(), action, darwin.Mediator.getChartType());
+    	    	}
+    	    	if(action == "Issues"){
+    	    		darwin.Mediator.drawGenericGraph(darwin.Mediator.getIssuesDetails(), "weeks", "week On week issues", darwin.projectManagerModule.getSampleIndex(), action, darwin.Mediator.getChartType());
+    	    	}
+			
+    	    }
 			    		
     		//enable clicking on another project
 			darwin.Mediator.enableButtons();

@@ -14,7 +14,7 @@ public class TagDao {
 		
 			BasicDBObject documentDetail = new BasicDBObject();
 			documentDetail.put("Dates", tag.getDates());
-			documentDetail.put("Stars", tag.getTags());
+			documentDetail.put("Tags", tag.getTags());
 			documentDetail.put("Project", tag.getProject());
 	
 			userCollection.insert(documentDetail);

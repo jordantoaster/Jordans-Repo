@@ -74,7 +74,7 @@ a:hover {
 	color: #5f5f5f;
     text-align:center;
     display: inline !important;
-    margin-left: 35% !important;
+    margin-left: 35%;
 }
 
 .submitButton:hover {
