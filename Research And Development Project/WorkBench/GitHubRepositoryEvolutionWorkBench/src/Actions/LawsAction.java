@@ -1,6 +1,7 @@
 package Actions;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -10,25 +11,31 @@ import org.rosuda.REngine.REngineException;
 
 import com.mongodb.BasicDBList;
 
+import Daos.CommitsDao;
 import Daos.ContributionDao;
 import Daos.IssueDao;
 import Daos.LawsDao;
+import Daos.StarDao;
 import Daos.StatDao;
+import Models.Commits;
 import Models.Contributions;
 import Models.Issues;
+import Models.Stars;
 import StatisticsR.RConnectionDarwin;
 
 public class LawsAction implements Action {
 	
 	LawsDao dao = new LawsDao();
 	StatDao sDao = new StatDao();
+	CommitsDao cDao = new CommitsDao();
+	StarDao starDao = new StarDao();
 	RConnectionDarwin r = new RConnectionDarwin();
 	
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
 		
 		//get law 1 and 6
-		
+		float hpOneResult = getHPOne("Commits", "Stars");
 		
 		//get Law 2
 		float hpTwoResult = getHPTwo();
@@ -45,12 +52,80 @@ public class LawsAction implements Action {
 		//get HP5
 
 		
+		
 		//get HP6
+		
+		
+		
+		//get HP7
 
+		
 
-		String t = String.format("{ \"hpTwo\": \"%s\", \"hpThreeI\": \"%s\", \"hpThreeA\": \"%s\", \"hpThreeD\": \"%s\", \"hpFour\": \"%s\"}", 
-				hpTwoResult, hpThreeResult[0],hpThreeResult[1],hpThreeResult[2],hpFourResult);
+		String t = String.format("{ \"hpTwo\": \"%s\", \"hpThreeI\": \"%s\", \"hpThreeA\": \"%s\", \"hpThreeD\": \"%s\", \"hpFour\": \"%s\","
+				+ " \"hpFour\": \"%s\"}", 
+				hpTwoResult, hpThreeResult[0],hpThreeResult[1],hpThreeResult[2],hpFourResult, hpOneResult);
 		return t;
+	}
+
+	private float getHPOne(String typeOne, String typeTwo) {
+
+		//get the series & set the threshold
+		double threshold = 0;
+		int corrInThreshold = 0;
+		double crossCorr = 0;
+
+		ArrayList<Commits> commits = cDao.getCommits();
+		ArrayList<Stars> stars = starDao.getStars();	
+		
+		//perform cross
+		for (int i = 0; i < commits.size(); i++) {
+			
+			//get each contribution
+			Commits commit = commits.get(i);
+			
+			//find associated issues
+			for (int j = 0; j < stars.size(); j++) {
+				Stars star = stars.get(j);
+				
+				if(star.getProject().equals(commit.getProject())){
+					
+					//parse to int arrays
+					int[] parsedStars = parseArrayToInt(star.getStars());
+					int[] parsedCommits = parseArrayToInt(commit.getCommits());
+					
+					//get size diff
+					int diffSize =  parsedCommits.length - parsedStars.length;
+					
+					
+					//test - last dates are not the same, so cant line up like this - NEED A FIX
+					//String[] ds = star.getDates();
+					//String[] dr = commit.getDates();
+					//int testDiff = dr.length - ds.length;
+					//dr = Arrays.copyOfRange(dr, testDiff, dr.length);
+					
+					//trim commits array
+					parsedCommits = Arrays.copyOfRange(parsedCommits, diffSize, parsedCommits.length);
+					
+					//trim both arrays both six months
+					parsedCommits = Arrays.copyOfRange(parsedCommits, 26, parsedCommits.length);
+					parsedStars = Arrays.copyOfRange(parsedStars, 26, parsedStars.length);
+										
+					//gets -2 corr value
+					crossCorr = r.crossCorrelation(parseArrayToInt(star.getStars()), parseArrayToInt(commit.getCommits()));
+					
+					//store corr value for -2
+					sDao.insertCrossCorr(crossCorr, commit.getProject(), typeOne, typeTwo);
+
+					if(crossCorr > threshold){
+						corrInThreshold++;
+					}
+				}
+			}
+		}
+		
+		float percentage = (float) ((corrInThreshold * 100.0) / commits.size());
+		
+		return percentage;
 	}
 
 	private double getHPFour() {
@@ -123,10 +198,7 @@ public class LawsAction implements Action {
 				Issues issue = issues.get(j);
 				
 				String [] is = issue.getAllIssues();
-				//for (int k = 0; k < is.length; k++) {
-					//System.out.print(is[k] + ", ");
-				//} 
-				
+
 				if(issue.getProject().equals(contribution.getProject())){
 					
 					total++;
@@ -144,12 +216,7 @@ public class LawsAction implements Action {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
-					
-					//System.out.println(Double.parseDouble(issueWilks[1]));
-					//System.out.println(additionsWilks[1]);
-					//System.out.println(deletionsWilks[1]);
 
-					
 					//is p less then 0.05?	- if so increment
 					if(Double.parseDouble(issueWilks[1]) <= 0.05){
 						issuesInThreshold++;

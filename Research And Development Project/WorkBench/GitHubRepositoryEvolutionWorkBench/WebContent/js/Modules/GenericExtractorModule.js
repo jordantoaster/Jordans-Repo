@@ -192,6 +192,9 @@ darwin.genericExtractorModule = (function() {
     			}
       			
       			if(sampleRate == 1){
+      				
+      				darwin.genericExtractorModule.padToModernDay(lastDateInSample);
+      				
       				var datesAsString = darwin.dateManager.convertDateObjectToString(dates);
       				
       				if(action != "Issues"){
@@ -336,6 +339,39 @@ darwin.genericExtractorModule = (function() {
         	
         	return closedAtDates;
         },
+        padToModernDay : function(currDate){
+        	//dates/data/openIssues/closedIssues
+        	
+        	var today = new Date();
+        	
+        	notFoundDate = false;
+        	samplesMissed = 0;
+        	
+        	//loop until we find new date inside a range
+        	while(!notFoundDate){
+        		
+        		currDate = darwin.genericExtractorModule.getDateRange(currDate)
+ 		
+        		notFoundDate = darwin.genericExtractorModule.checkDateBeyondSample(currDate, today);
+              		
+        		if(!notFoundDate){
+        			
+        			//set current data total
+        			genericTotal = genericTotal + data[sampleIterator];
+        			genericAcc[sampleIterator] = genericTotal;
+        			
+        			
+					sampleIterator++;
+					dates[sampleIterator] = currDate;
+					data[sampleIterator] = 0;  	
+					
+					//issue stuff
+  					openIssues[sampleIterator]=0;
+  					closedIssues[sampleIterator]=0;
+
+        		} 
+        	}
+        }
         
     };
 })();

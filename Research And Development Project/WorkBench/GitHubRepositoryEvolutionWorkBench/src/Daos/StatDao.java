@@ -34,6 +34,26 @@ public class StatDao {
 		return true;	
 	}
 	
+	public boolean insertCrossCorr(double correlation, String project, String typeOne, String typeTwo){
+		
+		try {
+			DBCollection userCollection = new dbConnectionBuilder().getMongoCollection("CrossCorr");
+		
+			BasicDBObject documentDetail = new BasicDBObject();
+			documentDetail.put("CrossCorr", correlation);
+			documentDetail.put("ProjectName", project);
+			documentDetail.put("TypeOne", typeOne);
+			documentDetail.put("TypeTwo", typeTwo);
+	
+			userCollection.insert(documentDetail);
+		} catch(MongoException e){
+			System.out.println(e);
+			return false;
+		}
+		
+		return true;	
+	}
+	
 	public int[] getAllMean(String meanType) {
 		DBCollection collection = new dbConnectionBuilder().getMongoCollection("Mean");
 	    ArrayList<Integer> means = new ArrayList();
