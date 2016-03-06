@@ -2,6 +2,7 @@ package StatisticsR;
 
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import org.rosuda.REngine.REXP;
 import org.rosuda.REngine.REXPMismatchException;
@@ -242,6 +243,89 @@ public class RConnectionDarwin {
         
         connection.close();		
         		
+		return 0.0;
+	}
+
+	public double[] getSeriesCulmVar(double[] parsedGrowth) {
+		
+		RConnection connection = null;
+		
+        try {
+            /* Create a connection to Rserve instance running
+             * on default port 6311
+             */
+            connection = new RConnection();
+            
+            int base = 0;
+            int counter = 0;
+            double [] culm = new double[parsedGrowth.length-1];
+            double[] parsedArray;
+            
+            for (int i = 1; i < parsedGrowth.length; i++) {
+            	
+            	parsedArray = Arrays.copyOfRange(parsedGrowth, base, i+1);
+                connection.assign("vectorA", parsedArray);
+                
+                REXP x = connection.eval("var(vectorA)");
+				culm[counter] = x.asDouble();
+
+				counter++;
+			}			
+            
+            connection.close();
+            
+            return culm;
+            
+        } catch (RserveException e) {
+            connection.close();
+            e.printStackTrace();
+        } catch (REngineException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (REXPMismatchException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}  
+        
+        connection.close();		
+        		
+		return null;
+	}
+
+	public double crossCorrelation(double[] seriesA, double[] seriesB) {
+
+		RConnection connection = null;
+		
+        try {
+
+            connection = new RConnection();
+
+            connection.assign("vectorA", seriesA);
+            connection.assign("vectorB", seriesB);
+			REXP x = connection.eval("ccf(vectorA, vectorB, lag.max = 2, plot = FALSE)$acf");
+			
+			double[] result = x.asDoubles();
+
+            connection.close();
+            
+            return result[0]; //returns the negative 2 lag case
+            
+        } catch (RserveException e) {
+            connection.close();
+            e.printStackTrace();
+        } catch (REngineException e) {
+			// TODO Auto-generated catch block
+            connection.close();		
+
+			e.printStackTrace();
+		} catch (REXPMismatchException e) {
+			// TODO Auto-generated catch block
+	        connection.close();		
+
+			e.printStackTrace();
+		}  
+        
+        connection.close();	
 		return 0.0;
 	}
 

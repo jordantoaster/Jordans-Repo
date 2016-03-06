@@ -9,7 +9,6 @@ $(document).ready(function(e) {
 	$(document).on("click.darwin","#IssuesOption1", function () {
 		darwin.Mediator.prepareIssuesClick("https://api.github.com/repos"+$("#ForkOption1").text()+"/issues?state=all&per_page=100&page=", $("#IssuesOption1").text());	
 		IssuesReset();
-
 	});
 	$(document).on("click.darwin","#IssuesOption2", function () {
 		darwin.Mediator.prepareIssuesClick("https://api.github.com/repos"+$("#ForkOption2").text()+"/issues?state=all&per_page=100&page=", $("#IssuesOption2").text());	
@@ -123,6 +122,7 @@ $(document).ready(function(e) {
 	}
 
 	function IssuesReset(){
+		darwin.dataManager.resetCommentIndex();
 		darwin.progressbarModule.reset();
 	}
 });

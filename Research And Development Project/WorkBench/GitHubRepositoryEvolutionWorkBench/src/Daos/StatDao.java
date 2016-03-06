@@ -13,6 +13,7 @@ import Models.Correlation;
 import Models.GrowthRateModel;
 import Models.Mean;
 import Models.Normality;
+import Models.Stars;
 
 public class StatDao {
 	public boolean insertMean(Mean mean){
@@ -185,6 +186,46 @@ public class StatDao {
 		return null;
 	}
 	
+	public ArrayList<GrowthRateModel> getGrowthRate(){
+		
+	    ArrayList<GrowthRateModel> commitList = new ArrayList<GrowthRateModel>();
+		
+	    try {
+			DBCollection collection = new dbConnectionBuilder().getMongoCollection("GrowthRate");
+		    DBCursor cursor = collection.find();
+		    GrowthRateModel growth;
+		    BasicDBList list;
+		
+		    //allows iteration of every doc in the collection
+			while (cursor.hasNext()) {
+				
+			    BasicDBObject obj = (BasicDBObject) cursor.next();
+
+				//Get all the data from mongo and convert to java structures
+				String project = (String) obj.get("ProjectName");	
+				
+				String type =(String) obj.get("MetricType");
+				
+				list = (BasicDBList) obj.get("GrowthRate");	
+				double[] parsedGrowth = convertToDouble(list);
+				
+				double absGrowth = (Double) obj.get("AbsoluteGrowth");
+				
+				double growthOverTime =(Double) obj.get("GrowthRateOverTime");
+
+				growth = new GrowthRateModel(project, type, parsedGrowth, growthOverTime,absGrowth);
+				
+				commitList.add(growth);
+			}
+			
+		} catch(MongoException e){
+			System.out.println(e);
+		}
+		
+
+		return commitList;	
+	}
+	
 	public double[] convertToDouble(BasicDBList list){
 		
 		double[] listD = new double[list.size()];
@@ -194,6 +235,13 @@ public class StatDao {
 		}
 		
 		return listD;		
+	}
+	
+	public String[] parseMongoArray(BasicDBList list){
+		list.toArray();
+		String[] arrayParsed = new String[list.size()];
+		arrayParsed = list.toArray(arrayParsed);
+		return arrayParsed;
 	}
 
 }

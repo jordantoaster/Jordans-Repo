@@ -5,6 +5,8 @@
 var darwin = darwin || {};
 
 darwin.AjaxResponseModule = (function () {
+	
+	
     return {
     	handleSuccess: function (action, response, callback, index) {
 
@@ -94,7 +96,15 @@ darwin.AjaxResponseModule = (function () {
 						  darwin.Mediator.supplementTagData(callback, action, index);
 					  }  	
 					  if(action == "comments"){
-						  callback(darwin.Mediator.getIndexCommentJson(index), index, action);
+						  var page = darwin.dataManager.getIndexIssueComments(false);
+
+						  if(page == "XX"  || page == undefined){
+							  callback(darwin.Mediator.getIndexCommentJson(index), index, action);
+
+						  } else{
+							  darwin.Mediator.makeGithubRequestSingleUrl("https://api.github.com/repos"+project+"/issues" + "/" + darwin.dataManager.getIndexIssueComments() + "/comments", callback, index, action);
+						  }
+						  
 					  } 
 					  if(action == "Issues"){
 						  //get normal issues based on created at date
@@ -107,18 +117,28 @@ darwin.AjaxResponseModule = (function () {
 						  //kick start the get issue comments process
 						  projects = darwin.projectManagerModule.getProjectNames();
 						  project = projects[index];
-						  darwin.Mediator.prepareIssueComment("https://api.github.com/repos"+project+"/issues/comments?per_page=100&page=", project);
+						  darwin.Mediator.prepareIssueComment("https://api.github.com/repos"+project+"/issues", project);
 						  
 						  darwin.Mediator.setNumIssuesProjectSelected();					  
 					  }  				  					  
 					  
 				  } else { //else poll for next set of 100
-					  if(action != "tagSupplement"){
+					  if(action != "tagSupplement" && action != "comments"){
 						  //update counter
 						  darwin.Mediator.setcurrRequestPage(1);
 					  
 					  	//repeat request but with different page number
 					  	darwin.Mediator.makeGithubRequestSingleUrl(darwin.Mediator.getAllBaseRequestUrl(index) + darwin.Mediator.getcurrRequestPage(), callback, index, action);
+					  }
+					  if(action == "comments"){
+						  var page = darwin.dataManager.getIndexIssueComments(false);
+
+						  if(page == "XX" || page == undefined){
+							  callback(darwin.Mediator.getIndexCommentJson(index), index, action);
+
+						  } else{
+							  darwin.Mediator.makeGithubRequestSingleUrl("https://api.github.com/repos"+project+"/issues" + "/" + darwin.dataManager.getIndexIssueComments() + "/comments", callback, index, action);
+						  }
 					  }
 				  }
 			  }

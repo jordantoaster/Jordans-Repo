@@ -30,10 +30,36 @@ darwin.dataManager = (function() {
 	var openIssues = [];
 	var closedAtIssues =[];
 	var issueComments = [];
+	var issueNumbers = [];
 	var contribSliderStart;
 	var contribSliderEnd;
+	var commentIndex = 0;
 
     return {
+    	setIssueNumbers : function(numbers){
+    		issueNumbers = numbers;
+    	},
+    	getIssueNumbers : function(){
+    		return issueNumbers;
+    	},
+    	getIndexIssueComments : function(bool){
+    		if(bool == false){
+    			return issueNumbers[commentIndex];
+    		}
+  		
+    		if(commentIndex >= issueNumbers.length){
+    			return "XX";
+    		} else{
+            	commentIndex++;
+        		return issueNumbers[commentIndex-1];
+    		}
+    	},
+    	resetCommentIndex : function(){
+    		commentIndex = 0;
+    	},
+    	getCommentIndex : function(){
+    		return commentIndex;
+    	},
     	setIssueComments : function(index, data, projectNames, sampleIndex){
     		if(issueComments[index] === undefined)
     			issueComments[index] = [];
@@ -352,6 +378,7 @@ darwin.dataManager = (function() {
         	 IssuesList = [];
         	 closedAtIssues =[];
         	 issueComments = [];
+        	 commentIndex = 0;
         }
     };
 })(); 

@@ -86,7 +86,7 @@
 		</div>
 		<div class="input-group input-group-lg fields urlInputOne">
          <span class="input-group-addon glyphicon glyphicon-cog" id="basic-addon1"></span>
-         <input type="text" class="form-control" id="bulkUrl" placeholder="Add comman seperated URL here" aria-describedby="basic-addon1">
+         <input type="text" class="form-control" id="bulkUrl" placeholder="Add comma seperated URL here" aria-describedby="basic-addon1">
        </div>
        <button type="submit" id="submitButtonAuto" class="btn btn-primary submitButton">
   	     <i class="icon-user icon-white">Automate Data retrieval</i> 

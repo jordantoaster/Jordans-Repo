@@ -766,6 +766,7 @@ darwin.projectManagerModule = (function() {
     			}
 
     			if(autoAction == "comments"){
+    				darwin.dataManager.resetCommentIndex();
         			darwin.Mediator.prepareIssuesClick("https://api.github.com/repos"+project+"/issues?state=all&per_page=100&page=", project);	
     			}
     			
@@ -801,6 +802,7 @@ darwin.projectManagerModule = (function() {
     			}
     			
     			if(autoAction == "fork"){
+    				darwin.dataManager.resetCommentIndex();
         			darwin.Mediator.prepareIssuesClick("https://api.github.com/repos"+project+"/issues?&per_page=100&state=all&page=", project);	
     			}
 

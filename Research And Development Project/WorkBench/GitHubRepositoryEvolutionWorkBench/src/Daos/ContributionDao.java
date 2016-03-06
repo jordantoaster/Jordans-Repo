@@ -89,5 +89,6 @@ public class ContributionDao {
 		arrayParsed = list.toArray(arrayParsed);
 		return arrayParsed;
 	}
+
 	
 }

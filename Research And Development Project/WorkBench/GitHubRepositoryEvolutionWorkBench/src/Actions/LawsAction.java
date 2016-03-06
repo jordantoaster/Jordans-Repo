@@ -19,6 +19,7 @@ import Daos.StarDao;
 import Daos.StatDao;
 import Models.Commits;
 import Models.Contributions;
+import Models.GrowthRateModel;
 import Models.Issues;
 import Models.Stars;
 import StatisticsR.RConnectionDarwin;
@@ -29,6 +30,8 @@ public class LawsAction implements Action {
 	StatDao sDao = new StatDao();
 	CommitsDao cDao = new CommitsDao();
 	StarDao starDao = new StarDao();
+	IssueDao iDao = new IssueDao();
+	ContributionDao conDao = new ContributionDao();
 	RConnectionDarwin r = new RConnectionDarwin();
 	
 	@Override
@@ -50,21 +53,201 @@ public class LawsAction implements Action {
 
 		
 		//get HP5
-
+		double hpFiveResult = getHPFive("Growth Rate", "Variance");
 		
 		
 		//get HP6
-		
+		double hpSixResults = getHPSix("Issues", "LOC");
 		
 		
 		//get HP7
-
+		double hpSevenResults = getHPSeven("Issues", "IssuesComments");
 		
 
 		String t = String.format("{ \"hpTwo\": \"%s\", \"hpThreeI\": \"%s\", \"hpThreeA\": \"%s\", \"hpThreeD\": \"%s\", \"hpFour\": \"%s\","
-				+ " \"hpFour\": \"%s\"}", 
-				hpTwoResult, hpThreeResult[0],hpThreeResult[1],hpThreeResult[2],hpFourResult, hpOneResult);
+				+ " \"hpOne\": \"%s\", \"hpSix\": \"%s\", \"hpSeven\": \"%s\", \"hpFive\": \"%s\"}", 
+				hpTwoResult, hpThreeResult[0],hpThreeResult[1],hpThreeResult[2],hpFourResult, hpOneResult, hpSixResults, hpSevenResults,hpFiveResult);
 		return t;
+	}
+
+	private double getHPFive(String typeOne, String typeTwo) {
+		
+		double threshold = 0;
+		int corrInThreshold = 0;
+		double crossCorr = 0;
+		
+		ArrayList<Issues> issues = iDao.getIssues();
+		ArrayList<GrowthRateModel> growths = sDao.getGrowthRate();
+
+
+		//perform cross
+		for (int i = 0; i < issues.size(); i++) {
+					
+			//get each contribution
+			Issues issue = issues.get(i);
+					
+			//find associated issues
+			for (int j = 0; j < growths.size(); j++) {
+				
+				GrowthRateModel growth = growths.get(j);
+				
+				System.out.println(issue.getProject() + " - " + growth.getProjectName());
+						
+				if(issue.getProject().equals(growth.getProjectName())){
+							
+					//parse to int arrays
+					double[] parsedIssue = parseArrayToDouble(issue.getAllIssues());
+					double[] parsedGrowth = growth.getGrowth();
+							
+					//get size diff
+					int diffSize =  parsedGrowth.length - parsedIssue.length;
+							
+					//trim growth array
+					parsedGrowth = Arrays.copyOfRange(parsedGrowth, diffSize, parsedGrowth.length);
+							
+					//trim both arrays both six months
+					parsedGrowth = Arrays.copyOfRange(parsedGrowth, 26, parsedGrowth.length);
+					parsedIssue = Arrays.copyOfRange(parsedIssue, 26, parsedIssue.length);
+					
+					//get cumulative variance of growth
+					double[] culmVarGrowth = r.getSeriesCulmVar(parsedGrowth);
+												
+					//gets -2 corr value
+					crossCorr = r.crossCorrelation(parsedIssue, parsedGrowth);
+							
+					//store corr value for -2
+					sDao.insertCrossCorr(crossCorr, issue.getProject(), typeOne, typeTwo);
+
+					if(crossCorr > threshold){
+						corrInThreshold++;
+					}
+				}
+			}
+		}
+				
+		float percentage = (float) ((corrInThreshold * 100.0) / issues.size());
+				
+		return percentage;			
+	}
+
+
+	private double getHPSeven(String typeOne, String typeTwo) {
+
+		double threshold = 0;
+		int corrInThreshold = 0;
+		double crossCorr = 0;
+
+		ArrayList<Issues> issues = iDao.getIssues();
+		ArrayList<Issues> comments = iDao.getIssuesComments();
+		
+		//perform cross
+		for (int i = 0; i < issues.size(); i++) {
+					
+			//get each contribution
+			Issues issue = issues.get(i);
+					
+			//find associated issues
+			for (int j = 0; j < comments.size(); j++) {
+				Issues issueComments = comments.get(j);
+						
+				if(issue.getProject().equals(issueComments.getProject())){
+							
+					//parse to int arrays
+					int[] parsedIssue = parseArrayToInt(issue.getAllIssues());
+					int[] parsedComments = parseArrayToInt(issueComments.getComments());
+							
+					//get size diff
+					int diffSize =  parsedIssue.length - parsedComments.length;
+													
+					//test - last dates are not the same, so cant line up like this - NEED A FIX
+					String[] com = issueComments.getDates();
+					String[] iss = issue.getDates();
+					int testDiff = com.length - iss.length;
+					com = Arrays.copyOfRange(com, testDiff, com.length);
+							
+					//trim issues array
+					parsedIssue = Arrays.copyOfRange(parsedIssue, diffSize, parsedIssue.length);
+							
+					//trim both arrays both six months
+					parsedComments = Arrays.copyOfRange(parsedComments, 26, parsedComments.length);
+					parsedIssue = Arrays.copyOfRange(parsedIssue, 26, parsedIssue.length);
+												
+					//gets -2 corr value
+					crossCorr = r.crossCorrelation(parsedIssue, parsedComments);
+							
+					//store corr value for -2
+					sDao.insertCrossCorr(crossCorr, issue.getProject(), typeOne, typeTwo);
+
+					if(crossCorr > threshold){
+						corrInThreshold++;
+					}
+				}
+			}
+		}
+				
+		float percentage = (float) ((corrInThreshold * 100.0) / issues.size());
+				
+		return percentage;		
+		
+	}
+
+	private double getHPSix(String typeOne, String typeTwo) {
+		double threshold = 0;
+		int corrInThreshold = 0;
+		double crossCorr = 0;
+
+		ArrayList<Issues> issues = iDao.getIssues();
+		ArrayList<Contributions> contributions = conDao.getContributions();	
+		
+		//perform cross
+		for (int i = 0; i < issues.size(); i++) {
+			
+			//get each contribution
+			Issues issue = issues.get(i);
+			
+			//find associated issues
+			for (int j = 0; j < contributions.size(); j++) {
+				Contributions contribution = contributions.get(j);
+				
+				if(issue.getProject().equals(contribution.getProject())){
+					
+					//parse to int arrays
+					int[] parsedIssue = parseArrayToInt(issue.getAllIssues());
+					int[] parsedLOC = parseArrayToInt(contribution.getLOC());
+					
+					//get size diff
+					int diffSize =  parsedLOC.length - parsedIssue.length;
+					
+					
+					//test - last dates are not the same, so cant line up like this - NEED A FIX
+					String[] contr = contribution.getDates();
+					String[] iss = issue.getDates();
+					int testDiff = contr.length - iss.length;
+					contr = Arrays.copyOfRange(contr, testDiff, contr.length);
+					
+					//trim commits array
+					parsedLOC = Arrays.copyOfRange(parsedLOC, diffSize, parsedLOC.length);
+					
+					//trim both arrays both six months
+					parsedLOC = Arrays.copyOfRange(parsedLOC, 26, parsedLOC.length);
+					parsedIssue = Arrays.copyOfRange(parsedIssue, 26, parsedIssue.length);
+										
+					//gets -2 corr value
+					crossCorr = r.crossCorrelation(parsedIssue, parsedLOC);
+					
+					//store corr value for -2
+					sDao.insertCrossCorr(crossCorr, contribution.getProject(), typeOne, typeTwo);
+
+					if(crossCorr > threshold){
+						corrInThreshold++;
+					}
+				}
+			}
+		}
+		
+		float percentage = (float) ((corrInThreshold * 100.0) / contributions.size());
+		
+		return percentage;
 	}
 
 	private float getHPOne(String typeOne, String typeTwo) {
@@ -111,7 +294,7 @@ public class LawsAction implements Action {
 					parsedStars = Arrays.copyOfRange(parsedStars, 26, parsedStars.length);
 										
 					//gets -2 corr value
-					crossCorr = r.crossCorrelation(parseArrayToInt(star.getStars()), parseArrayToInt(commit.getCommits()));
+					crossCorr = r.crossCorrelation(parsedStars, parsedCommits);
 					
 					//store corr value for -2
 					sDao.insertCrossCorr(crossCorr, commit.getProject(), typeOne, typeTwo);
@@ -270,6 +453,24 @@ public class LawsAction implements Action {
 
 		for(int i =0;i<data.length;i++){
 			parsedArray[i] = Integer.parseInt(data[i]);
+		}
+		return parsedArray;
+	}
+	
+	private double[] parseArrayToDouble(String[] data) {
+		double[] parsedArray = new double[data.length];
+
+		for(int i =0;i<data.length;i++){
+			parsedArray[i] = Double.parseDouble(data[i]);
+		}
+		return parsedArray;
+	}
+	
+	private int[] parseArrayToInt(double[] data) {
+		int[] parsedArray = new int[data.length];
+
+		for(int i =0;i<data.length;i++){
+			parsedArray[i] = (int) data[i];
 		}
 		return parsedArray;
 	}

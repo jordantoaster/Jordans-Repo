@@ -47,6 +47,7 @@ darwin.genericExtractorModule = (function() {
     			
     			if(action == "Issues"){
     				localJson = darwin.Mediator.removePullRequests(localJson);
+    				darwin.Mediator.storeIssueNumbers(localJson);
     			}
     			if(action == "closedAt"){
         			closedAtDates = [];

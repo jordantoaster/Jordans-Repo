@@ -165,7 +165,7 @@ darwin.Mediator = (function () {
 			else if(action == "Issues"){
 				darwin.githubModule.send(url[0] + darwin.projectManagerModule.getcurrRequestPage(), callback, projectIndex, action);
 			} else if(action == "comments") {
-				darwin.githubModule.send(url[0] + darwin.projectManagerModule.getcurrRequestPage(), callback, projectIndex, action);
+				darwin.githubModule.send(url[0], callback, projectIndex, action);
 			} else {
 				//if a stat api then loop each url, only send true callback on final url
 	    		projectNames = darwin.projectManagerModule.getProjectNames();
@@ -707,16 +707,26 @@ darwin.Mediator = (function () {
 			}
 		},
 		prepareIssueComment : function(url, projectName){
-			darwin.jsonManagerModule.resetCommentJson(url);
+			darwin.jsonManagerModule.resetCommentJson();
 			darwin.projectManagerModule.resetBaseRequestUrl();
 			darwin.projectManagerModule.disableIssuesButton();
 			
 			index = darwin.Mediator.getProjNameIndex(projectName);
 			
+			url = url + "/" + darwin.dataManager.getIssueNumbers()[0] + "/comments";
 			darwin.projectManagerModule.setBaseRequestUrl(0,url);
 
 			darwin.Mediator.makeGithubRequest(darwin.projectManagerModule.getAllBaseRequestUrl(), darwin.Mediator.githubParseGenericData, "comments", index);		
 		
+		},
+		storeIssueNumbers : function(json){
+			issueNumbers = [];
+			
+			for(var i =0; i<json.length;i++){
+				issueNumbers[i] = json[i].number;
+			}
+			
+			darwin.dataManager.setIssueNumbers(issueNumbers);
 		},
 		handleLawData : function(response){
 			
@@ -725,14 +735,18 @@ darwin.Mediator = (function () {
 		    var HpThree =[];
 		    
 			//sort the responses
+		    var hpOne = obj.hpOne;
 			var hpTwo = obj.hpTwo;
 			HpThree[0] = obj.hpThreeI;
 			HpThree[1] = obj.hpThreeA;
 			HpThree[2] = obj.hpThreeD;
 			var HpFour = obj.hpFour;
+			var hpFive = obj.hpFive;
+			var hpSix = obj.hpSix;
+			var hpSeven = obj.hpSeven;
 			
 			//pass for drawing
-			darwin.statVisualiser.drawLaws("",hpTwo,HpThree,HpFour,"","","");
+			darwin.statVisualiser.drawLaws(hpOne,hpTwo,HpThree,HpFour,hpFive,hpSix,hpSeven);
 		},
     };
 })();
