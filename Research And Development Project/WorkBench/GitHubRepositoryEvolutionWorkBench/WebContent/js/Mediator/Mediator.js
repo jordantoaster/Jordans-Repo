@@ -170,21 +170,21 @@ darwin.Mediator = (function () {
 				//if a stat api then loop each url, only send true callback on final url
 	    		projectNames = darwin.projectManagerModule.getProjectNames();
 				
-	    		for(i=0;i<url.length;i++){
+	    		//for(i=0;i<url.length;i++){
 					
 					
-					name = projectNames[i];
+					name = projectNames[0];
 					index = darwin.Mediator.getProjNameIndex(name);
 									
 					//only perform actually call back when all request data collected
-					if(i==(url.length-1)){
-					    setTimeout('', 50);
-						darwin.githubModule.send(url[i] + darwin.projectManagerModule.getcurrRequestPage(), callback, index, action);
-					} else {
-					    setTimeout('', 50);
-						darwin.githubModule.send(url[i] + darwin.projectManagerModule.getcurrRequestPage(), callback, index, action);					
-					}	
-				}
+					//if(i==(url.length-1)){
+					 //   setTimeout('', 50);
+						darwin.githubModule.send(url[0] + darwin.projectManagerModule.getcurrRequestPage(), callback, index, action);
+					//} else {
+					//    setTimeout('', 50);
+					//	darwin.githubModule.send(url[i] + darwin.projectManagerModule.getcurrRequestPage(), callback, index, action);					
+					//}	
+				//}
 			}
 		},
 		githubParseContributionData: function (response, index) {

@@ -19,6 +19,11 @@ darwin.AjaxResponseModule = (function () {
 				  //only make call back when we have all the required json
 				  if(size == darwin.projectManagerModule.getNumProjects()){
 					  callback(darwin.jsonManagerModule.getAllContributionJson(), index);					
+				  } else {
+					  //get contribution index
+					  index = index + 1;
+					  name = projectNames[index];
+					  darwin.githubModule.send(darwin.projectManagerModule.getBaseRequestUrl(index) + darwin.projectManagerModule.getcurrRequestPage(), callback, index, action);
 				  }
 			  } else {
 				  
