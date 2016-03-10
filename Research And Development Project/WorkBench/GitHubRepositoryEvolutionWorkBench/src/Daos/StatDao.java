@@ -244,4 +244,21 @@ public class StatDao {
 		return arrayParsed;
 	}
 
+	public boolean insertVariance(double variance) {
+		try {
+			DBCollection userCollection = new dbConnectionBuilder().getMongoCollection("Variance");
+		
+			BasicDBObject documentDetail = new BasicDBObject();
+			documentDetail.put("Variance", variance);
+	
+			userCollection.insert(documentDetail);
+		} catch(MongoException e){
+			System.out.println(e);
+			return false;
+		}
+		
+		return true;
+		
+	}
+
 }

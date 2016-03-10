@@ -124,6 +124,8 @@ public class RConnectionDarwin {
 		RConnection connection = null;
         String[] wilksResults = new String[2];
 
+        dataSubset = Arrays.copyOfRange(dataSubset, 26, dataSubset.length);
+
         try {
 
             connection = new RConnection();

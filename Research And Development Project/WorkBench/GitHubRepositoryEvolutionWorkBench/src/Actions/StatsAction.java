@@ -127,6 +127,8 @@ public class StatsAction implements Action{
 				//get section of array up to the terminator
 				dataSubset = parseData(data, startPosition,i);
 				startPosition = i + 1;
+				
+				dataSubset = Arrays.copyOfRange(dataSubset, 26, dataSubset.length);
 			
 				//get required ata for each subset & store
 				growth = getGrowthRate(dataSubset);

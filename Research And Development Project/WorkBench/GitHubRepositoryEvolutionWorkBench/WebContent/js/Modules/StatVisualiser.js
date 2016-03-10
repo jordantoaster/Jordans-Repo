@@ -154,9 +154,9 @@ darwin.statVisualiser = (function() {
 
 		},
 		
-		drawLaws : function(hp1, hp2, hp3, hp4, hp5, hp6){
+		drawLaws : function(hp1, hp2, hp3, hp4, hp5, hp6, hp7){
 			
-			$('#law1').text("Law One - " + hp1 + "% of commit/stars cross correlations above a threshold");
+			$('#law1').text("Law One - " + hp1 + "% of commit/stars cross correlations have a +ve correlation");
 
 			$('#law2').text("Law Two - " + hp2 + "% positive average growth rate");
 			
@@ -164,11 +164,11 @@ darwin.statVisualiser = (function() {
 			
 			$('#law4').text("Law Four - " + hp4 + " = Mean Variance");
 			
-			$('#law5').text("Law Five - " + hp5 + "% of LOC growth rate/Issues cross correlations above a threshold");
+			$('#law5').text("Law Five - " + hp5 + "% of LOC growth rate/Issues cross correlations have a +ve correlation");
 			
-			$('#law6').text("Law Six - " + hp6 + "% of issues/LOC cross correlations above a threshold");
+			$('#law6').text("Law Six - " + hp6 + "% of issues/LOC cross correlations have a -ve correlation");
 			
-			$('#law7').text("Law Seven - " + hp6 + "% of issues/issue comments cross correlations above a threshold");
+			$('#law7').text("Law Seven - " + hp7 + "% of issues/issue comments cross correlations have a -ve correlation");
 		
 		}
 		

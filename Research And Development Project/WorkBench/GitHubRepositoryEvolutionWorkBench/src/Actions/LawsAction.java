@@ -103,7 +103,11 @@ public class LawsAction implements Action {
 					int diffSize =  parsedGrowth.length - parsedIssue.length;
 							
 					//trim growth array
-					parsedGrowth = Arrays.copyOfRange(parsedGrowth, diffSize, parsedGrowth.length);
+					if(diffSize >= 0){
+						parsedGrowth = Arrays.copyOfRange(parsedGrowth, diffSize, parsedGrowth.length);
+					} else{
+						parsedIssue = Arrays.copyOfRange(parsedIssue, Math.abs(diffSize), parsedIssue.length);
+					}
 							
 					//trim both arrays both six months
 					parsedGrowth = Arrays.copyOfRange(parsedGrowth, 26, parsedGrowth.length);
@@ -113,7 +117,7 @@ public class LawsAction implements Action {
 					double[] culmVarGrowth = r.getSeriesCulmVar(parsedGrowth);
 												
 					//gets -2 corr value
-					crossCorr = r.crossCorrelation(parsedIssue, parsedGrowth);
+					crossCorr = r.crossCorrelation(culmVarGrowth, parsedIssue);
 							
 					//store corr value for -2
 					sDao.insertCrossCorr(crossCorr, issue.getProject(), typeOne, typeTwo);
@@ -159,26 +163,26 @@ public class LawsAction implements Action {
 					//get size diff
 					int diffSize =  parsedIssue.length - parsedComments.length;
 													
-					//test - last dates are not the same, so cant line up like this - NEED A FIX
-					String[] com = issueComments.getDates();
-					String[] iss = issue.getDates();
-					int testDiff = com.length - iss.length;
-					com = Arrays.copyOfRange(com, testDiff, com.length);
 							
 					//trim issues array
-					parsedIssue = Arrays.copyOfRange(parsedIssue, diffSize, parsedIssue.length);
+					if(diffSize >= 0){
+						parsedIssue = Arrays.copyOfRange(parsedIssue, diffSize, parsedIssue.length);
+					} else {
+						parsedComments = Arrays.copyOfRange(parsedComments, Math.abs(diffSize), parsedComments.length);
+
+					}
 							
 					//trim both arrays both six months
 					parsedComments = Arrays.copyOfRange(parsedComments, 26, parsedComments.length);
 					parsedIssue = Arrays.copyOfRange(parsedIssue, 26, parsedIssue.length);
 												
 					//gets -2 corr value
-					crossCorr = r.crossCorrelation(parsedIssue, parsedComments);
+					crossCorr = r.crossCorrelation(parsedComments, parsedIssue);
 							
 					//store corr value for -2
 					sDao.insertCrossCorr(crossCorr, issue.getProject(), typeOne, typeTwo);
 
-					if(crossCorr > threshold){
+					if(crossCorr < threshold){ //negative threshold
 						corrInThreshold++;
 					}
 				}
@@ -217,16 +221,14 @@ public class LawsAction implements Action {
 					
 					//get size diff
 					int diffSize =  parsedLOC.length - parsedIssue.length;
-					
-					
-					//test - last dates are not the same, so cant line up like this - NEED A FIX
-					String[] contr = contribution.getDates();
-					String[] iss = issue.getDates();
-					int testDiff = contr.length - iss.length;
-					contr = Arrays.copyOfRange(contr, testDiff, contr.length);
+				
 					
 					//trim commits array
-					parsedLOC = Arrays.copyOfRange(parsedLOC, diffSize, parsedLOC.length);
+					if(diffSize >= 0){
+						parsedLOC = Arrays.copyOfRange(parsedLOC, diffSize, parsedLOC.length);
+					} else {
+						parsedIssue = Arrays.copyOfRange(parsedIssue, Math.abs(diffSize), parsedIssue.length);
+					}
 					
 					//trim both arrays both six months
 					parsedLOC = Arrays.copyOfRange(parsedLOC, 26, parsedLOC.length);
@@ -238,7 +240,7 @@ public class LawsAction implements Action {
 					//store corr value for -2
 					sDao.insertCrossCorr(crossCorr, contribution.getProject(), typeOne, typeTwo);
 
-					if(crossCorr > threshold){
+					if(crossCorr < threshold){ //negative correlation
 						corrInThreshold++;
 					}
 				}
@@ -287,14 +289,18 @@ public class LawsAction implements Action {
 					//dr = Arrays.copyOfRange(dr, testDiff, dr.length);
 					
 					//trim commits array
-					parsedCommits = Arrays.copyOfRange(parsedCommits, diffSize, parsedCommits.length);
+					if(diffSize >= 0){
+						parsedCommits = Arrays.copyOfRange(parsedCommits, diffSize, parsedCommits.length);
+					} else {
+						parsedStars = Arrays.copyOfRange(parsedStars, Math.abs(diffSize), parsedStars.length);
+					}
 					
 					//trim both arrays both six months
 					parsedCommits = Arrays.copyOfRange(parsedCommits, 26, parsedCommits.length);
 					parsedStars = Arrays.copyOfRange(parsedStars, 26, parsedStars.length);
 										
 					//gets -2 corr value
-					crossCorr = r.crossCorrelation(parsedStars, parsedCommits);
+					crossCorr = r.crossCorrelation(parsedCommits, parsedStars);
 					
 					//store corr value for -2
 					sDao.insertCrossCorr(crossCorr, commit.getProject(), typeOne, typeTwo);
@@ -324,6 +330,10 @@ public class LawsAction implements Action {
 			
 			try {
 				variance[i] = r.getVariance(series);
+				
+				//store the variance
+				sDao.insertVariance(variance[i]);
+				
 			} catch (REngineException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -332,6 +342,7 @@ public class LawsAction implements Action {
 				e.printStackTrace();
 			}
 		}
+		
 
 		//get the mean of the variances
 		try {
