@@ -36,22 +36,25 @@ darwin.dataManager = (function() {
 	var commentIndex = 0;
 
     return {
-    	setIssueNumbers : function(numbers){
-    		issueNumbers = numbers;
+    	setIssueNumbers : function(index, numbers){
+    		issueNumbers[index] = numbers;
     	},
     	getIssueNumbers : function(){
     		return issueNumbers;
     	},
-    	getIndexIssueComments : function(bool){
+    	setIndexIssueComment : function(){
+    		commentIndex++;
+    	},
+    	getIndexIssueComments : function(index, bool){
     		if(bool == false){
-    			return issueNumbers[commentIndex];
+    			return issueNumbers[index][commentIndex];
     		}
   		
-    		if(commentIndex >= issueNumbers.length){
+    		if(commentIndex >= issueNumbers[index].length){
     			return "XX";
     		} else{
             	commentIndex++;
-        		return issueNumbers[commentIndex-1];
+        		return issueNumbers[index][commentIndex-1];
     		}
     	},
     	resetCommentIndex : function(){

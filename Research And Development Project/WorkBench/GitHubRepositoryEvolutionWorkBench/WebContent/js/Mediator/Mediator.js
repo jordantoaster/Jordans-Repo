@@ -626,7 +626,7 @@ darwin.Mediator = (function () {
 			
 			if(tagData != undefined){
 				darwin.projectManagerModule.setSupplmentSize(tagData.length); 
-				darwin.Mediator.makeGithubRequestSingleUrl("https://api.github.com/repos"+darwin.projectManagerModule.getProjectNamesIndex(index)+"/commits/"+tagData[darwin.Mediator.getTagSuppIndex()].commit.sha+"", callback, index, "tagSupplement");
+				darwin.Mediator.makeGithubRequestSingleUrl("https://api.github.com/repos"+darwin.projectManagerModule.getProjectNamesIndex(index)+"/commits/"+tagData[darwin.Mediator.getTagSuppIndex()].commit.sha+"?type=tagSupp", callback, index, "tagSupplement");
 			} else {
 				darwin.projectManagerModule.handleAuto(action, index);
 			}
@@ -706,27 +706,27 @@ darwin.Mediator = (function () {
 				darwin.projectManagerModule.handleAuto(subAction, autoIndex);
 			}
 		},
-		prepareIssueComment : function(url, projectName){
+		prepareIssueComment : function(index, url, projectName){
 			darwin.jsonManagerModule.resetCommentJson();
 			darwin.projectManagerModule.resetBaseRequestUrl();
 			darwin.projectManagerModule.disableIssuesButton();
 			
 			index = darwin.Mediator.getProjNameIndex(projectName);
 			
-			url = url + "/" + darwin.dataManager.getIssueNumbers()[0] + "/comments";
+			url = url + "/" + darwin.dataManager.getIndexIssueComments(index) + "/comments?type=comment";
 			darwin.projectManagerModule.setBaseRequestUrl(0,url);
 
 			darwin.Mediator.makeGithubRequest(darwin.projectManagerModule.getAllBaseRequestUrl(), darwin.Mediator.githubParseGenericData, "comments", index);		
 		
 		},
-		storeIssueNumbers : function(json){
+		storeIssueNumbers : function(json, index){
 			issueNumbers = [];
 			
 			for(var i =0; i<json.length;i++){
 				issueNumbers[i] = json[i].number;
 			}
 			
-			darwin.dataManager.setIssueNumbers(issueNumbers);
+			darwin.dataManager.setIssueNumbers(index,issueNumbers);
 		},
 		handleLawData : function(response){
 			

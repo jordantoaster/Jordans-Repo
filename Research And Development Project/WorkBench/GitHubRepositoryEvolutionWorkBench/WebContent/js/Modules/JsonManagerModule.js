@@ -96,7 +96,8 @@ darwin.jsonManagerModule = (function() {
         	if(commitArray.length === 0){
         		commitArray = json
         	} else {
-            	commitArray.push.apply(commitArray, json);
+        		if(json.length != 0)
+        			commitArray.push.apply(commitArray, json);
         	}
         	if(json.length != 100){
         		darwin.jsonManagerModule.setMergedCommits(commitArray, index);
@@ -106,7 +107,8 @@ darwin.jsonManagerModule = (function() {
         	if(commentArray.length === 0){
         		commentArray = json
         	} else {
-        		commentArray.push.apply(commentArray, json);
+        		if(json.length != 0)
+        			commentArray.push.apply(commentArray, json);
         	}
         	if(json.length != 100){
         		darwin.jsonManagerModule.setMergedComments(commentArray, index);
@@ -116,7 +118,8 @@ darwin.jsonManagerModule = (function() {
         	if(starArray.length === 0){
         		starArray = json
         	} else {
-        		starArray.push.apply(starArray, json);
+        		if(json.length != 0)
+        			starArray.push.apply(starArray, json);
         	}
         	if(json.length != 100){
         		darwin.jsonManagerModule.setMergedStars(starArray, index);
@@ -126,7 +129,8 @@ darwin.jsonManagerModule = (function() {
         	if(watcherArray.length === 0){
         		watcherArray = json
         	} else {
-        		watcherArray.push.apply(watcherArray, json);
+        		if(json.length != 0)
+        			watcherArray.push.apply(watcherArray, json);
         	}
         	if(json.length != 100){
         		darwin.jsonManagerModule.setMergedWatchers(watcherArray, index);
@@ -136,7 +140,8 @@ darwin.jsonManagerModule = (function() {
         	if(forkArray.length === 0){
         		forkArray = json
         	} else {
-        		forkArray.push.apply(forkArray, json);
+        		if(json.length != 0)
+        			forkArray.push.apply(forkArray, json);
         	}
         	if(json.length != 100){
         		darwin.jsonManagerModule.setMergedForks(forkArray, index);
@@ -146,7 +151,8 @@ darwin.jsonManagerModule = (function() {
         	if(TagsArray.length === 0){
         		TagsArray = json
         	} else {
-        		TagsArray.push.apply(TagsArray, json);
+        		if(json.length != 0)
+        			TagsArray.push.apply(TagsArray, json);
         	}
         	if(json.length != 100){
         		darwin.jsonManagerModule.setMergedTags(TagsArray, index);
@@ -156,7 +162,8 @@ darwin.jsonManagerModule = (function() {
         	if(issuesArray.length === 0){
         		issuesArray = json
         	} else {
-        		issuesArray.push.apply(issuesArray, json);
+        		if(json.length != 0)
+        			issuesArray.push.apply(issuesArray, json);
         	}
         	//should i just keep updating this?
         	if(json.length != 100){

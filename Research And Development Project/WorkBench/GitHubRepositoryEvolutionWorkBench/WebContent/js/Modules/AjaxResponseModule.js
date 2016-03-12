@@ -27,30 +27,29 @@ darwin.AjaxResponseModule = (function () {
 				  }
 			  } else {
 				  
-				  if(action == "commit" && response.length != 0){
+				  if(action == "commit"){
 					  darwin.Mediator.setCommitJson(index,response)
 					  darwin.Mediator.updateCommitProgress(response.length);
 				  }
-				  if(action == "star" && response.length != 0){
+				  if(action == "star"){
 					  darwin.Mediator.setStarJson(index,response)
 					  darwin.Mediator.updateStarProgress(response.length);
 				  }
 				  //watcher call does no return all 100 that i expect, so numbers are slightly off
-				  if(action == "watcher" && response.length != 0){
+				  if(action == "watcher"){
 					  darwin.Mediator.setWatcherJson(index,response)
 					  darwin.Mediator.updateWatcherProgress(response.length);
 				  }
-				  if(action == "fork" && response.length != 0){
+				  if(action == "fork"){
 					  darwin.Mediator.setForkJson(index,response)
-					  darwin.Mediator.updateIssuesProgress(response.length);
 				  }		
-				  if(action == "tags" && response.length != 0){
+				  if(action == "tags"){
 					  darwin.Mediator.setTagsJson(index,response)
 				  }	
-				  if(action == "comments" && response.length != 0){
+				  if(action == "comments"){
 					  darwin.Mediator.setCommentJson(index,response)
 				  }		
-				  if(action == "Issues"  && response.length != 0){
+				  if(action == "Issues"){
 				 
 					  darwin.Mediator.setIssuesJson(index,response)
 					  
@@ -59,7 +58,7 @@ darwin.AjaxResponseModule = (function () {
 					  
 					  darwin.Mediator.updateIssuesProgress(issuesCount);
 				  }	
-				  if(action == "tagSupplement" && response.length != 0){
+				  if(action == "tagSupplement"){
 					  darwin.Mediator.setSupplementTag(response, index);
 					  darwin.Mediator.updateTagsProgress(1);
 					  darwin.Mediator.setTagSuppIndex();
@@ -80,7 +79,7 @@ darwin.AjaxResponseModule = (function () {
 					  //reset counter for next projects json
 					  darwin.Mediator.resetcurrRequestPage(0);
 					  
-					  if(action == "commit"){
+					  if(action == "commit"){ //maybe wipe json here? after the callback?
 						  //gets the commits and passes in the index (how many commits selected)
 						  callback(darwin.Mediator.getIndexCommitJson(index), index, action);  
 						  darwin.Mediator.setNumCommitProjectSelected();
@@ -101,13 +100,13 @@ darwin.AjaxResponseModule = (function () {
 						  darwin.Mediator.supplementTagData(callback, action, index);
 					  }  	
 					  if(action == "comments"){
-						  var page = darwin.dataManager.getIndexIssueComments(false);
+						  var page = darwin.dataManager.getIndexIssueComments(index,false);
 
 						  if(page == "XX"  || page == undefined){
 							  callback(darwin.Mediator.getIndexCommentJson(index), index, action);
 
 						  } else{
-							  darwin.Mediator.makeGithubRequestSingleUrl("https://api.github.com/repos"+project+"/issues" + "/" + darwin.dataManager.getIndexIssueComments() + "/comments", callback, index, action);
+							  darwin.Mediator.makeGithubRequestSingleUrl("https://api.github.com/repos"+project+"/issues" + "/" + darwin.dataManager.getIndexIssueComments(index) + "/comments?type=comment", callback, index, action);
 						  }
 						  
 					  } 
@@ -118,11 +117,13 @@ darwin.AjaxResponseModule = (function () {
 						  //get issues based on closed at date
 						  callback(darwin.Mediator.getIndexIssuesJson(index), index, "closedAt");
 						  
+						  if(darwin.projectManagerModule.getIsAuto() != true){
 						  
-						  //kick start the get issue comments process
-						  projects = darwin.projectManagerModule.getProjectNames();
-						  project = projects[index];
-						  darwin.Mediator.prepareIssueComment("https://api.github.com/repos"+project+"/issues", project);
+							  //kick start the get issue comments process
+							  projects = darwin.projectManagerModule.getProjectNames();
+							  project = projects[index];
+							  darwin.Mediator.prepareIssueComment(index, "https://api.github.com/repos"+project+"/issues", project);
+						  }
 						  
 						  darwin.Mediator.setNumIssuesProjectSelected();					  
 					  }  				  					  
@@ -136,13 +137,13 @@ darwin.AjaxResponseModule = (function () {
 					  	darwin.Mediator.makeGithubRequestSingleUrl(darwin.Mediator.getAllBaseRequestUrl(index) + darwin.Mediator.getcurrRequestPage(), callback, index, action);
 					  }
 					  if(action == "comments"){
-						  var page = darwin.dataManager.getIndexIssueComments(false);
+						  var page = darwin.dataManager.getIndexIssueComments(index, false);
 
 						  if(page == "XX" || page == undefined){
 							  callback(darwin.Mediator.getIndexCommentJson(index), index, action);
 
 						  } else{
-							  darwin.Mediator.makeGithubRequestSingleUrl("https://api.github.com/repos"+project+"/issues" + "/" + darwin.dataManager.getIndexIssueComments() + "/comments", callback, index, action);
+							  darwin.Mediator.makeGithubRequestSingleUrl("https://api.github.com/repos"+project+"/issues" + "/" + darwin.dataManager.getIndexIssueComments(index) + "/comments?type=comment", callback, index, action);
 						  }
 					  }
 				  }

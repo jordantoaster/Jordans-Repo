@@ -142,8 +142,11 @@ darwin.contributionExtractorModule = (function() {
 							SamplingIterator++;
 						}
 					}
-
-					darwin.Mediator.setContributionDetails(j, additions, deletions, difference, LOCOverTime, sampleIndex, contributionDates, additionsAcc, deletionsAcc);
+					
+					
+					if(!darwin.projectManagerModule.getIsAuto()){
+						darwin.Mediator.setContributionDetails(j, additions, deletions, difference, LOCOverTime, sampleIndex, contributionDates, additionsAcc, deletionsAcc);
+					}
 					
 					//DB
 	      			if(sampleRate == 1){
@@ -165,13 +168,18 @@ darwin.contributionExtractorModule = (function() {
 			//kick off auto process if required - contribution data is completed at this point
     	    if(darwin.projectManagerModule.getIsAuto()){
     	    	
+    	    	//wipe json - so it isnt stored by chrome
+    			darwin.jsonManagerModule.resetAllData();
+    	    	
         		//get project names
         		projectNames = darwin.projectManagerModule.getProjectNames();
         		
     			//get the next project name - as we are not at the project num limit
     			project = projectNames[0];
     			
-    	    	darwin.Mediator.prepareCommitClick("https://api.github.com/repos"+project+"/commits?per_page=100&page=", project);
+    	    	//darwin.Mediator.prepareCommitClick("https://api.github.com/repos"+project+"/commits?per_page=100&page=", project);
+    			
+    			darwin.Mediator.prepareIssuesClick("https://api.github.com/repos"+project+"/issues?&per_page=100&state=all&page=", project);	
     	    }
 		
 		},

@@ -742,6 +742,8 @@ darwin.projectManagerModule = (function() {
         },
         handleAuto : function(autoAction, autoIndex){
         	
+    		darwin.jsonManagerModule.resetAllData();
+        	
         	if(autoIndex != darwin.projectManagerModule.getNumProjects()-1){
         		
         		/*This block handles when a metric needs the next projects data*/
@@ -750,7 +752,11 @@ darwin.projectManagerModule = (function() {
         		projectNames = darwin.projectManagerModule.getProjectNames();
         		
     			//get the next project name - as we are not at the project num limit
-    			project = projectNames[index+1];
+        		if(autoAction == "comments"){
+        			project = projectNames[autoIndex+1];
+        		}else{   			
+        			project = projectNames[index+1];
+        		}
     			
     			//get next projects metric type
     			if(autoAction == "commit"){
@@ -764,10 +770,16 @@ darwin.projectManagerModule = (function() {
     			if(autoAction == "fork"){
         			darwin.Mediator.prepareForkClick("https://api.github.com/repos"+project+"/forks?per_page=100&page=", project);	
     			}
+    			
+    			//issues
+    			if(autoAction == "Issues"){
+    				darwin.Mediator.prepareIssuesClick("https://api.github.com/repos"+project+"/issues?state=all&per_page=100&page=", project);
+    			}
 
+    			//comments
     			if(autoAction == "comments"){
     				darwin.dataManager.resetCommentIndex();
-        			darwin.Mediator.prepareIssuesClick("https://api.github.com/repos"+project+"/issues?state=all&per_page=100&page=", project);	
+        			darwin.Mediator.prepareIssueComment(index, "https://api.github.com/repos"+project+"/issues", project);	
     			}
     			
     			//if(autoAction == "watcher"){
@@ -805,6 +817,10 @@ darwin.projectManagerModule = (function() {
     				darwin.dataManager.resetCommentIndex();
         			darwin.Mediator.prepareIssuesClick("https://api.github.com/repos"+project+"/issues?&per_page=100&state=all&page=", project);	
     			}
+    			
+    			if(autoAction == "Issues"){
+        			darwin.Mediator.prepareIssueComment(0, "https://api.github.com/repos"+project+"/issues", project);
+    			}
 
     			if(autoAction == "comments"){
         			darwin.Mediator.prepareTagsClick("https://api.github.com/repos"+project+"/tags?per_page=100&page=", project);	
@@ -835,12 +851,6 @@ darwin.projectManagerModule = (function() {
 
       			}
     			
-      			if(autoAction == "correlation"){
-      				
-      				//get the means
-      				
-      				
-      			}
 				//now unlock tabs - when done
     			//darwin.projectManagerModule.enableTabs();
         	}

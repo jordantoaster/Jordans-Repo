@@ -47,7 +47,7 @@ darwin.genericExtractorModule = (function() {
     			
     			if(action == "Issues"){
     				localJson = darwin.Mediator.removePullRequests(localJson);
-    				darwin.Mediator.storeIssueNumbers(localJson);
+    				darwin.Mediator.storeIssueNumbers(localJson, index);
     			}
     			if(action == "closedAt"){
         			closedAtDates = [];
@@ -169,6 +169,9 @@ darwin.genericExtractorModule = (function() {
     			//set Acc Data
     			darwin.Mediator.setGenericAcc(index, genericAcc, action, sampleIndex);
     			
+			if(!darwin.projectManagerModule.getIsAuto()){
+					
+
     			//depending on action set different data
     			if(action == "commit"){
         			darwin.Mediator.setCommitDetails(index, data, darwin.projectManagerModule.getProjectNames(), sampleIndex);
@@ -191,6 +194,7 @@ darwin.genericExtractorModule = (function() {
      			if(action == "comments"){
       				darwin.Mediator.setIssueCommentsDetails(index, data, darwin.projectManagerModule.getProjectNames(), sampleIndex);
     			}
+    		}
       			
       			if(sampleRate == 1){
       				
@@ -235,7 +239,10 @@ darwin.genericExtractorModule = (function() {
 			darwin.Mediator.enableButtons();
 			
 			//only runs when auto getting data 
-    	    if(darwin.projectManagerModule.getIsAuto() == true){
+    	    if(darwin.projectManagerModule.getIsAuto() == true && action != "Issues"){
+    	    	if(action == "closedAt"){
+    	    		action = "Issues";
+    	    	}
 				darwin.projectManagerModule.handleAuto(action, index);
 			}
 			
