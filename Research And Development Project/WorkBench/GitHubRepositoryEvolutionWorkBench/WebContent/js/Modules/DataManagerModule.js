@@ -368,7 +368,14 @@ darwin.dataManager = (function() {
         resetAllDataManager : function(){
         	 deletions = [];
         	 additions = [];
-        	 LOC = [];
+        	 deletionsAcc = [];
+        	 additionsAcc = [];
+        	 starsAcc = [];
+        	 issuesAcc = [];
+        	 commitsAcc = [];
+        	 forksAcc = [];
+        	 tagsAcc = [];
+        	 LOC = [];     	 
         	 difference = [];
         	 commitList = [];
         	 starList = [];
@@ -376,11 +383,16 @@ darwin.dataManager = (function() {
         	 customNameList = [];
         	 contributionDates = [];
         	 forkList = [];
-        	 TagsList  =[];
-        	 tagSupplment = [];
+        	 TagsList =[];
+        	 tagSupplement = [];
         	 IssuesList = [];
+        	 closedIssues = [];
+        	 openIssues = [];
         	 closedAtIssues =[];
-        	 issueComments = [];
+        	// issueComments = [];
+        	// issueNumbers = [];
+        	 contribSliderStart;
+        	 contribSliderEnd;
         	 commentIndex = 0;
         }
     };

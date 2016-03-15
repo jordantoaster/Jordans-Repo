@@ -203,12 +203,14 @@ darwin.genericExtractorModule = (function() {
       				var datesAsString = darwin.dateManager.convertDateObjectToString(dates);
       				
       				if(action != "Issues"){
-      					darwin.Mediator.makeServerRequestGeneric("storeGeneric", action, darwin.Mediator.emptyCallback,"POST",data, datesAsString, darwin.projectManagerModule.getProjectNamesIndex(index))	      				
+      					//001
+      					//darwin.Mediator.makeServerRequestGeneric("storeGeneric", action, darwin.Mediator.emptyCallback,"POST",data, datesAsString, darwin.projectManagerModule.getProjectNamesIndex(index))	      				
       				} else {
-      					var mergedIssues = data.concat("*").concat(openIssues).concat("*").concat(closedIssues).concat("*");
+      					//001
+      					//var mergedIssues = data.concat("*").concat(openIssues).concat("*").concat(closedIssues).concat("*");
       					
       					//send issues that are open/closed independently
-      					darwin.Mediator.makeServerRequestGeneric("storeGeneric", action, darwin.Mediator.emptyCallback,"POST",mergedIssues, datesAsString, darwin.projectManagerModule.getProjectNamesIndex(index), data)	      				
+      					//darwin.Mediator.makeServerRequestGeneric("storeGeneric", action, darwin.Mediator.emptyCallback,"POST",mergedIssues, datesAsString, darwin.projectManagerModule.getProjectNamesIndex(index), data)	      				
       				}															
       			}
     		

@@ -173,8 +173,10 @@ public class LawsAction implements Action {
 					}
 							
 					//trim both arrays both six months
-					parsedComments = Arrays.copyOfRange(parsedComments, 26, parsedComments.length);
-					parsedIssue = Arrays.copyOfRange(parsedIssue, 26, parsedIssue.length);
+					if(parsedComments.length > 52){
+						parsedComments = Arrays.copyOfRange(parsedComments, 26, parsedComments.length);
+						parsedIssue = Arrays.copyOfRange(parsedIssue, 26, parsedIssue.length);
+					}
 												
 					//gets -2 corr value
 					crossCorr = r.crossCorrelation(parsedComments, parsedIssue);
@@ -346,7 +348,8 @@ public class LawsAction implements Action {
 
 		//get the mean of the variances
 		try {
-		    mean = r.mean(variance);
+		    //mean = r.mean(variance);
+			mean = r.median(variance);
 		} catch (REngineException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

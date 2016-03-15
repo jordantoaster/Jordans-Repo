@@ -743,6 +743,7 @@ darwin.projectManagerModule = (function() {
         handleAuto : function(autoAction, autoIndex){
         	
     		darwin.jsonManagerModule.resetAllData();
+    		darwin.dataManager.resetAllDataManager();
         	
         	if(autoIndex != darwin.projectManagerModule.getNumProjects()-1){
         		
@@ -848,11 +849,10 @@ darwin.projectManagerModule = (function() {
     			}
     			
       			if(autoAction == "growth"){
-
+    				//now unlock tabs - when done
+        			darwin.projectManagerModule.enableTabs();
       			}
     			
-				//now unlock tabs - when done
-    			//darwin.projectManagerModule.enableTabs();
         	}
         	
         }

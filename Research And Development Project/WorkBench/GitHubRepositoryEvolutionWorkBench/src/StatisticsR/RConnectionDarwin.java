@@ -72,6 +72,34 @@ public class RConnectionDarwin {
         
 		return 0;
     }
+	
+	public double median(double[] dataSubset) throws REngineException, REXPMismatchException {
+		
+		RConnection connection = null;
+		
+        try {
+            /* Create a connection to Rserve instance running
+             * on default port 6311
+             */
+            connection = new RConnection();
+
+            connection.assign("vector", dataSubset);
+			REXP x = connection.eval("median(vector)");
+			
+			double result = x.asDouble();
+            
+            connection.close();
+            
+            return result;
+            
+        } catch (RserveException e) {
+            e.printStackTrace();
+        }  
+        
+        connection.close();
+        
+		return 0;
+    }
 
 
 
