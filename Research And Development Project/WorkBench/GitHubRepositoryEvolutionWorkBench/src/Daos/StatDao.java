@@ -261,4 +261,48 @@ public class StatDao {
 		
 	}
 
+	public void getCross() {
+		DBCollection collection = new dbConnectionBuilder().getMongoCollection("StandardDeviation");
+		
+		DBCursor cursor = collection.find();
+		while (cursor.hasNext()) {
+		   BasicDBObject obj = (BasicDBObject) cursor.next();
+			   System.out.println(obj.getString("SD"));
+		}
+						
+	}
+
+	public int getNumInSD(double[] series, double stanDev) {
+
+		int count = 0;
+		for (int i = 0; i < series.length; i++) {
+			if(series[i] < stanDev){
+				count++;
+			}
+		}
+		
+		return count;
+	}
+
+	public boolean insertNumInSd(int i, int length) {
+		
+		float percentage = (float) ((i * 100.0) / length);
+
+		try {
+			DBCollection userCollection = new dbConnectionBuilder().getMongoCollection("StandardDeviation");
+		
+			BasicDBObject documentDetail = new BasicDBObject();
+			documentDetail.put("SD", percentage);
+
+	
+			userCollection.insert(documentDetail);
+		} catch(MongoException e){
+			System.out.println(e);
+			return false;
+		}
+		
+		return true;	
+		
+	}
+
 }

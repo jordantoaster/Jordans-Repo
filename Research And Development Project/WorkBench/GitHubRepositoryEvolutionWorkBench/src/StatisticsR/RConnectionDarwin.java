@@ -77,6 +77,8 @@ public class RConnectionDarwin {
 		
 		RConnection connection = null;
 		
+		Arrays.sort(dataSubset);
+		
         try {
             /* Create a connection to Rserve instance running
              * on default port 6311
@@ -248,13 +250,13 @@ public class RConnectionDarwin {
 
             connection.assign("vectorA", seriesA);
             connection.assign("vectorB", seriesB);
-			REXP x = connection.eval("ccf(vectorA, vectorB, lag.max = 2, plot = FALSE)$acf");
+			REXP x = connection.eval("ccf(vectorA, vectorB, lag.max = 5, plot = FALSE)$acf"); //change lag back to 2
 			
 			double[] result = x.asDoubles();
 
             connection.close();
             
-            return result[0]; //returns the negative 2 lag case
+            return result[3]; //curr = -2
             
         } catch (RserveException e) {
             connection.close();

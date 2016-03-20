@@ -37,9 +37,10 @@ public class LawsAction implements Action {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
 		
+		
 		//get law 1 and 6
 		float hpOneResult = getHPOne("Commits", "Stars");
-		
+			
 		//get Law 2
 		float hpTwoResult = getHPTwo();
 
@@ -50,6 +51,8 @@ public class LawsAction implements Action {
 		
 		//get law 4
 		double hpFourResult = getHPFour();
+
+		sDao.getCross();
 
 		
 		//get HP5
@@ -323,6 +326,8 @@ public class LawsAction implements Action {
 		
 		int numInCollection = sDao.getNumInCollection("GrowthRate");
 		double[] variance = new double[numInCollection];
+		double[] standDev = new double[numInCollection];
+		int[] numInSD = new int[numInCollection];
 		double mean = 0;
 		
 		//get each growth loc series and get the variance for each
@@ -332,9 +337,12 @@ public class LawsAction implements Action {
 			
 			try {
 				variance[i] = r.getVariance(series);
-				
+				standDev[i] = Math.sqrt(variance[i]);
+				numInSD[i] = sDao.getNumInSD(series, standDev[i]); 
+	
 				//store the variance
 				sDao.insertVariance(variance[i]);
+				sDao.insertNumInSd(numInSD[i], series.length);
 				
 			} catch (REngineException e) {
 				// TODO Auto-generated catch block
