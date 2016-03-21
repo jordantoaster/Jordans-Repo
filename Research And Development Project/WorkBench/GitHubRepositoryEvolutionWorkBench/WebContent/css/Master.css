@@ -66,15 +66,14 @@ a:hover {
 .submitButton {
 	background-color: #eee;
 	border: 1px solid #5f5f5f;
+	margin-left: 40% !important;
 	padding: 15px;
 	font-size: 2em;
 	border-radius: 10px;
-	display: block;
 	margin-top: 2.5%;
 	color: #5f5f5f;
     text-align:center;
     display: inline !important;
-    margin-left: 35%;
 }
 
 .submitButton:hover {

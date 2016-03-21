@@ -79,8 +79,10 @@
 }
 
 .submitButton {
-	margin-left: 45% !important;
-	display: block !important;
+}
+
+#submitButtonAuto {
+	margin-left: 2.5% !important;
 }
 
 .dropdown {
@@ -160,6 +162,10 @@
 
 .statChart {
 	float: left;
+}
+
+#submitButtonQuery {
+	margin-left: 40% !important;
 }
 
 .additional{

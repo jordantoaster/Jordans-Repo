@@ -12,7 +12,7 @@ darwin.Mediator = (function () {
     	    darwin.projectManagerModule.resetComponents();
     	    
     	    //get urls
-	    	bulkUrls = $('#bulkUrl').val();
+	    	bulkUrls = $('#urlField0').val();
 	    	bulkUrls = bulkUrls.replace(/\s+/g, '');
 	    	
 	    	//split on comma to an array

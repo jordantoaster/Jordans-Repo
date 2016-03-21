@@ -15,7 +15,7 @@ public class LoginAction implements Action {
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
 		
 		//is [] needed after 'input'
-		String[] loginDetails = request.getParameterValues("input");		
+		String[] loginDetails = request.getParameterValues("input[]");		
 		
 		//for unit test mocking
 		if(loginDetails == null){
