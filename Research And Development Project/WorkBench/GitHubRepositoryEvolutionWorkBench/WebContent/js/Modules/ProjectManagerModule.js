@@ -211,14 +211,14 @@ darwin.projectManagerModule = (function() {
     		$('#IssuesOptions').empty();
         },
         disableTabs :  function(){
-            $('#selectVisualiser').addClass('disabled');
-            $('#selectStats').addClass('disabled');
-            $('#selectPrediction').addClass('disabled');
+           // $('#selectVisualiser').addClass('disabled');
+           // $('#selectStats').addClass('disabled');
+           // $('#selectLehmann').addClass('disabled');
         },
         enableTabs :  function(){
             $('#selectVisualiser').removeClass('disabled');
             $('#selectStats').removeClass('disabled');
-            $('#selectPrediction').removeClass('disabled');
+            $('#selectLehmann').removeClass('disabled');
         },
         disableCommitButton : function(){
         	$('.btn-group button').attr('disabled','disabled');   

@@ -77,20 +77,26 @@ $(document).ready(function(e) {
 	$("#selectInput").on("click.darwin", function(e){  
 		$("#urlContainer").removeClass('hidden');
 		$("#visualiserContainer").addClass('hidden');
+		$("#lehmannContainer").addClass('hidden');
 		$("#statContainer").addClass('hidden');
 	});
 	$("#selectVisualiser").on("click.darwin", function(e){  
 		$("#visualiserContainer").removeClass('hidden');
 		$("#urlContainer").addClass('hidden');
+		$("#lehmannContainer").addClass('hidden');
 		$("#statContainer").addClass('hidden');
 	});
 	$("#selectStats").on("click.darwin", function(e){  
 		$("#statContainer").removeClass('hidden');
 		$("#visualiserContainer").addClass('hidden');
+		$("#lehmannContainer").addClass('hidden');
 		$("#urlContainer").addClass('hidden');
 	});
-	$("#selectPrediction").on("click.darwin", function(e){  
-
+	$("#selectLehmann").on("click.darwin", function(e){  
+		$("#urlContainer").addClass('hidden');
+		$("#statContainer").addClass('hidden');
+		$("#visualiserContainer").addClass('hidden');
+		$("#lehmannContainer").removeClass('hidden');
 	});
 	
 	/*remove this and draw components based on droop down not tab*/
@@ -103,7 +109,7 @@ $(document).ready(function(e) {
 
 	//Used to auto run the laws code
 	$(document).on( 'shown.bs.tab', 'a[data-toggle="tab"]', function (e) {
-		if($(this).attr('href') == "#lawsBlock"){
+		if($(this).attr('href') == "#lawSummary"){
 			
 			darwin.Mediator.makeServerRequestGeneric("laws", "", darwin.Mediator.handleLawData,"POST","","", "");
 		}// activated tab

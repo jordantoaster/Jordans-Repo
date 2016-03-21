@@ -53,18 +53,18 @@
   </head>
   <body>
   <div id="selectionHolder">
-     <button type="submit" id="selectInput" class="btn btn-primary button">
-       	   <i class="icon-user icon-white">Add URL(s)</i> 
-     </button> 
-     <button type="submit" id="selectVisualiser" class="btn btn-primary button">
-       	   <i class="icon-user icon-white">Visualiser</i> 
-     </button> 
-     <button type="submit" id="selectStats" class="btn btn-primary button">
-       	   <i class="icon-user icon-white">Statistics</i> 
-     </button> 
-     <button type="submit" id="selectPrediction" class="btn btn-primary button">
-       	   <i class="icon-user icon-white">Lehmann</i> 
-     </button> 
+     <button class="btn btn-default" id="selectInput" class="btn btn-primary button">
+    	<i style="font-size: 1.5em" class="icon-user icon-white">Add URL(s)</i> <span style="margin-left: 5px;" class="glyphicon glyphicon-plus" style="vertical-align:middle"></span>
+  	 </button>
+  	 <button class="btn btn-default" id="selectVisualiser" class="btn btn-primary button">
+    	<i style="font-size: 1.5em" class="icon-user icon-white">Visualiser</i> <span style="margin-left: 5px;" class="glyphicon glyphicon-film" style="vertical-align:middle"></span>
+  	 </button>
+  	 <button class="btn btn-default" id="selectStats" class="btn btn-primary button">
+    	<i style="font-size: 1.5em" class="icon-user icon-white">Statistics</i> <span style="margin-left: 5px;" class="glyphicon glyphicon-signal" style="vertical-align:middle"></span>
+  	 </button>
+  	 <button class="btn btn-default" id="selectLehmann" class="btn btn-primary button">
+    	<i style="font-size: 1.4em" class="icon-user icon-white">Lehmann's Laws</i> <span style="margin-left: 5px;" class="glyphicon glyphicon-stats" style="vertical-align:middle"></span>
+  	 </button>
   </div>
   <div id="urlContainer">
     <ul class="nav nav-tabs tabListCustom">
@@ -402,7 +402,6 @@
       <li class=""><a class="tabText" data-toggle="tab" href="#correlationBLock">Correlation</a></li>
       <li class=""><a class="tabText" data-toggle="tab" href="#growthBlock">Growth Rate</a></li>
       <li class=""><a class="tabText" data-toggle="tab" href="#normalBlock">Normality</a></li>
-      <li class=""><a class="tabText" data-toggle="tab" href="#lawsBlock">Laws</a></li>
     </ul>
       <div class="tab-content">
       	<div id="meanBlock" class="tab-pane fade in active">
@@ -423,7 +422,7 @@
   		  		<li><a href="#" id="MeanChoice9">Watchers</a></li>
   			</ul>
 			</div>
-			<div id="meanOptions" class="options">>
+			<div id="meanOptions" class="options">
 	    	<p class="inlineText" style="display:block;">Options</p>
 	    	</div> 
 	    	 <button type="submit" style="display: inline !important; margin-top: 0px; margin-left:1%  !important; " id="submitButtonMean" class="btn btn-primary submitButton">
@@ -553,16 +552,31 @@
   	     		<i class="icon-user icon-white">Get Normality Information</i> 
       		</button>  		
 	 	</div>
-	 	<div id="lawsBlock" class="tab-pane fade">
+     </div>
+  </div>
+  <div id="lehmannContainer" class="hidden">
+    <ul class="nav nav-tabs tabListCustom">
+      <li class="active"><a class="tabText" data-toggle="tab" href="#lawOneBlock">Law One & Six</a></li>
+      <li class=""><a class="tabText" data-toggle="tab" href="#lawTwoBlock">Law Two</a></li>
+      <li class=""><a class="tabText" data-toggle="tab" href="#lawSummary">Laws Summary</a></li>
+    </ul>
+      <div class="tab-content">
+      	<div id="lawOneBlock" class="tab-pane fade in active">
+			hi
+	 	</div>
+	 	<div id="lawTwoBlock" class="tab-pane fade">
+			hi 2
+	 	</div>
+	 	<div id="lawSummary" class="tab-pane fade">
 			<p id="law1" class="largeText"></p> 
 			<p id="law2" class="largeText"></p> 		
 			<p id="law3" class="largeText"></p> 		
 			<p id="law4" class="largeText"></p> 		
 			<p id="law5" class="largeText"></p> 		
 			<p id="law6" class="largeText"></p> 		
-			<p id="law7" class="largeText"></p> 					
+			<p id="law7" class="largeText"></p> 
 	 	</div>
-     </div>
+	  </div>
   </div>
     <div id="ajaxGetUserServletResponse" class="alert alert-success" role="alert"></div>   
   </body>

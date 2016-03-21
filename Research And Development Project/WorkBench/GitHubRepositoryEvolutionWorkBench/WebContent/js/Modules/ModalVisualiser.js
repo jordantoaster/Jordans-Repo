@@ -9,7 +9,7 @@ darwin.modalVisualiser = (function() {
 		
 		drawModal : function(title, body){
 			
-			$('#modalTitle').text("Information for - " + title);
+			$('#modalTitle').text("READ ME - " + title);
 			$('#modalMain').text(body);
 			
 			
