@@ -13,6 +13,7 @@ darwin.progressbarModule = (function() {
 	var forkProgress =0;
 	var tagsProgress =0;
 	var issuesProgress = 0;
+	var bulkProgress = "contributions";
 	
     return {
     	updateProgressBar: function () {
@@ -26,6 +27,13 @@ darwin.progressbarModule = (function() {
     		if(adjustedWidth == 100){
     			adjustedWidth = 0;
     		}
+        },
+        updateBulkProgress : function(stage){
+        	bulkProgress = stage;
+        	
+        	//update jsp
+            $('#bulkProgress').text("Current Stage : " + bulkProgress);
+
         },
         updateCommitProgress : function(value){
         	commitProgress = commitProgress + value;

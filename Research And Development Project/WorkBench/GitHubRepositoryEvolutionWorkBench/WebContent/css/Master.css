@@ -20,6 +20,10 @@ html, body {
 	background-color: rgba(102, 102, 153, 0.8) !important;
 }
 
+.input-group {
+	width: 95%;
+}
+
 #tabContainer {
 	width: 45%;
     margin: 0 auto;

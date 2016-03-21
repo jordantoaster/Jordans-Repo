@@ -28,11 +28,30 @@ $(document).ready(function(e) {
 		e.preventDefault();
 		
 		darwin.projectManagerModule.setIsAuto(true);
+		
+		darwin.progressbarModule.updateBulkProgress("Contributions");
 
 		//sets up app and gets contributions
 		darwin.Mediator.initialSetupBulk();
 		
 	});
+	
+	$("#info0").on("click.darwin", function(e){
+		darwin.Mediator.prepareModal(0);
+	});
+	$(document.body).on('click.darwin', '#info1' ,function(){
+		darwin.Mediator.prepareModal(1);
+	});
+	$(document.body).on('click.darwin', '#info2' ,function(){
+		darwin.Mediator.prepareModal(2);
+	});
+	$(document.body).on('click.darwin', '#info3' ,function(){
+		darwin.Mediator.prepareModal(3);
+	});
+	$(document.body).on('click.darwin', '#info4' ,function(){
+		darwin.Mediator.prepareModal(4);
+	});
+
 	
 	$(".icon").on("click.darwin", function(e){  
 				
@@ -42,7 +61,7 @@ $(document).ready(function(e) {
 							
 			var feild = '<div  style="margin-top: 0.75%;" class="input-group input-group-lg fields urlInputOne">' + 
 			'<span class="input-group-addon glyphicon glyphicon-cog" id="basic-addon1"></span>' +
-			'<input type="text" class="form-control" id="urlField' + numFeilds + '" placeholder="Extra GitHub repository URL" aria-describedby="basic-addon1">' +
+			'<input type="text" class="form-control" id="urlField' + numFeilds + '" placeholder="Extra GitHub repository URL" aria-describedby="basic-addon1"><span class="darwinIcon input-group-addon glyphicon glyphicon-open" id="info' + numFeilds + '" ></span>' +
 			'</div>';
 	    
 			numFeilds++;

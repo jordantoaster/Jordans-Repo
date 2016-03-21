@@ -69,11 +69,32 @@ darwin.Mediator = (function () {
     	    
     	    //Load options for manual pages
     	    darwin.projectManagerModule.loadProjectSelection(darwin.projectManagerModule.getProjectNames());
+    	    
+    	    //start project info process
+    	    darwin.Mediator.getProjectInfo();
     	        
     	    //if(darwin.projectManagerModule.getIsAuto() == false){
     	    //activate tabs at the end of the process
         	darwin.projectManagerModule.enableTabs();
     	    // }
+    	},
+        getProjectInfo : function(){
+    		projectNames = darwin.projectManagerModule.getProjectNames();
+    		project = projectNames[0];
+
+			darwin.githubModule.send("https://api.github.com/repos" + project + "/readme?type=extra", darwin.AjaxResponseModule.handleSuccess, 0, "extraInfo");
+        },
+    	prepareModal : function(projectNum){
+    		
+    		//get modal data for the number
+    		projectNames = darwin.projectManagerModule.getProjectNames();
+    		projectName = projectNames[projectNum];
+    		bodyText = darwin.dataManager.getReadMe(projectNum);
+    		
+    		    		
+    		//send to visualiser
+    		darwin.modalVisualiser.drawModal(projectName, bodyText);
+
     	},
     	contribSliderVals : function(start, end){
     		darwin.dataManager.setContribSlider(start, end);
@@ -98,7 +119,9 @@ darwin.Mediator = (function () {
 			}
 		},
 		updateProgressBar: function () {
-			darwin.progressbarModule.updateProgressBar();
+    	    if(darwin.projectManagerModule.getIsAuto() == false){
+    	    	darwin.progressbarModule.updateProgressBar();
+    	    }
 		},
 		drawGenericStat : function(data, projectNames, metricType){
 			

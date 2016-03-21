@@ -41,6 +41,7 @@
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/InputManagers/MeanInputManager.js?v7"></script>
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/InputManagers/NormalityInputManager.js?v7"></script>
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Modules/ContributionVisualiser.js?v4"></script>
+    <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Modules/ModalVisualiser.js?v4"></script>
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Modules/GenericVisualiserModule.js?v5"></script>
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Modules/CustomVisualiserModule.js?v4"></script>
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Modules/ContributionExtractor.js?v7"></script>
@@ -62,7 +63,7 @@
        	   <i class="icon-user icon-white">Statistics</i> 
      </button> 
      <button type="submit" id="selectPrediction" class="btn btn-primary button">
-       	   <i class="icon-user icon-white">Predictor</i> 
+       	   <i class="icon-user icon-white">Lehmann</i> 
      </button> 
   </div>
   <div id="urlContainer">
@@ -74,6 +75,7 @@
 	   <div class="input-group input-group-lg fields urlInputOne">
          <span class="input-group-addon glyphicon glyphicon-cog" id="basic-addon1"></span>
          <input type="text" class="form-control" id="urlField0" placeholder="GitHub repository URL OR comma list" aria-describedby="basic-addon1">
+         <span class="darwinIcon input-group-addon glyphicon glyphicon-open" id="info0"></span>
        </div>  
        <div id="additionalProject"><span class="input-group-addon glyphicon glyphicon-plus icon" id="basic-addon1"></span></div>
        <button type="submit" id="submitButtonQuery" class="btn btn-primary submitButton">
@@ -81,7 +83,8 @@
        </button>   
        <button type="submit" id="submitButtonAuto" class="btn btn-primary submitButton">
   	     <i class="icon-user icon-white">Automate Data retrieval</i> 
-       </button>   
+       </button>  
+       <p class="largeText" style="margin-left: 45%;" id="bulkProgress"></p> 
  		<div class="progress">
   			<div class="progress-bar progress-bar-striped active" role="progressbar"
 			 aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
@@ -89,6 +92,25 @@
 		</div> 
 	 </div>
      </div>
+     <!-- Modal -->
+ 	 <div class="modal fade" id="projectModal" role="dialog">
+     <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title" id="modalTitle"></h4>
+        </div>
+        <div class="modal-body">
+          <p id="modalMain"></p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>    
+    </div>
+  </div>
   </div>
    <div id="visualiserContainer" class="hidden">
     <ul class="nav nav-tabs tabListCustom">

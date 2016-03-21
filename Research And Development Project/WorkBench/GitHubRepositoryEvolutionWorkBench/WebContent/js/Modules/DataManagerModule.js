@@ -34,8 +34,15 @@ darwin.dataManager = (function() {
 	var contribSliderStart;
 	var contribSliderEnd;
 	var commentIndex = 0;
+	var readMe = [];
 
     return {
+    	setReadMe : function(response, index){
+    		readMe[index] = response;
+    	},
+    	getReadMe : function(index){
+    		return readMe[index];
+    	},
     	setIssueNumbers : function(index, numbers){
     		issueNumbers[index] = numbers;
     	},

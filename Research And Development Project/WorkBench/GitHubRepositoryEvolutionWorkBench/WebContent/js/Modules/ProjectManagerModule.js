@@ -761,6 +761,7 @@ darwin.projectManagerModule = (function() {
     			
     			//get next projects metric type
     			if(autoAction == "commit"){
+    				darwin.progressbarModule.updateBulkProgress("Commits");
         	    	darwin.Mediator.prepareCommitClick("https://api.github.com/repos"+project+"/commits?per_page=100&page=", project);
     			}
     			
@@ -808,26 +809,33 @@ darwin.projectManagerModule = (function() {
     			project = projectNames[0];
     			
         		if(autoAction == "commit") {
+    				darwin.progressbarModule.updateBulkProgress("Stars");
     				darwin.Mediator.prepareStarClick("https://api.github.com/repos"+project+"/stargazers?per_page=100&page=", project);	
         		}
     			if(autoAction == "star"){
+    				darwin.progressbarModule.updateBulkProgress("Forks");
         			darwin.Mediator.prepareForkClick("https://api.github.com/repos"+project+"/forks?per_page=100&page=", project);	
     			}
     			
     			if(autoAction == "fork"){
+    				darwin.progressbarModule.updateBulkProgress("Issues");
     				darwin.dataManager.resetCommentIndex();
         			darwin.Mediator.prepareIssuesClick("https://api.github.com/repos"+project+"/issues?&per_page=100&state=all&page=", project);	
     			}
     			
     			if(autoAction == "Issues"){
+    				darwin.progressbarModule.updateBulkProgress("Issue Comments");
         			darwin.Mediator.prepareIssueComment(0, "https://api.github.com/repos"+project+"/issues", project);
     			}
 
     			if(autoAction == "comments"){
+    				darwin.progressbarModule.updateBulkProgress("Tags");
         			darwin.Mediator.prepareTagsClick("https://api.github.com/repos"+project+"/tags?per_page=100&page=", project);	
     			}
     			
     			if(autoAction == "tags"){
+    				
+    				darwin.progressbarModule.updateBulkProgress("LOC growth rate");
     				
     				//get all the lOC data and send it into the growth process
     	        	numProjects = darwin.projectManagerModule.getNumProjects();
@@ -851,10 +859,11 @@ darwin.projectManagerModule = (function() {
       			if(autoAction == "growth"){
     				//now unlock tabs - when done
         			darwin.projectManagerModule.enableTabs();
+            	    darwin.Mediator.updateProgressBar();
       			}
     			
         	}
         	
-        }
+        },
     };
 })();
