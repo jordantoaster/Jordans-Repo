@@ -35,6 +35,7 @@ darwin.projectManagerModule = (function() {
     var isAuto = false;
     var issuesFlag = false;
     var issuesCounter = 0;
+    varianceType ="";
 		
     return {
     	getIssuesFlag : function(){
@@ -93,6 +94,7 @@ darwin.projectManagerModule = (function() {
     			$("#ForkOptions").append('<button type="button" id="ForkOption'+(i+1)+'" class="btn btn-default">'+projects[i]+'</button>');
     			$("#TagsOptions").append('<button type="button" id="TagsOption'+(i+1)+'" class="btn btn-default">'+projects[i]+'</button>');
     			$("#IssuesOptions").append('<button type="button" id="IssuesOption'+(i+1)+'" class="btn btn-default">'+projects[i]+'</button>');
+    			$("#collabOptions").append('<button type="button" id="collabOption'+(i+1)+'" class="btn btn-default">'+projects[i]+'</button>');
     		}
         },
         setChartType : function(val){
@@ -340,6 +342,9 @@ darwin.projectManagerModule = (function() {
         setNormalityType : function(type){
         	normalityType = type;
         },
+        setVarianceType : function(type){
+        	varianceType = type;
+        },
         getNormalityType : function(){
         	return normalityType;
         },
@@ -376,6 +381,9 @@ darwin.projectManagerModule = (function() {
         		darwin.projectManagerModule.setGrowthType(dataType);
         	}
         	if(metricType == "normality"){
+        		darwin.projectManagerModule.setNormalityType(dataType);
+        	}
+        	if(metricType == "variance"){
         		darwin.projectManagerModule.setNormalityType(dataType);
         	}
         	
@@ -467,6 +475,9 @@ darwin.projectManagerModule = (function() {
         },
         resetNormalityOptions : function(){
         	$('#normalityOptions').empty();
+        },
+        resetVarianceOptions : function(){
+        	$('#varianceOptions').empty();
         },
         resetCorrelationOptionsS1 : function(){
         	$('#correlationOptions1').empty();
@@ -570,6 +581,55 @@ darwin.projectManagerModule = (function() {
 			}
 			
 			darwin.serverModule.sendStat("stats","normality",selectedNormalityProjectName, selectedNormalityData, "POST", darwin.Mediator.drawGenericStat, dataType);	
+
+        },
+        getCheckedVarianceData : function(dataType){
+        	
+        	numProjects = darwin.projectManagerModule.getNumProjects();
+        	selectedVarianceData = [];
+        	selectedVarianceProjectName = [];
+        	dataCounter = 0;
+        	
+        	//finds out and records which checks have been chosen
+			for(var i =0; i< numProjects;i++){
+				if($('#checkvariance'+i+'').is(':checked')) {	
+										
+		        	if(dataType == "additions"){
+		        		selectedVarianceData = selectedVarianceData.concat(darwin.Mediator.getAdditionsIndex(i)[0]);
+		        	}
+		        	if(dataType == "deletions"){
+		        		selectedVarianceData = selectedVarianceData.concat(darwin.Mediator.getDeletionsIndex(i)[0]);
+		        	}
+		        	if(dataType == "LOC"){
+		        		selectedVarianceData = selectedVarianceData.concat(darwin.Mediator.getLOCIndex(i)[0]);
+		        	}
+		        	if(dataType == "forks"){
+		        		selectedVarianceData = selectedVarianceData.concat(darwin.Mediator.getForksIndex(i)[0]);
+		        	}
+		        	if(dataType == "tags"){
+		        		selectedVarianceData = selectedVarianceData.concat(darwin.Mediator.getTagsIndex(i)[0]);
+		        	}
+		        	if(dataType == "issues"){
+		        		selectedVarianceData = selectedVarianceData.concat(darwin.Mediator.getIssuesIndex(i)[0]);
+		        	}
+		        	if(dataType == "commits"){
+		        		selectedVarianceData = selectedVarianceData.concat(darwin.Mediator.getCommitsIndex(i)[0]);
+		        	}
+		        	if(dataType == "stars"){
+		        		selectedVarianceData = selectedVarianceData.concat(darwin.Mediator.getStarsIndex(i)[0]);
+		        	}
+		        	if(dataType == "watchers"){
+		        			
+		        	}	
+		        	
+		        	selectedVarianceData = selectedVarianceData.concat("*");
+		        	
+		        	selectedVarianceProjectName[dataCounter] = darwin.projectManagerModule.getProjectNamesIndex(i);
+	        		dataCounter++;
+				}				
+			}
+			
+			darwin.serverModule.sendStat("stats","variance",selectedVarianceProjectName, selectedVarianceData, "POST", darwin.Mediator.drawGenericStat, dataType);	
 
         },
         getCheckedGrowthData : function(dataType){

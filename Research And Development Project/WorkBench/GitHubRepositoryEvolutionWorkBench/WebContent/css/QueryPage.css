@@ -31,6 +31,20 @@
 	float: left;
 }
 
+#userContent{
+	overflow:hidden;
+	white-space:nowrap;
+}
+
+.repoPill {
+	padding: 5px;
+	margin: 10px 10px 10px 10px;
+	background-color: #666699 ;
+	color: white;
+	font-size: 1.8em;
+	border-radius: 5px;
+}
+
 #selectionHolder {
 	margin: 0 auto;
 	width: 40% !important;

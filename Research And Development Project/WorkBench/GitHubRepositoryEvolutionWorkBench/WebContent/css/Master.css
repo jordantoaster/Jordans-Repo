@@ -54,17 +54,13 @@ html, body {
 }
 
 .tab-content {
-	padding-top: 10px;
+	padding-top: 5px;
 }
 
 a:hover {
 	background-color: #666699 !important;
 	border-color: #5f5f5f !important;
 	color: white !important;
-}
-
-.tab-content {
-	padding-top: 10px;
 }
 
 .submitButton {

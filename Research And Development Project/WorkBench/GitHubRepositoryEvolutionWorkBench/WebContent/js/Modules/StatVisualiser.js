@@ -6,7 +6,7 @@ var darwin = darwin || {};
 
 darwin.statVisualiser = (function() {
     return {
-    	drawMean : function(values, projectNames, metricType, collatedMean, standardDev){
+    	drawMean : function(values, projectNames, metricType, collatedMean, standardDev, means, medians, collatedMedian){
     		
     		var height = 550;
     		var width = 700;
@@ -54,9 +54,17 @@ darwin.statVisualiser = (function() {
     	        
     	    //show new side info
     	    $("#additionalMean").css({"visibility":"visible"});
-    	    $("#collatedMean").text("Collated mean on the system " + collatedMean);
-    	    $("#meanSd").text("Standard deviation of these means " + standardDev);
+    	    for(var i =0;i<projectNames.length;i++){
+    	    	$("#dispersionData").append('<li class="inlineText" style="display:list-item">The mean for ' + projectNames[i] + ' and the chosen metric is <p style="color:#666699; font-weight:bold; font-size:1.1em;display:inline;">' + means[i] + '</p></li>');
+    	    	$("#dispersionData").append('<li class="inlineText" style="display:list-item">The median for ' + projectNames[i] + ' and the chosen metric is <p style="color:#666699; font-weight:bold; font-size:1.1em;display:inline;">' + medians[i] + '</p></li>');
+    	    }
+    	    
+	    	$("#dispersionData").append('<li class="inlineText" style="display:list-item">Overall mean additions per week for this metric (mean of means) <p style="color:#666699; font-weight:bold; font-size:1.1em;display:inline;">' + collatedMean + '</p></li>');
+	    	//$("#dispersionData").append('<li class="inlineText" style="display:list-item">Standard deviation of these means is <p style="color:#666699; font-weight:bold; font-size:1.3em;">' + standardDev + '</p></li>');
+	    	$("#dispersionData").append('<li class="inlineText" style="display:list-item">Overall median of the means for this metric <p style="color:#666699; font-weight:bold; font-size:1.1em; display:inline;">' + collatedMedian + '</p></li>');
 
+    	    
+    	    
     	    new google.visualization.BarChart(document.getElementById('meanChart')).draw(data, options);
 
     	},
@@ -111,8 +119,8 @@ darwin.statVisualiser = (function() {
     	        
     	    //show new side info
     	    $("#additionalgrowth").css({"visibility":"visible"});
-    	    $("#growthAbsolute").text("Overall Growth " + absolute);
-    	    $("#growthTime").text("average percentage growth over time " + overTime);
+    	    $("#growthAbsolute").text("Overall Growth " + absolute + "%");
+    	    $("#growthTime").text("Average percentage growth over time " + overTime + "%");
 
     	    new google.visualization.LineChart(document.getElementById('growthChart')).draw(data, options);
 
@@ -126,10 +134,13 @@ darwin.statVisualiser = (function() {
 			 var spearman = obj.spearman;
 			 var pearsonP = obj.pearsonP;
 			 var spearmanP = obj.spearmanP;
+			 var cross = obj.cross;
 				
 		     $('#pearsonCorr').text('Pearons Correlation - for ' + projects[0] + ' and ' + projects[1] + ' is ' + pearson + ' and P-Value: ' + pearsonP);
 		     $('#spearmanCorr').text('Spearman Correlation - for ' + projects[0] + ' and ' + projects[1] + ' is ' + spearman  + ' and P-Value: ' + spearmanP); 
-		     
+		     $('#crossCorr').text('Cross correlation for a - 2 lag is : ' + cross); 
+
+			 $('#crossCorr').css('visibility', 'visible')
 			 $('#pearsonCorr').css('visibility', 'visible')
 			 $('#spearmanCorr').css('visibility','visible')
 
@@ -152,8 +163,26 @@ darwin.statVisualiser = (function() {
 				 counter++;
 			 }
 
-		},
-		
+		},		
+		writeVariance : function(variance, projects){
+			
+			var variance = variance.split(',');
+			var counter = 0;
+    		
+    		for(var i=0; i<variance.length;i++){
+    			variance[i] = variance[i].replace('[', '');
+    			variance[i] = variance[i].replace(']', '');
+    		}
+
+			 for(var i = 0; i<variance.length; i = i + 1){
+			     $('#variance' + counter).text('variance - for ' + projects[i] + ' is ' + variance[i]); 
+			     
+				 $('#variance' + counter).css('visibility','visible')
+				 
+				 counter++;
+			 }
+
+		},		
 		drawLaws : function(hp1, hp2, hp3, hp4, hp5, hp6, hp7){
 			
 			$('#law1').text("Law One & Six- " + hp1 + "% of commit/stars cross correlations have a +ve correlation");

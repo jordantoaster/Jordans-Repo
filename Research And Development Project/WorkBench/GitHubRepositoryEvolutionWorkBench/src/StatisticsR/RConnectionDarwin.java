@@ -102,6 +102,36 @@ public class RConnectionDarwin {
         
 		return 0;
     }
+	
+	public int median(int[] dataSubset) throws REngineException, REXPMismatchException {
+		
+		RConnection connection = null;
+		
+		Arrays.sort(dataSubset);
+		
+        try {
+            /* Create a connection to Rserve instance running
+             * on default port 6311
+             */
+            connection = new RConnection();
+
+            connection.assign("vector", dataSubset);
+			REXP x = connection.eval("median(vector)");
+			
+			int result = x.asInteger();
+            
+            connection.close();
+            
+            return result;
+            
+        } catch (RserveException e) {
+            e.printStackTrace();
+        }  
+        
+        connection.close();
+        
+		return 0;
+    }
 
 
 
@@ -212,6 +242,35 @@ public class RConnectionDarwin {
 	}
 	
 	public double getVariance(double[] series) throws REngineException, REXPMismatchException{
+		
+		RConnection connection = null;
+		
+        try {
+            /* Create a connection to Rserve instance running
+             * on default port 6311
+             */
+            connection = new RConnection();
+
+            connection.assign("vectorA", series);
+			REXP x = connection.eval("var(vectorA)");
+			
+			double result = x.asDouble();
+
+            connection.close();
+            
+            return result;
+            
+        } catch (RserveException e) {
+            connection.close();
+            e.printStackTrace();
+        }  
+        
+        connection.close();		
+        		
+		return 0.0;
+	}
+	
+	public double getVariance(int[] series) throws REngineException, REXPMismatchException{
 		
 		RConnection connection = null;
 		

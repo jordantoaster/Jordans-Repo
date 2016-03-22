@@ -30,6 +30,8 @@ darwin.githubModule = (function() {
     				//sometimes despite a correct url github returns empty json on initial hit of url, repeat if contribution and empty
     				if(action == "contribution" && Object.keys(response).length == 0){
     					darwin.githubModule.send(url, callback, index, action); 
+    				} else if (action == "user") {
+    					callback(response, url, index);
     				} else {
     					setTimeout(function(){darwin.Mediator.performSuccessAction(action, response, callback, index)}, 80);   
     				}

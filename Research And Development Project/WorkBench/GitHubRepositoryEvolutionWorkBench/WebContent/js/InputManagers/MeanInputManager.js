@@ -49,6 +49,7 @@ $(document).ready(function(e) {
 	});
 	
 	$('#submitButtonMean').on("click.darwin", function(e){
+		$('#dispersionData').empty();
 		darwin.Mediator.getCheckedMeanData(darwin.projectManagerModule.getMeanType());
 	});	
 	

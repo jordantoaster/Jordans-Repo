@@ -13,6 +13,7 @@ darwin.progressbarModule = (function() {
 	var forkProgress =0;
 	var tagsProgress =0;
 	var issuesProgress = 0;
+	var collabProgress = 0;
 	var bulkProgress = "contributions";
 	
     return {
@@ -38,6 +39,10 @@ darwin.progressbarModule = (function() {
         updateCommitProgress : function(value){
         	commitProgress = commitProgress + value;
             $('#commitProgress').text("Commits Processed : " + commitProgress);
+        },
+        updateCollabProgress : function(value){
+        	collabProgress = collabProgress + value;
+            $('#collabProgress').text("Collaborators Processed : " + collabProgress);
         },
         updateStarProgress : function(value){
         	starProgress = starProgress + value;
@@ -66,6 +71,7 @@ darwin.progressbarModule = (function() {
         	 forkProgress = 0;
         	 tagsProgress =0;
         	 issuesProgress =0;
+        	 collabProgress =0;
         }
     };
 })();

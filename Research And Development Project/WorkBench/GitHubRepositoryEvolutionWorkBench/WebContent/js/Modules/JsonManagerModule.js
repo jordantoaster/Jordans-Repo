@@ -23,6 +23,7 @@ darwin.jsonManagerModule = (function() {
 	var mergedIssues = [];
 	var commentArray = [];
 	var mergedComments = [];
+	var collabArray = [];
 	
     return {
     	getMergedSupplementTag: function (index) {
@@ -202,6 +203,9 @@ darwin.jsonManagerModule = (function() {
         },
         resetForkJson : function (){ //concatenate one request with another
         	forkArray = [];
+        },
+        resetCollabJson : function (){ //concatenate one request with another
+        	collabArray = [];
         },
         resetIssuesJson : function (){ //concatenate one request with another
         	issuesArray = [];

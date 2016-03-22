@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
     <link rel="stylesheet" href="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/css/QueryPage.css?v4">
-    <link rel="stylesheet" href="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/css/Master.css?v2">
+    <link rel="stylesheet" href="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/css/Master.css?v3">
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/QueryPage.js?v4"></script>
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Modules/GitHubCommunication.js?v4"></script>
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Modules/DateManager.js?v4"></script>
@@ -37,9 +37,11 @@
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/InputManagers/CustomInputManager.js?v6"></script>
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/InputManagers/CommitInputManager.js?v7"></script>
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/InputManagers/CorrelationInputManager.js?v7"></script>
+    <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/InputManagers/UsersInputManager.js?v7"></script>
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/InputManagers/GrowthInputManager.js?v7"></script>
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/InputManagers/MeanInputManager.js?v7"></script>
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/InputManagers/NormalityInputManager.js?v7"></script>
+    <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/InputManagers/VarianceInputManager.js?v7"></script>
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Modules/ContributionVisualiser.js?v4"></script>
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Modules/ModalVisualiser.js?v4"></script>
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Modules/GenericVisualiserModule.js?v5"></script>
@@ -122,8 +124,21 @@
       <li><a class="tabText" data-toggle="tab" href="#IssuesTab">Issues</a></li> 
       <li><a class="tabText" data-toggle="tab" href="#WatcherTab">Watchers</a></li>
       <li><a class="tabText" data-toggle="tab" href="#CustomTab">Custom</a></li> 
+      <li><a class="tabText" data-toggle="tab" href="#UserTab">Users</a></li>  
     </ul>
-      <div class="tab-content">  
+      <div class="tab-content">
+   	<div id="UserTab" class="tab-pane fade in customTab">
+   		<h1>Enter a GitHub username</h1>
+   		<div class="input-group input-group-lg fields urlInputOne">
+         <input type="text" class="form-control" id="userFeild" placeholder="GitHub Username" aria-describedby="basic-addon1">
+       </div>  
+	  	<button type="submit" id="submitButtonUser" class="btn btn-primary submitButton">
+  	     	<i class="icon-user icon-white">Pull Data</i> 
+      	</button>  
+      	<div id="userContent">
+      	
+      	</div>	
+    </div>   
    	  <div id="ContributorTab" class="tab-pane fade in active customTab">
     	<div class="dropdown">
   			<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -398,10 +413,11 @@
    </div>
   <div id="statContainer" class="hidden">
     <ul class="nav nav-tabs tabListCustom">
-      <li class="active"><a class="tabText" data-toggle="tab" href="#meanBlock">Mean</a></li>
+      <li class="active"><a class="tabText" data-toggle="tab" href="#meanBlock">Dispersion</a></li>
       <li class=""><a class="tabText" data-toggle="tab" href="#correlationBLock">Correlation</a></li>
       <li class=""><a class="tabText" data-toggle="tab" href="#growthBlock">Growth Rate</a></li>
       <li class=""><a class="tabText" data-toggle="tab" href="#normalBlock">Normality</a></li>
+      <li class=""><a class="tabText" data-toggle="tab" href="#varianceBlock">Variance</a></li>
     </ul>
       <div class="tab-content">
       	<div id="meanBlock" class="tab-pane fade in active">
@@ -424,19 +440,17 @@
 			</div>
 			<div id="meanOptions" class="options">
 	    	<p class="inlineText" style="display:block;">Options</p>
-	    	</div> 
-	    	 <button type="submit" style="display: inline !important; margin-top: 0px; margin-left:1%  !important; " id="submitButtonMean" class="btn btn-primary submitButton">
-  	     		<i class="icon-user icon-white">Get Mean Graph</i> 
-      		 </button>  
+	    	</div>  
       		 <div id="meanChart" class="statChart"></div> 
       		 <div id="additionalMean" class="additional">
       		 	<h1 >Side Data</h1>
-      		 	<ul>
-      		 		<li class="inlineText" style="display:list-item" id="collatedMean"></li>
-      		 		<li class="inlineText" style="display:list-item" id="meanSd"></li>
+      		 	<ul id="dispersionData">
       		 	</ul>
       		 </div>
-      		     <div class="spacer" style="clear: both;"></div>
+      		 <button type="submit" style="display: inline !important;" id="submitButtonMean" class="btn btn-primary submitButton">
+  	     		<i class="icon-user icon-white">Get Mean Graph</i> 
+      		 </button> 
+      		 <div class="spacer" style="clear: both;"></div>
 	 	</div>
 	 	<div id="correlationBLock" class="tab-pane fade">
 			<p class="inlineText">Series A</p>
@@ -483,6 +497,7 @@
 			<ul>      			
 				<li id="pearsonCorr" style="visibility: hidden" class="largeText"></li>
       			<li id="spearmanCorr" style="visibility: hidden" class="largeText"></li>
+      			<li id="crossCorr" style="visibility: hidden" class="largeText"></li>
       		</ul>
       		</div>	
 			<button type="submit" id="submitButtonCorrelation" class="btn btn-primary submitButton">
@@ -508,15 +523,15 @@
 			</div>
 			<div id="growthOptions" class="options">
 	    	</div> 
-	    	 <button type="submit" id="submitButtonGrowth" style="margin-left:1%  !important; margin-top:0.1% !important;"  class="btn btn-primary submitButton">
+	    	 <button type="submit" id="submitButtonGrowth" style="margin-left:1% !important; margin-bottom:0.5%;"  class="btn btn-primary submitButton">
   	     		<i class="icon-user icon-white">Get growth Graph</i> 
       		 </button>  
       		 <div id="growthChart" class="statChart"></div> 
       		 <div id="additionalgrowth" class="additional" style="width: 30%;">
       		 	<h1>Side Data</h1>
-      		 	<p id="growthAbsolute"></p>
-      		 	<p id="growthTime"></p>
-      		 	<p id="growthSd"></p>
+      		 	<p id="growthAbsolute" class="largeText"></p>
+      		 	<p id="growthTime" class="largeText"></p>
+      		 	<p id="growthSd" class="largeText"></p>
       		 </div>
       		     <div class="spacer" style="clear: both;"></div>
 	 	</div>
@@ -550,6 +565,38 @@
       		</div>	
 			<button type="submit" id="submitButtonNormality" class="btn btn-primary submitButton">
   	     		<i class="icon-user icon-white">Get Normality Information</i> 
+      		</button>  		
+	 	</div>
+	 	<div id="varianceBlock" class="tab-pane fade">
+			<div class="dropdown">
+  			<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    			Change Metric Type
+    		<span class="caret"></span>
+  			</button>
+  			<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+  		  		<li><a href="#" id="varianceChoice1">Additions</a></li>
+  		  		<li><a href="#" id="varianceChoice2">Deletions</a></li>
+  		  		<li><a href="#" id="varianceChoice3">LOC</a></li>
+  		  		<li><a href="#" id="varianceChoice4">Commits</a></li>
+  		  		<li><a href="#" id="varianceChoice5">Stars</a></li>
+  		  		<li><a href="#" id="varianceChoice6">Tags</a></li>
+  		  		<li><a href="#" id="varianceChoice7">Forks</a></li>
+  		  		<li><a href="#" id="varianceChoice8">Issues</a></li>
+  			</ul>
+			</div>
+			<div id="varianceOptions" class="options"></div>
+			<div id="varianceInfoBox">
+			<h1>Variance Data</h1>
+			<ul>      			
+				<li id="variance0" style="visibility: hidden" class="largeText"></li>
+				<li id="variance1" style="visibility: hidden" class="largeText"></li>
+				<li id="variance2" style="visibility: hidden" class="largeText"></li>
+				<li id="variance" style="visibility: hidden" class="largeText"></li>
+				<li id="variance4" style="visibility: hidden" class="largeText"></li>
+      		</ul>
+      		</div>	
+			<button type="submit" id="submitButtonVariance" class="btn btn-primary submitButton">
+  	     		<i class="icon-user icon-white">Get Variance Information</i> 
       		</button>  		
 	 	</div>
      </div>

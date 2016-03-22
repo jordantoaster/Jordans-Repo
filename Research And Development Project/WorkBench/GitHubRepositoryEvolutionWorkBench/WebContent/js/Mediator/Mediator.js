@@ -6,6 +6,8 @@ var darwin = darwin || {};
 
 darwin.Mediator = (function () {
 	
+	var outhtml ="";
+	
     return {
     	initialSetupBulk : function(){
     	    darwin.projectManagerModule.resetVariables();
@@ -96,6 +98,52 @@ darwin.Mediator = (function () {
     		darwin.modalVisualiser.drawModal(projectName, bodyText);
 
     	},
+    	parseUserData : function(json, url, username){
+    		
+    	      if(json.message == "Not Found" || username == '') {
+    	          $('#ghapidata').html("<h2>No User Info Found</h2>");
+    	        }
+    	        
+    	        else {
+    	          // else we have a user and we display their info
+    	          var fullname   = json.name;
+    	          var username   = json.login;
+    	          var aviurl     = json.avatar_url;
+    	          var profileurl = json.html_url;
+    	          var location   = json.location;
+    	          var followersnum = json.followers;
+    	          var followingnum = json.following;
+    	          var reposnum     = json.public_repos;
+    	        }
+    	      
+    	      //draw data
+    	      outhtml = '<h2>'+username+' <span class="smallname">(@<a href="'+profileurl+'" target="_blank">'+username+'</a>)</span></h2>';
+    	      outhtml = outhtml + '<div class="ghcontent"><div class="avi"><a href="'+profileurl+'" target="_blank"><img src="'+aviurl+'" width="160" height="160" alt="'+username+'"></a></div>';
+    	      outhtml = outhtml + '<p class="largeText">Followers: '+followersnum+' - Following: '+followingnum+'<br>Repos: '+reposnum+'</p></div>';
+    	      outhtml = outhtml + '<div class="repolist clearfix">';
+    	       	      
+    	      //make repo call
+    	      url = 'https://api.github.com/users/'+username+'/repos?type=repo';
+    	      
+  			  darwin.projectManagerModule.resetBaseRequestUrl();
+  		    
+  			  darwin.projectManagerModule.setBaseRequestUrl(0,url);
+  	
+  			  darwin.Mediator.makeGithubRequest(darwin.projectManagerModule.getAllBaseRequestUrl(), darwin.Mediator.parseRepoData, "user", 0);		
+    	      
+    	},
+    	parseRepoData : function(repositories){
+            if(repositories.length == 0) { outhtml = outhtml + '<p>No repos!</p></div>'; }
+            else {
+              outhtml = outhtml + '<p class="largeText"><strong>Repos List:</strong></p>';
+            	  $.each(repositories, function(index) {
+            		  outhtml = outhtml + '<a class="repoPill" href="'+repositories[index].html_url+'" target="_blank">'+repositories[index].name + '</a>';
+            	  });
+       
+              outhtml = outhtml + '</div>'; 
+            }
+  	      $('#userContent').html(outhtml);
+    	},
     	contribSliderVals : function(start, end){
     		darwin.dataManager.setContribSlider(start, end);
     	}, 
@@ -128,19 +176,27 @@ darwin.Mediator = (function () {
 			if(metricType == "mean"){
 			    obj = JSON.parse(data);
 			    var parsedData = [];
+			    var parsedMedian = [];
 			    
 				//sort the response
 				var sortedData = obj.means.split('*');
 				var collatedMean = obj.collatedMean;
 				var standardDev = obj.standardDev;
+				var medians = obj.medians.split('*');
+				var collatedMedian = obj.collatedMedian;
 				
 				for(var i = 0; i<sortedData.length; i++){
 					if(sortedData[i] != ""){
 						parsedData[i] = parseInt(sortedData[i]);
 					}
 				}
+				for(var i = 0; i<medians.length; i++){
+					if(medians[i] != ""){
+						parsedMedian[i] = parseInt(medians[i]);
+					}
+				}
 				
-				darwin.statVisualiser.drawMean(parsedData, projectNames, metricType, collatedMean, standardDev);
+				darwin.statVisualiser.drawMean(parsedData, projectNames, metricType, collatedMean, standardDev, sortedData, parsedMedian, collatedMedian);
 			}
 			if(metricType == "growth"){
 			    obj = JSON.parse(data);
@@ -165,12 +221,21 @@ darwin.Mediator = (function () {
 
 				darwin.statVisualiser.writeNormality(wilks, projectNames, metricType);
 			}
+			if(metricType == "variance"){
+			    obj = JSON.parse(data);
+			    var variance = obj.variance;
+
+				darwin.statVisualiser.writeVariance(variance, projectNames, metricType);
+			}
 
 		},
 		makeGithubRequest: function (url, callback, action, projectIndex) {
 				
 			//if not a stat api dataset then perform one manual call
 			if(action == "commit"){
+				darwin.githubModule.send(url[0] + darwin.projectManagerModule.getcurrRequestPage(), callback, projectIndex, action);
+			}
+			if(action == "user"){
 				darwin.githubModule.send(url[0] + darwin.projectManagerModule.getcurrRequestPage(), callback, projectIndex, action);
 			}
 			else if(action == "star"){
@@ -478,6 +543,17 @@ darwin.Mediator = (function () {
 
 			darwin.Mediator.makeGithubRequest(darwin.projectManagerModule.getAllBaseRequestUrl(), darwin.Mediator.githubParseGenericData, "commit", index);		
 		},
+		prepareUserClick : function(username){
+			
+			darwin.projectManagerModule.resetBaseRequestUrl();
+
+		    var requri   = 'https://api.github.com/users/'+username+"?type=user";
+		    var repouri  = 'https://api.github.com/users/'+username+'/repos';
+		    
+			darwin.projectManagerModule.setBaseRequestUrl(0,requri);
+	
+			darwin.Mediator.makeGithubRequest(darwin.projectManagerModule.getAllBaseRequestUrl(), darwin.Mediator.parseUserData, "user", username);		
+		},
 		prepareStarClick : function(url, projectName){
 			darwin.jsonManagerModule.resetStarJson();
 			darwin.projectManagerModule.resetBaseRequestUrl();
@@ -487,6 +563,16 @@ darwin.Mediator = (function () {
 			index = darwin.Mediator.getProjNameIndex(projectName);
 
 			darwin.Mediator.makeGithubRequest(darwin.projectManagerModule.getAllBaseRequestUrl(), darwin.Mediator.githubParseGenericData, "star", index);		
+		},
+		prepareCollabClick : function(url, projectName){
+			darwin.jsonManagerModule.resetCollabJson();
+			darwin.projectManagerModule.resetBaseRequestUrl();
+			darwin.projectManagerModule.disableStarButton();
+			
+			darwin.projectManagerModule.setBaseRequestUrl(0,url);
+			index = darwin.Mediator.getProjNameIndex(projectName);
+
+			darwin.Mediator.makeGithubRequest(darwin.projectManagerModule.getAllBaseRequestUrl(), darwin.Mediator.githubParseGenericData, "collab", index);		
 		},
 		prepareWatcherClick : function(url, projectName){
 			darwin.jsonManagerModule.resetWatcherJson();
@@ -715,6 +801,9 @@ darwin.Mediator = (function () {
 		},
 		getCheckedNormalityData : function(dataType){
 			darwin.projectManagerModule.getCheckedNormalityData(dataType);
+		},
+		getCheckedVarianceData : function(dataType){
+			darwin.projectManagerModule.getCheckedVarianceData(dataType);
 		},
 		getCheckedGrowthData : function(dataType){
 			darwin.projectManagerModule.getCheckedGrowthData(dataType);
