@@ -241,11 +241,17 @@ public class StatsAction implements Action {
 		Correlation correlationModel = new Correlation(projects[0], projects[1], correlation[0], TypeOne, TypeTwo,
 				correlation[1], correlation[2], correlation[3]);
 		dao.insertCorrelation(correlationModel);
+		
+		//get all the other correlations values that use the same metric types
+		ArrayList<String> correlations = dao.getAllCorrelations(t1,t2);
+		
+		String[] correlationsParsed = new String[correlations.size()];
+		correlationsParsed = correlations.toArray(correlationsParsed);
 
 		String t = String.format(
 				"{ \"pearson\": \"%s\", \"spearman\": \"%s\", \"pearsonP\": \"%s\", \"spearmanP"
-						+ "\": \"%s\", \"cross\": \"%s\"}",
-				correlation[0], correlation[1], correlation[2], correlation[3], crossCorr);
+						+ "\": \"%s\", \"cross\": \"%s\", \"allCorr\": \"%s\"}",
+				correlation[0], correlation[1], correlation[2], correlation[3], crossCorr, Arrays.toString(correlationsParsed));
 		return t;
 	}
 

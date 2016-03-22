@@ -135,14 +135,52 @@ darwin.statVisualiser = (function() {
 			 var pearsonP = obj.pearsonP;
 			 var spearmanP = obj.spearmanP;
 			 var cross = obj.cross;
+			 var allCorr = obj.allCorr.split(',');
+
+	    	  for(var i=0; i<allCorr.length;i++){
+	    		  allCorr[i] = allCorr[i].replace('[', '');
+	    		  allCorr[i] = allCorr[i].replace(']', '');
+	    		}
 				
-		     $('#pearsonCorr').text('Pearons Correlation - for ' + projects[0] + ' and ' + projects[1] + ' is ' + pearson + ' and P-Value: ' + pearsonP);
-		     $('#spearmanCorr').text('Spearman Correlation - for ' + projects[0] + ' and ' + projects[1] + ' is ' + spearman  + ' and P-Value: ' + spearmanP); 
+		     $('#pearsonCorr').text('Pearons Correlation - for ' + projects[0] + ' and ' + projects[1] + 'metrics is ' + pearson + ' and P-Value: ' + pearsonP);
+		     $('#spearmanCorr').text('Spearman Correlation - for ' + projects[0] + ' and ' + projects[1] + 'metrics is ' + spearman  + ' and P-Value: ' + spearmanP); 
 		     $('#crossCorr').text('Cross correlation for a - 2 lag is : ' + cross); 
 
 			 $('#crossCorr').css('visibility', 'visible')
 			 $('#pearsonCorr').css('visibility', 'visible')
 			 $('#spearmanCorr').css('visibility','visible')
+			 
+			//create data element for the chart
+	    	    var data = new google.visualization.DataTable();   
+				
+				//add column to represent time passing
+	    	    data.addColumn('number', 'Correlations')
+	    	    data.addColumn('number', 'Value');	
+	    	        	   	    
+	    	    //add data to each row, a a numeral for the y axis and string for x
+		    	for(var j =0;j<allCorr.length;j++){
+	        	    data.addRow([j,Number(allCorr[j])]);
+		    	}
+	    	    	
+		    	//populate additional options
+	    	    var options = {
+	    	      title: "Pearson correlation in the system for these two metrics",
+	    	      hAxis: { slantedText:true, slantedTextAngle:45 }, 
+	    	      chartArea:{
+	    	          left: 100, width: '95%'
+	    	      },
+	    	      legend: {position: 'none'},
+	    	      height: '250px',
+	    	      width: '100%',
+				  curveType: 'function',
+	    	      animation:{
+	    	          duration: 800,
+	    	          easing: 'out',
+	    	          startup: true,
+	    	        }
+	    	    };
+	    	        
+	    	    new google.visualization.ScatterChart(document.getElementById('correlationChart')).draw(data, options);
 
 		},
 		writeNormality : function(normality, projects){

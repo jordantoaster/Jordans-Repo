@@ -500,9 +500,11 @@
       			<li id="crossCorr" style="visibility: hidden" class="largeText"></li>
       		</ul>
       		</div>	
+      		<div id="correlationChart"></div>	
 			<button type="submit" id="submitButtonCorrelation" class="btn btn-primary submitButton">
   	     		<i class="icon-user icon-white">Get Correlation Information</i> 
-      		</button>  		
+      		</button>        		
+      		<div id="correlationChart"></div>	
 	 	</div>
 	 	<div id="growthBlock" class="tab-pane fade">
 			<div class="dropdown">

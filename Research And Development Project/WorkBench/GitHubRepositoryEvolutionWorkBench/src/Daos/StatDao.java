@@ -305,4 +305,21 @@ public class StatDao {
 		
 	}
 
+	public ArrayList<String> getAllCorrelations(String t1, String t2) {
+		
+		DBCollection collection = new dbConnectionBuilder().getMongoCollection("Correlation");
+
+		ArrayList<String> correlations = new ArrayList<String>();
+		
+		DBCursor cursor = collection.find();
+		while (cursor.hasNext()) {
+		   BasicDBObject obj = (BasicDBObject) cursor.next();
+		   if((obj.getString("SeriesAType").equals(t1) && obj.getString("SeriesBType").equals(t2)) || (obj.getString("SeriesAType").equals(t2) && obj.getString("SeriesBType").equals(t1))){
+			   correlations.add(obj.getString("Pearson"));
+		   }
+		}
+				
+		return correlations;
+	}
+
 }
