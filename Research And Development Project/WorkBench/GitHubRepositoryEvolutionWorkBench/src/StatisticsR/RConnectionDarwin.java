@@ -309,13 +309,13 @@ public class RConnectionDarwin {
 
             connection.assign("vectorA", seriesA);
             connection.assign("vectorB", seriesB);
-			REXP x = connection.eval("ccf(vectorA, vectorB, lag.max = 5, plot = FALSE)$acf"); //change lag back to 2
+			REXP x = connection.eval("ccf(vectorA, vectorB, lag.max = 9, plot = FALSE)$acf"); //change lag back to 2
 			
 			double[] result = x.asDoubles();
 
             connection.close();
             
-            return result[3]; //curr = -2
+            return result[0]; //curr = -9
             
         } catch (RserveException e) {
             connection.close();

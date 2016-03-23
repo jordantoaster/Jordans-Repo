@@ -263,21 +263,23 @@ public class StatDao {
 	}
 
 	public void getCross() {
-		DBCollection collection = new dbConnectionBuilder().getMongoCollection("CrossCorr");
+		DBCollection collection = new dbConnectionBuilder().getMongoCollection("StandardDeviation");
 		
 		DBCursor cursor = collection.find();
 		while (cursor.hasNext()) {
 		   BasicDBObject obj = (BasicDBObject) cursor.next();
-			   System.out.println(obj.getString("CrossCorr"));
+			   System.out.println(obj.getString("SD"));
 		}
 						
 	}
 
-	public int getNumInSD(double[] series, double stanDev) {
+	public int getNumInSD(double[] series, double stanDev, double mean) {
 
 		int count = 0;
+		double maxValue = mean + stanDev;
+		double minValue = mean - stanDev;
 		for (int i = 0; i < series.length; i++) {
-			if(series[i] < stanDev){
+			if(series[i] < maxValue && series[i] > minValue){
 				count++;
 			}
 		}
