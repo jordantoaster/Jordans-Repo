@@ -263,12 +263,12 @@ public class StatDao {
 	}
 
 	public void getCross() {
-		DBCollection collection = new dbConnectionBuilder().getMongoCollection("StandardDeviation");
+		DBCollection collection = new dbConnectionBuilder().getMongoCollection("CrossCorr");
 		
 		DBCursor cursor = collection.find();
 		while (cursor.hasNext()) {
 		   BasicDBObject obj = (BasicDBObject) cursor.next();
-			   System.out.println(obj.getString("SD"));
+			   System.out.println(obj.getString("CrossCorr"));
 		}
 						
 	}

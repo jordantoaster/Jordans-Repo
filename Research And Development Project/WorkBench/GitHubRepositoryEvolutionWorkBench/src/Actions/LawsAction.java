@@ -40,6 +40,8 @@ public class LawsAction implements Action {
 		
 		//get law 1 and 6
 		float hpOneResult = getHPOne("Commits", "Stars");
+		
+		sDao.getCross();
 			
 		//get Law 2
 		float hpTwoResult = getHPTwo();
@@ -51,8 +53,6 @@ public class LawsAction implements Action {
 		
 		//get law 4
 		double hpFourResult = getHPFour();
-
-		sDao.getCross();
 
 		
 		//get HP5
