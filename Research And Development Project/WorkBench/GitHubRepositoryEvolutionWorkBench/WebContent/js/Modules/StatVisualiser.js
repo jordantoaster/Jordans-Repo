@@ -183,14 +183,20 @@ darwin.statVisualiser = (function() {
 	    	    new google.visualization.ScatterChart(document.getElementById('correlationChart')).draw(data, options);
 
 		},
-		writeNormality : function(normality, projects){
+		writeNormality : function(normality, projects, type, all){
 			
 			var normality = normality.split(',');
+			var all = all.split(',');
 			var counter = 0;
     		
     		for(var i=0; i<normality.length;i++){
     			normality[i] = normality[i].replace('[', '');
     			normality[i] = normality[i].replace(']', '');
+    		}
+    		
+    		for(var i=0; i<all.length;i++){
+    			all[i] = all[i].replace('[', '');
+    			all[i] = all[i].replace(']', '');
     		}
 
 			 for(var i = 0; i<normality.length; i = i +3){
@@ -200,16 +206,55 @@ darwin.statVisualiser = (function() {
 				 
 				 counter++;
 			 }
+			 
+				//create data element for the chart
+	    	    var data = new google.visualization.DataTable();   
+				
+				//add column to represent time passing
+	    	    data.addColumn('number', 'Normality')
+	    	    data.addColumn('number', 'Value');	
+	    	        	   	    
+	    	    //add data to each row, a a numeral for the y axis and string for x
+		    	for(var j =0;j<all.length;j++){
+	        	    data.addRow([j,Number(all[j])]);
+		    	}
+	    	    	
+		    	//populate additional options
+	    	    var options = {
+	    	      title: "Al  Shapiro wilks for this metric",
+	    	      hAxis: { slantedText:true, slantedTextAngle:45 }, 
+	    	      chartArea:{
+	    	          left: 100, width: '95%'
+	    	      },
+	    	      legend: {position: 'none'},
+	    	      height: '40%',
+	    	      width: '100%',
+				  curveType: 'function',
+	    	      animation:{
+	    	          duration: 800,
+	    	          easing: 'out',
+	    	          startup: true,
+	    	        }
+	    	    };
+	    	        
+	    	    new google.visualization.ScatterChart(document.getElementById('normalityChart')).draw(data, options);			 
 
 		},		
-		writeVariance : function(variance, projects){
+		writeVariance : function(variance, projects,type, allVar){
 			
 			var variance = variance.split(',');
+			var allVar = allVar.split(',');
+
 			var counter = 0;
     		
     		for(var i=0; i<variance.length;i++){
     			variance[i] = variance[i].replace('[', '');
     			variance[i] = variance[i].replace(']', '');
+    		}
+    		
+    		for(var i=0; i<allVar.length;i++){
+    			allVar[i] = allVar[i].replace('[', '');
+    			allVar[i] = allVar[i].replace(']', '');
     		}
 
 			 for(var i = 0; i<variance.length; i = i + 1){
@@ -219,6 +264,41 @@ darwin.statVisualiser = (function() {
 				 
 				 counter++;
 			 }
+			 
+				//create data element for the chart
+	    	    var data = new google.visualization.DataTable();   
+				
+				//add column to represent time passing
+	    	    data.addColumn('number', 'Variance')
+	    	    data.addColumn('number', 'Value');	
+	    	        	   	    
+	    	    //add data to each row, a a numeral for the y axis and string for x
+		    	for(var j =0;j<allVar.length;j++){
+	        	    data.addRow([j,Number(allVar[j])]);
+		    	}
+	    	    	
+		    	//populate additional options
+	    	    var options = {
+	    	      title: "All variance values for this metric",
+	    	      hAxis: { slantedText:true, slantedTextAngle:45 }, 
+	    	      chartArea:{
+	    	          left: 100, width: '90%'
+	    	      },
+	    	      legend: {position: 'none'},
+	    	      vAxis: {
+	    	            logScale: true
+	    	        },
+	    	      height: '40%',
+	    	      width: '95%',
+				  curveType: 'function',
+	    	      animation:{
+	    	          duration: 800,
+	    	          easing: 'out',
+	    	          startup: true,
+	    	        }
+	    	    };
+	    	        
+	    	    new google.visualization.ScatterChart(document.getElementById('varianceChart')).draw(data, options);				 
 
 		},		
 		drawLaws : function(hp1, hp2, hp3, hp4, hp5, hp6, hp7){

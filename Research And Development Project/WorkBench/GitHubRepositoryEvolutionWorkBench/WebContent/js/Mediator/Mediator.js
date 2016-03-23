@@ -218,14 +218,16 @@ darwin.Mediator = (function () {
 			if(metricType == "normality"){
 			    obj = JSON.parse(data);
 			    var wilks = obj.wilks;
+			    var allWilks = obj.all;
 
-				darwin.statVisualiser.writeNormality(wilks, projectNames, metricType);
+				darwin.statVisualiser.writeNormality(wilks, projectNames, metricType, allWilks);
 			}
 			if(metricType == "variance"){
 			    obj = JSON.parse(data);
 			    var variance = obj.variance;
+			    var allVar = obj.allVar;
 
-				darwin.statVisualiser.writeVariance(variance, projectNames, metricType);
+				darwin.statVisualiser.writeVariance(variance, projectNames, metricType, allVar);
 			}
 
 		},

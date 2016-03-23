@@ -341,7 +341,7 @@ public class LawsAction implements Action {
 				numInSD[i] = sDao.getNumInSD(series, standDev[i]); 
 	
 				//store the variance
-				sDao.insertVariance(variance[i]);
+				sDao.insertVariance(variance[i], "LOC");
 				sDao.insertNumInSd(numInSD[i], series.length);
 				
 			} catch (REngineException e) {

@@ -565,6 +565,7 @@
 				<li id="wilks4" style="visibility: hidden" class="largeText"></li>
       		</ul>
       		</div>	
+      		<div id="normalityChart"></div>
 			<button type="submit" id="submitButtonNormality" class="btn btn-primary submitButton">
   	     		<i class="icon-user icon-white">Get Normality Information</i> 
       		</button>  		
@@ -597,6 +598,7 @@
 				<li id="variance4" style="visibility: hidden" class="largeText"></li>
       		</ul>
       		</div>	
+      		<div id="varianceChart"></div>
 			<button type="submit" id="submitButtonVariance" class="btn btn-primary submitButton">
   	     		<i class="icon-user icon-white">Get Variance Information</i> 
       		</button>  		

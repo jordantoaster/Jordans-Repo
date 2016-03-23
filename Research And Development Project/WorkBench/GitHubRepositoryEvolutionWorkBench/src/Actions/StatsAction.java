@@ -67,11 +67,9 @@ public class StatsAction implements Action {
 
 	private String processVariance(String[] data, String[] projects, String type) {
 
-		String varianceType = type;
 		double variance = 0;
 		int[] dataSubset = null;
 		int startPosition = 0;
-		int varianceCounter = 0;
 		ArrayList<Double> allVariance= new ArrayList<Double>();
 
 		// loop all sets in array to get each seperate mean
@@ -84,14 +82,12 @@ public class StatsAction implements Action {
 				dataSubset = parseData(data, startPosition, i);
 				startPosition = i + 1;
 
-				// get mean
 				try {
 					variance = r.getVariance(dataSubset);
 
 					// add to overall list
 					allVariance.add(variance);
 
-					varianceCounter++;
 
 				} catch (REngineException e) {
 					// TODO Auto-generated catch block
@@ -102,14 +98,22 @@ public class StatsAction implements Action {
 				}
 			}
 		}
-
+		
+		StatDao dao = new StatDao();
 		double[] varianceParsed = new double[allVariance.size()];
 		
 		for (int i = 0; i < allVariance.size(); i++) {
+			dao.insertVariance(allVariance.get(i), type);
 			varianceParsed[i] = allVariance.get(i);
 		}
+		
+		ArrayList<String> allVarianceType = dao.getVarianceType(type);
+		
+		String[] AllVarianceParsed = new String[allVarianceType.size()];
+		AllVarianceParsed = allVarianceType.toArray(AllVarianceParsed);
 
-		String t = String.format("{ \"variance\": \"%s\"}", Arrays.toString(varianceParsed));
+
+		String t = String.format("{ \"variance\": \"%s\",\"allVar\": \"%s\"}", Arrays.toString(varianceParsed), Arrays.toString(AllVarianceParsed));
 		return t;
 	}
 
@@ -120,6 +124,7 @@ public class StatsAction implements Action {
 		int startPosition = 0;
 		int normalityCounter = 0;
 		ArrayList<String> allNormality = new ArrayList<String>();
+		StatDao dao = new StatDao();
 
 		// loop all sets in array to get each seperate mean
 		for (int i = 0; i < data.length; i++) {
@@ -137,7 +142,6 @@ public class StatsAction implements Action {
 
 					// model and store
 					Normality normalityModel = new Normality(projects[0], normality, normalityType);
-					StatDao dao = new StatDao();
 					dao.insertNormality(normalityModel);
 
 					// add to overall list
@@ -156,11 +160,15 @@ public class StatsAction implements Action {
 				}
 			}
 		}
+		
+		ArrayList<String> allNormalityType = dao.getWilksType(type);
+		String[] AllNormalityParsed = new String[allNormalityType.size()];
+		AllNormalityParsed = allNormalityType.toArray(AllNormalityParsed);
 
 		String[] normalityParsed = new String[allNormality.size()];
 		normalityParsed = allNormality.toArray(normalityParsed);
 
-		String t = String.format("{ \"wilks\": \"%s\"}", Arrays.toString(normalityParsed));
+		String t = String.format("{ \"wilks\": \"%s\",\"all\": \"%s\"}", Arrays.toString(normalityParsed), Arrays.toString(AllNormalityParsed));
 		return t;
 	}
 

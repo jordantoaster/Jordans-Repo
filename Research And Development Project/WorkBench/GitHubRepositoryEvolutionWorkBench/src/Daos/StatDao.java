@@ -244,12 +244,13 @@ public class StatDao {
 		return arrayParsed;
 	}
 
-	public boolean insertVariance(double variance) {
+	public boolean insertVariance(double variance, String type) {
 		try {
 			DBCollection userCollection = new dbConnectionBuilder().getMongoCollection("Variance");
 		
 			BasicDBObject documentDetail = new BasicDBObject();
 			documentDetail.put("Variance", variance);
+			documentDetail.put("Type", type);
 	
 			userCollection.insert(documentDetail);
 		} catch(MongoException e){
@@ -320,6 +321,38 @@ public class StatDao {
 		}
 				
 		return correlations;
+	}
+
+	public ArrayList<String> getWilksType(String type) {
+		DBCollection collection = new dbConnectionBuilder().getMongoCollection("Normality");
+
+		ArrayList<String> normality = new ArrayList<String>();
+		
+		DBCursor cursor = collection.find();
+		while (cursor.hasNext()) {
+		   BasicDBObject obj = (BasicDBObject) cursor.next();
+		   if((obj.getString("NormalityType").equals(type))){
+			   normality.add(obj.getString("Wilks"));
+		   }
+		}
+				
+		return normality;
+	}
+
+	public ArrayList<String> getVarianceType(String type) {
+		DBCollection collection = new dbConnectionBuilder().getMongoCollection("Variance");
+
+		ArrayList<String> variance = new ArrayList<String>();
+		
+		DBCursor cursor = collection.find();
+		while (cursor.hasNext()) {
+		   BasicDBObject obj = (BasicDBObject) cursor.next();
+		   if((obj.getString("Type").equals(type))){
+			   variance.add(obj.getString("Variance"));
+		   }
+		}
+				
+		return variance;
 	}
 
 }
