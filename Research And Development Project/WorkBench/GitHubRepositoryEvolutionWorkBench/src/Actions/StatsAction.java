@@ -234,7 +234,7 @@ public class StatsAction implements Action {
 		// get correlation
 		try {
 			correlation = r.correlation(SeriesA, SeriesB);
-			crossCorr = r.crossCorrelation(SeriesA, SeriesB);
+			crossCorr = r.crossCorrelation(SeriesA, SeriesB,7);
 		} catch (REngineException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

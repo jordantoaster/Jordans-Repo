@@ -39,10 +39,12 @@
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/InputManagers/CorrelationInputManager.js?v7"></script>
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/InputManagers/UsersInputManager.js?v7"></script>
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/InputManagers/GrowthInputManager.js?v7"></script>
+    <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/InputManagers/LawsInputManager.js?v7"></script>
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/InputManagers/MeanInputManager.js?v7"></script>
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/InputManagers/NormalityInputManager.js?v7"></script>
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/InputManagers/VarianceInputManager.js?v7"></script>
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Modules/ContributionVisualiser.js?v4"></script>
+    <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Modules/LawVisualiser.js?v4"></script>
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Modules/ModalVisualiser.js?v4"></script>
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Modules/GenericVisualiserModule.js?v5"></script>
     <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Modules/CustomVisualiserModule.js?v4"></script>
@@ -607,16 +609,84 @@
   </div>
   <div id="lehmannContainer" class="hidden">
     <ul class="nav nav-tabs tabListCustom">
-      <li class="active"><a class="tabText" data-toggle="tab" href="#lawOneBlock">Law One & Six</a></li>
+      <li class="active"><a class="tabText" data-toggle="tab" href="#lawSplash">Laws Background</a></li>
+      <li class=""><a class="tabText" data-toggle="tab" href="#lawOneBlock">Law One & Six</a></li>
       <li class=""><a class="tabText" data-toggle="tab" href="#lawTwoBlock">Law Two</a></li>
-      <li class=""><a class="tabText" data-toggle="tab" href="#lawSummary">Laws Summary</a></li>
+      <li class=""><a class="tabText" data-toggle="tab" href="#lawThreeBlock">Law Three</a></li>
+      <li class=""><a class="tabText" data-toggle="tab" href="#lawFourBlock">Law Four</a></li>
+      <li class=""><a class="tabText" data-toggle="tab" href="#lawFiveBlock">Law Five</a></li>
+      <li class=""><a class="tabText" data-toggle="tab" href="#lawSixBlock">Law Six</a></li>
+      <li class=""><a class="tabText" data-toggle="tab" href="#lawSevenBlock">Law Seven</a></li>
+<!--       <li class=""><a class="tabText" data-toggle="tab" href="#lawSummary">Laws Summary</a></li> -->
     </ul>
       <div class="tab-content">
-      	<div id="lawOneBlock" class="tab-pane fade in active">
-			hi
+         <div id="lawSplash" class="tab-pane fade in active">
+            	splash
+         </div>     
+      	<div id="lawOneBlock" class="tab-pane fade">
+		<div class="container">
+  		<h1 class="tableHeader">% of CC values of Commits and Stars with a +ve correlation</h1>
+  		<table class="table" id="blockOneTable">
+    	<thead>
+     	 <tr>
+       	 	<th>Lag</th>
+        	<th>Cross Correlation (+ve)</th>
+      	</tr>
+   		 </thead>
+
+  		</table>
+		</div>
 	 	</div>
 	 	<div id="lawTwoBlock" class="tab-pane fade">
 			hi 2
+	 	</div>
+	 	<div id="lawThreeBlock" class="tab-pane fade">
+			hi 3
+	 	</div>
+	 	<div id="lawFourBlock" class="tab-pane fade">
+			hi 4
+	 	</div>
+	 	<div id="lawFiveBlock" class="tab-pane fade">
+			<div class="container">
+  			<h1 class="tableHeader">% of CC values of Growth Rate and Issues with a +ve correlation</h1>
+  			<table class="table" id="blockFiveTable">
+    		<thead>
+     		 <tr>
+       	 		<th>Lag</th>
+        		<th>Cross Correlation (+ve)</th>
+      		</tr>
+   		 	</thead>
+
+  			</table>
+			</div>
+	 	</div>
+		<div id="lawSixBlock" class="tab-pane fade">
+			<div class="container">
+  			<h1 class="tableHeader">% of CC values of Issues and LOC with a -ve correlation</h1>
+  			<table class="table" id="blockSixTable">
+    		<thead>
+     		 <tr>
+       	 		<th>Lag</th>
+        		<th>Cross Correlation (-ve)</th>
+      		</tr>
+   		 	</thead>
+
+  			</table>
+			</div>
+	 	</div>
+	 	<div id="lawSevenBlock" class="tab-pane fade">
+			<div class="container">
+  			<h1 class="tableHeader">% of CC values of Issues and Issue Comments with a -ve correlation</h1>
+  			<table class="table" id="blockSevenTable">
+    		<thead>
+     		 <tr>
+       	 		<th>Lag</th>
+        		<th>Cross Correlation (-ve)</th>
+      		</tr>
+   		 	</thead>
+
+  			</table>
+			</div>
 	 	</div>
 	 	<div id="lawSummary" class="tab-pane fade">
 			<p id="law1" class="largeText"></p> 
@@ -626,6 +696,7 @@
 			<p id="law5" class="largeText"></p> 		
 			<p id="law6" class="largeText"></p> 		
 			<p id="law7" class="largeText"></p> 
+	 	</div>
 	 	</div>
 	  </div>
   </div>

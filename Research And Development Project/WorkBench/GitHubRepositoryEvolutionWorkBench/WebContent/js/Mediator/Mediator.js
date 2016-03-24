@@ -862,5 +862,62 @@ darwin.Mediator = (function () {
 			//pass for drawing
 			darwin.statVisualiser.drawLaws(hpOne,hpTwo,HpThree,HpFour,hpFive,hpSix,hpSeven);
 		},
+		
+		handleLawOneData : function(response){
+			 obj = JSON.parse(response);
+			 var allCorr = obj.crossPercent.split(',');
+
+	    	  for(var i=0; i<allCorr.length;i++){
+	    		  allCorr[i] = allCorr[i].replace('[', '');
+	    		  allCorr[i] = allCorr[i].replace(']', '');
+	    	  }
+				
+	    	  darwin.lawVisualiser.drawLawOne(allCorr);
+		},
+		handleLawTwoData : function(response){
+			
+
+		},
+		handleLawThreeData : function(response){
+			
+
+		},
+		handleLawFourData : function(response){
+			
+
+		},
+		handleLawFiveData : function(response){
+			 obj = JSON.parse(response);
+			 var allCorr = obj.crossPercent.split(',');
+
+	    	  for(var i=0; i<allCorr.length;i++){
+	    		  allCorr[i] = allCorr[i].replace('[', '');
+	    		  allCorr[i] = allCorr[i].replace(']', '');
+	    	  }
+				
+	    	  darwin.lawVisualiser.drawLawFive(allCorr);
+		},
+		handleLawSixData : function(response){
+			 obj = JSON.parse(response);
+			 var allCorr = obj.crossPercent.split(',');
+
+	    	  for(var i=0; i<allCorr.length;i++){
+	    		  allCorr[i] = allCorr[i].replace('[', '');
+	    		  allCorr[i] = allCorr[i].replace(']', '');
+	    	  }
+				
+	    	  darwin.lawVisualiser.drawLawSix(allCorr);
+		},
+		handleLawSevenData : function(response){
+			 obj = JSON.parse(response);
+			 var allCorr = obj.crossPercent.split(',');
+
+	    	  for(var i=0; i<allCorr.length;i++){
+	    		  allCorr[i] = allCorr[i].replace('[', '');
+	    		  allCorr[i] = allCorr[i].replace(']', '');
+	    	  }
+				
+	    	  darwin.lawVisualiser.drawLawSeven(allCorr);			
+		},
     };
 })();

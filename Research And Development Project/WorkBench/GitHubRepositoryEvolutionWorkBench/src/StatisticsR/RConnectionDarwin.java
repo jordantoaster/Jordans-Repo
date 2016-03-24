@@ -299,7 +299,7 @@ public class RConnectionDarwin {
 		return 0.0;
 	}
 
-	public double crossCorrelation(int[] seriesA, int[] seriesB) {
+	public double crossCorrelation(int[] seriesA, int[] seriesB, int index) {
 
 		RConnection connection = null;
 		
@@ -315,7 +315,7 @@ public class RConnectionDarwin {
 
             connection.close();
             
-            return result[0]; //curr = -9
+            return result[index]; //0 = -9, 1=-8 etc
             
         } catch (RserveException e) {
             connection.close();
