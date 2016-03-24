@@ -141,9 +141,9 @@ public class LawsAction implements Action {
 			// find associated issues
 			for (int j = 0; j < seriesB.size(); j++) {
 				Contributions attributeB = seriesB.get(j);
-
+				
 				if (attributeA.getProject().equals(attributeB.getProject())) {
-
+					
 					// parse to int arrays
 					int[] parsedSeriesA = parseArrayToInt(attributeA.getAllIssues());
 					int[] parsedSeriesB = parseArrayToInt(attributeB.getLOC());
@@ -166,7 +166,11 @@ public class LawsAction implements Action {
 					}
 
 					for (int k = 0; k < 10; k++) {
-						crossCorr[k] = r.crossCorrelation(parsedSeriesA, parsedSeriesB, k);
+						crossCorr[k] = r.crossCorrelation(parsedSeriesB, parsedSeriesA, k);
+						
+						if(k == 9){
+							//sDao.insertCrossCorr(crossCorr[k], "", "", "");
+						}
 
 						if (crossCorr[k] < threshold) {
 							allInThreshold[k]++;
@@ -179,6 +183,8 @@ public class LawsAction implements Action {
 		for (int k = 0; k < 10; k++) {
 			percentages[k] = Double.toString(((allInThreshold[k] * 100.0) / seriesA.size()));
 		}
+		
+		//sDao.getCross();
 
 		String t = String.format("{ \"crossPercent\": \"%s\"}", Arrays.toString(percentages));
 
@@ -214,11 +220,11 @@ public class LawsAction implements Action {
 					int[] parsedSeriesB = parseArrayToInt(attributeB.getGrowth());
 
 					// get size diff
-					int diffSize = parsedSeriesA.length - parsedSeriesB.length;
+					int diffSize = parsedSeriesB.length - parsedSeriesA.length;
 
 					// trim issues array
 					if (diffSize >= 0) {
-						parsedSeriesA = Arrays.copyOfRange(parsedSeriesA, diffSize, parsedSeriesA.length);
+						parsedSeriesB = Arrays.copyOfRange(parsedSeriesB, diffSize, parsedSeriesB.length);
 					} else {
 						parsedSeriesB = Arrays.copyOfRange(parsedSeriesB, Math.abs(diffSize), parsedSeriesB.length);
 
@@ -232,6 +238,10 @@ public class LawsAction implements Action {
 
 					for (int k = 0; k < 10; k++) {
 						crossCorr[k] = r.crossCorrelation(parsedSeriesB, parsedSeriesA, k);
+						
+						if(k == 9){
+							//sDao.insertCrossCorr(crossCorr[k], "", "", "");
+						}
 
 						if (crossCorr[k] > threshold) {
 							allInThreshold[k]++;
@@ -240,6 +250,8 @@ public class LawsAction implements Action {
 				}
 			}
 		}
+		
+		//sDao.getCross();
 
 		for (int k = 0; k < 10; k++) {
 			percentages[k] = Double.toString(((allInThreshold[k] * 100.0) / seriesA.size()));

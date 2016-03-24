@@ -315,6 +315,10 @@ public class RConnectionDarwin {
 
             connection.close();
             
+            if (Double.isNaN(result[index])){
+            	return 0;
+            } 
+            
             return result[index]; //0 = -9, 1=-8 etc
             
         } catch (RserveException e) {

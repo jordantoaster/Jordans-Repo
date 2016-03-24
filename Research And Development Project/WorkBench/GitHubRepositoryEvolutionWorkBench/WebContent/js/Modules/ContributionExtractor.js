@@ -180,7 +180,7 @@ darwin.contributionExtractorModule = (function() {
     			project = projectNames[0];
     			
     			//001
-    	    	darwin.Mediator.prepareCommitClick("https://api.github.com/repos"+project+"/commits?per_page=100&page=", project);   			
+    	    	//darwin.Mediator.prepareCommitClick("https://api.github.com/repos"+project+"/commits?per_page=100&page=", project);   			
     			
     	    }
 		
