@@ -102,7 +102,11 @@ public class LawsAction implements Action {
 					}
 
 					for (int k = 0; k < 10; k++) {
-						crossCorr[k] = r.crossCorrelation(parsedSeriesA, parsedSeriesB, k);
+						crossCorr[k] = r.crossCorrelation(parsedSeriesB, parsedSeriesA, k);
+						
+						if(k == 9){
+							sDao.insertCrossCorr(crossCorr[k], "", "", "");
+						}
 
 						if (crossCorr[k] < threshold) {
 							allInThreshold[k]++;
@@ -115,6 +119,8 @@ public class LawsAction implements Action {
 		for (int k = 0; k < 10; k++) {
 			percentages[k] = Double.toString(((allInThreshold[k] * 100.0) / seriesA.size()));
 		}
+		
+		sDao.getCross();
 
 		String t = String.format("{ \"crossPercent\": \"%s\"}", Arrays.toString(percentages));
 
