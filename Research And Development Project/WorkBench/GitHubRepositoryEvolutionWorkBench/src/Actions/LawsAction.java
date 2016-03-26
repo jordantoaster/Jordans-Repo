@@ -334,18 +334,149 @@ public class LawsAction implements Action {
 	}
 
 	private String getHpDataFour() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+		
+				   int numInCollection = sDao.getNumInCollection("GrowthRate");
+				   double[] variance = new double[numInCollection]; double[] 
+				   standDev = new double[numInCollection]; 
+				   int[] numInSD = new int[numInCollection]; 
+				   double mean =0;
+				   int[] seriesSizes = new int[numInCollection];
+				  
+				  //get each growth loc series and get the variance 
+				  for (int i =0; i < numInCollection; i++) {
+				  
+				  double[] series = sDao.getGrowthRateIndex(i);
+				  seriesSizes[i] = series.length;
+				  
+				  try { 
+					  variance[i] = r.getVariance(series); 
+					  standDev[i] =Math.sqrt(variance[i]); 
+					  mean = r.mean(series); 
+					  numInSD[i] = sDao.getNumInSD(series, standDev[i], mean);
+				  				  
+				  } catch (REngineException e) {
+					  e.printStackTrace(); 
+				  } catch (REXPMismatchException e) { 
+					  e.printStackTrace(); 
+				  } 		 
+				}
+				 
+				String[] parseVariance = new String[numInCollection];
+				String[] parseInSd = new String[numInCollection];
+				
+				for (int i = 0; i < numInSD.length; i++) {
+					float in = (float)((numInSD[i]*100.0)/seriesSizes[i]);
+					parseInSd[i] = String.valueOf(in);
+				}
+				
+				for (int i = 0; i < variance.length; i++) {
+					float in = (float)((variance[i]*100.0)/seriesSizes[i]);
+					parseVariance[i] = String.valueOf(in);
+				}
+				  
+				 String t = String.format("{ \"vari\": \"%s\", \"sd\": \"%s\"}", Arrays.toString(parseVariance), Arrays.toString(parseInSd));
+				 
+				 return t;	
+			}
 
 	private String getHpDataThree() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		  		  ContributionDao daoC = new ContributionDao(); 
+		  		  IssueDao daoI = new IssueDao();
+				  
+				  //get a class (model) of contribution stuff required name etc
+				  ArrayList<Contributions> contributions = daoC.getContributions();
+				  
+				  //get issue class 
+				  ArrayList<Issues> issues = daoI.getIssues();
+				  
+				  String[] issueWilks= null; String[] additionsWilks=null; String[]
+				  deletionsWilks=null;
+				  
+				  int issuesInThreshold = 0; int additionsInThreshold = 0; int deletionsInThreshold = 0;
+				  				 
+				  int total =0;
+				  
+				  //get shapiro wilks for every projects a,d and i - get p number
+				  for (int i = 0; i < contributions.size(); i++) {
+				  
+				  //get each contribution 
+				  Contributions contribution =contributions.get(i);
+				  
+				  //find associated issues 
+				  for (int j = 0; j < issues.size(); j++) 
+				  { 
+				  Issues issue = issues.get(j);
+				  
+				  String [] is = issue.getAllIssues();
+				  
+				  if(issue.getProject().equals(contribution.getProject())){
+				  
+				  total++;
+				  
+				  try { 
+				  issueWilks =r.wilks(parseArrayToInt(issue.getAllIssues())); 
+				  additionsWilks =r.wilks(parseArrayToInt(contribution.getAdditions())); 
+				  deletionsWilks = r.wilks(parseArrayToInt(contribution.getDeletions()));
+				  } 
+				  catch (REngineException e) {
+					  e.printStackTrace(); 
+				  } 
+				  catch (REXPMismatchException e) 
+				  { 
+					  e.printStackTrace(); 
+				  }
+				  
+				  //is p less then 0.05? - if so increment
+				  if(Double.parseDouble(issueWilks[1]) <= 0.05){ 
+					  issuesInThreshold++; 
+					  }
+				  if(Double.parseDouble(additionsWilks[1]) <= 0.05){
+					  additionsInThreshold++; 
+				  } 
+				  if(Double.parseDouble(deletionsWilks[1]) <= 0.05){ 
+					  deletionsInThreshold++;
+				  }
+				  
+				  break;
+				  } 
+			}
+
+	}
+
+	// find out how many for each category are in the threshold or 0.05
+	float[] inThreshold = new float[3];
+	inThreshold[0]=(float)((issuesInThreshold*100.0)/total);
+	inThreshold[1]=(float)((additionsInThreshold*100.0)/total);
+	inThreshold[2]=(float)((deletionsInThreshold*100.0)/total);
+	
+	 String t = String.format("{ \"additions\": \"%s\", \"deletions\": \"%s\", \"issues\": \"%s\"}", inThreshold[1], inThreshold[2],inThreshold[0]);
+	 
+	 return t;
+
 	}
 
 	private String getHpDataTwo() {
-
-		return null;
+		 //get the average interval value for each project ArrayList<Double>
+		 ArrayList<Double> averages = dao.getGrowthRateAverages();
+		 
+		 int total = averages.size(); int numPositiveGrowth = 0;
+		 
+		 for (int i = 0; i < averages.size(); i++) { 
+			 if(averages.get(i) > 0){
+				 numPositiveGrowth++;
+			}
+		}
+		
+		 int notPositive = total - numPositiveGrowth;
+		  
+		 //convert to percentage 
+		 float percentage = (float) ((numPositiveGrowth *100.0) / total);
+		 float notIn = (float) ((notPositive *100.0) / total);
+		  
+		 String t = String.format("{ \"numPos\": \"%s\", \"numNeg\": \"%s\"}", percentage, notIn);
+		 
+		 return t;
 	}
 
 	/*

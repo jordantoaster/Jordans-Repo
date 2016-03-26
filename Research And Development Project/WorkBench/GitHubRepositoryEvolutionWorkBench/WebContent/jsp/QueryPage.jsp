@@ -638,13 +638,31 @@
 		</div>
 	 	</div>
 	 	<div id="lawTwoBlock" class="tab-pane fade">
-			hi 2
+	 	  	<h1 class="tableHeader">% of projects showing a positive or negative growth rate</h1>
+			<div id="lawTwoChart" style="height: 600px;"></div>
 	 	</div>
 	 	<div id="lawThreeBlock" class="tab-pane fade">
-			hi 3
+		<div class="container">
+  		<h1 class="tableHeader">% projects normality p values for these metrics that are within 0.05 alpha threshold of significance</h1>
+  		<table class="table" id="blockThreeTable">
+    	<thead>
+     	 <tr>
+       	 	<th>Additions</th>
+        	<th>Deletions</th>
+        	<th>Issues</th>
+      	</tr>
+   		 </thead>
+  		</table>
+		</div>
 	 	</div>
-	 	<div id="lawFourBlock" class="tab-pane fade">
-			hi 4
+	 	<div id="lawFourBlock" style="overflow:hidden;height:600px;"class="tab-pane fade">
+			<div id="left" style="float:left;width:50%;height:600px;">
+				<div id="chartFourLeft" style="height:600px;"></div>
+  			</div>
+
+  			<div id="right" style="float:right;width:50%;height:600px">
+				<div id="chartFourRight" style="height:600px;"></div>
+ 			</div>
 	 	</div>
 	 	<div id="lawFiveBlock" class="tab-pane fade">
 			<div class="container">

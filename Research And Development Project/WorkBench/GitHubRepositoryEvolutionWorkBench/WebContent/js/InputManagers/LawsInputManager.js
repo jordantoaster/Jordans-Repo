@@ -29,6 +29,8 @@ $(document).ready(function(e) {
 	$(document).on( 'shown.bs.tab', 'a[data-toggle="tab"]', function (e) {
 		if($(this).attr('href') == "#lawThreeBlock"){
 			
+			$("#blockThreeTable tbody tr").remove(); 
+
 			darwin.Mediator.makeServerRequestGeneric("laws", "three", darwin.Mediator.handleLawThreeData,"POST","","", "");
 		}// activated tab
 	})

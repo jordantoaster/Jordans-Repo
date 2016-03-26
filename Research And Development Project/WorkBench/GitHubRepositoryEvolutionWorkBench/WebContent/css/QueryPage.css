@@ -29,10 +29,11 @@
 .tableHeader{
 	margin-bottom: 2%;
 	background-color: #666699;
-	border-radius: 5px;
+	border-radius: 10px;
 	padding: 1%;
 	color:white;
     text-align: center;
+    font-size: 2.5em;
 }
 
 .darwinIcon {

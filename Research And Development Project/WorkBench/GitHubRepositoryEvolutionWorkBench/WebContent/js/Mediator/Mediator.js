@@ -875,15 +875,34 @@ darwin.Mediator = (function () {
 	    	  darwin.lawVisualiser.drawLawOne(allCorr);
 		},
 		handleLawTwoData : function(response){
-			
+		    obj = JSON.parse(response);
+
+	    	darwin.lawVisualiser.drawLawTwo(obj.numPos, obj.numNeg);
 
 		},
 		handleLawThreeData : function(response){
-			
+		    obj = JSON.parse(response);
 
+	    	darwin.lawVisualiser.drawLawThree(obj.additions, obj.deletions, obj.issues);
 		},
 		handleLawFourData : function(response){
 			
+		    obj = JSON.parse(response);
+		    
+			 var variance = obj.vari.split(',');
+			 var sd = obj.sd.split(',');
+
+	    	  for(var i=0; i<variance.length;i++){
+	    		  variance[i] = variance[i].replace('[', '');
+	    		  variance[i] = variance[i].replace(']', '');
+	    	  }
+	    	  
+	    	  for(var i=0; i<sd.length;i++){
+	    		  sd[i] = sd[i].replace('[', '');
+	    		  sd[i] = sd[i].replace(']', '');
+	    	  }
+	    	  
+		    	darwin.lawVisualiser.drawLawFour(variance, sd);
 
 		},
 		handleLawFiveData : function(response){
