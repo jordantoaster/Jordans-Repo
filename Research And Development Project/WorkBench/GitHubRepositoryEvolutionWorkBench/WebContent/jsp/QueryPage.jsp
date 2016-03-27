@@ -621,7 +621,16 @@
     </ul>
       <div class="tab-content">
          <div id="lawSplash" class="tab-pane fade in active">
-            	splash
+            	<ol class="rectangle-list">
+    				<li><a href="">(1974) "Continuing Change" - an E-type system must be continually adapted or it becomes progressively less satisfactory</a></li>
+    				<li><a href="">(1974) "Increasing Complexity" - as an E-type system evolves, its complexity increases unless work is done to maintain or reduce it</a></li>
+    				<li><a href="">(1974) "Self Regulation" - E-type system evolution processes are self-regulating with the distribution of product and process measures close to normal</a></li>
+    				<li><a href="">(1978) "Conservation of Organisational Stability (invariant work rate)" - the average effective global activity rate in an evolving E-type system is invariant over the product's lifetime</a></li>
+    				<li><a href="">(1978) "Conservation of Familiarity" - as an E-type system evolves, all associated with it, developers, sales personnel and users, for example, must maintain mastery of its content and behaviour to achieve satisfactory evolution. Excessive growth diminishes that mastery. Hence the average incremental growth remains invariant as the system evolves</a></li>
+    				<li><a href="">(1991) "Continuing Growth" - the functional content of an E-type system must be continually increased to maintain user satisfaction over its lifetime</a></li>                       
+    				<li><a href="">(1996) "Declining Quality" - the quality of an E-type system will appear to be declining unless it is rigorously maintained and adapted to operational environment changes</a></li>                       
+    				<li><a href="">(1996) "Feedback System" (first stated 1974, formalised as law 1996) - E-type evolution processes constitute multi-level, multi-loop, multi-agent feedback systems and must be treated as such to achieve significant improvement over any reasonable base</a></li>                                              
+				</ol>
          </div>     
       	<div id="lawOneBlock" class="tab-pane fade">
 		<div class="container">
