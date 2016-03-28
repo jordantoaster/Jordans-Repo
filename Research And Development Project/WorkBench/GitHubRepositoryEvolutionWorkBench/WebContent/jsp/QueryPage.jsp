@@ -450,7 +450,7 @@
       		 	</ul>
       		 </div>
       		 <button type="submit" style="display: inline !important;" id="submitButtonMean" class="btn btn-primary submitButton">
-  	     		<i class="icon-user icon-white">Get Mean Graph</i> 
+  	     		<i class="icon-user icon-white">Get Dispersion Data</i> 
       		 </button> 
       		 <div class="spacer" style="clear: both;"></div>
 	 	</div>
@@ -496,11 +496,11 @@
 			<div id="correlationOptions2" class="options"></div>		
 			<div id="correlationInfoBox">
 			<h1>Correlation Data</h1>
-			<ul>      			
-				<li id="pearsonCorr" style="visibility: hidden" class="largeText"></li>
-      			<li id="spearmanCorr" style="visibility: hidden" class="largeText"></li>
-      			<li id="crossCorr" style="visibility: hidden" class="largeText"></li>
-      		</ul>
+			<ol class="rectangle-list"> 
+			    <li><a href=""  style="visibility: hidden" id="pearsonCorr"></a></li>
+			    <li><a href=""  id="spearmanCorr" style="visibility: hidden" ></a></li>     			
+			    <li><a href=""  id="crossCorr" style="visibility: hidden"></a></li>     			
+      		</ol>
       		</div>	
       		<div id="correlationChart"></div>	
 			<button type="submit" id="submitButtonCorrelation" class="btn btn-primary submitButton">
@@ -508,7 +508,7 @@
       		</button>        		
       		<div id="correlationChart"></div>	
 	 	</div>
-	 	<div id="growthBlock" class="tab-pane fade">
+	 	<div id="growthBlock" style="margin-top:-2%;" class="tab-pane fade">
 			<div class="dropdown">
   			<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
     			Change Chart Type
