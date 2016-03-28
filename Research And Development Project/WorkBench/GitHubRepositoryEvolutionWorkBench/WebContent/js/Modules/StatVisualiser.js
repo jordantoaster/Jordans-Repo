@@ -7,96 +7,59 @@ var darwin = darwin || {};
 darwin.statVisualiser = (function() {
     return {
     	drawMean : function(values, projectNames, metricType, collatedMean, standardDev, means, medians, collatedMedian){
-    		
-    		var height = 550;
-    		var width = 700;
 
-    		//create data element for the chart
-    	    var data = new google.visualization.DataTable();   
-    	    
-    	    valuesPresent = [];
-			valCounter = 0;
-			
-			//add column to represent time passing
-    	    data.addColumn('string', 'Projects')
-    	    data.addColumn('number', 'Value');	
-    	    data.addColumn({type: 'string', role: 'annotation'});
-			
-			for(var i =0;i<values.length;i++){
-				if(values[i] != ""){
-					valuesPresent[valCounter] = values[i];
-					valCounter++;
-				}
-			}
-    	        	   	    
-    	    //add data to each row, a a numeral for the y axis and string for x
-	    	for(var j =0;j<valuesPresent.length;j++){
-        	    data.addRow([projectNames[j],valuesPresent[j], projectNames[j]]);
-	    	}
-    	    	
-	    	//populate additional options
-    	    var options = {
-    	      title: "",
-    	      hAxis: { slantedText:true, slantedTextAngle:45 }, 
-    	      chartArea:{
-    	          left: 100, width: '95%'
-    	      },
-    	      legend: {position: 'none'},
-    	      height: height,
-    	      width: width,
-			  curveType: 'function',
-    	      animation:{
-    	          duration: 800,
-    	          easing: 'out',
-    	          startup: true,
-    	        }
-    	    };
     	        
     	    //show new side info
-    	    $("#additionalMean").css({"visibility":"visible"});
     	    for(var i =0;i<projectNames.length;i++){
-    	    	$("#dispersionData").append('<li class="inlineText" style="display:list-item">The mean for ' + projectNames[i] + ' and the chosen metric is <p style="color:#666699; font-weight:bold; font-size:1.1em;display:inline;">' + means[i] + '</p></li>');
-    	    	$("#dispersionData").append('<li class="inlineText" style="display:list-item">The median for ' + projectNames[i] + ' and the chosen metric is <p style="color:#666699; font-weight:bold; font-size:1.1em;display:inline;">' + medians[i] + '</p></li>');
-    	    }
-    	    
-	    	$("#dispersionData").append('<li class="inlineText" style="display:list-item">Overall mean additions per week for this metric (mean of means) <p style="color:#666699; font-weight:bold; font-size:1.1em;display:inline;">' + collatedMean + '</p></li>');
-	    	//$("#dispersionData").append('<li class="inlineText" style="display:list-item">Standard deviation of these means is <p style="color:#666699; font-weight:bold; font-size:1.3em;">' + standardDev + '</p></li>');
-	    	$("#dispersionData").append('<li class="inlineText" style="display:list-item">Overall median of the means for this metric <p style="color:#666699; font-weight:bold; font-size:1.1em; display:inline;">' + collatedMedian + '</p></li>');
-
-    	    
-    	    
-    	    new google.visualization.BarChart(document.getElementById('meanChart')).draw(data, options);
-
+        		$("#dispersionTable").append("<tr><td>" + projectNames[i] + "</td><td>" + means[i] + "</td><td>" + medians[i] + "</td><td>" + collatedMean + "</td><td>" + collatedMedian + "</td><td>" + standardDev + "</td></tr>");
+    	     }   	    
+    
     	},
-    	drawGrowth : function(growthRate, projectNames, metricType, absolute, overTime){
-    		
-    		var height = 550;
-    		var width = 1000
-    		
-    		//split string into array, remove spaces, remove braces
-    		var values= growthRate.split(",");
-    		
-    		for(var i=0; i<values.length;i++){
-    			values[i] = values[i].replace('[', '');
+    	drawGrowth : function(growthRate, projectNames, metricType, absolute, overTime){ 
+      		
+    		var values =[];
+    		for(var i=0; i<growthRate.length;i++){	
+    			values[i] = growthRate[i].replace('[', '');
     			values[i] = values[i].replace(']', '');
     			values[i] = values[i].replace(' ', '');
-    			values[i] = parseFloat(values[i]);
+        		values[i] = values[i].split(",");
+        		
+        		for(var k=0;k<values[i].length;k++){
+        			
+        			values[i][k] = values[i][k].replace(' ', '');
+        			
+        			if(values[i][k] ==""){
+        				values[i][k] = "0.0";
+        			}
+        		}
     		}
 
-    	
     		//create data element for the chart
     	    var data = new google.visualization.DataTable();   
-    	    
-    	    valuesPresent = [];
-			valCounter = 0;
 			
 			//add column to represent time passing
     	    data.addColumn('string', 'Projects')
-    	    data.addColumn('number', 'Value');	
-    	        	   	    
-    	    //add data to each row, a a numeral for the y axis and string for x
-	    	for(var j =0;j<values.length;j++){
-        	    data.addRow([projectNames[j],values[j]]);
+    	    
+    	    //add a new column for each input project
+    	    for(var i=0;i<values.length;i++){
+    	    	data.addColumn('number', projectNames[i]);	
+    	    }
+	    	
+			// gets the shortest array in the set of json project data
+    	    iterationCount =  darwin.arrayUtilityModule.getSmallestArray(values);
+	    	
+	    	for(var j =1;j<iterationCount;j++){
+    	    	if(values.length == 2){
+        	    	data.addRow(["" + j,  parseInt(values[0][j]), parseInt(values[1][j])]);
+    	    	} else if(values.length == 3){
+        	    	data.addRow(["" + j,  parseInt(values[0][j]), parseInt(values[1][j]), parseInt(values[2][j])]);
+    	    	}else if(values.length == 4){
+        	    	data.addRow(["" + j,  parseInt(values[0][j]), parseInt(values[1][j]), parseInt(values[2][j]), parseInt(values[3][j])]);
+  	    		}else if(values.length == 5){
+        	    	data.addRow(["" + j,  parseInt(values[0][j]), parseInt(values[1][j]), parseInt(values[2][j]), parseInt(values[3][j]), parseInt(values[4][j])]);
+	    		}else {
+        	    	data.addRow(["" + j, parseInt(values[0][j])]);
+    	    	}
 	    	}
     	    	
 	    	//populate additional options
@@ -104,11 +67,11 @@ darwin.statVisualiser = (function() {
     	      title: "",
     	      hAxis: { slantedText:true, slantedTextAngle:45 }, 
     	      chartArea:{
-    	          left: 100, width: '95%'
+    	          left: 50, width: '95%', top:10, height:'95%'
     	      },
     	      legend: {position: 'none'},
-    	      height: height,
-    	      width: width,
+    	      height: '100%',
+    	      width: '100%',
 			  curveType: 'function',
     	      animation:{
     	          duration: 800,
@@ -199,13 +162,10 @@ darwin.statVisualiser = (function() {
     			all[i] = all[i].replace(']', '');
     		}
 
-			 for(var i = 0; i<normality.length; i = i +3){
-			     $('#wilks' + counter).text('Wilks Normality - for ' + normality[i] + ' is ' + normality[i+1]  + ' and P-Value: ' + normality[i+2]); 
-			     
-				 $('#wilks' + counter).css('visibility','visible')
-				 
-				 counter++;
-			 }
+    	    //show new side info
+    	    for(var i =0;i<projectNames.length;i++){
+        		$("#normalityTable").append("<tr><td>" + projectNames[i] + "</td><td>" + normality[i+1] + "</td><td>" + normality[i+2] + "</td></tr>");
+    	     }   	
 			 
 				//create data element for the chart
 	    	    var data = new google.visualization.DataTable();   
@@ -221,13 +181,13 @@ darwin.statVisualiser = (function() {
 	    	    	
 		    	//populate additional options
 	    	    var options = {
-	    	      title: "Al  Shapiro wilks for this metric",
+	    	      title: "All  Shapiro wilks for this metric",
 	    	      hAxis: { slantedText:true, slantedTextAngle:45 }, 
 	    	      chartArea:{
-	    	          left: 100, width: '95%'
+	    	          left: 100, width: '90%'
 	    	      },
 	    	      legend: {position: 'none'},
-	    	      height: '40%',
+	    	      height: '50%',
 	    	      width: '100%',
 				  curveType: 'function',
 	    	      animation:{
@@ -257,13 +217,10 @@ darwin.statVisualiser = (function() {
     			allVar[i] = allVar[i].replace(']', '');
     		}
 
-			 for(var i = 0; i<variance.length; i = i + 1){
-			     $('#variance' + counter).text('variance - for ' + projects[i] + ' is ' + variance[i]); 
-			     
-				 $('#variance' + counter).css('visibility','visible')
-				 
-				 counter++;
-			 }
+    	    //show new side info
+    	    for(var i =0;i<projectNames.length;i++){
+        		$("#varianceTable").append("<tr><td>" + projectNames[i] + "</td><td>" + variance[i] + "</td></tr>");
+    	     }  
 			 
 				//create data element for the chart
 	    	    var data = new google.visualization.DataTable();   

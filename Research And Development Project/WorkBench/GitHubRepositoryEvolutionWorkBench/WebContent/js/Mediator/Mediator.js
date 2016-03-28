@@ -200,15 +200,15 @@ darwin.Mediator = (function () {
 			}
 			if(metricType == "growth"){
 			    obj = JSON.parse(data);
-			    //var parsedData = [];
+			    var parsedData = [];
 			    
-			    //use split if accepting many sets of growths 
+			    parsedData = obj.growthRate.split('*');
 			    
-			    var growthRate = obj.growthRate;
+			    //var growthRate = obj.growthRate;
 			    var absolute = obj.absoluteGrowthRate;
 			    var overTime = obj.growthRateOverTime;
 			    
-				darwin.statVisualiser.drawGrowth(growthRate, projectNames, metricType, absolute, overTime);
+				darwin.statVisualiser.drawGrowth(parsedData, projectNames, metricType, absolute, overTime);
 				
 				//only runs when auto getting data 
 	    	    if(darwin.projectManagerModule.getIsAuto() == true){

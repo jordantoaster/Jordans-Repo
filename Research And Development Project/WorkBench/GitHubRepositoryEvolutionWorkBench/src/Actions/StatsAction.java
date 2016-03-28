@@ -175,6 +175,7 @@ public class StatsAction implements Action {
 	private String processGrowth(String[] data, String[] projects, String type) {
 
 		String growthType = type;
+		ArrayList<String> growthAll = new ArrayList<String>();
 		double[] growth = new double[projects.length];
 		int[] dataSubset = null;
 		int startPosition = 0;
@@ -194,7 +195,7 @@ public class StatsAction implements Action {
 
 				dataSubset = Arrays.copyOfRange(dataSubset, 26, dataSubset.length);
 
-				// get required ata for each subset & store
+				// get required data for each subset & store
 				growth = getGrowthRate(dataSubset);
 
 				growthOverTime = growthRateOverTime(dataSubset[0], dataSubset[dataSubset.length - 1],
@@ -207,15 +208,27 @@ public class StatsAction implements Action {
 
 				StatDao dao = new StatDao();
 				dao.insertGrowthRate(growthRateModel);
+				
+				for (int j = 0; j < growth.length; j++) {
+					growthAll.add(Double.toString(growth[j]));
+				}
+				growthAll.add("*");
 
 				counter++;
 			}
+		}
+		
+		growthAll.remove(growthAll.size()-1);
+		String[] parsedGrowth = new String[growthAll.size()];
+		
+		for (int i = 0; i < growthAll.size(); i++) {
+			parsedGrowth[i] = growthAll.get(i);
 		}
 
 		// gui only allows selection of 1, so return 1.
 		String t = String.format(
 				"{ \"absoluteGrowthRate\": \"%s\", \"growthRate\": \"%s\", \"growthRateOverTime" + "\": \"%s\"}",
-				absoluteGrowthRate, Arrays.toString(growth), growthOverTime);
+				absoluteGrowthRate, Arrays.toString(parsedGrowth), growthOverTime);
 		return t;
 	}
 

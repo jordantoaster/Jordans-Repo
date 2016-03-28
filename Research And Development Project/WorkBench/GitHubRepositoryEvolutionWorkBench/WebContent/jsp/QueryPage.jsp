@@ -423,6 +423,7 @@
     </ul>
       <div class="tab-content">
       	<div id="meanBlock" class="tab-pane fade in active">
+      	<div id="selectionMean">
 			<div class="dropdown">
   			<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
     			Change Metric Type
@@ -441,18 +442,25 @@
   			</ul>
 			</div>
 			<div id="meanOptions" class="options">
-	    	<p class="inlineText" style="display:block;">Options</p>
-	    	</div>  
-      		 <div id="meanChart" class="statChart"></div> 
-      		 <div id="additionalMean" class="additional">
-      		 	<h1 >Side Data</h1>
-      		 	<ul id="dispersionData">
-      		 	</ul>
-      		 </div>
+	    	</div>
+	    	</div> 
+	    	<div>
+  			<table class="table" id="dispersionTable" style="margin-top:2%;font-size: 2em;">
+    		<thead>
+     		 <tr>
+       	 		<th>Project</th>
+        		<th>Project Mean</th>
+        		<th>Project Median</th>
+        		<th>Overall Mean (full DB)</th>
+        		<th>Overall Median(full DB)</th>	
+        		<th>Overall Mean SD</th>	
+      		</tr>
+   		 	</thead>
+  			</table>
+	    	</div> 
       		 <button type="submit" style="display: inline !important;" id="submitButtonMean" class="btn btn-primary submitButton">
   	     		<i class="icon-user icon-white">Get Dispersion Data</i> 
       		 </button> 
-      		 <div class="spacer" style="clear: both;"></div>
 	 	</div>
 	 	<div id="correlationBLock" class="tab-pane fade">
 			<p class="inlineText">Series A</p>
@@ -508,7 +516,7 @@
       		</button>        		
       		<div id="correlationChart"></div>	
 	 	</div>
-	 	<div id="growthBlock" style="margin-top:-2%;" class="tab-pane fade">
+	 	<div id="growthBlock" class="tab-pane fade">
 			<div class="dropdown">
   			<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
     			Change Chart Type
@@ -527,17 +535,10 @@
 			</div>
 			<div id="growthOptions" class="options">
 	    	</div> 
-	    	 <button type="submit" id="submitButtonGrowth" style="margin-left:1% !important; margin-bottom:0.5%;"  class="btn btn-primary submitButton">
-  	     		<i class="icon-user icon-white">Get growth Graph</i> 
-      		 </button>  
-      		 <div id="growthChart" class="statChart"></div> 
-      		 <div id="additionalgrowth" class="additional" style="width: 30%;">
-      		 	<h1>Side Data</h1>
-      		 	<p id="growthAbsolute" class="largeText"></p>
-      		 	<p id="growthTime" class="largeText"></p>
-      		 	<p id="growthSd" class="largeText"></p>
-      		 </div>
-      		     <div class="spacer" style="clear: both;"></div>
+
+      		 <div id="growthChart" style="height:550px;margin-top:1%;"></div> 
+      		 <button type="submit" id="submitButtonGrowth" class="btn btn-primary submitButton"><i class="icon-user icon-white">Get growth Graph</i> 
+      		 </button>
 	 	</div>
 	    <div id="normalBlock" class="tab-pane fade">
 			<div class="dropdown">
@@ -558,14 +559,15 @@
 			</div>
 			<div id="normalityOptions" class="options"></div>
 			<div id="normalityInfoBox">
-			<h1>Normality Data</h1>
-			<ul>      			
-				<li id="wilks0" style="visibility: hidden" class="largeText"></li>
-				<li id="wilks1" style="visibility: hidden" class="largeText"></li>
-				<li id="wilks2" style="visibility: hidden" class="largeText"></li>
-				<li id="wilks3" style="visibility: hidden" class="largeText"></li>
-				<li id="wilks4" style="visibility: hidden" class="largeText"></li>
-      		</ul>
+			<table class="table" id="normalityTable" style="margin-top:2%; margin-bottom:2%;font-size: 2em;">
+    		<thead>
+     		 <tr>
+       	 		<th>Project</th>
+        		<th>Shapiro Wilks</th>
+        		<th>P Value</th>
+      		</tr>
+   		 	</thead>
+  			</table>
       		</div>	
       		<div id="normalityChart"></div>
 			<button type="submit" id="submitButtonNormality" class="btn btn-primary submitButton">
@@ -591,14 +593,14 @@
 			</div>
 			<div id="varianceOptions" class="options"></div>
 			<div id="varianceInfoBox">
-			<h1>Variance Data</h1>
-			<ul>      			
-				<li id="variance0" style="visibility: hidden" class="largeText"></li>
-				<li id="variance1" style="visibility: hidden" class="largeText"></li>
-				<li id="variance2" style="visibility: hidden" class="largeText"></li>
-				<li id="variance" style="visibility: hidden" class="largeText"></li>
-				<li id="variance4" style="visibility: hidden" class="largeText"></li>
-      		</ul>
+			<table class="table" id="varianceTable" style="margin-top:2%; margin-bottom:2%;font-size: 2em;">
+    		<thead>
+     		 <tr>
+       	 		<th>Project</th>
+        		<th>Variance</th>
+      		</tr>
+   		 	</thead>
+  			</table>
       		</div>	
       		<div id="varianceChart"></div>
 			<button type="submit" id="submitButtonVariance" class="btn btn-primary submitButton">
