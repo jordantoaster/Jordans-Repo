@@ -29,6 +29,12 @@ public class ActionFactory {
 		if(input.equals("laws")){
 			return new LawsAction();
 		}
+		if(input.equals("logout")){
+			return new LogoutAction();
+		}
+		if(input.equals("export")){
+			return new ExportAction();
+		}
 		
 		return new NoAction();
 	}

@@ -99,6 +99,17 @@ $(document).ready(function(e) {
 		$("#lehmannContainer").removeClass('hidden');
 	});
 	
+	$("#logout").on("click.darwin", function(e){  
+		e.preventDefault();
+
+		darwin.serverModule.sendGeneric("logout","", darwin.Mediator.handleLogout, "POST","","","");
+	});
+	$("#export").on("click.darwin", function(e){  
+		e.preventDefault();
+
+		darwin.serverModule.sendGeneric("export","", darwin.Mediator.handleExport, "POST","","","");
+	});
+	
 	/*remove this and draw components based on droop down not tab*/
 	$(document).on( 'shown.bs.tab', 'a[data-toggle="tab"]', function (e) {
 		if($(this).attr('href') == "#CustomTab"){

@@ -56,6 +56,14 @@
     <title>Main Application</title>
   </head>
   <body>
+  <div style="top: 10px; right: 10px; position:absolute;"id="logout button">
+     <button class="btn btn-default" id="logout" class="btn btn-primary button">
+    	<i style="font-size: 1.5em" class="icon-user icon-white">Logout</i> <span style="margin-left: 5px;" class="glyphicon glyphicon-off" style="vertical-align:middle"></span>
+  	 </button>
+  	 <button class="btn btn-default" id="export" class="btn btn-primary button">
+    	<i style="font-size: 1.5em" class="icon-user icon-white">Export DB</i> <span style="margin-left: 5px;" class="glyphicon glyphicon-download" style="vertical-align:middle"></span>
+  	 </button>
+  </div>
   <div id="selectionHolder">
      <button class="btn btn-default" id="selectInput" class="btn btn-primary button">
     	<i style="font-size: 1.5em" class="icon-user icon-white">Add URL(s)</i> <span style="margin-left: 5px;" class="glyphicon glyphicon-plus" style="vertical-align:middle"></span>

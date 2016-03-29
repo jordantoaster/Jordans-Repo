@@ -40,6 +40,13 @@ darwin.Mediator = (function () {
         	//darwin.projectManagerModule.enableTabs();
 
     	},
+    	handleLogout : function(){	
+			window.location = "http://localhost:8080/GitHubRepositoryEvolutionWorkBench/jsp/SplashPage.jsp";
+    	},
+    	handleExport : function(response){	
+			    $('#ajaxGetUserServletResponse').text(response);
+  			    $("#ajaxGetUserServletResponse").css({"opacity":"1"});	 	
+    	},
     	initialSetup : function(){
     	    darwin.projectManagerModule.resetVariables();
     	    darwin.projectManagerModule.resetComponents();
