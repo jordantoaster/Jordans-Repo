@@ -67,6 +67,10 @@ public class LawsAction implements Action {
 		// GET THE DATA SERIES
 		ArrayList<Issues> seriesA = iDao.getIssues();
 		ArrayList<Issues> seriesB = iDao.getIssuesComments();
+		
+		//temp variables to work out the mean cross corr at each lag
+		double[] total = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+		double[] means = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 		 
 		// PERFORM PROCESSING
 		for (int i = 0; i < seriesA.size(); i++) {
@@ -104,6 +108,8 @@ public class LawsAction implements Action {
 					for (int k = 0; k < 10; k++) {
 						crossCorr[k] = r.crossCorrelation(parsedSeriesB, parsedSeriesA, k);
 						
+						total[k] = total[k] + crossCorr[k];
+
 						if(k == 9){
 							sDao.insertCrossCorr(crossCorr[k], "", "", "");
 						}
@@ -115,12 +121,17 @@ public class LawsAction implements Action {
 				}
 			}
 		}
+		
+		//print mean values
+		for (int i = 0; i < total.length; i++) {
+			System.out.println(total[i] / 100);
+		}
 
 		for (int k = 0; k < 10; k++) {
 			percentages[k] = Double.toString(((allInThreshold[k] * 100.0) / seriesA.size()));
 		}
 		
-		sDao.getCross();
+		//sDao.getCross();
 
 		String t = String.format("{ \"crossPercent\": \"%s\"}", Arrays.toString(percentages));
 
@@ -137,6 +148,10 @@ public class LawsAction implements Action {
 		// GET THE DATA SERIES
 		ArrayList<Issues> seriesA = iDao.getIssues();
 		ArrayList<Contributions> seriesB = conDao.getContributions();
+		
+		//temp variables to work out the mean cross corr at each lag
+		double[] total = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+		double[] means = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 		 
 		// PERFORM PROCESSING
 		for (int i = 0; i < seriesA.size(); i++) {
@@ -174,6 +189,8 @@ public class LawsAction implements Action {
 					for (int k = 0; k < 10; k++) {
 						crossCorr[k] = r.crossCorrelation(parsedSeriesB, parsedSeriesA, k);
 						
+						total[k] = total[k] + crossCorr[k];
+
 						if(k == 9){
 							//sDao.insertCrossCorr(crossCorr[k], "", "", "");
 						}
@@ -184,6 +201,11 @@ public class LawsAction implements Action {
 					}
 				}
 			}
+		}
+		
+		//print mean values
+		for (int i = 0; i < total.length; i++) {
+			System.out.println(total[i] / 100);
 		}
 
 		for (int k = 0; k < 10; k++) {
@@ -208,6 +230,10 @@ public class LawsAction implements Action {
 		// GET THE DATA SERIES
 		ArrayList<Issues> seriesA = iDao.getIssues();
 		ArrayList<GrowthRateModel> seriesB = sDao.getGrowthRate();
+		
+		//temp variables to work out the mean cross corr at each lag
+		double[] total = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+		double[] means = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 
 		// PERFORM PROCESSING
 		for (int i = 0; i < seriesA.size(); i++) {
@@ -245,6 +271,8 @@ public class LawsAction implements Action {
 					for (int k = 0; k < 10; k++) {
 						crossCorr[k] = r.crossCorrelation(parsedSeriesB, parsedSeriesA, k);
 						
+						total[k] = total[k] + crossCorr[k];
+
 						if(k == 9){
 							//sDao.insertCrossCorr(crossCorr[k], "", "", "");
 						}
@@ -258,6 +286,11 @@ public class LawsAction implements Action {
 		}
 		
 		//sDao.getCross();
+		
+		//print mean values
+		for (int i = 0; i < total.length; i++) {
+			System.out.println(total[i] / 100);
+		}
 
 		for (int k = 0; k < 10; k++) {
 			percentages[k] = Double.toString(((allInThreshold[k] * 100.0) / seriesA.size()));
@@ -275,6 +308,10 @@ public class LawsAction implements Action {
 		double[] crossCorr = new double[10];
 		int[] allInThreshold = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 		String[] percentages = new String[10];
+		
+		//temp variables to work out the mean cross corr at each lag
+		double[] total = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+		double[] means = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 
 		// GET THE DATA SERIES
 		ArrayList<Commits> seriesA = cDao.getCommits();
@@ -315,13 +352,21 @@ public class LawsAction implements Action {
 
 					for (int k = 0; k < 10; k++) {
 						crossCorr[k] = r.crossCorrelation(parsedSeriesA, parsedSeriesB, k);
+						
+						total[k] = total[k] + crossCorr[k];
 
 						if (crossCorr[k] > threshold) {
 							allInThreshold[k]++;
 						}
 					}
+										
 				}
 			}
+		}
+		
+		//print mean values
+		for (int i = 0; i < total.length; i++) {
+			//System.out.println(total[i] / 100);
 		}
 
 		for (int k = 0; k < 10; k++) {
