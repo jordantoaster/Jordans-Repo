@@ -531,8 +531,12 @@ darwin.projectManagerModule = (function() {
 				}				
 			}
 			
-			darwin.serverModule.sendStat("stats","mean",selectedMeanProjectName, selectedMeanData, "POST", darwin.Mediator.drawGenericStat, dataType);	
-
+			if(selectedMeanData.length == 0 || selectedMeanProjectName.length > 1){
+		    	$('#ajaxGetUserServletResponse').text("Make sure you select a check box!");
+		    	$("#ajaxGetUserServletResponse").css({"opacity":"1"});	 
+			} else {
+				darwin.serverModule.sendStat("stats","mean",selectedMeanProjectName, selectedMeanData, "POST", darwin.Mediator.drawGenericStat, dataType);	
+			}
         },
         getCheckedNormalityData : function(dataType){
         	
@@ -579,9 +583,12 @@ darwin.projectManagerModule = (function() {
 	        		dataCounter++;
 				}				
 			}
-			
+			if(selectedNormalityData.length == 0 || selectedNormalityProjectName.length > 1){
+		    	$('#ajaxGetUserServletResponse').text("Make sure you select a check box!");
+		    	$("#ajaxGetUserServletResponse").css({"opacity":"1"});	 
+			} else {
 			darwin.serverModule.sendStat("stats","normality",selectedNormalityProjectName, selectedNormalityData, "POST", darwin.Mediator.drawGenericStat, dataType);	
-
+			}
         },
         getCheckedVarianceData : function(dataType){
         	
@@ -629,8 +636,12 @@ darwin.projectManagerModule = (function() {
 				}				
 			}
 			
+			if(selectedVarianceData.length == 0 || selectedVarianceProjectName.length > 1){
+		    	$('#ajaxGetUserServletResponse').text("Make sure you select a check box!");
+		    	$("#ajaxGetUserServletResponse").css({"opacity":"1"});	 
+			} else {
 			darwin.serverModule.sendStat("stats","variance",selectedVarianceProjectName, selectedVarianceData, "POST", darwin.Mediator.drawGenericStat, dataType);	
-
+			}
         },
         getCheckedGrowthData : function(dataType){
         	
@@ -678,8 +689,12 @@ darwin.projectManagerModule = (function() {
 				}				
 			}
 			
+			if(selectedGrowthData.length == 0 || selectedMeanProjectName.length > 1){
+		    	$('#ajaxGetUserServletResponse').text("Make sure you select only one check box from each row!");
+		    	$("#ajaxGetUserServletResponse").css({"opacity":"1"});	 
+			} else {
 			darwin.serverModule.sendStat("stats","growth",selectedGrowthProjectName, selectedGrowthData, "POST", darwin.Mediator.drawGenericStat, dataType);	
-
+			}
         },
         getCheckedCorrelationsData : function(seriesA, seriesB){
         	
@@ -777,8 +792,12 @@ darwin.projectManagerModule = (function() {
 				}
 			}
 			
+			if(selectedSeriesAData.length == 0 || selectedSeriesBData.length == 0 || selectedMeanProjectName.length > 2){
+		    	$('#ajaxGetUserServletResponse').text("Make sure you select one check box from each row!");
+		    	$("#ajaxGetUserServletResponse").css({"opacity":"1"});	 
+			} else {			
 			darwin.serverModule.sendStatCorr("stats","correlation",selectedProjectName, selectedSeriesAData, selectedSeriesBData, "POST", darwin.Mediator.drawCorrelation, seriesA, seriesB);	
-
+			}
         },
         resetAllProjectManager : function(){
         	 projectId = "";
