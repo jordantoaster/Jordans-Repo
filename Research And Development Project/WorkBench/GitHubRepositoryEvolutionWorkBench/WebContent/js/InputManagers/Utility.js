@@ -20,7 +20,38 @@ $(document).ready(function(e) {
 	$("#submitButtonQuery").on("click.darwin", function(e){
 		e.preventDefault();
 		
-		darwin.Mediator.initialSetup();
+		filledFeilds = [];
+		counter =0;
+		
+	    for(i=0;i<5;i++){
+	    	
+	    	//get parsed url
+	    	parsedUrl = darwin.Mediator.parseInputUrl($('#urlField' + i).val());
+	    	
+	    	if(parsedUrl != ""){
+	    		
+	    		//first check if there are any duplicates
+	    		var duplicates = false;
+	    		
+	    		
+	    		for(var j=0; j<filledFeilds.length;j++){
+	    			if(parsedUrl == darwin.Mediator.parseInputUrl($('#urlField' + filledFeilds[j]).val())){
+	    				duplicates = true; break;
+	    			}
+	    		}
+	    		
+	    		if(duplicates == false){
+	    			filledFeilds[counter] = i;
+	    			counter++;
+	    		}
+	    	}
+	    }
+		
+	    if(filledFeilds.length > 0){
+			darwin.Mediator.initialSetup(filledFeilds);
+	    } else{
+	    	$('#ajaxGetUserServletResponse').text("Make sure you add a URL!");
+	    	$("#ajaxGetUserServletResponse").css({"opacity":"1"});	 	    }
 	
 	});
 	

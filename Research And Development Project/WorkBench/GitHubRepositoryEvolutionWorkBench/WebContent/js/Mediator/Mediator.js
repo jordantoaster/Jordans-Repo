@@ -15,28 +15,33 @@ darwin.Mediator = (function () {
     	    
     	    //get urls
 	    	bulkUrls = $('#urlField0').val();
-	    	bulkUrls = bulkUrls.replace(/\s+/g, '');
 	    	
-	    	//split on comma to an array
-	    	var bulkProjects = [];
-	    	bulkProjects = bulkUrls.split(',');
+	    	if(bulkUrls != ""){
+	    		bulkUrls = bulkUrls.replace(/\s+/g, '');
+	    	
+	    		//split on comma to an array
+	    		var bulkProjects = [];
+	    		bulkProjects = bulkUrls.split(',');
 	    	
 	    	
-	    	for(var i=0; i<bulkProjects.length;i++){
+	    		for(var i=0; i<bulkProjects.length;i++){
 	    		
-    	    	parsedUrl = darwin.Mediator.parseInputUrl(bulkProjects[i]);
+	    			parsedUrl = darwin.Mediator.parseInputUrl(bulkProjects[i]);
 
-	    		darwin.projectManagerModule.setProjectNames(parsedUrl);
+	    			darwin.projectManagerModule.setProjectNames(parsedUrl);
 
-	    		darwin.projectManagerModule.setBaseRequestUrl(darwin.projectManagerModule.getNumProjects(), "https://api.github.com/repos"+parsedUrl+"/stats/code_frequency?per_page=100&page=")
+	    			darwin.projectManagerModule.setBaseRequestUrl(darwin.projectManagerModule.getNumProjects(), "https://api.github.com/repos"+parsedUrl+"/stats/code_frequency?per_page=100&page=")
 
-	    		darwin.projectManagerModule.setNumProjects();
-	    		
-	    		
+	    			darwin.projectManagerModule.setNumProjects();
+	    		    		
+	    		}
+	    	
+	    		darwin.Mediator.makeGithubRequest(darwin.projectManagerModule.getAllBaseRequestUrl(), darwin.Mediator.githubParseContributionData, "contribution","");
 	    	}
-	    	
-    	    darwin.Mediator.makeGithubRequest(darwin.projectManagerModule.getAllBaseRequestUrl(), darwin.Mediator.githubParseContributionData, "contribution","");
-
+	    	else {
+		    	$('#ajaxGetUserServletResponse').text("Ensure at least one URL is added!");
+		    	$("#ajaxGetUserServletResponse").css({"opacity":"1"});	 
+	    	}
         	//darwin.projectManagerModule.enableTabs();
 
     	},
@@ -47,30 +52,24 @@ darwin.Mediator = (function () {
 			    $('#ajaxGetUserServletResponse').text(response);
   			    $("#ajaxGetUserServletResponse").css({"opacity":"1"});	 	
     	},
-    	initialSetup : function(){
+    	initialSetup : function(filled){
     	    darwin.projectManagerModule.resetVariables();
     	    darwin.projectManagerModule.resetComponents();
     	    
-    	    //contributions - STAGE 1
-    	    for(i=0;i<5;i++){
+    	    for(i=0;i<filled.length;i++){
     	    	
     	    	//get parsed url
-    	    	parsedUrl = darwin.Mediator.parseInputUrl($('#urlField' + i).val());
+    	    	parsedUrl = darwin.Mediator.parseInputUrl($('#urlField' + filled[i]).val());
     	    	
-    	    	//blank check
-    	    	if(parsedUrl != "/GitHubRepositoryEvolutionWorkBench/jsp/QueryPage.jsp" && parsedUrl != "/GitHubRepositoryEvolutionWorkBench/jsp/undefined"){
-    	    		//set project info for future reference
-    	    		darwin.projectManagerModule.setProjectNames(parsedUrl);
+    	    	//set project info for future reference
+    	    	darwin.projectManagerModule.setProjectNames(parsedUrl);
+    	    	    	    		
+    	    	//set request urls for the specefic api request
+    	    	darwin.projectManagerModule.setBaseRequestUrl(darwin.projectManagerModule.getNumProjects(), "https://api.github.com/repos"+parsedUrl+"/stats/code_frequency?per_page=100&page=")
     	    	
-    	    		//CHECK HERE IF ANY ARE THE SAME URL INPUT
-    	    		
-    	    		//set request urls for the specefic api request
-    	    		darwin.projectManagerModule.setBaseRequestUrl(darwin.projectManagerModule.getNumProjects(), "https://api.github.com/repos"+parsedUrl+"/stats/code_frequency?per_page=100&page=")
-    	    	
-    	    		//total the num of projects accepted
-    	    		darwin.projectManagerModule.setNumProjects();
-    	    		
-    	    		} 
+    	    	//total the num of projects accepted
+    	    	darwin.projectManagerModule.setNumProjects();
+    	    		 
     	    }
     	    
     	    //send the urls and associated data to the next module
@@ -98,11 +97,16 @@ darwin.Mediator = (function () {
     		//get modal data for the number
     		projectNames = darwin.projectManagerModule.getProjectNames();
     		projectName = projectNames[projectNum];
-    		bodyText = darwin.dataManager.getReadMe(projectNum);
     		
-    		    		
-    		//send to visualiser
-    		darwin.modalVisualiser.drawModal(projectName, bodyText);
+    		if(projectName != undefined){
+    			bodyText = darwin.dataManager.getReadMe(projectNum);
+		
+    			//send to visualiser
+    			darwin.modalVisualiser.drawModal(projectName, bodyText);
+    		} else {
+		    	$('#ajaxGetUserServletResponse').text("No project data added!");
+		    	$("#ajaxGetUserServletResponse").css({"opacity":"1"});	 
+    		}
 
     	},
     	parseUserData : function(json, url, username){
