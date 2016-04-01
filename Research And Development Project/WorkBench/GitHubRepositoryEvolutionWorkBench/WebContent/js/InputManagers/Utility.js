@@ -109,6 +109,11 @@ $(document).ready(function(e) {
 
 		darwin.serverModule.sendGeneric("export","", darwin.Mediator.handleExport, "POST","","","");
 	});
+	$("#clear").on("click.darwin", function(e){  
+		e.preventDefault();
+
+		darwin.serverModule.sendGeneric("clear","", darwin.Mediator.handleExport, "POST","","","");
+	});
 	
 	/*remove this and draw components based on droop down not tab*/
 	$(document).on( 'shown.bs.tab', 'a[data-toggle="tab"]', function (e) {

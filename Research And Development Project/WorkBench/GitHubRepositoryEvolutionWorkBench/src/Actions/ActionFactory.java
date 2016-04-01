@@ -10,16 +10,13 @@ public class ActionFactory {
 		
 		if(input.equals("login")){
 			return new LoginAction();
-		}
-		
+		}		
 		if(input.equals("register")){
 			return new RegisterAction();
-		}
-		
+		}		
 		if(input.equals("storeContributions")){
 			return new StoreContributionAction();
-		}
-		
+		}		
 		if(input.equals("storeGeneric")){
 			return new StoreGenericAction();
 		}
@@ -34,6 +31,9 @@ public class ActionFactory {
 		}
 		if(input.equals("export")){
 			return new ExportAction();
+		}
+		if(input.equals("clear")){
+			return new ClearAction();
 		}
 		
 		return new NoAction();
