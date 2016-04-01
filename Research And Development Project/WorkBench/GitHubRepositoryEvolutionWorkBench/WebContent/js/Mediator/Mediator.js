@@ -558,14 +558,19 @@ darwin.Mediator = (function () {
 		},
 		prepareUserClick : function(username){
 			
-			darwin.projectManagerModule.resetBaseRequestUrl();
+			if(username != "" && username != undefined){
+				darwin.projectManagerModule.resetBaseRequestUrl();
 
-		    var requri   = 'https://api.github.com/users/'+username+"?type=user";
-		    var repouri  = 'https://api.github.com/users/'+username+'/repos';
+				var requri   = 'https://api.github.com/users/'+username+"?type=user";
+				var repouri  = 'https://api.github.com/users/'+username+'/repos';
 		    
-			darwin.projectManagerModule.setBaseRequestUrl(0,requri);
+				darwin.projectManagerModule.setBaseRequestUrl(0,requri);
 	
-			darwin.Mediator.makeGithubRequest(darwin.projectManagerModule.getAllBaseRequestUrl(), darwin.Mediator.parseUserData, "user", username);		
+				darwin.Mediator.makeGithubRequest(darwin.projectManagerModule.getAllBaseRequestUrl(), darwin.Mediator.parseUserData, "user", username);
+			} else {
+		    	$('#ajaxGetUserServletResponse').text("Make sure you add a username!");
+		    	$("#ajaxGetUserServletResponse").css({"opacity":"1"});	 
+			}
 		},
 		prepareStarClick : function(url, projectName){
 			darwin.jsonManagerModule.resetStarJson();
@@ -698,7 +703,12 @@ darwin.Mediator = (function () {
 			darwin.dataManager.addToCustomNameList(name);
 		},
 		drawCustomGraph: function (values, xAxis, chartTitle, sampleIndex, chartType) {			
-			darwin.customVisualiser.draw(values, xAxis, chartTitle, sampleIndex, chartType);	
+			if(values.length == 0){
+		    	$('#ajaxGetUserServletResponse').text("Please Select a check box");
+		    	$("#ajaxGetUserServletResponse").css({"opacity":"1"});	 
+			} else {
+				darwin.customVisualiser.draw(values, xAxis, chartTitle, sampleIndex, chartType);	
+			}
 		},
 		resetCustomProcess : function(){
 			darwin.dataManager.clearCustomNameList();

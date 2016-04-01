@@ -250,6 +250,7 @@ $(document).ready(function(e) {
 	function setupNewProject(){
 		darwin.Mediator.clearOptionsOnly();
     	$("#customChart").empty();
+    	darwin.dataManager.clearCustomList()
 		darwin.Mediator.setupCustomComponentsOptions();
 	}
 	
