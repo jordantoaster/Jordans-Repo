@@ -1,3 +1,9 @@
+/**
+ * @author Jordan McDonald
+ *
+ * Description - Java bean to model a user and collated represention on the system
+ */
+
 package Models;
 
 public class User {

@@ -1,3 +1,10 @@
+/**
+ * @author Jordan McDonald
+ *
+ * Description - Handles all the processing for the statistical application functionality by determining what stat is required 
+ * and feeding the data into the relevant function - all 'stat actions' are handled here
+ */
+
 package Actions;
 
 import java.math.BigDecimal;
@@ -21,16 +28,17 @@ public class StatsAction implements Action {
 	RConnectionDarwin r = new RConnectionDarwin();
 	private String combinedMedian;
 
-	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
 
+		//gets the data from the HTTP request
 		String subAction = request.getParameter("subAction");
 		String[] projects = request.getParameterValues("projectNames[]");
 		String[] data = request.getParameterValues("data[]");
 
+		//depending on the input action redirect the program flow to differing functionality
 		if (subAction.equals("mean")) {
 
-			String result = processMean(data, projects, request.getParameter("typeOne"));
+			String result = processDispersion(data, projects, request.getParameter("typeOne"));
 
 			return result;
 		}
@@ -62,9 +70,11 @@ public class StatsAction implements Action {
 			return result;
 		}
 
+		//handles the case where a bad request was made
 		return "no stat found";
 	}
 
+	//using the input data series the variance is obtained and store in the database
 	private String processVariance(String[] data, String[] projects, String type) {
 
 		double variance = 0;
@@ -72,7 +82,7 @@ public class StatsAction implements Action {
 		int startPosition = 0;
 		ArrayList<Double> allVariance= new ArrayList<Double>();
 
-		// loop all sets in array to get each seperate mean
+		// loop all sets in array to get each seperate data series - each seperated by a '*'
 		for (int i = 0; i < data.length; i++) {
 
 			// when we encounter a * split it from main array for use later
@@ -81,13 +91,13 @@ public class StatsAction implements Action {
 				// get section of array up to the terminator
 				dataSubset = parseData(data, startPosition, i);
 				startPosition = i + 1;
-
+				
+				//get the variance using the R environment
 				try {
 					variance = r.getVariance(dataSubset);
 
 					// add to overall list
 					allVariance.add(variance);
-
 
 				} catch (REngineException e) {
 					// TODO Auto-generated catch block
@@ -102,22 +112,25 @@ public class StatsAction implements Action {
 		StatDao dao = new StatDao();
 		double[] varianceParsed = new double[allVariance.size()];
 		
+		//insert into the Database and convert to a form that can be sent using JSON over HTTP
 		for (int i = 0; i < allVariance.size(); i++) {
 			dao.insertVariance(allVariance.get(i), type);
 			varianceParsed[i] = allVariance.get(i);
 		}
 		
-		ArrayList<String> allVarianceType = dao.getVarianceType(type);
-		
+		//convert data to a form which can be sent over HTTP
+		ArrayList<String> allVarianceType = dao.getVarianceType(type);	
 		String[] AllVarianceParsed = new String[allVarianceType.size()];
 		AllVarianceParsed = allVarianceType.toArray(AllVarianceParsed);
 
-
-		String t = String.format("{ \"variance\": \"%s\",\"allVar\": \"%s\"}", Arrays.toString(varianceParsed), Arrays.toString(AllVarianceParsed));
-		return t;
+		//return JSON String
+		String json = String.format("{ \"variance\": \"%s\",\"allVar\": \"%s\"}", Arrays.toString(varianceParsed), Arrays.toString(AllVarianceParsed));
+		return json;
 	}
 
+	//Aplies the shapiro wilks test of normality on the provided data series - utilises the R environment
 	private String processNormality(String[] data, String[] projects, String type) {
+		
 		String normalityType = type;
 		String normality[] = new String[2];
 		int[] dataSubset = null;
@@ -161,6 +174,7 @@ public class StatsAction implements Action {
 			}
 		}
 		
+		//The data is transferedd to a form which can be sent over HTTP using json
 		ArrayList<String> allNormalityType = dao.getWilksType(type);
 		String[] AllNormalityParsed = new String[allNormalityType.size()];
 		AllNormalityParsed = allNormalityType.toArray(AllNormalityParsed);
@@ -168,10 +182,11 @@ public class StatsAction implements Action {
 		String[] normalityParsed = new String[allNormality.size()];
 		normalityParsed = allNormality.toArray(normalityParsed);
 
-		String t = String.format("{ \"wilks\": \"%s\",\"all\": \"%s\"}", Arrays.toString(normalityParsed), Arrays.toString(AllNormalityParsed));
-		return t;
+		String json = String.format("{ \"wilks\": \"%s\",\"all\": \"%s\"}", Arrays.toString(normalityParsed), Arrays.toString(AllNormalityParsed));
+		return json;
 	}
 
+	//function splits each series in the string and determines the growth rate metrics for each project
 	private String processGrowth(String[] data, String[] projects, String type) {
 
 		String growthType = type;
@@ -198,6 +213,7 @@ public class StatsAction implements Action {
 				// get required data for each subset & store
 				growth = getGrowthRate(dataSubset);
 
+				//gets the growth rate data
 				growthOverTime = growthRateOverTime(dataSubset[0], dataSubset[dataSubset.length - 1],
 						dataSubset.length);
 				absoluteGrowthRate = singleGrowthRate(dataSubset[0], dataSubset[dataSubset.length - 1]);
@@ -206,6 +222,7 @@ public class StatsAction implements Action {
 				GrowthRateModel growthRateModel = new GrowthRateModel(projects[counter], growthType, growth,
 						growthOverTime, absoluteGrowthRate);
 
+				//stores the growth data
 				StatDao dao = new StatDao();
 				dao.insertGrowthRate(growthRateModel);
 				
@@ -221,17 +238,19 @@ public class StatsAction implements Action {
 		growthAll.remove(growthAll.size()-1);
 		String[] parsedGrowth = new String[growthAll.size()];
 		
+		//parse growth data to allow tranmission over HTTP
 		for (int i = 0; i < growthAll.size(); i++) {
 			parsedGrowth[i] = growthAll.get(i);
 		}
 
-		// gui only allows selection of 1, so return 1.
-		String t = String.format(
+		//format and return a json string containing the data
+		String json = String.format(
 				"{ \"absoluteGrowthRate\": \"%s\", \"growthRate\": \"%s\", \"growthRateOverTime" + "\": \"%s\"}",
 				absoluteGrowthRate, Arrays.toString(parsedGrowth), growthOverTime);
-		return t;
+		return json;
 	}
 
+	//function takes two string series and obtains various correlation metrics
 	private String processCorrelation(String[] data, String[] d2, String[] projects, String t1, String t2) {
 
 		String[] correlation = new String[4];
@@ -240,11 +259,11 @@ public class StatsAction implements Action {
 		String TypeTwo = t2;
 		double crossCorr = 0;
 
-		// convert to int arrays
+		// convert to int arrays (to work with R environment)
 		int[] SeriesA = parseArrayToInt(data);
 		int[] SeriesB = parseArrayToInt(dataTwo);
 
-		// get correlation
+		// get correlation using R - pearsons, spearman and cross correlation with -2 lag
 		try {
 			correlation = r.correlation(SeriesA, SeriesB);
 			crossCorr = r.crossCorrelation(SeriesA, SeriesB,7);
@@ -259,6 +278,7 @@ public class StatsAction implements Action {
 		// store
 		StatDao dao = new StatDao();
 
+		//generate a bean containing the data and insert into DB
 		Correlation correlationModel = new Correlation(projects[0], projects[1], correlation[0], TypeOne, TypeTwo,
 				correlation[1], correlation[2], correlation[3]);
 		dao.insertCorrelation(correlationModel);
@@ -266,19 +286,22 @@ public class StatsAction implements Action {
 		//get all the other correlations values that use the same metric types
 		ArrayList<String> correlations = dao.getAllCorrelations(t1,t2);
 		
+		//parse data for sending over HTTP
 		String[] correlationsParsed = new String[correlations.size()];
 		correlationsParsed = correlations.toArray(correlationsParsed);
 
-		String t = String.format(
+		//forma the json string and return for tranmission to the UI
+		String json = String.format(
 				"{ \"pearson\": \"%s\", \"spearman\": \"%s\", \"pearsonP\": \"%s\", \"spearmanP"
 						+ "\": \"%s\", \"cross\": \"%s\", \"allCorr\": \"%s\"}",
 				correlation[0], correlation[1], correlation[2], correlation[3], crossCorr, Arrays.toString(correlationsParsed));
-		return t;
+		return json;
 	}
 
-	private String processMean(String[] data, String[] projects, String type) {
+	//using the data provided the dispersion statistics are retrieved and returned to the UI
+	private String processDispersion(String[] data, String[] projects, String type) {
 
-		// holds the means
+		// holds the data
 		String[] mean = new String[projects.length];
 		String meanType = type;
 		int[] dataSubset = null;
@@ -287,7 +310,7 @@ public class StatsAction implements Action {
 		int collatedMedian = 0;
 		int[] medians = new int[projects.length];
 
-		// loop all sets in array to get each seperate mean
+		// loop all sets in array to get each seperate series
 		for (int i = 0; i < data.length; i++) {
 
 			// when we encounter a * split it from main array for use later
@@ -297,7 +320,7 @@ public class StatsAction implements Action {
 				dataSubset = parseData(data, startPosition, i);
 				startPosition = i + 1;
 
-				// get mean
+				// get statistics using R
 				try {
 					mean[meanCounter] = r.mean(dataSubset);
 					medians[meanCounter] = r.median(dataSubset);
@@ -321,7 +344,6 @@ public class StatsAction implements Action {
 				combinedMean = combinedMean + "*";
 			}
 		}
-		
 		for (int i = 0; i < medians.length; i++) {
 			combinedMedian = combinedMean + mean[i].toString();
 			combinedMedian = combinedMean + "*";
@@ -329,7 +351,7 @@ public class StatsAction implements Action {
 
 		StatDao dao = new StatDao();
 
-		// store mean
+		// store data
 		for (int i = 0; i < mean.length; i++) {
 			Mean meanModel = new Mean(projects[i], Integer.parseInt(mean[i]), meanType);
 			dao.insertMean(meanModel);
@@ -354,7 +376,6 @@ public class StatsAction implements Action {
 
 		// get standard deviation
 		String standardDev = "";
-
 		try {
 			standardDev = r.standardDev(means);
 		} catch (REngineException e) {
@@ -365,14 +386,14 @@ public class StatsAction implements Action {
 			e.printStackTrace();
 		}
 
-		// return mean to client
-		// return combinedMean;
-		String t = String.format("{ \"means\": \"%s\", \"collatedMean\": \"%s\", \"standardDev\": \"%s\", \"collatedMedian\": \"%s\", \"medians\": \"%s\"}",
+		// return data to client in json format
+		String json = String.format("{ \"means\": \"%s\", \"collatedMean\": \"%s\", \"standardDev\": \"%s\", \"collatedMedian\": \"%s\", \"medians\": \"%s\"}",
 				combinedMean, collatedMean, standardDev, collatedMedian, combinedMedian);
-		return t;
+		return json;
 
 	}
 
+	//gets the growth rate between two time series intervals
 	private double singleGrowthRate(int pa, int pr) {
 		double past = (double) pa;
 		double present = (double) pr;
@@ -381,7 +402,6 @@ public class StatsAction implements Action {
 		double r2 = r1 / past;
 		double r3 = round(r2 * 100, 2);
 		return r3;
-
 	}
 
 	// gets an average based on max and min value
@@ -396,6 +416,7 @@ public class StatsAction implements Action {
 		return r4;
 	}
 
+	//returns an array containing growth rates between each interval in the original series of data
 	private double[] getGrowthRate(int[] parsedData) {
 
 		double[] growthRate = new double[parsedData.length - 1];
@@ -415,6 +436,7 @@ public class StatsAction implements Action {
 		return growthRate;
 	}
 
+	//utility function to round exponentials correctly
 	public static double round(double value, int places) {
 		if (places < 0)
 			throw new IllegalArgumentException();
@@ -429,6 +451,7 @@ public class StatsAction implements Action {
 		}
 	}
 
+	//translates a string array into an integer array based on a subsequence
 	private int[] parseData(String[] data, int startPosition, int terminatorPosition) {
 
 		int range = terminatorPosition - startPosition;
@@ -445,6 +468,7 @@ public class StatsAction implements Action {
 		return parsedArray;
 	}
 
+	//translate an entire series into an int array
 	private int[] parseArrayToInt(String[] data) {
 		int[] parsedArray = new int[data.length];
 

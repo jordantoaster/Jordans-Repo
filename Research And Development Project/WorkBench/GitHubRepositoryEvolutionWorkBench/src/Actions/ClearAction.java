@@ -1,3 +1,9 @@
+/**
+ * @author Jordan McDonald
+ *
+ * Description - activate a java run time instance to perform command line action - in this case wiping the MongoDB database
+ */
+
 package Actions;
 
 import java.io.IOException;
@@ -11,8 +17,9 @@ public class ClearAction implements Action{
 	
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
+		
+		//Removes all collections from the MongoDB database
 		try {
-			System.out.println("clear");
 			if(!stop){
 				Runtime.getRuntime().exec("mongo addDBNameHere --eval 'db.dropDatabase();'");
 			}
@@ -21,8 +28,6 @@ public class ClearAction implements Action{
 			e.printStackTrace();
 		}
 		
-		//mongoexport --host mgo.acme.com --port 10332 --username acmeman --password 12345
-
 		return "Clear successful!";
 	}
 

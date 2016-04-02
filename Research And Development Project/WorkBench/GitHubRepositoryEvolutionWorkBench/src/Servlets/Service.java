@@ -1,5 +1,11 @@
-package Servlets;
+/**
+ * @author Jordan McDonald
+ * 
+ * Functionality - captures and requests made to the system and passes the contents to the action factory for processing
+ *
+ */
 
+package Servlets;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,13 +13,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import Actions.Action;
 import Actions.ActionFactory;
 
-/**
- * Servlet implementation class Service - Implements the front controller (mediator) pattern
- */
 @WebServlet("/Service")
 public class Service extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -22,6 +24,7 @@ public class Service extends HttpServlet {
         super();
     }
 
+    //Handles the GET and POST requests and redirects to a core function
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		performAction(request, response);
 	}
@@ -30,6 +33,7 @@ public class Service extends HttpServlet {
 		performAction(request, response);
 	}
 	
+	//implementation of the factory design pattern which generates  class to execute based on user input
 	protected void performAction(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		
 		Action action = ActionFactory.getAction(request.getParameter("action"));

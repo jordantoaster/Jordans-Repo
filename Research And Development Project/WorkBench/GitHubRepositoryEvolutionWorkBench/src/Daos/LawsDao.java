@@ -1,9 +1,12 @@
+/**
+ * @author Jordan McDonald
+ *
+ * Description - coordinates the database and law operations that are not covered by other Dao instances
+ */
+
 package Daos;
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.util.ArrayList;
-
 import com.mongodb.BasicDBList;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBCollection;
@@ -13,6 +16,7 @@ import com.mongodb.MongoException;
 import Models.Mean;
 
 public class LawsDao {
+	
 	
 	public ArrayList<Double> getGrowthRateAverages(){
 		

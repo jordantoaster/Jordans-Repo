@@ -1,3 +1,9 @@
+/**
+ * @author Jordan McDonald
+ *
+ * Description - coordinates the Mongo database and the various issue permutations
+ */
+
 package Daos;
 
 import java.util.ArrayList;
@@ -12,6 +18,7 @@ import Models.Issues;
 import Models.Stars;
 
 public class IssueDao {
+	//performs in insert operation
 	public boolean insertIssues(Issues issue){
 		
 		try {
@@ -33,6 +40,7 @@ public class IssueDao {
 		return true;	
 	}
 	
+	//inserts a different issue permutation
 	public boolean insertIssuesClosedAt(Issues issue){
 		
 		try {
@@ -52,6 +60,7 @@ public class IssueDao {
 		return true;	
 	}
 	
+	//inserts another issue variation
 	public boolean insertIssuesComments(Issues issue){
 		
 		try {
@@ -71,6 +80,7 @@ public class IssueDao {
 		return true;	
 	}
 	
+	//gets all the standard issue type from the DB
 	public ArrayList<Issues> getIssues(){
 		
 	    ArrayList<Issues> issueList = new ArrayList<Issues>();
@@ -114,6 +124,7 @@ public class IssueDao {
 		return issueList;	
 	}
 	
+	//parse mongo list to java array
 	public String[] parseMongoArray(BasicDBList list){
 		list.toArray();
 		String[] arrayParsed = new String[list.size()];
@@ -121,6 +132,7 @@ public class IssueDao {
 		return arrayParsed;
 	}
 
+	//gets the issue comments from the collection
 	public ArrayList<Issues> getIssuesComments() {
 	    ArrayList<Issues> issueList = new ArrayList<Issues>();
 		

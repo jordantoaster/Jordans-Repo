@@ -1,3 +1,9 @@
+/**
+ * @author Jordan McDonald
+ *
+ * Description - Java bean to represent a single correlation instance - provides mutators and accessors methods
+ */
+
 package Models;
 
 public class Correlation {

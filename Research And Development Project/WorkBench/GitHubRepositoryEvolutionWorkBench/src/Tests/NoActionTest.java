@@ -1,3 +1,9 @@
+/**
+ * @author Jordan McDonald
+ *
+ * Description - unit tests for the no action instance
+ */
+
 package Tests;
 
 import static org.junit.Assert.assertEquals;

@@ -1,3 +1,9 @@
+/**
+ * @author Jordan McDonald
+ *
+ * Description - handles all commit interaction with the database
+ */
+
 package Daos;
 
 import java.util.ArrayList;
@@ -12,6 +18,7 @@ import Models.Issues;
 
 public class CommitsDao {
 	
+	//inserts the commit model to the MONGO collection
 	public boolean insertCommits(Commits commits){
 				
 		try {
@@ -32,6 +39,7 @@ public class CommitsDao {
 		return true;	
 	}
 	
+	//retrieves a list of commits in the database
 	public ArrayList<Commits> getCommits(){
 		
 	    ArrayList<Commits> commitList = new ArrayList<Commits>();
@@ -69,6 +77,7 @@ public class CommitsDao {
 		return commitList;	
 	}
 	
+	//converts a mongo DB list to a traditional string array
 	public String[] parseMongoArray(BasicDBList list){
 		list.toArray();
 		String[] arrayParsed = new String[list.size()];

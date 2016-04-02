@@ -1,3 +1,9 @@
+/**
+ * @author Jordan McDonald
+ *
+ * Description - handles the required fork/DAO functionality - in this case an insert
+ */
+
 package Daos;
 
 import com.mongodb.BasicDBObject;

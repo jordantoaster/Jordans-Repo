@@ -1,3 +1,9 @@
+/**
+ * @author Jordan McDonald
+ *
+ * Description - utility class that provides a structure to message responses to the user and UI
+ */
+
 package Utility;
 
 public class ResponseBase {

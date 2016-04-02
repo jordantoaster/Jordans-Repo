@@ -1,3 +1,9 @@
+/**
+ * @author Jordan McDonald
+ *
+ * Description - coordinates the tag models and the mongo database - only includes operations that are required
+ */
+
 package Daos;
 
 import com.mongodb.BasicDBObject;
@@ -7,6 +13,8 @@ import Models.Stars;
 import Models.Tags;
 
 public class TagDao {
+	
+	//performs an insert
 	public boolean insertStars(Tags tag){
 		
 		try {

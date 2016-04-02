@@ -1,3 +1,9 @@
+/**
+ * @author Jordan McDonald
+ *
+ * Description - removes the user details from the session and prevents url manipulation
+ */
+
 package Actions;
 
 import javax.servlet.http.HttpServletRequest;

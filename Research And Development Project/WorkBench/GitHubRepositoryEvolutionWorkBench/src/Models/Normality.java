@@ -1,3 +1,9 @@
+/**
+ * @author Jordan McDonald
+ *
+ * Description - Java bean to hold details for a single project and staistic normality instance
+ */
+
 package Models;
 
 public class Normality {

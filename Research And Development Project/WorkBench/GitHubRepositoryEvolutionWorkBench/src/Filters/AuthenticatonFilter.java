@@ -1,3 +1,9 @@
+/**
+ * @author Jordan McDonald
+ *
+ * Description - determines if a user is logged in or not - then redirects to login page if required -
+ * ensures security and that the user are authenticated to access the system
+ */
 package Filters;
 
 import java.io.IOException;

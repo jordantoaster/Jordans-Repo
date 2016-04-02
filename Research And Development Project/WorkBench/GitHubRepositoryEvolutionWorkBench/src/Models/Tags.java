@@ -1,7 +1,10 @@
-package Models;
+/**
+ * @author Jordan McDonald
+ *
+ * Description - Java bean to model tag data for a single project instance
+ */
 
-import java.util.ArrayList;
-import java.util.List;
+package Models;
 
 public class Tags {
 	private String[]  tags;

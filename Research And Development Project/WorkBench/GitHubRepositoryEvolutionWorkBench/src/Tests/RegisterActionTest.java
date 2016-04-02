@@ -1,17 +1,19 @@
+/**
+ * @author Jordan McDonald
+ *
+ * Description - unit tests for registration process
+ */
+
 package Tests;
 import static org.junit.Assert.assertEquals;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.mock.web.MockHttpServletResponse;
 import com.google.gson.Gson;
-import Actions.LoginAction;
 import Actions.RegisterAction;
 import Models.User;
 import Utility.ResponseBase;
-
-/*uncomment second assert when remove function is built into mongo user dao*/
 
 public class RegisterActionTest {
 

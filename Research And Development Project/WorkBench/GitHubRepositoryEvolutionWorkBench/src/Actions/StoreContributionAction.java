@@ -1,26 +1,21 @@
-package Actions;
+/**
+ * @author Jordan McDonald
+ *
+ * Description - extracts the data from the request and uses a DAO instance to insert the contribution into the database
+ */
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+package Actions;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import com.google.gson.Gson;
-
 import Daos.ContributionDao;
 import Models.Contributions;
 
 public class StoreContributionAction implements Action{
 
-
-	@Override
-	public String execute(HttpServletRequest request, HttpServletResponse response) {
+	public String execute(HttpServletRequest request, HttpServletResponse response) {		
 		
-		System.out.println();
-		
-		
+		//get the data from the HTTP request
 		String[] additions = request.getParameterValues("additions[]");
 		String[] deletions = request.getParameterValues("deletions[]");
 		String[] difference = request.getParameterValues("difference[]");
@@ -28,11 +23,14 @@ public class StoreContributionAction implements Action{
 		String[] contributionDates = request.getParameterValues("contributionDates[]");
 		String project = request.getParameter("project");
 				
+		//a java bean that represents a system side model of the contribution data
 		Contributions contributions = new Contributions(additions, deletions, difference, LOCOverTIme, contributionDates, project);
 		
+		//perform an insert to MONGODB
 		ContributionDao dao = new ContributionDao();
 		dao.insertContributions(contributions);
 		
+		//feedback message
 		return "mongo sync complete";
 	}
 

@@ -1,7 +1,10 @@
-package Models;
+/**
+ * @author Jordan McDonald
+ *
+ * Description - Java bean to model issues in its various permuatations
+ */
 
-import java.util.ArrayList;
-import java.util.List;
+package Models;
 
 public class Issues {
 	

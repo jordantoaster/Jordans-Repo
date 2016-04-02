@@ -1,3 +1,10 @@
+/**
+ * @author Jordan McDonald
+ *
+ * Description - Handles the processing for each law section - parses data for transmission/use in R - obtains the statistics for each law
+ * & performs routing based on the law selected - all 'law actions' are handled here
+ */
+
 package Actions;
 
 import java.util.ArrayList;
@@ -34,30 +41,33 @@ public class LawsAction implements Action {
 	ContributionDao conDao = new ContributionDao();
 	RConnectionDarwin r = new RConnectionDarwin();
 
+	//performs law action routing and returns the json string
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
 
-		String s = "";
+		String json = "";
 
 		if (request.getParameter("subAction").equals("one")) {
-			s = getHpDataOne("commits", "stars");
+			json = getHpDataOne("commits", "stars");
 		} else if (request.getParameter("subAction").equals("two")) {
-			s = getHpDataTwo();
+			json = getHpDataTwo();
 		} else if (request.getParameter("subAction").equals("three")) {
-			s = getHpDataThree();
+			json = getHpDataThree();
 		} else if (request.getParameter("subAction").equals("four")) {
-			s = getHpDataFour();
+			json = getHpDataFour();
 		} else if (request.getParameter("subAction").equals("five")) {
-			s = getHpDataFive();
+			json = getHpDataFive();
 		} else if (request.getParameter("subAction").equals("six")) {
-			s = getHpDataSix();
+			json = getHpDataSix();
 		} else if (request.getParameter("subAction").equals("seven")) {
-			s = getHpDataSeven();
+			json = getHpDataSeven();
 		}
 
-		return s;
+		return json;
 	}
 
+	//perform cross correlation at different lag intervals on two data series - generate percentage within a threshold
 	private String getHpDataSeven() {
+		
 		// SET VARIABLES
 		double threshold = 0;
 		double[] crossCorr = new double[10];
@@ -131,14 +141,14 @@ public class LawsAction implements Action {
 			percentages[k] = Double.toString(((allInThreshold[k] * 100.0) / seriesA.size()));
 		}
 		
-		//sDao.getCross();
+		String json = String.format("{ \"crossPercent\": \"%s\"}", Arrays.toString(percentages));
 
-		String t = String.format("{ \"crossPercent\": \"%s\"}", Arrays.toString(percentages));
-
-		return t;
+		return json;
 	}
 
+	//performs cross correlation between two data series at varying lag points - generate percentage of amount in a threshold
 	private String getHpDataSix() {
+		
 		// SET VARIABLES
 		double threshold = 0;
 		double[] crossCorr = new double[10];
@@ -214,11 +224,12 @@ public class LawsAction implements Action {
 		
 		//sDao.getCross();
 
-		String t = String.format("{ \"crossPercent\": \"%s\"}", Arrays.toString(percentages));
+		String json = String.format("{ \"crossPercent\": \"%s\"}", Arrays.toString(percentages));
 
-		return t;
+		return json;
 	}
 
+	//performs a cross correlation at different lag points between two data series - generate percentage of amount within a threshold
 	private String getHpDataFive() {
 		
 		// SET VARIABLES
@@ -284,9 +295,7 @@ public class LawsAction implements Action {
 				}
 			}
 		}
-		
-		//sDao.getCross();
-		
+				
 		//print mean values
 		for (int i = 0; i < total.length; i++) {
 			System.out.println(total[i] / 100);
@@ -296,11 +305,12 @@ public class LawsAction implements Action {
 			percentages[k] = Double.toString(((allInThreshold[k] * 100.0) / seriesA.size()));
 		}
 
-		String t = String.format("{ \"crossPercent\": \"%s\"}", Arrays.toString(percentages));
+		String json = String.format("{ \"crossPercent\": \"%s\"}", Arrays.toString(percentages));
 
-		return t;
+		return json;
 	}
 
+	//Performs a series of cross correlations between two data series and determines the amount within a threshold
 	private String getHpDataOne(String typeOne, String typeTwo) {
 
 		// SET VARIABLES
@@ -364,41 +374,42 @@ public class LawsAction implements Action {
 			}
 		}
 		
-		//print mean values
+		//print mean values - testing
 		for (int i = 0; i < total.length; i++) {
 			//System.out.println(total[i] / 100);
 		}
 
+		//generate percenatge values for all within the threshold compared to a total
 		for (int k = 0; k < 10; k++) {
 			percentages[k] = Double.toString(((allInThreshold[k] * 100.0) / seriesA.size()));
 		}
 
-		String t = String.format("{ \"crossPercent\": \"%s\"}", Arrays.toString(percentages));
+		String json = String.format("{ \"crossPercent\": \"%s\"}", Arrays.toString(percentages));
 
-		return t;
+		return json;
 	}
 
+	//processings HP4 - gets growth rate data from DB and calculates the variance and standard deviation
 	private String getHpDataFour() {
 		
-				   int numInCollection = sDao.getNumInCollection("GrowthRate");
-				   double[] variance = new double[numInCollection]; double[] 
-				   standDev = new double[numInCollection]; 
-				   int[] numInSD = new int[numInCollection]; 
-				   double mean =0;
-				   int[] seriesSizes = new int[numInCollection];
+			int numInCollection = sDao.getNumInCollection("GrowthRate");
+			double[] variance = new double[numInCollection]; 
+			double[] standDev = new double[numInCollection]; 
+			int[] numInSD = new int[numInCollection]; 
+			double mean =0;
+			int[] seriesSizes = new int[numInCollection];
 				  
-				  //get each growth loc series and get the variance 
-				  for (int i =0; i < numInCollection; i++) {
+			//get each growth loc series and get the variance 
+			for (int i =0; i < numInCollection; i++) {
 				  
-				  double[] series = sDao.getGrowthRateIndex(i);
-				  seriesSizes[i] = series.length;
+			double[] series = sDao.getGrowthRateIndex(i);
+			seriesSizes[i] = series.length;
 				  
-				  try { 
-					  variance[i] = r.getVariance(series); 
-					  standDev[i] =Math.sqrt(variance[i]); 
-					  mean = r.mean(series); 
-					  numInSD[i] = sDao.getNumInSD(series, standDev[i], mean);
-				  				  
+			try { 
+				 variance[i] = r.getVariance(series); 
+				 standDev[i] =Math.sqrt(variance[i]); 
+				 mean = r.mean(series); 
+				 numInSD[i] = sDao.getNumInSD(series, standDev[i], mean); 				  
 				  } catch (REngineException e) {
 					  e.printStackTrace(); 
 				  } catch (REXPMismatchException e) { 
@@ -406,6 +417,7 @@ public class LawsAction implements Action {
 				  } 		 
 				}
 				 
+				//parse data into a form that can be sent over JSON
 				String[] parseVariance = new String[numInCollection];
 				String[] parseInSd = new String[numInCollection];
 				
@@ -419,11 +431,12 @@ public class LawsAction implements Action {
 					parseVariance[i] = String.valueOf(in);
 				}
 				  
-				 String t = String.format("{ \"vari\": \"%s\", \"sd\": \"%s\"}", Arrays.toString(parseVariance), Arrays.toString(parseInSd));
+				 String json = String.format("{ \"vari\": \"%s\", \"sd\": \"%s\"}", Arrays.toString(parseVariance), Arrays.toString(parseInSd));
 				 
-				 return t;	
+				 return json;	
 			}
 
+	//law three processing - get issues, additions, deletions from DB - clauclate shapiro wilks using R - count percentage within the 0.05 p value threshold
 	private String getHpDataThree() {
 		
 		  		  ContributionDao daoC = new ContributionDao(); 
@@ -435,7 +448,9 @@ public class LawsAction implements Action {
 				  //get issue class 
 				  ArrayList<Issues> issues = daoI.getIssues();
 				  
-				  String[] issueWilks= null; String[] additionsWilks=null; String[]
+				  String[] issueWilks= null; 
+				  String[] additionsWilks=null; 
+				  String[]
 				  deletionsWilks=null;
 				  
 				  int issuesInThreshold = 0; int additionsInThreshold = 0; int deletionsInThreshold = 0;
@@ -459,6 +474,7 @@ public class LawsAction implements Action {
 				  
 				  total++;
 				  
+				  //shapiro wilks
 				  try { 
 				  issueWilks =r.wilks(parseArrayToInt(issue.getAllIssues())); 
 				  additionsWilks =r.wilks(parseArrayToInt(contribution.getAdditions())); 
@@ -495,12 +511,13 @@ public class LawsAction implements Action {
 	inThreshold[1]=(float)((additionsInThreshold*100.0)/total);
 	inThreshold[2]=(float)((deletionsInThreshold*100.0)/total);
 	
-	 String t = String.format("{ \"additions\": \"%s\", \"deletions\": \"%s\", \"issues\": \"%s\"}", inThreshold[1], inThreshold[2],inThreshold[0]);
+	String json = String.format("{ \"additions\": \"%s\", \"deletions\": \"%s\", \"issues\": \"%s\"}", inThreshold[1], inThreshold[2],inThreshold[0]);
 	 
-	 return t;
+	return json;
 
 	}
 
+	//performs law HP2 processing - gets growth rate data from DB - calculate percentage of growth which are positive
 	private String getHpDataTwo() {
 		 //get the average interval value for each project ArrayList<Double>
 		 ArrayList<Double> averages = dao.getGrowthRateAverages();
@@ -519,11 +536,12 @@ public class LawsAction implements Action {
 		 float percentage = (float) ((numPositiveGrowth *100.0) / total);
 		 float notIn = (float) ((notPositive *100.0) / total);
 		  
-		 String t = String.format("{ \"numPos\": \"%s\", \"numNeg\": \"%s\"}", percentage, notIn);
+		 String json = String.format("{ \"numPos\": \"%s\", \"numNeg\": \"%s\"}", percentage, notIn);
 		 
-		 return t;
+		 return json;
 	}
 
+	//changes a string array to a int array
 	private int[] parseArrayToInt(String[] data) {
 		int[] parsedArray = new int[data.length];
 
@@ -533,6 +551,7 @@ public class LawsAction implements Action {
 		return parsedArray;
 	}
 
+	//changes a string array to a double array
 	private double[] parseArrayToDouble(String[] data) {
 		double[] parsedArray = new double[data.length];
 
@@ -542,6 +561,7 @@ public class LawsAction implements Action {
 		return parsedArray;
 	}
 
+	//transfers a double array to an int array
 	private int[] parseArrayToInt(double[] data) {
 		int[] parsedArray = new int[data.length];
 

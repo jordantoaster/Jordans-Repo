@@ -1,7 +1,10 @@
-package Models;
+/**
+ * @author Jordan McDonald
+ *
+ * Description - Java bean to model a single star instance for a project - provided accessors and mutators
+ */
 
-import java.util.ArrayList;
-import java.util.List;
+package Models;
 
 public class Stars {
 	private String[]  stars;

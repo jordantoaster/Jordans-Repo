@@ -1,3 +1,9 @@
+/**
+ * @author Jordan McDonald
+ *
+ * Description - reusuable utility class which connects to the Mongo database
+ */
+
 package Daos;
 
 import com.mongodb.DB;

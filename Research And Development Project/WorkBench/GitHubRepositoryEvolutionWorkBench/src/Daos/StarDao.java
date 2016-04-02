@@ -1,3 +1,9 @@
+/**
+ * @author Jordan McDonald
+ *
+ * Description - coordinates the star models and the database
+ */
+
 package Daos;
 
 import java.util.ArrayList;
@@ -12,6 +18,8 @@ import Models.Stars;
 import Models.Stars;
 
 public class StarDao {
+	
+	//performs an insert
 	public boolean insertStars(Stars stars){
 		
 		try {
@@ -31,6 +39,7 @@ public class StarDao {
 		return true;	
 	}
 	
+	//gets all the stars
 	public ArrayList<Stars> getStars(){
 		
 	    ArrayList<Stars> commitList = new ArrayList<Stars>();
@@ -68,6 +77,7 @@ public class StarDao {
 		return commitList;	
 	}
 	
+	//convert mongo list to string array
 	public String[] parseMongoArray(BasicDBList list){
 		list.toArray();
 		String[] arrayParsed = new String[list.size()];

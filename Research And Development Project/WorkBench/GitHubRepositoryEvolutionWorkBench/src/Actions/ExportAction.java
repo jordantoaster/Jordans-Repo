@@ -1,3 +1,9 @@
+/**
+ * @author Jordan McDonald
+ *
+ * Description - uses the java run time instance to access to command line and export the database
+ */
+
 package Actions;
 
 import java.io.IOException;
@@ -15,9 +21,6 @@ public class ExportAction implements Action{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		//mongoexport --host mgo.acme.com --port 10332 --username acmeman --password 12345
-
 		return "Export successful - check your folders!";
 	}
 

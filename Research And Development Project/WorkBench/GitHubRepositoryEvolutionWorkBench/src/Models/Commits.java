@@ -1,7 +1,10 @@
-package Models;
+/**
+ * @author Jordan McDonald
+ *
+ * Description - Java bean to hold data associated with commits - accessors and mutators
+ */
 
-import java.util.ArrayList;
-import java.util.List;
+package Models;
 
 public class Commits {
 

@@ -1,7 +1,10 @@
-package Models;
+/**
+ * @author Jordan McDonald
+ *
+ * Description - Java bean to model the data that makes up the fork information
+ */
 
-import java.util.ArrayList;
-import java.util.List;
+package Models;
 
 public class Forks {
 	private String[]  forks;

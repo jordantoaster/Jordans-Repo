@@ -1,3 +1,9 @@
+/**
+ * @author Jordan McDonald
+ *
+ * Description - processes the log in details - compares against DB - validates - adds user to the session 
+ */ 
+
 package Actions;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,7 +20,6 @@ public class LoginAction implements Action {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
 		
-		//is [] needed after 'input'
 		String[] loginDetails = request.getParameterValues("input[]");		
 		
 		//for unit test mocking
@@ -34,12 +39,14 @@ public class LoginAction implements Action {
 		
 			UserDao dao = new UserDao();
 		
+			//ensure the details are secure
 			if(!isValidated){
 				return gson.toJson(new ResponseBase("false","Ensure your username is correct - The password contains a letter, number and a symbol", "login"));
 			}
 		
 			boolean foundUser = dao.findUser(user);
-		
+			
+			//check if the user is a memeber of the system
 			if(!foundUser){
 				return gson.toJson(new ResponseBase("false","Your details are not on the system", "login"));
 			}
@@ -52,6 +59,7 @@ public class LoginAction implements Action {
 		return gson.toJson(new ResponseBase("true","User found", "login"));
 	}
 		
+	//determines if the login details are secure
 	public boolean validateLoginDetails(User user){
 		
         String patternString = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[$@$!%*#?&])[A-Za-z\\d$@$!%*#?&]{8,}$";

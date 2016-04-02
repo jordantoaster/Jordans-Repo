@@ -1,13 +1,14 @@
+/**
+ * @author Jordan McDonald
+ *
+ * Description - Java bean to hold contribution details - getter functions are provided
+ */
+
 package Models;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 public class Contributions {
-	
-
 
 	private String[]  additions;
 	private String[]  deletions;

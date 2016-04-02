@@ -1,3 +1,9 @@
+/**
+ * @author Jordan McDonald
+ *
+ * Description - Java bean to model the mean data for a project & statistic type
+ */
+
 package Models;
 
 public class Mean {

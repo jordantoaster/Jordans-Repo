@@ -1,20 +1,23 @@
+/**
+ * @author Jordan McDonald
+ *
+ * Description - Class which hanldes the various functionality that is required from the R environment
+ * The java process connects to R via Rserve in all instances which responds with the results
+ * The connection is always open and closed during each function to prevent conflict with the tomcat server
+ */
+
 package StatisticsR;
 
-
-import java.util.ArrayList;
 import java.util.Arrays;
-
 import org.rosuda.REngine.REXP;
 import org.rosuda.REngine.REXPMismatchException;
 import org.rosuda.REngine.REngineException;
-import org.rosuda.REngine.RList;
 import org.rosuda.REngine.Rserve.RConnection;
 import org.rosuda.REngine.Rserve.RserveException;
 
-import com.mongodb.BasicDBList;
-
 public class RConnectionDarwin {
 	
+	//gets the mean value from a passed in data series - integer case
 	public String mean(int[] dataSubset) throws REngineException, REXPMismatchException {
 				
 		RConnection connection = null;
@@ -27,7 +30,6 @@ public class RConnectionDarwin {
 
             connection.assign("vector", dataSubset);
 			REXP x = connection.eval("mean(vector)");
-			System.out.println(x.asInteger());
 			
 			int result = x.asInteger();
 			String parsedResult = Integer.toString(result);
@@ -45,6 +47,7 @@ public class RConnectionDarwin {
 		return "";
     }
 	
+	//an overloaded function getting the mean for the double case
 	public double mean(double[] dataSubset) throws REngineException, REXPMismatchException {
 		
 		RConnection connection = null;
@@ -70,9 +73,10 @@ public class RConnectionDarwin {
         
         connection.close();
         
-		return 0;
+		return 0; //if failed return placeholder
     }
 	
+	//using R the median value is returned from the data series
 	public double median(double[] dataSubset) throws REngineException, REXPMismatchException {
 		
 		RConnection connection = null;
@@ -103,6 +107,7 @@ public class RConnectionDarwin {
 		return 0;
     }
 	
+	//overloaded method handling the case where the series is of type int
 	public int median(int[] dataSubset) throws REngineException, REXPMismatchException {
 		
 		RConnection connection = null;
@@ -133,13 +138,7 @@ public class RConnectionDarwin {
 		return 0;
     }
 
-
-
-	// payload - element data - choose index - payload to get value
-	//check for index names in attribute part of object
-	//2 p value
-	//3 is the correlation
-	//6 - method
+	//performs correlations - pearson, spearmann + p values & returns as an array of values
 	public String[] correlation(int[] data, int[] dataTwo) throws REngineException, REXPMismatchException {
 		
 		RConnection connection = null;
@@ -180,6 +179,7 @@ public class RConnectionDarwin {
 		return corrResults;
 	}
 	
+	//performs shapiro wilks normality test + gets p value
 	public String[] wilks(int[] dataSubset) throws REngineException, REXPMismatchException {
 		RConnection connection = null;
         String[] wilksResults = new String[2];
@@ -211,6 +211,7 @@ public class RConnectionDarwin {
 		return null;
 	}
 
+	//gets the standard deviation for a series of data (numerical values)
 	public String standardDev(int[] means) throws REngineException, REXPMismatchException {
 		RConnection connection = null;
 		
@@ -241,6 +242,7 @@ public class RConnectionDarwin {
         return null;
 	}
 	
+	//get the variance of a prticular data series
 	public double getVariance(double[] series) throws REngineException, REXPMismatchException{
 		
 		RConnection connection = null;
@@ -270,6 +272,7 @@ public class RConnectionDarwin {
 		return 0.0;
 	}
 	
+	//overloaded variance method
 	public double getVariance(int[] series) throws REngineException, REXPMismatchException{
 		
 		RConnection connection = null;
@@ -299,6 +302,8 @@ public class RConnectionDarwin {
 		return 0.0;
 	}
 
+	//performs a cross correlation between two series
+	//index represents the lag interval that willbe returned
 	public double crossCorrelation(int[] seriesA, int[] seriesB, int index) {
 
 		RConnection connection = null;
@@ -341,6 +346,7 @@ public class RConnectionDarwin {
 		return 0.0;
 	}
 
+	//calculate the cumulative variance for a data series (growth rate)
 	public double[] getSeriesCulmVar(double[] parsedGrowth) {
 		
 		RConnection connection = null;
@@ -387,6 +393,7 @@ public class RConnectionDarwin {
 		return null;
 	}
 
+	//performs a cross correltion getting only the -2 lag interval case
 	public double crossCorrelation(double[] seriesA, double[] seriesB) {
 
 		RConnection connection = null;

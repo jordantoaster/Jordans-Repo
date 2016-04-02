@@ -1,3 +1,9 @@
+/**
+ * @author Jordan McDonald
+ *
+ * Description - Java bean to model the details of the growth rate statistic for a single project
+ */
+
 package Models;
 
 public class GrowthRateModel {
@@ -8,7 +14,6 @@ public class GrowthRateModel {
 	double growthOverTime = 0.0;
 	double absGrowth = 0.0;
 
-	
 	public GrowthRateModel(String pName, String mType, double[] gRate, double growthOverTime,
 			double absoluteGrowthRate) {
 		
@@ -16,8 +21,7 @@ public class GrowthRateModel {
 		this.metricType = mType;
 		this.growth = gRate;
 		this.growthOverTime = growthOverTime;
-		this.absGrowth = absoluteGrowthRate;
-		
+		this.absGrowth = absoluteGrowthRate;		
 	}
 
 	public double getGrowthOverTime() {

@@ -1,13 +1,16 @@
+/**
+ * @author jordann
+ *
+ * Description - Implementation of the factory design pattern - returns an instantiated class based upon the input - each performing different actions
+ */
+
+
 package Actions;
 
-/*
- * Implements the Factory design pattern
- * */
 public class ActionFactory {
+	
 	public static Action getAction(String input){
-		
-		System.out.println(input);
-		
+				
 		if(input.equals("login")){
 			return new LoginAction();
 		}		

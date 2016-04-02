@@ -1,3 +1,10 @@
+/**
+ * @author Jordan McDonald
+ *
+ * Description - handles all statistical interaaction with the mongo database
+ * operations vary from inserts to collecting datasets
+ */
+
 package Daos;
 
 import java.util.ArrayList;
@@ -16,6 +23,8 @@ import Models.Normality;
 import Models.Stars;
 
 public class StatDao {
+	
+	//insert the mean values
 	public boolean insertMean(Mean mean){
 		
 		try {
@@ -35,6 +44,7 @@ public class StatDao {
 		return true;	
 	}
 	
+	//insert the cross correlation
 	public boolean insertCrossCorr(double correlation, String project, String typeOne, String typeTwo){
 		
 		try {
@@ -55,6 +65,7 @@ public class StatDao {
 		return true;	
 	}
 	
+	//get all the mean values
 	public int[] getAllMean(String meanType) {
 		DBCollection collection = new dbConnectionBuilder().getMongoCollection("Mean");
 	    ArrayList<Integer> means = new ArrayList();
@@ -75,6 +86,7 @@ public class StatDao {
 		return fixedMeans;
 	}
 	
+	//insert correlation instances
 	public boolean insertCorrelation(Correlation correlation){
 		
 		try {
@@ -99,6 +111,7 @@ public class StatDao {
 		return true;	
 	}
 
+	//insert growth rate values
 	public boolean insertGrowthRate(GrowthRateModel growthRateModel) {
 		try {
 			DBCollection userCollection = new dbConnectionBuilder().getMongoCollection("GrowthRate");
@@ -119,6 +132,7 @@ public class StatDao {
 		return true;		
 	}
 
+	//insert the normality instance case
 	public boolean insertNormality(Normality normalityModel) {
 		try {
 			DBCollection userCollection = new dbConnectionBuilder().getMongoCollection("Normality");
@@ -139,6 +153,7 @@ public class StatDao {
 		return true;		
 	}
 	
+	//get the amount of values in any collection
 	public int getNumInCollection(String collectionName){
 		
 		DBCollection collection = new dbConnectionBuilder().getMongoCollection(collectionName);
@@ -154,7 +169,7 @@ public class StatDao {
 		}	
 	}
 
-	
+	//get the growth rate based upon a target index
 	public double[] getGrowthRateIndex(int index){
 
 		int counter =0;
@@ -186,6 +201,7 @@ public class StatDao {
 		return null;
 	}
 	
+	//get the growth rate vectors from the database
 	public ArrayList<GrowthRateModel> getGrowthRate(){
 		
 	    ArrayList<GrowthRateModel> commitList = new ArrayList<GrowthRateModel>();
@@ -226,6 +242,7 @@ public class StatDao {
 		return commitList;	
 	}
 	
+	//convert list to double array
 	public double[] convertToDouble(BasicDBList list){
 		
 		double[] listD = new double[list.size()];
@@ -237,6 +254,7 @@ public class StatDao {
 		return listD;		
 	}
 	
+	//convert mongo list to java array
 	public String[] parseMongoArray(BasicDBList list){
 		list.toArray();
 		String[] arrayParsed = new String[list.size()];
@@ -244,6 +262,7 @@ public class StatDao {
 		return arrayParsed;
 	}
 
+	//insertes the variance instance
 	public boolean insertVariance(double variance, String type) {
 		try {
 			DBCollection userCollection = new dbConnectionBuilder().getMongoCollection("Variance");
@@ -262,6 +281,7 @@ public class StatDao {
 		
 	}
 
+	//gets all the cross correlation values
 	public void getCross() {
 		DBCollection collection = new dbConnectionBuilder().getMongoCollection("CrossCorr");
 		DBCursor cursor = collection.find();
@@ -274,6 +294,7 @@ public class StatDao {
 						
 	}
 
+	//gets the amount of values in one SD
 	public int getNumInSD(double[] series, double stanDev, double mean) {
 
 		int count = 0;
@@ -288,6 +309,7 @@ public class StatDao {
 		return count;
 	}
 
+	//inserts the amount of a series within one SD threshold
 	public boolean insertNumInSd(int i, int length) {
 		
 		float percentage = (float) ((i * 100.0) / length);
@@ -309,6 +331,7 @@ public class StatDao {
 		
 	}
 
+	//gets every correlation instance
 	public ArrayList<String> getAllCorrelations(String t1, String t2) {
 		
 		DBCollection collection = new dbConnectionBuilder().getMongoCollection("Correlation");
@@ -326,6 +349,7 @@ public class StatDao {
 		return correlations;
 	}
 
+	//gets the wilks for a certain metric type
 	public ArrayList<String> getWilksType(String type) {
 		DBCollection collection = new dbConnectionBuilder().getMongoCollection("Normality");
 
@@ -342,6 +366,7 @@ public class StatDao {
 		return normality;
 	}
 
+	//gets the variance for a certain metric type
 	public ArrayList<String> getVarianceType(String type) {
 		DBCollection collection = new dbConnectionBuilder().getMongoCollection("Variance");
 

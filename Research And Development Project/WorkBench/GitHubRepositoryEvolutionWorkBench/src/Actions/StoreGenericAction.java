@@ -1,6 +1,12 @@
+/**
+ * @author Jordan McDonald
+ *
+ * Description - This class provides an interface from which all data extracted from the GITHUB API can be inserted into the database
+ * 			     In some cases the data needs to be parsed to split the string sequence into the different parts for each project
+ */
+
 package Actions;
 
-import java.util.Arrays;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,18 +21,17 @@ import Models.Issues;
 import Models.Stars;
 import Models.Tags;
 
-public class StoreGenericAction implements Action{
-
-	
+public class StoreGenericAction implements Action{	
 	
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
-				
+
+		//collects the data from the HTTP request 
 		String subAction = request.getParameter("subAction");
 		String project = request.getParameter("project");
 		String[] data = request.getParameterValues("data[]");
 		String[] dates = request.getParameterValues("dates[]");
 
-		
+		//Depending on the input type a different DAO is instantiated and the data is inserted
 		if(subAction.equals("commit")){
 			Commits commit = new Commits(dates, data, project);		
 			CommitsDao dao = new CommitsDao();
@@ -55,7 +60,7 @@ public class StoreGenericAction implements Action{
 			String[] closedIssues = null;
 			int count =0;
 			
-			//parse array to get open, closed, all
+			//parse array to get open, closed, all - each are sent as a single json string so need to be split on a terminating character
 			for (int i = 0; i < data.length; i++) {
 				
 				if(data[i].equals("*")){
@@ -108,6 +113,7 @@ public class StoreGenericAction implements Action{
 		return "insert complete";
 	}
 
+	//seperates the string into subsets based upon a terminating character
 	private String[] parseData(String[] data, int startPosition, int terminatorPosition) {
 		
 		int range = terminatorPosition - startPosition;

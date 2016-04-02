@@ -1,3 +1,9 @@
+/**
+ * @author Jordan McDonald
+ *
+ * Description - unit tests for the login process
+ */
+
 package Tests;
 
 import static org.junit.Assert.*;

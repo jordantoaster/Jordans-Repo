@@ -1,3 +1,9 @@
+/**
+ * @author Jordan McDonald
+ *
+ * Description - coordinates contribution model interaction with MONGODB
+ */
+
 package Daos;
 
 import java.util.ArrayList;
@@ -12,6 +18,7 @@ import Models.Contributions;
 
 public class ContributionDao {
 	
+	//inserts a java bean to the database collection
 	public boolean insertContributions(Contributions contributions){
 				
 		try {
@@ -35,6 +42,7 @@ public class ContributionDao {
 		return true;	
 	}
 	
+	//retreives all instances of contributions from the DB
 	public ArrayList<Contributions> getContributions(){
 		
 	    ArrayList<Contributions> contributions = new ArrayList<Contributions>();
@@ -83,6 +91,7 @@ public class ContributionDao {
 		return contributions;	
 	}
 	
+	//convert a mongo list to a java array
 	public String[] parseMongoArray(BasicDBList list){
 		list.toArray();
 		String[] arrayParsed = new String[list.size()];

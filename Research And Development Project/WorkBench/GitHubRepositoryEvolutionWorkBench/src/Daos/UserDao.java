@@ -1,3 +1,9 @@
+/**
+ * @author Jordan McDonald
+ *
+ * Description - main role is to insert users to the DB - get users from the DB
+ */
+
 package Daos;
 
 import com.google.gson.Gson;
@@ -29,7 +35,6 @@ public class UserDao {
 			System.out.println(e);
 		}
 		return false;
-		//return gson.toJson(new ResponseBase("false","Your details are not on the system", "login"));
 	}
 	
 	public String createUser(User user){

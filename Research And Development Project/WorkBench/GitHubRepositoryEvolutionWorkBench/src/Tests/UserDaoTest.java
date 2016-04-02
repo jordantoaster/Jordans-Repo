@@ -1,3 +1,9 @@
+/**
+ * @author Jordan McDonald
+ *
+ * Description - unit tests for the userDao - inserting etc
+ */
+
 package Tests;
 
 import static org.junit.Assert.*;
