@@ -1,3 +1,9 @@
+/**
+ * @author Jordan McDonald
+ *
+ * Description - unit tests for the ISO date converter
+ */
+
 QUnit.module('ISO date conversion test');
 
 module('ISO date conversion test', {

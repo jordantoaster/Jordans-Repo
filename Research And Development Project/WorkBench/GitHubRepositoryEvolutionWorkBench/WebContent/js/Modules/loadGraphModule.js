@@ -1,6 +1,9 @@
 /**
- * 
+ * @author Jordan McDonald
+ *
+ * Description - loads the google graph library
  */
+
 
 var darwin = darwin || {};
 

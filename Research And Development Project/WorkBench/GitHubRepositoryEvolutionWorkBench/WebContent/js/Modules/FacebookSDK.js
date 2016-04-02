@@ -1,5 +1,7 @@
 /**
- * Handles the JS code For facebook-app interaction
+ * @author Jordan McDonald
+ *
+ * Description - handles the code for the facebook login process
  */
 
 //Defines the global application namespace

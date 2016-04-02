@@ -1,6 +1,9 @@
 /**
- * 
+ * @author Jordan McDonald
+ *
+ * Description - performs operations that relate to arrays only - getting smallest in a nested set, trimming etc
  */
+
 
 var darwin = darwin || {};
 

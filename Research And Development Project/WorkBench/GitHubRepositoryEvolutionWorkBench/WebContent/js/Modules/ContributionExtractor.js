@@ -1,7 +1,10 @@
 /**
- * TODO - use data Measure lines of code - add difference value each new whole
- * sample to a total
+ * @author Jordan McDonald
+ *
+ * Description - takes input json from contribution data and organises it into various categories and sampling rates
+ * 				 it can then kick start an auto process or draw data based on what is parsed
  */
+
 
 var darwin = darwin || {};
 

@@ -1,14 +1,21 @@
 /**
- * 
+ * @author Jordan McDonald
+ *
+ * Description - Acts as the controller between every module on the system - modules do not directly talk to one another and interact through this object
+ * 				 The mediator may perform additional logic in between each module
+ * 				 acts as the glue between the different components
  */
 
+//defines a namespace
 var darwin = darwin || {};
 
+//define a module in the namespace
 darwin.Mediator = (function () {
 	
 	var outhtml ="";
 	
     return {
+    	//prepares the automated bulk process
     	initialSetupBulk : function(){
     	    darwin.projectManagerModule.resetVariables();
     	    darwin.projectManagerModule.resetComponents();
@@ -22,8 +29,8 @@ darwin.Mediator = (function () {
 	    		//split on comma to an array
 	    		var bulkProjects = [];
 	    		bulkProjects = bulkUrls.split(',');
-	    	
-	    	
+	    		    	
+	    		//iterates all the projects added and processes each
 	    		for(var i=0; i<bulkProjects.length;i++){
 	    		
 	    			parsedUrl = darwin.Mediator.parseInputUrl(bulkProjects[i]);
@@ -45,9 +52,11 @@ darwin.Mediator = (function () {
         	//darwin.projectManagerModule.enableTabs();
 
     	},
+    	//performs a redirect
     	handleLogout : function(){	
 			window.location = "http://localhost:8080/GitHubRepositoryEvolutionWorkBench/jsp/SplashPage.jsp";
     	},
+    	//responds with export status
     	handleExport : function(response){	
 			    $('#ajaxGetUserServletResponse').text(response);
   			    $("#ajaxGetUserServletResponse").css({"opacity":"1"});	 	
@@ -86,6 +95,7 @@ darwin.Mediator = (function () {
         	darwin.projectManagerModule.enableTabs();
     	    // }
     	},
+    	//gets additional project data
         getProjectInfo : function(){
     		projectNames = darwin.projectManagerModule.getProjectNames();
     		project = projectNames[0];
@@ -109,6 +119,7 @@ darwin.Mediator = (function () {
     		}
 
     	},
+    	//exracts useful info from user response and displays
     	parseUserData : function(json, url, username){
     		
     	      if(json.message == "Not Found" || username == '') {
@@ -143,6 +154,7 @@ darwin.Mediator = (function () {
   			  darwin.Mediator.makeGithubRequest(darwin.projectManagerModule.getAllBaseRequestUrl(), darwin.Mediator.parseRepoData, "user", 0);		
     	      
     	},
+    	//evaluates user reps and displays info on each
     	parseRepoData : function(repositories){
             if(repositories.length == 0) { outhtml = outhtml + '<p>No repos!</p></div>'; }
             else {
@@ -155,9 +167,11 @@ darwin.Mediator = (function () {
             }
   	      $('#userContent').html(outhtml);
     	},
+    	//adjusts the slider
     	contribSliderVals : function(start, end){
     		darwin.dataManager.setContribSlider(start, end);
     	}, 
+    	//the next series of functions make varying api requests
     	makeServerRequestSplash: function (action, callback, type, input) {
     		darwin.serverModule.sendSplash(action, callback, type, input);
         },
@@ -182,6 +196,7 @@ darwin.Mediator = (function () {
     	    	darwin.progressbarModule.updateProgressBar();
     	    }
 		},
+		//draws statistical data based on the type
 		drawGenericStat : function(data, projectNames, metricType){
 			
 			if(metricType == "mean"){
@@ -242,6 +257,7 @@ darwin.Mediator = (function () {
 			}
 
 		},
+		//make a API reeuest based on the input
 		makeGithubRequest: function (url, callback, action, projectIndex) {
 				
 			//if not a stat api dataset then perform one manual call
@@ -312,6 +328,7 @@ darwin.Mediator = (function () {
 		loadGraphLibrary: function(){
 			darwin.loadGraphModule.load();
 		},
+		//resets the system for new url input
 		resetVariables: function(){
 			darwin.projectManagerModule.resetProjectNames();
 			darwin.projectManagerModule.resetNumProjects();
@@ -331,10 +348,11 @@ darwin.Mediator = (function () {
 				darwin.genericExtractorModule.extract(currentJson[i],i);
 			}
 		},
+		//extracts project name from the url
 		parseInputUrl : function(url){
 			return darwin.ParseUrlInputModule.parse(url);
 		},
-
+		//organising data for sending
 		packager : function(seriesA, SeriesB, seriesC, seriesD ,dataType){
 			if(dataType == "contributions"){
 				darwin.packager.contributions(seriesA, SeriesB, seriesC,seriesD);
@@ -346,6 +364,7 @@ darwin.Mediator = (function () {
 		emptyCallback : function(){
 			
 		},
+		//sets data in the data manager based on the inputs
 		setGenericAcc : function(index, genericAcc, action, sampleIndex){
 			if(action == "commit"){
 				darwin.dataManager.setCommitsAcc(index, genericAcc, sampleIndex);
@@ -363,6 +382,7 @@ darwin.Mediator = (function () {
   				darwin.dataManager.setIssuesAcc(index, genericAcc, sampleIndex);
   			}
 		},
+		//sets all the contribution data
 		setContributionDetails: function(index, additions, deletions, difference, LOCOverTime, sampleIndex, contributionDates, additionsAcc, deletionsAcc){
 			darwin.dataManager.setAdditions(index, additions, sampleIndex);
 			darwin.dataManager.setDeletions(index, deletions, sampleIndex);
@@ -372,6 +392,7 @@ darwin.Mediator = (function () {
 			darwin.dataManager.setAdditionsAcc(index, additionsAcc, sampleIndex);
 			darwin.dataManager.setDeletionsAcc(index, deletionsAcc, sampleIndex)
 		},
+		//The following functions perform the role of setting and getting data in the data manager
 		setCommitDetails : function(index, commits, projectNames, sampleIndex){
 			darwin.dataManager.setCommits(index, commits, projectNames, sampleIndex);
 		},
@@ -515,6 +536,7 @@ darwin.Mediator = (function () {
 			
 			return issuesCount;
 		},
+		//filter out pulls from issues
 		removePullRequests : function(array){
 			var filteredArray = [];
 			var filterCounter = 0;
@@ -545,6 +567,7 @@ darwin.Mediator = (function () {
 		makeGithubRequestSingleUrl : function(url, callback, index, action){
 			  darwin.githubModule.send(url, callback, index, action);
 		},
+		//The following functions set up the process to get the data specefied for the input url
 		prepareCommitClick : function(url, projectName){
 			darwin.jsonManagerModule.resetCommitJson(url);
 			darwin.projectManagerModule.resetBaseRequestUrl();
@@ -632,6 +655,7 @@ darwin.Mediator = (function () {
 			
 			darwin.Mediator.makeGithubRequest(darwin.projectManagerModule.getAllBaseRequestUrl(), darwin.Mediator.githubParseGenericData, "tags", index);		
 		},
+		//gets the index based on the name
 		getProjNameIndex : function(name){
 			var names = darwin.projectManagerModule.getProjectNames();
 			var index = 0;
@@ -645,6 +669,7 @@ darwin.Mediator = (function () {
 			}
 			return index
 		},
+		//supplements tag data by getting the dates
 		getTagDate : function(sha, index){
 			var projectList = darwin.projectManagerModule.getProjectNames();
 			var project = projectList[index];
@@ -781,6 +806,7 @@ darwin.Mediator = (function () {
 		targetSupplementSize : function(){
 			return darwin.projectManagerModule.getSupplementSize();
 		},
+		//sorts the dates into ascending order
 		sortSuppDataDates : function(index){
 			
 			(function(){
@@ -863,6 +889,7 @@ darwin.Mediator = (function () {
 			
 			darwin.dataManager.setIssueNumbers(index,issueNumbers);
 		},
+		//the following functions handle the law responses from the server
 		handleLawData : function(response){
 			
 			//parse laws

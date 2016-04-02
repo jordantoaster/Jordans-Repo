@@ -1,3 +1,9 @@
+/**
+ * @author Jordan McDonald
+ *
+ * Description - unit tests for the json manager
+ */
+
 QUnit.module('json manager test');
 
 QUnit.test( "convert to string", function( assert ) {

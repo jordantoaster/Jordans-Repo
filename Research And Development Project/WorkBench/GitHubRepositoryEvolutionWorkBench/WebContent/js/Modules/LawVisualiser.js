@@ -1,3 +1,8 @@
+/**
+ * @author Jordan McDonald
+ *
+ * Description - handles the ui redraw for each law - populating tables, graphs, lists etc.
+ */
 
 var darwin = darwin || {};
 

@@ -1,5 +1,7 @@
 /**
- * 
+ * @author Jordan McDonald
+ *
+ * Description - storage module that holds the raw json - can be set and get via the provided functions
  */
 
 var darwin = darwin || {};

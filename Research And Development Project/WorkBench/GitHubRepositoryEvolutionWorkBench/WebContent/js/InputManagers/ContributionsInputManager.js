@@ -1,5 +1,8 @@
 /**
- * 
+ * @author Jordan McDonald
+ *
+ * Description - Handles the various potential inputs for this particular facet of functionality + the options provided on the ui
+ * 				 all program flow is directed to the mediator for coordination
  */
 
 var darwin = darwin || {};

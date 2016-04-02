@@ -1,7 +1,8 @@
 /**
- * 
+ * @author Jordan McDonald
+ *
+ * Description - simply takes a url and returns the project name portion
  */
-
 var darwin = darwin || {};
 
 darwin.ParseUrlInputModule = (function () {

@@ -1,5 +1,7 @@
 /**
- * 
+ * @author Jordan McDonald
+ *
+ * Description - draws the modal onto the screen based on arguments
  */
 
 var darwin = darwin || {};

@@ -1,5 +1,8 @@
 /**
- * 
+ * @author Jordan McDonald
+ *
+ * Description - handles the data returned from github and based on the type of action can...
+ * 				 poll for another set of json, activate a visuliser, set data, perform callbacks for additional processing
  */
 
 var darwin = darwin || {};
@@ -27,6 +30,7 @@ darwin.AjaxResponseModule = (function () {
 				  }
 			  } else {
 				  
+				  //set based on type
 				  if(action == "commit"){
 					  darwin.Mediator.setCommitJson(index,response)
 					  darwin.Mediator.updateCommitProgress(response.length);
@@ -35,7 +39,6 @@ darwin.AjaxResponseModule = (function () {
 					  darwin.Mediator.setStarJson(index,response)
 					  darwin.Mediator.updateStarProgress(response.length);
 				  }
-				  //watcher call does no return all 100 that i expect, so numbers are slightly off
 				  if(action == "watcher"){
 					  darwin.Mediator.setWatcherJson(index,response)
 					  darwin.Mediator.updateWatcherProgress(response.length);

@@ -1,5 +1,7 @@
 /**
- * 
+ * @author Jordan McDonald
+ *
+ * Description - manages the initial progress bar & the non stat api counts for metric amounts processed
  */
 
 var darwin = darwin || {};

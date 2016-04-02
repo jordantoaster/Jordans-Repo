@@ -1,9 +1,7 @@
 /**
- * 
- */
-
-/**
- * 
+ * @author Jordan McDonald
+ *
+ * Description - to bypass pass by reference in the JS language by copying objects this module becomes useful
  */
 
 var darwin = darwin || {};

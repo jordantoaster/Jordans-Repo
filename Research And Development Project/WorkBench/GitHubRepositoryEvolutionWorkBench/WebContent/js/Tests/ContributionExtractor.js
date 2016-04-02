@@ -1,4 +1,8 @@
-
+/**
+ * @author Jordan McDonald
+ *
+ * Description - unit test for the contribution extractor
+ */
 QUnit.module('Contributor Extractor', {
    setup: function() {
 	   

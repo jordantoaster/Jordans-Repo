@@ -1,6 +1,9 @@
 /**
- * 
+ * @author Jordan McDonald
+ *
+ * Description - all communication to the api is handled here - callbacks and parameters make this totally generic
  */
+
 
 var darwin = darwin || {};
 

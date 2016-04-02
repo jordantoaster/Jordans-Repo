@@ -1,7 +1,8 @@
 /**
- * 
+ * @author Jordan McDonald
+ *
+ * Description - utility date functions
  */
-
 var darwin = darwin || {};
 
 darwin.ISO601toDateModule = (function () {

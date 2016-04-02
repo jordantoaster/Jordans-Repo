@@ -1,5 +1,7 @@
 /**
- * TODO - use data Measure lines of code - add difference value each new whole sample to a total
+ * @author Jordan McDonald
+ *
+ * Description - takes any data type and parses into a useful time series sampled form
  */
 
 var darwin = darwin || {};

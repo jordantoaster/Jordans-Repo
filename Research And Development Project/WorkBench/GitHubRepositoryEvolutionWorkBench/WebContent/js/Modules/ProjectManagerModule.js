@@ -1,4 +1,8 @@
-/*A global module*/
+/**
+ * @author Jordan McDonald
+ *
+ * Description - Responibility to manage the overall system in tandem with the mediator as the main processing hub of the software
+ */
 
 var darwin = darwin || {};
 

@@ -1,6 +1,9 @@
 /**
- * 
+ * @author Jordan McDonald
+ *
+ * Description - manages the custom module in this JS file, which has more complexity than other tabs
  */
+
 
 var darwin = darwin || {};
 

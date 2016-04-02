@@ -1,6 +1,9 @@
 /**
- * 
+ * @author Jordan McDonald
+ *
+ * Description - handles date related logic - in this case converting a date object to a string
  */
+
 
 var darwin = darwin || {};
 

@@ -1,5 +1,7 @@
 /**
- * 
+ * @author Jordan McDonald
+ *
+ * Description - manges the graphs for the custom ab
  */
 
 var darwin = darwin || {};

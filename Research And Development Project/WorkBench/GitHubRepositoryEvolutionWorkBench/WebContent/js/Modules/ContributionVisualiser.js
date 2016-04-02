@@ -1,6 +1,10 @@
 /**
- * 
+ * @author Jordan McDonald
+ *
+ * Description - handles creating the graphs for the contribution data - shows as many series as url selected
+ *               accounts for slider and changes to metric type
  */
+
 
 var darwin = darwin || {};
 

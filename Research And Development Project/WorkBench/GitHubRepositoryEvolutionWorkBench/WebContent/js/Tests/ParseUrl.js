@@ -1,4 +1,8 @@
-
+/**
+ * @author Jordan McDonald
+ *
+ * Description - unit tests for the parse url module
+ */
 QUnit.module('Parse Test');
 
 QUnit.test( "hello test", function( assert ) {

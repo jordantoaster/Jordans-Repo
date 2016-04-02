@@ -1,3 +1,9 @@
+/**
+ * @author Jordan McDonald
+ *
+ * Description - Handles utility interactions that can not be grouped coherently
+ */
+
 var darwin = darwin || {};
 
 $(document).ready(function(e) {
@@ -7,9 +13,9 @@ $(document).ready(function(e) {
         var href = $(this).attr('href');
         var elem = $('a[href="' + href + '"]').tab('show');
     });
-		
-	darwin.projectManagerModule.disableTabs();
 	
+    //initially disable tabs
+	darwin.projectManagerModule.disableTabs();
 	
 	//add to project manager
 	var numFeilds = 1;
@@ -31,15 +37,14 @@ $(document).ready(function(e) {
 	    	if(parsedUrl != ""){
 	    		
 	    		//first check if there are any duplicates
-	    		var duplicates = false;
-	    		
-	    		
+	    		var duplicates = false;	
 	    		for(var j=0; j<filledFeilds.length;j++){
 	    			if(parsedUrl == darwin.Mediator.parseInputUrl($('#urlField' + filledFeilds[j]).val())){
 	    				duplicates = true; break;
 	    			}
 	    		}
 	    		
+	    		//if no duplicates then its filled
 	    		if(duplicates == false){
 	    			filledFeilds[counter] = i;
 	    			counter++;
@@ -47,6 +52,7 @@ $(document).ready(function(e) {
 	    	}
 	    }
 		
+	    //sends feilds to the mediator
 	    if(filledFeilds.length > 0){
 			darwin.Mediator.initialSetup(filledFeilds);
 	    } else{
@@ -56,6 +62,7 @@ $(document).ready(function(e) {
 	
 	});
 	
+	//kick starts the auto process
 	$("#submitButtonAuto").on("click.darwin", function(e){
 		e.preventDefault();
 		
@@ -68,6 +75,7 @@ $(document).ready(function(e) {
 		
 	});
 	
+	//handle the information modal
 	$("#info0").on("click.darwin", function(e){
 		darwin.Mediator.prepareModal(0);
 	});
@@ -83,8 +91,9 @@ $(document).ready(function(e) {
 	$(document.body).on('click.darwin', '#info4' ,function(){
 		darwin.Mediator.prepareModal(4);
 	});
-
 	
+	
+	//add more more feilds as the plus button is clicked
 	$(".icon").on("click.darwin", function(e){  
 				
 		if(numFeilds == 5){
@@ -106,6 +115,7 @@ $(document).ready(function(e) {
 		}
 	});
 	
+	//handle the shifting og ui view from different tab sections
 	$("#selectInput").on("click.darwin", function(e){  
 		$("#urlContainer").removeClass('hidden');
 		$("#visualiserContainer").addClass('hidden');
@@ -131,6 +141,7 @@ $(document).ready(function(e) {
 		$("#lehmannContainer").removeClass('hidden');
 	});
 	
+	//handles the system wide funtions
 	$("#logout").on("click.darwin", function(e){  
 		e.preventDefault();
 

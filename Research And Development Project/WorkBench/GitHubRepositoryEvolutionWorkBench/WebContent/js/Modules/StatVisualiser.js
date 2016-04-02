@@ -1,6 +1,9 @@
 /**
- * 
+ * @author Jordan McDonald
+ *
+ * Description - handles the visualisation of any statistics tab - graphs and tables
  */
+
 
 var darwin = darwin || {};
 

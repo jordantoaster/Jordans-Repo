@@ -1,7 +1,8 @@
 /**
- * 
+ * @author Jordan McDonald
+ *
+ * Description - series of functions that provide server communication in differing forms depending on the action type
  */
-
 var darwin = darwin || {};
 
 darwin.serverModule = (function() {

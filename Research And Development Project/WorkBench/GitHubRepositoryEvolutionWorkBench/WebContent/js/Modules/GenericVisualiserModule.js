@@ -1,5 +1,7 @@
 /**
- * 
+ * @author Jordan McDonald
+ *
+ * Description - supports the graphing of any datatyp on any tab that is not drawn from the stats api
  */
 
 var darwin = darwin || {};

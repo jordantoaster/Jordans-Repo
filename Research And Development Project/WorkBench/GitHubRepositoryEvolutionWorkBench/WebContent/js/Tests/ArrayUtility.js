@@ -1,3 +1,8 @@
+/**
+ * @author Jordan McDonald
+ *
+ * Description - unit tests for the array utility function
+ */
 QUnit.module('Array Utility Test');
 
 module('Array utility test', {

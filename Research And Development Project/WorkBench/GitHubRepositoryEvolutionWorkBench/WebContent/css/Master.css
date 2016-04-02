@@ -1,5 +1,10 @@
-@CHARSET "ISO-8859-1";
+/**
+ * @author Jordan McDonald
+ *
+ * Description - provides styling for elements that remain consistent in both main UI views
+ */
 
+@CHARSET "ISO-8859-1";
 html, body {
 	height: 100%;
 	margin: 0;

@@ -1,6 +1,10 @@
 /**
- * 
+ * @author Jordan McDonald
+ *
+ * Description - stores all the parsed data locally (when not in auto mode)
+ * 				 provides getters and setters for accessing the data
  */
+ 
 
 var darwin = darwin || {};
 
