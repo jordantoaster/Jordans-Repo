@@ -9,6 +9,8 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>  <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Modules/loadGraphModule.js?v4"></script>    
   <script src="//code.jquery.com/qunit/qunit-1.20.0.js"></script>
   <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
   <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/InputManagers/Utility.js?v4"></script>
   <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Tests/ParseUrl.js"></script>
   <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Modules/ParseUrlInputModule.js?v4"></script>
@@ -22,7 +24,9 @@
   <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Modules/AjaxResponseModule.js?v4"></script>
   <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Mediator/Mediator.js?v4"></script>
   <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Modules/ProgressbarModule.js?v4"></script>
+  <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Tests/ProgressBar.js"></script>
   <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Modules/ProjectManagerModule.js?v4"></script>
+  <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Tests/ProjectManager.js?v4"></script>  
   <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Modules/DataManagerModule.js?v4"></script>
   <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Modules/ContributionExtractor.js?v4"></script>   
   <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Modules/CustomTabModule.js?v4"></script>  
@@ -40,14 +44,37 @@
   <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Modules/GenericVisualiserModule.js?v4"></script>
   <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Tests/GenericVisualiser.js?v4"></script> 
   <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Modules/GitHubCommunication.js?v4"></script>
-  <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Tests/ApiTest.js?v4"></script>       
+  <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Tests/ApiTest.js?v4"></script>
+  <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Modules/LawVisualiser.js?v4"></script>
+  <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Tests/LawTest.js?v4"></script>
+  <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Modules/ModalVisualiser.js?v4"></script>
+  <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Tests/ModalTest.js?v4"></script>
+  <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Modules/ServerCommunication.js?v4"></script>
+  <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Tests/ServerTest.js?v4"></script> 
+  <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Modules/StatVisualiser.js?v4"></script>
+  <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Tests/StatVisualiserTest.js?v4"></script>  
+  <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Modules/GenericExtractorModule.js?v4"></script>
+  <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Tests/GenericExtractor.js?v4"></script>               
 </head>
 <body>
   <div id="qunit"></div>
   <div id="qunit-fixture"></div>
   <div id="contributorChart" style="height:1px;width:1px;visibility:hidden;"></div>
+  <div id="blockOneTable" style="height:1px;width:1px;visibility:hidden;"></div>
+  <div id="blockThreeTable" style="height:1px;width:1px;visibility:hidden;"></div>
+  <div id="blockFiveTable" style="height:1px;width:1px;visibility:hidden;"></div>
+  <div id="dispersionTable" style="height:1px;width:1px;visibility:hidden;"></div>
+  <div id="growthChart" style="height:1px;width:1px;visibility:hidden;"></div>
+  <div id="blockSixTable" style="height:1px;width:1px;visibility:hidden;"></div>
+  <div id="blockSevenTable" style="height:1px;width:1px;visibility:hidden;"></div>
   <div id="commitChart" style="height:1px;width:1px;visibility:hidden;"></div>
   <div id="customChart" style="height:1px;width:1px;visibility:hidden;"></div>
+  <div id="projectModal" style="height:1px;width:1px;visibility:hidden;">
+  <p id="modalTitle" style="height:1px;width:1px;visibility:hidden;"></p>
+  <p id="modalMain" style="height:1px;width:1px;visibility:hidden;"></p>
+  </div>
+ <p id="commitProgress" style="height:1px;width:1px;visibility:hidden;"></p>
+ <p id="starProgress" style="height:1px;width:1px;visibility:hidden;"></p>
   <div id="slider" style="height:1px;width:1px;visibility:hidden;"></div>
 </body>
 </html>

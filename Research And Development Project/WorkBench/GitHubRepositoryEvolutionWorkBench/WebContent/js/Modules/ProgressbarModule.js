@@ -42,6 +42,12 @@ darwin.progressbarModule = (function() {
         	commitProgress = commitProgress + value;
             $('#commitProgress').text("Commits Processed : " + commitProgress);
         },
+        getCommitProgress : function(){
+        	return commitProgress;
+        },
+        getStarProgress : function(){
+        	return starProgress;
+        },
         updateCollabProgress : function(value){
         	collabProgress = collabProgress + value;
             $('#collabProgress').text("Collaborators Processed : " + collabProgress);
