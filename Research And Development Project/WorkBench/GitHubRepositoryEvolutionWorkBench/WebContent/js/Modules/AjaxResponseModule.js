@@ -11,7 +11,7 @@ darwin.AjaxResponseModule = (function () {
 	
 	
     return {
-    	handleSuccess: function (action, response, callback, index) {
+    	handleSuccess: function (action, response, callback, index, isTest) {
 
 			  if(action == "contribution" && response != []){
 				  darwin.Mediator.setContributionJson(index,response);
@@ -152,7 +152,7 @@ darwin.AjaxResponseModule = (function () {
 						  darwin.Mediator.setNumIssuesProjectSelected();					  
 					  }  				  					  
 					  
-				  } else { //else poll for next set of 100
+				  } else if(isTest == false) { //else poll for next set of 100
 					  if(action != "tagSupplement" && action != "comments"){
 						  //update counter
 						  darwin.Mediator.setcurrRequestPage(1);

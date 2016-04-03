@@ -23,6 +23,8 @@ QUnit.module('Contributor Extractor', {
 QUnit.test( "hello test", function( assert ) {
 	assert.deepEqual(darwin.contributionExtractorModule.getAddition(),additions , "pass!");
 	assert.deepEqual(darwin.contributionExtractorModule.getDeletion(), deletions, "pass!" );
+	assert.deepEqual(darwin.contributionExtractorModule.getIterationCount([],[]), 0, "pass!" );
+	assert.deepEqual(darwin.contributionExtractorModule.getIterationCount([2,1],[2,1]), 2, "pass!" );
+	assert.deepEqual(darwin.contributionExtractorModule.getIterationCount([4,2,21,3,4],[2,2]), 2, "pass!" );
 });
 
-//TODO
