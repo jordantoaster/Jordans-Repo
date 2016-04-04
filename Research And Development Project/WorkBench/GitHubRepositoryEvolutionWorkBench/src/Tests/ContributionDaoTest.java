@@ -9,13 +9,14 @@ package Tests;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
-import java.util.List;
-
 import org.junit.Before;
 import org.junit.Test;
-
 import Daos.ContributionDao;
 import Models.Contributions;
+import org.junit.FixMethodOrder;
+import org.junit.runners.MethodSorters;
+
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 
 public class ContributionDaoTest {
 	
@@ -24,7 +25,7 @@ public class ContributionDaoTest {
 	private String[]  difference = {"testInputOne", "testInputTwo", "testInputThree"};
 	private String[]  LOC = {"testInputOne", "testInputTwo", "testInputThree"};
 	private String[]  dates = {"testInputOne", "testInputTwo", "testInputThree"};
-	private String project = "Test Project";
+	private String project = "TestProject";
 	Contributions contributions;
 	ContributionDao dao;
 	
@@ -35,7 +36,18 @@ public class ContributionDaoTest {
 	}
 	
 	@Test
-	public void testContributionDaoInsert(){
+	public void test1ContributionDaoInsert(){
 		assertEquals(true, dao.insertContributions(contributions, "Backup"));
+	}
+	
+	@Test
+	public void test2ContributionDaoGet(){		
+		ArrayList<Contributions> result = dao.getContributions("Backup");
+		assertEquals(1, result.size());
+	}
+	
+	@Test
+	public void test3ContributionDaoDelete(){		
+		assertEquals(true, dao.deleteContributions(contributions, "Backup"));
 	}
 }

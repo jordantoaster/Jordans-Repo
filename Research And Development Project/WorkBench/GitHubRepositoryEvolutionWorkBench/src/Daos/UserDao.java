@@ -10,8 +10,10 @@ import com.google.gson.Gson;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
+import com.mongodb.DBObject;
 import com.mongodb.MongoException;
 
+import Models.Commits;
 import Models.User;
 import Utility.ResponseBase;
 
@@ -56,5 +58,20 @@ public class UserDao {
 		}
 		
 		return gson.toJson(new ResponseBase("true","Successful Registration, please log in", "register"));	
+	}
+	
+	public boolean deleteUser(User user, String database){
+		DBCollection collection = new dbConnectionBuilder().getMongoCollection(database, "Users");
+		
+		BasicDBObject query = new BasicDBObject();
+		query.append("username", user.getName());
+				
+		DBCursor cursor = collection.find(query);
+		while (cursor.hasNext()) {
+			DBObject item = cursor.next();
+			collection.remove(item);
+		}
+		
+		return true;
 	}
 }

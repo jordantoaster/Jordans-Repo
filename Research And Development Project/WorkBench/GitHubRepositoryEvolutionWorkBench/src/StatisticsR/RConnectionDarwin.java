@@ -184,7 +184,8 @@ public class RConnectionDarwin {
 		RConnection connection = null;
         String[] wilksResults = new String[2];
 
-        dataSubset = Arrays.copyOfRange(dataSubset, 26, dataSubset.length);
+        if(dataSubset.length > 52)
+        	dataSubset = Arrays.copyOfRange(dataSubset, 26, dataSubset.length);
 
         try {
 
@@ -223,7 +224,6 @@ public class RConnectionDarwin {
 
             connection.assign("vectorA", means);
 			REXP x = connection.eval("sd(vectorA)");
-			System.out.println(x.asDouble());
 			
 			double result = x.asDouble();
 			String parsedResult = Double.toString(result);

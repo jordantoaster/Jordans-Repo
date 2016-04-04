@@ -324,7 +324,7 @@ public class LawsAction implements Action {
 		double[] means = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 
 		// GET THE DATA SERIES
-		ArrayList<Commits> seriesA = cDao.getCommits();
+		ArrayList<Commits> seriesA = cDao.getCommits("GithubEvolution");
 		ArrayList<Stars> seriesB = starDao.getStars("GithubEvolution");
 
 		// PERFORM PROCESSING

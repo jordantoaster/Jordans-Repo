@@ -12,8 +12,10 @@ import com.mongodb.BasicDBList;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
+import com.mongodb.DBObject;
 import com.mongodb.MongoException;
 import Models.Commits;
+import Models.Contributions;
 import Models.Issues;
 
 public class CommitsDao {
@@ -40,12 +42,12 @@ public class CommitsDao {
 	}
 	
 	//retrieves a list of commits in the database
-	public ArrayList<Commits> getCommits(){
+	public ArrayList<Commits> getCommits(String database){
 		
 	    ArrayList<Commits> commitList = new ArrayList<Commits>();
 		
 	    try {
-			DBCollection collection = new dbConnectionBuilder().getMongoCollection("GithubEvolution","Commits");
+			DBCollection collection = new dbConnectionBuilder().getMongoCollection(database,"Commits");
 		    DBCursor cursor = collection.find();
 		    Commits commit;
 		    BasicDBList list;
@@ -77,6 +79,37 @@ public class CommitsDao {
 		return commitList;	
 	}
 	
+	public boolean deleteCommit(Commits comm, String database){
+		DBCollection collection = new dbConnectionBuilder().getMongoCollection(database, "Commits");
+		
+		BasicDBObject query = new BasicDBObject();
+		query.append("Project", comm.getProject());
+				
+		DBCursor cursor = collection.find(query);
+		while (cursor.hasNext()) {
+			DBObject item = cursor.next();
+			collection.remove(item);
+		}
+		
+		return true;
+	}
+	
+	public boolean updateCommit(Commits comm, String database){
+		DBCollection collection = new dbConnectionBuilder().getMongoCollection(database, "Commits");
+		
+		BasicDBObject query = new BasicDBObject();
+		query.append("Project", comm.getProject());
+				
+		DBCursor cursor = collection.find(query);
+		while (cursor.hasNext()) {
+			DBObject updateDocument = cursor.next();
+			DBObject item = updateDocument;
+			updateDocument.put("Project", "edit");
+			collection.update(item,updateDocument);
+		}
+		
+		return true;
+	}
 	//converts a mongo DB list to a traditional string array
 	public String[] parseMongoArray(BasicDBList list){
 		list.toArray();

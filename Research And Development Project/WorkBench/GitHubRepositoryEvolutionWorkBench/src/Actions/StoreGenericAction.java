@@ -50,7 +50,7 @@ public class StoreGenericAction implements Action{
 		if(subAction.equals("fork")){
 			Forks fork = new Forks(dates, data, project);		
 			ForkDao dao = new ForkDao();
-			dao.insertStars(fork, "GithubEvolution");
+			dao.insertForks(fork, "GithubEvolution");
 		}
 		if(subAction.equals("Issues")){
 				

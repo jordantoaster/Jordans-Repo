@@ -8,13 +8,17 @@ package Daos;
 
 import java.util.ArrayList;
 
+import org.bson.Document;
+
 import com.mongodb.BasicDBList;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
+import com.mongodb.DBObject;
 import com.mongodb.MongoException;
 
 import Models.Contributions;
+import Models.User;
 
 public class ContributionDao {
 	
@@ -90,6 +94,22 @@ public class ContributionDao {
 
 		return contributions;	
 	}
+	
+	public boolean deleteContributions(Contributions contr, String database){
+		DBCollection collection = new dbConnectionBuilder().getMongoCollection(database, "Contributions");
+		
+		BasicDBObject query = new BasicDBObject();
+		query.append("Project", contr.getProject());
+				
+		DBCursor cursor = collection.find(query);
+		while (cursor.hasNext()) {
+			DBObject item = cursor.next();
+			collection.remove(item);
+		}
+		
+		return true;
+	}
+
 	
 	//convert a mongo list to a java array
 	public String[] parseMongoArray(BasicDBList list){
