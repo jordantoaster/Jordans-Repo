@@ -44,7 +44,7 @@ public class LoginAction implements Action {
 				return gson.toJson(new ResponseBase("false","Ensure your username is correct - The password contains a letter, number and a symbol", "login"));
 			}
 		
-			boolean foundUser = dao.findUser(user);
+			boolean foundUser = dao.findUser(user, "GithubEvolution");
 			
 			//check if the user is a memeber of the system
 			if(!foundUser){

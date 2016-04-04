@@ -20,10 +20,10 @@ import Models.Stars;
 public class StarDao {
 	
 	//performs an insert
-	public boolean insertStars(Stars stars){
+	public boolean insertStars(Stars stars, String database){
 		
 		try {
-			DBCollection userCollection = new dbConnectionBuilder().getMongoCollection("Stars");
+			DBCollection userCollection = new dbConnectionBuilder().getMongoCollection(database, "Stars");
 		
 			BasicDBObject documentDetail = new BasicDBObject();
 			documentDetail.put("Dates", stars.getDates());
@@ -40,12 +40,12 @@ public class StarDao {
 	}
 	
 	//gets all the stars
-	public ArrayList<Stars> getStars(){
+	public ArrayList<Stars> getStars(String database){
 		
 	    ArrayList<Stars> commitList = new ArrayList<Stars>();
 		
 	    try {
-			DBCollection collection = new dbConnectionBuilder().getMongoCollection("Stars");
+			DBCollection collection = new dbConnectionBuilder().getMongoCollection(database, "Stars");
 		    DBCursor cursor = collection.find();
 		    Stars star;
 		    BasicDBList list;

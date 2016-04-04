@@ -75,8 +75,8 @@ public class LawsAction implements Action {
 		String[] percentages = new String[10];
 
 		// GET THE DATA SERIES
-		ArrayList<Issues> seriesA = iDao.getIssues();
-		ArrayList<Issues> seriesB = iDao.getIssuesComments();
+		ArrayList<Issues> seriesA = iDao.getIssues("GithubEvolution");
+		ArrayList<Issues> seriesB = iDao.getIssuesComments("GithubEvolution");
 		
 		//temp variables to work out the mean cross corr at each lag
 		double[] total = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
@@ -121,7 +121,7 @@ public class LawsAction implements Action {
 						total[k] = total[k] + crossCorr[k];
 
 						if(k == 9){
-							sDao.insertCrossCorr(crossCorr[k], "", "", "");
+							sDao.insertCrossCorr(crossCorr[k], "", "", "", "GithubEvolution");
 						}
 
 						if (crossCorr[k] < threshold) {
@@ -156,8 +156,8 @@ public class LawsAction implements Action {
 		String[] percentages = new String[10];
 
 		// GET THE DATA SERIES
-		ArrayList<Issues> seriesA = iDao.getIssues();
-		ArrayList<Contributions> seriesB = conDao.getContributions();
+		ArrayList<Issues> seriesA = iDao.getIssues("GithubEvolution");
+		ArrayList<Contributions> seriesB = conDao.getContributions("GithubEvolution");
 		
 		//temp variables to work out the mean cross corr at each lag
 		double[] total = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
@@ -239,8 +239,8 @@ public class LawsAction implements Action {
 		String[] percentages = new String[10];
 
 		// GET THE DATA SERIES
-		ArrayList<Issues> seriesA = iDao.getIssues();
-		ArrayList<GrowthRateModel> seriesB = sDao.getGrowthRate();
+		ArrayList<Issues> seriesA = iDao.getIssues("GithubEvolution");
+		ArrayList<GrowthRateModel> seriesB = sDao.getGrowthRate("GithubEvolution");
 		
 		//temp variables to work out the mean cross corr at each lag
 		double[] total = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
@@ -325,7 +325,7 @@ public class LawsAction implements Action {
 
 		// GET THE DATA SERIES
 		ArrayList<Commits> seriesA = cDao.getCommits();
-		ArrayList<Stars> seriesB = starDao.getStars();
+		ArrayList<Stars> seriesB = starDao.getStars("GithubEvolution");
 
 		// PERFORM PROCESSING
 		for (int i = 0; i < seriesA.size(); i++) {
@@ -392,7 +392,7 @@ public class LawsAction implements Action {
 	//processings HP4 - gets growth rate data from DB and calculates the variance and standard deviation
 	private String getHpDataFour() {
 		
-			int numInCollection = sDao.getNumInCollection("GrowthRate");
+			int numInCollection = sDao.getNumInCollection("GrowthRate", "GithubEvolution");
 			double[] variance = new double[numInCollection]; 
 			double[] standDev = new double[numInCollection]; 
 			int[] numInSD = new int[numInCollection]; 
@@ -402,7 +402,7 @@ public class LawsAction implements Action {
 			//get each growth loc series and get the variance 
 			for (int i =0; i < numInCollection; i++) {
 				  
-			double[] series = sDao.getGrowthRateIndex(i);
+			double[] series = sDao.getGrowthRateIndex(i, "GithubEvolution");
 			seriesSizes[i] = series.length;
 				  
 			try { 
@@ -443,10 +443,10 @@ public class LawsAction implements Action {
 		  		  IssueDao daoI = new IssueDao();
 				  
 				  //get a class (model) of contribution stuff required name etc
-				  ArrayList<Contributions> contributions = daoC.getContributions();
+				  ArrayList<Contributions> contributions = daoC.getContributions("GithubEvolution");
 				  
 				  //get issue class 
-				  ArrayList<Issues> issues = daoI.getIssues();
+				  ArrayList<Issues> issues = daoI.getIssues("GithubEvolution");
 				  
 				  String[] issueWilks= null; 
 				  String[] additionsWilks=null; 
@@ -520,7 +520,7 @@ public class LawsAction implements Action {
 	//performs law HP2 processing - gets growth rate data from DB - calculate percentage of growth which are positive
 	private String getHpDataTwo() {
 		 //get the average interval value for each project ArrayList<Double>
-		 ArrayList<Double> averages = dao.getGrowthRateAverages();
+		 ArrayList<Double> averages = dao.getGrowthRateAverages("GithubEvolution");
 		 
 		 int total = averages.size(); int numPositiveGrowth = 0;
 		 

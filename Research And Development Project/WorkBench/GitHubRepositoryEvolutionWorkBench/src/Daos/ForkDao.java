@@ -12,10 +12,10 @@ import com.mongodb.MongoException;
 import Models.Forks;
 
 public class ForkDao {
-	public boolean insertStars(Forks fork){
+	public boolean insertStars(Forks fork, String database){
 		
 		try {
-			DBCollection userCollection = new dbConnectionBuilder().getMongoCollection("Forks");
+			DBCollection userCollection = new dbConnectionBuilder().getMongoCollection(database, "Forks");
 		
 			BasicDBObject documentDetail = new BasicDBObject();
 			documentDetail.put("Dates", fork.getDates());

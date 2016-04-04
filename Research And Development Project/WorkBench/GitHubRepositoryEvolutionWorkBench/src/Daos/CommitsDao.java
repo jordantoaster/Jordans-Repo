@@ -19,10 +19,10 @@ import Models.Issues;
 public class CommitsDao {
 	
 	//inserts the commit model to the MONGO collection
-	public boolean insertCommits(Commits commits){
+	public boolean insertCommits(Commits commits, String database){
 				
 		try {
-			DBCollection userCollection = new dbConnectionBuilder().getMongoCollection("Commits");
+			DBCollection userCollection = new dbConnectionBuilder().getMongoCollection(database,"Commits");
 		
 			BasicDBObject documentDetail = new BasicDBObject();
 			documentDetail.put("Dates", commits.getDates());
@@ -45,7 +45,7 @@ public class CommitsDao {
 	    ArrayList<Commits> commitList = new ArrayList<Commits>();
 		
 	    try {
-			DBCollection collection = new dbConnectionBuilder().getMongoCollection("Commits");
+			DBCollection collection = new dbConnectionBuilder().getMongoCollection("GithubEvolution","Commits");
 		    DBCursor cursor = collection.find();
 		    Commits commit;
 		    BasicDBList list;

@@ -114,12 +114,12 @@ public class StatsAction implements Action {
 		
 		//insert into the Database and convert to a form that can be sent using JSON over HTTP
 		for (int i = 0; i < allVariance.size(); i++) {
-			dao.insertVariance(allVariance.get(i), type);
+			dao.insertVariance(allVariance.get(i), type, "GithubEvolution");
 			varianceParsed[i] = allVariance.get(i);
 		}
 		
 		//convert data to a form which can be sent over HTTP
-		ArrayList<String> allVarianceType = dao.getVarianceType(type);	
+		ArrayList<String> allVarianceType = dao.getVarianceType(type, "GithubEvolution");	
 		String[] AllVarianceParsed = new String[allVarianceType.size()];
 		AllVarianceParsed = allVarianceType.toArray(AllVarianceParsed);
 
@@ -155,7 +155,7 @@ public class StatsAction implements Action {
 
 					// model and store
 					Normality normalityModel = new Normality(projects[0], normality, normalityType);
-					dao.insertNormality(normalityModel);
+					dao.insertNormality(normalityModel, "GithubEvolution");
 
 					// add to overall list
 					allNormality.add(projects[normalityCounter]);
@@ -175,7 +175,7 @@ public class StatsAction implements Action {
 		}
 		
 		//The data is transferedd to a form which can be sent over HTTP using json
-		ArrayList<String> allNormalityType = dao.getWilksType(type);
+		ArrayList<String> allNormalityType = dao.getWilksType(type, "GithubEvolution");
 		String[] AllNormalityParsed = new String[allNormalityType.size()];
 		AllNormalityParsed = allNormalityType.toArray(AllNormalityParsed);
 
@@ -224,7 +224,9 @@ public class StatsAction implements Action {
 
 				//stores the growth data
 				StatDao dao = new StatDao();
-				dao.insertGrowthRate(growthRateModel);
+				
+				//UNCOMMENT BELOW LINE WHEN RESEARCH DONE
+				//dao.insertGrowthRate(growthRateModel, "GithubEvolution");
 				
 				for (int j = 0; j < growth.length; j++) {
 					growthAll.add(Double.toString(growth[j]));
@@ -281,10 +283,10 @@ public class StatsAction implements Action {
 		//generate a bean containing the data and insert into DB
 		Correlation correlationModel = new Correlation(projects[0], projects[1], correlation[0], TypeOne, TypeTwo,
 				correlation[1], correlation[2], correlation[3]);
-		dao.insertCorrelation(correlationModel);
+		dao.insertCorrelation(correlationModel, "GithubEvolution");
 		
 		//get all the other correlations values that use the same metric types
-		ArrayList<String> correlations = dao.getAllCorrelations(t1,t2);
+		ArrayList<String> correlations = dao.getAllCorrelations(t1,t2, "GithubEvolution");
 		
 		//parse data for sending over HTTP
 		String[] correlationsParsed = new String[correlations.size()];
@@ -354,12 +356,12 @@ public class StatsAction implements Action {
 		// store data
 		for (int i = 0; i < mean.length; i++) {
 			Mean meanModel = new Mean(projects[i], Integer.parseInt(mean[i]), meanType);
-			dao.insertMean(meanModel);
+			dao.insertMean(meanModel, "GithubEvolution");
 		}
 
 		// get mean of means
 		StatDao statDao = new StatDao();
-		int[] means = statDao.getAllMean(meanType);
+		int[] means = statDao.getAllMean(meanType, "GithubEvolution");
 		String collatedMean = "";
 
 		// get mean and median of the means

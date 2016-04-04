@@ -36,13 +36,13 @@ public class UserDaoTest {
 	
 	@Test
 	public void testUserDaoFind(){
-		assertEquals(true, dao.findUser(user));
-		assertEquals(false, dao.findUser(userTwo));
+		assertEquals(true, dao.findUser(user, "Backup"));
+		assertEquals(false, dao.findUser(userTwo, "Backup"));
 	}
 	
 	@Test
 	public void createUserTest(){
-		outcome = dao.createUser(userTwo);
+		outcome = dao.createUser(userTwo, "Backup");
         response = gson.fromJson(outcome, ResponseBase.class);  
         assertEquals("true", response.getOutcome());
 	}

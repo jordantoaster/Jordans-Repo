@@ -40,14 +40,14 @@ public class RegisterAction implements Action{
 		}
 		
 		//check if the user is already in the system
-		boolean alreadyInSystem = dao.findUser(user);
+		boolean alreadyInSystem = dao.findUser(user, "GithubEvolution");
 		
 		if(alreadyInSystem){
 			return gson.toJson(new ResponseBase("false","username is already on the system", "register"));
 		}
 
 		//add the user to the system (mongoDB)
-		return dao.createUser(user);
+		return dao.createUser(user, "GithubEvolution");
 	}
 
 	//using the input data determine if the security requirements are met

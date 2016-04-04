@@ -19,10 +19,10 @@ import Models.Contributions;
 public class ContributionDao {
 	
 	//inserts a java bean to the database collection
-	public boolean insertContributions(Contributions contributions){
+	public boolean insertContributions(Contributions contributions, String database){
 				
 		try {
-			DBCollection userCollection = new dbConnectionBuilder().getMongoCollection("Contributions");
+			DBCollection userCollection = new dbConnectionBuilder().getMongoCollection(database, "Contributions");
 		
 			BasicDBObject documentDetail = new BasicDBObject();
 			documentDetail.put("Additions", contributions.getAdditions());
@@ -43,12 +43,12 @@ public class ContributionDao {
 	}
 	
 	//retreives all instances of contributions from the DB
-	public ArrayList<Contributions> getContributions(){
+	public ArrayList<Contributions> getContributions(String database){
 		
 	    ArrayList<Contributions> contributions = new ArrayList<Contributions>();
 		
 	    try {
-			DBCollection collection = new dbConnectionBuilder().getMongoCollection("Contributions");
+			DBCollection collection = new dbConnectionBuilder().getMongoCollection(database, "Contributions");
 		    DBCursor cursor = collection.find();
 		    Contributions contri;
 		    BasicDBList list;

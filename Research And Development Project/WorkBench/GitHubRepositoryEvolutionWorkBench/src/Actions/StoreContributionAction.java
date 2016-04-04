@@ -28,7 +28,7 @@ public class StoreContributionAction implements Action{
 		
 		//perform an insert to MONGODB
 		ContributionDao dao = new ContributionDao();
-		dao.insertContributions(contributions);
+		dao.insertContributions(contributions, "GithubEvolution");
 		
 		//feedback message
 		return "mongo sync complete";

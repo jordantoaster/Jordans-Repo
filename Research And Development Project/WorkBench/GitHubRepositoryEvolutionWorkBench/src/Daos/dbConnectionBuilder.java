@@ -13,10 +13,10 @@ import com.mongodb.MongoClient;
 public class dbConnectionBuilder {
 	
 	@SuppressWarnings("deprecation")
-	public DBCollection getMongoCollection(String collection){
+	public DBCollection getMongoCollection(String database, String collection){
 		
 		MongoClient mongo = new MongoClient( "localhost" , 27017 );
-		DB db = mongo.getDB("GithubEvolution");
+		DB db = mongo.getDB(database);
 		DBCollection col = db.getCollection(collection);
 		
 		return col;

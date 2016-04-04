@@ -17,10 +17,10 @@ import Utility.ResponseBase;
 
 public class UserDao {
 		
-	public boolean findUser(User user){
+	public boolean findUser(User user, String database){
 						
 		try {
-			DBCollection userCollection = new dbConnectionBuilder().getMongoCollection("Users");
+			DBCollection userCollection = new dbConnectionBuilder().getMongoCollection(database, "Users");
 		
 			BasicDBObject searchQuery = new BasicDBObject();
 			searchQuery.put("username", user.username);
@@ -37,12 +37,12 @@ public class UserDao {
 		return false;
 	}
 	
-	public String createUser(User user){
+	public String createUser(User user, String database){
 		
 		Gson gson = new Gson();
 		
 		try {
-			DBCollection userCollection = new dbConnectionBuilder().getMongoCollection("Users");
+			DBCollection userCollection = new dbConnectionBuilder().getMongoCollection(database, "Users");
 		
 			BasicDBObject documentDetail = new BasicDBObject();
 			documentDetail.put("username", user.username);

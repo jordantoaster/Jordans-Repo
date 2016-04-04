@@ -18,12 +18,12 @@ import Models.Mean;
 public class LawsDao {
 	
 	
-	public ArrayList<Double> getGrowthRateAverages(){
+	public ArrayList<Double> getGrowthRateAverages(String database){
 		
 		ArrayList<Double> averages = new ArrayList<Double>();
 		
 		try {
-			DBCollection collection = new dbConnectionBuilder().getMongoCollection("GrowthRate");			
+			DBCollection collection = new dbConnectionBuilder().getMongoCollection(database, "GrowthRate");			
 		    DBCursor cursor = collection.find();
 		
 		    //allows iteration of every doc in the collection

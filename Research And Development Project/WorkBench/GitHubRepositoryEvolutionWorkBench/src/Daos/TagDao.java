@@ -15,10 +15,10 @@ import Models.Tags;
 public class TagDao {
 	
 	//performs an insert
-	public boolean insertStars(Tags tag){
+	public boolean insertStars(Tags tag, String database){
 		
 		try {
-			DBCollection userCollection = new dbConnectionBuilder().getMongoCollection("Tags");
+			DBCollection userCollection = new dbConnectionBuilder().getMongoCollection(database, "Tags");
 		
 			BasicDBObject documentDetail = new BasicDBObject();
 			documentDetail.put("Dates", tag.getDates());

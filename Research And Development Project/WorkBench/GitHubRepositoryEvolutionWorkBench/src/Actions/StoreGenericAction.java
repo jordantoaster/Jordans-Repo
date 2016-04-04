@@ -35,22 +35,22 @@ public class StoreGenericAction implements Action{
 		if(subAction.equals("commit")){
 			Commits commit = new Commits(dates, data, project);		
 			CommitsDao dao = new CommitsDao();
-			dao.insertCommits(commit);
+			dao.insertCommits(commit, "GithubEvolution");
 		}
 		if(subAction.equals("star")){
 			Stars star = new Stars(dates, data, project);		
 			StarDao dao = new StarDao();
-			dao.insertStars(star);
+			dao.insertStars(star, "GithubEvolution");
 		}
 		if(subAction.equals("tags")){
 			Tags tag = new Tags(dates, data, project);		
 			TagDao dao = new TagDao();
-			dao.insertStars(tag);
+			dao.insertStars(tag, "GithubEvolution");
 		}
 		if(subAction.equals("fork")){
 			Forks fork = new Forks(dates, data, project);		
 			ForkDao dao = new ForkDao();
-			dao.insertStars(fork);
+			dao.insertStars(fork, "GithubEvolution");
 		}
 		if(subAction.equals("Issues")){
 				
@@ -93,21 +93,21 @@ public class StoreGenericAction implements Action{
 			//store
 			Issues issue = new Issues(dates, openIssues, closedIssues, allIssues, project);		
 			IssueDao dao = new IssueDao();
-			dao.insertIssues(issue);
+			dao.insertIssues(issue, "GithubEvolution");
 		}
 		
 		if(subAction.equals("closedAt")){
 			//store
 			Issues issue = new Issues(dates, project, data, subAction);		
 			IssueDao dao = new IssueDao();
-			dao.insertIssuesClosedAt(issue);
+			dao.insertIssuesClosedAt(issue, "GithubEvolution");
 		}
 		
 		if(subAction.equals("comments")){
 			//store
 			Issues issue = new Issues(dates, project, data, subAction);		
 			IssueDao dao = new IssueDao();
-			dao.insertIssuesComments(issue);
+			dao.insertIssuesComments(issue, "GithubEvolution");
 		}
 
 		return "insert complete";

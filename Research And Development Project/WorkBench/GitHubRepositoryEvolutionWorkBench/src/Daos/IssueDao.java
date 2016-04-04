@@ -19,10 +19,10 @@ import Models.Stars;
 
 public class IssueDao {
 	//performs in insert operation
-	public boolean insertIssues(Issues issue){
+	public boolean insertIssues(Issues issue, String database){
 		
 		try {
-			DBCollection userCollection = new dbConnectionBuilder().getMongoCollection("Issues");
+			DBCollection userCollection = new dbConnectionBuilder().getMongoCollection(database, "Issues");
 		
 			BasicDBObject documentDetail = new BasicDBObject();
 			documentDetail.put("Dates", issue.getDates());
@@ -41,10 +41,10 @@ public class IssueDao {
 	}
 	
 	//inserts a different issue permutation
-	public boolean insertIssuesClosedAt(Issues issue){
+	public boolean insertIssuesClosedAt(Issues issue, String database){
 		
 		try {
-			DBCollection userCollection = new dbConnectionBuilder().getMongoCollection("IssuesClosedAt");
+			DBCollection userCollection = new dbConnectionBuilder().getMongoCollection(database, "IssuesClosedAt");
 		
 			BasicDBObject documentDetail = new BasicDBObject();
 			documentDetail.put("Dates", issue.getDates());
@@ -61,10 +61,10 @@ public class IssueDao {
 	}
 	
 	//inserts another issue variation
-	public boolean insertIssuesComments(Issues issue){
+	public boolean insertIssuesComments(Issues issue, String database){
 		
 		try {
-			DBCollection userCollection = new dbConnectionBuilder().getMongoCollection("IssueComments");
+			DBCollection userCollection = new dbConnectionBuilder().getMongoCollection(database, "IssueComments");
 		
 			BasicDBObject documentDetail = new BasicDBObject();
 			documentDetail.put("Dates", issue.getDates());
@@ -81,12 +81,12 @@ public class IssueDao {
 	}
 	
 	//gets all the standard issue type from the DB
-	public ArrayList<Issues> getIssues(){
+	public ArrayList<Issues> getIssues(String database){
 		
 	    ArrayList<Issues> issueList = new ArrayList<Issues>();
 		
 	    try {
-			DBCollection collection = new dbConnectionBuilder().getMongoCollection("Issues");
+			DBCollection collection = new dbConnectionBuilder().getMongoCollection(database, "Issues");
 		    DBCursor cursor = collection.find();
 		    Issues issue;
 		    BasicDBList list;
@@ -133,11 +133,11 @@ public class IssueDao {
 	}
 
 	//gets the issue comments from the collection
-	public ArrayList<Issues> getIssuesComments() {
+	public ArrayList<Issues> getIssuesComments(String database) {
 	    ArrayList<Issues> issueList = new ArrayList<Issues>();
 		
 	    try {
-			DBCollection collection = new dbConnectionBuilder().getMongoCollection("IssueComments");
+			DBCollection collection = new dbConnectionBuilder().getMongoCollection(database, "IssueComments");
 		    DBCursor cursor = collection.find();
 		    Issues issue;
 		    BasicDBList list;

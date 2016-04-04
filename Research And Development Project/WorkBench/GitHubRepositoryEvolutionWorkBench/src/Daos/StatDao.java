@@ -25,10 +25,10 @@ import Models.Stars;
 public class StatDao {
 	
 	//insert the mean values
-	public boolean insertMean(Mean mean){
+	public boolean insertMean(Mean mean, String db){
 		
 		try {
-			DBCollection userCollection = new dbConnectionBuilder().getMongoCollection("Mean");
+			DBCollection userCollection = new dbConnectionBuilder().getMongoCollection(db,"Mean");
 		
 			BasicDBObject documentDetail = new BasicDBObject();
 			documentDetail.put("Mean", mean.getMean());
@@ -45,10 +45,10 @@ public class StatDao {
 	}
 	
 	//insert the cross correlation
-	public boolean insertCrossCorr(double correlation, String project, String typeOne, String typeTwo){
+	public boolean insertCrossCorr(double correlation, String project, String typeOne, String typeTwo, String db){
 		
 		try {
-			DBCollection userCollection = new dbConnectionBuilder().getMongoCollection("CrossCorr");
+			DBCollection userCollection = new dbConnectionBuilder().getMongoCollection(db,"CrossCorr");
 		
 			BasicDBObject documentDetail = new BasicDBObject();
 			documentDetail.put("CrossCorr", correlation);
@@ -66,8 +66,8 @@ public class StatDao {
 	}
 	
 	//get all the mean values
-	public int[] getAllMean(String meanType) {
-		DBCollection collection = new dbConnectionBuilder().getMongoCollection("Mean");
+	public int[] getAllMean(String meanType, String db) {
+		DBCollection collection = new dbConnectionBuilder().getMongoCollection(db,"Mean");
 	    ArrayList<Integer> means = new ArrayList();
 		
 		DBCursor cursor = collection.find();
@@ -87,10 +87,10 @@ public class StatDao {
 	}
 	
 	//insert correlation instances
-	public boolean insertCorrelation(Correlation correlation){
+	public boolean insertCorrelation(Correlation correlation, String db){
 		
 		try {
-			DBCollection userCollection = new dbConnectionBuilder().getMongoCollection("Correlation");
+			DBCollection userCollection = new dbConnectionBuilder().getMongoCollection(db,"Correlation");
 		
 			BasicDBObject documentDetail = new BasicDBObject();
 			documentDetail.put("Pearson", correlation.getPearsons());
@@ -112,9 +112,9 @@ public class StatDao {
 	}
 
 	//insert growth rate values
-	public boolean insertGrowthRate(GrowthRateModel growthRateModel) {
+	public boolean insertGrowthRate(GrowthRateModel growthRateModel, String db) {
 		try {
-			DBCollection userCollection = new dbConnectionBuilder().getMongoCollection("GrowthRate");
+			DBCollection userCollection = new dbConnectionBuilder().getMongoCollection(db,"GrowthRate");
 		
 			BasicDBObject documentDetail = new BasicDBObject();
 			documentDetail.put("ProjectName", growthRateModel.getProjectName());
@@ -133,9 +133,9 @@ public class StatDao {
 	}
 
 	//insert the normality instance case
-	public boolean insertNormality(Normality normalityModel) {
+	public boolean insertNormality(Normality normalityModel, String db) {
 		try {
-			DBCollection userCollection = new dbConnectionBuilder().getMongoCollection("Normality");
+			DBCollection userCollection = new dbConnectionBuilder().getMongoCollection(db,"Normality");
 		
 			BasicDBObject documentDetail = new BasicDBObject();
 			documentDetail.put("ProjectName", normalityModel.getProjectName());
@@ -154,9 +154,9 @@ public class StatDao {
 	}
 	
 	//get the amount of values in any collection
-	public int getNumInCollection(String collectionName){
+	public int getNumInCollection(String collectionName, String db){
 		
-		DBCollection collection = new dbConnectionBuilder().getMongoCollection(collectionName);
+		DBCollection collection = new dbConnectionBuilder().getMongoCollection(db,collectionName);
 		
 		try {
 
@@ -170,12 +170,12 @@ public class StatDao {
 	}
 
 	//get the growth rate based upon a target index
-	public double[] getGrowthRateIndex(int index){
+	public double[] getGrowthRateIndex(int index, String db){
 
 		int counter =0;
 		
 		try {
-			DBCollection collection = new dbConnectionBuilder().getMongoCollection("GrowthRate");			
+			DBCollection collection = new dbConnectionBuilder().getMongoCollection(db,"GrowthRate");			
 		    DBCursor cursor = collection.find();
 		
 		    //allows iteration of every doc in the collection
@@ -202,12 +202,12 @@ public class StatDao {
 	}
 	
 	//get the growth rate vectors from the database
-	public ArrayList<GrowthRateModel> getGrowthRate(){
+	public ArrayList<GrowthRateModel> getGrowthRate(String db){
 		
 	    ArrayList<GrowthRateModel> commitList = new ArrayList<GrowthRateModel>();
 		
 	    try {
-			DBCollection collection = new dbConnectionBuilder().getMongoCollection("GrowthRate");
+			DBCollection collection = new dbConnectionBuilder().getMongoCollection(db,"GrowthRate");
 		    DBCursor cursor = collection.find();
 		    GrowthRateModel growth;
 		    BasicDBList list;
@@ -263,9 +263,9 @@ public class StatDao {
 	}
 
 	//insertes the variance instance
-	public boolean insertVariance(double variance, String type) {
+	public boolean insertVariance(double variance, String type, String db) {
 		try {
-			DBCollection userCollection = new dbConnectionBuilder().getMongoCollection("Variance");
+			DBCollection userCollection = new dbConnectionBuilder().getMongoCollection(db,"Variance");
 		
 			BasicDBObject documentDetail = new BasicDBObject();
 			documentDetail.put("Variance", variance);
@@ -282,8 +282,8 @@ public class StatDao {
 	}
 
 	//gets all the cross correlation values
-	public void getCross() {
-		DBCollection collection = new dbConnectionBuilder().getMongoCollection("CrossCorr");
+	public void getCross(String db) {
+		DBCollection collection = new dbConnectionBuilder().getMongoCollection(db,"CrossCorr");
 		DBCursor cursor = collection.find();
 		int count = 0;
 		while (cursor.hasNext()) {
@@ -310,12 +310,12 @@ public class StatDao {
 	}
 
 	//inserts the amount of a series within one SD threshold
-	public boolean insertNumInSd(int i, int length) {
+	public boolean insertNumInSd(int i, int length, String db) {
 		
 		float percentage = (float) ((i * 100.0) / length);
 
 		try {
-			DBCollection userCollection = new dbConnectionBuilder().getMongoCollection("StandardDeviation");
+			DBCollection userCollection = new dbConnectionBuilder().getMongoCollection(db,"StandardDeviation");
 		
 			BasicDBObject documentDetail = new BasicDBObject();
 			documentDetail.put("SD", percentage);
@@ -332,9 +332,9 @@ public class StatDao {
 	}
 
 	//gets every correlation instance
-	public ArrayList<String> getAllCorrelations(String t1, String t2) {
+	public ArrayList<String> getAllCorrelations(String t1, String t2, String db) {
 		
-		DBCollection collection = new dbConnectionBuilder().getMongoCollection("Correlation");
+		DBCollection collection = new dbConnectionBuilder().getMongoCollection(db,"Correlation");
 
 		ArrayList<String> correlations = new ArrayList<String>();
 		
@@ -350,8 +350,8 @@ public class StatDao {
 	}
 
 	//gets the wilks for a certain metric type
-	public ArrayList<String> getWilksType(String type) {
-		DBCollection collection = new dbConnectionBuilder().getMongoCollection("Normality");
+	public ArrayList<String> getWilksType(String type, String db) {
+		DBCollection collection = new dbConnectionBuilder().getMongoCollection(db,"Normality");
 
 		ArrayList<String> normality = new ArrayList<String>();
 		
@@ -367,8 +367,8 @@ public class StatDao {
 	}
 
 	//gets the variance for a certain metric type
-	public ArrayList<String> getVarianceType(String type) {
-		DBCollection collection = new dbConnectionBuilder().getMongoCollection("Variance");
+	public ArrayList<String> getVarianceType(String type, String db) {
+		DBCollection collection = new dbConnectionBuilder().getMongoCollection(db,"Variance");
 
 		ArrayList<String> variance = new ArrayList<String>();
 		
