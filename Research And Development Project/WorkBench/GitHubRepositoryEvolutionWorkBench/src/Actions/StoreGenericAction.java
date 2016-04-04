@@ -45,7 +45,7 @@ public class StoreGenericAction implements Action{
 		if(subAction.equals("tags")){
 			Tags tag = new Tags(dates, data, project);		
 			TagDao dao = new TagDao();
-			dao.insertStars(tag, "GithubEvolution");
+			dao.insertTags(tag, "GithubEvolution");
 		}
 		if(subAction.equals("fork")){
 			Forks fork = new Forks(dates, data, project);		

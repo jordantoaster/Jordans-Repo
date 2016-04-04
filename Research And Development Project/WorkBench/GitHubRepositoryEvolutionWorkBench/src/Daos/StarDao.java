@@ -12,8 +12,10 @@ import com.mongodb.BasicDBList;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
+import com.mongodb.DBObject;
 import com.mongodb.MongoException;
 
+import Models.Commits;
 import Models.Stars;
 import Models.Stars;
 
@@ -75,6 +77,38 @@ public class StarDao {
 		
 
 		return commitList;	
+	}
+	
+	public boolean deleteStars(Stars comm, String database){
+		DBCollection collection = new dbConnectionBuilder().getMongoCollection(database, "Stars");
+		
+		BasicDBObject query = new BasicDBObject();
+		query.append("Project", comm.getProject());
+				
+		DBCursor cursor = collection.find(query);
+		while (cursor.hasNext()) {
+			DBObject item = cursor.next();
+			collection.remove(item);
+		}
+		
+		return true;
+	}
+	
+	public boolean updateStars(Stars comm, String database){
+		DBCollection collection = new dbConnectionBuilder().getMongoCollection(database, "Stars");
+		
+		BasicDBObject query = new BasicDBObject();
+		query.append("Project", comm.getProject());
+				
+		DBCursor cursor = collection.find(query);
+		while (cursor.hasNext()) {
+			DBObject updateDocument = cursor.next();
+			DBObject item = updateDocument;
+			updateDocument.put("Project", "edit");
+			collection.update(item,updateDocument);
+		}
+		
+		return true;
 	}
 	
 	//convert mongo list to string array

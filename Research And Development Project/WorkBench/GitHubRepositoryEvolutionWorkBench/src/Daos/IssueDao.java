@@ -12,7 +12,10 @@ import com.mongodb.BasicDBList;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
+import com.mongodb.DBObject;
 import com.mongodb.MongoException;
+
+import Models.Commits;
 import Models.Contributions;
 import Models.Issues;
 import Models.Stars;
@@ -167,5 +170,69 @@ public class IssueDao {
 		
 
 		return issueList;	
+	}
+	
+	public boolean deleteIssues(Issues issue, String database){
+		DBCollection collection = new dbConnectionBuilder().getMongoCollection(database, "Issues");
+		
+		BasicDBObject query = new BasicDBObject();
+		query.append("Project", issue.getProject());
+				
+		DBCursor cursor = collection.find(query);
+		while (cursor.hasNext()) {
+			DBObject item = cursor.next();
+			collection.remove(item);
+		}
+		
+		return true;
+	}
+	
+	public boolean updateIssues(Issues comm, String database){
+		DBCollection collection = new dbConnectionBuilder().getMongoCollection(database, "Issues");
+		
+		BasicDBObject query = new BasicDBObject();
+		query.append("Project", comm.getProject());
+				
+		DBCursor cursor = collection.find(query);
+		while (cursor.hasNext()) {
+			DBObject updateDocument = cursor.next();
+			DBObject item = updateDocument;
+			updateDocument.put("Project", "edit");
+			collection.update(item,updateDocument);
+		}
+		
+		return true;
+	}
+	
+	public boolean deleteComments(Issues comm, String database){
+		DBCollection collection = new dbConnectionBuilder().getMongoCollection(database, "IssueComments");
+		
+		BasicDBObject query = new BasicDBObject();
+		query.append("Project", comm.getProject());
+				
+		DBCursor cursor = collection.find(query);
+		while (cursor.hasNext()) {
+			DBObject item = cursor.next();
+			collection.remove(item);
+		}
+		
+		return true;
+	}
+	
+	public boolean updateComments(Issues comm, String database){
+		DBCollection collection = new dbConnectionBuilder().getMongoCollection(database, "IssueComments");
+		
+		BasicDBObject query = new BasicDBObject();
+		query.append("Project", comm.getProject());
+				
+		DBCursor cursor = collection.find(query);
+		while (cursor.hasNext()) {
+			DBObject updateDocument = cursor.next();
+			DBObject item = updateDocument;
+			updateDocument.put("Project", "edit");
+			collection.update(item,updateDocument);
+		}
+		
+		return true;
 	}
 }
