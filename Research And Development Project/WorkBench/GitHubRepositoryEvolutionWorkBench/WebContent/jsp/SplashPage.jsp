@@ -10,7 +10,6 @@
 <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Modules/FacebookSDK.js"></script>
 <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Modules/ServerCommunication.js"></script>
 <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/InputManagers/SplashInputManager.js?v5"></script>
-<script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Facade/Facade.js?v2"></script>
 <script src="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/js/Mediator/Mediator.js?v2"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 <link rel="stylesheet" href="http://localhost:8080/GitHubRepositoryEvolutionWorkBench/css/SplashPage.css?v2">
