@@ -9,7 +9,6 @@ var darwin = darwin || {};
 
 darwin.AjaxResponseModule = (function () {
 	
-	
     return {
     	handleSuccess: function (action, response, callback, index, isTest) {
 

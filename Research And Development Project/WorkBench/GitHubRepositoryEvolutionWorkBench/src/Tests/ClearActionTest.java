@@ -31,7 +31,7 @@ public class ClearActionTest {
 	  @Test
 	  public void clearDB(){
 		  ClearAction clear = new ClearAction();
-		  assertEquals("true", clear.execute(request, response));
+		  assertEquals("Database Cleared!", clear.execute(request, response));
 	  }
 
 }
