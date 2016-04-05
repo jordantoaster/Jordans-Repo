@@ -43,15 +43,37 @@ public class ClearAction implements Action{
 		myCollection = db.getCollection("Issues");
 		myCollection.drop();
 		
-		myCollection = db.getCollection("IssuesComments");
+		myCollection = db.getCollection("IssueComments");
 		myCollection.drop();
 		
 		myCollection = db.getCollection("Mean");
 		myCollection.drop();
 		
-		//add rest as required
+		myCollection = db.getCollection("Correlation");
+		myCollection.drop();
 		
-		return "true";
+		myCollection = db.getCollection("CrossCorr");
+		myCollection.drop();
+		
+		myCollection = db.getCollection("GrowthRate");
+		myCollection.drop();
+		
+		myCollection = db.getCollection("IssuesClosedAt");
+		myCollection.drop();
+		
+		myCollection = db.getCollection("Normality");
+		myCollection.drop();
+		
+		myCollection = db.getCollection("StandardDeviation");
+		myCollection.drop();
+		
+		myCollection = db.getCollection("Tags");
+		myCollection.drop();
+		
+		myCollection = db.getCollection("Variance");
+		myCollection.drop();
+		
+		return "Database Cleared!";
 	}
 
 }

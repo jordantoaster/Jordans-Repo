@@ -152,6 +152,11 @@ $(document).ready(function(e) {
 
 		darwin.serverModule.sendGeneric("export","", darwin.Mediator.handleExport, "POST","","","");
 	});
+	$("#import").on("click.darwin", function(e){  
+		e.preventDefault();
+
+		darwin.serverModule.sendGeneric("import","", darwin.Mediator.handleExport, "POST","","","");
+	});
 	$("#clear").on("click.darwin", function(e){  
 		e.preventDefault();
 

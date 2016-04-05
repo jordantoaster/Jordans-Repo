@@ -35,6 +35,9 @@ public class ActionFactory {
 		if(input.equals("export")){
 			return new ExportAction();
 		}
+		if(input.equals("import")){
+			return new ImportAction();
+		}
 		if(input.equals("clear")){
 			return new ClearAction();
 		}

@@ -64,6 +64,9 @@
   	 <button class="btn btn-default" id="export" class="btn btn-primary button">
     	<i style="font-size: 1.5em" class="icon-user icon-white">Export DB</i> <span style="margin-left: 5px;" class="glyphicon glyphicon-download" style="vertical-align:middle"></span>
   	 </button>
+  	 <button class="btn btn-default" id="import" class="btn btn-primary button">
+    	<i style="font-size: 1.5em" class="icon-user icon-white">Import DB</i> <span style="margin-left: 5px;" class="glyphicon glyphicon-download" style="vertical-align:middle"></span>
+  	 </button>
   	 <button class="btn btn-default" id="clear" class="btn btn-primary button">
     	<i style="font-size: 1.5em" class="icon-user icon-white">Clear DB</i> <span style="margin-left: 5px;" class="glyphicon glyphicon-remove" style="vertical-align:middle"></span>
   	 </button>
