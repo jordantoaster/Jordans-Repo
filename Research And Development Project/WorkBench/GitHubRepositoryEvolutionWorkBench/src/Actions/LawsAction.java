@@ -489,13 +489,13 @@ public class LawsAction implements Action {
 				  }
 				  
 				  //is p less then 0.05? - if so increment
-				  if(Double.parseDouble(issueWilks[1]) <= 0.05){ 
+				  if(Double.parseDouble(issueWilks[1]) <= 0.01){ 
 					  issuesInThreshold++; 
 					  }
-				  if(Double.parseDouble(additionsWilks[1]) <= 0.05){
+				  if(Double.parseDouble(additionsWilks[1]) <= 0.01){
 					  additionsInThreshold++; 
 				  } 
-				  if(Double.parseDouble(deletionsWilks[1]) <= 0.05){ 
+				  if(Double.parseDouble(deletionsWilks[1]) <= 0.01){ 
 					  deletionsInThreshold++;
 				  }
 				  

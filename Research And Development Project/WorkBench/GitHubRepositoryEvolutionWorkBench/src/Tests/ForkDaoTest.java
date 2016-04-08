@@ -26,10 +26,16 @@ public class ForkDaoTest {
 	String[] dates = {"22","1"};
 	String[] data = {"22","1"};
 	Forks fork = new Forks(dates, data, "testProject");
+	
+	String[] datesTwo = {"22","1","22","1"};
+	String[] dataTwo = {"22654","135423", "43423", "2432423"};
+	Forks forkTwo = new Forks(datesTwo, dataTwo, "testProjectTwo");
 		
 	@Test
 	public void test1InsertFork(){
 		assertEquals(true, dao.insertForks(fork, "Backup"));
+		assertEquals(true, dao.insertForks(forkTwo, "Backup"));
+
 	}
 	
 	@Test
@@ -40,12 +46,16 @@ public class ForkDaoTest {
 	
 	@Test
 	public void test3UpdateFork(){
+		fork.setDates(datesTwo);
+		forkTwo.setDates(dates);
 		assertEquals(true, dao.updateFork(fork, "Backup"));
+		assertEquals(true, dao.updateFork(forkTwo, "Backup"));
 	}
 	
 	@Test
 	public void test4DeleteFork(){
 		assertEquals(true, dao.deleteFork(fork, "Backup"));
+		assertEquals(true, dao.deleteFork(forkTwo, "Backup"));
 	}
 	
 }

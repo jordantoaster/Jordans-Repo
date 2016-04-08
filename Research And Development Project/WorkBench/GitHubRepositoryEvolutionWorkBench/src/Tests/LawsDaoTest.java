@@ -24,11 +24,14 @@ import org.junit.runners.MethodSorters;
 public class LawsDaoTest {
 	LawsDao dao = new LawsDao();
 	double[] data = {22,1,5,3,2};
+	double[] dataTwo = {2,2423,4234332,432,34,23,4323,44,32};
 	GrowthRateModel growth = new GrowthRateModel("testProject", "test", data, 0.2, 0.5);
+	GrowthRateModel growthTwo = new GrowthRateModel("testProjecttwo", "testtwo", dataTwo, 0.4, 0.9);
 		
 	@Test
 	public void test1InsertG(){
 		assertEquals(true, dao.insertGrowthRate(growth, "Backup"));
+		assertEquals(true, dao.insertGrowthRate(growthTwo, "Backup"));
 	}
 	
 	@Test
@@ -39,11 +42,15 @@ public class LawsDaoTest {
 	
 	@Test
 	public void test3UpdateG(){
+		growth.setGrowth(dataTwo);
+		growthTwo.setGrowth(data);
 		assertEquals(true, dao.updateGrowth(growth, "Backup"));
+		assertEquals(true, dao.updateGrowth(growthTwo, "Backup"));
 	}
 	
 	@Test
 	public void test4DeleteG(){
 		assertEquals(true, dao.deleteGrowth(growth, "Backup"));
+		assertEquals(true, dao.deleteGrowth(growthTwo, "Backup"));
 	}
 }

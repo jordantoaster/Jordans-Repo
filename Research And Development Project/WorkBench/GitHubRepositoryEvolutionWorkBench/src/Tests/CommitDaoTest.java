@@ -24,10 +24,15 @@ public class CommitDaoTest {
 	String[] dates = {"22","1"};
 	String[] data = {"22","1"};
 	Commits commit = new Commits(dates, data, "testProject");
+	
+	String[] datesTwo = {"22","1"};
+	String[] dataTwo = {"22","1"};
+	Commits commitTwo = new Commits(datesTwo, dataTwo, "testProject2");
 		
 	@Test
 	public void test1InsertCommit(){
 		assertEquals(true, dao.insertCommits(commit, "Backup"));
+		assertEquals(true, dao.insertCommits(commitTwo, "Backup"));
 	}
 	
 	@Test
@@ -38,12 +43,16 @@ public class CommitDaoTest {
 	
 	@Test
 	public void test3UpdateCommit(){
+		commit.setDates(datesTwo);
+		commitTwo.setDates(dates);
 		assertEquals(true, dao.updateCommit(commit, "Backup"));
+		assertEquals(true, dao.updateCommit(commitTwo, "Backup"));
 	}
 	
 	@Test
 	public void test4DeleteCommit(){
 		assertEquals(true, dao.deleteCommit(commit, "Backup"));
+		assertEquals(true, dao.deleteCommit(commitTwo, "Backup"));
 	}
 	
 }
