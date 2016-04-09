@@ -17,6 +17,7 @@ import Models.Correlation;
 import Models.GrowthRateModel;
 import Models.Mean;
 import Models.Normality;
+import Utility.TestSetup;
 
 import static org.hamcrest.CoreMatchers.*;
 import org.junit.FixMethodOrder;
@@ -27,8 +28,8 @@ import org.junit.runners.MethodSorters;
 public class StatDaoTest {
 	
 	StatDao dao = new StatDao();
-	double[] data =  {4,3,2};
-	String[] datatwo =  {"a", "a"};
+	double[] data =  TestSetup.generateRandomArray(500);
+	String[] datatwo =  TestSetup.generateRandomStringArray(500);
 	
 	@Test
 	public void test1InsertMean(){

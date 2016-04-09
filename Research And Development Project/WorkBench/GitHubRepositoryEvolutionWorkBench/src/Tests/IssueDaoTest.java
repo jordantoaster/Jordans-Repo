@@ -14,6 +14,7 @@ import Daos.CommitsDao;
 import Daos.IssueDao;
 import Models.Commits;
 import Models.Issues;
+import Utility.TestSetup;
 
 import static org.hamcrest.CoreMatchers.*;
 import org.junit.FixMethodOrder;
@@ -23,10 +24,10 @@ import org.junit.runners.MethodSorters;
 public class IssueDaoTest {
 
 	IssueDao dao = new IssueDao();
-	String[] dates = {"22","1"};
-	String[] data = {"22","1"};
-	String[] dataTwo = {"22","1"};
-	String[] dataThree = {"22","1"};
+	String[] dates = TestSetup.generateRandomStringArray(1000);
+	String[] data = TestSetup.generateRandomStringArray(1000);
+	String[] dataTwo = TestSetup.generateRandomStringArray(1000);
+	String[] dataThree = TestSetup.generateRandomStringArray(1000);
 
 	Issues issue = new Issues(dates, data,dataTwo, dataThree, "test");
 	

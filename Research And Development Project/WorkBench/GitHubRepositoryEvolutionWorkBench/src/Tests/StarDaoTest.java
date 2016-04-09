@@ -14,6 +14,7 @@ import Daos.CommitsDao;
 import Daos.StarDao;
 import Models.Commits;
 import Models.Stars;
+import Utility.TestSetup;
 
 import static org.hamcrest.CoreMatchers.*;
 import org.junit.FixMethodOrder;
@@ -23,8 +24,8 @@ import org.junit.runners.MethodSorters;
 
 public class StarDaoTest {
 	StarDao dao = new StarDao();
-	String[] dates = {"22","1"};
-	String[] data = {"22","1"};
+	String[] dates = TestSetup.generateRandomStringArray(500);
+	String[] data = TestSetup.generateRandomStringArray(500);
 	Stars star = new Stars(dates, data, "testProject");
 		
 	@Test

@@ -14,6 +14,7 @@ import Daos.CommitsDao;
 import Daos.TagDao;
 import Models.Commits;
 import Models.Tags;
+import Utility.TestSetup;
 
 import static org.hamcrest.CoreMatchers.*;
 import org.junit.FixMethodOrder;
@@ -22,8 +23,8 @@ import org.junit.runners.MethodSorters;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TagDaoTest {
 	TagDao dao = new TagDao();
-	String[] dates = {"22","1"};
-	String[] data = {"22","1"};
+	String[] dates = TestSetup.generateRandomStringArray(500);
+	String[] data = TestSetup.generateRandomStringArray(500);
 	Tags tag = new Tags(dates, data, "testProject");
 		
 	@Test
