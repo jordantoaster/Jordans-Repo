@@ -431,4 +431,37 @@ public class RConnectionDarwin {
 		return 0.0;
 	}
 
+	public String[] AD(int[] dataSubset) throws REngineException, REXPMismatchException {
+		RConnection connection = null;
+        String[] aDResults = new String[2];
+
+        if(dataSubset.length > 52)
+        	dataSubset = Arrays.copyOfRange(dataSubset, 26, dataSubset.length);
+
+        try {
+
+            connection = new RConnection();
+
+            connection.assign("vectorA", dataSubset);
+            connection.eval("library(\"nortest\")");
+			REXP ADP = connection.eval("ad.test(vectorA)$p.value");
+			REXP AD = connection.eval("ad.test(vectorA)$statistic");
+			
+			aDResults[0] = Double.toString(AD.asDouble());
+			aDResults[1] = Double.toString(ADP.asDouble());
+
+            connection.close();
+            
+            return aDResults;
+            
+        } catch (RserveException e) {
+            connection.close();
+            e.printStackTrace();
+        }  
+        
+        connection.close();		
+        
+		return null;
+	}
+
 }

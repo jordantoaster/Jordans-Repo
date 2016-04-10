@@ -450,10 +450,14 @@ public class LawsAction implements Action {
 				  
 				  String[] issueWilks= null; 
 				  String[] additionsWilks=null; 
-				  String[]
-				  deletionsWilks=null;
+				  String[] deletionsWilks=null;
+				  
+				  String[] issuesAD= null; 
+				  String[] additionsAD=null; 
+				  String[] deletionsAD=null;
 				  
 				  int issuesInThreshold = 0; int additionsInThreshold = 0; int deletionsInThreshold = 0;
+				  int issuesInThresholdAD = 0; int additionsInThresholdAD = 0; int deletionsInThresholdAD = 0;
 				  				 
 				  int total =0;
 				  
@@ -479,6 +483,10 @@ public class LawsAction implements Action {
 				  issueWilks =r.wilks(parseArrayToInt(issue.getAllIssues())); 
 				  additionsWilks =r.wilks(parseArrayToInt(contribution.getAdditions())); 
 				  deletionsWilks = r.wilks(parseArrayToInt(contribution.getDeletions()));
+				  
+				  issuesAD =r.AD(parseArrayToInt(issue.getAllIssues())); 
+				  additionsAD =r.AD(parseArrayToInt(contribution.getAdditions())); 
+				  deletionsAD = r.AD(parseArrayToInt(contribution.getDeletions())); 
 				  } 
 				  catch (REngineException e) {
 					  e.printStackTrace(); 
@@ -497,6 +505,17 @@ public class LawsAction implements Action {
 				  } 
 				  if(Double.parseDouble(deletionsWilks[1]) <= 0.01){ 
 					  deletionsInThreshold++;
+				  }
+				  
+				  //is p less then 0.05? - if so increment
+				  if(Double.parseDouble(issuesAD[1]) <= 0.01){ 
+					  issuesInThresholdAD++; 
+					  }
+				  if(Double.parseDouble(additionsAD[1]) <= 0.01){
+					  additionsInThresholdAD++; 
+				  } 
+				  if(Double.parseDouble(deletionsAD[1]) <= 0.01){ 
+					  deletionsInThresholdAD++;
 				  }
 				  
 				  break;
