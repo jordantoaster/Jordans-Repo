@@ -149,7 +149,7 @@ darwin.statVisualiser = (function() {
 	    	    new google.visualization.ScatterChart(document.getElementById('correlationChart')).draw(data, options);
 
 		},
-		writeNormality : function(normality, projects, type, all){
+		writeNormality : function(normality, projectNames, type, all){
 			
 			var normality = normality.split(',');
 			var all = all.split(',');
@@ -203,7 +203,7 @@ darwin.statVisualiser = (function() {
 	    	    new google.visualization.ScatterChart(document.getElementById('normalityChart')).draw(data, options);			 
 
 		},		
-		writeVariance : function(variance, projects,type, allVar){
+		writeVariance : function(variance, projectNames,type, allVar){
 			
 			var variance = variance.split(',');
 			var allVar = allVar.split(',');

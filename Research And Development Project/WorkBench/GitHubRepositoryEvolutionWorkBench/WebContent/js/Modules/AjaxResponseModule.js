@@ -20,6 +20,7 @@ darwin.AjaxResponseModule = (function () {
 				  
 				  //only make call back when we have all the required json
 				  if(size == darwin.projectManagerModule.getNumProjects()){
+					  darwin.Mediator.resetcurrRequestPage(0);
 					  callback(darwin.jsonManagerModule.getAllContributionJson(), index);					
 				  } else {
 					  //get contribution index
@@ -152,7 +153,7 @@ darwin.AjaxResponseModule = (function () {
 					  }  				  					  
 					  
 				  } else if(isTest == false) { //else poll for next set of 100
-					  if(action != "tagSupplement" && action != "comments"){
+					  if(action != "tagSupplement" && action != "comments"  && action != "contributions" && action != "extraInfo"){
 						  //update counter
 						  darwin.Mediator.setcurrRequestPage(1);
 					  

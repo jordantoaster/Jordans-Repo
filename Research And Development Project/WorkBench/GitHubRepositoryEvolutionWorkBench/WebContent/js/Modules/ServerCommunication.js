@@ -42,7 +42,10 @@ darwin.serverModule = (function() {
     			  },
     			  error: function() {
     			    	$('#ajaxGetUserServletResponse').text("An error occured when connecting to the Server");
-    			    	$("#ajaxGetUserServletResponse").css({"opacity":"1"});	 
+    			    	$("#ajaxGetUserServletResponse").css({"opacity":"1"});	
+    			    	setTimeout(function(){
+    			            $('#ajaxGetUserServletResponse').css('opacity','0');
+    			    	}, 5000);
     			  }
     		});
         },
@@ -62,7 +65,10 @@ darwin.serverModule = (function() {
   			  },
   			  error: function() {
   			    	$('#ajaxGetUserServletResponse').text("An error occured when connecting to the Server");
-  			    	$("#ajaxGetUserServletResponse").css({"opacity":"1"});	 
+  			    	$("#ajaxGetUserServletResponse").css({"opacity":"1"});	
+  			    	setTimeout(function(){
+  			            $('#ajaxGetUserServletResponse').css('opacity','0');
+  			    	}, 5000);
   			  }
   		});
         },
@@ -84,6 +90,9 @@ darwin.serverModule = (function() {
     			  error: function() {
     			    	$('#ajaxGetUserServletResponse').text("An error occured when connecting to the Server");
     			    	$("#ajaxGetUserServletResponse").css({"opacity":"1"});	 
+    			    	setTimeout(function(){
+    			            $('#ajaxGetUserServletResponse').css('opacity','0');
+    			    	}, 5000);
     			  }
     		});
         },
@@ -106,7 +115,10 @@ darwin.serverModule = (function() {
     			  },
     			  error: function() {
     			    	$('#ajaxGetUserServletResponse').text("An error occured when connecting to the Server");
-    			    	$("#ajaxGetUserServletResponse").css({"opacity":"1"});	 
+    			    	$("#ajaxGetUserServletResponse").css({"opacity":"1"});	
+    			    	setTimeout(function(){
+    			            $('#ajaxGetUserServletResponse').css('opacity','0');
+    			    	}, 5000);
     			  }
     		});
         }

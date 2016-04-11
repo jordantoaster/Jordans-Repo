@@ -439,31 +439,31 @@ darwin.projectManagerModule = (function() {
         		if(dataType == "forksAcc"){
         			forks = darwin.dataManager.getForksAccIndex(i);
         			if(forks != undefined){
-        				$(ElementId).append('<div class="checkbox"><label><input id="check'+metricType+''+i+'" type="checkbox" value="">Forks</label></div>')
+        				$(ElementId).append('<div class="checkbox"><label><input id="check'+metricType+''+i+'" type="checkbox" value="">'+projectNames[i]+'</label></div>')
         			}
         		}
         		if(dataType == "tagsAcc"){
            			tags = darwin.dataManager.getTagsAccIndex(i);
         			if(tags != undefined){
-        				$(ElementId).append('<div class="checkbox"><label><input id="check'+metricType+''+i+'" type="checkbox" value="">tags</label></div>')
+        				$(ElementId).append('<div class="checkbox"><label><input id="check'+metricType+''+i+'" type="checkbox" value="">'+projectNames[i]+'</label></div>')
         			}
         		}
         		if(dataType == "issuesAcc"){
            			issues = darwin.dataManager.getIssuesAccIndex(i);
         			if(issues != undefined){
-        				$(ElementId).append('<div  class="checkbox"><label><input id="check'+metricType+''+i+'" type="checkbox" value="">issues</label></div>')
+        				$(ElementId).append('<div  class="checkbox"><label><input id="check'+metricType+''+i+'" type="checkbox" value="">'+projectNames[i]+'</label></div>')
         			}
         		}
         		if(dataType == "commitsAcc"){
            			commits = darwin.dataManager.getCommitsAccIndex(i);
         			if(commits != undefined){
-        				$(ElementId).append('<div class="checkbox"><label><input id="check'+metricType+''+i+'" type="checkbox" value="">commits</label></div>')
+        				$(ElementId).append('<div class="checkbox"><label><input id="check'+metricType+''+i+'" type="checkbox" value="">'+projectNames[i]+'</label></div>')
         			}
         		}
         		if(dataType == "starsAcc"){
           			stars = darwin.dataManager.getStarsAccIndex(i);
         			if(stars != undefined){
-        				$(ElementId).append('<div class="checkbox"><label><input id="check'+metricType+''+i+'" type="checkbox" value="">stars</label></div>')
+        				$(ElementId).append('<div class="checkbox"><label><input id="check'+metricType+''+i+'" type="checkbox" value="">'+projectNames[i]+'</label></div>')
         			}
         		}
         		if(dataType == "watchers"){
@@ -536,8 +536,11 @@ darwin.projectManagerModule = (function() {
 			}
 			
 			if(selectedMeanData.length == 0 || selectedMeanProjectName.length > 1){
-		    	$('#ajaxGetUserServletResponse').text("Make sure you select a check box!");
+		    	$('#ajaxGetUserServletResponse').text("Make sure you select a single check box!");
 		    	$("#ajaxGetUserServletResponse").css({"opacity":"1"});	 
+		    	setTimeout(function(){
+		            $('#ajaxGetUserServletResponse').css('opacity','0');
+		    	}, 5000);
 			} else {
 				darwin.serverModule.sendStat("stats","mean",selectedMeanProjectName, selectedMeanData, "POST", darwin.Mediator.drawGenericStat, dataType);	
 			}
@@ -588,8 +591,13 @@ darwin.projectManagerModule = (function() {
 				}				
 			}
 			if(selectedNormalityData.length == 0 || selectedNormalityProjectName.length > 1){
-		    	$('#ajaxGetUserServletResponse').text("Make sure you select a check box!");
-		    	$("#ajaxGetUserServletResponse").css({"opacity":"1"});	 
+		    	$('#ajaxGetUserServletResponse').text("Make sure you select a single check box!");
+		    	$("#ajaxGetUserServletResponse").css({"opacity":"1"});	
+		    	setTimeout(function(){
+		            $('#ajaxGetUserServletResponse').css('opacity','0');
+		    	}, 5000);
+		    	
+
 			} else {
 			darwin.serverModule.sendStat("stats","normality",selectedNormalityProjectName, selectedNormalityData, "POST", darwin.Mediator.drawGenericStat, dataType);	
 			}
@@ -641,8 +649,11 @@ darwin.projectManagerModule = (function() {
 			}
 			
 			if(selectedVarianceData.length == 0 || selectedVarianceProjectName.length > 1){
-		    	$('#ajaxGetUserServletResponse').text("Make sure you select a check box!");
-		    	$("#ajaxGetUserServletResponse").css({"opacity":"1"});	 
+		    	$('#ajaxGetUserServletResponse').text("Make sure you select a single check box!");
+		    	$("#ajaxGetUserServletResponse").css({"opacity":"1"});
+		    	setTimeout(function(){
+		            $('#ajaxGetUserServletResponse').css('opacity','0');
+		    	}, 5000);
 			} else {
 			darwin.serverModule.sendStat("stats","variance",selectedVarianceProjectName, selectedVarianceData, "POST", darwin.Mediator.drawGenericStat, dataType);	
 			}
@@ -695,7 +706,10 @@ darwin.projectManagerModule = (function() {
 			
 			if(selectedGrowthData.length == 0 || selectedMeanProjectName.length > 1){
 		    	$('#ajaxGetUserServletResponse').text("Make sure you select only one check box from each row!");
-		    	$("#ajaxGetUserServletResponse").css({"opacity":"1"});	 
+		    	$("#ajaxGetUserServletResponse").css({"opacity":"1"});	
+		    	setTimeout(function(){
+		            $('#ajaxGetUserServletResponse').css('opacity','0');
+		    	}, 5000);
 			} else {
 			darwin.serverModule.sendStat("stats","growth",selectedGrowthProjectName, selectedGrowthData, "POST", darwin.Mediator.drawGenericStat, dataType);	
 			}
@@ -799,6 +813,9 @@ darwin.projectManagerModule = (function() {
 			if(selectedSeriesAData.length == 0 || selectedSeriesBData.length == 0 || selectedMeanProjectName.length > 2){
 		    	$('#ajaxGetUserServletResponse').text("Make sure you select one check box from each row!");
 		    	$("#ajaxGetUserServletResponse").css({"opacity":"1"});	 
+		    	setTimeout(function(){
+		            $('#ajaxGetUserServletResponse').css('opacity','0');
+		    	}, 5000);
 			} else {			
 			darwin.serverModule.sendStatCorr("stats","correlation",selectedProjectName, selectedSeriesAData, selectedSeriesBData, "POST", darwin.Mediator.drawCorrelation, seriesA, seriesB);	
 			}

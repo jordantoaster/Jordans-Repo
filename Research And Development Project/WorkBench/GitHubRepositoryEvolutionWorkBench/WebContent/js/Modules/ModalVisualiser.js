@@ -16,6 +16,9 @@ darwin.modalVisualiser = (function() {
 			
 			
     		$('#projectModal').modal('show');
+    		
+			darwin.Mediator.resetcurrRequestPage(1);
+
 		}
 		
     };

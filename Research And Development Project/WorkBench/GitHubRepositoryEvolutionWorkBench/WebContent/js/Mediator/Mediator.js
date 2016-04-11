@@ -47,7 +47,10 @@ darwin.Mediator = (function () {
 	    	}
 	    	else {
 		    	$('#ajaxGetUserServletResponse').text("Ensure at least one URL is added!");
-		    	$("#ajaxGetUserServletResponse").css({"opacity":"1"});	 
+		    	$("#ajaxGetUserServletResponse").css({"opacity":"1"});	
+		    	setTimeout(function(){
+		            $('#ajaxGetUserServletResponse').css('opacity','0');
+		    	}, 5000);
 	    	}
         	//darwin.projectManagerModule.enableTabs();
 
@@ -59,7 +62,10 @@ darwin.Mediator = (function () {
     	//responds with export status
     	handleExport : function(response){	
 			    $('#ajaxGetUserServletResponse').text(response);
-  			    $("#ajaxGetUserServletResponse").css({"opacity":"1"});	 	
+  			    $("#ajaxGetUserServletResponse").css({"opacity":"1"});	 
+		    	setTimeout(function(){
+		            $('#ajaxGetUserServletResponse').css('opacity','0');
+		    	}, 5000);
     	},
     	initialSetup : function(filled){
     	    darwin.projectManagerModule.resetVariables();
@@ -115,7 +121,10 @@ darwin.Mediator = (function () {
     			darwin.modalVisualiser.drawModal(projectName, bodyText);
     		} else {
 		    	$('#ajaxGetUserServletResponse').text("No project data added!");
-		    	$("#ajaxGetUserServletResponse").css({"opacity":"1"});	 
+		    	$("#ajaxGetUserServletResponse").css({"opacity":"1"});	
+		    	setTimeout(function(){
+		            $('#ajaxGetUserServletResponse').css('opacity','0');
+		    	}, 5000);
     		}
 
     	},
@@ -189,6 +198,9 @@ darwin.Mediator = (function () {
 			} else {
 		     	$('#ajaxGetUserServletResponse').text(json.message);
 		      	$("#ajaxGetUserServletResponse").css({"opacity":"1"});
+		    	setTimeout(function(){
+		            $('#ajaxGetUserServletResponse').css('opacity','0');
+		    	}, 5000);
 			}
 		},
 		updateProgressBar: function () {
@@ -264,7 +276,7 @@ darwin.Mediator = (function () {
 			if(action == "commit"){
 				darwin.githubModule.send(url[0] + darwin.projectManagerModule.getcurrRequestPage(), callback, projectIndex, action);
 			}
-			if(action == "user"){
+			else if(action == "user"){
 				darwin.githubModule.send(url[0] + darwin.projectManagerModule.getcurrRequestPage(), callback, projectIndex, action);
 			}
 			else if(action == "star"){
@@ -466,7 +478,7 @@ darwin.Mediator = (function () {
 			return darwin.arrayUtilityModule.getSmallestArray(json);
 		},
 		performSuccessAction : function(action, response, callback, index){
-			darwin.AjaxResponseModule.handleSuccess(action, response, callback, index);
+			darwin.AjaxResponseModule.handleSuccess(action, response, callback, index, false);
 		},
 		setContributionJson : function(index, response){
 			darwin.jsonManagerModule.setContributionJson(index,response)
@@ -592,7 +604,10 @@ darwin.Mediator = (function () {
 				darwin.Mediator.makeGithubRequest(darwin.projectManagerModule.getAllBaseRequestUrl(), darwin.Mediator.parseUserData, "user", username);
 			} else {
 		    	$('#ajaxGetUserServletResponse').text("Make sure you add a username!");
-		    	$("#ajaxGetUserServletResponse").css({"opacity":"1"});	 
+		    	$("#ajaxGetUserServletResponse").css({"opacity":"1"});	
+		    	setTimeout(function(){
+		            $('#ajaxGetUserServletResponse').css('opacity','0');
+		    	}, 5000);
 			}
 		},
 		prepareStarClick : function(url, projectName){
@@ -731,6 +746,9 @@ darwin.Mediator = (function () {
 			if(values.length == 0){
 		    	$('#ajaxGetUserServletResponse').text("Please Select a check box");
 		    	$("#ajaxGetUserServletResponse").css({"opacity":"1"});	 
+		    	setTimeout(function(){
+		            $('#ajaxGetUserServletResponse').css('opacity','0');
+		    	}, 5000);
 			} else {
 				darwin.customVisualiser.draw(values, xAxis, chartTitle, sampleIndex, chartType);	
 			}

@@ -57,7 +57,11 @@ $(document).ready(function(e) {
 			darwin.Mediator.initialSetup(filledFeilds);
 	    } else{
 	    	$('#ajaxGetUserServletResponse').text("Make sure you add a URL!");
-	    	$("#ajaxGetUserServletResponse").css({"opacity":"1"});	 	  
+	    	$("#ajaxGetUserServletResponse").css({"opacity":"1"});	 
+	    	
+	    	setTimeout(function(){
+	            $('#ajaxGetUserServletResponse').css('opacity','0');
+	    	}, 5000);
 	    	}
 	
 	});
