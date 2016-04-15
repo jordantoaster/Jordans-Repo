@@ -679,6 +679,15 @@
       	</tr>
    		 </thead>
   		</table>
+  		<table class="table" style="margin-top:5%;"id="blockThreeTableTwo">
+    	<thead>
+     	 <tr>
+       	 	<th>Additions AD</th>
+        	<th>Deletions AD</th>
+        	<th>Issues AD</th>
+      	</tr>
+   		 </thead>
+  		</table> 		
 		</div>
 	 	</div>
 	 	<div id="lawFourBlock" style="overflow:hidden;height:600px;"class="tab-pane fade">

@@ -949,7 +949,7 @@ darwin.Mediator = (function () {
 		handleLawThreeData : function(response){
 		    obj = JSON.parse(response);
 
-	    	darwin.lawVisualiser.drawLawThree(obj.additions, obj.deletions, obj.issues);
+	    	darwin.lawVisualiser.drawLawThree(obj.additions, obj.deletions, obj.issues, obj.additionsAD, obj.deletionsAD, obj.issuesAD);
 		},
 		handleLawFourData : function(response){
 			

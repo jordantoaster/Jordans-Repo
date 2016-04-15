@@ -52,8 +52,9 @@ darwin.lawVisualiser = (function() {
     	    new google.visualization.ColumnChart(document.getElementById('lawTwoChart')).draw(data, options);
     	},
     	
-    	drawLawThree : function(additions, deletions, issues){    		
+    	drawLawThree : function(additions, deletions, issues, additionsAD, deletionsAD, issuesAD){    		
     		$("#blockThreeTable").append("<tr><td>" + additions + "</td><td>" + deletions + "</td><td>" + issues + "</td></tr>");
+    		$("#blockThreeTableTwo").append("<tr><td>" + additionsAD + "</td><td>" + deletionsAD + "</td><td>" + issuesAD + "</td></tr>");
     	},
     	
     	drawLawFour : function(variance, sd){
