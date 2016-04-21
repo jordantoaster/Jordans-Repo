@@ -1,5 +1,8 @@
 AIIS NOTES
 
+load dataset
+-open file - all files - dataset - ok -  choose - arrf loader - ok
+
 Selection
 - for scope languages are restricted to the ten most popular - to ensure a variety of choices are avaliable for the instances generated & due to the nature of the reports scope - https://github.com/blog/2047-language-trends-on-github
 - over 50% affinity to the language
