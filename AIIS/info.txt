@@ -7,3 +7,8 @@ Selection
 - for scope languages are restricted to the ten most popular - to ensure a variety of choices are avaliable for the instances generated & due to the nature of the reports scope - https://github.com/blog/2047-language-trends-on-github
 - over 50% affinity to the language
 - LOC is calculate using darwin (look at net tools to see it) - gives me the api claim
+- chose projects using github search language and star amount
+- search in a range  stars:"100..900"
+-select randomly based on what is returned in order by github
+- 12 instances each language so 120
+- some langauges (python did not have enough stars for some of the categories, so were padded elsewhere)
