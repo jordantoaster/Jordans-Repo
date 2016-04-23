@@ -109,6 +109,7 @@ C++,2052,1,318,444,113,7,Yes,Yes,68998,Yes,19,2000-5000 %https://github.com/SFTt
 C++,3692,7,1332,5709,396,11,Yes,No,144659,Yes,211,5000-10000 %https://github.com/BVLC/caffe
 C++,18884,2,1105,7890,942,48,Yes,No,111234,Yes,58,5000-10000 %https://github.com/Itseez/opencv
 C++,36373,17,1972,3127,1643,68,Yes,Yes,637281,Yes,15,>10000 %https://github.com/apple/swift
+C++,2471,29,1189,3129,1644,68,Yes,Yes,637281,Yes,15,>10000 %https://github.com/nwjs/nw.js
 C#,488,2,49,233,41,0,Yes,Yes,831,No,23,<500 %https://github.com/migueldeicaza/MonoTouch.Dialog
 C#,8,1,64,131,4,0,Yes,Yes,11022,No,5,<500 %https://github.com/wybory2014/Kalkulator1
 C#,3348,15,162,270,312,32,Yes,Yes,146868,Yes,5,500-2000 %https://github.com/jaredpar/VsVim
