@@ -24,7 +24,7 @@ public class ClearAction implements Action{
 		
 		try {
 			MongoClient mongoClient = new MongoClient();
-			DB db = mongoClient.getDB("Backup");
+			DB db = mongoClient.getDB("GithubEvolution");
 			
 			DBCollection myCollection = db.getCollection("Forks");
 			myCollection.drop();

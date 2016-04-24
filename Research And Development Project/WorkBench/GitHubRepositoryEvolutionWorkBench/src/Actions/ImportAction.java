@@ -16,7 +16,7 @@ public class ImportAction implements Action{
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
 		
 		try {
-			Runtime.getRuntime().exec("mongorestore --host non-smudgey-pc --port 27017 --db Backup D:\\Users\\jordann\\Desktop\\Export\\results.json\\GitHubEvolution");
+			Runtime.getRuntime().exec("mongorestore --host non-smudgey-pc --port 27017 --db GithubEvolution D:\\Users\\jordann\\Desktop\\Export\\results.json\\GitHubEvolution");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

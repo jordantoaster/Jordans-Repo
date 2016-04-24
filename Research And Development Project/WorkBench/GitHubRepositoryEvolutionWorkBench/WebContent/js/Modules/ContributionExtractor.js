@@ -156,7 +156,7 @@ darwin.contributionExtractorModule = (function() {
 	      				var datesAsString = darwin.dateManager.convertDateObjectToString(contributionDates);
 	      				
 	      				//001
-	      				//darwin.Mediator.makeServerRequestContributions("storeContributions",darwin.Mediator.emptyCallback,"POST",additions, deletions, difference, LOCOverTime, datesAsString, darwin.projectManagerModule.getProjectNamesIndex(j))	
+	      				darwin.Mediator.makeServerRequestContributions("storeContributions",darwin.Mediator.emptyCallback,"POST",additions, deletions, difference, LOCOverTime, datesAsString, darwin.projectManagerModule.getProjectNamesIndex(j))	
 	      			}
 	      		}
 			}
@@ -182,8 +182,7 @@ darwin.contributionExtractorModule = (function() {
     			//get the next project name - as we are not at the project num limit
     			project = projectNames[0];
     			
-    			//001
-    	    	//darwin.Mediator.prepareCommitClick("https://api.github.com/repos"+project+"/commits?per_page=100&page=", project);   			
+    	    	darwin.Mediator.prepareCommitClick("https://api.github.com/repos"+project+"/commits?per_page=100&page=", project);   			
     			
     	    }
 		
