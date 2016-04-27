@@ -302,7 +302,11 @@ public class LawsAction implements Action {
 		}
 
 		for (int k = 0; k < 10; k++) {
-			percentages[k] = Double.toString(((allInThreshold[k] * 100.0) / seriesA.size()));
+			if(allInThreshold[k] == 0){
+				percentages[k] = "0";
+			} else {
+				percentages[k] = Double.toString(((allInThreshold[k] * 100.0) / seriesA.size()));
+			}
 		}
 
 		String json = String.format("{ \"crossPercent\": \"%s\"}", Arrays.toString(percentages));
@@ -526,12 +530,37 @@ public class LawsAction implements Action {
 
 	// find out how many for each category are in the threshold or 0.05
 	float[] inThreshold = new float[6];
-	inThreshold[0]=(float)((issuesInThreshold*100.0)/total);
-	inThreshold[1]=(float)((additionsInThreshold*100.0)/total);
-	inThreshold[2]=(float)((deletionsInThreshold*100.0)/total);
-	inThreshold[3]=(float)((issuesInThresholdAD*100.0)/total);
-	inThreshold[4]=(float)((additionsInThresholdAD*100.0)/total);
-	inThreshold[5]=(float)((deletionsInThresholdAD*100.0)/total);
+	
+	if(issuesInThreshold == 0){
+		inThreshold[0]=0;
+	} else {
+		inThreshold[0]=(float)((issuesInThreshold*100.0)/total);
+	}
+	if(additionsInThreshold == 0){
+		inThreshold[1]=0;
+	} else {
+		inThreshold[1]=(float)((additionsInThreshold*100.0)/total);
+	}
+	if(deletionsInThreshold == 0){
+		inThreshold[2]=0;
+	} else {
+		inThreshold[2]=(float)((deletionsInThreshold*100.0)/total);
+	}
+	if(issuesInThresholdAD == 0){
+		inThreshold[3]=0;
+	} else {
+		inThreshold[3]=(float)((issuesInThresholdAD*100.0)/total);
+	}
+	if(additionsInThresholdAD == 0){
+		inThreshold[4]=0;
+	} else {
+		inThreshold[4]=(float)((additionsInThresholdAD*100.0)/total);
+	}
+	if(deletionsInThresholdAD == 0){
+		inThreshold[5]=0;
+	} else {
+		inThreshold[5]=(float)((deletionsInThresholdAD*100.0)/total);
+	}
 	
 	String json = String.format("{ \"additions\": \"%s\", \"deletions\": \"%s\", \"issues\": \"%s\", \"issuesAD\": \"%s\", \"additionsAD\": \"%s\", \"deletionsAD\": \"%s\"}", inThreshold[1], inThreshold[2],inThreshold[0],inThreshold[3],inThreshold[4],inThreshold[5]);
 	 

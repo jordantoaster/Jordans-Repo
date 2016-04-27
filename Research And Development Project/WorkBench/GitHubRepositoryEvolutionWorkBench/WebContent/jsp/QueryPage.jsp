@@ -194,10 +194,10 @@
 		</div>
 		<p id="contributorTotalWeeks" class="contributorExtra"></p>
 		<p id="contributorLOC" class="contributorExtra"></p>
-		<div style="width: 50% !important; margin: 0 auto; height: 2%; margin-top: 1%;">
+<!-- 		<div style="width: 50% !important; margin: 0 auto; height: 2%; margin-top: 1%;">
 			<p class="inlineText" style="margin-bottom: 1%; margin: 0 auto;" id="contribRange">Sample Range</p>
  			<div id="slider"></div>
- 		</div>
+ 		</div> -->
     	<div id="contributorChart"></div> 
     </div> 
      <div id="CommitTab" class="tab-pane fade customTab">

@@ -42,7 +42,7 @@ darwin.ContributionVisualiser = (function () {
 			
 			if(sliderVal[0] != undefined){
 				start =  sliderVal[0];
-				end = sliderVal[1];
+				//end = sliderVal[1];
 			}
     	       
     	    //add a new column for each input project
@@ -52,7 +52,7 @@ darwin.ContributionVisualiser = (function () {
     	    }
     	        	   	    
     	    //add data to each row, a a numeral for the y axis and string for x
-	    	for(var j =start;j<end;j++){
+	    	for(var j =0;j<iterationCount;j++){
     	    	if(valuesPresent.length == 2){
         	    	data.addRow(["" + j, valuesPresent[0][sampleIndex][j],valuesPresent[1][sampleIndex][j]]);
     	    	} else if(valuesPresent.length == 3){
@@ -97,7 +97,7 @@ darwin.ContributionVisualiser = (function () {
     	    
     	    //update ui
     	    darwin.Mediator.updateProgressBar();
-    	    darwin.ContributionVisualiser.drawSlider(0, iterationCount, start, end);
+    	    //darwin.ContributionVisualiser.drawSlider(0, iterationCount, start, end);
         },
         populateSupplementaryStats: function(LOC, totalWeeks){
         	$('#contributorTotalWeeks').text('Total Amount Of Weeks on GitHub: ' + totalWeeks);

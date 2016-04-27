@@ -225,8 +225,7 @@ public class StatsAction implements Action {
 				//stores the growth data
 				StatDao dao = new StatDao();
 				
-				//UNCOMMENT BELOW LINE WHEN RESEARCH DONE
-				//dao.insertGrowthRate(growthRateModel, "GithubEvolution");
+				dao.insertGrowthRate(growthRateModel, "GithubEvolution");
 				
 				for (int j = 0; j < growth.length; j++) {
 					growthAll.add(Double.toString(growth[j]));

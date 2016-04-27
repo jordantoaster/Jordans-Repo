@@ -704,7 +704,7 @@ darwin.projectManagerModule = (function() {
 				}				
 			}
 			
-			if(selectedGrowthData.length == 0 || selectedMeanProjectName.length > 1){
+			if(selectedGrowthData.length == 0 || selectedGrowthProjectName.length > 1){
 		    	$('#ajaxGetUserServletResponse').text("Make sure you select only one check box from each row!");
 		    	$("#ajaxGetUserServletResponse").css({"opacity":"1"});	
 		    	setTimeout(function(){
