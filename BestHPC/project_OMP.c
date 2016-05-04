@@ -153,7 +153,7 @@ int hostMatch()
 	{
 		// paralell loop
 		#pragma omp parallel private(i,j) shared(position) num_threads(8)
-		#pragma omp for schedule(runtime)
+		#pragma omp for schedule(guided)
 		for (i = 0; i<(lastI + 1); i++)
 		{
 			//position is global so the search only occurs if another thread has not set a position for the pattern - the first ensures we can get the first pattern instance even if a later one has been found.
@@ -201,7 +201,7 @@ int hostMatchAll(int text, int pattern)
 	{
 		// paralell loop
 		#pragma omp parallel private(i,j) shared(position) num_threads(8)
-		#pragma omp for schedule(runtime) //runtime seems to cause issue with multiple patterns? finds same one twice (runtime lets system decide, should i really let the system decide?)
+		#pragma omp for schedule(guided) //runtime seems to cause issue with multiple patterns? finds same one twice (runtime lets system decide, should i really let the system decide?)
 		for (i = 0; i<(lastI + 1); i++)
 		{
 			//attempt to find the pattern
@@ -289,4 +289,5 @@ int main(int argc, char **argv)
 	fclose(controlFile);
 	fclose(ofile);
 
+	printf("out");
 }
