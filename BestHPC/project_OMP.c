@@ -192,8 +192,6 @@ int hostMatchAll(int text, int pattern)
 	k = 0;
 	int position = -1;
 
-	//set to the difference between the text and pattern lengths
-	//so the amount of the whole text that does not contain the pattern itself
 	lastI = textLength - patternLength;
 
 	//for correctness only run when the pattern is less then the text
@@ -201,7 +199,7 @@ int hostMatchAll(int text, int pattern)
 	{
 		// paralell loop
 		#pragma omp parallel private(i,j) shared(position) num_threads(8)
-		#pragma omp for schedule(guided) //runtime seems to cause issue with multiple patterns? finds same one twice (runtime lets system decide, should i really let the system decide?)
+		#pragma omp for schedule(guided)
 		for (i = 0; i<(lastI + 1); i++)
 		{
 			//attempt to find the pattern
@@ -258,7 +256,6 @@ int main(int argc, char **argv)
 	char fileName[1000]; //can I make this smaller to save time?
 	char resultsfile[] = "result_OMP.txt";
 
-
 	//assign file name based on the directory syntax of the operating system
 	#ifdef DOS
 		sprintf(fileName, "inputs\\control.txt");
@@ -288,6 +285,4 @@ int main(int argc, char **argv)
 	////close the file streams
 	fclose(controlFile);
 	fclose(ofile);
-
-	printf("out");
 }
