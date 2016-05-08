@@ -810,7 +810,7 @@ darwin.projectManagerModule = (function() {
 				}
 			}
 			
-			if(selectedSeriesAData.length == 0 || selectedSeriesBData.length == 0 || selectedMeanProjectName.length > 2){
+			if(selectedSeriesAData.length == 0 || selectedSeriesBData.length == 0 || selectedProjectName.length > 2){
 		    	$('#ajaxGetUserServletResponse').text("Make sure you select one check box from each row!");
 		    	$("#ajaxGetUserServletResponse").css({"opacity":"1"});	 
 		    	setTimeout(function(){
