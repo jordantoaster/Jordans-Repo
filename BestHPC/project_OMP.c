@@ -6,8 +6,6 @@
 #include <time.h>
 #include <omp.h>
 
-//if values are wrong try changing to static scheduling on the all match loop in particular
-
 ////////////////////////////////////////////////////////////////////////////////
 // Jordan McDonald - OMP Project File
 ////////////////////////////////////////////////////////////////////////////////
@@ -213,7 +211,7 @@ int hostMatchAll(int text, int pattern)
 				#pragma omp critical //only allow one thread access to this block
 				{
 					position = i; //set the position if found
-					fprintf(ofile, "%d %d %d \n", text, pattern, position); // - each pattern found is added to the file
+					fprintf(ofile, "%d %d %d\n", text, pattern, position); // - each pattern found is added to the file
 				}
 			}
 		}
@@ -233,7 +231,7 @@ void processData(int occ, int inputText, int inputPattern)
 		result = hostMatch();
 
 		//print the results to the file
-		fprintf(ofile, "%d %d %d \n", inputText, inputPattern, result);
+		fprintf(ofile, "%d %d %d\n", inputText, inputPattern, result);
 	
 	} 
 	else { //handle the ecase where all patterns need to be found
@@ -241,7 +239,7 @@ void processData(int occ, int inputText, int inputPattern)
 
 		//handles the case where the pattern isnt found (ie the position is always -1)
 		if(result == -1) //hanldes the case where a pattern isnt found
-			fprintf(ofile, "%d %d %d \n", inputText, inputPattern, result);
+			fprintf(ofile, "%d %d %d\n", inputText, inputPattern, result);
 	}
 
 }

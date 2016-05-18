@@ -167,7 +167,7 @@ readAllPattern(char **patternDataCollection, int *patternLengthCollection, int n
 
 //access to this is probhinited to the master to ensure thread safety
 void outputResults(int text, int pattern, int result) {
-	fprintf(ofile, "%d %d %d \n", text, pattern, result);
+	fprintf(ofile, "%d %d %d\n", text, pattern, result);
 }
 
 void patternMatch(int start, int taskSize, int searchType, char text[], char pattern[], int textSize, int patternSize, int searchOutcome[]) {
@@ -219,7 +219,8 @@ void patternMatch(int start, int taskSize, int searchType, char text[], char pat
 					if (searchType == 1) {
 
 						i++;
-						k = start + i;
+						start++;
+						k = start;
 						j = 0;
 					}
 					else {
@@ -307,6 +308,9 @@ void master(int *textLengthCollection, int *patternLengthCollection, int npes, i
 	int currText;
 	int currPattern;
 	MPI_Request r;
+	int foundManyPattern = -1;
+
+	//numberOfTests = 6;
 
 	//loop all test cases
 	int testCaseIndex;
@@ -329,12 +333,12 @@ void master(int *textLengthCollection, int *patternLengthCollection, int npes, i
 		}
 
 		//in the case of a decimal result C will floor the decimal - so the plus one accounts for this (downside of giving the last process less work overall)
-		if (searchType == 1) {
-			taskSize = (textLengthCollection[testCaseIndex] / (npes - 1)) + 1;
-		}
-		else {
+		//if (searchType == 1) {
+			//taskSize = (textLengthCollection[testCaseIndex] / (npes - 1)) + 1;
+		//}
+		//else {
 			taskSize = 600;
-		}
+		//}
 
 		//prepare a task template for each thread
 		task[0] = searchStartIndex;
@@ -354,6 +358,9 @@ void master(int *textLengthCollection, int *patternLengthCollection, int npes, i
 				task[0] = task[0] + task[1];
 
 				activeSlave++;
+			}
+			else {
+				break;
 			}
 		}
 
@@ -402,7 +409,7 @@ void master(int *textLengthCollection, int *patternLengthCollection, int npes, i
 					}	
 
 				// if text remaining to be analysed and search type is 0
-				if (!foundPattern && task[2] <= textLengthCollection[testCaseIndex] - patternLengthCollection[testCaseIndex] && searchType == 0)
+				if (task[0] <= textLengthCollection[testCaseIndex] - patternLengthCollection[testCaseIndex]) //stop zero search searching
 				{
 					MPI_Send(&task, 4, MPI_INT, status.MPI_SOURCE, 0, MPI_COMM_WORLD); //send back to the process
 					task[0] = task[0] + task[1];
@@ -411,9 +418,9 @@ void master(int *textLengthCollection, int *patternLengthCollection, int npes, i
 		}
 
 		//if the pattern is not found at all
-		if (activeSlave == 0 && foundPattern == -1) {
+		if (foundPattern == -1) {
 			outputResults(currText, currPattern, -1);
-		}
+		} 
 
 	}
 
